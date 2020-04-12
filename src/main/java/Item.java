@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Item {
-    private static ArrayList<Item>allItems=new ArrayList<>();
+    private static ArrayList<String>allItemsId=new ArrayList<>();
     private String id;
     private String state;
     private String description;
@@ -9,44 +9,28 @@ public class Item {
     private String brand;
     private int timesBought;
     private int price;
-    private Seller seller;
-    private Category category;
-    private boolean DoesHave;
+    private HashMap<String,String > attributes;
+    private String sellerName;
+    private String categoryName;
+    private boolean isAvaible;
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     //constructor
-    public Item(String name , String brand , String description , String state
-            , String id , int price , int timesBought , Seller seller , Category category , boolean doesHave){
-        this.setName(name);
-        this.setBrand(brand);
-        this.setDescription(description);
-        this.setState(state);
-        this.setId(id);
-        this.setPrice(price);
-        this.setTimesBought(timesBought);
-        this.setSeller(seller);
-        this.setCategory(category);
-        this.setDoesHave(doesHave);
+    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , boolean doesHave,HashMap<String,String> attributes){
+        this.name=name;
+        this.brand=brand;
+        this.description=description;
+        this.state=state;
+        this.price=price;
+        this.timesBought=0;
+        this.sellerName=sellerName;
+        this.categoryName=categoryName;
+        this.attributes=attributes;
+        timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
     }
-
     //getters
-    public static ArrayList<Item> getAllItems() {
-        return allItems;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public boolean isDoesHave() {
-        return DoesHave;
-    }
-
-    public Seller getSeller() {
-        return seller;
-    }
 
     public int getPrice() {
         return price;
@@ -116,15 +100,5 @@ public class Item {
         this.price = price;
     }
 
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
 
-    public void setDoesHave(boolean doesHave) {
-        DoesHave = doesHave;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }

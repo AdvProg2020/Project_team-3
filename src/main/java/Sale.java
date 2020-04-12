@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Sale {
     private String id;
-    private ArrayList<Item> itemList = new ArrayList<>();
+    private ArrayList<String> itemId = new ArrayList<>();
     private int startTime;
     private int endTime;
     private int offPercentage;
@@ -39,15 +39,11 @@ public class Sale {
         return id;
     }
 
-    public void addItemToList(Item item){
-        if(!saleHasItemWithID(item.getId())) itemList.add(item);
+    public void addItemToSale(String itemId){
+
     }
 
     public boolean saleHasItemWithID(String id){
-        if(itemList.isEmpty()) return  false;
-        for(Item item: itemList){
-            if(item.getId().equals(id)) return true;
-        }
-        return false;
+      return false;
     }
 }
