@@ -7,11 +7,10 @@ public abstract class User {
     private String email;
     private String number;
     private String type;
+
+
     public boolean doesPasswordMatch(String password){
-        if(this.password.equals(password)){
-            return true;
-        }
-        return false;
+        return this.password.equals(password);
     }
     public User(String username,String password,String name,String lastName,String email,String type,String number){
         this.username = username;

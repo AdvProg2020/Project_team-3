@@ -22,10 +22,12 @@ public class Controller {
         return controller;
     }
 
-    public User getUserByUsername (String Username){
+    public User getUserByUsername (String username){
         if(allUsers.isEmpty()) return null;
         for(User user:allUsers){
-
+            if(user.getUsername().equals(username)){
+                return user;
+            }
         }
         return null;
     }
