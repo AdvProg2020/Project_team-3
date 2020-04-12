@@ -16,7 +16,6 @@ public class Rating {
     public String getUsername() {
         return username;
     }
-
     //constructor
     public Rating(int score, String username, String itemId) {
         this.score = score;
