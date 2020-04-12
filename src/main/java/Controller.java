@@ -21,7 +21,7 @@ public class Controller {
         return controller;
     }
 
-    public void iniate(){   //should be called to iniate saved Gsons
+    public void initiate(){   //should be called to initiate saved Gsons
 
     }
 
@@ -61,7 +61,7 @@ public class Controller {
                 return null;
     }
 
-    public DiscountCode getDiscountCodeByid(String id){
+    public DiscountCode getDiscountCodeById(String id){
         for (DiscountCode discountCode : allDiscountCodes) {
             if(discountCode.getDiscountId().equals(id)){
                 return discountCode;
