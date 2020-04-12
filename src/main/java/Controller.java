@@ -69,4 +69,36 @@ public class Controller {
         }
                return null;
     }
+
+    public void Logout(){
+
+    }
+
+    public void registerBuyer(double money,String username, String password, String name, String lastName, String email, String number){
+
+    }
+
+    public void registerSeller(String username, String password, String name, String lastName, String email, String number){
+
+    }
+
+    public void deleteUser(String Username){
+
+    }
+
+    public boolean searchItemInCategory(String categoryName,String itemId){
+       return false;
+    }
+
+    public String compare(String itemId1,String itemId2){
+        return "hello";
+    }
+
+    public void addToBucket(String itemId){
+
+    }
+
+    public void removeItemFromBucket(String itemId){
+        
+    }
 }
