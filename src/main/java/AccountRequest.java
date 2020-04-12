@@ -5,7 +5,7 @@ public class AccountRequest extends  Request{
         super(requestId);
         this.seller=seller;
         String news="the new seller with user Name"+seller.getUsername()+"wants to create account in your System";
-        this.setMassage(news);
+        this.setMessage(news);
         Request.addRequest(this);
     }
 

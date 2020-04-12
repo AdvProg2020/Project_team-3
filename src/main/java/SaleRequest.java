@@ -8,7 +8,7 @@ public class SaleRequest extends Request {
         super(requestId);
         this.newSale = newSale;
         String news="new Sale with Id"+newSale.getId()+"is requested for being add to your System!";
-        this.setMassage(news);
+        this.setMessage(news);
         addRequest(this);
     }
 

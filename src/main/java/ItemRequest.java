@@ -5,7 +5,7 @@ public class ItemRequest  extends Request {
         super(requestId);
         this.newItem = newItem;
         String news="new Item with Id:"+newItem.getId()+"is requested for being added in your System";
-        this.setMassage(news);
+        this.setMessage(news);
         addRequest(this);
     }
 

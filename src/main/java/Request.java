@@ -3,7 +3,7 @@ import java.util.*;
 
 public abstract class Request {
 
-    private static ArrayList<Request> allRequest;
+    private static ArrayList<Request> allRequests;
     private String requestId;
     private String message;
     private boolean isAccepted;
@@ -14,7 +14,7 @@ public abstract class Request {
     }
 
     public static ArrayList<Request> getAllRequest() {
-        return allRequest;
+        return allRequests;
     }
 
     public String getRequestId() {
@@ -25,28 +25,32 @@ public abstract class Request {
         this.requestId = requestId;
     }
 
-    public String getMassage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMassage(String massage) {
-        this.message = massage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public boolean isIs_accepted() {
         return isAccepted;
     }
 
-    public void setIs_accepted(boolean is_accepted) {
-        this.isAccepted = is_accepted;
+    public void setIsAccepted(boolean isAccepted) {
+        this.isAccepted = isAccepted;
     }
 
     public static void addRequest(Request newRequest){
-        allRequest.add(newRequest);
+        allRequests.add(newRequest);
     }
 
-    public static void removeRequest(Request removed){
-        allRequest.remove(removed);
+    public static boolean removeRequest(Request removed){
+        if(allRequests.contains(removed)) {
+            allRequests.remove(removed);
+            return true;
+        }
+        return false;
     }
 
 
