@@ -19,6 +19,10 @@ public class Seller extends User {
 
     }
 
+    public void addItemToSale(String itemid){
+
+    }
+
     public String showAllSale() {
        return "hello";
     }

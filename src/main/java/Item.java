@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Item {
     private static ArrayList<Item>allItems=new ArrayList<>();
-    private String id;
+    private int id;
     private String state;
     private String description;
     private String name;
@@ -16,7 +16,7 @@ public class Item {
     private ArrayList<Comment>allComments;
     //constructor
     public Item(String name , String brand , String description , String state
-            , String id , int price , int timesBought , Seller seller , Category category , boolean doesHave){
+            , int id , int price , int timesBought , Seller seller , Category category , boolean doesHave){
         this.setName(name);
         this.setBrand(brand);
         this.setDescription(description);
@@ -60,7 +60,7 @@ public class Item {
         return name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -84,7 +84,7 @@ public class Item {
         this.description = description;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
