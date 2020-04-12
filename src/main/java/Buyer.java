@@ -7,14 +7,8 @@ public class Buyer extends User{
     private Cart cart;
 
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
+        super(username,password,name,lastName,email,"Buyer",number);
         this.money=money;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.number = number;
-        this.type = "Buyer";
         buyLogs=new ArrayList<>();
     }
 
