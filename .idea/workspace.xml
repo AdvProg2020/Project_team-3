@@ -2,30 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdminMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BuyLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Buyer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CategoryMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MainMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Manager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Rating.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Sale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SaleLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SellerMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ShopMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SpecialSale.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaleLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586626971063</updated>
       <workItem from="1586626974971" duration="2104000" />
-      <workItem from="1586702722933" duration="667000" />
+      <workItem from="1586702722933" duration="2477000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -120,6 +107,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="496" y="198" key="#Notifications/0.23.1792.1026@0.23.1792.1026" timestamp="1586627765726" />
+    <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1586705293249">
+      <screen x="0" y="23" width="1792" height="1026" />
+    </state>
+    <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="510" y="229" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586627150691">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
@@ -133,33 +124,34 @@
     </state>
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628130089" />
-    <state width="1750" height="277" key="GridCell.Tab.0.bottom" timestamp="1586634833551">
+    <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586705207499">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
-    <state width="1750" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1586634833551" />
+    <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207499" />
     <state width="1750" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1586628583673" />
-    <state width="1750" height="277" key="GridCell.Tab.0.center" timestamp="1586634833551">
+    <state width="875" height="277" key="GridCell.Tab.0.center" timestamp="1586705207498">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
-    <state width="1750" height="277" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1586634833551" />
+    <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="1750" height="277" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1586628583672" />
-    <state width="1750" height="277" key="GridCell.Tab.0.left" timestamp="1586634833551">
+    <state width="875" height="277" key="GridCell.Tab.0.left" timestamp="1586705207498">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
-    <state width="1750" height="277" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1586634833551" />
+    <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="1750" height="277" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1586628583672" />
-    <state width="1750" height="277" key="GridCell.Tab.0.right" timestamp="1586634833551">
+    <state width="875" height="277" key="GridCell.Tab.0.right" timestamp="1586705207498">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
-    <state width="1750" height="277" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1586634833551" />
+    <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="1750" height="277" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1586628583673" />
     <state x="384" y="114" key="SettingsEditor" timestamp="1586627357368">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="496" y="273" key="Vcs.Push.Dialog.v2" timestamp="1586703372452">
-      <screen x="0" y="23" width="1792" height="1026" />
+    <state x="496" y="273" key="Vcs.Push.Dialog.v2" timestamp="1586703445554">
+      <screen x="0" y="23" width="1792" height="1024" />
     </state>
+    <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586703372452" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1586702723468">
