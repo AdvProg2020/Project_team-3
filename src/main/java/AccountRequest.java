@@ -1,16 +1,16 @@
 
 public class AccountRequest extends  Request{
-    private Seller seller;
-    public AccountRequest(String requestId , Seller seller) {
+    private User user;
+    public AccountRequest(String requestId , User user) {
         super(requestId);
-        this.seller=seller;
-        String news="the new seller with user Name"+seller.getUsername()+"wants to create account in your System";
+        this.user=user;
+        String news="the new seller with user Name"+user.getUsername()+"wants to create account in your System";
         this.setMessage(news);
         Request.addRequest(this);
     }
 
-    public Seller getSeller() {
-        return seller;
+    public User getSeller() {
+        return this.user;
     }
 
 }
