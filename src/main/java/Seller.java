@@ -8,13 +8,7 @@ public class Seller extends User {
     private ArrayList<String> allSaleId;
 
     public Seller(String username, String password, String name, String lastName, String email, String number) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.number = number;
-        this.type = "Seller";
+        super(username,password,name,lastName,email,"Seller",number);
         sellLogs=new ArrayList<>();
         soldItemsId=new ArrayList<>();
         allItemsId=new ArrayList<>();
