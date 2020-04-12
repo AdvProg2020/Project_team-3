@@ -40,7 +40,7 @@ public class Controller {
                 return true;
             }
         }
-              return false
+              return false;
     }
 
     public Sale getSaleById(String id){
