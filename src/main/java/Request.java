@@ -1,2 +1,9 @@
-public class Request {
+
+import java.util.*;
+
+public abstract class Request {
+
+
+
+
 }
