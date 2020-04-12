@@ -13,17 +13,19 @@ public class Controller {
     private Category currentCategory;
     private Cart currentShoppingCart;
 
-    private Controller(){
+    private Controller(){ }
 
-    }
     public static Controller getInstance(){
         if(controller==null)
             controller = new Controller();
         return controller;
     }
 
+    public void iniate(){   //should be called to iniate saved Gsons
+
+    }
+
     public User getUserByUsername (String username){
-        if(allUsers.isEmpty()) return null;
         for(User user:allUsers){
             if(user.getUsername().equals(username)){
                 return user;
@@ -32,4 +34,39 @@ public class Controller {
         return null;
     }
 
+    public boolean isThereUserByName(String name){
+        for (User user : allUsers) {
+            if(user.getUsername().equals(name)){
+                return true;
+            }
+        }
+              return false
+    }
+
+    public Sale getSaleById(String id){
+        for (Sale sale : allSales) {
+            if(sale.getId().equals(id)){
+                return sale;
+            }
+        }
+               return null;
+    }
+
+    public Item getItemById(String id){
+        for (Item item : allItems) {
+            if(item.getId().equals(id)) {
+                return item;
+            }
+        }
+                return null;
+    }
+
+    public DiscountCode getDiscountCodeByid(String id){
+        for (DiscountCode discountCode : allDiscountCodes) {
+            if(discountCode.getDiscountId().equals(id)){
+                return discountCode;
+            }
+        }
+               return null;
+    }
 }
