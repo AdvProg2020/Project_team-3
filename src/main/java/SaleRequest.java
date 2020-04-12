@@ -1,10 +1,10 @@
 
-public class AddSaleRequest extends Request {
+public class SaleRequest extends Request {
 
     private Sale newSale;
 
 
-    public AddSaleRequest(String requestId, Sale newSale) {
+    public SaleRequest(String requestId, Sale newSale) {
         super(requestId);
         this.newSale = newSale;
         String news="new Sale with Id"+newSale.getId()+"is requested for being add to your System!";
