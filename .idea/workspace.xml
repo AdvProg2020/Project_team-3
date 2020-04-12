@@ -4,7 +4,6 @@
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="User set as abstract">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
     </list>
@@ -110,9 +109,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="496" y="198" key="#Notifications/0.23.1792.1026@0.23.1792.1026" timestamp="1586627765726" />
-    <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1586705293249">
-      <screen x="0" y="23" width="1792" height="1026" />
+    <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1586711556676">
+      <screen x="0" y="23" width="1792" height="1024" />
     </state>
+    <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1024@0.23.1792.1024" timestamp="1586711556676" />
     <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="510" y="229" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586627150691">
       <screen x="0" y="23" width="1792" height="1030" />
@@ -122,10 +122,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="745" y="440" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586627286188" />
-    <state x="479" y="135" key="CommitChangelistDialog2" timestamp="1586711100625">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state x="479" y="135" key="CommitChangelistDialog2" timestamp="1586712124950">
+      <screen x="0" y="23" width="1792" height="1024" />
     </state>
     <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586706814606" />
+    <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1024@0.23.1792.1024" timestamp="1586712124950" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1030@0.23.1792.1030" timestamp="1586710883135" />
@@ -153,12 +154,12 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1586706829495">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="496" y="273" key="Vcs.Push.Dialog.v2" timestamp="1586711131336">
+      <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586706829495" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
-    <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586703372452" />
+    <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586711131336" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1586702723468">
       <screen x="0" y="23" width="1792" height="1026" />

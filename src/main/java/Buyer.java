@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
 public class Buyer extends User{
-    double money;
-    ArrayList<BuyLog> buyLogs;
-    Cart cart;
 
-    public Buyer(double money,String username, String password, String name, String lastName, String email, String number, String type) {
+    private double money;
+    private ArrayList<BuyLog> buyLogs;
+    private Cart cart;
+
+    public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         this.money=money;
         this.username = username;
         this.password = password;
@@ -13,7 +14,7 @@ public class Buyer extends User{
         this.lastName = lastName;
         this.email = email;
         this.number = number;
-        this.type = type;
+        this.type = "Buyer";
         buyLogs=new ArrayList<>();
     }
 

@@ -1,12 +1,12 @@
 public abstract class User {
-    String username;
-    String password;
-    String name;
-    String lastName;
-    String email;
-    String number;
-    String type;
 
+    private String username;
+    private String password;
+    private String name;
+    private String lastName;
+    private String email;
+    private String number;
+    private String type;
     public boolean doesPasswordMatch(String password){
         if(this.password.equals(password)){
             return true;
