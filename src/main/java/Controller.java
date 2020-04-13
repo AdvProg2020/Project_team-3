@@ -1,14 +1,15 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Controller {
     private static Controller controller;
 
     private Admin admin;
-    private ArrayList<Request>allRequests=new ArrayList<>();
     private ArrayList <User> allUsers = new ArrayList<>();
     private ArrayList <Sale> allSales = new ArrayList<>();
     private ArrayList <DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList <Item> allItems = new ArrayList<>();
+    private ArrayList<Request>allRequests=new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -81,6 +82,10 @@ public class Controller {
 
     }
 
+    public boolean addItem(String name , String brand , String description , String state, int price , String sellerName , String categoryName , HashMap<String,String> attributes, int inStock){
+      return false;
+    }
+
     public void registerBuyer(double money,String username, String password, String name, String lastName, String email, String number){
 
     }
@@ -122,11 +127,11 @@ public class Controller {
     }
 
     public Boolean addCategory(String Name){
-    return  false;
+      return false;
     }
 
     public Boolean Buy(){
-    return  false;
+      return false;
     }
 
     public boolean isAValidCommand(String command){
@@ -155,6 +160,7 @@ public class Controller {
         }
     }
 
+
     public void addUserRequest(String requestID ,User newUser){
         AccountRequest newRequest=new AccountRequest(requestID , newUser);
         allRequests.add(newRequest);
@@ -179,26 +185,4 @@ public class Controller {
         ItemEdit newRequest=new ItemEdit(requestId, saleID ,changedFiled ,newFieldValue);
         allRequests.add(newRequest);
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
