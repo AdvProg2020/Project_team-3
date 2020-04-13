@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586771242522</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated controller">
+      <created>1586775072930</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1586775072930</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +159,8 @@
     <MESSAGE value="set menu classes as singleton" />
     <MESSAGE value="overrode toString for menus" />
     <MESSAGE value="added class Menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="added class Menu" />
+    <MESSAGE value="updated controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated controller" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -172,11 +181,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="745" y="440" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586627286188" />
-    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586771240724">
+    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586775071118">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586723690112" />
-    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586771240724" />
+    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586775071118" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1030@0.23.1792.1030" timestamp="1586710883135" />
@@ -208,11 +217,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1586771247978">
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1586775075948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1586723700335" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586771247978" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586775075948" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />
