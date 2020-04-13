@@ -3,7 +3,6 @@ import java.util.*;
 
 public abstract class Request {
 
-
     private String requestId;
     private String message;
     private boolean isAccepted;

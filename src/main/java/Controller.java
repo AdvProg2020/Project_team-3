@@ -4,11 +4,11 @@ public class Controller {
     private static Controller controller;
 
     private Admin admin;
+    private ArrayList<Request>allRequests=new ArrayList<>();
     private ArrayList <User> allUsers = new ArrayList<>();
     private ArrayList <Sale> allSales = new ArrayList<>();
     private ArrayList <DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList <Item> allItems = new ArrayList<>();
-    private ArrayList<Request>allRequests=new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -179,6 +179,7 @@ public class Controller {
         ItemEdit newRequest=new ItemEdit(requestId, saleID ,changedFiled ,newFieldValue);
         allRequests.add(newRequest);
     }
+
 
 
 
