@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Admin extends User {
 
     public Admin(String username, String password, String name, String lastName, String email, String type, String number) {
@@ -19,5 +21,10 @@ public class Admin extends User {
      public void addCategory(String name) {
 
     }
+
+    public void changeIsAccepted(){
+        //dar inja modir request ha ra accept ya decline mikonad! ArrayList <>allRequest
+    }
+
 
 }

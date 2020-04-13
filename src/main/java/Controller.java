@@ -9,7 +9,7 @@ public class Controller {
     private ArrayList<Sale> allSales = new ArrayList<>();
     private ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
-    private ArrayList<Request> allRequests = new ArrayList<>();
+    public ArrayList<Request> allRequests = new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;

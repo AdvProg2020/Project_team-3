@@ -11,9 +11,6 @@ public class AdminMenu extends Menu{
         return adminMenu;
     }
 
-    public void changeIsAccepted(ArrayList<Request>allRecentRequest){
-        //dar inja modir request ha ra accept ya decline mikonad!
-    }
 
     @Override
     public void show(){
