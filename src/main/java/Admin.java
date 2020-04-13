@@ -16,7 +16,8 @@ public class Admin extends User {
            return "salam";
     }
 
-    // public void addCategory(  ta vaghti category neveshte beshe  ) {
-    //   }
+     public void addCategory(String name) {
+
+    }
 
 }

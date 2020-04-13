@@ -13,13 +13,10 @@ public class Item {
     private String sellerName;
     private String categoryName;
     private static String idCount="00000000";
-    private int inventory;
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     //constructor
-    public Item(String name , String brand , String description , String state, int price ,
-                String sellerName , String categoryName ,
-                int inventory,HashMap<String,String> attributes){
+    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , boolean doesHave,HashMap<String,String> attributes){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -30,14 +27,12 @@ public class Item {
         this.categoryName=categoryName;
         this.attributes=attributes;
         this.id=idCount;
-        this.inventory=inventory;
         idCount=Controller.getInstance().addId(idCount);
         timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
     }
     //getters
-    public int getInventory(){return inventory;}
 
     public int getPrice() {
         return price;
@@ -107,10 +102,5 @@ public class Item {
         this.price = price;
     }
 
-    public void minusInventory()
-    {
-        if(this.inventory==0) return;
-        this.inventory--;
-    }
 
 }
