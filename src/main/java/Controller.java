@@ -12,7 +12,6 @@ public class Controller {
     private Category mainCategory;
     private Category currentCategory;
     private Cart currentShoppingCart;
-    private Menu currentMenu;
     private ArrayList <Item> currentViewableItems = new ArrayList<>();
 
     private Controller(){ }
@@ -27,9 +26,6 @@ public class Controller {
 
     }
 
-    public void processCommand(String command){
-        currentMenu.execute(command);
-    }
 
     public User getUserByUsername (String username){
         for(User user:allUsers){
@@ -108,9 +104,6 @@ public class Controller {
 
     }
 
-    public void setCurrentMenu(Menu currentMenu) {
-        this.currentMenu = currentMenu;
-    }
 
     public boolean isAValidCommand(String command){
         if(command.length()>3) return false;
