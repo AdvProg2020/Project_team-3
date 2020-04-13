@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AccountEdit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ItemEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ItemEdit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaleEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaleEdit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -76,6 +79,7 @@
       <workItem from="1586713728399" duration="24000" />
       <workItem from="1586715430515" duration="103000" />
       <workItem from="1586717122996" duration="449000" />
+      <workItem from="1586783047006" duration="290000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -206,6 +210,10 @@
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1030@0.23.1792.1030" timestamp="1586710883135" />
+    <state x="384" y="73" key="Diagram.Print.Preview.Dialog" timestamp="1586779878028">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="384" y="73" key="Diagram.Print.Preview.Dialog/0.0.1280.984@0.0.1280.984" timestamp="1586779878028" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586711092564">
       <screen x="0" y="23" width="1792" height="1028" />
     </state>
@@ -246,10 +254,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586716151647" />
-    <state x="614" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1586769059323">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog" timestamp="1586783108589">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1586717122256" />
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1586783108589" />
     <state x="614" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586769059323" />
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586702723468" />
     <state x="573" y="365" key="com.intellij.ide.util.TipDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1586626975654" />
