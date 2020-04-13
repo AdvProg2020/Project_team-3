@@ -170,7 +170,15 @@ public class Controller {
         allRequests.add(newRequest);
     }
 
-    
+    public void editSaleRequest(String requestId, String saleID , String changedFiled , String newFieldValue){
+        SaleEdit newRequest=new SaleEdit(requestId,saleID ,changedFiled , newFieldValue);
+        allRequests.add(newRequest);
+    }
+
+    public void editItemRequest(String requestId, String saleID , String changedFiled , String newFieldValue){
+        ItemEdit newRequest=new ItemEdit(requestId, saleID ,changedFiled ,newFieldValue);
+        allRequests.add(newRequest);
+    }
 
 
 
