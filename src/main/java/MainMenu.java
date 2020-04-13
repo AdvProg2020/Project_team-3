@@ -22,7 +22,24 @@ public class MainMenu extends Menu{
     }
     @Override
     public void execute(String command){
+        if(!Controller.getInstance().isAValidCommand(command)){
+            System.out.println("Invalid command. Try again.");
+            return;
+        }
+        int choice = Integer.parseInt(command);
 
+        if(choice==1){
+
+        }
+        else if(choice==2){
+
+        }
+        else if(choice==3){
+
+        }
+        else{
+            System.out.println("Invalid command. Try again.");
+        }
     }
 
 }

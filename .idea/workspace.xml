@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CategoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CategoryMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SellerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ShopMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586775191619</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated controller">
+      <created>1586777566836</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1586777566836</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,9 +175,9 @@
     <MESSAGE value="set menu classes as singleton" />
     <MESSAGE value="overrode toString for menus" />
     <MESSAGE value="added class Menu" />
-    <MESSAGE value="updated controller" />
     <MESSAGE value="updated main" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated main" />
+    <MESSAGE value="updated controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated controller" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -197,11 +198,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="745" y="440" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586627286188" />
-    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586775190091">
+    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586777565004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586723690112" />
-    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586775190091" />
+    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586777565004" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1030@0.23.1792.1030" timestamp="1586710883135" />
