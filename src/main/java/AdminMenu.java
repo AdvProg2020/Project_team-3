@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class AdminMenu extends Menu{
     private static AdminMenu adminMenu;
     private int optionCount = 9;
@@ -8,6 +10,11 @@ public class AdminMenu extends Menu{
             adminMenu = new AdminMenu();
         return adminMenu;
     }
+
+    public void changeIsAccepted(ArrayList<Request>allRecentRequest){
+        //dar inja modir request ha ra accept ya decline mikonad!
+    }
+
     @Override
     public void show(){
         System.out.println("1-Edit personal information");
