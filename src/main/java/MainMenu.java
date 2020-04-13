@@ -1,5 +1,6 @@
 public class MainMenu extends Menu{
     private static MainMenu mainMenu;
+    private int optionCount = 4;
     private MainMenu(){ }
 
     public static MainMenu getInstance(){
@@ -20,7 +21,7 @@ public class MainMenu extends Menu{
         return "1-Login\n2-Register\n3-Shop\n4-exit";
     }
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 

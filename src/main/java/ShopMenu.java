@@ -1,5 +1,6 @@
 public class ShopMenu extends Menu{
     private static ShopMenu shopMenu;
+    private int optionCount = 3;
     private ShopMenu(){ }
 
     public static ShopMenu getInstance(){
@@ -18,7 +19,7 @@ public class ShopMenu extends Menu{
         return "1-Cart\n2-Category\n3-Back";
     }
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 }

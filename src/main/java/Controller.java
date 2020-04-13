@@ -27,9 +27,8 @@ public class Controller {
 
     }
 
-    public String processCommand(String command){
-        //inja miad dastoro migire javabo return mikone
-        return "paniz";
+    public void processCommand(String command){
+        currentMenu.execute(command);
     }
 
     public User getUserByUsername (String username){

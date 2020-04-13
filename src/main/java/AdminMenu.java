@@ -1,5 +1,6 @@
 public class AdminMenu extends Menu{
     private static AdminMenu adminMenu;
+    private int optionCount = 9;
     private AdminMenu(){ }
 
     public static AdminMenu getInstance(){
@@ -25,7 +26,7 @@ public class AdminMenu extends Menu{
         return "1-Edit personal information\n2-See requests\n3-Add admin account\n4-Show sales\n5-Add special sale\n6-Delete user\n7-See all categories\n8-Add category\n9-Logout";
     }
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 }

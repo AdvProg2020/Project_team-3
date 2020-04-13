@@ -1,5 +1,6 @@
 public class SellerMenu extends Menu{
     private static SellerMenu sellerMenu;
+    private int optionCount = 6;
     private SellerMenu(){ }
 
     public static SellerMenu getInstance(){
@@ -24,7 +25,7 @@ public class SellerMenu extends Menu{
     }
 
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 }

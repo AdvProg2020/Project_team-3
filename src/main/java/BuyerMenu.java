@@ -1,5 +1,6 @@
 public class BuyerMenu extends Menu{
     private static BuyerMenu buyerMenu;
+    private int optionCount = 4;
     private BuyerMenu(){ }
 
     public static BuyerMenu getInstance(){
@@ -20,7 +21,7 @@ public class BuyerMenu extends Menu{
         return "1-Edit personal information\n2-shop\n3-previous purchases\n4-Logout";
     }
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 }

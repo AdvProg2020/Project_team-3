@@ -1,5 +1,6 @@
 public class CategoryMenu extends Menu{
     private static CategoryMenu categoryMenu;
+    private int optionCount = 4;
     private CategoryMenu(){ }
 
     public static CategoryMenu getInstance(){
@@ -20,7 +21,7 @@ public class CategoryMenu extends Menu{
         return "1-show items\n2-add filter\n3-remove filter\n4-search";
     }
     @Override
-    public void execute(){
+    public void execute(String command){
 
     }
 }
