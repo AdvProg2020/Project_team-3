@@ -121,11 +121,11 @@ public class Controller {
     }
 
     public Boolean addCategory(String Name){
-
+    return  false;
     }
 
     public Boolean Buy(){
-
+    return  false;
     }
 
     public boolean isAValidCommand(String command){
@@ -154,3 +154,21 @@ public class Controller {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
