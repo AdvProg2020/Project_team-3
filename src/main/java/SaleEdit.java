@@ -1,17 +1,17 @@
 public class SaleEdit extends  Request{
-    private Sale sale;
+    private String saleID;
     private String changedFiled;
     private String newFieldValue;
     /////overloaded Constructor
-    public SaleEdit(String requestId, Sale sale , String changedFiled , String newFieldValue) {
+    public SaleEdit(String requestId, String saleID , String changedFiled , String newFieldValue) {
         super(requestId);
-        this.sale = sale;
+        this.saleID = saleID;
         this.changedFiled=changedFiled;
         this.newFieldValue=newFieldValue;
     }
 
-    public Sale getSale() {
-        return sale;
+    public String getSaleID() {
+        return saleID;
     }
 
     public String getNewFieldValue() {
