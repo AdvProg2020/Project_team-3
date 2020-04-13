@@ -8,6 +8,7 @@ public class Controller {
     private ArrayList <Sale> allSales = new ArrayList<>();
     private ArrayList <DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList <Item> allItems = new ArrayList<>();
+    private ArrayList<Request>allRequests=new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -153,6 +154,26 @@ public class Controller {
             }
         }
     }
+
+    public void addUserRequest(String requestID ,User newUser){
+        AccountRequest newRequest=new AccountRequest(requestID , newUser);
+        allRequests.add(newRequest);
+    }
+
+    public void addSaleRequest(String requestId , Sale newSale){
+        SaleRequest newRequest=new SaleRequest(requestId , newSale);
+        allRequests.add(newRequest);
+    }
+
+    public void addItemRequest(String requestId , Item newItem){
+        ItemRequest newRequest=new ItemRequest(requestId , newItem);
+        allRequests.add(newRequest);
+    }
+
+    
+
+
+
 }
 
 
