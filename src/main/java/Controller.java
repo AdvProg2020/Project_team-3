@@ -88,6 +88,14 @@ public class Controller {
         return false;
     }
 
+    public void removeItemByID(String itemID){
+        for(Item item :allItems){
+            if(item.getId().equals(itemID)){
+                allItems.remove(item);
+            }
+        }
+    }
+
     public void registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
 
     }
