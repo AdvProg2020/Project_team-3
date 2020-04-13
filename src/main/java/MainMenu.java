@@ -37,6 +37,9 @@ public class MainMenu extends Menu{
         else if(choice==3){
 
         }
+        else if(choice==4){
+            View.setProgramRunning(false);
+        }
         else{
             System.out.println("Invalid command. Try again.");
         }
