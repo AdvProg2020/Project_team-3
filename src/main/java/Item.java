@@ -17,7 +17,7 @@ public class Item {
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     //constructor
-    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , boolean doesHave,HashMap<String,String> attributes,int inStock){
+    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
         this.brand=brand;
         this.description=description;
