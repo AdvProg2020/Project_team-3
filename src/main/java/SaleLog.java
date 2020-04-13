@@ -1,23 +1,22 @@
 import java.util.ArrayList;
 
 public class SaleLog {
-    String id;
-    int time;
-    double saleAmount;
-    ArrayList<String> allItemsName;
-    String sellerName;
-    String BuyerName;
-    String deliveryState;
-    int TotalSellLogs=0;
-
+    private String id;
+    private int time;
+    private double saleAmount;
+    private ArrayList<String> allItemsName;
+    private String sellerName;
+    private String BuyerName;
+    private String deliveryState;
+    private static String idCount="00000000";
     public SaleLog(int time, double saleAmount, ArrayList<String> allItemsName, String sellerName, String buyerName) {
-        this.id=sellerName+"/"+buyerName+TotalSellLogs;
         this.time = time;
         this.saleAmount = saleAmount;
         this.allItemsName = allItemsName;
         this.sellerName = sellerName;
         BuyerName = buyerName;
-        TotalSellLogs++;
+        id=idCount;
+        idCount=Controller.getInstance().addId(idCount);
     }
 }
 

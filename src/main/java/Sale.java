@@ -7,12 +7,13 @@ public class Sale {
     private int endTime;
     private int offPercentage;
     private String status;
-
-    public Sale (String id, int startTime, int endTime, int offPercentage){
-        this.id = id;
+    private static String idCount="00000000";
+    public Sale (int startTime, int endTime, int offPercentage){
         this.startTime = startTime;
         this.endTime = endTime;
         this.offPercentage = offPercentage;
+        id=idCount;
+        idCount=Controller.getInstance().addId(idCount);
     }
 
     public void setStatus(String status) {

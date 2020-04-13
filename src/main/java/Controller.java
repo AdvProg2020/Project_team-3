@@ -105,7 +105,7 @@ public class Controller {
     }
 
     public void removeItemFromBucket(String itemId){
-        
+
     }
 
     public void setCurrentMenu(Menu currentMenu) {
@@ -121,5 +121,20 @@ public class Controller {
             return false;
         }
         return commandNumber>=0;
+    }
+    public  String addId(String id) {
+        int index=id.length()-1;
+        while(true){
+            char value=id.charAt(index);
+            if(id.charAt(index)!='9'){
+                value++;
+                id=id.substring(0,index)+value+id.substring(index,id.length()-1);
+                return id;
+            }
+            else{
+                id=id.substring(0,index)+'0'+id.substring(index,id.length()-1);
+                index--;
+            }
+        }
     }
 }

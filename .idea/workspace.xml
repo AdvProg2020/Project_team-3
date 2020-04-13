@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AccountEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ItemEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ItemEdit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaleEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaleEdit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaleLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -79,7 +78,7 @@
       <workItem from="1586713728399" duration="24000" />
       <workItem from="1586715430515" duration="103000" />
       <workItem from="1586717122996" duration="449000" />
-      <workItem from="1586783047006" duration="290000" />
+      <workItem from="1586793632779" duration="473000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -116,56 +115,7 @@
       <option name="project" value="LOCAL" />
       <updated>1586722841134</updated>
     </task>
-    <task id="LOCAL-00006" summary="some fixes and some classes added">
-      <created>1586723690990</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1586723690990</updated>
-    </task>
-    <task id="LOCAL-00007" summary="set menu classes as singleton">
-      <created>1586769705416</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1586769705416</updated>
-    </task>
-    <task id="LOCAL-00008" summary="overrode toString for menus">
-      <created>1586770443957</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1586770443957</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added class Menu">
-      <created>1586771242522</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1586771242522</updated>
-    </task>
-    <task id="LOCAL-00010" summary="updated controller">
-      <created>1586775072930</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1586775072930</updated>
-    </task>
-    <task id="LOCAL-00011" summary="updated main">
-      <created>1586775191619</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1586775191619</updated>
-    </task>
-    <task id="LOCAL-00012" summary="updated controller">
-      <created>1586777566836</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1586777566836</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,24 +125,17 @@
     <MESSAGE value="test1" />
     <MESSAGE value="User set as abstract" />
     <MESSAGE value="renamed request subclasses" />
-    <MESSAGE value="some fixes and some classes added" />
-    <MESSAGE value="set menu classes as singleton" />
-    <MESSAGE value="overrode toString for menus" />
-    <MESSAGE value="added class Menu" />
-    <MESSAGE value="updated main" />
-    <MESSAGE value="updated controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed request subclasses" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="496" y="198" key="#Notifications/0.23.1792.1026@0.23.1792.1026" timestamp="1586627765726" />
-    <state x="759" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1586769794200">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1586722165047">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1586724531315" />
-    <state x="759" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586769794200" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1586722165047" />
     <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="510" y="229" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586627150691">
       <screen x="0" y="23" width="1792" height="1030" />
@@ -202,18 +145,14 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="745" y="440" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586627286188" />
-    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586778029243">
+    <state x="513" y="113" key="CommitChangelistDialog2" timestamp="1586722840085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586723690112" />
-    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586778029243" />
+    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586721831293" />
+    <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586722840085" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1030@0.23.1792.1030" timestamp="1586710883135" />
-    <state x="384" y="73" key="Diagram.Print.Preview.Dialog" timestamp="1586779878028">
-      <screen x="0" y="0" width="1280" height="984" />
-    </state>
-    <state x="384" y="73" key="Diagram.Print.Preview.Dialog/0.0.1280.984@0.0.1280.984" timestamp="1586779878028" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586711092564">
       <screen x="0" y="23" width="1792" height="1028" />
     </state>
@@ -242,11 +181,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1586778032463">
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1586722844581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1586723700335" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586778032463" />
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1586721844106" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586722844581" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />
@@ -254,11 +193,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586716151647" />
-    <state x="409" y="327" key="com.intellij.ide.util.TipDialog" timestamp="1586783108589">
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog" timestamp="1586717122256">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1586783108589" />
-    <state x="614" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586769059323" />
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1586717122256" />
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586702723468" />
     <state x="573" y="365" key="com.intellij.ide.util.TipDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1586626975654" />
     <state x="679" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586723466502">

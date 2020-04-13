@@ -12,7 +12,7 @@ public class Item {
     private HashMap<String,String > attributes;
     private String sellerName;
     private String categoryName;
-    private boolean isAvaible;
+    private static String idCount="00000000";
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     //constructor
@@ -26,6 +26,8 @@ public class Item {
         this.sellerName=sellerName;
         this.categoryName=categoryName;
         this.attributes=attributes;
+        this.id=idCount;
+        idCount=Controller.getInstance().addId(idCount);
         timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
