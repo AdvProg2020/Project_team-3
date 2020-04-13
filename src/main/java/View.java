@@ -5,7 +5,7 @@ public class View {
         String command;
         while(true){
             command = read.nextLine();
-
+            System.out.println(Controller.getInstance().processCommand(command));
         }
     }
 }

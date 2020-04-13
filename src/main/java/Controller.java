@@ -12,6 +12,8 @@ public class Controller {
     private Category mainCategory;
     private Category currentCategory;
     private Cart currentShoppingCart;
+    private Menu currentMenu;
+    private ArrayList <Item> currentViewableItems = new ArrayList<>();
 
     private Controller(){ }
 
@@ -23,6 +25,11 @@ public class Controller {
 
     public void initiate(){   //should be called to initiate saved Gsons
 
+    }
+
+    public String processCommand(String command){
+        //inja miad dastoro migire javabo return mikone
+        return "paniz";
     }
 
     public User getUserByUsername (String username){
