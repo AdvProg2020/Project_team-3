@@ -14,6 +14,10 @@ public class BuyerMenu {
         System.out.println("4-Logout");
     }
 
+    @Override
+    public String toString(){
+        return "1-Edit personal information\n2-shop\n3-previous purchases\n4-Logout";
+    }
     public void execute(){
 
     }

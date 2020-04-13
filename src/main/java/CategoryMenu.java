@@ -14,6 +14,11 @@ public class CategoryMenu {
         System.out.println("4-search");
     }
 
+    @Override
+    public String toString(){
+        return "1-show items\n2-add filter\n3-remove filter\n4-search";
+    }
+
     public void execute(){
 
     }

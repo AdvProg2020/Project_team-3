@@ -12,6 +12,10 @@ public class ShopMenu {
         System.out.println("2-Category");
         System.out.println("3-Back");
     }
+    @Override
+    public String toString(){
+        return "1-Cart\n2-Category\n3-Back";
+    }
 
     public void execute(){
 

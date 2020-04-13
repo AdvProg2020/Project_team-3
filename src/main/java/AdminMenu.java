@@ -20,6 +20,11 @@ public class AdminMenu {
         System.out.println("9-Logout");
     }
 
+    @Override
+    public String toString(){
+        return "1-Edit personal information\n2-See requests\n3-Add admin account\n4-Show sales\n5-Add special sale\n6-Delete user\n7-See all categories\n8-Add category\n9-Logout";
+    }
+
     public void execute(){
 
     }

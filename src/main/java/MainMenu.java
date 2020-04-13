@@ -15,6 +15,11 @@ public class MainMenu {
         System.out.println("4-exit");
     }
 
+    @Override
+    public String toString(){
+        return "1-Login\n2-Register\n3-Shop\n4-exit";
+    }
+
     public void execute(){
 
     }
