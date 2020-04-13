@@ -1,4 +1,12 @@
 public class MainMenu {
+    private static MainMenu mainMenu;
+    private MainMenu(){ }
+
+    public static MainMenu getInstance(){
+        if(mainMenu==null)
+            mainMenu = new MainMenu();
+        return mainMenu;
+    }
 
     public void show(){
         System.out.println("1-Login");

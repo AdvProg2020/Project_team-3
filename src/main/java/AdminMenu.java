@@ -1,4 +1,12 @@
 public class AdminMenu {
+    private static AdminMenu adminMenu;
+    private AdminMenu(){ }
+
+    public static AdminMenu getInstance(){
+        if(adminMenu==null)
+            adminMenu = new AdminMenu();
+        return adminMenu;
+    }
 
     public void show(){
         System.out.println("1-Edit personal information");

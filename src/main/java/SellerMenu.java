@@ -1,4 +1,12 @@
 public class SellerMenu {
+    private static SellerMenu sellerMenu;
+    private SellerMenu(){ }
+
+    public static SellerMenu getInstance(){
+        if(sellerMenu==null)
+            sellerMenu = new SellerMenu();
+        return sellerMenu;
+    }
     public void show(){
         System.out.println("1-Edit personal information");
         System.out.println("2-Show my items");
