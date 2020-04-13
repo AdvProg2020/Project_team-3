@@ -112,6 +112,22 @@ public class Controller {
         this.currentMenu = currentMenu;
     }
 
+    public void comment(String text,String itemId){
+
+    }
+
+    public void rate(int score,String itemId){
+
+    }
+
+    public Boolean addCategory(String Name){
+
+    }
+
+    public Boolean Buy(){
+
+    }
+
     public boolean isAValidCommand(String command){
         if(command.length()>3) return false;
         int commandNumber;

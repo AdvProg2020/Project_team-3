@@ -9,6 +9,7 @@ public class Item {
     private String brand;
     private int timesBought;
     private int price;
+    private int inStock;
     private HashMap<String,String > attributes;
     private String sellerName;
     private String categoryName;
@@ -16,7 +17,7 @@ public class Item {
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     //constructor
-    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , boolean doesHave,HashMap<String,String> attributes){
+    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , boolean doesHave,HashMap<String,String> attributes,int inStock){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -26,6 +27,7 @@ public class Item {
         this.sellerName=sellerName;
         this.categoryName=categoryName;
         this.attributes=attributes;
+        this.inStock=inStock;
         this.id=idCount;
         idCount=Controller.getInstance().addId(idCount);
         timesBought=0;
