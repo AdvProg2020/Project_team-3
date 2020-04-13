@@ -1,4 +1,4 @@
-public class CategoryMenu {
+public class CategoryMenu extends Menu{
     private static CategoryMenu categoryMenu;
     private CategoryMenu(){ }
 
@@ -7,6 +7,7 @@ public class CategoryMenu {
             categoryMenu = new CategoryMenu();
         return categoryMenu;
     }
+    @Override
     public void show(){
         System.out.println("1-show items");
         System.out.println("2-add filter");
@@ -18,7 +19,7 @@ public class CategoryMenu {
     public String toString(){
         return "1-show items\n2-add filter\n3-remove filter\n4-search";
     }
-
+    @Override
     public void execute(){
 
     }

@@ -1,4 +1,4 @@
-public class BuyerMenu {
+public class BuyerMenu extends Menu{
     private static BuyerMenu buyerMenu;
     private BuyerMenu(){ }
 
@@ -7,6 +7,7 @@ public class BuyerMenu {
             buyerMenu = new BuyerMenu();
         return buyerMenu;
     }
+    @Override
     public void show(){
         System.out.println("1-Edit personal information");
         System.out.println("2-shop");
@@ -18,6 +19,7 @@ public class BuyerMenu {
     public String toString(){
         return "1-Edit personal information\n2-shop\n3-previous purchases\n4-Logout";
     }
+    @Override
     public void execute(){
 
     }

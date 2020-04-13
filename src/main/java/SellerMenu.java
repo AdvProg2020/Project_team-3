@@ -1,4 +1,4 @@
-public class SellerMenu {
+public class SellerMenu extends Menu{
     private static SellerMenu sellerMenu;
     private SellerMenu(){ }
 
@@ -7,6 +7,8 @@ public class SellerMenu {
             sellerMenu = new SellerMenu();
         return sellerMenu;
     }
+
+    @Override
     public void show(){
         System.out.println("1-Edit personal information");
         System.out.println("2-Show my items");
@@ -21,6 +23,7 @@ public class SellerMenu {
         return "1-Edit personal information\n2-Show my items\n3-Add item\n4-Show all my sales\n5-Add sale\n6-Logout";
     }
 
+    @Override
     public void execute(){
 
     }
