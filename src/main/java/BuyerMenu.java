@@ -29,16 +29,68 @@ public class BuyerMenu extends Menu{
 
     }
 
-    public void editPersonalInfo( ){
+    public void viewCart(){
 
     }
 
-    public void shop(String command){
+    public void showProducts(){
+
+    }
+
+    public void viewProduct(){
+
+    }
+
+    public void increaseProduct(){
+
+    }
+
+    public void decreaseProduct(){
+
+    }
+
+    public void showTotalPrice(){
+
+    }
+
+    public void purchase(){
+
+    }
+
+    public void receiverInfo(){
+
+    }
+
+    public void enterDiscountCode(){
+
+    }
+
+    public void paymentMethod(){
+
+    }
+
+    public void shop(){
         //set current menu to shop
     }
 
     public void previousPurchases(){
         //set current menu to buyLog
+    }
+
+    public void showOrder(){
+
+    }
+
+    public void rateProduct(){
+
+    }
+
+    public void viewBalance(){
+
+    }
+
+    public void viewDiscountCodes(){
+
     }
 
 

@@ -10,6 +10,7 @@ public class Item {
     private int timesBought;
     private int price;
     private int inStock;
+    private int viewCount;
     private HashMap<String,String > attributes;
     private String sellerName;
     private String categoryName;
@@ -144,4 +145,11 @@ public class Item {
         return allComments;
     }
 
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
 }

@@ -29,4 +29,14 @@ public class DiscountsMenu extends  Menu {
 
     }
 
+    public void offs(){
+
+    }
+
+    public void showProduct(){
+
+    }
+
+
+
 }

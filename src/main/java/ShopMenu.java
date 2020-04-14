@@ -44,7 +44,55 @@ public class ShopMenu extends Menu {
 
     }
 
-    public void Categories(){
+    public void viewCategories(){
+
+    }
+
+    public void filtering(){
+
+    }
+
+    public void showAvailableFilters(){
+
+    }
+
+    public void filter(){
+
+    }
+
+    public void currentFilters(){
+
+    }
+
+    public void disableFilter(){
+
+    }
+
+    public void sorting() {
+
+    }
+
+    public void showAvailableSorts(){
+
+    }
+
+    public void sort(){
+
+    }
+
+    public void currentSort(){
+
+    }
+
+    public void disableSort(){
+
+    }
+
+    public void showProducts(){
+
+    }
+
+    public void showProduct(){
 
     }
 

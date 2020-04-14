@@ -27,4 +27,32 @@ public class ItemMenu extends Menu {
 
     }
 
+    public void digest(){
+
+    }
+
+    public void addToCart(){
+
+    }
+
+    public void selectSeller(){
+
+    }
+
+    public void attributes(){
+
+    }
+
+    public void compare(){
+
+    }
+
+    public void comments(){
+
+    }
+
+    public void addComment(){
+
+    }
+
 }

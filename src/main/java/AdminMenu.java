@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AdminMenu extends Menu{
+public class AdminMenu extends UserMenu{
     private static AdminMenu adminMenu;
     private int optionCount = 9;
     private AdminMenu(){ }
@@ -32,25 +32,6 @@ public class AdminMenu extends Menu{
 
     }
 
-    public void editPersonalInfo(){
-
-    }
-
-    public void editName(){
-
-    }
-
-    public void editLastName(){
-
-    }
-
-    public void editEmail(){
-
-    }
-
-    public void editNumber(){
-
-    }
 
     public void seeAllRequests(){
         ///set current menu to request menu
@@ -68,6 +49,10 @@ public class AdminMenu extends Menu{
 
     }
 
+    public void viewUser() {
+
+    }
+
     public void deleteUser(){
 
     }
@@ -79,6 +64,62 @@ public class AdminMenu extends Menu{
     public void addCategory(){
 
     }
+
+    public void editCategory(){
+
+    }
+
+    public void removeCategory(){
+
+    }
+
+    public void removeProducts(){
+
+    }
+
+    public void createDiscountCode(){
+
+    }
+
+    public void viewAllDiscountCodes(){
+
+    }
+
+    public void viewOneDiscountCode(){
+
+    }
+
+    public void editDiscountCode(){
+
+    }
+
+    public void removeDiscountCode(){
+
+    }
+
+    public void manageAllProducts(){
+
+    }
+
+    public void manageRequests(){
+
+    }
+
+    public void requestDetails(){
+
+    }
+
+    public void manageCategories(){
+
+    }
+
+
+
+    public void removeProduct(){
+
+    }
+
+
 
 
 }

@@ -13,6 +13,7 @@ public class Controller {
     private ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
     public ArrayList<Request> allRequests = new ArrayList<>();
+    public ArrayList<Cart> allCarts = new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -262,5 +263,20 @@ public class Controller {
         return pattern.matcher(string);
     }
 
+    public ArrayList<Item> getCurrentViewableItems() {
+        return currentViewableItems;
+    }
+
+    public void sortBy(String sortByWhat){
+
+    }
+
+    public void filterBy(String filterByWhat){
+
+    }
+
+    public ArrayList<Cart> getUsersCarts(String username){
+        return null;
+    }
 
 }

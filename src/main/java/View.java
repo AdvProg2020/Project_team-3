@@ -20,6 +20,7 @@ public class View {
         this.currentMenu = currentMenu;
     }
 
-
-
+    public static Menu getCurrentMenu() {
+        return currentMenu;
+    }
 }
