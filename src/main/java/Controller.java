@@ -65,7 +65,7 @@ public class Controller {
     }
 
     public boolean isThereSaleWithId(String id){
-        return allSales.contains(id);
+        return false;
     }
 
     public Sale getSaleById(String id) {
@@ -277,6 +277,30 @@ public class Controller {
 
     public ArrayList<Cart> getUsersCarts(String username){
         return null;
+    }
+
+    public Category getCurrentCategory() {
+        return currentCategory;
+    }
+
+    public void setCurrentCategory(Category currentCategory) {
+        this.currentCategory = currentCategory;
+    }
+
+    public Cart getCurrentShoppingCart() {
+        return currentShoppingCart;
+    }
+
+    public void setCurrentShoppingCart(Cart currentShoppingCart) {
+        this.currentShoppingCart = currentShoppingCart;
+    }
+
+    public User getCurrentOnlineUser() {
+        return currentOnlineUser;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
 }
