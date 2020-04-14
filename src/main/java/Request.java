@@ -28,7 +28,7 @@ public abstract class Request {
         this.message = message;
     }
 
-    public boolean isIs_accepted() {
+    public boolean isIsAccepted() {
         return isAccepted;
     }
 

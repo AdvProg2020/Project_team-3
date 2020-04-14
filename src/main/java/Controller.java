@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +29,11 @@ public class Controller {
         return controller;
     }
 
-    public void initiate() {   //should be called to initiate saved Gsons
+    public void loadGson() {   //should be called to initiate saved Gsons
+
+    }
+
+    public void saveGson() {
 
     }
 
@@ -45,13 +50,21 @@ public class Controller {
         return null;
     }
 
-    public boolean isThereUserByName(String name) {
+    public boolean isThereUserWithUsername(String username) {
         for (User user : allUsers) {
-            if (user.getUsername().equals(name)) {
+            if (user.getUsername().equals(username)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean addUser(User user){
+        return false;
+    }
+
+    public boolean isThereSaleWithId(String id){
+        return allSales.contains(id);
     }
 
     public Sale getSaleById(String id) {
@@ -62,6 +75,33 @@ public class Controller {
         }
         return null;
     }
+    public void addSale(Sale sale){}
+
+    public void addDiscountCode(DiscountCode discountCode){}
+
+    public void deleteSale(String id){}
+
+    public void deleteDiscountCode(String id){}
+
+    public void deleteItem(String id){}
+
+    public void deleteRequest(String id){}
+
+
+    public boolean isThereItemWithId(String id){
+        return false;
+    }
+
+    public boolean isThereRequestWithId(String id){
+        return false;
+    }
+
+    public boolean isThereDiscountCodeWithId(String id){
+        return false;
+    }
+
+
+
 
     public Item getItemById(String id) {
         for (Item item : allItems) {
@@ -81,12 +121,15 @@ public class Controller {
         return null;
     }
 
+    public Request getRequestById(String id){
+        return null;
+    }
+
     public void Logout() {
 
     }
 
-    public boolean addItem(String name, String brand, String description, String state, int price, String sellerName
-            , String categoryName, HashMap<String, String> attributes, int inStock) {
+    public boolean addItem(Item item) {
         return false;
     }
 
@@ -109,6 +152,7 @@ public class Controller {
     public void deleteUser(String Username) {
 
     }
+
 
     public boolean searchItemInCategory(String categoryName, String itemId) {
         return false;
@@ -203,12 +247,14 @@ public class Controller {
     }
 
     public void declineRequest(){
-        //har chizi ke decline shod az arrayList koli ma bayad hazf shavad!
-        for(Request request:allRequests){ //<= in kar nemikone azizam yejor dge benevis
-            if(!request.isIs_accepted()){
-                allRequests.remove(request); //<= concurrent modification error
+
+        ArrayList<Request> toBeRemoved = new ArrayList<>();
+        for(Request request:allRequests){
+            if(!request.isIsAccepted()){
+                toBeRemoved.add(request);
             }
         }
+        allRequests.removeAll(toBeRemoved);
     }
 
     public static Matcher getMatcher(String string,String regex){
