@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +38,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -231,6 +232,10 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="179" y="111" key="DiffContextDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1586802177512" />
+    <state x="420" y="217" key="FileChooserDialogImpl" timestamp="1586892368267">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="420" y="217" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1586892368267" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586711092564">
       <screen x="0" y="23" width="1792" height="1028" />
     </state>
