@@ -23,26 +23,10 @@ public class DiscountsMenu extends  Menu {
     public void execute(String command){
 
     }
-    @Override
-    public void login(){
 
-    }
-
-    @Override
-    public void register(){
-
-    }
-    @Override
-    public void logout(){
-
-    }
     @Override
     public void help(){
 
     }
 
-    @Override
-    public int getOptionCount() {
-        return optionCount;
-    }
 }

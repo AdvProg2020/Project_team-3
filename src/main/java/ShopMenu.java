@@ -24,30 +24,13 @@ public class ShopMenu extends Menu {
     public void execute(String command){
 
     }
-    @Override
-    public void login(){
 
-    }
-
-    @Override
-    public void register(){
-
-    }
 
     @Override
     public void help(){
 
     }
 
-    @Override
-    public void logout(){
-
-    }
-
-    @Override
-    public int getOptionCount() {
-        return optionCount;
-    }
 
     public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;

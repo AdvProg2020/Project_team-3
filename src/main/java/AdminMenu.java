@@ -27,25 +27,8 @@ public class AdminMenu extends Menu{
     }
 
     @Override
-    public void login(){
-
-    }
-
-    @Override
-    public void register(){
-
-    }
-    @Override
-    public void logout(){
-
-    }
-    @Override
     public void help(){
 
     }
 
-    @Override
-    public int getOptionCount() {
-        return optionCount;
-    }
 }
