@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AdminMenu extends Menu{
     private static AdminMenu adminMenu;
@@ -30,5 +31,38 @@ public class AdminMenu extends Menu{
     public void help(){
 
     }
+
+    public void editPersonalInfo(){
+
+    }
+
+    public void seeAllRequests(){
+        ///set current menu to request menu
+    }
+
+    public void AddAdminAccount(){
+
+    }
+
+    public void showAllSales(){
+
+    }
+
+    public void addSpecialSale(){
+
+    }
+
+    public void deleteUser(){
+
+    }
+
+    public void showAllCategories(){
+        //set current menu to category menu
+    }
+
+    public void addCategory(){
+
+    }
+
 
 }

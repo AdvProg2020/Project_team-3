@@ -27,4 +27,8 @@ public class MainMenu extends Menu{
 
     }
 
+    public void shop(){
+
+    }
+
 }

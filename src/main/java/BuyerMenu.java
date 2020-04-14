@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class BuyerMenu extends Menu{
     private static BuyerMenu buyerMenu;
     private int optionCount = 4;
@@ -26,5 +28,19 @@ public class BuyerMenu extends Menu{
     public void help(){
 
     }
+
+    public void editPersonalInfo( ){
+
+    }
+
+    public void shop(String command){
+        //set current menu to shop
+    }
+
+    public void previousPurchases(){
+        //set current menu to buyLog
+    }
+
+
 
 }

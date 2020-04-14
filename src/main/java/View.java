@@ -1,10 +1,10 @@
 import java.util.Scanner;
 public class View {
-    private static Scanner read = new Scanner(System.in);
+    static Scanner read = new Scanner(System.in);  //package access
     private static boolean programRunning=true;
     private static Menu currentMenu;
 
-    public static void readCommand(){
+    public static void run(){
         String command;
         while(programRunning){
             command = read.nextLine();

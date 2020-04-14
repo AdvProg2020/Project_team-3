@@ -16,7 +16,6 @@ public class ItemEdit extends Request {
     public String getChangedField(){
         return this.changedField;
     }
-
     public String getNewFieldValue() {
         return newFieldValue;
     }

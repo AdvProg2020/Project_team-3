@@ -39,4 +39,13 @@ public class ShopMenu extends Menu {
     public Category getCurrentCategory() {
         return currentCategory;
     }
+
+    public void cart(){
+
+    }
+
+    public void Categories(){
+
+    }
+
 }

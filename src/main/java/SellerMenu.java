@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class SellerMenu extends Menu{
     private static SellerMenu sellerMenu;
     private int optionCount = 6;
@@ -26,6 +28,26 @@ public class SellerMenu extends Menu{
 
     @Override
     public void help(){
+
+    }
+
+    public void editPersonalInfo(){
+
+    }
+
+    public void showMyItems(){
+    //set current menu to seller item menu
+    }
+
+    public void addItem(){
+
+    }
+
+    public void showAllMySale(){
+
+    }
+
+    public void addSale(){
 
     }
 
