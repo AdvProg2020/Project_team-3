@@ -140,4 +140,8 @@ public class Item {
         return attributes;
     }
 
+    public ArrayList<Comment> getAllComments() {
+        return allComments;
+    }
+
 }

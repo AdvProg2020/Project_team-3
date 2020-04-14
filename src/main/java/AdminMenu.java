@@ -36,6 +36,22 @@ public class AdminMenu extends Menu{
 
     }
 
+    public void editName(){
+
+    }
+
+    public void editLastName(){
+
+    }
+
+    public void editEmail(){
+
+    }
+
+    public void editNumber(){
+
+    }
+
     public void seeAllRequests(){
         ///set current menu to request menu
     }
