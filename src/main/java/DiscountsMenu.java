@@ -1,13 +1,14 @@
-public class BuyerMenu extends Menu{
-    private static BuyerMenu buyerMenu;
-    private int optionCount = 4;
-    private BuyerMenu(){ }
+public class DiscountsMenu extends  Menu {
+    private static DiscountsMenu discountsMenu;
+    private int optionCount = 6;
+    private DiscountsMenu(){ }
 
-    public static BuyerMenu getInstance(){
-        if(buyerMenu==null)
-            buyerMenu = new BuyerMenu();
-        return buyerMenu;
+    public static DiscountsMenu getInstance(){
+        if(discountsMenu==null)
+            discountsMenu = new DiscountsMenu();
+        return discountsMenu;
     }
+
     @Override
     public void show(){
 
@@ -17,6 +18,7 @@ public class BuyerMenu extends Menu{
     public String toString(){
         return "";
     }
+
     @Override
     public void execute(String command){
 

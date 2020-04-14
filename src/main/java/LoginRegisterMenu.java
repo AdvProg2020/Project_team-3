@@ -1,12 +1,12 @@
-public class BuyerMenu extends Menu{
-    private static BuyerMenu buyerMenu;
+public class LoginRegisterMenu extends Menu {
+    private static LoginRegisterMenu loginRegisterMenu;
     private int optionCount = 4;
-    private BuyerMenu(){ }
+    private LoginRegisterMenu(){ }
 
-    public static BuyerMenu getInstance(){
-        if(buyerMenu==null)
-            buyerMenu = new BuyerMenu();
-        return buyerMenu;
+    public static LoginRegisterMenu getInstance(){
+        if(loginRegisterMenu==null)
+            loginRegisterMenu = new LoginRegisterMenu();
+        return loginRegisterMenu;
     }
     @Override
     public void show(){

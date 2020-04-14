@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
     private static Controller controller;
@@ -202,11 +204,16 @@ public class Controller {
 
     public void declineRequest(){
         //har chizi ke decline shod az arrayList koli ma bayad hazf shavad!
-        for(Request request:allRequests){
+        for(Request request:allRequests){ //<= in kar nemikone azizam yejor dge benevis
             if(!request.isIs_accepted()){
-                allRequests.remove(request);
+                allRequests.remove(request); //<= concurrent modification error
             }
         }
+    }
+
+    public static Matcher getMatcher(String string,String regex){
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(string);
     }
 
 

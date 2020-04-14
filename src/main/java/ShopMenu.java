@@ -1,6 +1,7 @@
-public class ShopMenu extends Menu{
+public class ShopMenu extends Menu {
     private static ShopMenu shopMenu;
-    private int optionCount = 3;
+    private Category currentCategory;
+    private int optionCount = 6;
     private ShopMenu(){ }
 
     public static ShopMenu getInstance(){
@@ -8,18 +9,46 @@ public class ShopMenu extends Menu{
             shopMenu = new ShopMenu();
         return shopMenu;
     }
+
     @Override
     public void show(){
-        System.out.println("1-Cart");
-        System.out.println("2-Category");
-        System.out.println("3-Back");
+
     }
+
     @Override
     public String toString(){
-        return "1-Cart\n2-Category\n3-Back";
+        return "";
     }
+
     @Override
     public void execute(String command){
 
+    }
+    @Override
+    public void login(){
+
+    }
+
+    @Override
+    public void register(){
+
+    }
+
+    @Override
+    public void help(){
+
+    }
+
+    @Override
+    public void logout(){
+
+    }
+
+    public void setCurrentCategory(Category currentCategory) {
+        this.currentCategory = currentCategory;
+    }
+
+    public Category getCurrentCategory() {
+        return currentCategory;
     }
 }
