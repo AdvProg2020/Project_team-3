@@ -44,6 +44,11 @@ public class ShopMenu extends Menu {
 
     }
 
+    @Override
+    public int getOptionCount() {
+        return optionCount;
+    }
+
     public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
     }

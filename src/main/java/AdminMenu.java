@@ -43,4 +43,9 @@ public class AdminMenu extends Menu{
     public void help(){
 
     }
+
+    @Override
+    public int getOptionCount() {
+        return optionCount;
+    }
 }

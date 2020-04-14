@@ -40,4 +40,9 @@ public class DiscountsMenu extends  Menu {
     public void help(){
 
     }
+
+    @Override
+    public int getOptionCount() {
+        return optionCount;
+    }
 }
