@@ -104,5 +104,40 @@ public class Item {
         this.price = price;
     }
 
+    public int getInStock() {
+        return inStock;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public static String getIdCount() {
+        return idCount;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void addAttribute(String name,String value){}
+
+    public void editAttribute(String name,String newValue){}
+
+    public HashMap<String, String> getAttributes() {
+        return attributes;
+    }
 
 }
