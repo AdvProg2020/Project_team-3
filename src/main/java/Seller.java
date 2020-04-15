@@ -6,14 +6,15 @@ public class Seller extends User {
     private ArrayList<String> soldItemsId;
     private ArrayList<String> allItemsId;
     private ArrayList<String> allSaleId;
-
-    public Seller(String username, String password, String name, String lastName, String email, String number,String companyName) {
+    private double money;
+    public Seller(String username,String password, String name, String lastName, String email, String number,String companyName) {
         super(username,password,name,lastName,email,"Seller",number);
         this.companyName=companyName;
         sellLogs=new ArrayList<>();
         soldItemsId=new ArrayList<>();
         allItemsId=new ArrayList<>();
         allSaleId=new ArrayList<>();
+
     }
 
     public void setCompanyName(String companyName) {
@@ -58,5 +59,11 @@ public class Seller extends User {
         return false;
       }
 
+    public void setMoney(double money) {
+        this.money = money;
+    }
 
+    public double getMoney(){
+        return this.money;
+    }
 }
