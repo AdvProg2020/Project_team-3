@@ -98,4 +98,10 @@ public class Seller extends User {
     public double getMoney(){
         return this.money;
     }
+
+    public boolean isSoldInPast(){
+        return false;
+    }
+
+
 }
