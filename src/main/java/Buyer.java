@@ -5,11 +5,12 @@ public class Buyer extends User{
     private double money;
     private ArrayList<BuyLog> buyLogs;
     private Cart cart;
-
+    private ArrayList<String>allDiscounts;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,"Buyer",number);
         this.money=money;
         buyLogs=new ArrayList<>();
+        allDiscounts=new ArrayList<>();
     }
 
     public ArrayList<BuyLog> getBuyLogs() {
@@ -31,6 +32,16 @@ public class Buyer extends User{
 
     }
 
+    public void addDiscount(String discountId){
+        this.allDiscounts.add(discountId);
+    }
+
+    public void removeDiscount(String discountID){
+        if(this.allDiscounts.contains(discountID)) this.allDiscounts.remove(discountID);
+    }
+    public boolean isBoughtInPast(){
+        return false;
+    }
 
 
 

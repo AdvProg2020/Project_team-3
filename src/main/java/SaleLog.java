@@ -24,7 +24,7 @@ public class SaleLog {
     public String getId() {
         return id;
     }
-    
+
     public int getTime() {
         return time;
     }

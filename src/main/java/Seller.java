@@ -18,7 +18,7 @@ public class Seller extends User {
     public ArrayList<SaleLog> getSellLogs(){
         return sellLogs;
     }
-
+    
     public void addSale(double amount) {
 
     }
@@ -44,5 +44,10 @@ public class Seller extends User {
      public void removeItem(String itemId){
 
       }
+
+      public boolean isSaleInPast(){
+        return false;
+      }
+
 
 }
