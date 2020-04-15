@@ -4,7 +4,7 @@ public class BuyLog {
     private String id;
     private int time;
     private double saleAmount;
-    private ArrayList<String> allItemsName;
+    private ArrayList<String> allItemsID;
     private String discountCodeId;
     private String sellerName;
     private String BuyerName;
@@ -13,7 +13,7 @@ public class BuyLog {
     public BuyLog(double saleAmount, ArrayList<String> allItemsName, String sellerName, String buyerName
     ,String discountCodeId) {
         this.saleAmount = saleAmount;
-        this.allItemsName = allItemsName;
+        this.allItemsID = allItemsName;
         this.sellerName = sellerName;
         BuyerName = buyerName;
         id=idCount;
@@ -25,9 +25,13 @@ public class BuyLog {
         return saleAmount;
     }
 
-    public ArrayList<String> getAllItemsName() {
-        return allItemsName;
+    public ArrayList<String> getAllItemsID() {
+        return allItemsID;
     }
+
+    public boolean hasItemID(String id) {return false;}
+
+    public Item getItemById(String id){return null;}
 
     public int getTime() {
         return time;
