@@ -13,7 +13,6 @@ public class Controller {
     private ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
     public ArrayList<Request> allRequests = new ArrayList<>();
-    public ArrayList<Cart> allCarts = new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -29,7 +28,6 @@ public class Controller {
             controller = new Controller();
         return controller;
     }
-
     public void loadGson() {   //should be called to initiate saved Gsons
 
     }
@@ -38,14 +36,69 @@ public class Controller {
 
     }
 
-    public void processCommand(String command) {
-        currentMenu.execute(command);
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public ArrayList<Cart> getUsersCarts(String username){
+        return null;
+    }
+
+    public Category getCurrentCategory() {
+        return currentCategory;
+    }
+
+    public ArrayList<Item> getCurrentViewableItems() {
+        return currentViewableItems;
+    }
+
+    public void setCurrentCategory(Category currentCategory) {
+        this.currentCategory = currentCategory;
+    }
+
+    public Cart getCurrentShoppingCart() {
+        return currentShoppingCart;
+    }
+
+    public void setCurrentShoppingCart(Cart currentShoppingCart) {
+        this.currentShoppingCart = currentShoppingCart;
+    }
+
+    public User getCurrentOnlineUser() {
+        return currentOnlineUser;
     }
 
     public User getUserByUsername(String username) {
         for (User user : allUsers) {
             if (user.getUsername().equals(username)) {
                 return user;
+            }
+        }
+        return null;
+    }
+
+    public DiscountCode getDiscountCodeById(String id) {
+        for (DiscountCode discountCode : allDiscountCodes) {
+            if (discountCode.getDiscountId().equals(id)) {
+                return discountCode;
+            }
+        }
+        return null;
+    }
+
+    public Sale getSaleById(String id) {
+        for (Sale sale : allSales) {
+            if (sale.getId().equals(id)) {
+                return sale;
+            }
+        }
+        return null;
+    }
+
+    public Item getItemById(String id) {
+        for (Item item : allItems) {
+            if (item.getId().equals(id)) {
+                return item;
             }
         }
         return null;
@@ -68,14 +121,6 @@ public class Controller {
         return false;
     }
 
-    public Sale getSaleById(String id) {
-        for (Sale sale : allSales) {
-            if (sale.getId().equals(id)) {
-                return sale;
-            }
-        }
-        return null;
-    }
     public void addSale(Sale sale){}
 
     public void addDiscountCode(DiscountCode discountCode){}
@@ -88,7 +133,6 @@ public class Controller {
 
     public void deleteRequest(String id){}
 
-
     public boolean isThereItemWithId(String id){
         return false;
     }
@@ -99,27 +143,6 @@ public class Controller {
 
     public boolean isThereDiscountCodeWithId(String id){
         return false;
-    }
-
-
-
-
-    public Item getItemById(String id) {
-        for (Item item : allItems) {
-            if (item.getId().equals(id)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public DiscountCode getDiscountCodeById(String id) {
-        for (DiscountCode discountCode : allDiscountCodes) {
-            if (discountCode.getDiscountId().equals(id)) {
-                return discountCode;
-            }
-        }
-        return null;
     }
 
     public Request getRequestById(String id){
@@ -154,7 +177,6 @@ public class Controller {
 
     }
 
-
     public boolean searchItemInCategory(String categoryName, String itemId) {
         return false;
     }
@@ -171,16 +193,11 @@ public class Controller {
 
     }
 
-    public void setCurrentMenu(Menu currentMenu) {
-        this.currentMenu = currentMenu;
-    }
-
     public void comment(String text, String itemId) {
 
     }
 
     public void rate(int score, String itemId) {
-
     }
 
     public Boolean addCategory(String Name) {
@@ -216,7 +233,6 @@ public class Controller {
             }
         }
     }
-
 
     public void addUserRequest(String requestID, User newUser) {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
@@ -263,44 +279,10 @@ public class Controller {
         return pattern.matcher(string);
     }
 
-    public ArrayList<Item> getCurrentViewableItems() {
-        return currentViewableItems;
-    }
-
     public void sortBy(String sortByWhat){
-
     }
 
     public void filterBy(String filterByWhat){
 
     }
-
-    public ArrayList<Cart> getUsersCarts(String username){
-        return null;
-    }
-
-    public Category getCurrentCategory() {
-        return currentCategory;
-    }
-
-    public void setCurrentCategory(Category currentCategory) {
-        this.currentCategory = currentCategory;
-    }
-
-    public Cart getCurrentShoppingCart() {
-        return currentShoppingCart;
-    }
-
-    public void setCurrentShoppingCart(Cart currentShoppingCart) {
-        this.currentShoppingCart = currentShoppingCart;
-    }
-
-    public User getCurrentOnlineUser() {
-        return currentOnlineUser;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
 }

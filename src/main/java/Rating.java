@@ -4,7 +4,13 @@ public class Rating {
     private String itemId;
 
 
-    //getters
+    public Rating(int score, String username, String itemId) {
+        this.score = score;
+        this.username = username;
+        this.itemId = itemId;
+    }
+
+
     public int getScore() {
         return score;
     }
@@ -16,12 +22,7 @@ public class Rating {
     public String getUsername() {
         return username;
     }
-    //constructor
-    public Rating(int score, String username, String itemId) {
-        this.score = score;
-        this.username = username;
-        this.itemId = itemId;
-    }
+
 
 
 }
