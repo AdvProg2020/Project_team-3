@@ -77,6 +77,14 @@ public class Controller {
         return null;
     }
 
+    public ArrayList<BuyLog> getBuyerBuyLogs(String username){
+         return null;
+    }
+
+    public ArrayList<SaleLog> getSellerBuyLogs(String username){
+         return null;
+    }
+
     public DiscountCode getDiscountCodeById(String id) {
         for (DiscountCode discountCode : allDiscountCodes) {
             if (discountCode.getDiscountId().equals(id)) {
@@ -285,4 +293,9 @@ public class Controller {
     public void filterBy(String filterByWhat){
 
     }
+
+    public void editPersonalInfo(String username,String field,String newValue){
+
+    }
+
 }

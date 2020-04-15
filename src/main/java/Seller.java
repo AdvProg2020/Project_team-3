@@ -15,6 +15,10 @@ public class Seller extends User {
         allSaleId=new ArrayList<>();
     }
 
+    public ArrayList<SaleLog> getSellLogs() {
+        return sellLogs;
+    }
+
     public void addSale(double amount) {
 
     }

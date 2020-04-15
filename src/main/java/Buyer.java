@@ -12,6 +12,10 @@ public class Buyer extends User{
         buyLogs=new ArrayList<>();
     }
 
+    public ArrayList<BuyLog> getBuyLogs() {
+        return buyLogs;
+    }
+
     public void assignCart(Cart cart){
         this.cart=cart;
     }
