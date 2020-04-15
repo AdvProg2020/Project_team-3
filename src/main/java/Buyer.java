@@ -27,5 +27,9 @@ public class Buyer extends User{
 
     }
 
+    public ArrayList<BuyLog> getBuyLogs(){
+        return this.buyLogs;
+    }
+
 
 }

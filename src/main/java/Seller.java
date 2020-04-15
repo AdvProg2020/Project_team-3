@@ -32,8 +32,9 @@ public class Seller extends User {
        return "hello";
     }
 
-    //addItem(contrusctor item iji benevise){
-    //}
+    public ArrayList<SaleLog> getSellLogs(){
+        return this.sellLogs;
+    }
 
     public void editSale(Sale sale,Sale updatedSale){
 
