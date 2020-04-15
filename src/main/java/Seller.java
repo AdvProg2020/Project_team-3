@@ -15,7 +15,7 @@ public class Seller extends User {
         allSaleId=new ArrayList<>();
     }
 
-    public ArrayList<SaleLog> getSellLogs() {
+    public ArrayList<SaleLog> getSellLogs(){
         return sellLogs;
     }
 
@@ -35,10 +35,7 @@ public class Seller extends User {
     public String printItems(){
        return "hello";
     }
-
-    public ArrayList<SaleLog> getSellLogs(){
-        return this.sellLogs;
-    }
+    
 
     public void editSale(Sale sale,Sale updatedSale){
 

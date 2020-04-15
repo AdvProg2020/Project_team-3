@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DiscountsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ItemMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LoginRegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginRegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SellerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +189,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test1" />
     <MESSAGE value="User set as abstract" />
@@ -259,26 +261,30 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="420" y="217" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1586892704089" />
-    <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586711092564">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state width="875" height="277" key="GridCell.Tab.0.bottom" timestamp="1586968596326">
+      <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207499" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092564" />
-    <state width="875" height="277" key="GridCell.Tab.0.center" timestamp="1586711092563">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1029@0.23.1792.1029" timestamp="1586968596326" />
+    <state width="875" height="277" key="GridCell.Tab.0.center" timestamp="1586968596325">
+      <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092563" />
-    <state width="875" height="277" key="GridCell.Tab.0.left" timestamp="1586711092563">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1029@0.23.1792.1029" timestamp="1586968596325" />
+    <state width="875" height="277" key="GridCell.Tab.0.left" timestamp="1586968596325">
+      <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092563" />
-    <state width="875" height="277" key="GridCell.Tab.0.right" timestamp="1586711092564">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1029@0.23.1792.1029" timestamp="1586968596325" />
+    <state width="875" height="277" key="GridCell.Tab.0.right" timestamp="1586968596325">
+      <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092564" />
+    <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1029@0.23.1792.1029" timestamp="1586968596325" />
     <state x="791" y="231" key="RollbackChangesDialog" timestamp="1586716360202">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
