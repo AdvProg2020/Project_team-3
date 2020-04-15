@@ -33,6 +33,14 @@ public class Cart {
         return 5;
     }
 
+    public double getCartPrice(){
+        return 2.2;
+    }
+
+    public HashMap<String, Integer> getAllItemName() {
+        return allItemName;
+    }
+
     Cart empty(){
        return null;
     }

@@ -28,6 +28,38 @@ public class Seller extends User {
     public ArrayList<SaleLog> getSellLogs(){
         return sellLogs;
     }
+
+    public ArrayList<String> getAllItemsId() {
+        return allItemsId;
+    }
+
+    public ArrayList<String> getAllSaleId() {
+        return allSaleId;
+    }
+
+    public ArrayList<String> getSoldItemsId() {
+        return soldItemsId;
+    }
+
+    public void addSaleLog(SaleLog saleLog){}
+
+    public void addSoldItemID(String id){}
+
+    public boolean hasSoldItem(String id){
+        return soldItemsId.contains(id);
+    }
+
+    public void addAllItemID(String id){}
+
+    public boolean hasItem(String id){
+        return allItemsId.contains(id);
+    }
+
+    public void addAllSaleId(String id){}
+
+    public boolean hasSale(String id){
+        return allSaleId.contains(id);
+    }
     
     public void addSale(double amount) {
 

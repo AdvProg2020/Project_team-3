@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Item {
-    private static ArrayList<String>allItemsId=new ArrayList<>();
     private String id;
     private String state;
     private String description;
@@ -153,5 +152,9 @@ public class Item {
 
     public void addRating(Rating newRating){
         this.allRatings.add(newRating);
+    }
+
+    public float getScore(){
+        return 5;
     }
 }

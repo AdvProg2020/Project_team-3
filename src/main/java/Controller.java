@@ -171,6 +171,8 @@ public class Controller {
         }
     }
 
+    public void giveDiscountCodeToUser(String discountID,String username){}
+
     public void registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
 
     }
