@@ -20,4 +20,23 @@ public class Comment {
 
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public Boolean getHasBought() {
+        return hasBought;
+    }
 }
