@@ -5,20 +5,19 @@ public class BuyLog {
     private int time;
     private double saleAmount;
     private ArrayList<String> allItemsID;
-    private String discountCodeId;
+    private ArrayList<String> discountCodeId;
     private String sellerName;
     private String BuyerName;
     private String deliveryState;
     private static String idCount="00000000";
     public BuyLog(double saleAmount, ArrayList<String> allItemsName, String sellerName, String buyerName
-    ,String discountCodeId) {
+    ) {
         this.saleAmount = saleAmount;
         this.allItemsID = allItemsName;
         this.sellerName = sellerName;
         BuyerName = buyerName;
         id=idCount;
         idCount=Controller.getInstance().addId(idCount);
-        this.discountCodeId=discountCodeId;
     }
 
     public double getSaleAmount() {
@@ -37,8 +36,20 @@ public class BuyLog {
         return time;
     }
 
-    public String getDiscountCodeId() {
+    public ArrayList<String> getDiscountCodeId() {
         return discountCodeId;
+    }
+
+    public void addDiscountCode(){
+
+    }
+
+    public boolean hasDiscountWithID(){
+        return false;
+    }
+
+    public void removeDiscountCode(){
+
     }
 
     public String getId() {

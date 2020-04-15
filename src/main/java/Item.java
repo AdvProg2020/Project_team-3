@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Item {
-    private static ArrayList<String>allItemsId=new ArrayList<>();
     private String id;
     private String state;
     private String description;
@@ -17,7 +16,6 @@ public class Item {
     private static String idCount="00000000";
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
-    private boolean isInSale;
     //constructor
     public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
@@ -35,7 +33,6 @@ public class Item {
         timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
-        isInSale=false;
     }
     //getters
 
@@ -157,10 +154,7 @@ public class Item {
         this.allRatings.add(newRating);
     }
 
-    public void setInSale(){
-        if(this.isInSale==false) this.isInSale=true;
-    }
-    public boolean isInSale() {
-        return isInSale;
+    public float getScore(){
+        return 5;
     }
 }

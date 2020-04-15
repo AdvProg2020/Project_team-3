@@ -17,15 +17,18 @@ public class Buyer extends User{
         return buyLogs;
     }
 
+    public void addBuyLog(BuyLog buyLog){}
+
     public void assignCart(Cart cart){
         this.cart=cart;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
     public boolean doesHaveEnoughMoneyToBuyCart(){
-        if(this.money>=money){
-            return true;
-        }
-           return false;
+        return false;
     }
 
     public void buy(){
@@ -39,21 +42,29 @@ public class Buyer extends User{
     public void removeDiscount(String discountID){
         if(this.allDiscounts.contains(discountID)) this.allDiscounts.remove(discountID);
     }
-    public boolean isBoughtInPast(){
+    public boolean hasBoughtInPast(){
         return false;
     }
 
-    public boolean isDiscountID(String id){
+    public boolean hasDiscountID(String id){
         return  this.allDiscounts.contains(id);
     }
 
     public String getDiscountById(String id){
-        if(this.isDiscountID(id)==true){
+        if(this.hasDiscountID(id)){
             for(String iterateID:allDiscounts){
                 if(iterateID.equals(id)) return iterateID;
             }
 
         }
         return null;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 }
