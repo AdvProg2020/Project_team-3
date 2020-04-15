@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaleLog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +195,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -224,10 +227,10 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="496" y="198" key="#Project_Structure/0.23.1792.1029@0.23.1792.1029" timestamp="1586861683600" />
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1586722165047">
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1586969110832">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1586722165047" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1586969110832" />
     <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="510" y="229" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586627150691">
       <screen x="0" y="23" width="1792" height="1030" />

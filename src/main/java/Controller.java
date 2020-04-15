@@ -139,8 +139,6 @@ public class Controller {
 
     public void deleteItem(String id){}
 
-    public void deleteRequest(String id){}
-
     public boolean isThereItemWithId(String id){
         return false;
     }
