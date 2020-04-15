@@ -43,6 +43,17 @@ public class Buyer extends User{
         return false;
     }
 
+    public boolean isDiscountID(String id){
+        return  this.allDiscounts.contains(id);
+    }
 
+    public String getDiscountById(String id){
+        if(this.isDiscountID(id)==true){
+            for(String iterateID:allDiscounts){
+                if(iterateID.equals(id)) return iterateID;
+            }
 
+        }
+        return null;
+    }
 }

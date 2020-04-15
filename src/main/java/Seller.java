@@ -6,7 +6,7 @@ public class Seller extends User {
     private ArrayList<String> soldItemsId;
     private ArrayList<String> allItemsId;
     private ArrayList<String> allSaleId;
-
+    private double money;
     public Seller(String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,"Seller",number);
         sellLogs=new ArrayList<>();
@@ -18,7 +18,11 @@ public class Seller extends User {
     public ArrayList<SaleLog> getSellLogs(){
         return sellLogs;
     }
-    
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     public void addSale(double amount) {
 
     }
@@ -49,5 +53,8 @@ public class Seller extends User {
         return false;
       }
 
+      public double getMoney(){
+        return this.money;
+      }
 
 }
