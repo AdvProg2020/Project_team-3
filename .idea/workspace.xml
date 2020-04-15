@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BuyerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DiscountsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ItemMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoginRegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginRegisterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SellerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ShopMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

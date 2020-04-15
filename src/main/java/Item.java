@@ -85,13 +85,6 @@ public class Item {
         this.timesBought = timesBought;
     }
 
-    public void addComment(Comment newComment){
-        this.allComments.add(newComment);
-    }
-
-    public void addRating(Rating newRating){
-        this.allRatings.add(newRating);
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -133,9 +126,6 @@ public class Item {
         this.sellerName = sellerName;
     }
 
-    public void addAttribute(String name,String value){}
-
-    public void editAttribute(String name,String newValue){}
 
     public HashMap<String, String> getAttributes() {
         return attributes;
@@ -151,5 +141,17 @@ public class Item {
 
     public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public void addAttribute(String name,String value){}
+
+    public void editAttribute(String name,String newValue){}
+
+    public void addComment(Comment newComment){
+        this.allComments.add(newComment);
+    }
+
+    public void addRating(Rating newRating){
+        this.allRatings.add(newRating);
     }
 }

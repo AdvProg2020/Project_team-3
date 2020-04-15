@@ -15,10 +15,7 @@ public class BuyerMenu extends Menu{
 
     }
 
-    @Override
-    public String toString(){
-        return "";
-    }
+
     @Override
     public void execute(String command){
 
