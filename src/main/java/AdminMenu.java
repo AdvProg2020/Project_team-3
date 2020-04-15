@@ -85,7 +85,7 @@ public class AdminMenu extends UserMenu{
 
     }
 
-    public void editDiscountCode(){
+    public void editDiscountCode(String discountID){
 
     }
 
