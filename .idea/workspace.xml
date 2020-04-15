@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="115947e5-da6a-410e-acca-f9021a82bddc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Seller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ShopMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586973109636</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="small feature added to seller is sold in past method!">
+      <created>1586973880500</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1586973880500</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +262,8 @@
     <MESSAGE value="small fixes in the fields of buyer or seller!" />
     <MESSAGE value="small fixes added to Seller and buyer" />
     <MESSAGE value="new commit beacuse of some conflicts!" />
-    <option name="LAST_COMMIT_MESSAGE" value="new commit beacuse of some conflicts!" />
+    <MESSAGE value="small feature added to seller is sold in past method!" />
+    <option name="LAST_COMMIT_MESSAGE" value="small feature added to seller is sold in past method!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -281,10 +291,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="276" y="408" width="407" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1586822981964" />
-    <state x="342" y="107" key="CommitChangelistDialog2" timestamp="1586973108959">
+    <state x="342" y="107" key="CommitChangelistDialog2" timestamp="1586973879571">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586973108959" />
+    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1586973879571" />
     <state x="513" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586972460692" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
@@ -337,10 +347,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2" timestamp="1586973115927">
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2" timestamp="1586973887239">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1586973115927" />
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1586973887239" />
     <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586890917017" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />

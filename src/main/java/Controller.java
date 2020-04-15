@@ -12,7 +12,7 @@ public class Controller {
     private ArrayList<Sale> allSales = new ArrayList<>();
     private ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
     private ArrayList<Item> allItems = new ArrayList<>();
-    public ArrayList<Request> allRequests = new ArrayList<>();
+    private ArrayList<Request> allRequests = new ArrayList<>();
     private User currentOnlineUser;
     private Category mainCategory;
     private Category currentCategory;
@@ -38,10 +38,6 @@ public class Controller {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
-    }
-
-    public ArrayList<Cart> getUsersCarts(String username){
-        return null;
     }
 
     public Category getCurrentCategory() {
@@ -177,7 +173,7 @@ public class Controller {
 
     }
 
-    public void registerSeller(String username, String password, String name, String lastName, String email, String number) {
+    public void registerSeller(double money ,String username, String password, String name, String lastName, String email, String number) {
 
     }
 

@@ -53,10 +53,6 @@ public class ShopMenu extends Menu {
 
     }
 
-    public void filter(){
-
-    }
-
     public void currentFilters(){
 
     }

@@ -7,14 +7,14 @@ public class Seller extends User {
     private ArrayList<String> allItemsId;
     private ArrayList<String> allSaleId;
     private double money;
-    public Seller(String username,String password, String name, String lastName, String email, String number,String companyName) {
+    public Seller( double money,String username,String password, String name, String lastName, String email, String number,String companyName) {
         super(username,password,name,lastName,email,"Seller",number);
         this.companyName=companyName;
         sellLogs=new ArrayList<>();
         soldItemsId=new ArrayList<>();
         allItemsId=new ArrayList<>();
         allSaleId=new ArrayList<>();
-
+        this.money=money;
     }
 
     public void setCompanyName(String companyName) {
