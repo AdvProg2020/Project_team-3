@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class BuyerMenu extends Menu{
+public class BuyerMenu extends UserMenu{
     private static BuyerMenu buyerMenu;
     private int optionCount = 4;
     private BuyerMenu(){ }
