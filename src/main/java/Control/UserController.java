@@ -16,12 +16,12 @@ public class UserController {
 
     private UserController(){}
 
-    public UserController getInstance(){
+    public static UserController getInstance(){
         if(userController==null)
             userController=new UserController();
         return userController;
     }
-    
+
     public User getUserByUsername(String username) {
         for (User user : controller.allUsers) {
             if (user.getUsername().equals(username)) {
@@ -103,5 +103,15 @@ public class UserController {
     public void Logout() {
       controller.currentOnlineUser=null;
     }
+
+    public User getUserByUserName(String userName){
+        for(User user:controller.allUsers){
+            if(user.getUsername().equals(userName)){
+                return user;
+            }
+        }
+        return null;
+    }
+
 
 }

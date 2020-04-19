@@ -9,7 +9,7 @@ public class SaleAndDiscountCodeController {
 
     private SaleAndDiscountCodeController(){}
 
-    public SaleAndDiscountCodeController getInstance(){
+    public static SaleAndDiscountCodeController getInstance(){
         if(saleAndDiscountCodeController==null){
             saleAndDiscountCodeController=new SaleAndDiscountCodeController();
         }
@@ -45,9 +45,20 @@ public class SaleAndDiscountCodeController {
 
     public void deleteSale(String id){}
 
-    public void deleteDiscountCode(String id){}
+    public void deleteDiscountCode(String id){
+        for(DiscountCode discountCode:controller.allDiscountCodes){
+            if(discountCode.getDiscountId().equals(id)){
+                controller.allDiscountCodes.remove(discountCode);
+            }
+        }
+    }
 
     public boolean isThereDiscountCodeWithId(String id){
+        for(DiscountCode discountCode:controller.allDiscountCodes){
+            if(discountCode.getDiscountId().equals(id)){
+                return true;
+            }
+        }
         return false;
     }
 }

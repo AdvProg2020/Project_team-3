@@ -40,6 +40,18 @@ public class Sale {
         return offPercentage;
     }
 
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setOffPercentage(int offPercentage) {
+        this.offPercentage = offPercentage;
+    }
+
     public String getId() {
         return id;
     }

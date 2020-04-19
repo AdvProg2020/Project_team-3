@@ -3,6 +3,7 @@ package Control;
 import Model.Item;
 import Model.Requests.*;
 import Model.Sale;
+import Model.Users.Buyer;
 import Model.Users.User;
 
 import java.util.ArrayList;
@@ -36,8 +37,11 @@ public class RequestController {
         return null;
     }
 
-
     public void giveDiscountCodeToUser(String discountID,String username){
+        User user=UserController.getInstance().getUserByUserName(username);
+        if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)==false) return;
+        if(!(user instanceof Buyer)) return;
+        ((Buyer) user).addDiscount(discountID);
     }
 
     public void addUserRequest(String requestID, User newUser) {
@@ -64,13 +68,63 @@ public class RequestController {
         ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
         controller.allRequests.add(newRequest);
     }
-
+    ///after accept or decline
     public void acceptRequest(){
-        ///inja ba chand rikhti va moshakhas kardan request haye accept shode amaliat marbote ra anjam midim!
+        requestController.declineRequest();
+        for(Request request:controller.allRequests){
+            if(request instanceof AccountRequest){
+                controller.allUsers.add(((AccountRequest) request).getUser());
+            }else if(request instanceof SaleRequest){
+                controller.allSales.add(((SaleRequest) request).getNewSale());
+            }else if(request instanceof ItemRequest){
+                controller.allItems.add(((ItemRequest) request).getNewItem());
+            }else if(request instanceof ItemEdit){
+                requestController.ItemEditing((ItemEdit)request);
+            }else if(request instanceof SaleEdit){
+                requestController.SaleEditing((SaleEdit)request);
+            }
+        }
+        controller.allRequests.clear();
+    }
+    ///after accepting requests
+    public void SaleEditing(SaleEdit saleEdit){
+        Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(saleEdit.getSaleID());
+        if(sale==null)return;
+        String changedField=saleEdit.getChangedFiled();
+        String newFieldValue=saleEdit.getNewFieldValue();
+
+        if(changedField.equals("start Time")){
+            sale.setStartTime(Integer.parseInt(newFieldValue));
+        }else if(changedField.equals("end Time")){
+            sale.setEndTime(Integer.parseInt(newFieldValue));
+        }else if(changedField.equals("off Percentage")){
+            sale.setOffPercentage(Integer.parseInt(newFieldValue));
+        }
+    }
+    ///after accepting requests
+    public void ItemEditing(ItemEdit itemEdit){
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemEdit.getItemID());
+        if(item==null)return;
+        String changedField=itemEdit.getChangedField();
+        String newFieldValue=itemEdit.getNewFieldValue();
+        if(changedField.equals("price")){
+            item.setPrice(Double.parseDouble(newFieldValue));
+        }else if(changedField.equals("name")){
+            item.setName(newFieldValue);
+        }else if(changedField.equals("brand")){
+            item.setBrand(newFieldValue);
+        }else if(changedField.equals("description")){
+            item.setDescription(newFieldValue);
+        }else if(changedField.equals("state")){
+            item.setState(newFieldValue);
+        }else if(changedField.equals("category Name")){
+            item.setCategoryName(newFieldValue);
+        }else if(changedField.equals("in stock")){
+            item.setInStock(Double.parseDouble(newFieldValue));
+        }
     }
 
     public void declineRequest(){
-
         ArrayList<Request> toBeRemoved = new ArrayList<>();
         for(Request request:controller.allRequests){
             if(!request.isIsAccepted()){

@@ -11,8 +11,8 @@ public class Item {
     private String name;
     private String brand;
     private int timesBought;
-    private int price;
-    private int inStock;
+    private double price;
+    private double inStock;
     private int viewCount;
     private HashMap<String,String > attributes;
     private String sellerName;
@@ -22,7 +22,7 @@ public class Item {
     private ArrayList<Comment>allComments;
     private boolean isInSale;
     //constructor
-    public Item(String name , String brand , String description , String state, int price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
+    public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -42,7 +42,7 @@ public class Item {
     }
     //getters
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -99,11 +99,11 @@ public class Item {
         this.brand = brand;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public int getInStock() {
+    public double getInStock() {
         return inStock;
     }
 
@@ -123,7 +123,7 @@ public class Item {
         this.categoryName = categoryName;
     }
 
-    public void setInStock(int inStock) {
+    public void setInStock(double inStock) {
         this.inStock = inStock;
     }
 

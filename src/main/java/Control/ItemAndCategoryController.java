@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
+    private static ItemAndCategoryController itemAndCategoryController;
+    private ItemAndCategoryController(){}
+
+    public static ItemAndCategoryController getInstance(){
+        if(itemAndCategoryController==null)
+            itemAndCategoryController=new ItemAndCategoryController();
+        return itemAndCategoryController;
+    }
 
     public void deleteItem(String id){}
 

@@ -12,7 +12,7 @@ public class AccountRequest extends Request {
 
     }
 
-    public User getSeller() {
+    public User getUser() {
         return this.user;
     }
 
