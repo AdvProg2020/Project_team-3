@@ -93,15 +93,4 @@ public class UserController {
       controller.currentOnlineUser=null;
     }
 
-    public User getUserByUserName(String userName){
-        for(User user:controller.allUsers){
-            if(user.getUsername().equals(userName)){
-                return user;
-            }
-        }
-        return null;
-    }
-
-
-
 }

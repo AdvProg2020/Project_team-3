@@ -26,10 +26,8 @@ public class RequestController {
         return null;
     }
 
+
     public void giveDiscountCodeToUser(String discountID,String username){
-
-
-
     }
 
     public void addUserRequest(String requestID, User newUser) {
