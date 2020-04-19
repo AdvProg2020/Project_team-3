@@ -72,4 +72,5 @@ public class Buyer extends User {
     public void setMoney(double money) {
         this.money = money;
     }
+
 }

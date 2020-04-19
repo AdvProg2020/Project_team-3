@@ -3,8 +3,9 @@ package Control;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Users.Admin;
+import Model.Users.Buyer;
+import Model.Users.Seller;
 import Model.Users.User;
-
 
 import java.util.ArrayList;
 
@@ -28,11 +29,13 @@ public class UserController {
     }
 
     public ArrayList<BuyLog> getBuyerBuyLogs(String username){
-        return null;
+        Buyer buyer= (Buyer) getCurrentOnlineUser();
+       return buyer.getBuyLogs();
     }
 
     public ArrayList<SaleLog> getSellerBuyLogs(String username){
-        return null;
+        Seller seller= (Seller) getCurrentOnlineUser();
+        return seller.getSellLogs();
     }
 
     public boolean isThereUserWithUsername(String username) {
@@ -44,20 +47,42 @@ public class UserController {
         return false;
     }
 
-    public boolean addUser(User user){
-        return false;
+    public void addUser(User user){
+        controller.allUsers.add(user);
     }
 
-    public void registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
-
+    public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
+        if(isThereUserWithUsername(username)){
+            return "Error :user exist with this username";
+        }
+        addUser(new Buyer(money,username,password,name,lastName,email,number));
+            return "Successful: user registered";
     }
 
-    public void registerSeller(double money ,String username, String password, String name, String lastName, String email, String number) {
-
+    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {
+        if(isThereUserWithUsername(username)){
+            return "Error :user exist with this username";
+        }
+        addUser(new Seller(money,username,password,name,lastName,email,number,companyName));
+        return "Successful: user registered";
     }
 
-    public void deleteUser(String Username) {
+    public String login(String username,String password){
+        User user=getUserByUsername(username);
+        if(user==null){
+            return "Error: user doesnt exist";
+        }
+        if(user.doesPasswordMatch(password)==false){
+            return "Error: password doesnt match";
+        }
+            controller.currentOnlineUser=user;
+            return "Successful: login successful";
+    }
 
+    public void deleteUser(String username) {
+        User user=getUserByUsername(username);
+        controller.allUsers.remove(user);
+       //dge chi bayad remove she?
     }
 
     public void editPersonalInfo(String username,String field,String newValue){
@@ -65,6 +90,6 @@ public class UserController {
     }
 
     public void Logout() {
-
+      controller.currentOnlineUser=null;
     }
 }

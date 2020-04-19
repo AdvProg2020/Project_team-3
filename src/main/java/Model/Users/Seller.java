@@ -86,13 +86,13 @@ public class Seller extends User {
 
     public void editSale(Sale sale, Sale updatedSale){
 
-      }
+    }
 
      public void removeItem(String itemId){
 
-      }
+    }
 
-      public boolean isSaleInPast(){
+    public boolean isSaleInPast(){
         return false;
       }
 
