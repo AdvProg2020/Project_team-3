@@ -1,11 +1,11 @@
 package Control;
 
 
-import Model.Requests.*;
-import Model.Users.*;
-import Model.Logs.*;
 import Model.*;
-import View.Menus.*;
+import Model.Requests.*;
+import Model.Users.Admin;
+import Model.Users.User;
+import View.Menus.Menu;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -14,18 +14,18 @@ import java.util.regex.Pattern;
 public class Controller {
     private static Controller controller;
 
-    private Admin admin;
-    private ArrayList<User> allUsers = new ArrayList<>();
-    private ArrayList<Sale> allSales = new ArrayList<>();
-    private ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
-    private ArrayList<Item> allItems = new ArrayList<>();
-    private ArrayList<Request> allRequests = new ArrayList<>();
-    private User currentOnlineUser;
-    private Category mainCategory;
-    private Category currentCategory;
-    private Cart currentShoppingCart;
-    private Menu currentMenu;
-    private ArrayList<Item> currentViewableItems = new ArrayList<>();
+    Admin admin;
+    ArrayList<User> allUsers = new ArrayList<>();
+    ArrayList<Sale> allSales = new ArrayList<>();
+    ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
+    ArrayList<Item> allItems = new ArrayList<>();
+    ArrayList<Request> allRequests = new ArrayList<>();
+    User currentOnlineUser;
+    Category mainCategory;
+    Category currentCategory;
+    Cart currentShoppingCart;
+    Menu currentMenu;
+    ArrayList<Item> currentViewableItems = new ArrayList<>();
 
     private Controller() {
     }
@@ -41,182 +41,6 @@ public class Controller {
 
     public void saveGson() {
 
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
-    public Category getCurrentCategory() {
-        return currentCategory;
-    }
-
-    public ArrayList<Item> getCurrentViewableItems() {
-        return currentViewableItems;
-    }
-
-    public void setCurrentCategory(Category currentCategory) {
-        this.currentCategory = currentCategory;
-    }
-
-    public Cart getCurrentShoppingCart() {
-        return currentShoppingCart;
-    }
-
-    public void setCurrentShoppingCart(Cart currentShoppingCart) {
-        this.currentShoppingCart = currentShoppingCart;
-    }
-
-    public User getCurrentOnlineUser() {
-        return currentOnlineUser;
-    }
-
-    public User getUserByUsername(String username) {
-        for (User user : allUsers) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<BuyLog> getBuyerBuyLogs(String username){
-         return null;
-    }
-
-    public ArrayList<SaleLog> getSellerBuyLogs(String username){
-         return null;
-    }
-
-    public DiscountCode getDiscountCodeById(String id) {
-        for (DiscountCode discountCode : allDiscountCodes) {
-            if (discountCode.getDiscountId().equals(id)) {
-                return discountCode;
-            }
-        }
-        return null;
-    }
-
-    public Sale getSaleById(String id) {
-        for (Sale sale : allSales) {
-            if (sale.getId().equals(id)) {
-                return sale;
-            }
-        }
-        return null;
-    }
-
-    public Item getItemById(String id) {
-        for (Item item : allItems) {
-            if (item.getId().equals(id)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public boolean isThereUserWithUsername(String username) {
-        for (User user : allUsers) {
-            if (user.getUsername().equals(username)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean addUser(User user){
-        return false;
-    }
-
-    public boolean isThereSaleWithId(String id){
-        return false;
-    }
-
-    public void addSale(Sale sale){}
-
-    public void addDiscountCode(DiscountCode discountCode){}
-
-    public void deleteSale(String id){}
-
-    public void deleteDiscountCode(String id){}
-
-    public void deleteItem(String id){}
-
-    public boolean isThereItemWithId(String id){
-        return false;
-    }
-
-    public boolean isThereRequestWithId(String id){
-        return false;
-    }
-
-    public boolean isThereDiscountCodeWithId(String id){
-        return false;
-    }
-
-    public Request getRequestById(String id){
-        return null;
-    }
-
-    public void Logout() {
-
-    }
-
-    public boolean addItem(Item item) {
-        return false;
-    }
-
-    public void removeItemByID(String itemID){
-        for(Item item :allItems){
-            if(item.getId().equals(itemID)){
-                allItems.remove(item);
-            }
-        }
-    }
-
-    public void giveDiscountCodeToUser(String discountID,String username){}
-
-    public void registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
-
-    }
-
-    public void registerSeller(double money ,String username, String password, String name, String lastName, String email, String number) {
-
-    }
-
-    public void deleteUser(String Username) {
-
-    }
-
-    public boolean searchItemInCategory(String categoryName, String itemId) {
-        return false;
-    }
-
-    public String compare(String itemId1, String itemId2) {
-        return "hello";
-    }
-
-    public void addToBucket(String itemId) {
-
-    }
-
-    public void removeItemFromBucket(String itemId) {
-
-    }
-
-    public void comment(String text, String itemId) {
-
-    }
-
-    public void rate(int score, String itemId) {
-    }
-
-    public Boolean addCategory(String Name) {
-        return false;
-    }
-
-    public Boolean Buy() {
-        return false;
     }
 
     public boolean isAValidCommand(String command) {
@@ -245,60 +69,9 @@ public class Controller {
         }
     }
 
-    public void addUserRequest(String requestID, User newUser) {
-        AccountRequest newRequest = new AccountRequest(requestID, newUser);
-        allRequests.add(newRequest);
-    }
-
-    public void addSaleRequest(String requestId, Sale newSale) {
-        SaleRequest newRequest = new SaleRequest(requestId, newSale);
-        allRequests.add(newRequest);
-    }
-
-    public void addItemRequest(String requestId, Item newItem) {
-        ItemRequest newRequest = new ItemRequest(requestId, newItem);
-        allRequests.add(newRequest);
-    }
-
-    public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
-        SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
-        allRequests.add(newRequest);
-    }
-
-    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
-        ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
-        allRequests.add(newRequest);
-    }
-
-    public void acceptRequest(){
-        ///inja ba chand rikhti va moshakhas kardan request haye accept shode amaliat marbote ra anjam midim!
-    }
-
-    public void declineRequest(){
-
-        ArrayList<Request> toBeRemoved = new ArrayList<>();
-        for(Request request:allRequests){
-            if(!request.isIsAccepted()){
-                toBeRemoved.add(request);
-            }
-        }
-        allRequests.removeAll(toBeRemoved);
-    }
-
     public static Matcher getMatcher(String string,String regex){
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(string);
-    }
-
-    public void sortBy(String sortByWhat){
-    }
-
-    public void filterBy(String filterByWhat){
-
-    }
-
-    public void editPersonalInfo(String username,String field,String newValue){
-
     }
 
 }
