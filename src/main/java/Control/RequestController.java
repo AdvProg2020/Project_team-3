@@ -14,7 +14,7 @@ public class RequestController {
     private static RequestController requestController;
     private RequestController(){}
 
-    public RequestController getInstance(){
+    public static RequestController getInstance(){
         if(requestController==null)
             requestController=new RequestController();
         return requestController;

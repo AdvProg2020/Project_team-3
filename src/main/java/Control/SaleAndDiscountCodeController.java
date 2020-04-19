@@ -1,6 +1,7 @@
 package Control;
 
 import Model.DiscountCode;
+import Model.Requests.Request;
 import Model.Sale;
 
 public class SaleAndDiscountCodeController {
@@ -36,14 +37,31 @@ public class SaleAndDiscountCodeController {
     }
 
     public boolean isThereSaleWithId(String id){
+        for(Sale sale:controller.allSales){
+            if(sale.getId().equals(id)){
+                return true;
+            }
+        }
         return false;
     }
 
-    public void addSale(Sale sale){}
+    public String addSale(Sale sale){
+        String requestId=controller.addId(Request.getIdCount());
+        RequestController.getInstance().addSaleRequest(requestId,sale);
+        return "your request for adding Sale was sent to our Admins!";
+    }
 
-    public void addDiscountCode(DiscountCode discountCode){}
+    public void addDiscountCode(DiscountCode discountCode){
+        controller.allDiscountCodes.add(discountCode);
+    }
 
-    public void deleteSale(String id){}
+    public void deleteSale(String id){
+        for(Sale sale:controller.allSales){
+            if(sale.getId().equals(id)){
+                controller.allSales.remove(sale);
+            }
+        }
+    }
 
     public void deleteDiscountCode(String id){
         for(DiscountCode discountCode:controller.allDiscountCodes){

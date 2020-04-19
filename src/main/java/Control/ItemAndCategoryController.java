@@ -3,6 +3,7 @@ package Control;
 import Model.Cart;
 import Model.Category;
 import Model.Item;
+import Model.Requests.Request;
 
 import java.util.ArrayList;
 
@@ -17,9 +18,20 @@ public class ItemAndCategoryController {
         return itemAndCategoryController;
     }
 
-    public void deleteItem(String id){}
+    public void deleteItem(String id){
+        for(Item item:controller.allItems){
+            if(item.getId().equals(id)){
+                controller.allItems.remove(item);
+            }
+        }
+    }
 
     public boolean isThereItemWithId(String id){
+        for(Item item:controller.allItems){
+            if(item.getId().equals(id)){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -53,7 +65,6 @@ public class ItemAndCategoryController {
     }
 
     public void removeItemFromBucket(String itemId) {
-
     }
 
     public void comment(String text, String itemId) {
@@ -78,8 +89,10 @@ public class ItemAndCategoryController {
 
     }
 
-    public boolean addItem(Item item) {
-        return false;
+    public String addItem(Item item) {
+        String requestId=controller.addId(Request.getIdCount());
+        RequestController.getInstance().addItemRequest(requestId,item);
+        return "your request was sent for adding item to our Admins!";
     }
 
     public Category getCurrentCategory() {

@@ -2,6 +2,7 @@ package Model.Requests;
 
 public abstract class Request {
 
+    private static String idCount="00000000";
     private String requestId;
     private String message;
     private boolean isAccepted;
@@ -35,6 +36,7 @@ public abstract class Request {
         this.isAccepted = isAccepted;
     }
 
+    public static String getIdCount(){return idCount;}
 
 
 

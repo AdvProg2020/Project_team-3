@@ -2,6 +2,7 @@ package Control;
 
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
+import Model.Requests.Request;
 import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
@@ -66,16 +67,20 @@ public class UserController {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        addUser(new Buyer(money,username,password,name,lastName,email,number));
-            return "Successful: user registered";
+        User newUSer=new Buyer(money,username,password,name,lastName,email,number);
+        String requestID=controller.addId(Request.getIdCount());
+        RequestController.getInstance().addUserRequest(requestID ,newUSer);
+            return "your request for signing up was sent to admin!";
     }
 
     public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        addUser(new Seller(money,username,password,name,lastName,email,number,companyName));
-        return "Successful: user registered";
+        User newUSer=new Buyer(money,username,password,name,lastName,email,number);
+        String requestID=controller.addId(Request.getIdCount());
+        RequestController.getInstance().addUserRequest(requestID ,newUSer);
+        return "your request for signing up was sent to admin!";
     }
 
     public String login(String username,String password){
