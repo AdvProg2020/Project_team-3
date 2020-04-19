@@ -8,7 +8,6 @@ public abstract class Menu {
     public abstract void execute(String command);
     public abstract void help();
     public int optionCount;
-    //public View.View.Menus.Menu previousMenu;
     public int getOptionCount() {
         return optionCount;
     }
