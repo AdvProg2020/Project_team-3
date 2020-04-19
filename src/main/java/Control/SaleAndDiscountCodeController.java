@@ -5,6 +5,18 @@ import Model.Sale;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
+    private static SaleAndDiscountCodeController saleAndDiscountCodeController;
+
+    private SaleAndDiscountCodeController(){}
+
+    public SaleAndDiscountCodeController getInstance(){
+        if(saleAndDiscountCodeController==null){
+            saleAndDiscountCodeController=new SaleAndDiscountCodeController();
+        }
+        return saleAndDiscountCodeController;
+    }
+
+
     public DiscountCode getDiscountCodeById(String id) {
         for (DiscountCode discountCode : controller.allDiscountCodes) {
             if (discountCode.getDiscountId().equals(id)) {

@@ -10,6 +10,16 @@ import java.util.ArrayList;
 public class RequestController {
     Controller controller = Controller.getInstance();
 
+    private static RequestController requestController;
+    private RequestController(){}
+
+    public RequestController getInstance(){
+        if(requestController==null)
+            requestController=new RequestController();
+        return requestController;
+    }
+
+
     public boolean isThereRequestWithId(String id){
         for(Request getRequest:controller.allRequests){
             if(getRequest.getRequestId().equals(id)) return true;

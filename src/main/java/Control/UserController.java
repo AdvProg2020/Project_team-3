@@ -11,6 +11,17 @@ import java.util.ArrayList;
 
 public class UserController {
     Controller controller = Controller.getInstance();
+
+    private static UserController userController;
+
+    private UserController(){}
+
+    public UserController getInstance(){
+        if(userController==null)
+            userController=new UserController();
+        return userController;
+    }
+    
     public User getUserByUsername(String username) {
         for (User user : controller.allUsers) {
             if (user.getUsername().equals(username)) {
