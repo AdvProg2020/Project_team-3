@@ -11,14 +11,26 @@ public class RequestController {
     Controller controller = Controller.getInstance();
 
     public boolean isThereRequestWithId(String id){
+        for(Request getRequest:controller.allRequests){
+            if(getRequest.getRequestId().equals(id)) return true;
+        }
         return false;
     }
 
     public Request getRequestById(String id){
+        for(Request getRequest:controller.allRequests){
+            if(getRequest.getRequestId().equals(id)){
+                return getRequest;
+            }
+        }
         return null;
     }
 
-    public void giveDiscountCodeToUser(String discountID,String username){}
+    public void giveDiscountCodeToUser(String discountID,String username){
+
+
+
+    }
 
     public void addUserRequest(String requestID, User newUser) {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
