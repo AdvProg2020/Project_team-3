@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Comment;
 import Model.Item;
 import Model.Requests.*;
 import Model.Sale;
@@ -57,6 +58,11 @@ public class RequestController {
     public void addItemRequest(String requestId, Item newItem) {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
         controller.allRequests.add(newRequest);
+    }
+
+    public void addCommentRequest(String requestId , Comment newComment){
+        CommentRequest commentRequest=new CommentRequest(requestId,newComment);
+        controller.allRequests.add(commentRequest);
     }
 
     public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {

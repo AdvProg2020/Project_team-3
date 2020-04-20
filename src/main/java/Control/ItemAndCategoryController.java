@@ -1,9 +1,9 @@
 package Control;
 
-import Model.Cart;
-import Model.Category;
-import Model.Item;
+import Model.*;
 import Model.Requests.Request;
+import Model.Users.Buyer;
+import Model.Users.User;
 
 import java.util.ArrayList;
 
@@ -61,17 +61,47 @@ public class ItemAndCategoryController {
     }
 
     public void addToBucket(String itemId) {
-
     }
 
     public void removeItemFromBucket(String itemId) {
     }
 
     public void comment(String text, String itemId) {
-
+        if(isThereItemWithId(itemId)==false){
+            System.out.println("we do not have this Item in our storage with that ID");
+            return;
+        }
+        Item item=getItemById(itemId);
+        if(controller.currentOnlineUser.getUsername().equals(item.getBuyerUserName())){
+            Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
+            item.addComment(comment);
+        }else{
+            Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,false);
+            item.addComment(comment);
+            String requestID=controller.addId(Request.getIdCount());
+            RequestController.getInstance().addCommentRequest(requestID,comment);
+        }
+        System.out.println("your comment was successfully added!!");
     }
 
     public void rate(int score, String itemId) {
+        if(isThereItemWithId(itemId)==false){
+            System.out.println("we do not have this Item in our storage with that ID");
+            return;
+        }
+        User user=controller.currentOnlineUser;
+        if(!(user instanceof Buyer)){
+            System.out.println("you can not Rate the Items!");
+            return;
+        }
+        Item item=getItemById(itemId);
+        if(item.getBuyerUserName().equals(user.getUsername())){
+            Rating rating=new Rating(score,user.getUsername(),itemId);
+            item.addRating(rating);
+            System.out.println("thanks for your Rating!");
+            return;
+        }
+        System.out.println("you did not buy that item and you are not allowed for rating!");
     }
 
     public Boolean addCategory(String Name) {
