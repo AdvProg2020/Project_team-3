@@ -33,7 +33,7 @@ public class UserController {
         return null;
     }
 
-   /* public void setAdmin(Admin admin) {
+   /*public void setAdmin(Admin admin) {
         controller.admin = admin;
         niazi be in method nist admin haye mokhtalef ba ham farghi nadaran
     } */
@@ -64,6 +64,8 @@ public class UserController {
     public void addUser(User user){
         controller.allUsers.add(user);
     }
+
+
 
     public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
         if(isThereUserWithUsername(username)){
