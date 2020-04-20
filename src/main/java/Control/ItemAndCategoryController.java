@@ -61,9 +61,24 @@ public class ItemAndCategoryController {
     }
 
     public void addToBucket(String itemId) {
+        if(isThereItemWithId(itemId)==false) {
+            System.out.println("we do not have item with this id!");
+            return;
+        }
+
+
+
+
+
     }
 
     public void removeItemFromBucket(String itemId) {
+        if(isThereItemWithId(itemId)==false) {
+            System.out.println("we do not have item with this id!");
+            return;
+        }
+
+
     }
 
     public void comment(String text, String itemId) {
