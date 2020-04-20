@@ -74,4 +74,11 @@ public class Controller {
         return pattern.matcher(string);
     }
 
+    public User getCurrentOnlineUser() {
+        return currentOnlineUser;
+    }
+
+    public void setCurrentOnlineUser(User currentOnlineUser) {
+        this.currentOnlineUser = currentOnlineUser;
+    }
 }

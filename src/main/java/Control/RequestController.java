@@ -38,7 +38,7 @@ public class RequestController {
     }
 
     public void giveDiscountCodeToUser(String discountID,String username){
-        User user=UserController.getInstance().getUserByUserName(username);
+        User user=UserController.getInstance().getUserByUsername(username);
         if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)==false) return;
         if(!(user instanceof Buyer)) return;
         ((Buyer) user).addDiscount(discountID);

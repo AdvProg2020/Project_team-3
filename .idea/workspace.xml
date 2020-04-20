@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6111c7c9-2b67-42f3-8c47-7bce1e849d24" name="Default Changelist" comment="">
+    <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Control/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/SaleAndDiscountCodeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Control/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Requests/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/the Last UML.uml" beforeDir="false" afterPath="$PROJECT_DIR$/the Last UML.uml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

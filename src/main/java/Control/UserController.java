@@ -85,14 +85,33 @@ public class UserController {
 
     public String login(String username,String password){
         User user=getUserByUsername(username);
-        if(user==null){
-            return "Error: user doesnt exist";
+        if(!isThereUserWithUsername(username)){
+            return "Error: no user exists with this username.";
         }
-        if(user.doesPasswordMatch(password)==false){
-            return "Error: password doesnt match";
+        if(!user.doesPasswordMatch(password)){
+            return "Error: incorrect password.";
         }
-            controller.currentOnlineUser=user;
-            return "Successful: login successful";
+        controller.currentOnlineUser=user;
+        Controller.getInstance().setCurrentOnlineUser(user);
+        return "Successful: login successful.";
+    }
+
+    public double validateMoney(String money){
+        double moneyDouble = -1;
+        try{
+            moneyDouble = Double.parseDouble(money);
+        }catch (Exception e){
+            return -1;
+        }
+        return moneyDouble;
+    }
+
+    public boolean isValidEmail(String email){
+        return true;
+    }
+
+    public boolean isValidPhoneNumber(String number){
+        return true;
     }
 
     public void deleteUser(String username) {
@@ -109,14 +128,6 @@ public class UserController {
       controller.currentOnlineUser=null;
     }
 
-    public User getUserByUserName(String userName){
-        for(User user:controller.allUsers){
-            if(user.getUsername().equals(userName)){
-                return user;
-            }
-        }
-        return null;
-    }
 
 
 }

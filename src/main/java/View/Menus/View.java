@@ -1,6 +1,4 @@
-package View;
-
-import View.Menus.Menu;
+package View.Menus;
 
 import java.util.Scanner;
 public class View {

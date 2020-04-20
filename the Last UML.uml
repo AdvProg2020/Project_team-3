@@ -20,9 +20,9 @@
     <node x="200.0" y="980.0">View.Menus.AdminMenu</node>
     <node x="168.0" y="3096.0">java</node>
     <node x="2796.0" y="2804.0">javax</node>
-    <node x="902.5" y="332.0">View.View.Menus.ShopMenu</node>
-    <node x="672.5" y="0.0">View.View.Menus.Menu</node>
-    <node x="111.5" y="560.0">View.View.Menus.UserMenu</node>
+    <node x="902.5" y="332.0">View.Menus.View.Menus.ShopMenu</node>
+    <node x="672.5" y="0.0">View.Menus.View.Menus.Menu</node>
+    <node x="111.5" y="560.0">View.Menus.View.Menus.UserMenu</node>
     <node x="700.0" y="2642.0">Model.Requests.SaleRequest</node>
     <node x="434.00000000000006" y="2620.0">Model.Requests.ItemEdit</node>
     <node x="1468.0" y="2431.0">Model.Cart</node>
@@ -36,8 +36,8 @@
     <node x="1774.0" y="2431.0">Model.DiscountCode</node>
     <node x="1649.5" y="0.0">Control.Controller</node>
     <node x="324.0" y="2138.0">Model.Users.Admin</node>
-    <node x="0.0" y="1057.0">View.View.Menus.SellerMenu</node>
-    <node x="313.0" y="2804.0">View.View</node>
+    <node x="0.0" y="1057.0">View.Menus.View.Menus.SellerMenu</node>
+    <node x="313.0" y="2804.0">View.Menus.View</node>
     <node x="791.0" y="3096.0">jdk</node>
     <node x="2257.0" y="2804.0">META-INF</node>
     <node x="2621.0" y="2804.0">groovy</node>
@@ -65,7 +65,7 @@
       <point x="502.2000000000001" y="2590.0" />
       <point x="-54.799999999999955" y="69.5" />
     </edge>
-    <edge source="View.View.Menus.ShopMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.View.Menus.ShopMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-298.5" />
       <point x="997.5" y="311.0" />
       <point x="822.2857142857142" y="311.0" />
@@ -83,7 +83,7 @@
       <point x="654.5" y="2048.0" />
       <point x="112.0" y="144.5" />
     </edge>
-    <edge source="View.Menus.DiscountsMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.DiscountsMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-145.5" />
       <point x="1221.0" y="301.0" />
       <point x="855.5714285714286" y="301.0" />
@@ -95,13 +95,13 @@
       <point x="584.4000000000001" y="2600.0" />
       <point x="27.399999999999977" y="69.5" />
     </edge>
-    <edge source="View.Menus.LoginRegisterMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.LoginRegisterMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-123.5" />
       <point x="1477.0" y="291.0" />
       <point x="888.8571428571429" y="291.0" />
       <point x="99.85714285714289" y="135.5" />
     </edge>
-    <edge source="View.View.Menus.SellerMenu" target="View.View.Menus.UserMenu">
+    <edge source="View.Menus.View.Menus.SellerMenu" target="View.Menus.View.Menus.UserMenu">
       <point x="0.0" y="-277.5" />
       <point x="90.0" y="955.0" />
       <point x="153.75" y="955.0" />
@@ -117,13 +117,13 @@
       <point x="529.6000000000001" y="2600.0" />
       <point x="-27.399999999999977" y="69.5" />
     </edge>
-    <edge source="View.View.Menus.UserMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.View.Menus.UserMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-70.5" />
       <point x="196.0" y="291.0" />
       <point x="689.1428571428571" y="291.0" />
       <point x="-99.85714285714289" y="135.5" />
     </edge>
-    <edge source="View.Menus.AdminMenu" target="View.View.Menus.UserMenu">
+    <edge source="View.Menus.AdminMenu" target="View.Menus.View.Menus.UserMenu">
       <point x="0.0" y="-354.5" />
       <point x="302.0" y="955.0" />
       <point x="238.25" y="955.0" />
@@ -133,17 +133,17 @@
       <point x="0.0" y="-91.5" />
       <point x="0.0" y="144.5" />
     </edge>
-    <edge source="View.Menus.MainMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.MainMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-134.5" />
       <point x="586.0" y="311.0" />
       <point x="755.7142857142857" y="311.0" />
       <point x="-33.285714285714334" y="135.5" />
     </edge>
-    <edge source="View.Menus.BuyerMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.BuyerMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-299.5" />
       <point x="0.0" y="135.5" />
     </edge>
-    <edge source="View.Menus.ItemMenu" target="View.View.Menus.Menu">
+    <edge source="View.Menus.ItemMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-200.5" />
       <point x="388.5" y="301.0" />
       <point x="722.4285714285714" y="301.0" />
