@@ -101,8 +101,24 @@ public class UserController {
        //dge chi bayad remove she?
     }
 
-    public void editPersonalInfo(String username,String field,String newValue){
+    public void editPersonalInfo(String username,String field,String newValue) {
+        if (isThereUserWithUsername(username) == false){
+            System.out.println("the user is not registered!");
+            return;
+        }
+        User user=getUserByUserName(username);
 
+        if(field.equals("name")){
+            user.setName(newValue);
+        }else if(field.equals("lastName")){
+            user.setLastName(newValue);
+        }else if(field.equals("Number")){
+            user.setNumber(newValue);
+        }else if(field.equals("Email")){
+            user.setEmail(newValue);
+        }else if(field.equals("PassWord")){
+            user.setPassword(newValue);
+        }
     }
 
     public void Logout() {

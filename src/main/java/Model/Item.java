@@ -17,6 +17,7 @@ public class Item {
     private HashMap<String,String > attributes;
     private String sellerName;
     private String categoryName;
+    private String buyerUserName;
     private static String idCount="00000000";
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
@@ -39,6 +40,7 @@ public class Item {
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
         isInSale=false;
+        buyerUserName=" ";
     }
     //getters
 
@@ -170,5 +172,13 @@ public class Item {
 
     public void setInSale(boolean inSale) {
         isInSale = inSale;
+    }
+
+    public String getBuyerUserName() {
+        return buyerUserName;
+    }
+
+    public void setBuyerUserName(String buyerUserName) {
+        this.buyerUserName = buyerUserName;
     }
 }
