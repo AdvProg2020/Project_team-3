@@ -47,8 +47,11 @@ public class Buyer extends User {
         return false;
     }
 
-    public void buy(){
-
+    public String buy(){
+    if(doesHaveEnoughMoneyToBuyCart()==false){
+        return "Error: dont have enough money";
+    }
+        return "bayad buylog sakhte shavad";
     }
 
     public void addDiscount(String discountId){
@@ -58,6 +61,7 @@ public class Buyer extends User {
     public void removeDiscount(String discountID){
         if(this.allDiscounts.contains(discountID)) this.allDiscounts.remove(discountID);
     }
+
     public boolean hasBoughtInPast(){
         return false;
     }
