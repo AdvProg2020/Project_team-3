@@ -1,5 +1,6 @@
 package View.Menus;
 
+import Control.Controller;
 import Control.UserController;
 
 import java.util.regex.Matcher;
@@ -95,11 +96,11 @@ public abstract class Menu {
     }
 
     public void logout(){
-
+        UserController.getInstance().logout();
     }
 
     public void exit(){
-      //must call Control.Controller save function
+        Controller.getInstance().saveGson();
     }
 
     public void back(){

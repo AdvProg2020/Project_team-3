@@ -114,18 +114,21 @@ public class UserController {
         return true;
     }
 
+    public void logout(){
+
+    }
+
     public void deleteUser(String username) {
         User user=getUserByUsername(username);
         controller.allUsers.remove(user);
        //dge chi bayad remove she?
     }
 
-    public void editPersonalInfo(String username,String field,String newValue) {
+    public String editPersonalInfo(String username,String field,String newValue) {
         if (isThereUserWithUsername(username) == false){
-            System.out.println("the user is not registered!");
-            return;
+            return "kir , inja system.out nakon";
         }
-        User user=getUserByUserName(username);
+        User user=getUserByUsername(username);
 
         if(field.equals("name")){
             user.setName(newValue);
@@ -138,6 +141,8 @@ public class UserController {
         }else if(field.equals("PassWord")){
             user.setPassword(newValue);
         }
+
+        return "kir, in kosshere.";
     }
 
     public void Logout() {
