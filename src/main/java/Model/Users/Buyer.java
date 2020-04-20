@@ -11,22 +11,11 @@ public class Buyer extends User {
     private ArrayList<BuyLog> buyLogs;
     private Cart cart;
     private ArrayList<String>allDiscounts;
-    private boolean valid;
-
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,"Model.Users.Buyer",number);
         this.money=money;
-        valid=false;
         buyLogs=new ArrayList<>();
         allDiscounts=new ArrayList<>();
-    }
-
-    public void Validate() {
-        this.valid = true;
-    }
-
-    public boolean getValid(){
-        return valid;
     }
 
     public ArrayList<BuyLog> getBuyLogs() {

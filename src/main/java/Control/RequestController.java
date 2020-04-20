@@ -5,6 +5,7 @@ import Model.Item;
 import Model.Requests.*;
 import Model.Sale;
 import Model.Users.Buyer;
+import Model.Users.Seller;
 import Model.Users.User;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class RequestController {
         ((Buyer) user).addDiscount(discountID);
     }
 
-    public void addUserRequest(String requestID, User newUser) {
+    public void addUserRequest(String requestID, Seller newUser) {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         controller.allRequests.add(newRequest);
     }
@@ -79,7 +80,7 @@ public class RequestController {
         requestController.declineRequest();
         for(Request request:controller.allRequests){
             if(request instanceof AccountRequest){
-                controller.allUsers.add(((AccountRequest) request).getUser());
+                ((AccountRequest) request).getUser().Validate();
             }else if(request instanceof SaleRequest){
                 controller.allSales.add(((SaleRequest) request).getNewSale());
             }else if(request instanceof ItemRequest){

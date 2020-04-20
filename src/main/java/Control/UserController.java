@@ -69,7 +69,7 @@ public class UserController {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        User user=new Buyer(money,username,password,name,lastName,email,number);
+        Buyer user=new Buyer(money,username,password,name,lastName,email,number);
         addUser(user);
         return "Successful: User registered";
     }
@@ -78,7 +78,7 @@ public class UserController {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        User user=new Buyer(money,username,password,name,lastName,email,number);
+        Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);
         addUser(user);
         String requestID=controller.addId(Request.getIdCount());
         RequestController.getInstance().addUserRequest(requestID ,user);

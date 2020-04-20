@@ -1,19 +1,19 @@
 package Model.Requests;
 
-import Model.Users.User;
+import Model.Users.Seller;
 
 public class AccountRequest extends Request {
-    private User user;
-    public AccountRequest(String requestId , User user) {
+    private Seller seller;
+    public AccountRequest(String requestId , Seller user) {
         super(requestId);
-        this.user=user;
+        this.seller=user;
         String news="the new seller with user Name"+user.getUsername()+"wants to create account in your System";
         this.setMessage(news);
 
     }
 
-    public User getUser() {
-        return this.user;
+    public Seller getUser() {
+        return this.seller;
     }
 
 }

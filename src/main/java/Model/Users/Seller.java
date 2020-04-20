@@ -11,6 +11,7 @@ public class Seller extends User {
     private ArrayList<String> soldItemsId;
     private ArrayList<String> allItemsId;
     private ArrayList<String> allSaleId;
+    private boolean valid;
     private double money;
     public Seller( double money,String username,String password, String name, String lastName, String email, String number,String companyName) {
         super(username,password,name,lastName,email,"Model.Users.Seller",number);
@@ -19,6 +20,7 @@ public class Seller extends User {
         soldItemsId=new ArrayList<>();
         allItemsId=new ArrayList<>();
         allSaleId=new ArrayList<>();
+        valid=false;
         this.money=money;
     }
 
@@ -108,5 +110,12 @@ public class Seller extends User {
         return false;
     }
 
+    public void Validate() {
+        this.valid = true;
+    }
+
+    public boolean getValid(){
+        return valid;
+    }
 
 }

@@ -65,7 +65,10 @@ public class ItemAndCategoryController {
             System.out.println("we do not have item with this id!");
             return;
         }
+        if(controller.currentOnlineUser!=null){
+            //Cart newCart=new Cart(controller.currentOnlineUser.getUsername());
 
+        }
 
 
 
