@@ -3,12 +3,13 @@ package Control;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Requests.Request;
-import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserController {
     Controller controller = Controller.getInstance();
@@ -32,9 +33,10 @@ public class UserController {
         return null;
     }
 
-    public void setAdmin(Admin admin) {
+   /* public void setAdmin(Admin admin) {
         controller.admin = admin;
-    }
+        niazi be in method nist admin haye mokhtalef ba ham farghi nadaran
+    } */
 
     public User getCurrentOnlineUser() {
         return controller.currentOnlineUser;
@@ -67,20 +69,20 @@ public class UserController {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        User newUSer=new Buyer(money,username,password,name,lastName,email,number);
-        String requestID=controller.addId(Request.getIdCount());
-        RequestController.getInstance().addUserRequest(requestID ,newUSer);
-            return "your request for signing up was sent to admin!";
+        User user=new Buyer(money,username,password,name,lastName,email,number);
+        addUser(user);
+        return "Successful: User registered";
     }
 
     public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {
         if(isThereUserWithUsername(username)){
             return "Error :user exist with this username";
         }
-        User newUSer=new Buyer(money,username,password,name,lastName,email,number);
+        User user=new Buyer(money,username,password,name,lastName,email,number);
+        addUser(user);
         String requestID=controller.addId(Request.getIdCount());
-        RequestController.getInstance().addUserRequest(requestID ,newUSer);
-        return "your request for signing up was sent to admin!";
+        RequestController.getInstance().addUserRequest(requestID ,user);
+        return "Successful: your request has been sent to the admin";
     }
 
     public String login(String username,String password){
@@ -107,15 +109,22 @@ public class UserController {
     }
 
     public boolean isValidEmail(String email){
-        return true;
+        Pattern pattern=Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
+        Matcher matcher=pattern.matcher(email);
+        if(matcher.matches()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public boolean isValidPhoneNumber(String number){
-        return true;
+    public boolean isValidPhoneNumber(String number) {
+     return false;
     }
 
     public void logout(){
-
+        controller.currentOnlineUser=null;
     }
 
     public void deleteUser(String username) {
@@ -124,12 +133,9 @@ public class UserController {
        //dge chi bayad remove she?
     }
 
-    public String editPersonalInfo(String username,String field,String newValue) {
-        if (isThereUserWithUsername(username) == false){
-            return "kir , inja system.out nakon";
-        }
-        User user=getUserByUsername(username);
+    public void editPersonalInfo(String username,String field,String newValue) {
 
+        User user=getUserByUsername(username);
         if(field.equals("name")){
             user.setName(newValue);
         }else if(field.equals("lastName")){
@@ -142,13 +148,6 @@ public class UserController {
             user.setPassword(newValue);
         }
 
-        return "kir, in kosshere.";
     }
-
-    public void Logout() {
-      controller.currentOnlineUser=null;
-    }
-
-
 
 }
