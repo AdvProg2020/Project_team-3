@@ -1,14 +1,15 @@
 package Control;
-
-
 import Model.*;
 import Model.Requests.Request;
 import Model.Users.User;
 import View.Menus.Menu;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
+
+
 
 public class Controller {
     private static Controller controller;

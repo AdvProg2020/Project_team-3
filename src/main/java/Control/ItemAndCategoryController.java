@@ -65,14 +65,6 @@ public class ItemAndCategoryController {
             System.out.println("we do not have item with this id!");
             return;
         }
-        if(controller.currentOnlineUser!=null){
-            //Cart newCart=new Cart(controller.currentOnlineUser.getUsername());
-
-        }
-
-
-
-
     }
 
     public void removeItemFromBucket(String itemId) {
@@ -80,8 +72,6 @@ public class ItemAndCategoryController {
             System.out.println("we do not have item with this id!");
             return;
         }
-
-
     }
 
     public void comment(String text, String itemId) {
@@ -122,8 +112,13 @@ public class ItemAndCategoryController {
         System.out.println("you did not buy that item and you are not allowed for rating!");
     }
 
-    public Boolean addCategory(String Name) {
-        return false;
+    public void addCategory(String name) {
+        if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
+            return;
+        }
+        Category category=new Category(name);
+        category.setParent(getCurrentCategory());
+        getCurrentCategory().addSubCategory(category);
     }
 
     public Boolean Buy() {

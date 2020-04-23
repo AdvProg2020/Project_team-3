@@ -4,9 +4,8 @@
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Category.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +73,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6111c7c9-2b67-42f3-8c47-7bce1e849d24" name="Default Changelist" comment="" />
+      <changelist id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="" />
       <created>1586626971063</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -87,6 +86,8 @@
       <workItem from="1586793632779" duration="473000" />
       <workItem from="1587387367756" duration="25000" />
       <workItem from="1587389780301" duration="6397000" />
+      <workItem from="1587655301309" duration="1902000" />
+      <workItem from="1587658292123" duration="515000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -435,10 +436,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586716151647" />
-    <state x="409" y="327" key="com.intellij.ide.util.TipDialog" timestamp="1587389834378">
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog" timestamp="1587658301296">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1587389834378" />
+    <state x="409" y="327" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1587658301296" />
     <state x="614" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587309103308" />
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586702723468" />
     <state x="573" y="365" key="com.intellij.ide.util.TipDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1586626975654" />

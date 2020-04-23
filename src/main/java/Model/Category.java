@@ -61,4 +61,15 @@ public class Category {
         }
         return null;
     }
+
+    public void addSubCategory(Category category){
+        if(this.hasSubCategoryWithName(category.getName())==true)return;
+        this.subCategories.add(category);
+    }
+
+    public void removeSubCategory(Category category){
+        if(this.hasSubCategoryWithName(category.getName())==true)return;
+        this.subCategories.remove(category);
+
+    }
 }
