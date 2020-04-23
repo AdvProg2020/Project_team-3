@@ -6,7 +6,7 @@ public class Cart {
     String username;
     HashMap<String,Integer> allItemName;
 
-    Cart(String username){
+    public Cart(String username){
         this.username=username;
     }
 

@@ -22,7 +22,7 @@ public class Buyer extends User {
         return buyLogs;
     }
 
-    public void addBuyLog(BuyLog buyLog){}
+    public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
     public void assignCart(Cart cart){
         this.cart=cart;

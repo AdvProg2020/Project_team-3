@@ -67,11 +67,29 @@ public class ItemAndCategoryController {
         }
     }
 
-    public void removeItemFromBucket(String itemId) {
+    public String removeItemFromBucket(String itemId) {
         if(isThereItemWithId(itemId)==false) {
-            System.out.println("we do not have item with this id!");
-            return;
+            return "we do not have item with this id!";
         }
+        if(controller.getCurrentOnlineUser()!=null && controller.getCurrentOnlineUser() instanceof Buyer){
+            if(((Buyer) controller.getCurrentOnlineUser()).getCart()==null)
+                return "you did not bought any thing!";
+            Cart cart=((Buyer) controller.getCurrentOnlineUser()).getCart();
+            if(cart.includesItem(itemId)==false){
+                return "you did not bought item with this item ID!";
+            }
+            cart.remove(getItemById(itemId).getName());
+        }else{
+            if(controller.currentShoppingCart==null){
+                return "you did not bought any thing!";
+            }
+            Cart cart=controller.currentShoppingCart;
+            if(cart.includesItem(itemId)==false){
+                return "you did not bought item with this item ID!";
+            }
+            cart.remove(getItemById(itemId).getName());
+        }
+        return "the Item removed successfully!";
     }
 
     public void comment(String text, String itemId) {
