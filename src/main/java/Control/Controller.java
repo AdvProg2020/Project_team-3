@@ -1,8 +1,10 @@
 package Control;
+
 import Model.*;
 import Model.Requests.Request;
 import Model.Users.User;
 import View.Menus.Menu;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,14 +37,7 @@ public class Controller {
             controller = new Controller();
         return controller;
     }
-    public void loadGson() {   //should be called to initiate saved Gsons
-
-    }
-
-    public void saveGson() {
-
-    }
-
+    
     public boolean isAValidCommand(String command) {
         if (command.length() > 3) return false;
         int commandNumber;
