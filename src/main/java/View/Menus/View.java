@@ -18,6 +18,7 @@ public class View {
     static final String ANSI_WHITE = "\u001B[37m";
 
     public static void run() {
+        System.out.println(ANSI_WHITE+"Team 3 MVC Shop Project, Phase 1 ..."+ANSI_RESET);
         MainMenu.getInstance().show();
     }
 
