@@ -3,34 +3,36 @@ package View.Menus;
 import Control.Controller;
 import Control.UserController;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public abstract class Menu {
-    public abstract void show();
-    public abstract void execute(String command);
-    public abstract void help();
+
     public int optionCount;
+
     public int getOptionCount() {
         return optionCount;
     }
 
+    public abstract void help();
 
-    public void login(){
+    public abstract void show();
+
+    public abstract void execute(String command);
+
+
+    public void login() {
         System.out.print("Enter your username:");
         String username = View.read.nextLine();
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
 
-        System.out.println(UserController.getInstance().login(username,password));
+        System.out.println(UserController.getInstance().login(username, password));
     }
 
 
-    public void register(){
+    public void register() {
         System.out.println("Register a buyer or a seller?  [B/S] ");
         String key = View.read.nextLine();
-        if(!key.equals("B") && !key.equals("S")){
-            System.out.println("No account type exists with the name "+key+". Try again.");
+        if (!key.equals("B") && !key.equals("S")) {
+            System.out.println("No account type exists with the name " + key + ". Try again.");
             register();
             return;
         }
@@ -47,72 +49,69 @@ public abstract class Menu {
         String number = enterNumber();
 
 
-        if(key.equals("B")){
-            UserController.getInstance().registerBuyer(money,username,password,firstName,lastName,email,number);
+        if (key.equals("B")) {
+            System.out.println(UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number));
+        } else {
+            System.out.print("Enter your company name:");
+            String companyName = View.read.nextLine();
+            System.out.println(UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName));
         }
 
 
-
-
     }
-    public String enterUsername(){
+
+    private String enterUsername() {
         System.out.print("Enter your username:");
         String username = View.read.nextLine();
-        if(UserController.getInstance().isThereUserWithUsername(username)){
+        if (UserController.getInstance().isThereUserWithUsername(username)) {
             System.out.println("A user exists with this username. Try another.");
             return enterUsername();
         }
         return username;
     }
 
-    public String enterEmail(){
+    private String enterEmail() {
         System.out.print("Enter your email:");
         String email = View.read.nextLine();
-        if(!UserController.getInstance().isValidEmail(email)){
+        if (!UserController.getInstance().isValidEmail(email)) {
             System.out.println("Invalid email. Try again.");
             return enterEmail();
         }
         return email;
     }
 
-    public Double enterMoney(){
+    private Double enterMoney() {
         System.out.print("Enter your starting money:");
         String money = View.read.nextLine();
-        if(UserController.getInstance().validateMoney(money) == -1){
+        if (UserController.getInstance().validateMoney(money) == -1) {
             System.out.println("Invalid money. Try again.");
             return enterMoney();
         }
         return UserController.getInstance().validateMoney(money);
     }
 
-    public String enterNumber(){
+    private String enterNumber() {
         System.out.print("Enter your phone number:");
         String number = View.read.nextLine();
-        if(!UserController.getInstance().isValidPhoneNumber(number)){
+        if (!UserController.getInstance().isValidPhoneNumber(number)) {
             System.out.println("Invalid phone number. Try again.");
             return enterNumber();
         }
         return number;
     }
 
-    public void logout(){
+    public void logout() {
         UserController.getInstance().logout();
     }
 
-    public void exit(){
+    private void exit() {
         Controller.getInstance().saveGson();
     }
 
-    public void back(){
+    private void back() {
 
     }
 
-
-
-    public Matcher getMatcher(String input, String regex){
-        Pattern pattern=Pattern.compile(regex);
-        return pattern.matcher(input);
-    }
 
 }
 

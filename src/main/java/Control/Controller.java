@@ -37,6 +37,14 @@ public class Controller {
             controller = new Controller();
         return controller;
     }
+
+    public void loadGson() {   //should be called to initiate saved Gsons
+
+    }
+
+    public void saveGson() {
+
+    }
     
     public boolean isAValidCommand(String command) {
         if (command.length() > 3) return false;

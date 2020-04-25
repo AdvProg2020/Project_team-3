@@ -122,7 +122,7 @@ public class UserController {
     }
 
     public boolean isValidPhoneNumber(String number) {
-     return false;
+     return true;
     }
 
     public void logout(){
