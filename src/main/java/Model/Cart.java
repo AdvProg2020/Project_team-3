@@ -1,48 +1,67 @@
 package Model;
 
+import Control.ItemAndCategoryController;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
     String username;
-    HashMap<String,Integer> allItemName;
+    HashMap<String,Integer> allItemCount;
+    ArrayList<String> allItemId;
 
     public Cart(String username){
         this.username=username;
+        allItemCount=new HashMap<>();
+        allItemId=new ArrayList<>();
     }
 
-    public void add(String itemName){
-
+    public void add(String itemId,int count){
+    if(allItemCount.get(itemId)==null) {
+        allItemCount.put(itemId, count);
+        allItemId.add(itemId);
+        return;
+    }
+        changeCountBy(itemId,count);
+        return;
     }
 
     public void remove(String itemName){
-
+       allItemCount.remove(itemName);
+       allItemId.remove(itemName);
     }
 
-    public void changeCountBy(String itemName,int count){
-
+    public void changeCountBy(String itemId,int count){
+       allItemCount.replace(itemId,count);
     }
 
     public String getUsername() {
         return username;
     }
 
-    public boolean includesItem(String itemID){
-        return false;
+    public boolean includesItem(String itemId){
+        if(allItemCount.get(itemId)==null){
+            return false;
+        }
+            return true;
     }
 
     public int getItemCount(String itemID){
-        return 5;
+        return allItemCount.size();
     }
 
     public double getCartPrice(){
-        return 2.2;
-    }
+        double price = 0;
+        for (String id : allItemId) {
+            price+=ItemAndCategoryController.getInstance().getItemById(id).getPrice() * allItemCount.get(id);
+        }
+        return price;
+        }
 
-    public HashMap<String, Integer> getAllItemName() {
-        return allItemName;
-    }
 
-    Cart empty(){
-       return null;
+
+    void empty(){
+        allItemCount.clear();
+       allItemId.clear();
     }
 }
