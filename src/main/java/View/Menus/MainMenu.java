@@ -20,7 +20,7 @@ public class MainMenu extends Menu {
     @Override
     public void show() {
         System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n 2- Enter the shop\n 3- View ongoing sales \n 4- Help");
+        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help");
         String command = View.read.nextLine();
         execute(command);
     }
@@ -29,13 +29,7 @@ public class MainMenu extends Menu {
     @Override
     public void execute(String command) {
         if(command.equals("1")){
-            if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){
-                AdminMenu.getInstance().show();
-            }else if(UserController.getInstance().getCurrentOnlineUser() instanceof Seller){
-                SellerMenu.getInstance().show();
-            }else{
-                BuyerMenu.getInstance().show();
-            }
+            userMenu();
         }else if(command.equals("2")){
             ShopMenu.getInstance().show();
         }else if(command.equals("3")){
@@ -45,6 +39,19 @@ public class MainMenu extends Menu {
         }else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
+        }
+    }
+
+    private void userMenu(){
+        if(UserController.getInstance().getCurrentOnlineUser() == null){
+            LoginRegisterMenu.getInstance().show();
+        }
+        if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){
+            AdminMenu.getInstance().show();
+        }else if(UserController.getInstance().getCurrentOnlineUser() instanceof Seller){
+            SellerMenu.getInstance().show();
+        }else{
+            BuyerMenu.getInstance().show();
         }
     }
 

@@ -21,10 +21,11 @@ public class LoginRegisterMenu extends Menu {
     @Override
     public void execute(String command){
         if(command.equals("1")){
-            login();
+            if(!login()) show();
         }
         else if(command.equals("2")){
             register();
+            show();
         }
         else if(command.equals("3")){
             show();
@@ -37,7 +38,7 @@ public class LoginRegisterMenu extends Menu {
 
     @Override
     public void help(){
-        System.out.println(View.ANSI_RED+"You must be logged in to perform this action."+View.ANSI_RESET);
+        System.out.println(View.ANSI_RED+"You must be logged in to continue."+View.ANSI_RESET);
         System.out.println("1- Login \n2- Register\n3- Help");
     }
 

@@ -18,23 +18,25 @@ public abstract class Menu {
     public abstract void execute(String command);
 
 
-    public void login() {
+    public boolean login() {
         System.out.print("Enter your username:");
         String username = View.read.nextLine();
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
 
-        System.out.println(UserController.getInstance().login(username, password));
+        String ans = UserController.getInstance().login(username, password);
+        System.out.println(ans);
+        return ans.startsWith("Success");
     }
 
 
-    public void register() {
+    public boolean register() {
         System.out.println("Register a buyer or a seller?  [B/S] ");
         String key = View.read.nextLine();
         if (!key.equals("B") && !key.equals("S")) {
             System.out.println("No account type exists with the name " + key + ". Try again.");
-            register();
-            return;
+
+            return register();
         }
 
         String username = enterUsername();
@@ -48,13 +50,18 @@ public abstract class Menu {
         double money = enterMoney();
         String number = enterNumber();
 
+        String ans;
 
         if (key.equals("B")) {
-            System.out.println(UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number));
+            ans = UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number);
+            System.out.println(ans);
+            return ans.startsWith("Success");
         } else {
             System.out.print("Enter your company name:");
             String companyName = View.read.nextLine();
-            System.out.println(UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName));
+            ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
+            System.out.println(ans);
+            return ans.startsWith("Success");
         }
 
 

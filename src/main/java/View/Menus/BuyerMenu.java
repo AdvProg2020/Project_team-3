@@ -32,6 +32,8 @@ public class BuyerMenu extends UserMenu {
             viewBalance();
         }else if(command.equals("6")){
             viewDiscountCodes();
+        }else if(command.equals("7")){
+            MainMenu.getInstance().show();
         }else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
@@ -41,7 +43,7 @@ public class BuyerMenu extends UserMenu {
     @Override
     public void help(){
         System.out.println(View.ANSI_BLUE+"You are in the Buyer menu."+View.ANSI_RESET);
-        System.out.println("1- View personal info\n2- View Cart\n3- Purchase \n4- View orders\n 5- View balance\n 6- View discount codes");
+        System.out.println("1- View personal info\n2- View Cart\n3- Purchase \n4- View orders\n5- View balance\n6- View discount codes\n7- Back");
 
     }
     private void viewPersonalInfo(){
