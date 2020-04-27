@@ -8,8 +8,6 @@ import Model.Users.Seller;
 import Model.Users.User;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UserController {
     Controller controller = Controller.getInstance();
@@ -121,18 +119,11 @@ public class UserController {
     }
 
     public boolean isValidEmail(String email){
-        Pattern pattern=Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
-        Matcher matcher=pattern.matcher(email);
-        if(matcher.matches()){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return Controller.getMatcher(email,"^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
     }
 
     public boolean isValidPhoneNumber(String number) {
-     return true;
+        return Controller.getMatcher(number,"\\d\\d\\d\\d\\d(\\d+)$").matches();
     }
 
     public String logout(){
