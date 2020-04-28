@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
-    </list>
+    <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
