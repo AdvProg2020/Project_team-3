@@ -14,7 +14,7 @@ public class Seller extends User {
     private boolean valid;
     private double money;
     public Seller( double money,String username,String password, String name, String lastName, String email, String number,String companyName) {
-        super(username,password,name,lastName,email,"Model.Users.Seller",number);
+        super(username,password,name,lastName,email,number);
         this.companyName=companyName;
         sellLogs=new ArrayList<>();
         soldItemsId=new ArrayList<>();

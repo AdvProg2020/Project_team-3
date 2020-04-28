@@ -33,7 +33,7 @@ public class BuyLog {
         return allItemsID;
     }
 
-    public boolean hasItemID(String id) {return false;}
+    public boolean hasItemID(String id) { return false;}
 
     public Item getItemById(String id){return null;}
 

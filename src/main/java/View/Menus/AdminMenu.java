@@ -14,37 +14,41 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void show(){
-
+        help();
+        String command = View.read.nextLine();
+        execute(command);
     }
 
     @Override
     public void execute(String command){
-
+       if(command.equals("1")) {
+           AddAdminAccount();
+       }
     }
 
     @Override
     public void help(){
-
+    System.out.println("1-add admin account");
     }
 
 
-    public void seeAllRequests(){
+    private void seeAllRequests(){
         ///set current menu to request menu
     }
 
-    public void AddAdminAccount(){
+    private void AddAdminAccount(){
+       registerAdmin();
+    }
+
+    private void showAllSales(){
 
     }
 
-    public void showAllSales(){
+    private void addSpecialSale(){
 
     }
 
-    public void addSpecialSale(){
-
-    }
-
-    public void viewUser() {
+    private void viewUser() {
 
     }
 

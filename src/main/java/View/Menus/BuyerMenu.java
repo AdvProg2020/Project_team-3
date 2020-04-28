@@ -1,5 +1,7 @@
 package View.Menus;
 
+import Control.UserController;
+
 public class BuyerMenu extends UserMenu {
     private static BuyerMenu buyerMenu;
     private int optionCount = 4;
@@ -107,7 +109,8 @@ public class BuyerMenu extends UserMenu {
     }
 
     private void viewBalance(){
-
+        System.out.println(UserController.getInstance().currentOnlineUserBalance());
+        BuyerMenu.getInstance().show();
     }
 
     private void viewDiscountCodes(){

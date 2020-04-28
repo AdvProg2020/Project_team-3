@@ -12,7 +12,7 @@ public class Buyer extends User {
     private Cart cart;
     private ArrayList<String>allDiscounts;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
-        super(username,password,name,lastName,email,"Model.Users.Buyer",number);
+        super(username,password,name,lastName,email,number);
         this.money=money;
         buyLogs=new ArrayList<>();
         allDiscounts=new ArrayList<>();

@@ -3,6 +3,7 @@ package Control;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Requests.Request;
+import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
@@ -36,8 +37,18 @@ public class UserController {
         niazi be in method nist admin haye mokhtalef ba ham farghi nadaran
     } */
 
-    public User getCurrentOnlineUser() {
+   public User getCurrentOnlineUser() {
         return controller.currentOnlineUser;
+    }
+
+    public double currentOnlineUserBalance(){
+        if(getCurrentOnlineUser() instanceof Buyer){
+            return ((Buyer) getCurrentOnlineUser()).getMoney();
+        }
+        if(getCurrentOnlineUser() instanceof Seller) {
+            return ((Seller) getCurrentOnlineUser()).getMoney();
+        }
+            return -1;
     }
 
     public ArrayList<BuyLog> getBuyerBuyLogs(String username){
@@ -85,8 +96,9 @@ public class UserController {
         return "Success: Your request has been sent to the admin.";
     }
 
-    public void registerAdmin(double money, String username, String password, String name, String lastName, String email, String number){
-       //avalin kesi ke misazim mishe admin!
+    public String registerAdmin(String username, String password, String name, String lastName, String email, String number){
+        Admin.addAdminAccount(username,password,name,lastName,email,number);
+        return "Success: Your request has been sent to the admin.";
     }
 
     public void setAdmin(User user){

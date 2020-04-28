@@ -29,6 +29,20 @@ public abstract class Menu {
         return ans.startsWith("Success");
     }
 
+    public boolean registerAdmin(){
+        String username = enterUsername();
+        System.out.print("Enter your password:");
+        String password = View.read.nextLine();
+        System.out.print("Enter your first name:");
+        String firstName = View.read.nextLine();
+        System.out.print("Enter your surname:");
+        String lastName = View.read.nextLine();
+        String email = enterEmail();
+        String number = enterNumber();
+        String ans=UserController.getInstance().registerAdmin(username,password,number,lastName,email,number);
+        System.out.println(ans);
+        return ans.startsWith("Success");
+    }
 
     public boolean register() {
         System.out.println("Register a buyer or a seller?  [B/S] ");
