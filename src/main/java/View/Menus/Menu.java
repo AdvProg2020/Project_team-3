@@ -1,6 +1,5 @@
 package View.Menus;
 
-import Control.Controller;
 import Control.UserController;
 
 public abstract class Menu {
@@ -122,11 +121,7 @@ public abstract class Menu {
     }
 
     public void logout() {
-        UserController.getInstance().logout();
-    }
-
-    private void exit() {
-        Controller.getInstance().saveGson();
+        System.out.println(UserController.getInstance().logout());
     }
 
     private void back() {

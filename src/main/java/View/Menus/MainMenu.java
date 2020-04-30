@@ -20,7 +20,7 @@ public class MainMenu extends Menu {
     @Override
     public void show() {
         System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help");
+        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
         String command = View.read.nextLine();
         execute(command);
     }
@@ -36,7 +36,12 @@ public class MainMenu extends Menu {
             DiscountsMenu.getInstance().show();
         }else if(command.equals("4")){
             show();
-        }else{
+        }else if(command.equals("5")) {
+            logout();
+            show();
+        }else if(command.equals("6")){
+            //do nth
+        } else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
@@ -60,5 +65,6 @@ public class MainMenu extends Menu {
         System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
         System.out.println("1- Enter user zone\n 2- Enter the shop\n 3- View ongoing sales \n 4- Help");
     }
+
 
 }

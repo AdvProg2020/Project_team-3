@@ -7,6 +7,7 @@ import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
+import View.Menus.View;
 
 import java.util.ArrayList;
 
@@ -82,6 +83,7 @@ public class UserController {
         }
         Buyer user=new Buyer(money,username,password,name,lastName,email,number);
         addUser(user);
+        SaveGson.saveDataInDataBase();
         return "Successful: User registered.";
     }
 
@@ -93,11 +95,13 @@ public class UserController {
         addUser(user);
         String requestID=controller.addId(Request.getIdCount());
         RequestController.getInstance().addUserRequest(requestID ,user);
+        SaveGson.saveDataInDataBase();
         return "Success: Your request has been sent to the admin.";
     }
 
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number){
         Admin.addAdminAccount(username,password,name,lastName,email,number);
+        SaveGson.saveDataInDataBase();
         return "Success: Your request has been sent to the admin.";
     }
 
@@ -140,7 +144,7 @@ public class UserController {
 
     public String logout(){
         if(controller.currentOnlineUser==null){
-            return "Error: Not logged in!";
+            return View.ANSI_RED+ "Error: Not logged in!"+View.ANSI_RESET;
         }
         controller.currentOnlineUser=null;
         return "Success: Logged out.";
@@ -149,7 +153,8 @@ public class UserController {
     public void deleteUser(String username) {
         User user=getUserByUsername(username);
         controller.allUsers.remove(user);
-       //dge chi bayad remove she?
+        SaveGson.saveDataInDataBase();
+        //dge chi bayad remove she?
     }
 
     public void editPersonalInfo(String username,String field,String newValue) {

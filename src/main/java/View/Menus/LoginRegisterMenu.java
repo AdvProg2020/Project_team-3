@@ -30,6 +30,9 @@ public class LoginRegisterMenu extends Menu {
         else if(command.equals("3")){
             show();
         }
+        else if(command.equals("4")){
+            MainMenu.getInstance().show();
+        }
         else {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
@@ -39,7 +42,7 @@ public class LoginRegisterMenu extends Menu {
     @Override
     public void help(){
         System.out.println(View.ANSI_RED+"You must be logged in to continue."+View.ANSI_RESET);
-        System.out.println("1- Login \n2- Register\n3- Help");
+        System.out.println("1- Login \n2- Register\n3- Help\n4- Go to the main menu");
     }
 
 }
