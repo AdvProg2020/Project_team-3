@@ -4,9 +4,6 @@
     <list default="true" id="c49a08e6-d974-450c-8e9f-36159e062db1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +92,7 @@
       <workItem from="1587741106808" duration="5285000" />
       <workItem from="1588338937830" duration="2508000" />
       <workItem from="1588346648922" duration="551000" />
-      <workItem from="1588357968373" duration="1389000" />
+      <workItem from="1588357968373" duration="1555000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -342,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588356778118</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add item to cart added!">
+      <created>1588359403137</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1588359403137</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +366,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added methods to Item" />
     <MESSAGE value="added methods to AdminMenu,Item" />
     <MESSAGE value="overhaul" />
     <MESSAGE value="UML of the Intellij added to the project" />
@@ -387,7 +390,8 @@
     <MESSAGE value="made first 2 menus operational" />
     <MESSAGE value="added viewPI" />
     <MESSAGE value="request finalized!" />
-    <option name="LAST_COMMIT_MESSAGE" value="request finalized!" />
+    <MESSAGE value="add item to cart added!" />
+    <option name="LAST_COMMIT_MESSAGE" value="add item to cart added!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -425,10 +429,10 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="637" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1588330446121" />
-    <state x="342" y="107" key="CommitChangelistDialog2" timestamp="1588356777288">
+    <state x="342" y="107" key="CommitChangelistDialog2" timestamp="1588359401596">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1588356777288" />
+    <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1588359401596" />
     <state x="713" y="202" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588354561860" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
@@ -502,10 +506,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2" timestamp="1588356818446">
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2" timestamp="1588359456585">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1588356818446" />
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1588359456585" />
     <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588354566617" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />

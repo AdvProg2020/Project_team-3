@@ -109,7 +109,7 @@ public class ItemAndCategoryController {
         return "the Item removed successfully!";
     }
 
-    public void comment(String text, String itemId) throws IOException {
+    public void comment(String text, String itemId){
         if(isThereItemWithId(itemId)==false){
             System.out.println("we do not have this Item in our storage with that ID");
             return;
@@ -167,7 +167,7 @@ public class ItemAndCategoryController {
 
     }
 
-    public String addItem(Item item) throws IOException {
+    public String addItem(Item item){
         String requestId=controller.addId(Request.getIdCount());
         RequestController.getInstance().addItemRequest(requestId,item);
         return "your request was sent for adding item to our Admins!";
