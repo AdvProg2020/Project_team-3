@@ -2,6 +2,7 @@ package Control;
 
 import Model.DiscountCode;
 import Model.Item;
+import Model.Requests.Request;
 import Model.Sale;
 import Model.Users.Admin;
 import Model.Users.User;
@@ -28,6 +29,21 @@ public class Gsonsaveload {
     writer.write(gson.toJson(user));
     writer.close();
     }
+
+    public static void saveRequest(Request request)throws IOException{
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        String requestID=request.getRequestId();
+        String path="Resource"+File.separator+"Request";
+        String name=requestID+".json";
+        File file=new File(path+File.separator+name);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+        FileWriter writer=new FileWriter(file);
+        writer.write(gson.toJson(request));
+        writer.close();
+    }
+
 
     public static void saveItem(Item item) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
@@ -90,6 +106,14 @@ public class Gsonsaveload {
     public static void deleteSale(Item item){
         String id=item.getId();
         String path="Resource"+File.separator+"Sales";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        file.delete();
+    }
+
+    public static void deleteRequest(Request request){
+        String id=request.getRequestId();
+        String path="Resource"+File.separator+"Requests";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();

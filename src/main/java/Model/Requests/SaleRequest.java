@@ -12,6 +12,7 @@ public class SaleRequest extends Request {
         this.newSale=newSale;
         String news="new Model.Sale with Id"+this.newSale.getId()+"is requested for being add to your System!";
         this.setMessage(news);
+        setType("SaleRequest");
     }
 
     public Sale getNewSale() {

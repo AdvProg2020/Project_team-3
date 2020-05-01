@@ -6,7 +6,7 @@ public abstract class Request {
     private String requestId;
     private String message;
     private boolean isAccepted;
-
+    private String type;
     public Request(String requestId) {
         this.requestId = requestId;
         this.isAccepted = false;
@@ -38,6 +38,11 @@ public abstract class Request {
 
     public static String getIdCount(){return idCount;}
 
+    public String getType() {
+        return type;
+    }
 
-
+    public void setType(String type) {
+        this.type = type;
+    }
 }

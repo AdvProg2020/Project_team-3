@@ -88,6 +88,7 @@ public class ItemAndCategoryController {
                 return "you did not bought any thing!";
             }
             Cart cart=controller.currentShoppingCart;
+            cart=new Cart("");
             if(cart.includesItem(itemId)==false){
                 return "you did not bought item with this item ID!";
             }

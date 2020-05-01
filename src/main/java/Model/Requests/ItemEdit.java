@@ -10,6 +10,7 @@ public class ItemEdit extends Request {
         this.itemID = itemID;
         this.changedField=changedField;
         this.newFieldValue=newFieldValue;
+        setType("ItemEdit");
     }
 
     public String getItemID() {

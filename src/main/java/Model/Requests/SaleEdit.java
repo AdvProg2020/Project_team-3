@@ -10,6 +10,7 @@ public class SaleEdit extends Request {
         this.saleID = saleID;
         this.changedFiled=changedFiled;
         this.newFieldValue=newFieldValue;
+        setType("SaleEdit");
     }
 
     public String getSaleID() {

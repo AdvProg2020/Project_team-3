@@ -47,34 +47,34 @@ public class RequestController {
         ((Buyer) user).addDiscount(discountID);
     }
 
-    public void addUserRequest(String requestID, Seller newUser) {
+    public void addUserRequest(String requestID, Seller newUser) throws IOException {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
-        controller.allRequests.add(newRequest);
+        Gsonsaveload.saveRequest(newRequest);
     }
 
-    public void addSaleRequest(String requestId, Sale newSale) {
+    public void addSaleRequest(String requestId, Sale newSale) throws IOException {
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
-        controller.allRequests.add(newRequest);
+        Gsonsaveload.saveRequest(newRequest);
     }
 
-    public void addItemRequest(String requestId, Item newItem) {
+    public void addItemRequest(String requestId, Item newItem) throws IOException {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
-        controller.allRequests.add(newRequest);
+        Gsonsaveload.saveRequest(newRequest);
     }
 
-    public void addCommentRequest(String requestId , Comment newComment){
+    public void addCommentRequest(String requestId , Comment newComment) throws IOException {
         CommentRequest commentRequest=new CommentRequest(requestId,newComment);
-        controller.allRequests.add(commentRequest);
+        Gsonsaveload.saveRequest(commentRequest);
     }
 
-    public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
+    public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) throws IOException {
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
-        controller.allRequests.add(newRequest);
+        Gsonsaveload.saveRequest(newRequest);
     }
 
-    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
+    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue) throws IOException {
         ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
-        controller.allRequests.add(newRequest);
+        Gsonsaveload.saveRequest(newRequest);
     }
     ///after accept or decline
     public void acceptRequest() throws IOException {

@@ -9,7 +9,7 @@ public class AccountRequest extends Request {
         this.seller=user;
         String news="the new seller with user Name"+user.getUsername()+"wants to create account in your System";
         this.setMessage(news);
-
+        setType("AccountRequest");
     }
 
     public Seller getUser() {
