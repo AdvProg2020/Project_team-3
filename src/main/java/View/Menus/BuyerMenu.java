@@ -48,9 +48,7 @@ public class BuyerMenu extends UserMenu {
         System.out.println("1- View personal info\n2- View Cart\n3- Purchase \n4- View orders\n5- View balance\n6- View discount codes\n7- Back");
 
     }
-    private void viewPersonalInfo(){
 
-    }
 
     private void viewCart(){
 
