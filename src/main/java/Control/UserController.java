@@ -96,7 +96,7 @@ public class UserController {
         return "Successful: User registered.";
     }
 
-    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) throws IOException {
+    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {
         if(isThereUserWithUsername(username)){
             return "Error : User exist with this username!";
         }
@@ -106,13 +106,13 @@ public class UserController {
             e.printStackTrace();
         }
         String requestID=controller.addId(Request.getIdCount());
-        RequestController.getInstance().addUserRequest(requestID ,user);
+        //RequestController.getInstance().addUserRequest(requestID ,user);
         return "Success: Your request has been sent to the admin.";
     }
 
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number){
         Admin.addAdminAccount(username,password,name,lastName,email,number);
-        return "Success: Your request has been sent to the admin.";
+        return "Success:";
     }
 
     public String login(String username,String password){
@@ -154,9 +154,13 @@ public class UserController {
         return "Success: Logged out.";
     }
 
-    public void deleteUser(String username) {
+    public String deleteUser(String username) {
+        if(username.equals(getCurrentOnlineUser().getUsername())){
+            return "Error: you cant remove your own account";
+        }
         User user=getUserByUsername(username);
         Gsonsaveload.deleteUser(user);
+            return "Successful:";
     }
 
     public void editPersonalInfo(String username,String field,String newValue) {

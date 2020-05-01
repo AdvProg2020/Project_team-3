@@ -26,7 +26,6 @@ public class Admin extends User {
         } catch (IOException e) {
             return "Error";
         }
-
     }
 
     public void deleteUser(String username) {

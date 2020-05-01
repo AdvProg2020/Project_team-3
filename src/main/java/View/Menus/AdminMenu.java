@@ -1,5 +1,10 @@
 package View.Menus;
 
+import Control.Gsonsaveload;
+import Control.UserController;
+
+import java.util.ArrayList;
+
 public class AdminMenu extends UserMenu {
     private static AdminMenu adminMenu;
     private int optionCount = 9;
@@ -23,12 +28,14 @@ public class AdminMenu extends UserMenu {
     public void execute(String command){
        if(command.equals("1")) {
            AddAdminAccount();
+       } else if(command.equals("2")){
+           deleteUser();
        }
     }
 
     @Override
     public void help(){
-    System.out.println("1-add admin account");
+    System.out.println("1-add admin account\n2-delete user");
     }
 
 
@@ -53,8 +60,19 @@ public class AdminMenu extends UserMenu {
     }
 
     public void deleteUser(){
-
+        ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
+        int counter=1;
+        for (String username : allUserNames) {
+            System.out.println(counter+"-"+username);
+            counter++;
+        }
+        System.out.println("please select the User you wish to remove");
+        int index=readNumber(allUserNames.size())-1;
+        System.out.println(UserController.getInstance().deleteUser(allUserNames.get(index)));
+        AdminMenu.getInstance().show();
     }
+
+
 
     public void showAllCategories(){
         //set current menu to category menu

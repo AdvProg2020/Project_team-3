@@ -120,6 +120,16 @@ public abstract class Menu {
         return number;
     }
 
+    public int readNumber(int limit){
+    String number=View.read.nextLine();
+        int num=Integer.parseInt(number);
+        if((num>limit)||(num<0)){
+            System.out.println("Invalid please try again");
+            return readNumber(limit);
+        }
+        return num;
+    }
+
     public void logout() {
         System.out.println(UserController.getInstance().logout());
     }
