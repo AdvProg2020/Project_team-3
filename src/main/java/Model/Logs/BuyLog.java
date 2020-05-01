@@ -1,6 +1,7 @@
 package Model.Logs;
 
 import Control.Controller;
+import Control.ItemAndCategoryController;
 import Model.Item;
 
 import java.util.ArrayList;
@@ -33,9 +34,17 @@ public class BuyLog {
         return allItemsID;
     }
 
-    public boolean hasItemID(String id) { return false;}
+    public boolean hasItemID(String id) {
+        if(allItemsID.contains(id)) return true;
+        return false;
+    }
 
-    public Item getItemById(String id){return null;}
+    public Item getItemById(String id){
+        for(String itemID:allItemsID){
+            if(itemID.equals(id)) return ItemAndCategoryController.getInstance().getItemById(id);
+        }
+        return null;
+    }
 
     public int getTime() {
         return time;
@@ -45,16 +54,22 @@ public class BuyLog {
         return discountCodeId;
     }
 
-    public void addDiscountCode(){
-
+    public void addDiscountCode(String id){
+        discountCodeId.add(id);
     }
 
-    public boolean hasDiscountWithID(){
+    public boolean hasDiscountWithID(String id)
+    {
+        if(discountCodeId.contains(id)) return true;
         return false;
     }
 
-    public void removeDiscountCode(){
-
+    public String removeDiscountCode(String id){
+        if(hasDiscountWithID(id)==true){
+            discountCodeId.remove(id);
+            return "removed successfully!";
+        }
+        return "we do not have that discount code!";
     }
 
     public String getId() {

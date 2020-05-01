@@ -1,6 +1,7 @@
 package Model.Logs;
 
 import Control.Controller;
+import Control.ItemAndCategoryController;
 import Model.Item;
 
 import java.util.ArrayList;
@@ -46,9 +47,17 @@ public class SaleLog {
         return allItemsID;
     }
 
-    public boolean hasItemID(String id) {return false;}
+    public boolean hasItemID(String id) {
+        if(allItemsID.contains(id)) return true;
+        return false;
+    }
 
-    public Item getItemById(String id){return null;}
+    public Item getItemById(String id){
+        for(String itemID:allItemsID){
+            if(itemID.equals(id)) return ItemAndCategoryController.getInstance().getItemById(id);
+        }
+        return null;
+    }
 
     public String getSellerName() {
         return sellerName;

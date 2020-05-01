@@ -52,7 +52,10 @@ public class Cart {
     }
 
     public int getItemCount(String itemID){
-        return allItemCount.size();
+        if(allItemCount.containsKey(itemID)){
+            return allItemCount.get(itemID);
+        }
+        return 0;
     }
 
     public double getCartPrice(){
