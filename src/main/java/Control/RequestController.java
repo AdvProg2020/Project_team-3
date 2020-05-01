@@ -8,6 +8,7 @@ import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RequestController {
@@ -76,15 +77,15 @@ public class RequestController {
         controller.allRequests.add(newRequest);
     }
     ///after accept or decline
-   /* public void acceptRequest(){
+    public void acceptRequest() throws IOException {
         requestController.declineRequest();
         for(Request request:controller.allRequests){
             if(request instanceof AccountRequest){
                 ((AccountRequest) request).getUser().Validate();
             }else if(request instanceof SaleRequest){
-                controller.allSales.add(((SaleRequest) request).getNewSale());
+                Gsonsaveload.saveSale(((SaleRequest) request).getNewSale());
             }else if(request instanceof ItemRequest){
-                controller.allItems.add(((ItemRequest) request).getNewItem());
+               Gsonsaveload.saveItem(((ItemRequest) request).getNewItem());
             }else if(request instanceof ItemEdit){
                 requestController.ItemEditing((ItemEdit)request);
             }else if(request instanceof SaleEdit){
@@ -92,7 +93,7 @@ public class RequestController {
             }
         }
         controller.allRequests.clear();
-    } */
+    }
     ///after accepting requests
     public void SaleEditing(SaleEdit saleEdit){
         Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(saleEdit.getSaleID());
