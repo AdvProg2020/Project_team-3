@@ -31,6 +31,11 @@ public class Cart {
        allItemId.remove(itemName);
     }
 
+    public boolean is_Empty(){
+     if(allItemId.size()==0)   return true;
+     return false;
+    }
+
     public void changeCountBy(String itemId,int count){
        allItemCount.replace(itemId,count);
     }

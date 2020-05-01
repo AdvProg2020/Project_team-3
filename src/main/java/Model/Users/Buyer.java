@@ -16,6 +16,7 @@ public class Buyer extends User {
         this.money=money;
         buyLogs=new ArrayList<>();
         allDiscounts=new ArrayList<>();
+        cart=new Cart(username);
     }
 
     public ArrayList<BuyLog> getBuyLogs() {

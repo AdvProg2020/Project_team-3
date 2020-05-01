@@ -67,45 +67,77 @@ public class RequestController {
         ((Buyer) user).addDiscount(discountID);
     }
 
-    public void addUserRequest(String requestID, Seller newUser) throws IOException {
+    public void addUserRequest(String requestID, Seller newUser)  {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
-        Gsonsaveload.saveRequest(newRequest);
+        try {
+            Gsonsaveload.saveRequest(newRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addSaleRequest(String requestId, Sale newSale) throws IOException {
+    public void addSaleRequest(String requestId, Sale newSale)  {
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
-        Gsonsaveload.saveRequest(newRequest);
+        try {
+            Gsonsaveload.saveRequest(newRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addItemRequest(String requestId, Item newItem) throws IOException {
+    public void addItemRequest(String requestId, Item newItem)  {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
-        Gsonsaveload.saveRequest(newRequest);
+        try {
+            Gsonsaveload.saveRequest(newRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addCommentRequest(String requestId , Comment newComment) throws IOException {
+    public void addCommentRequest(String requestId , Comment newComment) {
         CommentRequest commentRequest=new CommentRequest(requestId,newComment);
-        Gsonsaveload.saveRequest(commentRequest);
+        try {
+            Gsonsaveload.saveRequest(commentRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) throws IOException {
+    public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue)  {
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
-        Gsonsaveload.saveRequest(newRequest);
+        try {
+            Gsonsaveload.saveRequest(newRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue) throws IOException {
+    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue)  {
         ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
-        Gsonsaveload.saveRequest(newRequest);
+        try {
+            Gsonsaveload.saveRequest(newRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     ///after accept or decline
-    public void acceptRequest(String requestID) throws IOException {
+    public void acceptRequest(String requestID)  {
         Request accepted=getRequestById(requestID);
         if(accepted==null) return;
             if(accepted instanceof AccountRequest){
                 ((AccountRequest) accepted).getUser().Validate();
             }else if(accepted instanceof SaleRequest){
-                Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
+                try {
+                    Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }else if(accepted instanceof ItemRequest){
-               Gsonsaveload.saveItem(((ItemRequest) accepted).getNewItem());
+                try {
+                    Gsonsaveload.saveItem(((ItemRequest) accepted).getNewItem());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }else if(accepted instanceof ItemEdit){
                 requestController.ItemEditing((ItemEdit)accepted);
             }else if(accepted instanceof SaleEdit){

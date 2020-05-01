@@ -64,11 +64,24 @@ public class ItemAndCategoryController {
         return "hello";
     }
 
-    public void addToBucket(String itemId) {
+    public String addToBucket(String itemId) {
         if(isThereItemWithId(itemId)==false) {
             System.out.println("we do not have item with this id!");
-            return;
+            return "we do not have that item!";
         }
+        if(controller.currentOnlineUser!=null&&controller.currentOnlineUser instanceof Buyer){
+            Cart cart=((Buyer) controller.getCurrentOnlineUser()).getCart();
+            if(((Buyer) controller.getCurrentOnlineUser()).getMoney()<
+            getItemById(itemId).getPrice()+cart.getCartPrice())
+            {return "your money is less than the price!";}
+            int count=cart.getItemCount(itemId);
+            cart.add(itemId ,count+1);
+        }else if(controller.getCurrentOnlineUser()==null){
+            controller.currentShoppingCart=new Cart("");
+            int count=controller.currentShoppingCart.getItemCount(itemId);
+            controller.currentShoppingCart.add(itemId , count+1);
+        }
+        return "successfully added to cart!";
     }
 
     public String removeItemFromBucket(String itemId) {
@@ -76,23 +89,22 @@ public class ItemAndCategoryController {
             return "we do not have item with this id!";
         }
         if(controller.getCurrentOnlineUser()!=null && controller.getCurrentOnlineUser() instanceof Buyer){
-            if(((Buyer) controller.getCurrentOnlineUser()).getCart()==null)
+            if(((Buyer) controller.getCurrentOnlineUser()).getCart().is_Empty()==true)
                 return "you did not bought any thing!";
             Cart cart=((Buyer) controller.getCurrentOnlineUser()).getCart();
             if(cart.includesItem(itemId)==false){
                 return "you did not bought item with this item ID!";
             }
             cart.remove(getItemById(itemId).getName());
-        }else{
-            if(controller.currentShoppingCart==null){
+        }else if(controller.getCurrentOnlineUser()==null){
+            if(controller.currentShoppingCart.is_Empty()==true){
                 return "you did not bought any thing!";
             }
-            Cart cart=controller.currentShoppingCart;
-            cart=new Cart("");
-            if(cart.includesItem(itemId)==false){
+            controller.currentShoppingCart=new Cart("");
+            if(controller.currentShoppingCart.includesItem(itemId)==false){
                 return "you did not bought item with this item ID!";
             }
-            cart.remove(getItemById(itemId).getName());
+            controller.currentShoppingCart.remove(getItemById(itemId).getName());
         }
         return "the Item removed successfully!";
     }
