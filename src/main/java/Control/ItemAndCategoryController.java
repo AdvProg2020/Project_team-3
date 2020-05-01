@@ -23,14 +23,14 @@ public class ItemAndCategoryController {
     }
 
     public void deleteItem(String id){
-        String path="Items";
+        String path="Resource"+File.separator+"Items";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
     }
 
     public boolean isThereItemWithId(String id){
-        String path="Items";
+        String path="Resource"+File.separator+"Items";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -40,7 +40,7 @@ public class ItemAndCategoryController {
     }
 
     public Item getItemById(String id) {
-        String path="Items";
+        String path="Resource"+File.separator+"Items";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){

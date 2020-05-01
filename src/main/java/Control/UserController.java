@@ -29,7 +29,7 @@ public class UserController {
     }
 
     public User getUserByUsername(String username) {
-        String path="Users";
+        String path="Resource"+File.separator+"Users";
         String name=username+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -75,7 +75,7 @@ public class UserController {
     }
 
     public boolean isThereUserWithUsername(String username) {
-        String path="Users";
+        String path="Resource"+File.separator+"Users";
         String name=username+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){

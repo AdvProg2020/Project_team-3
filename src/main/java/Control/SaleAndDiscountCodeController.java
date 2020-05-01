@@ -24,7 +24,7 @@ public class SaleAndDiscountCodeController {
 
 
     public DiscountCode getDiscountCodeById(String id) {
-        String path="Discount Codes";
+        String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -41,7 +41,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public Sale getSaleById(String id) {
-        String path="Sales";
+        String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -58,7 +58,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public boolean isThereSaleWithId(String id){
-        String path="Sales";
+        String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -74,21 +74,21 @@ public class SaleAndDiscountCodeController {
     }
 
     public void deleteSale(String id){
-        String path="Sales";
+        String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
     }
 
     public void deleteDiscountCode(String id){
-        String path="Discount Codes";
+        String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
     }
 
     public boolean isThereDiscountCodeWithId(String id){
-        String path="Discount Codes";
+        String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){

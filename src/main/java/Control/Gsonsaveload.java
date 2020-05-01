@@ -18,7 +18,7 @@ public class Gsonsaveload {
     public static void saveUser(User user) throws IOException {
     Gson gson=new GsonBuilder().setPrettyPrinting().create();
     String Username=user.getUsername();
-    String path="Users";
+    String path="Resource"+File.separator+"Users";
     String name=Username+".json";
     File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -32,7 +32,7 @@ public class Gsonsaveload {
     public static void saveItem(Item item) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=item.getId();
-        String path="Items";
+        String path="Resource"+File.separator+"Items";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -46,7 +46,7 @@ public class Gsonsaveload {
     public static void saveSale(Sale sale) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=sale.getId();
-        String path="Sales";
+        String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -60,7 +60,7 @@ public class Gsonsaveload {
     public static void saveDiscountCode(DiscountCode discount) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=discount.getDiscountId();
-        String path="Discount Codes";
+        String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -73,7 +73,7 @@ public class Gsonsaveload {
 
     public static void deleteUser(User user){
         String Username=user.getUsername();
-        String path="Users";
+        String path="Resource"+File.separator+"Users";
         String name=Username+".json";
         File file=new File(path+File.separator+name);
         file.delete();
@@ -81,7 +81,7 @@ public class Gsonsaveload {
 
     public static void deleteItem(Item item){
         String id=item.getId();
-        String path="Items";
+        String path="Resource"+File.separator+"Items";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
@@ -89,7 +89,7 @@ public class Gsonsaveload {
 
     public static void deleteSale(Item item){
         String id=item.getId();
-        String path="Sales";
+        String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
@@ -97,26 +97,30 @@ public class Gsonsaveload {
 
     public static void deleteDiscountCode(DiscountCode discount){
         String id=discount.getDiscountId();
-        String path="Discount Codes";
+        String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
         File file=new File(path+File.separator+name);
         file.delete();
     }
 
     public static void iniate(){
-        File file=new File("Users");
+        File file=new File("Resource");
         if(!file.exists()){
             file.mkdir();
         }
-         file=new File("Items");
+         file=new File("Resource"+File.separator+"Users");
         if(!file.exists()){
             file.mkdir();
         }
-        file=new File("Sales");
+         file=new File("Resource"+File.separator+"Items");
         if(!file.exists()){
             file.mkdir();
         }
-        file=new File("Discount Codes");
+        file=new File("Resource"+File.separator+"Sales");
+        if(!file.exists()){
+            file.mkdir();
+        }
+        file=new File("Resource"+File.separator+"Discount Codes");
         if(!file.exists()){
             file.mkdir();
         }
