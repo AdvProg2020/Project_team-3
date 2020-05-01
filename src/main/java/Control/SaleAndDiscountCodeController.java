@@ -3,6 +3,11 @@ package Control;
 import Model.DiscountCode;
 import Model.Requests.Request;
 import Model.Sale;
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
@@ -19,30 +24,47 @@ public class SaleAndDiscountCodeController {
 
 
     public DiscountCode getDiscountCodeById(String id) {
-        for (DiscountCode discountCode : controller.allDiscountCodes) {
-            if (discountCode.getDiscountId().equals(id)) {
-                return discountCode;
-            }
+        String path="Discount Codes";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return null;
+        }
+        Gson gson=new Gson();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+            return gson.fromJson(content, DiscountCode.class);}
+        catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     public Sale getSaleById(String id) {
-        for (Sale sale : controller.allSales) {
-            if (sale.getId().equals(id)) {
-                return sale;
-            }
+        String path="Sales";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return null;
+        }
+        Gson gson=new Gson();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+            return gson.fromJson(content, Sale.class);}
+        catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     public boolean isThereSaleWithId(String id){
-        for(Sale sale:controller.allSales){
-            if(sale.getId().equals(id)){
-                return true;
-            }
+        String path="Sales";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return false;
         }
-        return false;
+            return true;
     }
 
     public String addSale(Sale sale){
@@ -51,32 +73,27 @@ public class SaleAndDiscountCodeController {
         return "your request for adding Sale was sent to our Admins!";
     }
 
-    public void addDiscountCode(DiscountCode discountCode){
-        controller.allDiscountCodes.add(discountCode);
-    }
-
     public void deleteSale(String id){
-        for(Sale sale:controller.allSales){
-            if(sale.getId().equals(id)){
-                controller.allSales.remove(sale);
-            }
-        }
+        String path="Sales";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        file.delete();
     }
 
     public void deleteDiscountCode(String id){
-        for(DiscountCode discountCode:controller.allDiscountCodes){
-            if(discountCode.getDiscountId().equals(id)){
-                controller.allDiscountCodes.remove(discountCode);
-            }
-        }
+        String path="Discount Codes";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        file.delete();
     }
 
     public boolean isThereDiscountCodeWithId(String id){
-        for(DiscountCode discountCode:controller.allDiscountCodes){
-            if(discountCode.getDiscountId().equals(id)){
-                return true;
-            }
+        String path="Discount Codes";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return false;
         }
-        return false;
+            return true;
     }
 }

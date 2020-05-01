@@ -1,13 +1,9 @@
-import Control.LoadGson;
+import Control.Gsonsaveload;
 import View.Menus.View;
 
 public class Main {
-    public static void main (String[] args) {
-        try{
-            LoadGson.loadFromDataBase();
-        }catch (Exception e){
-            System.out.println("kyaaaa");
-        }
+    public static void main (String[] args)  {
+        Gsonsaveload.iniate();
         View.run();
     }
 }

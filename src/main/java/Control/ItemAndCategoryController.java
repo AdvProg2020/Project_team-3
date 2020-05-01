@@ -4,7 +4,11 @@ import Model.*;
 import Model.Requests.Request;
 import Model.Users.Buyer;
 import Model.Users.User;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class ItemAndCategoryController {
@@ -19,35 +23,35 @@ public class ItemAndCategoryController {
     }
 
     public void deleteItem(String id){
-        for(Item item:controller.allItems){
-            if(item.getId().equals(id)){
-                controller.allItems.remove(item);
-            }
-        }
+        String path="Items";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        file.delete();
     }
 
     public boolean isThereItemWithId(String id){
-        for(Item item:controller.allItems){
-            if(item.getId().equals(id)){
-                return true;
-            }
+        String path="Items";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return false;
         }
-        return false;
-    }
-
-    public void removeItemByID(String itemID){
-        for(Item item :controller.allItems){
-            if(item.getId().equals(itemID)){
-                controller.allItems.remove(item);
-            }
-        }
+            return true;
     }
 
     public Item getItemById(String id) {
-        for (Item item : controller.allItems) {
-            if (item.getId().equals(id)) {
-                return item;
-            }
+        String path="Items";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return null;
+        }
+        Gson gson=new Gson();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+                return gson.fromJson(content,Item.class);}
+         catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }

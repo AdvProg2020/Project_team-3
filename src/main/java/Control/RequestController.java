@@ -76,7 +76,7 @@ public class RequestController {
         controller.allRequests.add(newRequest);
     }
     ///after accept or decline
-    public void acceptRequest(){
+   /* public void acceptRequest(){
         requestController.declineRequest();
         for(Request request:controller.allRequests){
             if(request instanceof AccountRequest){
@@ -92,7 +92,7 @@ public class RequestController {
             }
         }
         controller.allRequests.clear();
-    }
+    } */
     ///after accepting requests
     public void SaleEditing(SaleEdit saleEdit){
         Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(saleEdit.getSaleID());

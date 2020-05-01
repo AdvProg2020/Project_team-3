@@ -8,7 +8,11 @@ import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
 import View.Menus.View;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class UserController {
@@ -25,18 +29,26 @@ public class UserController {
     }
 
     public User getUserByUsername(String username) {
-        for (User user : controller.allUsers) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
+        String path="Users";
+        String name=username+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return null;
+        }
+        Gson gson=new Gson();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+            if(content.contains("\"type\": \"Admin\"")){
+            return gson.fromJson(content,Admin.class);}
+            if(content.contains("\"type\": \"Buyer\"")){
+                return gson.fromJson(content,Buyer.class);}
+            if(content.contains("\"type\": \"Seller\"")){
+                return gson.fromJson(content,Seller.class);}
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
-
-   /*public void setAdmin(Admin admin) {
-        controller.admin = admin;
-        niazi be in method nist admin haye mokhtalef ba ham farghi nadaran
-    } */
 
    public User getCurrentOnlineUser() {
         return controller.currentOnlineUser;
@@ -49,7 +61,7 @@ public class UserController {
         if(getCurrentOnlineUser() instanceof Seller) {
             return ((Seller) getCurrentOnlineUser()).getMoney();
         }
-            return -1;
+            return -111;
     }
 
     public ArrayList<BuyLog> getBuyerBuyLogs(String username){
@@ -63,27 +75,24 @@ public class UserController {
     }
 
     public boolean isThereUserWithUsername(String username) {
-        for (User user : controller.allUsers) {
-            if (user.getUsername().equals(username)) {
-                return true;
-            }
+        String path="Users";
+        String name=username+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return false;
         }
-        return false;
+           return true;
     }
 
-    public void addUser(User user){
-        controller.allUsers.add(user);
-    }
-
-
-
-    public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
+    public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number)  {
         if(isThereUserWithUsername(username)){
             return "Error : User exist with this username!";
         }
         Buyer user=new Buyer(money,username,password,name,lastName,email,number);
-        addUser(user);
-        SaveGson.saveDataInDataBase();
+        try{
+            Gsonsaveload.saveUser(user);} catch (IOException e) {
+            e.printStackTrace();
+        }
         return "Successful: User registered.";
     }
 
@@ -92,23 +101,18 @@ public class UserController {
             return "Error : User exist with this username!";
         }
         Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);
-        addUser(user);
+        try{
+            Gsonsaveload.saveUser(user);} catch (IOException e) {
+            e.printStackTrace();
+        }
         String requestID=controller.addId(Request.getIdCount());
         RequestController.getInstance().addUserRequest(requestID ,user);
-        SaveGson.saveDataInDataBase();
         return "Success: Your request has been sent to the admin.";
     }
 
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number){
         Admin.addAdminAccount(username,password,name,lastName,email,number);
-        SaveGson.saveDataInDataBase();
         return "Success: Your request has been sent to the admin.";
-    }
-
-    public void setAdmin(User user){
-        //age khastim ye user beshe admin, ino seda mizanim
-        //1- miad etelaate user ro migire va ye admin new mikone va zakhire mikone
-        //2- miad user ro hazf mikone az allUsers, chonke be shekle ye admin savesh kardim
     }
 
     public String login(String username,String password){
@@ -152,9 +156,7 @@ public class UserController {
 
     public void deleteUser(String username) {
         User user=getUserByUsername(username);
-        controller.allUsers.remove(user);
-        SaveGson.saveDataInDataBase();
-        //dge chi bayad remove she?
+        Gsonsaveload.deleteUser(user);
     }
 
     public void editPersonalInfo(String username,String field,String newValue) {

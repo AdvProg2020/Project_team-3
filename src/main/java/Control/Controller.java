@@ -15,12 +15,6 @@ import java.util.regex.Pattern;
 
 public class Controller {
     private static Controller controller;
-
-
-    ArrayList<User> allUsers = new ArrayList<>();
-    ArrayList<Sale> allSales = new ArrayList<>();
-    ArrayList<DiscountCode> allDiscountCodes = new ArrayList<>();
-    ArrayList<Item> allItems = new ArrayList<>();
     ArrayList<Request> allRequests = new ArrayList<>();
     User currentOnlineUser;
     Category mainCategory;
@@ -38,14 +32,7 @@ public class Controller {
         return controller;
     }
 
-    public void loadGson() {   //should be called to initiate saved Gsons
 
-    }
-
-    public void saveGson() {
-
-    }
-    
     public boolean isAValidCommand(String command) {
         if (command.length() > 3) return false;
         int commandNumber;
@@ -84,4 +71,5 @@ public class Controller {
     public void setCurrentOnlineUser(User currentOnlineUser) {
         this.currentOnlineUser = currentOnlineUser;
     }
+
 }

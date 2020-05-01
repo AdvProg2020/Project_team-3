@@ -27,7 +27,7 @@ public class MainMenu extends Menu {
 
 
     @Override
-    public void execute(String command) {
+    public void execute(String command){
         if(command.equals("1")){
             userMenu();
         }else if(command.equals("2")){
@@ -40,11 +40,15 @@ public class MainMenu extends Menu {
             logout();
             show();
         }else if(command.equals("6")){
-            //do nth
+            exit();
         } else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
+    }
+
+    private void exit()  {
+
     }
 
     private void userMenu(){

@@ -12,7 +12,7 @@ public class Buyer extends User {
     private Cart cart;
     private ArrayList<String>allDiscounts;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
-        super(username,password,name,lastName,email,number);
+        super(username,password,name,lastName,email,number,"Buyer");
         this.money=money;
         buyLogs=new ArrayList<>();
         allDiscounts=new ArrayList<>();
@@ -76,5 +76,6 @@ public class Buyer extends User {
     public void setMoney(double money) {
         this.money = money;
     }
+
 
 }
