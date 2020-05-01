@@ -67,7 +67,7 @@ public class SaleAndDiscountCodeController {
             return true;
     }
 
-    public String addSale(Sale sale){
+    public String addSale(Sale sale) throws IOException {
         String requestId=controller.addId(Request.getIdCount());
         RequestController.getInstance().addSaleRequest(requestId,sale);
         return "your request for adding Sale was sent to our Admins!";

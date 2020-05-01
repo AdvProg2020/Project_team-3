@@ -96,7 +96,7 @@ public class UserController {
         return "Successful: User registered.";
     }
 
-    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {
+    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) throws IOException {
         if(isThereUserWithUsername(username)){
             return "Error : User exist with this username!";
         }

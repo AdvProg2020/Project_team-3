@@ -7,9 +7,11 @@ import Model.Sale;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
+import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.file.Files;
 
 public class RequestController {
     Controller controller = Controller.getInstance();
@@ -32,10 +34,28 @@ public class RequestController {
     }
 
     public Request getRequestById(String id){
-        for(Request getRequest:controller.allRequests){
-            if(getRequest.getRequestId().equals(id)){
-                return getRequest;
-            }
+        String path="Resource"+ File.separator+"Requests";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return null;
+        }
+        Gson gson=new Gson();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+            if(content.contains("\"type\": \"AccountRequest\"")){
+                return gson.fromJson(content, AccountRequest.class);}
+            if(content.contains("\"type\": \"CommentRequest\"")){
+                return gson.fromJson(content, CommentRequest.class);}
+            if(content.contains("\"type\": \"ItemEdit\"")){
+                return gson.fromJson(content, ItemEdit.class);}
+            if(content.contains("\"type\": \"SaleEdit\"")){
+                return gson.fromJson(content, SaleEdit.class);}
+            if(content.contains("\"type\": \"SaleRequest\"")){
+                return gson.fromJson(content, SaleRequest.class);}
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -77,22 +97,21 @@ public class RequestController {
         Gsonsaveload.saveRequest(newRequest);
     }
     ///after accept or decline
-    public void acceptRequest() throws IOException {
-        requestController.declineRequest();
-        for(Request request:controller.allRequests){
-            if(request instanceof AccountRequest){
-                ((AccountRequest) request).getUser().Validate();
-            }else if(request instanceof SaleRequest){
-                Gsonsaveload.saveSale(((SaleRequest) request).getNewSale());
-            }else if(request instanceof ItemRequest){
-               Gsonsaveload.saveItem(((ItemRequest) request).getNewItem());
-            }else if(request instanceof ItemEdit){
-                requestController.ItemEditing((ItemEdit)request);
-            }else if(request instanceof SaleEdit){
-                requestController.SaleEditing((SaleEdit)request);
+    public void acceptRequest(String requestID) throws IOException {
+        Request accepted=getRequestById(requestID);
+        if(accepted==null) return;
+            if(accepted instanceof AccountRequest){
+                ((AccountRequest) accepted).getUser().Validate();
+            }else if(accepted instanceof SaleRequest){
+                Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
+            }else if(accepted instanceof ItemRequest){
+               Gsonsaveload.saveItem(((ItemRequest) accepted).getNewItem());
+            }else if(accepted instanceof ItemEdit){
+                requestController.ItemEditing((ItemEdit)accepted);
+            }else if(accepted instanceof SaleEdit){
+                requestController.SaleEditing((SaleEdit)accepted);
             }
-        }
-        controller.allRequests.clear();
+            Gsonsaveload.deleteRequest(accepted);
     }
     ///after accepting requests
     public void SaleEditing(SaleEdit saleEdit){
@@ -132,14 +151,10 @@ public class RequestController {
         }
     }
 
-    public void declineRequest(){
-        ArrayList<Request> toBeRemoved = new ArrayList<>();
-        for(Request request:controller.allRequests){
-            if(!request.isIsAccepted()){
-                toBeRemoved.add(request);
-            }
-        }
-        controller.allRequests.removeAll(toBeRemoved);
+    public void declineRequest(String requestID){
+        Request declined=getRequestById(requestID);
+        if(declined==null) return;
+        Gsonsaveload.deleteRequest(declined);
     }
 
 }
