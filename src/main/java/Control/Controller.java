@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
-
 public class Controller {
     private static Controller controller;
     ArrayList<Request> allRequests = new ArrayList<>();

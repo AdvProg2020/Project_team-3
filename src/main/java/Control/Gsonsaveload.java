@@ -3,6 +3,7 @@ package Control;
 import Model.DiscountCode;
 import Model.Item;
 import Model.Sale;
+import Model.Users.Admin;
 import Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -119,6 +120,7 @@ public class Gsonsaveload {
         if(!file.exists()){
             file.mkdir();
         }
+        Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
     }
 
 }
