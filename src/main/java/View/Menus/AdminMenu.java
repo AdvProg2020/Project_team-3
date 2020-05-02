@@ -56,7 +56,24 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void help(){
-    System.out.println("view personal info\nmanage users\n");
+        System.out.println("view personal info");
+        System.out.println("edit [field]");
+        System.out.println("manage user");  //done
+        System.out.println("delete user [username]"); //done
+        System.out.println("view [username]");  
+        System.out.println("change type [username] [role]");
+        System.out.println("create manager profile");
+        System.out.println("manage all products");
+        System.out.println("remove [product id]");
+        System.out.println("create discount code");
+        System.out.println("view discount code");
+        System.out.println("view discount code [id]");
+        System.out.println("edit discount code [id]");
+        System.out.println("remove discount code [id]");
+        System.out.println("manage requests");
+        System.out.println("details requests [request id]");
+        System.out.println("accept [request id]");
+        System.out.println("decline [request id]");
     }
 
 
