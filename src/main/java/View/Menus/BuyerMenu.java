@@ -22,6 +22,9 @@ public class BuyerMenu extends UserMenu {
 
     @Override
     public void execute(String command) {
+        if(command.equals("logout")){
+            logout();
+        }
         if(command.equals("view personal info")){
             View.setCurrentMenu(ViewPersonalInfo.getInstance());
         }
@@ -62,6 +65,7 @@ public class BuyerMenu extends UserMenu {
         System.out.println("view orders");
         System.out.println("view balance");  //done
         System.out.println("view discount codes");
+        System.out.println("logout");
         System.out.println("back");
     }
 

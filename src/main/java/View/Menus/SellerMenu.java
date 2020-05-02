@@ -13,12 +13,16 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void run(){
-
+        System.out.println(View.ANSI_BLUE+"You are in the Seller menu."+View.ANSI_RESET);
+        String command = View.read.nextLine();
+        execute(command);
     }
 
     @Override
     public void execute(String command) {
-
+    if(command.equals("logout")){
+        logout();
+    }
     }
 
    /* @Override
@@ -33,7 +37,7 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void help(){
-    System.out.println("1-view personal information\n2-view sale Logs\n3-show my items\n4-add item");
+    System.out.println("logout");
     }
 
     public void viewCompany(){

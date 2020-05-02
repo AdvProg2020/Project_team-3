@@ -29,10 +29,13 @@ public class RequestController {
 
 
     public boolean isThereRequestWithId(String id){
-        for(Request getRequest:controller.allRequests){
-            if(getRequest.getRequestId().equals(id)) return true;
+        String path="Resource"+File.separator+"Requests";
+        String name=id+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return false;
         }
-        return false;
+        return true;
     }
 
     public Request getRequestById(String id){
