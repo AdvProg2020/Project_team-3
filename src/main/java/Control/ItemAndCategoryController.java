@@ -210,4 +210,8 @@ public class ItemAndCategoryController {
         return  allItems;
     }
 
+    public boolean currentViewableItemsContainsItem(String itemID){
+        return currentViewableItems.contains(getItemById(itemID));
+    }
+
 }
