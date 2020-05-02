@@ -15,6 +15,7 @@ public class Item {
     private double inStock;
     private int viewCount;
     private HashMap<String,String > attributes;
+    private ArrayList<String> attributesKey;
     private String sellerName;
     private String categoryName;
     private String buyerUserName;
@@ -23,7 +24,7 @@ public class Item {
     private ArrayList<Comment>allComments;
     private boolean isInSale;
     //constructor
-    public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
+    public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,ArrayList<String> attributesKey,int inStock){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -33,6 +34,7 @@ public class Item {
         this.sellerName=sellerName;
         this.categoryName=categoryName;
         this.attributes=attributes;
+        this.attributesKey=attributesKey;
         this.inStock=inStock;
         this.id=idCount;
         idCount= Controller.getInstance().addId(idCount);

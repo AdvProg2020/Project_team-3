@@ -23,8 +23,9 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void help(){
-
+    System.out.println("1-view personal information\n2-view sale Logs\n3-show my items\n4-add item");
     }
+
     public void viewCompany(){
 
     }
@@ -56,6 +57,11 @@ public class SellerMenu extends UserMenu {
     }
 
     public void addItem(){
+    String Name=readName("Please enter item Name");
+    String company=readName("Please enter your Brand name");
+    String description=readName("Please enter your item description");
+    double price=readDoubleNumber("please enter item price");
+    int inStock=readNumber(-1,"how many of this item do you wish to sell?");
 
     }
 

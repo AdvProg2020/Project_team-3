@@ -34,7 +34,7 @@ public class CartMenu extends Menu {
         ArrayList<String> shoppingCartItems= Controller.getInstance().getCurrentShoppingCart().showCart();
         printList(shoppingCartItems);
         System.out.println("please select the item you wish to edit");
-        int index=readNumber(shoppingCartItems.size());
+        int index=readNumber(shoppingCartItems.size(),"");
     }
 
 
