@@ -1,7 +1,6 @@
 package Control;
 
 import Model.*;
-import Model.Requests.Request;
 import Model.Users.Buyer;
 import Model.Users.User;
 import com.google.gson.Gson;
@@ -128,7 +127,7 @@ public class ItemAndCategoryController {
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
         }else{
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,false);
-            String requestID=controller.addId(Request.getIdCount());
+            String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
             RequestController.getInstance().addCommentRequest(requestID,comment);
         }
         System.out.println("your comment was successfully added!!");
@@ -175,8 +174,8 @@ public class ItemAndCategoryController {
     }
 
     public String addItem(Item item){
-        String requestId=controller.addId(Request.getIdCount());
-        RequestController.getInstance().addItemRequest(requestId,item);
+        String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
+        RequestController.getInstance().addItemRequest(requestID,item);
         return "Successful: your request to add the item was sent to the admins.";
     }
 

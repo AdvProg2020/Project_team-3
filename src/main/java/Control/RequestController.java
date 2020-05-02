@@ -78,7 +78,6 @@ public class RequestController {
     }
 
     public void addUserRequest(String requestID, Seller newUser)  {
-        System.out.println("hi");
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         try {
             Gsonsaveload.saveRequest(newRequest);
@@ -226,6 +225,9 @@ public class RequestController {
 
     public void declineRequest(String requestID){
         Request declined=getRequestById(requestID);
+        if(declined instanceof AccountRequest){
+            Gsonsaveload.deleteUser(((AccountRequest) declined).getUser());
+        }
         if(declined==null) return;
         Gsonsaveload.deleteRequest(declined);
     }

@@ -2,7 +2,6 @@ package Control;
 
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
-import Model.Requests.Request;
 import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
@@ -106,7 +105,8 @@ public class UserController {
             Gsonsaveload.saveUser(user);} catch (IOException e) {
             e.printStackTrace();
         }
-        String requestID=controller.addId(Request.getIdCount());
+       String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
+        System.out.println(requestID);
         RequestController.getInstance().addUserRequest(requestID ,user);
         return "Success: Your request has been sent to the admin.";
     }

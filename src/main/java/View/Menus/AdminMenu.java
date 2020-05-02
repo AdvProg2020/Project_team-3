@@ -1,9 +1,6 @@
 package View.Menus;
 
-import Control.Gsonsaveload;
-import Control.ItemAndCategoryController;
-import Control.SaleAndDiscountCodeController;
-import Control.UserController;
+import Control.*;
 import Model.Sale;
 
 import java.util.ArrayList;
@@ -72,12 +69,12 @@ public class AdminMenu extends UserMenu {
 
         matcher=View.getMatcher("accept (\\S+)",command);
         if(matcher.matches()){
-            acceptRequestId(String id);
+            acceptRequestId(matcher.group(1));
         }
 
         matcher=View.getMatcher("decline (\\S+)",command);
         if(matcher.matches()){
-            declineRequestId(String id);
+            declineRequestId(matcher.group(1));
         }
     }
 
@@ -214,11 +211,11 @@ public class AdminMenu extends UserMenu {
     }
 
     private void acceptRequestId(String id){
-        //inaro bezan iji
+        RequestController.getInstance().acceptRequest(id);
     }
 
     private void declineRequestId(String id){
-        ///inaro beza iji
+        RequestController.getInstance().declineRequest(id);
     }
 
 }

@@ -1,7 +1,6 @@
 package Control;
 
 import Model.DiscountCode;
-import Model.Requests.Request;
 import Model.Sale;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,9 +68,9 @@ public class SaleAndDiscountCodeController {
             return true;
     }
 
-    public String addSale(Sale sale) throws IOException {
-        String requestId=controller.addId(Request.getIdCount());
-        RequestController.getInstance().addSaleRequest(requestId,sale);
+    public String addSale(Sale sale) {
+       String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
+        RequestController.getInstance().addSaleRequest(requestID,sale);
         return "your request for adding Sale was sent to our Admins!";
     }
 
