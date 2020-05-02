@@ -67,9 +67,15 @@ public class RequestController {
         if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)==false) return;
         if(!(user instanceof Buyer)) return;
         ((Buyer) user).addDiscount(discountID);
+        try {
+            Gsonsaveload.saveUser(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addUserRequest(String requestID, Seller newUser)  {
+        System.out.println("hi");
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         try {
             Gsonsaveload.saveRequest(newRequest);
@@ -127,7 +133,13 @@ public class RequestController {
         Request accepted=getRequestById(requestID);
         if(accepted==null) return;
             if(accepted instanceof AccountRequest){
-                ((AccountRequest) accepted).getUser().Validate();
+                User user=UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
+                if(user instanceof  Seller) ((Seller) user).Validate();
+                try {
+                    Gsonsaveload.saveUser(user);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }else if(accepted instanceof SaleRequest){
                 try {
                     Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
@@ -144,6 +156,15 @@ public class RequestController {
                 requestController.ItemEditing((ItemEdit)accepted);
             }else if(accepted instanceof SaleEdit){
                 requestController.SaleEditing((SaleEdit)accepted);
+            }else if(accepted instanceof CommentRequest){
+                Comment comment=((CommentRequest) accepted).getNewComment();
+                Item item=ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
+                item.addComment(comment);
+                try {
+                    Gsonsaveload.saveItem(item);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             Gsonsaveload.deleteRequest(accepted);
     }
@@ -159,6 +180,11 @@ public class RequestController {
             sale.setEndTime(Integer.parseInt(newFieldValue));
         }else if(changedField.equals("off Percentage")){
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
+        }
+        try {
+            Gsonsaveload.saveSale(sale);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     ///after accepting requests
@@ -181,6 +207,11 @@ public class RequestController {
             item.setCategoryName(newFieldValue);
         }else if(changedField.equals("in stock")){
             item.setInStock(Double.parseDouble(newFieldValue));
+        }
+        try {
+            Gsonsaveload.saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

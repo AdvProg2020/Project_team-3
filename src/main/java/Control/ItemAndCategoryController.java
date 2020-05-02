@@ -5,6 +5,7 @@ import Model.Requests.Request;
 import Model.Users.Buyer;
 import Model.Users.User;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -117,10 +118,8 @@ public class ItemAndCategoryController {
         Item item=getItemById(itemId);
         if(controller.currentOnlineUser.getUsername().equals(item.getBuyerUserName())){
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
-            item.addComment(comment);
         }else{
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,false);
-            item.addComment(comment);
             String requestID=controller.addId(Request.getIdCount());
             RequestController.getInstance().addCommentRequest(requestID,comment);
         }
@@ -192,4 +191,23 @@ public class ItemAndCategoryController {
     public void setCurrentShoppingCart(Cart currentShoppingCart) {
         controller.currentShoppingCart = currentShoppingCart;
     }
+
+    public ArrayList<Item> getAllItemFromDataBase(){
+        String path="Resource"+File.separator+"Items";
+        File file=new File(path);
+        File [] allFiles=file.listFiles();
+        String fileContent = null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<Item> allItems=new ArrayList<>();
+            for(File file1:allFiles){
+                try {
+                    fileContent=new String(Files.readAllBytes(file1.toPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            allItems.add(gson.fromJson(fileContent , Item.class));
+            }
+        return  allItems;
+    }
+
 }

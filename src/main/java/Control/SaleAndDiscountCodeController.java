@@ -4,10 +4,12 @@ import Model.DiscountCode;
 import Model.Requests.Request;
 import Model.Sale;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
@@ -96,4 +98,45 @@ public class SaleAndDiscountCodeController {
         }
             return true;
     }
+
+    public ArrayList<DiscountCode> getAllDiscountCodesFromDataBase(){
+        String path="Resource"+File.separator+"Discount Codes";
+        File file=new File(path);
+        File [] allFiles=file.listFiles();
+        String fileContent = null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<DiscountCode>allDiscounts=new ArrayList<>();
+            for(File file1:allFiles){
+                try {
+                    fileContent=new String(Files.readAllBytes(file1.toPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            allDiscounts.add(gson.fromJson(fileContent,DiscountCode.class));
+            }
+        return allDiscounts;
+    }
+
+    public ArrayList<Sale> getAllSaleFromDataBase(){
+        String path="Resource"+File.separator+"Discount Codes";
+        File file=new File(path);
+        File [] allFiles=file.listFiles();
+        String fileContent = null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<Sale>allSale=new ArrayList<>();
+        for(File file1:allFiles){
+            try {
+                fileContent=new String(Files.readAllBytes(file1.toPath()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            allSale.add(gson.fromJson(fileContent,Sale.class));
+        }
+        return allSale;
+    }
+
+
+
+
+
 }
