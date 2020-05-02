@@ -10,7 +10,13 @@ public class LoginRegisterMenu extends Menu {
             loginRegisterMenu = new LoginRegisterMenu();
         return loginRegisterMenu;
     }
+
     @Override
+    public void run(){
+
+    }
+
+   /* @Override
     public void show(){
         help();
         String command = View.read.nextLine();
@@ -37,7 +43,7 @@ public class LoginRegisterMenu extends Menu {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
-    }
+    } */
 
     @Override
     public void help(){

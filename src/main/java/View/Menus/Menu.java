@@ -14,10 +14,7 @@ public abstract class Menu {
 
     public abstract void help();
 
-    public abstract void show();
-
-    public abstract void execute(String command);
-
+    public abstract void run();
 
     public boolean login() {
         System.out.print("Enter your username:");

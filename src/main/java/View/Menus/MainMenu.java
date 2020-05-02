@@ -18,6 +18,11 @@ public class MainMenu extends Menu {
     }
 
     @Override
+    public void run(){
+
+    }
+
+  /*  @Override
     public void show() {
         System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
         System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
@@ -45,7 +50,7 @@ public class MainMenu extends Menu {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
-    }
+    } */
 
     private void exit()  {
 
@@ -53,14 +58,14 @@ public class MainMenu extends Menu {
 
     private void userMenu(){
         if(UserController.getInstance().getCurrentOnlineUser() == null){
-            LoginRegisterMenu.getInstance().show();
+            View.setCurrentMenu(MainMenu.getInstance());
         }
         if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){
-            AdminMenu.getInstance().show();
+            View.setCurrentMenu(AdminMenu.getInstance());
         }else if(UserController.getInstance().getCurrentOnlineUser() instanceof Seller){
-            SellerMenu.getInstance().show();
+            View.setCurrentMenu(SellerMenu.getInstance());
         }else{
-            BuyerMenu.getInstance().show();
+            View.setCurrentMenu(BuyerMenu.getInstance());
         }
     }
 
