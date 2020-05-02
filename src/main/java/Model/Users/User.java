@@ -76,5 +76,5 @@ public abstract class User {
         this.username = username;
     }
 
-    public abstract String getPersonalinfo();
+    public abstract String getPersonalInfo();
 }

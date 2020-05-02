@@ -24,6 +24,7 @@ public class BuyerMenu extends UserMenu {
     public void execute(String command) {
         if(command.equals("logout")){
             logout();
+            View.setCurrentMenu(MainMenu.getInstance());
         }
         if(command.equals("view personal info")){
             View.setCurrentMenu(ViewPersonalInfo.getInstance());
@@ -51,7 +52,7 @@ public class BuyerMenu extends UserMenu {
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            }
+        }
     }
 
 

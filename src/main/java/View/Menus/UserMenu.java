@@ -22,23 +22,4 @@ public abstract class UserMenu extends Menu {
         System.out.println(UserController.getInstance().viewPersonalInfo(username));
     }
 
-    public void editPersonalInfo(){
-
-    }
-
-    public void editName(){
-
-    }
-
-    public void editLastName(){
-
-    }
-
-    public void editEmail(){
-
-    }
-
-    public void editNumber(){
-
-    }
 }

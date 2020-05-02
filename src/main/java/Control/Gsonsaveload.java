@@ -142,7 +142,7 @@ public class Gsonsaveload<Public> {
         file.delete();
     }
 
-    public static void iniate(){
+    public static void initiate(){
         File file=new File("Resource");
         if(!file.exists()){
             file.mkdir();

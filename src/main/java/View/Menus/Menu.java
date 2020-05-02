@@ -123,8 +123,8 @@ public abstract class Menu {
         return username;
     }
 
-    private String enterEmail() {
-        System.out.print("Enter your email:");
+     String enterEmail() {
+        System.out.print("Enter a valid email:");
         String email = View.read.nextLine();
         if (!UserController.getInstance().isValidEmail(email)) {
             System.out.println("Invalid email. Try again.");
@@ -148,8 +148,8 @@ public abstract class Menu {
         return View.read.nextLine();
     }
 
-    private String enterNumber() {
-        System.out.print("Enter your phone number:");
+     String enterNumber() {
+        System.out.print("Enter a valid phone number:");
         String number = View.read.nextLine();
         if (!UserController.getInstance().isValidPhoneNumber(number)) {
             System.out.println("Invalid phone number. Try again.");

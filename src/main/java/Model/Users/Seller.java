@@ -25,17 +25,14 @@ public class Seller extends User {
     }
 
     @Override
-    public  String getPersonalinfo(){
+    public  String getPersonalInfo(){
         String response="";
-        response+="type: Seller\n";
-        response+="username: "+getUsername()+"\n";
-        response+="password: "+getPassword()+"\n";
-        response+="name: "+getName()+"\n";
-        response+="last name: "+getLastName()+"\n";
-        response+="email: "+getEmail()+"\n";
-        response+="number: "+getNumber()+"\n";
-        response+="company name: "+companyName+"\n";
-        response+="money: "+money;
+        response+="You are a seller\n";
+        response+="Name: "+getName()+"\n";
+        response+="Surname: "+getLastName()+"\n";
+        response+="Email: "+getEmail()+"\n";
+        response+="Number: "+getNumber()+"\n";
+        response+="Company: "+companyName+"\n";
         return response;
     }
 
@@ -132,5 +129,6 @@ public class Seller extends User {
     public boolean getValid(){
         return valid;
     }
+
 
 }

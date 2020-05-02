@@ -102,11 +102,12 @@ public class UserController {
         }
         Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);
         try{
-            Gsonsaveload.saveUser(user);} catch (IOException e) {
+            Gsonsaveload.saveUser(user);
+        } catch (IOException e) {
             e.printStackTrace();
         }
        String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
-        System.out.println(requestID);
+
         RequestController.getInstance().addUserRequest(requestID ,user);
         return "Success: Your request has been sent to the admin.";
     }
@@ -173,16 +174,23 @@ public class UserController {
     public void editPersonalInfo(String username,String field,String newValue) {
 
         User user=getUserByUsername(username);
-        if(field.equals("name")){
+        if(field.equals("Name")){
             user.setName(newValue);
-        }else if(field.equals("lastName")){
+        }else if(field.equals("Surname")){
             user.setLastName(newValue);
         }else if(field.equals("Number")){
             user.setNumber(newValue);
         }else if(field.equals("Email")){
             user.setEmail(newValue);
-        }else if(field.equals("PassWord")){
+        }else if(field.equals("Password")){
             user.setPassword(newValue);
+        }else if(field.equals("CompanyName")){
+            ((Seller)user).setCompanyName(newValue);
+        }
+        try{
+            Gsonsaveload.saveUser(user);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -190,9 +198,9 @@ public class UserController {
     public String viewPersonalInfo(String username){
         User user = getUserByUsername(username);
         if(user==null){
-            System.out.println("Error: user doesnt exist");
+            return "Error: user doesnt exist";
         }
-        return user.getPersonalinfo();
+        return user.getPersonalInfo();
     }
 
     public ArrayList<User> getAllUserFromDataBase(){
