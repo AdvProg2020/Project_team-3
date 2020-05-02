@@ -179,8 +179,24 @@ public class ItemAndCategoryController {
     }
 
     public ArrayList<Item> getCurrentViewableItems() {
+        if(currentViewableItems==null){
+            currentViewableItems=idToItemInCurrentCategory();
+        }
         return currentViewableItems;
     }
+
+    public ArrayList<Item> idToItemInCurrentCategory() {
+        ArrayList<Item>allItems=new ArrayList<>();
+        Category current=controller.currentCategory;
+        ArrayList<String>itemIDs=current.getAllItemsID();
+        Item item;
+            for(String id:itemIDs){
+                item=ItemAndCategoryController.getInstance().getItemById(id);
+                allItems.add(item);
+            }
+        return allItems;
+    }
+
 
     public void setCurrentCategory(Category currentCategory) {
         controller.currentCategory = currentCategory;

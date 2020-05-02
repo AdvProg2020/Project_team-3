@@ -62,6 +62,14 @@ public class Category {
         return null;
     }
 
+    public ArrayList<String> getAllItemsID() {
+        return allItemsID;
+    }
+
+    public ArrayList<String> getAttributes() {
+        return attributes;
+    }
+
     public void addSubCategory(Category category){
         if(this.hasSubCategoryWithName(category.getName())==true)return;
         this.subCategories.add(category);

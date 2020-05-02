@@ -2,7 +2,6 @@ package Control;
 
 import Model.Cart;
 import Model.Category;
-import Model.Requests.Request;
 import Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,13 +9,11 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Controller {
     private static Controller controller;
-    ArrayList<Request> allRequests = new ArrayList<>();
     User currentOnlineUser;
     Category mainCategory;
     Category currentCategory;

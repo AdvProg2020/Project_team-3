@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class DiscountCode {
 
-    private HashMap<User,Integer>allUsers;
+    private HashMap<String,Integer>allUsers;
     private String discountId;
     private int discountPercentage;
     private int startTime;
@@ -29,7 +29,7 @@ public class DiscountCode {
         return -1;
     }
 
-    public HashMap<User, Integer> getAllUsers() {
+    public HashMap<String, Integer> getAllUsers() {
         return allUsers;
     }
 
@@ -67,13 +67,23 @@ public class DiscountCode {
     }
 
     //add user
-    public void addUser(User user){
-        this.allUsers.put(user , 0);
+    public void addUser(String userID){
+        this.allUsers.put(userID , 0);
     }
 
-    public void addUsage(User user){
-        if(this.allUsers.containsKey(user)) {
-            this.allUsers.put(user, this.allUsers.get(user) + 1);
+    public void addUsage(String  userID){
+        if(this.allUsers.containsKey(userID)) {
+            this.allUsers.put(userID, this.allUsers.get(userID) + 1);
         }
     }
+
+    public String toString(){
+        return "ID: "+discountId+"\n"+
+                "discountPercentage: "+discountPercentage+"\n"+
+                "Start Time: "+startTime+"\n"+
+                "End Time: "+endTime+"\n";
+    }
+
+
+
 }
