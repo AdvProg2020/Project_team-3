@@ -30,6 +30,9 @@ public class AdminMenu extends UserMenu {
     @Override
     public void execute(String command) {
         Matcher matcher;
+        if(command.equals("logout")){
+            logout();
+        }
      if(command.equals("help")){
          help();
      }
@@ -89,6 +92,7 @@ public class AdminMenu extends UserMenu {
         System.out.println("details requests [request id]");
         System.out.println("accept [request id]");
         System.out.println("decline [request id]");
+        System.out.println("logout");
     }
 
 
@@ -107,104 +111,99 @@ public class AdminMenu extends UserMenu {
             }
     }
 
-    private void addSpecialSale(){
 
-    }
 
-    private void viewUser() {
-
-    }
-
-    public void deleteUser(String username){
+    private void deleteUser(String username){
         System.out.println(UserController.getInstance().deleteUser(username));
     }
 
-    public void deleteItem(String id){
+    private void deleteItem(String id){
        System.out.println(ItemAndCategoryController.getInstance().deleteItem(id));
     }
 
-    public void deleteDiscountCode(String id){
+    private void deleteDiscountCode(String id){
        System.out.println(SaleAndDiscountCodeController.getInstance().deleteDiscountCode(id));
     }
 
-    public void deleteSale(String id){
+    private void deleteSale(String id){
         System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
     }
 
-    public void printUsers(){
+    private void printUsers(){
         ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
         printList(allUserNames);
     }
 
-    public void showAllproducts(){
+    private void showAllproducts(){
         ArrayList<String> allItems=Gsonsaveload.printFolderContent("Items");
         printList(allItems);
     }
-    public void showAllRequests(){
+    private void showAllRequests(){
         ArrayList<String> allRequests=Gsonsaveload.printFolderContent("Requests");
         printList(allRequests);
     }
-    public void viewAllDiscountCodes(){
+    private void viewAllDiscountCodes(){
         ArrayList<String> allDiscountCodes=Gsonsaveload.printFolderContent("Discount Codes");
         printList(allDiscountCodes);
     }
-    public void showAllCategories(){
+    private void showAllCategories(){
         //set current menu to category menu
     }
 
-    public void addCategory(){
+    private void addCategory(){
 
     }
 
-    public void editCategory(){
+    private void editCategory(){
 
     }
 
-    public void removeCategory(){
+    private void removeCategory(){
 
     }
 
-    public void removeProducts(){
+    private void removeProducts(){
 
     }
 
-    public void createDiscountCode(){
+    private void createDiscountCode(){
 
     }
 
 
-    public void viewOneDiscountCode(){
+    private void viewDiscountCode(){
 
     }
 
-    public void editDiscountCode(String discountID){
+    private void editDiscountCode(String discountID){
 
     }
 
-    public void removeDiscountCode(){
+    private void removeDiscountCode(){
 
     }
 
-    public void manageAllProducts(){
-
+    private void manageAllProducts(){
+        ArrayList<String>allItems=Gsonsaveload.printFolderContent("Items");
+        printList(allItems);
     }
 
-    public void manageRequests(){
+    private void manageRequests(){
         ArrayList<String>allRequests=Gsonsaveload.printFolderContent("Requests");
         printList(allRequests);
     }
 
-    public void requestDetails(){
+    private void requestDetails(){
 
     }
 
-    public void manageCategories(){
+    private void manageCategories(){
 
     }
 
 
 
-    public void removeProduct(){
+    private void removeProduct(){
 
     }
 

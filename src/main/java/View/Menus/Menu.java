@@ -177,6 +177,7 @@ public abstract class Menu {
 
     public void logout() {
         System.out.println(UserController.getInstance().logout());
+        View.setCurrentMenu(MainMenu.getInstance());
     }
 
     public void printList(ArrayList<String> stringList){
