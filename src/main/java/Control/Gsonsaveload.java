@@ -34,7 +34,7 @@ public class Gsonsaveload<Public> {
     public static void saveRequest(Request request)throws IOException{
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String requestID=request.getRequestId();
-        String path="Resource"+File.separator+"Request";
+        String path="Resource"+File.separator+"Requests";
         String name=requestID+".json";
         File file=new File(path+File.separator+name);
             if(!file.exists()){
