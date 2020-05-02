@@ -85,6 +85,7 @@ public class RequestController {
     }
 
     public void addSaleRequest(String requestId, Sale newSale)  {
+        newSale.addStatus();
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
         try {
             Gsonsaveload.saveRequest(newRequest);
@@ -103,6 +104,7 @@ public class RequestController {
     }
 
     public void addCommentRequest(String requestId , Comment newComment) {
+        newComment.inProcess();
         CommentRequest commentRequest=new CommentRequest(requestId,newComment);
         try {
             Gsonsaveload.saveRequest(commentRequest);
@@ -112,6 +114,8 @@ public class RequestController {
     }
 
     public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue)  {
+        Sale newSale=SaleAndDiscountCodeController.getInstance().getSaleById(saleID);
+        newSale.editStatus();
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
         try {
             Gsonsaveload.saveRequest(newRequest);
@@ -142,6 +146,7 @@ public class RequestController {
                 }
             }else if(accepted instanceof SaleRequest){
                 try {
+                    ((SaleRequest) accepted).getNewSale().acceptStatus();
                     Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -158,6 +163,7 @@ public class RequestController {
                 requestController.SaleEditing((SaleEdit)accepted);
             }else if(accepted instanceof CommentRequest){
                 Comment comment=((CommentRequest) accepted).getNewComment();
+                comment.accept();
                 Item item=ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
                 item.addComment(comment);
                 try {

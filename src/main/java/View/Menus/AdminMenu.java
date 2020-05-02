@@ -2,8 +2,11 @@ package View.Menus;
 
 import Control.Gsonsaveload;
 import Control.RequestController;
+import Control.SaleAndDiscountCodeController;
 import Control.UserController;
+import Model.DiscountCode;
 import Model.Requests.Request;
+import Model.Sale;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -86,7 +89,10 @@ public class AdminMenu extends UserMenu {
     }
 
     private void showAllSales(){
-
+        ArrayList<Sale> allSales= SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+            for(Sale sale:allSales){
+                System.out.println(sale);
+            }
     }
 
     private void addSpecialSale(){
@@ -132,6 +138,10 @@ public class AdminMenu extends UserMenu {
     }
 
     public void viewAllDiscountCodes(){
+        ArrayList<DiscountCode> allDiscountCode=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+            for(DiscountCode discountCode:allDiscountCode){
+                System.out.println(discountCode);
+            }
 
     }
 

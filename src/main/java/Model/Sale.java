@@ -10,7 +10,8 @@ public class Sale {
     private int startTime;
     private int endTime;
     private int offPercentage;
-    private String status;
+    private enum Status{accepted ,addingProcess ,editingProcess};
+    Status status;
     private static String idCount="00000000";
     public Sale (int startTime, int endTime, int offPercentage){
         this.startTime = startTime;
@@ -20,12 +21,16 @@ public class Sale {
         idCount= Controller.getInstance().addId(idCount);
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void acceptStatus(){
+        status=Status.accepted;
     }
 
-    public String getStatus() {
-        return status;
+    public void editStatus(){
+        status=Status.editingProcess;
+    }
+
+    public void addStatus(){
+        status=Status.addingProcess;
     }
 
     public int getEndTime() {

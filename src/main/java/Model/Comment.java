@@ -4,9 +4,9 @@ public class Comment {
     String username;
     String itemId;
     String text;
-    Boolean accepted;
+    private enum Status{accepted , inProcess};
     Boolean hasBought;
-
+    Status status;
     public Comment(String username, String itemId, String text, Boolean hasBought) {
         this.username = username;
         this.itemId = itemId;
@@ -15,11 +15,11 @@ public class Comment {
     }
 
     public void accept(){
-
+        status=Status.accepted;
     }
 
-    public void decline(){
-
+    public void inProcess(){
+        status=Status.inProcess;
     }
 
     public String getUsername() {
@@ -34,9 +34,6 @@ public class Comment {
         return text;
     }
 
-    public Boolean getAccepted() {
-        return accepted;
-    }
 
     public Boolean getHasBought() {
         return hasBought;
