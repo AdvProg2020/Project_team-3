@@ -19,6 +19,20 @@ public class Buyer extends User {
         cart=new Cart(username);
     }
 
+    @Override
+    public  String getPersonalinfo(){
+        String response="";
+        response+="type: Buyer\n";
+        response+="username: "+getUsername()+"\n";
+        response+="password: "+getPassword()+"\n";
+        response+="name: "+getName()+"\n";
+        response+="last name: "+getLastName()+"\n";
+        response+="email: "+getEmail()+"\n";
+        response+="number: "+getNumber()+"\n";
+        response+="money: "+money;
+        return response;
+    }
+
     public ArrayList<BuyLog> getBuyLogs() {
         return buyLogs;
     }

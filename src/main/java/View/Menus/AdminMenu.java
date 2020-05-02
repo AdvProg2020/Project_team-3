@@ -24,20 +24,36 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void run(){
-    help();
+    System.out.println("you are in the admin menu");
     String command = View.read.nextLine();
     execute(command);
     }
 
     @Override
     public void execute(String command) {
+        Matcher matcher;
+     if(command.equals("help")){
+         help();
+     }
      if(command.equals("manage users")){
          printUsers();
      }
-
-     Matcher matcher=View.getMatcher("delete user (\\S+)",command);
+     if(command.equals("view personal info")){
+         viewPersonalInfo();
+     }
+     if(command.equals("create manager profile")){
+         registerAdmin();
+     }
+     if(command.equals("manage all prducts")){
+         showAllproducts();
+     }
+     matcher=View.getMatcher("delete user (\\S+)",command);
      if(matcher.matches()){
          deleteUser(matcher.group(1));
+     }
+     matcher=View.getMatcher("view (\\S+)",command);
+     if(matcher.matches()){
+        viewPersonalInfo(matcher.group(1));
      }
 
     }
@@ -59,14 +75,14 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void help(){
-        System.out.println("view personal info");
+        System.out.println("view personal info"); //done
         System.out.println("edit [field]");
-        System.out.println("manage user");  //done
+        System.out.println("manage users");  //done
         System.out.println("delete user [username]"); //done
-        System.out.println("view [username]");  
+        System.out.println("view [username]");    //done
         System.out.println("change type [username] [role]");
-        System.out.println("create manager profile");
-        System.out.println("manage all products");
+        System.out.println("create manager profile"); //done
+        System.out.println("manage all products");    //done
         System.out.println("remove [product id]");
         System.out.println("create discount code");
         System.out.println("view discount code");
@@ -112,6 +128,10 @@ public class AdminMenu extends UserMenu {
         printList(allUserNames);
     }
 
+    public void showAllproducts(){
+        ArrayList<String> allItems=Gsonsaveload.printFolderContent("Items");
+        printList(allItems);
+    }
 
     public void showAllCategories(){
         //set current menu to category menu

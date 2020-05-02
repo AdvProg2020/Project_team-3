@@ -16,6 +16,19 @@ public class Admin extends User {
         }
     }
 
+    @Override
+    public  String getPersonalinfo(){
+    String response="";
+    response+="type: Admin\n";
+    response+="username: "+getUsername()+"\n";
+    response+="password: "+getPassword()+"\n";
+    response+="name: "+getName()+"\n";
+    response+="last name: "+getLastName()+"\n";
+    response+="email: "+getEmail()+"\n";
+    response+="number: "+getNumber()+"\n";
+    return response;
+    }
+
     public static String addAdminAccount(String username, String password, String name, String lastName, String email,  String number) {
         if(UserController.getInstance().isThereUserWithUsername(username)==true){
             return "Error: user exists with this username";

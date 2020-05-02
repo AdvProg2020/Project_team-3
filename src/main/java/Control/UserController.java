@@ -189,14 +189,10 @@ public class UserController {
 
     public String viewPersonalInfo(String username){
         User user = getUserByUsername(username);
-        String response="";
-
-        response += "Name:" + user.getName();
-        response += "\nSurname:" + user.getLastName();
-        response += "\nEmail:" + user.getEmail();
-        response += "\nNumber:" + user.getNumber();
-
-        return response;
+        if(user==null){
+            System.out.println("Error: user doesnt exist");
+        }
+        return user.getPersonalinfo();
     }
 
     public ArrayList<User> getAllUserFromDataBase(){

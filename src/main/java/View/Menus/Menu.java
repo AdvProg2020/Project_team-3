@@ -183,6 +183,7 @@ public abstract class Menu {
         int count=1;
         for (String s : stringList) {
             System.out.println(count+"-"+s);
+            count++;
         }
     }
 

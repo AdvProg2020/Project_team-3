@@ -24,6 +24,21 @@ public class Seller extends User {
         this.money=money;
     }
 
+    @Override
+    public  String getPersonalinfo(){
+        String response="";
+        response+="type: Seller\n";
+        response+="username: "+getUsername()+"\n";
+        response+="password: "+getPassword()+"\n";
+        response+="name: "+getName()+"\n";
+        response+="last name: "+getLastName()+"\n";
+        response+="email: "+getEmail()+"\n";
+        response+="number: "+getNumber()+"\n";
+        response+="company name: "+companyName+"\n";
+        response+="money: "+money;
+        return response;
+    }
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }

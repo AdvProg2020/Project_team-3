@@ -32,9 +32,7 @@ public class LoginRegisterMenu extends Menu {
             register(command);
         }
         else if(command.startsWith("login ")){
-            if(login(command)){
-                View.setCurrentMenu(View.previousMenu);
-            }
+            login(command);
         }
         else if(command.equals("help")){
             help();
