@@ -13,7 +13,7 @@ public class LoginRegisterMenu extends Menu {
 
     @Override
     public void run(){
-        help();
+        System.out.println(View.ANSI_RED+"Log in or Register."+View.ANSI_RESET);
         String command = View.read.nextLine();
         execute(command);
     }
@@ -44,7 +44,6 @@ public class LoginRegisterMenu extends Menu {
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            run();
         }
     }
 

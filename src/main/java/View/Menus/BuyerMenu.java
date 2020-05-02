@@ -15,49 +15,54 @@ public class BuyerMenu extends UserMenu {
 
     @Override
     public void run(){
-
-    }
-
-    @Override
-    public void execute(String command) {
-
-    }
-
- /*   @Override
-    public void show(){
-        help();
+        System.out.println(View.ANSI_BLUE+"You are in the Buyer menu."+View.ANSI_RESET);
         String command = View.read.nextLine();
         execute(command);
     }
 
-
     @Override
-    public void execute(String command){
-        if(command.equals("1")){
-            viewPersonalInfo();
-        }else if(command.equals("2")){
-            viewCart();
-        }else if(command.equals("3")){
-            purchase();
-        }else if(command.equals("4")){
-            previousPurchases();
-        }else if(command.equals("5")){
-            viewBalance();
-        }else if(command.equals("6")){
-            viewDiscountCodes();
-        }else if(command.equals("7")){
-            MainMenu.getInstance().show();
-        }else{
-            System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            show();
+    public void execute(String command) {
+        if(command.equals("view personal info")){
+            View.setCurrentMenu(ViewPersonalInfo.getInstance());
         }
-    } */
+        else if(command.equals("view cart")){
+            viewCart();
+        }
+        else if(command.equals("purchase")){
+            purchase();
+        }
+        else if(command.equals("view orders")){
+            viewOrders();
+        }
+        else if(command.equals("view balance")){
+            viewBalance();
+        }
+        else if(command.equals("view discount codes")){
+            viewDiscountCodes();
+        }
+        else if(command.equals("back")){
+            View.setCurrentMenu(MainMenu.getInstance());
+        }
+        else if(command.equals("help")){
+            help();
+        }
+        else{
+            System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
+        }
+    }
+
+
 
     @Override
     public void help(){
-        System.out.println(View.ANSI_BLUE+"You are in the Buyer menu."+View.ANSI_RESET);
-        System.out.println("1- View personal info\n2- View Cart\n3- Purchase \n4- View orders\n5- View balance\n6- View discount codes\n7- Back");
-
+        System.out.println(View.ANSI_BLUE+"You are in the Buyer menu.\nType your command in one of these formats:"+View.ANSI_RESET);
+        System.out.println("view personal info");
+        System.out.println("view cart");
+        System.out.println("purchase");
+        System.out.println("view orders");
+        System.out.println("view balance");
+        System.out.println("view discount codes");
+        System.out.println("back");
     }
 
 
@@ -65,61 +70,18 @@ public class BuyerMenu extends UserMenu {
 
     }
 
-    private void showProducts(){
-
-    }
-
-    private void viewProduct(){
-
-    }
-
-    private void increaseProduct(){
-
-    }
-
-    private void decreaseProduct(){
-
-    }
-
-    private void showTotalPrice(){
-
-    }
-
     private void purchase(){
 
     }
 
-    private void receiverInfo(){
-
-    }
-
-    private void enterDiscountCode(){
-
-    }
-
-    private void paymentMethod(){
-
-    }
-
-    private void shop(){
-        //set current menu to shop
-    }
-
-    private void previousPurchases(){
-        //set current menu to buyLog
-    }
-
-    private void showOrder(){
-
-    }
-
-    private void rateProduct(){
+    private void viewOrders(){
 
     }
 
     private void viewBalance(){
-        System.out.println(UserController.getInstance().currentOnlineUserBalance());
-       View.setCurrentMenu(BuyerMenu.getInstance());
+        System.out.print("Your current balance is:");
+        System.out.println(View.ANSI_BLUE+UserController.getInstance().currentOnlineUserBalance()+View.ANSI_RESET);
+        View.setCurrentMenu(BuyerMenu.getInstance());
     }
 
     private void viewDiscountCodes(){
