@@ -21,7 +21,15 @@ public class SaleEdit extends Request {
         return newFieldValue;
     }
 
-    public String getChangedFiled() {
+    public String getChangedFieled() {
         return changedFiled;
+    }
+
+    @Override
+    public String toString(){
+        return "id :"+getRequestId()+"\n"+
+                "type: "+getType()+"\n"+
+                "changed Field: "+getChangedFieled()+"\n"+
+                "new Field value:"+getNewFieldValue();
     }
 }

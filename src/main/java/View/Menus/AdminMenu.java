@@ -1,7 +1,9 @@
 package View.Menus;
 
 import Control.Gsonsaveload;
+import Control.RequestController;
 import Control.UserController;
+import Model.Requests.Request;
 
 import java.util.ArrayList;
 
@@ -119,11 +121,27 @@ public class AdminMenu extends UserMenu {
     }
 
     public void manageRequests(){
-
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        int index;
+        System.out.println("please enter the number of request changing its state!");
+        index=readNumber(allRequests.size()-1);
+        System.out.println(allRequests.get(index));
+        System.out.println("enter a for accept or d for decline");
+            String input=View.read.nextLine();
+            if(input.equals("a")){
+                RequestController.getInstance().acceptRequest(allRequests.get(index).getRequestId());
+            }else if(input.equals("d")){
+                RequestController.getInstance().declineRequest(allRequests.get(index).getRequestId());
+            }
     }
 
     public void requestDetails(){
-
+        ArrayList<Request>allRequests= RequestController.getInstance().getAllRequestFromDataBase();
+        int index;
+        System.out.println("you have "+allRequests.size()+" requests!");
+        System.out.println("please enter the number of request you want to know about its details!");
+        index=readNumber(allRequests.size()-1);
+        System.out.println(allRequests.get(index));
     }
 
     public void manageCategories(){

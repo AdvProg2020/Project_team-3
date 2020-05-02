@@ -23,4 +23,13 @@ public class ItemEdit extends Request {
         return newFieldValue;
     }
 
+    @Override
+    public String toString(){
+     return "id :"+getRequestId()+"\n"+
+     "type: "+getType()+"\n"+
+     "changed Field: "+getChangedField()+"\n"+
+      "new Field value:"+getNewFieldValue();
+    }
+
+
 }

@@ -8,10 +8,12 @@ import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 public class RequestController {
     Controller controller = Controller.getInstance();
@@ -189,4 +191,23 @@ public class RequestController {
         Gsonsaveload.deleteRequest(declined);
     }
 
+    public ArrayList<Request> getAllRequestFromDataBase(){
+        String path="Resource"+File.separator+"Requests";
+        File file=new File(path);
+        File [] allFiles=file.listFiles();
+        Request loaded;
+        String fileContent = null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<Request>allRequests=new ArrayList<>();
+            for(File file1:allFiles){
+                try {
+                    fileContent=new String(Files.readAllBytes(file1.toPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+             loaded=gson.fromJson(fileContent,Request.class);
+             allRequests.add(loaded);
+            }
+            return allRequests;
+    }
 }

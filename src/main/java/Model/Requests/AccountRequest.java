@@ -16,4 +16,10 @@ public class AccountRequest extends Request {
         return this.seller;
     }
 
+    @Override
+    public String toString(){
+        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"UserName:"+seller.getUsername()+"\n"+
+                "is Accepted"+(isIsAccepted()? "accepted" : "not accepted!");
+    }
+
 }

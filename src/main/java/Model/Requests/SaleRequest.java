@@ -18,4 +18,14 @@ public class SaleRequest extends Request {
     public Sale getNewSale() {
         return newSale;
     }
+
+    @Override
+    public String toString(){
+        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Sale time:"+newSale.getStartTime()+"\n"+
+                "is Accepted"+(isIsAccepted()? "accepted" : "not accepted!");
+    }
+
+
+
+
 }

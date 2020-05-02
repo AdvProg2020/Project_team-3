@@ -14,4 +14,11 @@ public class CommentRequest extends Request {
         return newComment;
     }
 
+    @Override
+    public String toString(){
+        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Comment:"+newComment.getText()+"\n"+
+                "is Accepted"+(isIsAccepted()? "accepted" : "not accepted!");
+    }
+
+
 }
