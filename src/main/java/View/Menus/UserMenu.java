@@ -18,7 +18,6 @@ public abstract class UserMenu extends Menu {
         System.out.println(UserController.getInstance().viewPersonalInfo(Controller.getInstance().getCurrentOnlineUser().getUsername()));
         //ViewPersonalInfo.getInstance().show();
     }
-
     public void editPersonalInfo(){
 
     }

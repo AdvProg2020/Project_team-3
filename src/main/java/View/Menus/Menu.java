@@ -16,15 +16,28 @@ public abstract class Menu {
 
     public abstract void run();
 
-    public boolean login() {
-        System.out.print("Enter your username:");
+    public boolean login(String command) {
+        /*System.out.print("Enter your username:");
         String username = View.read.nextLine();
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
 
         String ans = UserController.getInstance().login(username, password);
         System.out.println(ans);
-        return ans.startsWith("Success");
+        return ans.startsWith("Success");*/
+
+        if(command.split(" ").length != 2){
+            System.out.println(View.ANSI_RED + "Invalid username." + View.ANSI_RESET);
+            return false;
+        }
+        System.out.print("Enter your password:");
+        String password = View.read.nextLine();
+        String username = command.split(" ")[1];
+
+        String ans = UserController.getInstance().login(username, password);
+        System.out.println(ans);
+
+        return ans.startsWith("Succ");
     }
 
     public boolean registerAdmin(){
@@ -42,16 +55,16 @@ public abstract class Menu {
         return ans.startsWith("Success");
     }
 
-    public boolean register() {
-        System.out.println("Register a buyer or a seller?  [B/S] ");
-        String key = View.read.nextLine();
-        if (!key.equals("B") && !key.equals("S")) {
-            System.out.println("No account type exists with the name " + key + ". Try again.");
-
-            return register();
+    public boolean register(String command) {
+        if(command.split(" ").length != 4){
+            System.out.println(View.ANSI_RED + "Invalid username/account type." + View.ANSI_RESET);
+            return false;
         }
 
-        String username = enterUsername();
+        String username = command.split(" ")[3];
+
+        String key = command.split(" ")[2];
+
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
         System.out.print("Enter your first name:");
@@ -64,16 +77,20 @@ public abstract class Menu {
 
         String ans;
 
-        if (key.equals("B")) {
+        if (key.equals("buyer")) {
             ans = UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number);
             System.out.println(ans);
             return ans.startsWith("Success");
-        } else {
+        } else if(key.equals("seller")) {
             System.out.print("Enter your company name:");
             String companyName = View.read.nextLine();
             ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
             System.out.println(ans);
             return ans.startsWith("Success");
+        }else{
+            ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
+            System.out.println(ans);
+            return ans.startsWith("Succ");
         }
 
 

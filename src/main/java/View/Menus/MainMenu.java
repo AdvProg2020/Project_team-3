@@ -19,7 +19,10 @@ public class MainMenu extends Menu {
 
     @Override
     public void run(){
-
+        System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
+        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
+        String command = View.read.nextLine();
+        execute(command);
     }
 
   /*  @Override
@@ -28,29 +31,28 @@ public class MainMenu extends Menu {
         System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
         String command = View.read.nextLine();
         execute(command);
-    }
+    }*/
 
 
-    @Override
     public void execute(String command){
         if(command.equals("1")){
             userMenu();
         }else if(command.equals("2")){
-            ShopMenu.getInstance().show();
+            ShopMenu.getInstance().run();
         }else if(command.equals("3")){
-            DiscountsMenu.getInstance().show();
+            DiscountsMenu.getInstance().run();
         }else if(command.equals("4")){
-            show();
+            run();
         }else if(command.equals("5")) {
             logout();
-            show();
+            run();
         }else if(command.equals("6")){
             exit();
         } else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            show();
+            run();
         }
-    } */
+    }
 
     private void exit()  {
 
