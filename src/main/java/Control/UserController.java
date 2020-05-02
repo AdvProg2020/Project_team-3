@@ -9,6 +9,7 @@ import Model.Users.Seller;
 import Model.Users.User;
 import View.Menus.View;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -191,5 +192,29 @@ public class UserController {
 
         return response;
     }
+
+    public ArrayList<User> getAllUserFromDataBase(){
+        String path="Resource"+File.separator+"Discount Codes";
+        File file=new File(path);
+        File [] allFiles=file.listFiles();
+        String fileContent = null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<User>allUser=new ArrayList<>();
+            for(File file1:allFiles){
+                try {
+                    fileContent=new String(Files.readAllBytes(file1.toPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(fileContent.contains("\"type\": \"Admin\"")){
+                    allUser.add(gson.fromJson(fileContent, Admin.class));}
+                if(fileContent.contains("\"type\": \"Seller\"")){
+                    allUser.add(gson.fromJson(fileContent, Seller.class));}
+                if(fileContent.contains("\"type\": \"Buyer\"")){
+                    allUser.add(gson.fromJson(fileContent, Buyer.class));}
+            }
+        return  allUser;
+    }
+
 
 }

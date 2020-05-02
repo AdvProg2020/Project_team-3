@@ -56,8 +56,8 @@ public class Sale {
         return id;
     }
 
-    public void addItemToSale(String itemId){
-
+    public void addItemToSale(String Id){
+        itemId.add(id);
     }
 
     public boolean saleHasItemWithID(String id){
