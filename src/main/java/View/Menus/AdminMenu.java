@@ -32,12 +32,17 @@ public class AdminMenu extends UserMenu {
            AddAdminAccount();
        } else if(command.equals("2")){
            deleteUser();
+       }else if(command.equals("3")){
+           logout();
+       }else{
+           System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
+           show();
        }
     }
 
     @Override
     public void help(){
-    System.out.println("1-add admin account\n2-delete user");
+    System.out.println("1-add admin account\n2-delete user\n3-logout");
     }
 
 
@@ -63,11 +68,7 @@ public class AdminMenu extends UserMenu {
 
     public void deleteUser(){
         ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
-        int counter=1;
-        for (String username : allUserNames) {
-            System.out.println(counter+"-"+username);
-            counter++;
-        }
+        printList(allUserNames);
         System.out.println("please select the User you wish to remove");
         int index=readNumber(allUserNames.size())-1;
         System.out.println(UserController.getInstance().deleteUser(allUserNames.get(index)));

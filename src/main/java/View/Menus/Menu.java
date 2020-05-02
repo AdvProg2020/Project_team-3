@@ -2,6 +2,8 @@ package View.Menus;
 
 import Control.UserController;
 
+import java.util.ArrayList;
+
 public abstract class Menu {
 
     public int optionCount;
@@ -132,6 +134,13 @@ public abstract class Menu {
 
     public void logout() {
         System.out.println(UserController.getInstance().logout());
+    }
+
+    public void printList(ArrayList<String> stringList){
+        int count=1;
+        for (String s : stringList) {
+            System.out.println(count+"-"+s);
+        }
     }
 
     private void back() {
