@@ -18,8 +18,7 @@ public class ItemRequest  extends Request {
 
     @Override
     public String toString(){
-        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Item Brand:"+newItem.getBrand()+"\n"+
-                "is Accepted"+(isIsAccepted()? "accepted" : "not accepted!");
+        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Item Brand:"+newItem.getBrand()+"\n";
     }
 
 

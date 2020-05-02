@@ -27,15 +27,7 @@ public abstract class Request {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public boolean isIsAccepted() {
-        return isAccepted;
-    }
-
-    public void setIsAccepted(boolean isAccepted) {
-        this.isAccepted = isAccepted;
-    }
-
+    
     public static String getIdCount(){return idCount;}
 
     public String getType() {
