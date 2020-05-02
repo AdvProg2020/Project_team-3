@@ -70,6 +70,7 @@ public class RequestController {
     }
 
     public void addUserRequest(String requestID, Seller newUser)  {
+        System.out.println("hi");
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         try {
             Gsonsaveload.saveRequest(newRequest);

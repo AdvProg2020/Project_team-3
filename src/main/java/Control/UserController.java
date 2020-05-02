@@ -106,7 +106,7 @@ public class UserController {
             e.printStackTrace();
         }
         String requestID=controller.addId(Request.getIdCount());
-        //RequestController.getInstance().addUserRequest(requestID ,user);
+        RequestController.getInstance().addUserRequest(requestID ,user);
         return "Success: Your request has been sent to the admin.";
     }
 
