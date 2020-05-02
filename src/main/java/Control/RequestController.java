@@ -151,7 +151,7 @@ public class RequestController {
     public void SaleEditing(SaleEdit saleEdit){
         Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(saleEdit.getSaleID());
         if(sale==null)return;
-        String changedField=saleEdit.getChangedFiled();
+        String changedField=saleEdit.getChangedFieled();
         String newFieldValue=saleEdit.getNewFieldValue();
 
         if(changedField.equals("start Time")){
@@ -195,7 +195,6 @@ public class RequestController {
         String path="Resource"+File.separator+"Requests";
         File file=new File(path);
         File [] allFiles=file.listFiles();
-        Request loaded;
         String fileContent = null;
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         ArrayList<Request>allRequests=new ArrayList<>();
@@ -205,8 +204,17 @@ public class RequestController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-             loaded=gson.fromJson(fileContent,Request.class);
-             allRequests.add(loaded);
+
+                if(fileContent.contains("\"type\": \"AccountRequest\"")){
+                    allRequests.add(gson.fromJson(fileContent, AccountRequest.class));}
+                if(fileContent.contains("\"type\": \"CommentRequest\"")){
+                    allRequests.add(gson.fromJson(fileContent, CommentRequest.class));}
+                if(fileContent.contains("\"type\": \"ItemEdit\"")){
+                    allRequests.add(gson.fromJson(fileContent, ItemEdit.class));}
+                if(fileContent.contains("\"type\": \"SaleEdit\"")){
+                    allRequests.add(gson.fromJson(fileContent, SaleEdit.class));}
+                if(fileContent.contains("\"type\": \"SaleRequest\"")){
+                    allRequests.add(gson.fromJson(fileContent, SaleRequest.class));}
             }
             return allRequests;
     }
