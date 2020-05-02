@@ -24,6 +24,10 @@ public abstract class User {
         this.type=type;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String getUsername() {
         return username;
     }

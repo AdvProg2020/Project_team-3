@@ -147,6 +147,9 @@ public class UserController {
         return Controller.getMatcher(number,"\\d\\d\\d\\d\\d(\\d+)$").matches();
     }
 
+    public String returnUserType(String username){
+       return getUserByUsername(username).getType();
+    }
     public String logout(){
         if(controller.currentOnlineUser==null){
             return View.ANSI_RED+ "Error: Not logged in!"+View.ANSI_RESET;
@@ -160,6 +163,9 @@ public class UserController {
             return "Error: you cant remove your own account";
         }
         User user=getUserByUsername(username);
+        if(user==null){
+            return "Error: user doesnt exist";
+        }
         Gsonsaveload.deleteUser(user);
             return "Successful:";
     }

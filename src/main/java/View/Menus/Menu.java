@@ -38,8 +38,18 @@ public abstract class Menu {
 
         String ans = UserController.getInstance().login(username, password);
         System.out.println(ans);
-
-        return ans.startsWith("Succ");
+        if(ans.startsWith("Success")){
+            if(UserController.getInstance().returnUserType(username).equals("Admin")){
+                View.setCurrentMenu(AdminMenu.getInstance());
+            }
+            if(UserController.getInstance().returnUserType(username).equals("Buyer")){
+                View.setCurrentMenu(BuyerMenu.getInstance());
+            }
+            if(UserController.getInstance().returnUserType(username).equals("Seller")){
+                View.setCurrentMenu(SellerMenu.getInstance());
+            }
+        }
+        return ans.startsWith("Success");
     }
 
     public boolean registerAdmin(){

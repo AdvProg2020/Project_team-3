@@ -6,6 +6,7 @@ import Control.UserController;
 import Model.Requests.Request;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 public class AdminMenu extends UserMenu {
     private static AdminMenu adminMenu;
@@ -20,22 +21,26 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void run(){
-
+    help();
+    String command = View.read.nextLine();
+    execute(command);
     }
 
     @Override
     public void execute(String command) {
+     if(command.equals("manage users")){
+         printUsers();
+     }
+
+     Matcher matcher=View.getMatcher("delete user (\\S+)",command);
+     if(matcher.matches()){
+         deleteUser(matcher.group(1));
+     }
 
     }
+
 
    /* @Override
-    public void show(){
-        help();
-        String command = View.read.nextLine();
-        execute(command);
-    }
-
-    @Override
     public void execute(String command){
        if(command.equals("1")) {
            AddAdminAccount();
@@ -51,7 +56,7 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void help(){
-    System.out.println("1-add admin account\n2-delete user\n3-logout");
+    System.out.println("view personal info\nmanage users\n");
     }
 
 
@@ -75,15 +80,14 @@ public class AdminMenu extends UserMenu {
 
     }
 
-    public void deleteUser(){
-        ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
-        printList(allUserNames);
-        System.out.println("please select the User you wish to remove");
-        int index=readNumber(allUserNames.size(),"")-1;
-        System.out.println(UserController.getInstance().deleteUser(allUserNames.get(index)));
-        //AdminMenu.getInstance().show();
+    public void deleteUser(String username){
+        System.out.println(UserController.getInstance().deleteUser(username));
     }
 
+    public void printUsers(){
+        ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
+        printList(allUserNames);
+    }
 
 
     public void showAllCategories(){

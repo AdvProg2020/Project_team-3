@@ -1,6 +1,8 @@
 package View.Menus;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class View {
     static Scanner read = new Scanner(System.in);  //package access
@@ -36,5 +38,9 @@ public class View {
         return currentMenu;
     }
 
-
+    public static Matcher getMatcher(String regex,String input){
+        Pattern pattern=Pattern.compile(regex);
+        Matcher matcher=pattern.matcher(input);
+        return matcher;
+    }
 }
