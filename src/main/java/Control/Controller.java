@@ -1,9 +1,9 @@
 package Control;
 
-import Model.*;
+import Model.Cart;
+import Model.Category;
 import Model.Requests.Request;
 import Model.Users.User;
-import View.Menus.Menu;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,8 +21,6 @@ public class Controller {
     Category mainCategory;
     Category currentCategory;
     Cart currentShoppingCart;
-    Menu currentMenu;
-    ArrayList<Item> currentViewableItems = new ArrayList<>();
 
     private Controller() {
     }

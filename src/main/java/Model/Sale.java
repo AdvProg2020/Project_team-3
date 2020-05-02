@@ -68,4 +68,15 @@ public class Sale {
     public boolean saleHasItemWithID(String id){
       return false;
     }
+
+    @Override
+    public String toString(){
+    return "id: "+getId()+"\n"+
+    "Off Percentage: "+getOffPercentage()+"\n"+
+    "Status: "+status+"\n"+
+     "Start Time: "+getStartTime()+"\n"+
+     "End Time: "+getEndTime()+"\n";
+    }
+
+
 }

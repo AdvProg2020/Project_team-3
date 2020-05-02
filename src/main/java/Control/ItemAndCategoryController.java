@@ -16,7 +16,7 @@ public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
     private static ItemAndCategoryController itemAndCategoryController;
     private ItemAndCategoryController(){}
-
+    ArrayList<Item> currentViewableItems = new ArrayList<>();
     public static ItemAndCategoryController getInstance(){
         if(itemAndCategoryController==null)
             itemAndCategoryController=new ItemAndCategoryController();
@@ -177,7 +177,7 @@ public class ItemAndCategoryController {
     }
 
     public ArrayList<Item> getCurrentViewableItems() {
-        return controller.currentViewableItems;
+        return currentViewableItems;
     }
 
     public void setCurrentCategory(Category currentCategory) {
