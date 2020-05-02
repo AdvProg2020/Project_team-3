@@ -2,7 +2,8 @@ package Model;
 
 import Control.Controller;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Item {
     private String id;
@@ -19,7 +20,6 @@ public class Item {
     private String sellerName;
     private String categoryName;
     private String buyerUserName;
-    private static String idCount="00000000";
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     private boolean isInSale;
@@ -36,8 +36,7 @@ public class Item {
         this.attributes=attributes;
         this.attributesKey=attributesKey;
         this.inStock=inStock;
-        this.id=idCount;
-        idCount= Controller.getInstance().addId(idCount);
+        this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Items");
         timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
@@ -115,9 +114,7 @@ public class Item {
         return categoryName;
     }
 
-    public static String getIdCount() {
-        return idCount;
-    }
+
 
     public String getSellerName() {
         return sellerName;

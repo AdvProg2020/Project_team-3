@@ -18,6 +18,7 @@ public class Controller {
     Category mainCategory;
     Category currentCategory;
     Cart currentShoppingCart;
+    int idSize=5;
 
     private Controller() {
     }
@@ -30,6 +31,10 @@ public class Controller {
 
     public Cart getCurrentShoppingCart() {
         return currentShoppingCart;
+    }
+
+    public int getIdSize() {
+        return idSize;
     }
 
     public boolean isAValidCommand(String command) {
@@ -56,6 +61,24 @@ public class Controller {
                 index--;
             }
         }
+    }
+
+   public  String getAlphaNumericString(int n,String folderName)
+    {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+
+            int index = (int)(AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+        String path="Resource"+File.separator+folderName;
+        String name=sb+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            return sb.toString();
+        }
+        return getAlphaNumericString(n,folderName);
     }
 
     public static Matcher getMatcher(String string,String regex){
