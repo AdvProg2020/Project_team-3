@@ -33,6 +33,9 @@ public class Controller {
         return controller;
     }
 
+    public Cart getCurrentShoppingCart() {
+        return currentShoppingCart;
+    }
 
     public boolean isAValidCommand(String command) {
         if (command.length() > 3) return false;

@@ -163,6 +163,10 @@ public class Gsonsaveload<Public> {
         if(!file.exists()){
             file.mkdir();
         }
+        file=new File("Resource"+File.separator+"Main Category");
+        if(!file.exists()){
+            file.mkdir();
+        }
         Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
     }
 
