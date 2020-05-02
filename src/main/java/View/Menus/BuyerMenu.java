@@ -51,7 +51,7 @@ public class BuyerMenu extends UserMenu {
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-        }
+            }
     }
 
 

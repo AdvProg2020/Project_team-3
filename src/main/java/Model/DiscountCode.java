@@ -1,5 +1,6 @@
 package Model;
 
+import Control.Controller;
 import Model.Users.User;
 
 import java.util.HashMap;
@@ -12,9 +13,8 @@ public class DiscountCode {
     private int startTime;
     private int endTime;
     //constructor
-    public DiscountCode(String discountId , int discountPercentage
-            , int startTime , int endTime , int allUsages){
-        this.discountId=discountId;
+    public DiscountCode( int discountPercentage, int startTime , int endTime , int allUsages){
+        this.discountId=Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Discount Codes");
         this.discountPercentage=discountPercentage;
         this.startTime=startTime;
         this.endTime=endTime;

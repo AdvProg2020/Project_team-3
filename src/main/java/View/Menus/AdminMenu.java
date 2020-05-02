@@ -65,11 +65,20 @@ public class AdminMenu extends UserMenu {
             deleteDiscountCode(matcher.group(1));
         }
 
-     matcher=View.getMatcher("view (\\S+)",command);
-     if(matcher.matches()){
+        matcher=View.getMatcher("view (\\S+)",command);
+        if(matcher.matches()){
         viewPersonalInfo(matcher.group(1));
-     }
+        }
 
+        matcher=View.getMatcher("accept (\\S+)",command);
+        if(matcher.matches()){
+            acceptRequestId(String id);
+        }
+
+        matcher=View.getMatcher("decline (\\S+)",command);
+        if(matcher.matches()){
+            declineRequestId(String id);
+        }
     }
 
     @Override
@@ -124,16 +133,13 @@ public class AdminMenu extends UserMenu {
     private void deleteDiscountCode(String id){
        System.out.println(SaleAndDiscountCodeController.getInstance().deleteDiscountCode(id));
     }
-
     private void deleteSale(String id){
         System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
     }
-
     private void printUsers(){
         ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
         printList(allUserNames);
     }
-
     private void showAllproducts(){
         ArrayList<String> allItems=Gsonsaveload.printFolderContent("Items");
         printList(allItems);
@@ -207,7 +213,12 @@ public class AdminMenu extends UserMenu {
 
     }
 
+    private void acceptRequestId(String id){
+        //inaro bezan iji
+    }
 
-
+    private void declineRequestId(String id){
+        ///inaro beza iji
+    }
 
 }

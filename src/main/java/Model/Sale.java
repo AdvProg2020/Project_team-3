@@ -12,13 +12,12 @@ public class Sale {
     private int offPercentage;
     private enum Status{accepted ,addingProcess ,editingProcess};
     Status status;
-    private static String idCount="00000000";
+
     public Sale (int startTime, int endTime, int offPercentage){
         this.startTime = startTime;
         this.endTime = endTime;
         this.offPercentage = offPercentage;
-        id=idCount;
-        idCount= Controller.getInstance().addId(idCount);
+        this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Sales");
     }
 
     public void acceptStatus(){
