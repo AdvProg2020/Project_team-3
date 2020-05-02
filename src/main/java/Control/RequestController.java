@@ -153,7 +153,6 @@ public class RequestController {
         if(sale==null)return;
         String changedField=saleEdit.getChangedFieled();
         String newFieldValue=saleEdit.getNewFieldValue();
-
         if(changedField.equals("start Time")){
             sale.setStartTime(Integer.parseInt(newFieldValue));
         }else if(changedField.equals("end Time")){

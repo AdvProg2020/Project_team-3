@@ -170,7 +170,7 @@ public class ItemAndCategoryController {
     public String addItem(Item item){
         String requestId=controller.addId(Request.getIdCount());
         RequestController.getInstance().addItemRequest(requestId,item);
-        return "your request was sent for adding item to our Admins!";
+        return "Successful: your request to add the item was sent to the admins.";
     }
 
     public Category getCurrentCategory() {

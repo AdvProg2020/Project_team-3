@@ -112,6 +112,11 @@ public abstract class Menu {
         return UserController.getInstance().validateMoney(money);
     }
 
+    public String readName(String message){
+        System.out.println(message);
+        return View.read.nextLine();
+    }
+
     private String enterNumber() {
         System.out.print("Enter your phone number:");
         String number = View.read.nextLine();
@@ -122,14 +127,21 @@ public abstract class Menu {
         return number;
     }
 
-    public int readNumber(int limit){
+    public int readNumber(int limit,String message){   //if limit is -1 there is no limit for int number
+    if(!message.isEmpty())
+      System.out.println(message);
     String number=View.read.nextLine();
         int num=Integer.parseInt(number);
-        if((num>limit)||(num<0)){
+        if(((num>limit)||(num<0))&&(limit!=-1)){
             System.out.println("Invalid please try again");
-            return readNumber(limit);
+            return readNumber(limit,"");
         }
         return num;
+    }
+
+    public double readDoubleNumber(String message){
+        System.out.println(message);
+        return View.read.nextDouble();
     }
 
     public void logout() {

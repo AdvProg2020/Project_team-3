@@ -70,7 +70,7 @@ public class AdminMenu extends UserMenu {
         ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
         printList(allUserNames);
         System.out.println("please select the User you wish to remove");
-        int index=readNumber(allUserNames.size())-1;
+        int index=readNumber(allUserNames.size(),"")-1;
         System.out.println(UserController.getInstance().deleteUser(allUserNames.get(index)));
         AdminMenu.getInstance().show();
     }
@@ -125,7 +125,7 @@ public class AdminMenu extends UserMenu {
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         int index;
         System.out.println("please enter the number of request changing its state!");
-        index=readNumber(allRequests.size()-1);
+        index=readNumber(allRequests.size()-1,"");
         System.out.println(allRequests.get(index));
         System.out.println("enter a for accept or d for decline");
             String input=View.read.nextLine();
@@ -141,7 +141,7 @@ public class AdminMenu extends UserMenu {
         int index;
         System.out.println("you have "+allRequests.size()+" requests!");
         System.out.println("please enter the number of request you want to know about its details!");
-        index=readNumber(allRequests.size()-1);
+        index=readNumber(allRequests.size()-1,"");
         System.out.println(allRequests.get(index));
     }
 
