@@ -8,6 +8,7 @@ public class View {
     static Scanner read = new Scanner(System.in);  //package access
     private static boolean programRunning = true;
     private static Menu currentMenu=MainMenu.getInstance();
+    static Menu previousMenu;
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
