@@ -23,11 +23,13 @@ public class ItemAndCategoryController {
         return itemAndCategoryController;
     }
 
-    public void deleteItem(String id){
-        String path="Resource"+File.separator+"Items";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        file.delete();
+    public String deleteItem(String id){
+        Item item=getItemById(id);
+        if(item==null){
+            return "Error: item doesnt exist";
+        }
+        Gsonsaveload.deleteItem(item);
+        return "Successful:";
     }
 
     public boolean isThereItemWithId(String id){

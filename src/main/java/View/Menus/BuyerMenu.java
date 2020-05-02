@@ -60,7 +60,7 @@ public class BuyerMenu extends UserMenu {
         System.out.println("view cart");
         System.out.println("purchase");
         System.out.println("view orders");
-        System.out.println("view balance");
+        System.out.println("view balance");  //done
         System.out.println("view discount codes");
         System.out.println("back");
     }
@@ -81,7 +81,6 @@ public class BuyerMenu extends UserMenu {
     private void viewBalance(){
         System.out.print("Your current balance is:");
         System.out.println(View.ANSI_BLUE+UserController.getInstance().currentOnlineUserBalance()+View.ANSI_RESET);
-        View.setCurrentMenu(BuyerMenu.getInstance());
     }
 
     private void viewDiscountCodes(){

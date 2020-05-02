@@ -1,9 +1,6 @@
 package View.Menus;
 
-import Control.Gsonsaveload;
-import Control.RequestController;
-import Control.SaleAndDiscountCodeController;
-import Control.UserController;
+import Control.*;
 import Model.DiscountCode;
 import Model.Requests.Request;
 import Model.Sale;
@@ -51,27 +48,16 @@ public class AdminMenu extends UserMenu {
      if(matcher.matches()){
          deleteUser(matcher.group(1));
      }
+        matcher=View.getMatcher("remove (\\S+)",command);
+        if(matcher.matches()){
+            deleteItem(matcher.group(1));
+        }
      matcher=View.getMatcher("view (\\S+)",command);
      if(matcher.matches()){
         viewPersonalInfo(matcher.group(1));
      }
 
     }
-
-
-   /* @Override
-    public void execute(String command){
-       if(command.equals("1")) {
-           AddAdminAccount();
-       } else if(command.equals("2")){
-           deleteUser();
-       }else if(command.equals("3")){
-           logout();
-       }else{
-           System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-           show();
-       }
-    } */
 
     @Override
     public void help(){
@@ -82,8 +68,8 @@ public class AdminMenu extends UserMenu {
         System.out.println("view [username]");    //done
         System.out.println("change type [username] [role]");
         System.out.println("create manager profile"); //done
-        System.out.println("manage all products");    //done
-        System.out.println("remove [product id]");
+        System.out.println("manage all products");    //done  but need test
+        System.out.println("remove [product id]");    //done but need test
         System.out.println("create discount code");
         System.out.println("view discount code");
         System.out.println("view discount code [id]");
@@ -121,6 +107,10 @@ public class AdminMenu extends UserMenu {
 
     public void deleteUser(String username){
         System.out.println(UserController.getInstance().deleteUser(username));
+    }
+
+    public void deleteItem(String id){
+       System.out.println(ItemAndCategoryController.getInstance().deleteItem(id));
     }
 
     public void printUsers(){
