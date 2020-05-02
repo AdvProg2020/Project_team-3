@@ -75,18 +75,22 @@ public class SaleAndDiscountCodeController {
         return "your request for adding Sale was sent to our Admins!";
     }
 
-    public void deleteSale(String id){
-        String path="Resource"+File.separator+"Sales";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        file.delete();
+    public String deleteSale(String id){
+        Sale sale=getSaleById(id);
+        if(id==null){
+            return "Error: sale doesnt exist";
+        }
+        Gsonsaveload.deleteSale(sale);
+           return "Successful";
     }
 
-    public void deleteDiscountCode(String id){
-        String path="Resource"+File.separator+"Discount Codes";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        file.delete();
+    public String deleteDiscountCode(String id){
+        DiscountCode code=getDiscountCodeById(id);
+        if(id==null){
+            return "Error: discount code doesnt exist";
+        }
+        Gsonsaveload.deleteDiscountCode(code);
+           return "Successful";
     }
 
     public boolean isThereDiscountCodeWithId(String id){

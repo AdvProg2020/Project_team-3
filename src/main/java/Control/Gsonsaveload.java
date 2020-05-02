@@ -118,8 +118,8 @@ public class Gsonsaveload<Public> {
         file.delete();
     }
 
-    public static void deleteSale(Item item){
-        String id=item.getId();
+    public static void deleteSale(Sale sale){
+        String id=sale.getId();
         String path="Resource"+File.separator+"Sales";
         String name=id+".json";
         File file=new File(path+File.separator+name);

@@ -1,8 +1,9 @@
 package View.Menus;
 
-import Control.*;
-import Model.DiscountCode;
-import Model.Requests.Request;
+import Control.Gsonsaveload;
+import Control.ItemAndCategoryController;
+import Control.SaleAndDiscountCodeController;
+import Control.UserController;
 import Model.Sale;
 
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public class AdminMenu extends UserMenu {
      if(command.equals("manage all prducts")){
          showAllproducts();
      }
+     if(command.equals("manage requests")){
+         showAllRequests();
+     }
      matcher=View.getMatcher("delete user (\\S+)",command);
      if(matcher.matches()){
          deleteUser(matcher.group(1));
@@ -52,6 +56,12 @@ public class AdminMenu extends UserMenu {
         if(matcher.matches()){
             deleteItem(matcher.group(1));
         }
+
+        matcher=View.getMatcher("remove discount code (\\S+)",command);
+        if(matcher.matches()){
+            deleteDiscountCode(matcher.group(1));
+        }
+
      matcher=View.getMatcher("view (\\S+)",command);
      if(matcher.matches()){
         viewPersonalInfo(matcher.group(1));
@@ -71,11 +81,11 @@ public class AdminMenu extends UserMenu {
         System.out.println("manage all products");    //done  but need test
         System.out.println("remove [product id]");    //done but need test
         System.out.println("create discount code");
-        System.out.println("view discount code");
+        System.out.println("view discount code");         //done but need test
         System.out.println("view discount code [id]");
         System.out.println("edit discount code [id]");
-        System.out.println("remove discount code [id]");
-        System.out.println("manage requests");
+        System.out.println("remove discount code [id]"); //done but need test
+        System.out.println("manage requests");           //done but need test
         System.out.println("details requests [request id]");
         System.out.println("accept [request id]");
         System.out.println("decline [request id]");
@@ -113,6 +123,14 @@ public class AdminMenu extends UserMenu {
        System.out.println(ItemAndCategoryController.getInstance().deleteItem(id));
     }
 
+    public void deleteDiscountCode(String id){
+       System.out.println(SaleAndDiscountCodeController.getInstance().deleteDiscountCode(id));
+    }
+
+    public void deleteSale(String id){
+        System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
+    }
+
     public void printUsers(){
         ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
         printList(allUserNames);
@@ -122,7 +140,14 @@ public class AdminMenu extends UserMenu {
         ArrayList<String> allItems=Gsonsaveload.printFolderContent("Items");
         printList(allItems);
     }
-
+    public void showAllRequests(){
+        ArrayList<String> allRequests=Gsonsaveload.printFolderContent("Requests");
+        printList(allRequests);
+    }
+    public void viewAllDiscountCodes(){
+        ArrayList<String> allDiscountCodes=Gsonsaveload.printFolderContent("Discount Codes");
+        printList(allDiscountCodes);
+    }
     public void showAllCategories(){
         //set current menu to category menu
     }
@@ -147,13 +172,6 @@ public class AdminMenu extends UserMenu {
 
     }
 
-    public void viewAllDiscountCodes(){
-        ArrayList<DiscountCode> allDiscountCode=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
-            for(DiscountCode discountCode:allDiscountCode){
-                System.out.println(discountCode);
-            }
-
-    }
 
     public void viewOneDiscountCode(){
 
@@ -172,27 +190,12 @@ public class AdminMenu extends UserMenu {
     }
 
     public void manageRequests(){
-        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
-        int index;
-        System.out.println("please enter the number of request changing its state!");
-        index=readNumber(allRequests.size()-1,"");
-        System.out.println(allRequests.get(index));
-        System.out.println("enter a for accept or d for decline");
-            String input=View.read.nextLine();
-            if(input.equals("a")){
-                RequestController.getInstance().acceptRequest(allRequests.get(index).getRequestId());
-            }else if(input.equals("d")){
-                RequestController.getInstance().declineRequest(allRequests.get(index).getRequestId());
-            }
+        ArrayList<String>allRequests=Gsonsaveload.printFolderContent("Requests");
+        printList(allRequests);
     }
 
     public void requestDetails(){
-        ArrayList<Request>allRequests= RequestController.getInstance().getAllRequestFromDataBase();
-        int index;
-        System.out.println("you have "+allRequests.size()+" requests!");
-        System.out.println("please enter the number of request you want to know about its details!");
-        index=readNumber(allRequests.size()-1,"");
-        System.out.println(allRequests.get(index));
+
     }
 
     public void manageCategories(){
