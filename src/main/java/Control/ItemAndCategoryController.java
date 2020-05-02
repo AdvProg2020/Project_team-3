@@ -59,7 +59,13 @@ public class ItemAndCategoryController {
         return null;
     }
 
+    public Category getCategoryByName(String categoryName){
+        return null;
+    }
+
     public boolean searchItemInCategory(String categoryName, String itemId) {
+        Category category=getCategoryByName(categoryName);
+            if(category.hasItemWithID(itemId)) return true;
         return false;
     }
 

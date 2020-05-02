@@ -27,7 +27,7 @@ public abstract class Request {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     public static String getIdCount(){return idCount;}
 
     public String getType() {
