@@ -19,8 +19,7 @@ public class MainMenu extends Menu {
 
     @Override
     public void run(){
-        System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
+        help();
         String command = View.read.nextLine();
         execute(command);
     }
@@ -38,29 +37,36 @@ public class MainMenu extends Menu {
         if(command.equals("1")){
             userMenu();
         }else if(command.equals("2")){
-            ShopMenu.getInstance().run();
+            View.setCurrentMenu(ShopMenu.getInstance());
         }else if(command.equals("3")){
-            DiscountsMenu.getInstance().run();
+            View.setCurrentMenu(DiscountsMenu.getInstance());
         }else if(command.equals("4")){
             run();
         }else if(command.equals("5")) {
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+        }else if(command.equals("6")){
             logout();
             run();
-        }else if(command.equals("6")){
+        }
+        else if(command.equals("7")){
             exit();
-        } else{
+        }
+
+        else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             run();
         }
     }
 
     private void exit()  {
-
+        View.setProgramRunning(false);
     }
 
     private void userMenu(){
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             View.setCurrentMenu(MainMenu.getInstance());
+            System.out.println(View.ANSI_RED+"You are not logged in."+View.ANSI_RESET);
+            return;
         }
         if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){
             View.setCurrentMenu(AdminMenu.getInstance());
@@ -73,8 +79,9 @@ public class MainMenu extends Menu {
 
     @Override
     public void help() {
-        System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n 2- Enter the shop\n 3- View ongoing sales \n 4- Help");
+        System.out.println(View.ANSI_PURPLE + "You are in the main menu.\nSelect a number." + View.ANSI_RESET);
+        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Login/Register\n6- Logout\n7- Exit");
+        System.out.println(View.ANSI_WHITE+"You can type \"help\" in any menu to get help, this has been removed \nfrom the list of commands to avoid complication."+View.ANSI_RESET);
     }
 
 

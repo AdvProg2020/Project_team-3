@@ -17,6 +17,11 @@ public class ViewPersonalInfo extends UserMenu {
     }
 
     @Override
+    public void execute(String command) {
+
+    }
+
+    @Override
     public void help() {
         System.out.println("Press E to edit personal info or X to go back. ");
     }

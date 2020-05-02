@@ -13,8 +13,9 @@ public class LoginRegisterMenu extends Menu {
 
     @Override
     public void run(){
+        help();
         String command = View.read.nextLine();
-
+        execute(command);
     }
 
    /* @Override
@@ -22,35 +23,38 @@ public class LoginRegisterMenu extends Menu {
         help();
         String command = View.read.nextLine();
         execute(command);
-    }
+    }*/
 
 
     @Override
     public void execute(String command){
-        if(command.equals("1")){
-            if(!login()) show();
+        if(command.startsWith("create account ")){
+            register(command);
         }
-        else if(command.equals("2")){
-            register();
-            show();
+        else if(command.startsWith("login ")){
+            if(login(command)){
+                View.setCurrentMenu(MainMenu.getInstance());
+            }
         }
-        else if(command.equals("3")){
-            show();
+        else if(command.equals("help")){
+            help();
         }
-        else if(command.equals("4")){
-            MainMenu.getInstance().show();
+        else if(command.equals("back")){
+            View.setCurrentMenu(MainMenu.getInstance());
         }
-        else {
+        else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            show();
+            run();
         }
-    } */
+    }
 
     @Override
     public void help(){
-        System.out.println(View.ANSI_RED+"You must be logged in to continue."+View.ANSI_RESET);
+        System.out.println(View.ANSI_RED+"Log in or Register.\nType your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("create account [type] [username]");
+        System.out.println(View.ANSI_WHITE +"where type is buyer/seller/admin and username cannot contain spaces."+View.ANSI_RESET);
         System.out.println("login [username]");
+        System.out.println("back");
     }
 
 }

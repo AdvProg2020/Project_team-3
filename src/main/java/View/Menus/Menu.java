@@ -16,6 +16,8 @@ public abstract class Menu {
 
     public abstract void run();
 
+    public abstract void execute(String command);
+
     public boolean login(String command) {
         /*System.out.print("Enter your username:");
         String username = View.read.nextLine();
@@ -60,10 +62,15 @@ public abstract class Menu {
             System.out.println(View.ANSI_RED + "Invalid username/account type." + View.ANSI_RESET);
             return false;
         }
+        String key = command.split(" ")[2];
+        if(!key.equals("buyer") && !key.equals("seller") && !key.equals("admin")){
+            System.out.println(View.ANSI_RED + "Invalid account type." + View.ANSI_RESET);
+            return false;
+        }
 
         String username = command.split(" ")[3];
 
-        String key = command.split(" ")[2];
+
 
         System.out.print("Enter your password:");
         String password = View.read.nextLine();

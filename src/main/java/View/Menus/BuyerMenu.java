@@ -18,6 +18,11 @@ public class BuyerMenu extends UserMenu {
 
     }
 
+    @Override
+    public void execute(String command) {
+
+    }
+
  /*   @Override
     public void show(){
         help();
