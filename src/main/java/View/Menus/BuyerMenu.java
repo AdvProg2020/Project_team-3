@@ -12,7 +12,13 @@ public class BuyerMenu extends UserMenu {
             buyerMenu = new BuyerMenu();
         return buyerMenu;
     }
+
     @Override
+    public void run(){
+
+    }
+
+ /*   @Override
     public void show(){
         help();
         String command = View.read.nextLine();
@@ -40,7 +46,7 @@ public class BuyerMenu extends UserMenu {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
-    }
+    } */
 
     @Override
     public void help(){
@@ -108,7 +114,7 @@ public class BuyerMenu extends UserMenu {
 
     private void viewBalance(){
         System.out.println(UserController.getInstance().currentOnlineUserBalance());
-        BuyerMenu.getInstance().show();
+       View.setCurrentMenu(BuyerMenu.getInstance());
     }
 
     private void viewDiscountCodes(){

@@ -12,6 +12,11 @@ public class SellerMenu extends UserMenu {
     }
 
     @Override
+    public void run(){
+
+    }
+
+   /* @Override
     public void show(){
 
     }
@@ -19,7 +24,7 @@ public class SellerMenu extends UserMenu {
     @Override
     public void execute(String command){
 
-    }
+    } */
 
     @Override
     public void help(){

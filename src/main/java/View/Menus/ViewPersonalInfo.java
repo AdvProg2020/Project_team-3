@@ -1,9 +1,5 @@
 package View.Menus;
 
-import Control.UserController;
-import Model.Users.Admin;
-import Model.Users.Seller;
-
 public class ViewPersonalInfo extends UserMenu {
     private static ViewPersonalInfo viewPersonalInfo ;
     private int optionCount = 4;
@@ -14,12 +10,18 @@ public class ViewPersonalInfo extends UserMenu {
             viewPersonalInfo = new ViewPersonalInfo();
         return viewPersonalInfo;
     }
+
+    @Override
+    public void run(){
+
+    }
+
     @Override
     public void help() {
         System.out.println("Press E to edit personal info or X to go back. ");
     }
 
-    @Override
+  /*  @Override
     public void show() {
         help();
         String command = View.read.nextLine();
@@ -45,6 +47,6 @@ public class ViewPersonalInfo extends UserMenu {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             show();
         }
-    }
+    } */
 
 }

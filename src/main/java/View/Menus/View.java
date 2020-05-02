@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class View {
     static Scanner read = new Scanner(System.in);  //package access
     private static boolean programRunning = true;
-    private static Menu currentMenu;
+    private static Menu currentMenu=MainMenu.getInstance();
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -19,18 +19,22 @@ public class View {
 
     public static void run() {
         System.out.println(ANSI_WHITE+"Team 3 MVC Shop Project, Phase 1 ..."+ANSI_RESET);
-        MainMenu.getInstance().show();
+        while(true){
+            currentMenu.run();
+        }
     }
 
     public static void setProgramRunning(boolean programRunning) {
         View.programRunning = programRunning;
     }
 
-    public void setCurrentMenu(Menu currentMenu) {
-        this.currentMenu = currentMenu;
+    public static void setCurrentMenu(Menu menu) {
+       currentMenu=menu;
     }
 
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
+
+
 }

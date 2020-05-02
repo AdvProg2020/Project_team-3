@@ -12,6 +12,11 @@ public class DiscountsMenu extends Menu {
     }
 
     @Override
+    public void run(){
+
+    }
+
+  /*  @Override
     public void show(){
 
     }
@@ -21,7 +26,7 @@ public class DiscountsMenu extends Menu {
     @Override
     public void execute(String command){
 
-    }
+    } */
 
     @Override
     public void help(){

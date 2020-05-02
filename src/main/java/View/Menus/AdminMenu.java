@@ -18,8 +18,12 @@ public class AdminMenu extends UserMenu {
         return adminMenu;
     }
 
-
     @Override
+    public void run(){
+
+    }
+
+   /* @Override
     public void show(){
         help();
         String command = View.read.nextLine();
@@ -38,7 +42,7 @@ public class AdminMenu extends UserMenu {
            System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
            show();
        }
-    }
+    } */
 
     @Override
     public void help(){
@@ -72,7 +76,7 @@ public class AdminMenu extends UserMenu {
         System.out.println("please select the User you wish to remove");
         int index=readNumber(allUserNames.size(),"")-1;
         System.out.println(UserController.getInstance().deleteUser(allUserNames.get(index)));
-        AdminMenu.getInstance().show();
+        //AdminMenu.getInstance().show();
     }
 
 

@@ -15,6 +15,11 @@ public class ShopMenu extends Menu {
     }
 
     @Override
+    public void run(){
+
+    }
+
+  /*  @Override
     public void show(){
 
     }
@@ -24,7 +29,7 @@ public class ShopMenu extends Menu {
     @Override
     public void execute(String command){
 
-    }
+    } */
 
 
     @Override

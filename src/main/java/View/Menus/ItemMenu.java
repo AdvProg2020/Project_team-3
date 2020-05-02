@@ -10,7 +10,13 @@ public class ItemMenu extends Menu {
             itemMenu = new ItemMenu();
         return itemMenu;
     }
+
     @Override
+    public void run(){
+
+    }
+
+   /* @Override
     public void show(){
 
     }
@@ -18,7 +24,7 @@ public class ItemMenu extends Menu {
     @Override
     public void execute(String command){
 
-    }
+    } */
 
     @Override
     public void help(){
