@@ -88,6 +88,20 @@ public class Gsonsaveload<Public> {
         writer.close();
     }
 
+    public static  void saveMainCategory() throws IOException{
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        String path="Resource"+File.separator+"Main Category";
+        String name="Main Category"+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileWriter writer=new FileWriter(file);
+        writer.write(gson.toJson(Controller.getInstance().mainCategory));
+        writer.close();
+    }
+
+
     public static void deleteUser(User user){
         String Username=user.getUsername();
         String path="Resource"+File.separator+"Users";
