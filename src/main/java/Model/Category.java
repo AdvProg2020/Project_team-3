@@ -33,6 +33,10 @@ public class Category {
             attributes.add(attributeKey);
     }
 
+    public ArrayList<Category> getSubCategories() {
+        return subCategories;
+    }
+
     public void addItem(String id){
         if(!allItemsID.contains(id))
             allItemsID.add(id);

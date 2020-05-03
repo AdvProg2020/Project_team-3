@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
@@ -59,11 +60,17 @@ public class ItemAndCategoryController {
     }
 
     public Category getCategoryByName(String categoryName){
+        controller.loadMainCategory();
+        Category category=DFSCategory(controller.mainCategory, categoryName);
+        if(!category.getName().equals(controller.mainCategory.getName())) return category;
+        if(controller.mainCategory.getName().equals(categoryName)) return controller.mainCategory;
+        System.out.println("null category");
         return null;
     }
 
     public boolean searchItemInCategory(String categoryName, String itemId) {
         Category category=getCategoryByName(categoryName);
+        if(category==null) return false;
             if(category.hasItemWithID(itemId)) return true;
         return false;
     }
@@ -160,6 +167,11 @@ public class ItemAndCategoryController {
         Category category=new Category(name);
         category.setParent(getCurrentCategory());
         getCurrentCategory().addSubCategory(category);
+        try {
+            Gsonsaveload.saveMainCategory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Boolean Buy() {
@@ -236,5 +248,19 @@ public class ItemAndCategoryController {
     public boolean currentViewableItemsContainsItem(String itemID){
         return currentViewableItems.contains(getItemById(itemID));
     }
+
+    private static  Category DFSCategory(Category category ,String name){
+        Iterator<Category> iterator=category.getSubCategories().iterator();
+        while(iterator.hasNext()){
+            Category category2=DFSCategory(iterator.next(), name);
+            if(category2.getName().equals(name)){
+                category=category2;
+                break;
+            }
+        }
+        return category;
+    }
+
+
 
 }
