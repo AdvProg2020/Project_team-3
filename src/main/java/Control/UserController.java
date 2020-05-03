@@ -90,7 +90,7 @@ public class UserController {
         }
         Buyer user=new Buyer(money,username,password,name,lastName,email,number);
         try{
-            Gsonsaveload.saveUser(user);} catch (IOException e) {
+            Database.saveUser(user);} catch (IOException e) {
             e.printStackTrace();
         }
         return "Successful: User registered.";
@@ -102,7 +102,7 @@ public class UserController {
         }
         Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);
         try{
-            Gsonsaveload.saveUser(user);
+            Database.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -167,7 +167,7 @@ public class UserController {
         if(user==null){
             return "Error: user doesnt exist";
         }
-        Gsonsaveload.deleteUser(user);
+        Database.deleteUser(user);
             return "Successful:";
     }
 
@@ -188,7 +188,7 @@ public class UserController {
             ((Seller)user).setCompanyName(newValue);
         }
         try{
-            Gsonsaveload.saveUser(user);
+            Database.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -226,5 +226,8 @@ public class UserController {
         return  allUser;
     }
 
+    public String changeTypeTo(String username,String type){
+        return getUserByUsername(username).changeTypeTo(type);
+    }
 
 }

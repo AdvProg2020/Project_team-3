@@ -80,6 +80,12 @@ public class AdminMenu extends UserMenu {
         if(matcher.matches()){
             declineRequestId(matcher.group(1));
         }
+
+        matcher=View.getMatcher("change type (\\S+) (\\S+)",command);
+        if(matcher.matches()){
+            changeType(matcher.group(1),matcher.group(2));
+        }
+
     }
 
     @Override
@@ -89,25 +95,21 @@ public class AdminMenu extends UserMenu {
         System.out.println("manage users");  //done
         System.out.println("delete user [username]"); //done
         System.out.println("view [username]");    //done
-        System.out.println("change type [username] [role]");
+        System.out.println("change type [username] [role]");  //done but need test
         System.out.println("create manager profile"); //done
         System.out.println("manage all products");    //done  but need test
         System.out.println("remove [product id]");    //done but need test
         System.out.println("create discount code");
         System.out.println("view discount code");         //done but need test
         System.out.println("view discount code [id]");
+        System.out.println("view sale [id]");
         System.out.println("edit discount code [id]");
         System.out.println("remove discount code [id]"); //done but need test
         System.out.println("manage requests");           //done but need test
-        System.out.println("details requests [request id]");
-        System.out.println("accept [request id]");
-        System.out.println("decline [request id]");
-        System.out.println("logout");
-    }
-
-
-    private void seeAllRequests(){
-        ///set current menu to request menu
+        System.out.println("details requests [request id]");  //done but request info need to be added
+        System.out.println("accept [request id]");    //done but need test
+        System.out.println("decline [request id]");   //done but need test
+        System.out.println("logout");                //done
     }
 
     private void AddAdminAccount(){
@@ -120,8 +122,6 @@ public class AdminMenu extends UserMenu {
                 System.out.println(sale);
             }
     }
-
-
 
     private void deleteUser(String username){
         System.out.println(UserController.getInstance().deleteUser(username));
@@ -138,19 +138,19 @@ public class AdminMenu extends UserMenu {
         System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
     }
     private void printUsers(){
-        ArrayList<String> allUserNames=Gsonsaveload.printFolderContent("Users");
+        ArrayList<String> allUserNames= Database.printFolderContent("Users");
         printList(allUserNames);
     }
     private void showAllproducts(){
-        ArrayList<String> allItems=Gsonsaveload.printFolderContent("Items");
+        ArrayList<String> allItems= Database.printFolderContent("Items");
         printList(allItems);
     }
     private void showAllRequests(){
-        ArrayList<String> allRequests=Gsonsaveload.printFolderContent("Requests");
+        ArrayList<String> allRequests= Database.printFolderContent("Requests");
         printList(allRequests);
     }
     private void viewAllDiscountCodes(){
-        ArrayList<String> allDiscountCodes=Gsonsaveload.printFolderContent("Discount Codes");
+        ArrayList<String> allDiscountCodes= Database.printFolderContent("Discount Codes");
         printList(allDiscountCodes);
     }
     private void showAllCategories(){
@@ -191,12 +191,12 @@ public class AdminMenu extends UserMenu {
     }
 
     private void manageAllProducts(){
-        ArrayList<String>allItems=Gsonsaveload.printFolderContent("Items");
+        ArrayList<String>allItems= Database.printFolderContent("Items");
         printList(allItems);
     }
 
     private void manageRequests(){
-        ArrayList<String>allRequests=Gsonsaveload.printFolderContent("Requests");
+        ArrayList<String>allRequests= Database.printFolderContent("Requests");
         printList(allRequests);
     }
 
@@ -225,5 +225,7 @@ public class AdminMenu extends UserMenu {
     private void detailRequest(String id){
         System.out.println(RequestController.getInstance().getRequestDetail(id));
     }
-
+    private void changeType(String username,String type){
+        System.out.println(UserController.getInstance().changeTypeTo(username,type));
+    }
 }

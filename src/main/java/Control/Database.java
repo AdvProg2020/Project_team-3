@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Gsonsaveload<Public> {
+public class Database<Public> {
 
 
     public static void saveUser(User user) throws IOException {

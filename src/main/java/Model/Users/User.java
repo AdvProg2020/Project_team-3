@@ -1,5 +1,9 @@
 package Model.Users;
 
+import Control.Database;
+
+import java.io.IOException;
+
 public abstract class User {
 
     private String username;
@@ -77,4 +81,39 @@ public abstract class User {
     }
 
     public abstract String getPersonalInfo();
+
+    public  String changeTypeTo(String type){
+        if(type.equalsIgnoreCase(getType())){
+            return "Error: this account is already an admin";
+        }
+        if(type.equalsIgnoreCase("Buyer")){
+            double money=0;
+            if(this instanceof Seller){
+                Seller seller=(Seller)this;
+                money=seller.getMoney();
+            }
+            Buyer buyer=new Buyer(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
+            Database.deleteUser(this);
+            try { Database.saveUser(buyer); } catch (IOException e) { e.printStackTrace(); }
+            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
+        }
+        if(type.equalsIgnoreCase("Seller")){
+            double money=0;
+            if(this instanceof Buyer){
+                Buyer buyer=(Buyer)this;
+                money=buyer.getMoney();
+            }
+            Seller seller=new Seller(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber(),null);
+            Database.deleteUser(this);
+            try { Database.saveUser(seller); } catch (IOException e) { e.printStackTrace(); }
+            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
+        }
+        if(type.equalsIgnoreCase("Admin")){
+            Admin admin=new Admin(getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
+            Database.deleteUser(this);
+            try { Database.saveUser(admin); } catch (IOException e) { e.printStackTrace(); }
+            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
+        }
+        return "Error: invalid type";
+    }
 }
