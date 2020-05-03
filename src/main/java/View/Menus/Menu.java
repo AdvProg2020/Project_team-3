@@ -186,6 +186,9 @@ public abstract class Menu {
             System.out.println(count+"-"+s);
             count++;
         }
+        if(count==1){
+            System.out.println("empty");
+        }
     }
 
     private void back() {

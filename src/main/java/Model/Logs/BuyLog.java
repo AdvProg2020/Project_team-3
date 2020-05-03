@@ -22,8 +22,7 @@ public class BuyLog {
         this.allItemsID = allItemsName;
         this.sellerName = sellerName;
         BuyerName = buyerName;
-        id=idCount;
-        idCount= Controller.getInstance().addId(idCount);
+        id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize()," ");
     }
 
     public double getSaleAmount() {

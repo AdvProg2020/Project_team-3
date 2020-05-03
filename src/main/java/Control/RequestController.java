@@ -135,9 +135,9 @@ public class RequestController {
         }
     }
     ///after accept or decline
-    public void acceptRequest(String requestID)  {
+    public String acceptRequest(String requestID)  {
         Request accepted=getRequestById(requestID);
-        if(accepted==null) return;
+        if(accepted==null) {return "Error: request doesnt exist";}
             if(accepted instanceof AccountRequest){
                 User user=UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
                 if(user instanceof  Seller) ((Seller) user).Validate();
@@ -175,6 +175,7 @@ public class RequestController {
                 }
             }
             Gsonsaveload.deleteRequest(accepted);
+            return "Successful: request accepted";
     }
     ///after accepting requests
     public void SaleEditing(SaleEdit saleEdit){
@@ -223,13 +224,14 @@ public class RequestController {
         }
     }
 
-    public void declineRequest(String requestID){
+    public String declineRequest(String requestID){
         Request declined=getRequestById(requestID);
         if(declined instanceof AccountRequest){
             Gsonsaveload.deleteUser(((AccountRequest) declined).getUser());
         }
-        if(declined==null) return;
+        if(declined==null){ return "Error: request doesnt exist"; }
         Gsonsaveload.deleteRequest(declined);
+        return "Successful: request declined";
     }
 
     public ArrayList<Request> getAllRequestFromDataBase(){
@@ -258,5 +260,12 @@ public class RequestController {
                     allRequests.add(gson.fromJson(fileContent, SaleRequest.class));}
             }
             return allRequests;
+    }
+    public String getRequestDetail(String id){
+        Request request=getRequestById(id);
+        if(request==null){
+            return "Error: request doesnt exist";
+        }
+        return request.getMessage();
     }
 }

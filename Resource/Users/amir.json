@@ -1,0 +1,17 @@
+{
+  "money": 200.0,
+  "buyLogs": [],
+  "cart": {
+    "username": "amir",
+    "allItemCount": {},
+    "allItemId": []
+  },
+  "allDiscounts": [],
+  "username": "amir",
+  "password": "1234",
+  "name": "amir",
+  "lastName": "mirza",
+  "email": "amir@gmail.com",
+  "number": "09123106856",
+  "type": "Buyer"
+}

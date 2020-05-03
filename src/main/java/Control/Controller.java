@@ -48,7 +48,7 @@ public class Controller {
         return commandNumber >= 0;
     }
 
-    public String addId(String id) {
+   /* public String addId(String id) {
         int index = id.length() - 1;
         while (true) {
             char value = id.charAt(index);
@@ -61,7 +61,7 @@ public class Controller {
                 index--;
             }
         }
-    }
+    } */
 
    public  String getAlphaNumericString(int n,String folderName)
     {

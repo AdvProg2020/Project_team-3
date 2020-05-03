@@ -1,0 +1,16 @@
+{
+  "companyName": "sa",
+  "sellLogs": [],
+  "soldItemsId": [],
+  "allItemsId": [],
+  "allSaleId": [],
+  "valid": false,
+  "money": 200.0,
+  "username": "ali",
+  "password": "1234",
+  "name": "ali",
+  "lastName": "ali",
+  "email": "ali@gmail.com",
+  "number": "09876789231",
+  "type": "Seller"
+}

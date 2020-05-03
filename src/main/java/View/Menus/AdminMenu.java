@@ -52,6 +52,10 @@ public class AdminMenu extends UserMenu {
      if(matcher.matches()){
          deleteUser(matcher.group(1));
      }
+        matcher=View.getMatcher("detail request (\\S+)",command);
+        if(matcher.matches()){
+            detailRequest(matcher.group(1));
+        }
         matcher=View.getMatcher("remove (\\S+)",command);
         if(matcher.matches()){
             deleteItem(matcher.group(1));
@@ -211,11 +215,15 @@ public class AdminMenu extends UserMenu {
     }
 
     private void acceptRequestId(String id){
-        RequestController.getInstance().acceptRequest(id);
+        System.out.println(RequestController.getInstance().acceptRequest(id));
     }
 
     private void declineRequestId(String id){
-        RequestController.getInstance().declineRequest(id);
+        System.out.println(RequestController.getInstance().declineRequest(id));
+    }
+
+    private void detailRequest(String id){
+        System.out.println(RequestController.getInstance().getRequestDetail(id));
     }
 
 }
