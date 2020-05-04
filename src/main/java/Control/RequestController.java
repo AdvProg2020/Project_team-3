@@ -71,7 +71,7 @@ public class RequestController {
         if(!(user instanceof Buyer)) return;
         ((Buyer) user).addDiscount(discountID);
         try {
-            Gsonsaveload.saveUser(user);
+            Database.saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class RequestController {
     public void addUserRequest(String requestID, Seller newUser)  {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         try {
-            Gsonsaveload.saveRequest(newRequest);
+            Database.saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class RequestController {
         newSale.addStatus();
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
         try {
-            Gsonsaveload.saveRequest(newRequest);
+            Database.saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class RequestController {
     public void addItemRequest(String requestId, Item newItem)  {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
         try {
-            Gsonsaveload.saveRequest(newRequest);
+            Database.saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +109,7 @@ public class RequestController {
         newComment.inProcess();
         CommentRequest commentRequest=new CommentRequest(requestId,newComment);
         try {
-            Gsonsaveload.saveRequest(commentRequest);
+            Database.saveRequest(commentRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,7 +120,7 @@ public class RequestController {
         newSale.editStatus();
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
         try {
-            Gsonsaveload.saveRequest(newRequest);
+            Database.saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,33 +129,33 @@ public class RequestController {
     public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue)  {
         ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
         try {
-            Gsonsaveload.saveRequest(newRequest);
+            Database.saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     ///after accept or decline
-    public void acceptRequest(String requestID)  {
+    public String acceptRequest(String requestID)  {
         Request accepted=getRequestById(requestID);
-        if(accepted==null) return;
+        if(accepted==null) {return "Error: request doesnt exist";}
             if(accepted instanceof AccountRequest){
                 User user=UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
                 if(user instanceof  Seller) ((Seller) user).Validate();
                 try {
-                    Gsonsaveload.saveUser(user);
+                    Database.saveUser(user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if(accepted instanceof SaleRequest){
                 try {
                     ((SaleRequest) accepted).getNewSale().acceptStatus();
-                    Gsonsaveload.saveSale(((SaleRequest) accepted).getNewSale());
+                    Database.saveSale(((SaleRequest) accepted).getNewSale());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if(accepted instanceof ItemRequest){
                 try {
-                    Gsonsaveload.saveItem(((ItemRequest) accepted).getNewItem());
+                    Database.saveItem(((ItemRequest) accepted).getNewItem());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -169,12 +169,13 @@ public class RequestController {
                 Item item=ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
                 item.addComment(comment);
                 try {
-                    Gsonsaveload.saveItem(item);
+                    Database.saveItem(item);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            Gsonsaveload.deleteRequest(accepted);
+            Database.deleteRequest(accepted);
+            return "Successful: request accepted";
     }
     ///after accepting requests
     public void SaleEditing(SaleEdit saleEdit){
@@ -190,7 +191,7 @@ public class RequestController {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }
         try {
-            Gsonsaveload.saveSale(sale);
+            Database.saveSale(sale);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -217,19 +218,20 @@ public class RequestController {
             item.setInStock(Double.parseDouble(newFieldValue));
         }
         try {
-            Gsonsaveload.saveItem(item);
+            Database.saveItem(item);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void declineRequest(String requestID){
+    public String declineRequest(String requestID){
         Request declined=getRequestById(requestID);
         if(declined instanceof AccountRequest){
-            Gsonsaveload.deleteUser(((AccountRequest) declined).getUser());
+            Database.deleteUser(((AccountRequest) declined).getUser());
         }
-        if(declined==null) return;
-        Gsonsaveload.deleteRequest(declined);
+        if(declined==null){ return "Error: request doesnt exist"; }
+        Database.deleteRequest(declined);
+        return "Successful: request declined";
     }
 
     public ArrayList<Request> getAllRequestFromDataBase(){
@@ -258,5 +260,12 @@ public class RequestController {
                     allRequests.add(gson.fromJson(fileContent, SaleRequest.class));}
             }
             return allRequests;
+    }
+    public String getRequestDetail(String id){
+        Request request=getRequestById(id);
+        if(request==null){
+            return "Error: request doesnt exist";
+        }
+        return request.getMessage();
     }
 }

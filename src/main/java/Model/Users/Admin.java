@@ -1,6 +1,6 @@
 package Model.Users;
 
-import Control.Gsonsaveload;
+import Control.Database;
 import Control.UserController;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ public class Admin extends User {
     public Admin(String username, String password, String name, String lastName, String email,  String number) {
         super(username, password, name, lastName, email, number,"Admin");
         try {
-            Gsonsaveload.saveUser(this);
+            Database.saveUser(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class Admin extends User {
             return "Error: user exists with this username";
         }
         try {
-            Gsonsaveload.saveUser(new Admin(username,password,name,lastName,email,number));
+            Database.saveUser(new Admin(username,password,name,lastName,email,number));
             return "Successful: User registered";
         } catch (IOException e) {
             return "Error";

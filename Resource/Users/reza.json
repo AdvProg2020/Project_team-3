@@ -1,16 +1,16 @@
 {
-  "companyName": "sdf",
+  "companyName": "we",
   "sellLogs": [],
   "soldItemsId": [],
   "allItemsId": [],
   "allSaleId": [],
-  "valid": true,
-  "money": 354234.0,
+  "valid": false,
+  "money": 231.0,
   "username": "reza",
-  "password": "reza",
+  "password": "1234",
   "name": "reza",
-  "lastName": "reza",
-  "email": "re@gmail.co",
-  "number": "234243",
+  "lastName": "sae",
+  "email": "a@gmail.com",
+  "number": "09878765643",
   "type": "Seller"
 }

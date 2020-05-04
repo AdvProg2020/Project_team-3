@@ -28,7 +28,7 @@ public class ItemAndCategoryController {
         if(item==null){
             return "Error: item doesnt exist";
         }
-        Gsonsaveload.deleteItem(item);
+        Database.deleteItem(item);
         return "Successful:";
     }
 
@@ -168,7 +168,7 @@ public class ItemAndCategoryController {
         category.setParent(getCurrentCategory());
         getCurrentCategory().addSubCategory(category);
         try {
-            Gsonsaveload.saveMainCategory();
+            Database.saveMainCategory();
         } catch (IOException e) {
             e.printStackTrace();
         }

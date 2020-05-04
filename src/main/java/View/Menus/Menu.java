@@ -105,9 +105,12 @@ public abstract class Menu {
             System.out.println(ans);
             return ans.startsWith("Success");
         }else{
+            /*
             ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
             System.out.println(ans);
-            return ans.startsWith("Succ");
+            return ans.startsWith("Succ");*/
+            System.out.println("Permission nadari kallekiri");
+            return false;
         }
 
 
@@ -185,6 +188,9 @@ public abstract class Menu {
         for (String s : stringList) {
             System.out.println(count+"-"+s);
             count++;
+        }
+        if(count==1){
+            System.out.println("empty");
         }
     }
 

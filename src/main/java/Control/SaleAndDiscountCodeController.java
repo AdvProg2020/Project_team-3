@@ -79,7 +79,7 @@ public class SaleAndDiscountCodeController {
         if(id==null){
             return "Error: sale doesnt exist";
         }
-        Gsonsaveload.deleteSale(sale);
+        Database.deleteSale(sale);
            return "Successful";
     }
 
@@ -88,7 +88,7 @@ public class SaleAndDiscountCodeController {
         if(id==null){
             return "Error: discount code doesnt exist";
         }
-        Gsonsaveload.deleteDiscountCode(code);
+        Database.deleteDiscountCode(code);
            return "Successful";
     }
 

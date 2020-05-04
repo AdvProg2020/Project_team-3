@@ -1,7 +1,7 @@
 package Model.Users;
 
-import Model.Logs.BuyLog;
 import Model.Cart;
+import Model.Logs.BuyLog;
 
 import java.util.ArrayList;
 

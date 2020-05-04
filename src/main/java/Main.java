@@ -1,9 +1,9 @@
-import Control.Gsonsaveload;
+import Control.Database;
 import View.Menus.View;
 
 public class Main {
     public static void main (String[] args)  {
-        Gsonsaveload.initiate();
+        Database.initiate();
         View.run();
     }
 }

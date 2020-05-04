@@ -1,7 +1,7 @@
 package Model.Users;
 
-import Model.Sale;
 import Model.Logs.SaleLog;
+import Model.Sale;
 
 import java.util.ArrayList;
 
