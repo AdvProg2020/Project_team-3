@@ -20,9 +20,19 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void execute(String command) {
-    if(command.equals("logout")){
-        logout();
-    }
+        if(command.equals("logout")){
+            logout();
+        }
+        else if(command.equals("products")){
+            View.previousMenu = SellerMenu.getInstance();
+            View.setCurrentMenu(ShopMenu.getInstance());
+        }
+        else if(command.equals("help")){
+            help();
+        }
+        else if(command.equals("back")){
+            View.setCurrentMenu(MainMenu.getInstance());
+        }
     }
 
    /* @Override
@@ -37,7 +47,7 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void help(){
-    System.out.println("logout");
+        System.out.println(View.ANSI_BLUE+"You are in the Seller menu.\nType your command in one of these formats:"+View.ANSI_RESET);
     }
 
     public void viewCompany(){

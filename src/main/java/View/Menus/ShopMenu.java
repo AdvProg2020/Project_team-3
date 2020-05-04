@@ -30,7 +30,31 @@ public class ShopMenu extends Menu {
         else if(command.equals("filtering")){
 
         }
+        else if(command.equals("show available filters")){
+
+        }
+        else if(command.startsWith("filter ")){
+
+        }
+        else if(command.equals("current filters")){
+
+        }
+        else if(command.startsWith("disable filter ")){
+
+        }
         else if(command.equals("sorting")){
+
+        }
+        else if(command.equals("show available sorts")){
+
+        }
+        else if(command.startsWith("sort ")){
+
+        }
+        else if(command.equals("current sort")){
+
+        }
+        else if(command.equals("disable sort")){
 
         }
         else if(command.equals("show products")){
@@ -43,7 +67,7 @@ public class ShopMenu extends Menu {
             help();
         }
         else if(command.equals("back")){
-            View.setCurrentMenu(MainMenu.getInstance());
+            View.setCurrentMenu(View.previousMenu);
         }
         else {
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
@@ -55,7 +79,15 @@ public class ShopMenu extends Menu {
         System.out.println(View.ANSI_YELLOW+"You are in the shop menu.\nType your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("view categories");
         System.out.println("filtering");
+        System.out.println("show available filters");
+        System.out.println("filter [an available filter]");
+        System.out.println("current filters");
+        System.out.println("disable filter [a selected filter]");
         System.out.println("sorting");
+        System.out.println("show available sorts");
+        System.out.println("sort [an available sort]");
+        System.out.println("current sort");
+        System.out.println("disable sort");
         System.out.println("show products");
         System.out.println("show product [product id]");
         System.out.println("back");

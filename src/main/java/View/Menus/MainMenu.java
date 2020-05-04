@@ -24,15 +24,6 @@ public class MainMenu extends Menu {
         execute(command);
     }
 
-  /*  @Override
-    public void show() {
-        System.out.println(View.ANSI_PURPLE + "You are in the main menu." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Logout\n6- Exit");
-        String command = View.read.nextLine();
-        execute(command);
-    }*/
-
-
     public void execute(String command){
         if(command.equals("1")){
             userMenu();

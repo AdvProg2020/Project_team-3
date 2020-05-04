@@ -39,6 +39,10 @@ public class BuyerMenu extends UserMenu {
         else if(command.equals("show products")){
 
         }
+        else if(command.equals("products")){
+            View.previousMenu = BuyerMenu.getInstance();
+            View.setCurrentMenu(ShopMenu.getInstance());
+        }
         else if(command.startsWith("view ")){
 
         }

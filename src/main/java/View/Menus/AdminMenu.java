@@ -21,7 +21,7 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void run() {
-        System.out.println(View.ANSI_CYAN + "You are in the Admin menu." + View.ANSI_RESET);
+        System.out.println(View.ANSI_BLUE + "You are in the Admin menu." + View.ANSI_RESET);
         String command = View.read.nextLine();
         execute(command);
     }
@@ -32,25 +32,29 @@ public class AdminMenu extends UserMenu {
         if (command.equals("logout")) {
             logout();
         }
-        if (command.equals("help")) {
+        else if (command.equals("help")) {
             help();
         }
-        if (command.equals("back")){
+        else if (command.equals("back")){
             View.setCurrentMenu(MainMenu.getInstance());
         }
-        if (command.equals("manage users")) {
+        else if (command.equals("manage users")) {
             printUsers();
         }
-        if (command.equals("view personal info")) {
+        else if (command.equals("view personal info")) {
             viewPersonalInfo();
         }
-        if (command.equals("create manager profile")) {
+        else if (command.equals("create manager profile")) {
             registerAdmin();
         }
-        if (command.equals("manage all prducts")) {
+        else if (command.equals("manage all products")) {
             showAllproducts();
         }
-        if (command.equals("manage requests")) {
+        else if(command.equals("products")){
+            View.previousMenu = AdminMenu.getInstance();
+            View.setCurrentMenu(ShopMenu.getInstance());
+        }
+        else if (command.equals("manage requests")) {
             showAllRequests();
         }
         matcher = View.getMatcher("edit (\\S+)", command);
@@ -99,7 +103,7 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void help() {
-        System.out.println(View.ANSI_CYAN+"You are in the Admin menu.\nType your command in one of these formats:"+View.ANSI_RESET);
+        System.out.println(View.ANSI_BLUE+"You are in the Admin menu.\nType your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("view personal info"); //done
         System.out.println("edit [field]");
         System.out.println("manage users");  //done
