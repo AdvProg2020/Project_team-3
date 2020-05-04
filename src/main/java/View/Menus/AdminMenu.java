@@ -42,7 +42,7 @@ public class AdminMenu extends UserMenu {
             printUsers();
         }
         if (command.equals("view personal info")) {
-            View.setCurrentMenu(ViewPersonalInfo.getInstance());
+            viewPersonalInfo();
         }
         if (command.equals("create manager profile")) {
             registerAdmin();
@@ -52,6 +52,10 @@ public class AdminMenu extends UserMenu {
         }
         if (command.equals("manage requests")) {
             showAllRequests();
+        }
+        matcher = View.getMatcher("edit (\\S+)", command);
+        if (matcher.matches()) {
+            editPersonalInfo(matcher.group(1));
         }
         matcher = View.getMatcher("delete user (\\S+)", command);
         if (matcher.matches()) {
