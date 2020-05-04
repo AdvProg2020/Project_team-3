@@ -19,7 +19,7 @@ public class Item {
     private ArrayList<String> attributesKey;
     private String sellerName;
     private String categoryName;
-    private String buyerUserName;
+    private ArrayList<String>buyerUserName;
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     private boolean isInSale;
@@ -41,7 +41,7 @@ public class Item {
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
         isInSale=false;
-        buyerUserName=" ";
+        buyerUserName=new ArrayList<>();
     }
     //getters
 
@@ -173,11 +173,17 @@ public class Item {
         isInSale = inSale;
     }
 
-    public String getBuyerUserName() {
+    public ArrayList<String> getBuyerUserName() {
         return buyerUserName;
     }
 
-    public void setBuyerUserName(String buyerUserName) {
-        this.buyerUserName = buyerUserName;
+    public void addBuyerUserName(String userName){
+        buyerUserName.add(userName);
     }
+
+    public boolean isBuyerWithUserName(String userName){
+        if(buyerUserName.contains(userName)) return true;
+        return false;
+    }
+
 }

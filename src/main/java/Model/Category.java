@@ -33,6 +33,10 @@ public class Category {
             attributes.add(attributeKey);
     }
 
+    public void setAttributes(ArrayList<String> attributes) {
+        this.attributes = attributes;
+    }
+
     public ArrayList<Category> getSubCategories() {
         return subCategories;
     }
@@ -64,6 +68,10 @@ public class Category {
             if(category.getName().equals(name)) return category;
         }
         return null;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList<String> getAllItemsID() {

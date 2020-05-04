@@ -130,8 +130,10 @@ public class ItemAndCategoryController {
             return;
         }
         Item item=getItemById(itemId);
-        if(controller.currentOnlineUser.getUsername().equals(item.getBuyerUserName())){
+        if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
+            String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
+            RequestController.getInstance().addCommentRequest(requestID,comment);
         }else{
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,false);
             String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
@@ -151,7 +153,7 @@ public class ItemAndCategoryController {
             return;
         }
         Item item=getItemById(itemId);
-        if(item.getBuyerUserName().equals(user.getUsername())){
+        if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Rating rating=new Rating(score,user.getUsername(),itemId);
             item.addRating(rating);
             System.out.println("thanks for your Rating!");
@@ -160,13 +162,14 @@ public class ItemAndCategoryController {
         System.out.println("you did not buy that item and you are not allowed for rating!");
     }
 
-    public void addCategory(String name) {
+    public void addCategory(String name , ArrayList<String>attributes) {
         if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
             return;
         }
         Category category=new Category(name);
         category.setParent(getCurrentCategory());
         getCurrentCategory().addSubCategory(category);
+        category.setAttributes(attributes);
         try {
             Database.saveMainCategory();
         } catch (IOException e) {
@@ -261,6 +264,35 @@ public class ItemAndCategoryController {
         return category;
     }
 
-
+    public void editCategoryName(String lastName , String newName){
+        Category category=getCategoryByName(lastName);
+        category.setName(newName);
+        try {
+            Database.saveMainCategory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /////////////nemidonam che jori bayad attribute ru avaz kard!
+    public void removeCategory(String name){
+        Category category=getCategoryByName(name);
+        if(category==null) {
+            System.out.println("we do not have this category!");
+            return;
+        }
+        ArrayList<String>allRemovedItems=category.getAllItemsID();
+        Item item;
+        for(String id:allRemovedItems){
+                item=getItemById(id);
+                deleteItem(id);
+            }
+        Category parent=category.getParent();
+        parent.removeSubCategory(category);
+        try {
+            Database.saveMainCategory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
