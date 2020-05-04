@@ -262,8 +262,8 @@ public class ItemAndCategoryController {
         return category;
     }
 
-    public void editCategory(){
-
+    public void editCategoryName(String name){
+        
     }
 
     public void removeCategory(String name){
@@ -280,6 +280,11 @@ public class ItemAndCategoryController {
             }
         Category parent=category.getParent();
         parent.removeSubCategory(category);
+        try {
+            Database.saveMainCategory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
