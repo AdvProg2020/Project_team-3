@@ -1,9 +1,6 @@
 package View.Menus;
 
-import Control.Controller;
 import Control.UserController;
-import Model.Users.Seller;
-import Model.Users.User;
 
 import java.util.ArrayList;
 
@@ -112,7 +109,7 @@ public abstract class Menu {
             ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
             System.out.println(ans);
             return ans.startsWith("Succ");*/
-            System.out.println("Permission nadari kallekiri");
+            System.out.println("You cant make a admin account.");
             return false;
         }
 
