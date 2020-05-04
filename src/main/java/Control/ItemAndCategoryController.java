@@ -130,8 +130,10 @@ public class ItemAndCategoryController {
             return;
         }
         Item item=getItemById(itemId);
-        if(controller.currentOnlineUser.getUsername().equals(item.getBuyerUserName())){
+        if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
+            String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
+            RequestController.getInstance().addCommentRequest(requestID,comment);
         }else{
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,false);
             String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
@@ -151,7 +153,7 @@ public class ItemAndCategoryController {
             return;
         }
         Item item=getItemById(itemId);
-        if(item.getBuyerUserName().equals(user.getUsername())){
+        if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Rating rating=new Rating(score,user.getUsername(),itemId);
             item.addRating(rating);
             System.out.println("thanks for your Rating!");
@@ -262,10 +264,16 @@ public class ItemAndCategoryController {
         return category;
     }
 
-    public void editCategoryName(String name){
-        
+    public void editCategoryName(String lastName , String newName){
+        Category category=getCategoryByName(lastName);
+        category.setName(newName);
+        try {
+            Database.saveMainCategory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
+    /////////////nemidonam che jori bayad attribute ru avaz kard!
     public void removeCategory(String name){
         Category category=getCategoryByName(name);
         if(category==null) {

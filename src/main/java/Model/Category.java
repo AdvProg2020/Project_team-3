@@ -70,6 +70,10 @@ public class Category {
         return null;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public ArrayList<String> getAllItemsID() {
         return allItemsID;
     }
