@@ -9,87 +9,93 @@ import java.util.regex.Matcher;
 public class AdminMenu extends UserMenu {
     private static AdminMenu adminMenu;
     private int optionCount = 9;
-    private AdminMenu(){ }
 
-    public static AdminMenu getInstance(){
-        if(adminMenu==null)
+    private AdminMenu() {
+    }
+
+    public static AdminMenu getInstance() {
+        if (adminMenu == null)
             adminMenu = new AdminMenu();
         return adminMenu;
     }
 
     @Override
-    public void run(){
-    System.out.println("you are in the admin menu");
-    String command = View.read.nextLine();
-    execute(command);
+    public void run() {
+        System.out.println(View.ANSI_CYAN + "You are in the Admin menu." + View.ANSI_RESET);
+        String command = View.read.nextLine();
+        execute(command);
     }
 
     @Override
     public void execute(String command) {
         Matcher matcher;
-        if(command.equals("logout")){
+        if (command.equals("logout")) {
             logout();
         }
-     if(command.equals("help")){
-         help();
-     }
-     if(command.equals("manage users")){
-         printUsers();
-     }
-     if(command.equals("view personal info")){
-         viewPersonalInfo();
-     }
-     if(command.equals("create manager profile")){
-         registerAdmin();
-     }
-     if(command.equals("manage all prducts")){
-         showAllproducts();
-     }
-     if(command.equals("manage requests")){
-         showAllRequests();
-     }
-     matcher=View.getMatcher("delete user (\\S+)",command);
-     if(matcher.matches()){
-         deleteUser(matcher.group(1));
-     }
-        matcher=View.getMatcher("detail request (\\S+)",command);
-        if(matcher.matches()){
+        if (command.equals("help")) {
+            help();
+        }
+        if (command.equals("back")){
+            View.setCurrentMenu(MainMenu.getInstance());
+        }
+        if (command.equals("manage users")) {
+            printUsers();
+        }
+        if (command.equals("view personal info")) {
+            View.setCurrentMenu(ViewPersonalInfo.getInstance());
+        }
+        if (command.equals("create manager profile")) {
+            registerAdmin();
+        }
+        if (command.equals("manage all prducts")) {
+            showAllproducts();
+        }
+        if (command.equals("manage requests")) {
+            showAllRequests();
+        }
+        matcher = View.getMatcher("delete user (\\S+)", command);
+        if (matcher.matches()) {
+            deleteUser(matcher.group(1));
+        }
+        matcher = View.getMatcher("detail request (\\S+)", command);
+        if (matcher.matches()) {
             detailRequest(matcher.group(1));
         }
-        matcher=View.getMatcher("remove (\\S+)",command);
-        if(matcher.matches()){
+        matcher = View.getMatcher("remove (\\S+)", command);
+        if (matcher.matches()) {
             deleteItem(matcher.group(1));
         }
 
-        matcher=View.getMatcher("remove discount code (\\S+)",command);
-        if(matcher.matches()){
+        matcher = View.getMatcher("remove discount code (\\S+)", command);
+        if (matcher.matches()) {
             deleteDiscountCode(matcher.group(1));
         }
 
-        matcher=View.getMatcher("view (\\S+)",command);
-        if(matcher.matches()){
-        viewPersonalInfo(matcher.group(1));
+        matcher = View.getMatcher("view (\\S+)", command);
+        if (matcher.matches()) {
+            viewPersonalInfo(matcher.group(1));
         }
 
-        matcher=View.getMatcher("accept (\\S+)",command);
-        if(matcher.matches()){
+        matcher = View.getMatcher("accept (\\S+)", command);
+        if (matcher.matches()) {
             acceptRequestId(matcher.group(1));
         }
 
-        matcher=View.getMatcher("decline (\\S+)",command);
-        if(matcher.matches()){
+        matcher = View.getMatcher("decline (\\S+)", command);
+        if (matcher.matches()) {
             declineRequestId(matcher.group(1));
         }
 
-        matcher=View.getMatcher("change type (\\S+) (\\S+)",command);
-        if(matcher.matches()){
-            changeType(matcher.group(1),matcher.group(2));
+        matcher = View.getMatcher("change type (\\S+) (\\S+)", command);
+        if (matcher.matches()) {
+            changeType(matcher.group(1), matcher.group(2));
         }
 
     }
 
     @Override
-    public void help(){
+    public void help() {
+        System.out.println(View.ANSI_CYAN+"You are in the Admin menu.\nType your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("view personal info"); //done
         System.out.println("edit [field]");
         System.out.println("manage users");  //done
@@ -112,120 +118,126 @@ public class AdminMenu extends UserMenu {
         System.out.println("logout");                //done
     }
 
-    private void AddAdminAccount(){
-       registerAdmin();
+    private void AddAdminAccount() {
+        registerAdmin();
     }
 
-    private void showAllSales(){
-        ArrayList<Sale> allSales= SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
-            for(Sale sale:allSales){
-                System.out.println(sale);
-            }
+    private void showAllSales() {
+        ArrayList<Sale> allSales = SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+        for (Sale sale : allSales) {
+            System.out.println(sale);
+        }
     }
 
-    private void deleteUser(String username){
+    private void deleteUser(String username) {
         System.out.println(UserController.getInstance().deleteUser(username));
     }
 
-    private void deleteItem(String id){
-       System.out.println(ItemAndCategoryController.getInstance().deleteItem(id));
+    private void deleteItem(String id) {
+        System.out.println(ItemAndCategoryController.getInstance().deleteItem(id));
     }
 
-    private void deleteDiscountCode(String id){
-       System.out.println(SaleAndDiscountCodeController.getInstance().deleteDiscountCode(id));
+    private void deleteDiscountCode(String id) {
+        System.out.println(SaleAndDiscountCodeController.getInstance().deleteDiscountCode(id));
     }
-    private void deleteSale(String id){
+
+    private void deleteSale(String id) {
         System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
     }
-    private void printUsers(){
-        ArrayList<String> allUserNames= Database.printFolderContent("Users");
+
+    private void printUsers() {
+        ArrayList<String> allUserNames = Database.printFolderContent("Users");
         printList(allUserNames);
     }
-    private void showAllproducts(){
-        ArrayList<String> allItems= Database.printFolderContent("Items");
+
+    private void showAllproducts() {
+        ArrayList<String> allItems = Database.printFolderContent("Items");
         printList(allItems);
     }
-    private void showAllRequests(){
-        ArrayList<String> allRequests= Database.printFolderContent("Requests");
+
+    private void showAllRequests() {
+        ArrayList<String> allRequests = Database.printFolderContent("Requests");
         printList(allRequests);
     }
-    private void viewAllDiscountCodes(){
-        ArrayList<String> allDiscountCodes= Database.printFolderContent("Discount Codes");
+
+    private void viewAllDiscountCodes() {
+        ArrayList<String> allDiscountCodes = Database.printFolderContent("Discount Codes");
         printList(allDiscountCodes);
     }
-    private void showAllCategories(){
+
+    private void showAllCategories() {
         //set current menu to category menu
     }
 
-    private void addCategory(){
+    private void addCategory() {
 
     }
 
-    private void editCategory(){
+    private void editCategory() {
 
     }
 
-    private void removeCategory(){
+    private void removeCategory() {
 
     }
 
-    private void removeProducts(){
+    private void removeProducts() {
 
     }
 
-    private void createDiscountCode(){
+    private void createDiscountCode() {
 
     }
 
 
-    private void viewDiscountCode(){
+    private void viewDiscountCode() {
 
     }
 
-    private void editDiscountCode(String discountID){
+    private void editDiscountCode(String discountID) {
 
     }
 
-    private void removeDiscountCode(){
+    private void removeDiscountCode() {
 
     }
 
-    private void manageAllProducts(){
-        ArrayList<String>allItems= Database.printFolderContent("Items");
+    private void manageAllProducts() {
+        ArrayList<String> allItems = Database.printFolderContent("Items");
         printList(allItems);
     }
 
-    private void manageRequests(){
-        ArrayList<String>allRequests= Database.printFolderContent("Requests");
+    private void manageRequests() {
+        ArrayList<String> allRequests = Database.printFolderContent("Requests");
         printList(allRequests);
     }
 
-    private void requestDetails(){
+    private void requestDetails() {
 
     }
 
-    private void manageCategories(){
+    private void manageCategories() {
 
     }
 
 
-
-    private void removeProduct(){
+    private void removeProduct() {
 
     }
 
-    private void acceptRequestId(String id){
+    private void acceptRequestId(String id) {
         System.out.println(RequestController.getInstance().acceptRequest(id));
     }
 
-    private void declineRequestId(String id){
+    private void declineRequestId(String id) {
         System.out.println(RequestController.getInstance().declineRequest(id));
     }
 
-    private void detailRequest(String id){
+    private void detailRequest(String id) {
         System.out.println(RequestController.getInstance().getRequestDetail(id));
     }
-    private void changeType(String username,String type){
-        System.out.println(UserController.getInstance().changeTypeTo(username,type));
+
+    private void changeType(String username, String type) {
+        System.out.println(UserController.getInstance().changeTypeTo(username, type));
     }
 }
