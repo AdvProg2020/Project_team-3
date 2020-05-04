@@ -2,6 +2,8 @@ package View.Menus;
 
 import Control.UserController;
 
+import java.util.regex.Matcher;
+
 public class BuyerMenu extends UserMenu {
     private static BuyerMenu buyerMenu;
     private int optionCount = 4;
@@ -22,12 +24,32 @@ public class BuyerMenu extends UserMenu {
 
     @Override
     public void execute(String command) {
+        Matcher matcher;
         if(command.equals("logout")){
             logout();
             View.setCurrentMenu(MainMenu.getInstance());
         }
         if(command.equals("view personal info")){
-            View.setCurrentMenu(ViewPersonalInfo.getInstance());
+            viewPersonalInfo();
+        }
+        matcher = View.getMatcher("edit (\\S+)", command);
+        if (matcher.matches()) {
+            editPersonalInfo(matcher.group(1));
+        }
+        else if(command.equals("show products")){
+
+        }
+        else if(command.startsWith("view ")){
+
+        }
+        else if(command.startsWith("increase ")){
+
+        }
+        else if(command.startsWith("decrease ")){
+
+        }
+        else if(command.equals("show total price")){
+
         }
         else if(command.equals("view cart")){
             viewCart();
@@ -37,6 +59,12 @@ public class BuyerMenu extends UserMenu {
         }
         else if(command.equals("view orders")){
             viewOrders();
+        }
+        else if(command.startsWith("show order ")){
+
+        }
+        else if(command.startsWith("rate ")){
+
         }
         else if(command.equals("view balance")){
             viewBalance();
@@ -61,9 +89,17 @@ public class BuyerMenu extends UserMenu {
     public void help(){
         System.out.println(View.ANSI_BLUE+"You are in the Buyer menu.\nType your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("view personal info");
+        System.out.println("edit [field]");
         System.out.println("view cart");
+        System.out.println("show products");
+        System.out.println("view [productId]");
+        System.out.println("increase [productId]");
+        System.out.println("decrease [productId]");
+        System.out.println("show total price");
         System.out.println("purchase");
         System.out.println("view orders");
+        System.out.println("show order [orderId]");
+        System.out.println("rate [productId] [1-5]");
         System.out.println("view balance");  //done
         System.out.println("view discount codes");
         System.out.println("logout");
