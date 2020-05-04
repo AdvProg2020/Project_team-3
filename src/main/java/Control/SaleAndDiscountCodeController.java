@@ -138,7 +138,31 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
+    public void editDiscountCode(String changedField , String newFieldValue , String discountID){
+        if(isThereDiscountCodeWithId(discountID)==false) return;
+        DiscountCode discountCode=getDiscountCodeById(discountID);
+        if(changedField.equals("Start Time")){
+            discountCode.setStartTime(Integer.parseInt(newFieldValue));
+        }else if(changedField.equals("End Time")){
+            discountCode.setEndTime(Integer.parseInt(newFieldValue));
+        }else if(changedField.equals("off Percentage")){
+        discountCode.setDiscountPercentage(Integer.parseInt(newFieldValue));
+        }
+        try {
+            Database.saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void addDiscountCode(int percentage , int startTime , int endTime){
+        DiscountCode discountCode=new DiscountCode(percentage,startTime,endTime);
+        try {
+            Database.saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

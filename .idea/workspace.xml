@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ViewPersonalInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Control/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Control/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/SaleAndDiscountCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -474,10 +470,10 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="360" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1588330869894" />
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1588492335052">
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1588591518790">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1588492335052" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1588591518790" />
     <state x="759" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588426225000" />
     <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="708" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1029@0.23.1792.1029" timestamp="1588332732933" />

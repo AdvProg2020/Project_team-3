@@ -160,13 +160,14 @@ public class ItemAndCategoryController {
         System.out.println("you did not buy that item and you are not allowed for rating!");
     }
 
-    public void addCategory(String name) {
+    public void addCategory(String name , ArrayList<String>attributes) {
         if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
             return;
         }
         Category category=new Category(name);
         category.setParent(getCurrentCategory());
         getCurrentCategory().addSubCategory(category);
+        category.setAttributes(attributes);
         try {
             Database.saveMainCategory();
         } catch (IOException e) {
@@ -261,6 +262,24 @@ public class ItemAndCategoryController {
         return category;
     }
 
+    public void editCategory(){
 
+    }
+
+    public void removeCategory(String name){
+        Category category=getCategoryByName(name);
+        if(category==null) {
+            System.out.println("we do not have this category!");
+            return;
+        }
+        ArrayList<String>allRemovedItems=category.getAllItemsID();
+        Item item;
+        for(String id:allRemovedItems){
+                item=getItemById(id);
+                deleteItem(id);
+            }
+        Category parent=category.getParent();
+        parent.removeSubCategory(category);
+    }
 
 }

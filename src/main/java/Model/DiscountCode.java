@@ -13,7 +13,7 @@ public class DiscountCode {
     private int startTime;
     private int endTime;
     //constructor
-    public DiscountCode( int discountPercentage, int startTime , int endTime , int allUsages){
+    public DiscountCode( int discountPercentage, int startTime , int endTime){
         this.discountId=Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Discount Codes");
         this.discountPercentage=discountPercentage;
         this.startTime=startTime;

@@ -33,6 +33,10 @@ public class Category {
             attributes.add(attributeKey);
     }
 
+    public void setAttributes(ArrayList<String> attributes) {
+        this.attributes = attributes;
+    }
+
     public ArrayList<Category> getSubCategories() {
         return subCategories;
     }
