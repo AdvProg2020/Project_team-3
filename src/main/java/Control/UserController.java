@@ -113,8 +113,7 @@ public class UserController {
     }
 
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number){
-        Admin.addAdminAccount(username,password,name,lastName,email,number);
-        return "Success:";
+        return  Admin.addAdminAccount(username,password,name,lastName,email,number);
     }
 
     public String login(String username,String password){
