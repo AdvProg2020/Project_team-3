@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
@@ -138,32 +139,44 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
-    public void editDiscountCode(String changedField , String newFieldValue , String discountID){
-        if(isThereDiscountCodeWithId(discountID)==false) return;
+   public String editDiscountCodePercentage(String discountID,int percentage){
         DiscountCode discountCode=getDiscountCodeById(discountID);
-        if(changedField.equals("Start Time")){
-            discountCode.setStartTime(Integer.parseInt(newFieldValue));
-        }else if(changedField.equals("End Time")){
-            discountCode.setEndTime(Integer.parseInt(newFieldValue));
-        }else if(changedField.equals("off Percentage")){
-        discountCode.setDiscountPercentage(Integer.parseInt(newFieldValue));
+        if(discountCode==null) {
+            return "Error: Discount code doesnt exist";
         }
+        discountCode.setDiscountPercentage(percentage);
+        return "Successful:";
+    }
+
+    public String editDiscountCodeEndTime(String discountID,Date endTime){
+        DiscountCode discountCode=getDiscountCodeById(discountID);
+        if(discountCode==null) {
+            return "Error: Discount code doesnt exist";
+        }
+        discountCode.setEndTime(endTime);
+            return "Successful";
+    }
+
+    public String addDiscountCode(int percentage , Date end){
+        if(end.before(new Date())){
+            return "Error: invalid date";
+        }
+        DiscountCode discountCode=new DiscountCode(percentage,end);
         try {
             Database.saveDiscountCode(discountCode);
         } catch (IOException e) {
             e.printStackTrace();
         }
+           return "Successful: discount code created";
     }
 
-    public void addDiscountCode(int percentage , int startTime , int endTime){
-        DiscountCode discountCode=new DiscountCode(percentage,startTime,endTime);
-        try {
-            Database.saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public String printDiscount(String id){
+        DiscountCode discountCode=getDiscountCodeById(id);
+        if(discountCode==null){
+            return "Error: discount code doesnt exist";
         }
+        return discountCode.toString();
     }
-
 
 
 }

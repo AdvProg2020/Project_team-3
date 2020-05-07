@@ -3,6 +3,7 @@ package Model;
 import Control.Controller;
 import Model.Users.User;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class DiscountCode {
@@ -10,13 +11,13 @@ public class DiscountCode {
     private HashMap<String,Integer>allUsers;
     private String discountId;
     private int discountPercentage;
-    private int startTime;
-    private int endTime;
+    private Date startTime;
+    private Date endTime;
     //constructor
-    public DiscountCode( int discountPercentage, int startTime , int endTime){
+    public DiscountCode(int discountPercentage,Date endTime){
         this.discountId=Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Discount Codes");
         this.discountPercentage=discountPercentage;
-        this.startTime=startTime;
+        startTime=new Date();
         this.endTime=endTime;
         this.allUsers=new HashMap<>();
     }
@@ -41,13 +42,6 @@ public class DiscountCode {
         return discountPercentage;
     }
 
-    public int getStartTime() {
-        return startTime;
-    }
-
-    public int getEndTime() {
-        return endTime;
-    }
 
     //setters
     public void setDiscountId(String discountId) {
@@ -56,14 +50,6 @@ public class DiscountCode {
 
     public void setDiscountPercentage(int discountPercentage) {
         this.discountPercentage = discountPercentage;
-    }
-
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
     }
 
     //add user
@@ -75,6 +61,10 @@ public class DiscountCode {
         if(this.allUsers.containsKey(userID)) {
             this.allUsers.put(userID, this.allUsers.get(userID) + 1);
         }
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public String toString(){

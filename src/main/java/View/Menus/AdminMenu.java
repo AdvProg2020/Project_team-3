@@ -4,6 +4,7 @@ import Control.*;
 import Model.Sale;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 
 public class AdminMenu extends UserMenu {
@@ -56,6 +57,10 @@ public class AdminMenu extends UserMenu {
         }
         else if (command.equals("manage requests")) {
             showAllRequests();
+        }else if(command.equals("create discount code")){
+            createDiscountCode();
+        }else if(command.equals("view discount code")){
+            viewAllDiscountCodes();
         }
         matcher = View.getMatcher("edit (\\S+)", command);
         if (matcher.matches()) {
@@ -98,7 +103,10 @@ public class AdminMenu extends UserMenu {
         if (matcher.matches()) {
             changeType(matcher.group(1), matcher.group(2));
         }
-
+        matcher = View.getMatcher("view discount code (\\S+)", command);
+        if (matcher.matches()) {
+            viewDiscountCode(matcher.group(1));
+        }
     }
 
     @Override
@@ -113,9 +121,9 @@ public class AdminMenu extends UserMenu {
         System.out.println("create manager profile"); //done
         System.out.println("manage all products");    //done  but need test
         System.out.println("remove [product id]");    //done but need test
-        System.out.println("create discount code");
+        System.out.println("create discount code");     //done
         System.out.println("view discount code");         //done but need test
-        System.out.println("view discount code [id]");
+        System.out.println("view discount code [id]");   //done
         System.out.println("view sale [id]");
         System.out.println("edit discount code [id]");
         System.out.println("remove discount code [id]"); //done but need test
@@ -194,12 +202,17 @@ public class AdminMenu extends UserMenu {
     }
 
     private void createDiscountCode() {
-
+    int percentage=readNumber(101,"please enter discount percentage:");
+    int day=readNumber(32,"please enter expiration date:");
+    int month=readNumber(13,"please enter expiration month:");
+    int year=readNumber(2025,"please enter expiration year:");
+    Date date=new Date(year-1900,month-1,day);
+    System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,date));
     }
 
 
-    private void viewDiscountCode() {
-
+    private void viewDiscountCode(String id) {
+        System.out.println(SaleAndDiscountCodeController.getInstance().printDiscount(id));
     }
 
     private void editDiscountCode(String discountID) {
