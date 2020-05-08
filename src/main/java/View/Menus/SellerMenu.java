@@ -35,19 +35,25 @@ public class SellerMenu extends UserMenu {
         }
     }
 
-   /* @Override
-    public void show(){
-
-    }
-
-    @Override
-    public void execute(String command){
-
-    } */
-
     @Override
     public void help(){
         System.out.println(View.ANSI_BLUE+"You are in the Seller menu.\nType your command in one of these formats:"+View.ANSI_RESET);
+        System.out.println("view personal info");
+        System.out.println("edit [field]");
+        System.out.println("view company information");
+        System.out.println("view sales history");
+        System.out.println("manage products");
+        System.out.println("view [productId]");
+        System.out.println("view buyers [productId]");
+        System.out.println("edit [productId]");
+        System.out.println("add product");
+        System.out.println("remove product [productId]");
+        System.out.println("show categories");
+        System.out.println("view offs");
+        System.out.println("view [offId]");
+        System.out.println("edit [offId]");
+        System.out.println("add off");
+        System.out.println("view balance");
     }
 
     public void viewCompany(){

@@ -66,14 +66,15 @@ public class Cart {
         return price;
         }
 
-    public ArrayList<String> showCart(){
-        ArrayList<String> itemsId=new ArrayList<>();
+    @Override
+    public String toString(){
+        String cart="";
         int count=0;
         for (String id : allItemId) {
             count=allItemCount.get(id);
-            itemsId.add("item name:"+ItemAndCategoryController.getInstance().getItemById(id).getName()+" item id:"+id+" countt:"+count);
+            cart += ("item name:"+ItemAndCategoryController.getInstance().getItemById(id).getName()+" item id:"+id+" count:"+count+"\n");
         }
-        return  itemsId;
+        return cart;
     }
 
 

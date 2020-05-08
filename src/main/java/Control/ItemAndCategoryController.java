@@ -177,7 +177,7 @@ public class ItemAndCategoryController {
         }
     }
 
-    public Boolean Buy() {
+    public Boolean buy() {
         return false;
     }
 

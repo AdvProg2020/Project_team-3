@@ -1,6 +1,8 @@
 package View.Menus;
 
+import Control.ItemAndCategoryController;
 import Control.UserController;
+import Model.Users.User;
 
 import java.util.regex.Matcher;
 
@@ -37,7 +39,7 @@ public class BuyerMenu extends UserMenu {
             editPersonalInfo(matcher.group(1));
         }
         else if(command.equals("show products")){
-
+            viewCart();
         }
         else if(command.equals("products")){
             View.previousMenu = BuyerMenu.getInstance();
@@ -112,11 +114,12 @@ public class BuyerMenu extends UserMenu {
 
 
     private void viewCart(){
-
+        User user = UserController.getInstance().getCurrentOnlineUser();
+        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().toString());
     }
 
     private void purchase(){
-
+        View.setCurrentMenu(PurchaseMenu.getInstance());
     }
 
     private void viewOrders(){
