@@ -3,19 +3,14 @@ package Control;
 import Model.Cart;
 import Model.Category;
 import Model.Users.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Controller {
     private static Controller controller;
     User currentOnlineUser;
-    Category mainCategory;
     Category currentCategory;
     Cart ShoppingCart=new Cart("");
     int idSize=5;
@@ -78,22 +73,6 @@ public class Controller {
 
     public void setCurrentOnlineUser(User currentOnlineUser) {
         this.currentOnlineUser = currentOnlineUser;
-    }
-
-    public void loadMainCategory(){
-        if(mainCategory==null){
-            String path="Resource"+ File.separator+"Main Category";
-            String name="Main Category"+".json";
-            File file=new File(path+File.separator+name);
-            Gson gson=new GsonBuilder().setPrettyPrinting().create();
-            try {
-                String content=new String(Files.readAllBytes(file.toPath()));
-                mainCategory=gson.fromJson(content , Category.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else return;
     }
 
 

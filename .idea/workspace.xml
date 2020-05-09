@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Category.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +101,7 @@
       <workItem from="1588433246676" duration="3000" />
       <workItem from="1588433299383" duration="723000" />
       <workItem from="1588444783696" duration="1202000" />
+      <workItem from="1589031828591" duration="601000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <created>1586627783149</created>
@@ -491,10 +492,10 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="360" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1588330869894" />
-    <state x="708" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1589013034092">
-      <screen x="0" y="23" width="1792" height="1029" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1589032407193">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1588597807747" />
+    <state x="506" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1280.984@0.0.1280.984" timestamp="1589032407193" />
     <state x="759" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1588426225000" />
     <state x="709" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1586705293249" />
     <state x="708" y="256" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1029@0.23.1792.1029" timestamp="1589013034092" />
