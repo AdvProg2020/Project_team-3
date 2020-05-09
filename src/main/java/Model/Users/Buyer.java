@@ -1,5 +1,6 @@
 package Model.Users;
 
+import Control.SaleAndDiscountCodeController;
 import Model.Cart;
 import Model.Logs.BuyLog;
 
@@ -33,6 +34,14 @@ public class Buyer extends User {
     public ArrayList<BuyLog> getBuyLogs() {
         return buyLogs;
     }
+    public String getBuyLogsString(){
+        String ans = "";
+        for(BuyLog buyLog:buyLogs){
+            ans += buyLog.toString();
+            ans += "\n";
+        }
+        return ans;
+    }
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
@@ -49,7 +58,7 @@ public class Buyer extends User {
     }
 
     public String buy(){
-    if(doesHaveEnoughMoneyToBuyCart()==false){
+    if(!doesHaveEnoughMoneyToBuyCart()){
         return "Error: dont have enough money";
     }
         return "bayad buylog sakhte shavad";
@@ -87,6 +96,15 @@ public class Buyer extends User {
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    public String getDiscountCodes() {
+        String ans = "";
+        for(String id:allDiscounts){
+            ans += SaleAndDiscountCodeController.getInstance().getDiscountCodeById(id).toString();
+            ans += "\n";
+        }
+        return ans;
     }
 
 

@@ -3,22 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Control/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Control/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Control/ItemAndCategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Control/ItemAndCategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

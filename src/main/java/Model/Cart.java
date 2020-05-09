@@ -47,10 +47,12 @@ public class Cart {
            allItemCount.remove(itemId);
            allItemId.remove(itemId);
        }else{
-           allItemCount.replace(itemId,count);
+           int previousCount = allItemCount.get(itemId);
+           allItemCount.replace(itemId,previousCount+count);
        }
            return "Successful";
     }
+
 
     public String getUsername() {
         return username;

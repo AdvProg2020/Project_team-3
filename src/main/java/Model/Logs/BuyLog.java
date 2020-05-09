@@ -25,6 +25,13 @@ public class BuyLog {
         id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize()," ");
     }
 
+    @Override
+    public String toString(){
+        String ans = "Order ID:" + id +"   ";
+        ans += "Total price:" + saleAmount + "   ";
+        return ans;
+    }
+
     public double getSaleAmount() {
         return saleAmount;
     }

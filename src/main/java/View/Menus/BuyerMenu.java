@@ -2,6 +2,8 @@ package View.Menus;
 
 import Control.ItemAndCategoryController;
 import Control.UserController;
+import Model.Cart;
+import Model.Users.Buyer;
 import Model.Users.User;
 
 import java.util.regex.Matcher;
@@ -45,32 +47,29 @@ public class BuyerMenu extends UserMenu {
             View.previousMenu = BuyerMenu.getInstance();
             View.setCurrentMenu(ShopMenu.getInstance());
         }
-        else if(command.startsWith("view ")){
-
-        }
         else if(command.startsWith("increase ")){
-
+            increaseProduct(command);
         }
         else if(command.startsWith("decrease ")){
-
+            decreaseProduct(command);
         }
         else if(command.equals("show total price")){
-
+            showTotalPrice();
         }
         else if(command.equals("view cart")){
             viewCart();
         }
         else if(command.equals("purchase")){
-            purchase();
+            purchase();//
         }
         else if(command.equals("view orders")){
             viewOrders();
         }
         else if(command.startsWith("show order ")){
-
+            //
         }
         else if(command.startsWith("rate ")){
-
+            //
         }
         else if(command.equals("view balance")){
             viewBalance();
@@ -83,6 +82,9 @@ public class BuyerMenu extends UserMenu {
         }
         else if(command.equals("help")){
             help();
+        }
+        else if(command.startsWith("view ")){
+            viewProduct(command);
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
@@ -118,12 +120,19 @@ public class BuyerMenu extends UserMenu {
         System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().toString());
     }
 
+    private void showTotalPrice(){
+        User user = UserController.getInstance().getCurrentOnlineUser();
+        System.out.print(View.ANSI_BLUE+"Total Price:"+View.ANSI_RESET);
+        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().getCartPrice());
+    }
+
     private void purchase(){
         View.setCurrentMenu(PurchaseMenu.getInstance());
     }
 
     private void viewOrders(){
-
+        Buyer buyer = (Buyer)UserController.getInstance().getCurrentOnlineUser();
+        System.out.println(buyer.getBuyLogsString());
     }
 
     private void viewBalance(){
@@ -131,8 +140,30 @@ public class BuyerMenu extends UserMenu {
         System.out.println(View.ANSI_BLUE+UserController.getInstance().currentOnlineUserBalance()+View.ANSI_RESET);
     }
 
-    private void viewDiscountCodes(){
+    private void increaseProduct(String command){
+        if(command.split(" ").length!=2){
+            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
+            return;
+        }
+        String id = command.split(" ")[1];
+        Cart cart = ItemAndCategoryController.getInstance().getCurrentShoppingCart();
+        cart.changeCountBy(id,1);
+        System.out.println("Increased successfully.");
+    }
+    private void decreaseProduct(String command){
+        if(command.split(" ").length!=2){
+            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
+            return;
+        }
+        String id = command.split(" ")[1];
+        Cart cart = ItemAndCategoryController.getInstance().getCurrentShoppingCart();
+        cart.changeCountBy(id,-1);
+        System.out.println("Decreased successfully.");
+    }
 
+    private void viewDiscountCodes(){
+        Buyer buyer = (Buyer)UserController.getInstance().getCurrentOnlineUser();
+        System.out.println(buyer.getDiscountCodes());
     }
 
 

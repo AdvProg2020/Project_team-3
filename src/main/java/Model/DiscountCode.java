@@ -30,6 +30,14 @@ public class DiscountCode {
         return -1;
     }
 
+    @Override
+    public String toString(){
+        String ans = "DiscountCode ID:" + discountId + "   ";
+        ans += discountPercentage +"%   ";
+        ans += "ends in:" + endTime.toString();
+        return ans;
+    }
+
     public HashMap<String, Integer> getAllUsers() {
         return allUsers;
     }
@@ -67,12 +75,6 @@ public class DiscountCode {
         this.endTime = endTime;
     }
 
-    public String toString(){
-        return "ID: "+discountId+"\n"+
-                "discountPercentage: "+discountPercentage+"\n"+
-                "Start Time: "+startTime+"\n"+
-                "End Time: "+endTime+"\n";
-    }
 
 
 
