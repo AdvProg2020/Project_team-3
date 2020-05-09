@@ -88,7 +88,10 @@ public class BuyerMenu extends UserMenu {
             help();
         }
         else if(command.startsWith("view ")){
-            viewProduct(command);
+            matcher=View.getMatcher("view (\\S+)",command);
+            if(matcher.matches()){
+                viewItem(matcher.group(1));
+            }
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);

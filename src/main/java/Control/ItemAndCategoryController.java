@@ -42,6 +42,14 @@ public class ItemAndCategoryController {
             return true;
     }
 
+    public String showCart(){
+        String string=getCurrentShoppingCart().toString();
+        if(string.isEmpty()){
+            return "Cart is empty";
+        }else{
+            return string;
+        }
+    }
     public String addItemToCart(String itemId){
         if(isThereItemWithId(itemId)==false){
             return "Error: invalid id";
@@ -54,9 +62,15 @@ public class ItemAndCategoryController {
             return "Error: invalid id";
         }
         if(count<0){
-        count=getCurrentShoppingCart().getItemCount(itemid)-count;
-         }
+        count=getCurrentShoppingCart().getItemCount(itemid)+count;
+         }else{
+            count+=getCurrentShoppingCart().getItemCount(itemid);
+        }
         return getCurrentShoppingCart().changeCountBy(itemid,count);
+    }
+
+    public double getCartPrice(){
+        return getCurrentShoppingCart().getCartPrice();
     }
 
     public Item getItemById(String id) {
@@ -104,12 +118,14 @@ public class ItemAndCategoryController {
         return allComments;
     }
 
-    public void comment(String text, String itemId){
+    public String  comment(String text, String itemId){
         if(isThereItemWithId(itemId)==false){
-            System.out.println("Error: invalid id");
-            return;
+            return "Error: invalid id";
         }
         Item item=getItemById(itemId);
+        if(controller.currentOnlineUser==null){
+            return "Error: please sign in to comment";
+        }
         if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Comment comment=new Comment(controller.currentOnlineUser.getUsername(), itemId , text ,true);
             String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
@@ -119,7 +135,7 @@ public class ItemAndCategoryController {
             String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
             RequestController.getInstance().addCommentRequest(requestID,comment);
         }
-        System.out.println("your comment was successfully added!!");
+        return"Succesdful: your comment has been added";
     }
 
     public void rate(int score, String itemId) {
@@ -211,7 +227,7 @@ public class ItemAndCategoryController {
     }
 
     public Cart getCurrentShoppingCart() {
-        return controller.currentShoppingCart;
+        return controller.ShoppingCart;
     }
 
 

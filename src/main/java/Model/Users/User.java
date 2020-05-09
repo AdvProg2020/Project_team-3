@@ -18,14 +18,14 @@ public abstract class User {
         return this.password.equals(password);
     }
 
-    public User(String username, String password, String name, String lastName, String email, String number,String type) {
+    public User(String username, String password, String name, String lastName, String email, String number, String type) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.number = number;
-        this.type=type;
+        this.type = type;
     }
 
     public String getType() {
@@ -82,37 +82,49 @@ public abstract class User {
 
     public abstract String getPersonalInfo();
 
-    public  String changeTypeTo(String type){
-        if(type.equalsIgnoreCase(getType())){
+    public String changeTypeTo(String type) {
+        if (type.equalsIgnoreCase(getType())) {
             return "Error: this account is already an admin";
         }
-        if(type.equalsIgnoreCase("Buyer")){
-            double money=0;
-            if(this instanceof Seller){
-                Seller seller=(Seller)this;
-                money=seller.getMoney();
+        if (type.equalsIgnoreCase("Buyer")) {
+            double money = 0;
+            if (this instanceof Seller) {
+                Seller seller = (Seller) this;
+                money = seller.getMoney();
             }
-            Buyer buyer=new Buyer(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
+            Buyer buyer = new Buyer(0, getUsername(), getPassword(), getName(), getLastName(), getEmail(), getNumber());
             Database.getInstance().deleteUser(this);
-            try { Database.getInstance().saveUser(buyer); } catch (IOException e) { e.printStackTrace(); }
-            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
-        }
-        if(type.equalsIgnoreCase("Seller")){
-            double money=0;
-            if(this instanceof Buyer){
-                Buyer buyer=(Buyer)this;
-                money=buyer.getMoney();
+            try {
+                Database.getInstance().saveUser(buyer);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            Seller seller=new Seller(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber(),null);
-            Database.getInstance().deleteUser(this);
-            try { Database.getInstance().saveUser(seller); } catch (IOException e) { e.printStackTrace(); }
-            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
+            return "User " + getUsername() + " type changed from " + getType() + " to " + type;
         }
-        if(type.equalsIgnoreCase("Admin")){
-            Admin admin=new Admin(getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
+        if (type.equalsIgnoreCase("Seller")) {
+            double money = 0;
+            if (this instanceof Buyer) {
+                Buyer buyer = (Buyer) this;
+                money = buyer.getMoney();
+            }
+            Seller seller = new Seller(0, getUsername(), getPassword(), getName(), getLastName(), getEmail(), getNumber(), null);
             Database.getInstance().deleteUser(this);
-            try { Database.getInstance().saveUser(admin); } catch (IOException e) { e.printStackTrace(); }
-            return "User "+getUsername()+" type changed from "+getType()+" to "+type;
+            try {
+                Database.getInstance().saveUser(seller);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "User " + getUsername() + " type changed from " + getType() + " to " + type;
+        }
+        if (type.equalsIgnoreCase("Admin")) {
+            Admin admin = new Admin(getUsername(), getPassword(), getName(), getLastName(), getEmail(), getNumber());
+            Database.getInstance().deleteUser(this);
+            try {
+                Database.getInstance().saveUser(admin);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "User " + getUsername() + " type changed from " + getType() + " to " + type;
         }
         return "Error: invalid type";
     }

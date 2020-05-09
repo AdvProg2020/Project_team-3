@@ -55,6 +55,14 @@ public class Item {
         return price;
     }
 
+    public double getPriceWithSale(){
+        if(sale==null){
+            return price;
+        }else{
+            return price*sale.getOffPercentage()/100;
+        }
+    }
+
     public String getBrand() {
         return brand;
     }

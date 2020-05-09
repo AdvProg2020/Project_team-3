@@ -10,26 +10,29 @@ public class Sale {
     private int startTime;
     private int endTime;
     private int offPercentage;
-    private enum Status{accepted ,addingProcess ,editingProcess};
+
+    private enum Status {accepted, addingProcess, editingProcess}
+
+    ;
     Status status;
 
-    public Sale (int startTime, int endTime, int offPercentage){
+    public Sale(int startTime, int endTime, int offPercentage) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.offPercentage = offPercentage;
-        this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Sales");
+        this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Sales");
     }
 
-    public void acceptStatus(){
-        status=Status.accepted;
+    public void acceptStatus() {
+        status = Status.accepted;
     }
 
-    public void editStatus(){
-        status=Status.editingProcess;
+    public void editStatus() {
+        status = Status.editingProcess;
     }
 
-    public void addStatus(){
-        status=Status.addingProcess;
+    public void addStatus() {
+        status = Status.addingProcess;
     }
 
     public int getEndTime() {
@@ -60,21 +63,21 @@ public class Sale {
         return id;
     }
 
-    public void addItemToSale(String Id){
+    public void addItemToSale(String Id) {
         itemId.add(id);
     }
 
-    public boolean saleHasItemWithID(String id){
-      return false;
+    public boolean saleHasItemWithID(String id) {
+        return false;
     }
 
     @Override
-    public String toString(){
-    return "id: "+getId()+"\n"+
-    "Off Percentage: "+getOffPercentage()+"\n"+
-    "Status: "+status+"\n"+
-     "Start Time: "+getStartTime()+"\n"+
-     "End Time: "+getEndTime()+"\n";
+    public String toString() {
+        return "id: " + getId() + "\n" +
+                "Off Percentage: " + getOffPercentage() + "\n" +
+                "Status: " + status + "\n" +
+                "Start Time: " + getStartTime() + "\n" +
+                "End Time: " + getEndTime() + "\n";
     }
 
 

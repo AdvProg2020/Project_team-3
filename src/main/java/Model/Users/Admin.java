@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Admin extends User {
 
-    public Admin(String username, String password, String name, String lastName, String email,  String number) {
-        super(username, password, name, lastName, email, number,"Admin");
+    public Admin(String username, String password, String name, String lastName, String email, String number) {
+        super(username, password, name, lastName, email, number, "Admin");
         try {
             Database.getInstance().saveUser(this);
         } catch (IOException e) {
@@ -17,22 +17,22 @@ public class Admin extends User {
     }
 
     @Override
-    public  String getPersonalInfo(){
-    String response="";
-    response+="You are an admin.\n";
-    response+="Name: "+getName()+"\n";
-    response+="Surname: "+getLastName()+"\n";
-    response+="Email: "+getEmail()+"\n";
-    response+="Number: "+getNumber()+"\n";
-    return response;
+    public String getPersonalInfo() {
+        String response = "";
+        response += "You are an admin.\n";
+        response += "Name: " + getName() + "\n";
+        response += "Surname: " + getLastName() + "\n";
+        response += "Email: " + getEmail() + "\n";
+        response += "Number: " + getNumber() + "\n";
+        return response;
     }
 
-    public static String addAdminAccount(String username, String password, String name, String lastName, String email,  String number) {
-        if(UserController.getInstance().isThereUserWithUsername(username)){
+    public static String addAdminAccount(String username, String password, String name, String lastName, String email, String number) {
+        if (UserController.getInstance().isThereUserWithUsername(username)) {
             return "Error: user exists with this username";
         }
         try {
-            Database.getInstance().saveUser(new Admin(username,password,name,lastName,email,number));
+            Database.getInstance().saveUser(new Admin(username, password, name, lastName, email, number));
             return "Successful: User registered";
         } catch (IOException e) {
             return "Error";
@@ -40,18 +40,18 @@ public class Admin extends User {
     }
 
     public void deleteUser(String username) {
-      UserController.getInstance().deleteUser(username);
+        UserController.getInstance().deleteUser(username);
     }
 
     public String showCategory(String categoryName) {
-           return "salam";
+        return "salam";
     }
 
-     public void addCategory(String name) {
+    public void addCategory(String name) {
 
     }
 
-    public void changeIsAccepted(){
+    public void changeIsAccepted() {
         //dar inja modir request ha ra accept ya decline mikonad! ArrayList <>allRequest
     }
 

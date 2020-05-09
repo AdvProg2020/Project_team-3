@@ -1,5 +1,6 @@
 package View.Menus;
 
+import Control.ItemAndCategoryController;
 import Control.UserController;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public abstract class Menu {
         System.out.println(ans);
         return ans.startsWith("Success");*/
 
-        if(command.split(" ").length != 2){
+        if (command.split(" ").length != 2) {
             System.out.println(View.ANSI_RED + "Invalid username." + View.ANSI_RESET);
             return false;
         }
@@ -38,21 +39,21 @@ public abstract class Menu {
 
         String ans = UserController.getInstance().login(username, password);
         System.out.println(ans);
-        if(ans.startsWith("Success")){
-            if(UserController.getInstance().returnUserType(username).equals("Admin")){
+        if (ans.startsWith("Success")) {
+            if (UserController.getInstance().returnUserType(username).equals("Admin")) {
                 View.setCurrentMenu(AdminMenu.getInstance());
             }
-            if(UserController.getInstance().returnUserType(username).equals("Buyer")){
+            if (UserController.getInstance().returnUserType(username).equals("Buyer")) {
                 View.setCurrentMenu(BuyerMenu.getInstance());
             }
-            if(UserController.getInstance().returnUserType(username).equals("Seller")){
+            if (UserController.getInstance().returnUserType(username).equals("Seller")) {
                 View.setCurrentMenu(SellerMenu.getInstance());
             }
         }
         return ans.startsWith("Success");
     }
 
-    public boolean registerAdmin(){
+    public boolean registerAdmin() {
         String username = enterUsername();
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
@@ -62,24 +63,23 @@ public abstract class Menu {
         String lastName = View.read.nextLine();
         String email = enterEmail();
         String number = enterNumber();
-        String ans=UserController.getInstance().registerAdmin(username,password,number,lastName,email,number);
+        String ans = UserController.getInstance().registerAdmin(username, password, number, lastName, email, number);
         System.out.println(ans);
         return ans.startsWith("Success");
     }
 
     public boolean register(String command) {
-        if(command.split(" ").length != 4){
+        if (command.split(" ").length != 4) {
             System.out.println(View.ANSI_RED + "Invalid username/account type." + View.ANSI_RESET);
             return false;
         }
         String key = command.split(" ")[2];
-        if(!key.equals("buyer") && !key.equals("seller") && !key.equals("admin")){
+        if (!key.equals("buyer") && !key.equals("seller") && !key.equals("admin")) {
             System.out.println(View.ANSI_RED + "Invalid account type." + View.ANSI_RESET);
             return false;
         }
 
         String username = command.split(" ")[3];
-
 
 
         System.out.print("Enter your password:");
@@ -98,13 +98,13 @@ public abstract class Menu {
             ans = UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number);
             System.out.println(ans);
             return ans.startsWith("Success");
-        } else if(key.equals("seller")) {
+        } else if (key.equals("seller")) {
             System.out.print("Enter your company name:");
             String companyName = View.read.nextLine();
             ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
             System.out.println(ans);
             return ans.startsWith("Success");
-        }else{
+        } else {
             /*
             ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
             System.out.println(ans);
@@ -126,7 +126,7 @@ public abstract class Menu {
         return username;
     }
 
-     String enterEmail() {
+    String enterEmail() {
         System.out.print("Enter a valid email:");
         String email = View.read.nextLine();
         if (!UserController.getInstance().isValidEmail(email)) {
@@ -146,12 +146,12 @@ public abstract class Menu {
         return UserController.getInstance().validateMoney(money);
     }
 
-    public String readName(String message){
+    public String readName(String message) {
         System.out.println(message);
         return View.read.nextLine();
     }
 
-     String enterNumber() {
+    String enterNumber() {
         System.out.print("Enter a valid phone number:");
         String number = View.read.nextLine();
         if (!UserController.getInstance().isValidPhoneNumber(number)) {
@@ -161,19 +161,19 @@ public abstract class Menu {
         return number;
     }
 
-    public int readNumber(int limit,String message){   //if limit is -1 there is no limit for int number
-    if(!message.isEmpty())
-      System.out.println(message);
-    String number=View.read.nextLine();
-        int num=Integer.parseInt(number);
-        if(((num>limit)||(num<0))&&(limit!=-1)){
+    public int readNumber(int limit, String message) {   //if limit is -1 there is no limit for int number
+        if (!message.isEmpty())
+            System.out.println(message);
+        String number = View.read.nextLine();
+        int num = Integer.parseInt(number);
+        if (((num > limit) || (num < 0)) && (limit != -1)) {
             System.out.println("Invalid please try again");
-            return readNumber(limit,"");
+            return readNumber(limit, "");
         }
         return num;
     }
 
-    public double readDoubleNumber(String message){
+    public double readDoubleNumber(String message) {
         System.out.println(message);
         return View.read.nextDouble();
     }
@@ -183,27 +183,24 @@ public abstract class Menu {
         View.setCurrentMenu(MainMenu.getInstance());
     }
 
-    public void printList(ArrayList<String> stringList){
-        int count=1;
+    public void printList(ArrayList<String> stringList) {
+        int count = 1;
         for (String s : stringList) {
-            System.out.println(count+"-"+s);
+            System.out.println(count + "-" + s);
             count++;
         }
-        if(count==1){
+        if (count == 1) {
             System.out.println("empty");
         }
     }
 
-    public void viewProduct(String command){
-        if(command.split(" ").length!=2){
-            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
-            return;
+    public void viewItem(String id){
+        if (ItemAndCategoryController.getInstance().isThereItemWithId(id) == false) {
+            System.out.println("Error: invalid id");
         }
-        String id = command.split(" ")[1];
-        ItemMenu.getInstance().setItemID(id);
         View.setCurrentMenu(ItemMenu.getInstance());
+        ItemMenu.getInstance().setItemID(id);
     }
-
 
     private void back() {
 

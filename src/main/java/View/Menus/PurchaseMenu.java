@@ -1,6 +1,6 @@
 package View.Menus;
 
-public class PurchaseMenu extends Menu{
+public class PurchaseMenu extends Menu {
     private static PurchaseMenu purchaseMenu;
 
     private PurchaseMenu() {
@@ -12,7 +12,12 @@ public class PurchaseMenu extends Menu{
         return purchaseMenu;
     }
 
-    public void run(){}
-    public void execute(String command){}
-    public void help(){}
+    public void run() {
+    }
+
+    public void execute(String command) {
+    }
+
+    public void help() {
+    }
 }

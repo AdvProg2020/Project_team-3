@@ -17,7 +17,7 @@ public class Controller {
     User currentOnlineUser;
     Category mainCategory;
     Category currentCategory;
-    Cart currentShoppingCart;
+    Cart ShoppingCart=new Cart("");
     int idSize=5;
 
     private Controller() {
@@ -30,7 +30,7 @@ public class Controller {
     }
 
     public Cart getCurrentShoppingCart() {
-        return currentShoppingCart;
+        return ShoppingCart;
     }
 
     public int getIdSize() {

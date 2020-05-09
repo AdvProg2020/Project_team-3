@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class View {
     static Scanner read = new Scanner(System.in);  //package access
     private static boolean programRunning = true;
-    private static Menu currentMenu=MainMenu.getInstance();
+    private static Menu currentMenu = MainMenu.getInstance();
     static Menu previousMenu;
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -21,9 +21,8 @@ public class View {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void run() {
-        System.out.println(ANSI_WHITE+"Team 3 MVC Shop Project, Phase 1 ..."+ANSI_RESET);
-       // currentMenu=ItemMenu.getInstance();
-        while(programRunning){
+        System.out.println(ANSI_WHITE + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
+        while (programRunning) {
             currentMenu.run();
         }
     }
@@ -33,16 +32,16 @@ public class View {
     }
 
     public static void setCurrentMenu(Menu menu) {
-       currentMenu=menu;
+        currentMenu = menu;
     }
 
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
 
-    public static Matcher getMatcher(String regex,String input){
-        Pattern pattern=Pattern.compile(regex);
-        Matcher matcher=pattern.matcher(input);
+    public static Matcher getMatcher(String regex, String input) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
         return matcher;
     }
 }

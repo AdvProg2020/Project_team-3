@@ -8,85 +8,81 @@ import Model.Users.User;
 public abstract class UserMenu extends Menu {
 
     @Override
-    public void run(){
+    public void run() {
 
     }
+
     @Override
-    public void help(){
+    public void help() {
 
     }
 
-    public void viewPersonalInfo(String username){
+    public void viewPersonalInfo(String username) {
         System.out.println(UserController.getInstance().viewPersonalInfo(username));
     }
 
-    public void viewPersonalInfo(){
+    public void viewPersonalInfo() {
         System.out.print(UserController.getInstance().viewPersonalInfo(Controller.getInstance().getCurrentOnlineUser().getUsername()));
     }
 
-    public void editPersonalInfo(String field){
+    public void editPersonalInfo(String field) {
         String username = UserController.getInstance().getCurrentOnlineUser().getUsername();
         User user = UserController.getInstance().getUserByUsername(username);
 
-        if(field.equalsIgnoreCase("Name")){
+        if (field.equalsIgnoreCase("Name")) {
             editName(username);
-        }
-        else if(field.equalsIgnoreCase("Surname")){
+        } else if (field.equalsIgnoreCase("Surname")) {
             editLastName(username);
-        }
-        else if(field.equalsIgnoreCase("Email")){
+        } else if (field.equalsIgnoreCase("Email")) {
             editEmail(username);
-        }
-        else if(field.equalsIgnoreCase("Number")){
+        } else if (field.equalsIgnoreCase("Number")) {
             editNumber(username);
-        }
-        else if(field.equalsIgnoreCase("Company") && user instanceof Seller){
+        } else if (field.equalsIgnoreCase("Company") && user instanceof Seller) {
             editCompanyName(username);
-        }
-        else if(field.equalsIgnoreCase("Password")){
+        } else if (field.equalsIgnoreCase("Password")) {
             editPassword(username);
-        }
-        else{
-            System.out.println(View.ANSI_RED+"You cannot edit that field or it does not exist."+View.ANSI_RESET);
+        } else {
+            System.out.println(View.ANSI_RED + "You cannot edit that field or it does not exist." + View.ANSI_RESET);
         }
     }
-    public void editPassword(String username){
+
+    public void editPassword(String username) {
         System.out.print("Enter your new password:");
         String name = View.read.nextLine();
-        UserController.getInstance().editPersonalInfo(username,"Password",name);
+        UserController.getInstance().editPersonalInfo(username, "Password", name);
         System.out.println("Password edited successfully.");
     }
 
-    public void editName(String username){
+    public void editName(String username) {
         System.out.print("Enter your new name:");
         String name = View.read.nextLine();
-        UserController.getInstance().editPersonalInfo(username,"Name",name);
+        UserController.getInstance().editPersonalInfo(username, "Name", name);
         System.out.println("Name edited successfully.");
     }
 
-    public void editLastName(String username){
+    public void editLastName(String username) {
         System.out.print("Enter your new surname:");
         String surname = View.read.nextLine();
-        UserController.getInstance().editPersonalInfo(username,"Surname",surname);
+        UserController.getInstance().editPersonalInfo(username, "Surname", surname);
         System.out.println("Surname edited successfully.");
     }
 
-    public void editEmail(String username){
+    public void editEmail(String username) {
         String email = enterEmail();
-        UserController.getInstance().editPersonalInfo(username,"Email",email);
+        UserController.getInstance().editPersonalInfo(username, "Email", email);
         System.out.println("Email edited successfully.");
     }
 
-    public void editNumber(String username){
+    public void editNumber(String username) {
         String number = enterNumber();
-        UserController.getInstance().editPersonalInfo(username,"Number",number);
+        UserController.getInstance().editPersonalInfo(username, "Number", number);
         System.out.println("Number edited successfully.");
     }
 
-    public void editCompanyName(String username){
+    public void editCompanyName(String username) {
         System.out.print("Enter your new company name:");
         String name = View.read.nextLine();
-        UserController.getInstance().editPersonalInfo(username,"CompanyName",name);
+        UserController.getInstance().editPersonalInfo(username, "CompanyName", name);
         System.out.println("Company name edited successfully.");
     }
 
