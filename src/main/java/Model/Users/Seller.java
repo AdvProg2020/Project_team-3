@@ -1,5 +1,6 @@
 package Model.Users;
 
+import Control.ItemAndCategoryController;
 import Model.Logs.SaleLog;
 import Model.Sale;
 
@@ -93,11 +94,6 @@ public class Seller extends User {
 
     }
 
-
-    public String showAllSale() {
-        return "hello";
-    }
-
     public String printItems() {
         return "hello";
     }
@@ -135,5 +131,21 @@ public class Seller extends User {
         return valid;
     }
 
+    public String getSaleLogsString(){
+        String ans = "";
+        for(SaleLog saleLog:sellLogs){
+            ans += saleLog.toString();
+            ans += "\n";
+        }
+        return ans;
+    }
 
+    public String getAllItemsString(){
+        String ans="";
+        for(String id:allItemsId){
+            ans+= ItemAndCategoryController.getInstance().getItemById(id).toSimpleString();
+            ans+="\n";
+        }
+        return ans;
+    }
 }

@@ -231,4 +231,9 @@ public class Item {
        string+="\nRating= "+getRating();
        return string;
     }
+
+    public String toSimpleString(){
+        String ans="ID:"+id+"   Name"+name+"   Price:"+price;
+        return ans;
+    }
 }

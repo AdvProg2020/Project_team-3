@@ -13,7 +13,7 @@ public class SaleLog {
     private double saleAmount;
     private ArrayList<String> allItemsID;
     private String sellerName;
-    private String BuyerName;
+    private String buyerName;
     private String deliveryState;
     private static String idCount="00000000";
     public SaleLog(int time,double decreasedPrice ,double saleAmount, ArrayList<String> allItemsName, String sellerName, String buyerName) {
@@ -21,7 +21,7 @@ public class SaleLog {
         this.saleAmount = saleAmount;
         this.allItemsID = allItemsName;
         this.sellerName = sellerName;
-        BuyerName = buyerName;
+        buyerName = buyerName;
         id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize()," ");
         this.decreasedPrice=decreasedPrice;
     }
@@ -63,7 +63,7 @@ public class SaleLog {
     }
 
     public String getBuyerName() {
-        return BuyerName;
+        return buyerName;
     }
 
     public String getDeliveryState() {
@@ -76,6 +76,18 @@ public class SaleLog {
 
     public static String getIdCount() {
         return idCount;
+    }
+
+    @Override
+    public String toString(){
+        String ans = "Sale ID:" + id +"   ";
+        ans += "Total price:" + saleAmount + "   ";
+        ans += "\nCustomer's name:"+ buyerName + "\nItems:\n";
+        for(String id:allItemsID){
+            ans+="ID:" + id + ItemAndCategoryController.getInstance().getItemById(id).getPrice();
+            ans += "\n";
+        }
+        return ans;
     }
 }
 

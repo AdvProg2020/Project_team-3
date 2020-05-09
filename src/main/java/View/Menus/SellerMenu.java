@@ -1,5 +1,10 @@
 package View.Menus;
 
+import Control.Controller;
+import Model.Users.Seller;
+
+import java.util.regex.Matcher;
+
 public class SellerMenu extends UserMenu {
     private static SellerMenu sellerMenu;
     private int optionCount = 6;
@@ -20,6 +25,40 @@ public class SellerMenu extends UserMenu {
 
     @Override
     public void execute(String command) {
+        Matcher matcher;
+        if(command.equals("view personal info")){
+            viewPersonalInfo();
+        }
+        matcher = View.getMatcher("edit (\\S+)", command);
+        if (matcher.matches()) {
+            editPersonalInfo(matcher.group(1));
+        }
+        if(command.equals("view company information")){
+            viewCompany();
+        }
+        if(command.equals("view sales history")){
+            viewSalesHistory();
+        }
+        if(command.equals("manage products")){
+            manageProducts();
+        }
+        //3 ta banafsh
+        if(command.equals("add product")){
+            addItem();
+        }
+        if(command.equals("remove product")){
+            removeProduct();
+        }
+        if(command.equals("show categories")){
+
+        }
+        if(command.equals("view offs")){
+
+        }
+        //3 ta banafsh
+        if(command.equals("view balance")){
+            viewBalance();
+        }
         if(command.equals("logout")){
             logout();
         }
@@ -61,25 +100,18 @@ public class SellerMenu extends UserMenu {
     }
 
     public void viewCompany(){
-
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        System.out.println("Your current company is:"+seller.getCompanyName());
     }
-
-    public void showMyItems(){
-    //set current menu to seller item menu
-    }
-
-
 
     public void viewSalesHistory(){
-
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        System.out.println(seller.getSaleLogsString());
     }
 
     public void manageProducts(){
-
-    }
-
-    public void viewProduct(){
-
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        System.out.println(seller.getAllItemsString());
     }
 
     public void viewBuyers(){
@@ -91,12 +123,11 @@ public class SellerMenu extends UserMenu {
     }
 
     public void addItem(){
-    String Name=readName("Please enter item Name");
-    String company=readName("Please enter your Brand name");
-    String description=readName("Please enter your item description");
-    double price=readDoubleNumber("please enter item price");
-    int inStock=readNumber(-1,"how many of this item do you wish to sell?");
-
+        String Name=readName("Please enter item Name");
+        String company=readName("Please enter your Brand name");
+        String description=readName("Please enter your item description");
+        double price=readDoubleNumber("please enter item price");
+        int inStock=readNumber(-1,"how many of this item do you wish to sell?");
     }
 
     public void removeProduct(){

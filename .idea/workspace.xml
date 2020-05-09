@@ -2,51 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Sale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Control/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Control/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Control/ItemAndCategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Control/ItemAndCategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Comment$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Comment$Status.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Comment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/DiscountCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/DiscountCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Sale$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Sale$Status.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Sale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Sale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Users/Buyer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Users/Buyer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Users/Seller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Users/Seller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Users/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/BuyerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/BuyerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/DiscountsMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/DiscountsMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/LoginRegisterMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/LoginRegisterMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/PurchaseMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/PurchaseMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ShopMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/UserMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/UserMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
