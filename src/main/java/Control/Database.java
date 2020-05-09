@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Category;
 import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.Request;
@@ -96,16 +97,16 @@ public class Database<Public> {
         writer.close();
     }
 
-    public   void saveMainCategory() throws IOException{
+    public   void saveCategory(Category category) throws IOException{
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String path="Resource"+File.separator+"Main Category";
-        String name="Main Category"+".json";
+        String path="Resource"+File.separator+"Category";
+        String name=category.getName()+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
             file.createNewFile();
         }
         FileWriter writer=new FileWriter(file);
-        writer.write(gson.toJson(Controller.getInstance().mainCategory));
+        writer.write(gson.toJson(category));
         writer.close();
     }
 
@@ -134,6 +135,15 @@ public class Database<Public> {
         file.delete();
     }
 
+
+    public void deleteCategory(Category category){
+        String categoryName=category.getName();
+        String path="Resource"+File.separator+"Category";
+        String name=categoryName+".json";
+        File file=new File(path+File.separator+name);
+        file.delete();
+    }
+
     public  void deleteRequest(Request request){
         String id=request.getRequestId();
         String path="Resource"+File.separator+"Requests";
@@ -155,11 +165,11 @@ public class Database<Public> {
         if(!file.exists()){
             file.mkdir();
         }
-         file=new File("Resource"+File.separator+"Users");
+        file=new File("Resource"+File.separator+"Users");
         if(!file.exists()){
             file.mkdir();
         }
-         file=new File("Resource"+File.separator+"Items");
+        file=new File("Resource"+File.separator+"Items");
         if(!file.exists()){
             file.mkdir();
         }
@@ -171,7 +181,7 @@ public class Database<Public> {
         if(!file.exists()){
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Main Category");
+        file=new File("Resource"+File.separator+"Category");
         if(!file.exists()){
             file.mkdir();
         }
@@ -180,6 +190,7 @@ public class Database<Public> {
             file.mkdir();
         }
         Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
+        ItemAndCategoryController.getInstance().loadMainCategory();
     }
 
     public  ArrayList<String> printFolderContent(String folderName){

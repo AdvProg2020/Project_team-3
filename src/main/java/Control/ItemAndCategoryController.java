@@ -91,11 +91,17 @@ public class ItemAndCategoryController {
     }
 
     public Category getCategoryByName(String categoryName){
-        controller.loadMainCategory();
-        Category category=DFSCategory(controller.mainCategory, categoryName);
-        if(!category.getName().equals(controller.mainCategory.getName())) return category;
-        if(controller.mainCategory.getName().equals(categoryName)) return controller.mainCategory;
-        System.out.println("null category");
+        String path="Resource"+File.separator+"Category";
+        String name=categoryName+".json";
+        File file=new File(path+File.separator+name);
+        if(!file.exists()) return  null;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        try {
+            String content=new String(Files.readAllBytes(file.toPath()));
+            return gson.fromJson(content , Category.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -166,16 +172,18 @@ public class ItemAndCategoryController {
         return getItemById(itemId).showAttributes();
     }
 
+
     public void addCategory(String name , ArrayList<String>attributes) {
         if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
             return;
         }
         Category category=new Category(name);
-        category.setParent(getCurrentCategory());
-        getCurrentCategory().addSubCategory(category);
+        category.setParent(getCurrentCategory().getName());
+        getCurrentCategory().addSubCategory(category.getName());
         category.setAttributes(attributes);
         try {
-            Database.getInstance().saveMainCategory();
+            Database.getInstance().saveCategory(getCurrentCategory());
+            Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -231,6 +239,12 @@ public class ItemAndCategoryController {
     }
 
 
+
+    public boolean currentViewableItemsContainsItem(String itemID){
+        return currentViewableItems.contains(getItemById(itemID));
+    }
+
+
     public ArrayList<Item> getAllItemFromDataBase(){
         String path="Resource"+File.separator+"Items";
         File file=new File(path);
@@ -238,38 +252,36 @@ public class ItemAndCategoryController {
         String fileContent = null;
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         ArrayList<Item> allItems=new ArrayList<>();
-            for(File file1:allFiles){
-                try {
-                    fileContent=new String(Files.readAllBytes(file1.toPath()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            allItems.add(gson.fromJson(fileContent , Item.class));
+        for(File file1:allFiles){
+            try {
+                fileContent=new String(Files.readAllBytes(file1.toPath()));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            allItems.add(gson.fromJson(fileContent , Item.class));
+        }
         return  allItems;
     }
 
-    public boolean currentViewableItemsContainsItem(String itemID){
-        return currentViewableItems.contains(getItemById(itemID));
-    }
 
-    private static  Category DFSCategory(Category category ,String name){
-        Iterator<Category> iterator=category.getSubCategories().iterator();
-        while(iterator.hasNext()){
-            Category category2=DFSCategory(iterator.next(), name);
-            if(category2.getName().equals(name)){
-                category=category2;
-                break;
-            }
+
+    private static  void DFSCategory(Category category , ArrayList<Category> removed){
+        removed.add(category);
+        for(String id:category.getAllItemsID()){
+            Item item=getInstance().getItemById(id);
+            Database.getInstance().deleteItem(item);
         }
-        return category;
+        Iterator<String> iterator=category.getSubCategories().iterator();
+        while(iterator.hasNext()){
+            DFSCategory(getInstance().getCategoryByName(iterator.next()), removed);
+        }
     }
 
     public void editCategoryName(String lastName , String newName){
         Category category=getCategoryByName(lastName);
         category.setName(newName);
         try {
-            Database.getInstance().saveMainCategory();
+            Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -277,23 +289,29 @@ public class ItemAndCategoryController {
     /////////////nemidonam che jori bayad attribute ru avaz kard!
     public void removeCategory(String name){
         Category category=getCategoryByName(name);
-        if(category==null) {
-            System.out.println("we do not have this category!");
-            return;
+        ArrayList<Category>removed=new ArrayList<>();
+        DFSCategory(category,removed);
+        for(Category category1:removed){
+            Database.getInstance().deleteCategory(category1);
         }
-        ArrayList<String>allRemovedItems=category.getAllItemsID();
-        Item item;
-        for(String id:allRemovedItems){
-                item=getItemById(id);
-                deleteItem(id);
-            }
-        Category parent=category.getParent();
-        parent.removeSubCategory(category);
+    }
+
+    public ArrayList<Item> getInSaleItems(){
+        ArrayList<Item> allItems=getInstance().getAllItemFromDataBase();
+        for(Item item:allItems){
+            if(item.isInSale()==false) allItems.remove(item);
+        }
+        return  allItems;
+    }
+
+    public void loadMainCategory(){
+        Category category=new Category("Main");
         try {
-            Database.getInstance().saveMainCategory();
+            Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        controller.currentCategory=category;
     }
 
 }
