@@ -65,8 +65,6 @@ public class AdminMenu extends UserMenu {
             createDiscountCode();
         }else if(command.equals("view discount code")){
             viewAllDiscountCodes();
-        }else if(command.equals("back")){
-            back();
         }
 
         matcher = View.getMatcher("edit discount code (\\S+)", command);

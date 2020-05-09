@@ -42,7 +42,18 @@ public class SellerMenu extends UserMenu {
         if(command.equals("manage products")){
             manageProducts();
         }
-        //3 ta banafsh
+        if(command.startsWith("view ")){
+            matcher=View.getMatcher("view (\\S+)",command);
+            if(matcher.matches()){
+                viewItem(matcher.group(1));
+            }
+        }
+        if(command.startsWith("view buyers ")){
+            viewBuyers(command);
+        }
+        if(command.startsWith("edit product ")){
+            editProduct();
+        }
         if(command.equals("add product")){
             addItem();
         }
@@ -50,12 +61,20 @@ public class SellerMenu extends UserMenu {
             removeProduct();
         }
         if(command.equals("show categories")){
-
+            View.setCurrentMenu(ShopMenu.getInstance());
         }
         if(command.equals("view offs")){
-
+            viewAllOffs();
         }
-        //3 ta banafsh
+        if(command.startsWith("view off ")){
+            viewOff(command);
+        }
+        if(command.startsWith("edit off ")){
+            editSale();
+        }
+        if(command.equals("add off")){
+            addSale();
+        }
         if(command.equals("view balance")){
             viewBalance();
         }
@@ -88,13 +107,13 @@ public class SellerMenu extends UserMenu {
         System.out.println("manage products");
         System.out.println("view [productId]");
         System.out.println("view buyers [productId]");
-        System.out.println("edit [productId]");
+        System.out.println("edit product [productId]");
         System.out.println("add product");
         System.out.println("remove product [productId]");
         System.out.println("show categories");
         System.out.println("view offs");
-        System.out.println("view [offId]");
-        System.out.println("edit [offId]");
+        System.out.println("view off [offId]");
+        System.out.println("edit off [offId]");
         System.out.println("add off");
         System.out.println("view balance");
     }
@@ -114,7 +133,7 @@ public class SellerMenu extends UserMenu {
         System.out.println(seller.getAllItemsString());
     }
 
-    public void viewBuyers(){
+    public void viewBuyers(String command){
 
     }
 
@@ -138,7 +157,11 @@ public class SellerMenu extends UserMenu {
 
     }
 
-    public void viewSales(){
+    public void viewOff(String command){
+
+    }
+
+    private void viewAllOffs(){
 
     }
 
