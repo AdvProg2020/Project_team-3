@@ -23,6 +23,10 @@ public class SellerMenu extends UserMenu {
         if(command.equals("logout")){
             logout();
         }
+        if(command.equals("offs")){
+            View.previousMenu = SellerMenu.getInstance();
+            View.setCurrentMenu(DiscountsMenu.getInstance());
+        }
         else if(command.equals("products")){
             View.previousMenu = SellerMenu.getInstance();
             View.setCurrentMenu(ShopMenu.getInstance());

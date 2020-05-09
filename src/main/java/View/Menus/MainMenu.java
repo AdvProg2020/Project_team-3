@@ -30,6 +30,7 @@ public class MainMenu extends Menu {
         }else if(command.equals("2")){
             View.setCurrentMenu(ShopMenu.getInstance());
         }else if(command.equals("3")){
+            View.previousMenu = MainMenu.getInstance();
             View.setCurrentMenu(DiscountsMenu.getInstance());
         }else if(command.equals("4")){
             run();

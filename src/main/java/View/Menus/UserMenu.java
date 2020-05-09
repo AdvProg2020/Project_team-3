@@ -90,14 +90,6 @@ public abstract class UserMenu extends Menu {
         System.out.println("Company name edited successfully.");
     }
 
-    public void viewProduct(String command){
-        if(command.split(" ").length!=2){
-            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
-            return;
-        }
-        String id = command.split(" ")[1];
-        ItemMenu.getInstance().setItemID(id);
-        View.setCurrentMenu(ItemMenu.getInstance());
-    }
+
 
 }

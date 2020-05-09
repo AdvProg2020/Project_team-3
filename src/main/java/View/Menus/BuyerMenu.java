@@ -33,6 +33,10 @@ public class BuyerMenu extends UserMenu {
             logout();
             View.setCurrentMenu(MainMenu.getInstance());
         }
+        if(command.equals("offs")){
+            View.previousMenu = BuyerMenu.getInstance();
+            View.setCurrentMenu(DiscountsMenu.getInstance());
+        }
         if(command.equals("view personal info")){
             viewPersonalInfo();
         }

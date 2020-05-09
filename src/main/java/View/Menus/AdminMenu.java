@@ -33,6 +33,10 @@ public class AdminMenu extends UserMenu {
         if (command.equals("logout")) {
             logout();
         }
+        if(command.equals("offs")){
+            View.previousMenu = AdminMenu.getInstance();
+            View.setCurrentMenu(DiscountsMenu.getInstance());
+        }
         else if (command.equals("help")) {
             help();
         }
