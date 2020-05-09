@@ -44,14 +44,14 @@ public class BuyerMenu extends UserMenu {
         if (matcher.matches()) {
             editPersonalInfo(matcher.group(1));
         }
-        else if(command.equals("show products")){
+        /*else if(command.equals("show products")){
             viewCart();
-        }
+        }*/
         else if(command.equals("products")){
             View.previousMenu = BuyerMenu.getInstance();
             View.setCurrentMenu(ShopMenu.getInstance());
         }
-        else if(command.startsWith("increase ")){
+        /*else if(command.startsWith("increase ")){
             increaseProduct(command);
         }
         else if(command.startsWith("decrease ")){
@@ -59,13 +59,14 @@ public class BuyerMenu extends UserMenu {
         }
         else if(command.equals("show total price")){
             showTotalPrice();
-        }
+        }*/
         else if(command.equals("view cart")){
-            viewCart();
-        }
+            View.previousMenu = BuyerMenu.getInstance();
+            View.setCurrentMenu(CartMenu.getInstance());
+        }/*
         else if(command.equals("purchase")){
             purchase();//
-        }
+        }*/
         else if(command.equals("view orders")){
             viewOrders();
         }
@@ -87,12 +88,12 @@ public class BuyerMenu extends UserMenu {
         else if(command.equals("help")){
             help();
         }
-        else if(command.startsWith("view ")){
+        /*else if(command.startsWith("view ")){
             matcher=View.getMatcher("view (\\S+)",command);
             if(matcher.matches()){
                 viewItem(matcher.group(1));
             }
-        }
+        }*/
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
         }
@@ -106,12 +107,12 @@ public class BuyerMenu extends UserMenu {
         System.out.println("view personal info");
         System.out.println("edit [field]");
         System.out.println("view cart");
-        System.out.println("show products");
-        System.out.println("view [productId]");
-        System.out.println("increase [productId]");
-        System.out.println("decrease [productId]");
-        System.out.println("show total price");
-        System.out.println("purchase");
+        //System.out.println("show products");
+        //System.out.println("view [productId]");
+        //System.out.println("increase [productId]");
+        //System.out.println("decrease [productId]");
+        //System.out.println("show total price");
+        //System.out.println("purchase");
         System.out.println("view orders");
         System.out.println("show order [orderId]");
         System.out.println("rate [productId] [1-5]");
@@ -119,12 +120,6 @@ public class BuyerMenu extends UserMenu {
         System.out.println("view discount codes");
         System.out.println("logout");
         System.out.println("back");
-    }
-
-
-    private void viewCart(){
-        User user = UserController.getInstance().getCurrentOnlineUser();
-        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().toString());
     }
 
     private void showTotalPrice(){
