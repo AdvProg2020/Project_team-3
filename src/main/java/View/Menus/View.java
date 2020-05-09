@@ -22,9 +22,17 @@ public class View {
 
     public static void run() {
         System.out.println(ANSI_WHITE + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
+      /*  currentMenu=CartMenu.getInstance();
+        ItemAndCategoryController.getInstance().addItemToCart("tzNov");
+        ItemAndCategoryController.getInstance().addItemToCart("o3E1D");
+        ItemAndCategoryController.getInstance().addItemToCart("ajGfW"); */
         while (programRunning) {
             currentMenu.run();
         }
+    }
+
+    public static void setPreviousMenu(Menu previousMenu) {
+        View.previousMenu = previousMenu;
     }
 
     public static void setProgramRunning(boolean programRunning) {

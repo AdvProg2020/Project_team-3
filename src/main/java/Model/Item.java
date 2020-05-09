@@ -45,6 +45,11 @@ public class Item {
         buyerUserName=new ArrayList<>();
     }
     //getters
+
+    public ArrayList<String> getAttributesKey() {
+        return attributesKey;
+    }
+
     public boolean isInStock(){
         if(inStock==0)
             return false;

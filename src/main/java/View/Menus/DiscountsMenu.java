@@ -1,5 +1,7 @@
 package View.Menus;
 
+import Control.SaleAndDiscountCodeController;
+
 import java.util.regex.Matcher;
 
 public class DiscountsMenu extends Menu {
@@ -31,8 +33,8 @@ public class DiscountsMenu extends Menu {
          return;
      }
      else if(command.equals("back")){
-         View.setCurrentMenu(View.previousMenu);
-         return;
+        back();
+        return;
      }
         Matcher matcher=View.getMatcher("show product (\\S+)",command);
      if(matcher.matches()){
@@ -50,10 +52,7 @@ public class DiscountsMenu extends Menu {
     }
 
     public void offs(){
-
+        System.out.println(SaleAndDiscountCodeController.getInstance().printItemsWithSale());
     }
-
-
-
 
 }

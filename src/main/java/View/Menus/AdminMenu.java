@@ -65,7 +65,15 @@ public class AdminMenu extends UserMenu {
             createDiscountCode();
         }else if(command.equals("view discount code")){
             viewAllDiscountCodes();
+        }else if(command.equals("back")){
+            back();
         }
+
+        matcher = View.getMatcher("edit discount code (\\S+)", command);
+        if (matcher.matches()) {
+            editDiscountCode(matcher.group(1));
+        }
+
         matcher = View.getMatcher("edit (\\S+)", command);
         if (matcher.matches()) {
             editPersonalInfo(matcher.group(1));
@@ -219,11 +227,25 @@ public class AdminMenu extends UserMenu {
     }
 
     private void editDiscountCode(String discountID) {
-
-    }
-
-    private void removeDiscountCode() {
-
+        if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)==false){
+            System.out.println("Error: invalid id");
+            return;
+        }
+        System.out.println("enter -edit date- if you wish to change the date.\nenter -edit offpercent- if you wish to change the offpercentage.");
+        String command=View.read.nextLine();
+        if(command.equals("edit date")){
+            int day=readNumber(32,"please enter new expiration date:");
+            int month=readNumber(13,"please enter new expiration month:");
+            int year=readNumber(2025,"please enter new expiration year:");
+            Date date=new Date(year-1900,month-1,day);
+            System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountID,date));
+            return;
+        }else if(command.equals("edit offpercent")){
+            int percentage=readNumber(101,"please enter new discount percentage:");
+            System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountID,percentage));
+            return;
+        }
+        System.out.println("invalid command. you have been sent to the admin menu");
     }
 
     private void manageAllProducts() {

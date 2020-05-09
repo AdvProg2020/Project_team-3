@@ -3,6 +3,7 @@ package View.Menus;
 import Control.ItemAndCategoryController;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 public class ItemMenu extends Menu {
     private static ItemMenu itemMenu;
@@ -29,21 +30,23 @@ public class ItemMenu extends Menu {
     public void execute(String command) {
         if (command.equals("digest")) {
             digest();
-        }
-        if (command.equals("attributes")) {
+        } else if (command.equals("attributes")) {
             attributes();
-        }
-        if (command.equals("add to cart")) {
+        } else if (command.equals("add to cart")) {
             addToCart();
-        }
-        if (command.equals("comments")) {
+        } else if (command.equals("comments")) {
             comments();
-        }
-        if (command.equals("add comment")) {
+        } else if (command.equals("add comment")) {
             addComment();
-        }
-        if (command.equals("help")) {
+        } else if (command.equals("help")) {
             help();
+        }else{
+        Matcher matcher=View.getMatcher("compare (\\S+)",command);
+        if(matcher.matches()){
+            compare(matcher.group(1));
+            return;
+        }
+        System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
         }
     }
 
@@ -52,7 +55,7 @@ public class ItemMenu extends Menu {
         System.out.println("digest");  //done
         System.out.println("add to cart"); //done
         System.out.println("attributes");  //done
-        System.out.println("compare [product id]");
+        System.out.println("compare [product id]");  //done
         System.out.println("comments");  //done
         System.out.println("add comment"); //done
     }
@@ -69,8 +72,8 @@ public class ItemMenu extends Menu {
         System.out.println(ItemAndCategoryController.getInstance().showAttributes(itemID));
     }
 
-    public void compare() {
-
+    public void compare(String id) {
+        System.out.println(ItemAndCategoryController.getInstance().compare(itemID,id));
     }
 
     public void comments() {

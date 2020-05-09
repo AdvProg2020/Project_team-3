@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class ItemAndCategoryController {
@@ -113,7 +114,20 @@ public class ItemAndCategoryController {
     }
 
     public String compare(String itemId1, String itemId2) {
-        return "hello";
+        Item item1=getItemById(itemId1);
+        Item item2=getItemById(itemId2);
+        if((item1==null)||(item2==null)){
+            return "Error: invalid id";
+        }
+        String string;
+        ArrayList<String> attributesKey=item1.getAttributesKey();
+        HashMap<String,String> item1Attributes=item1.getAttributes();
+        HashMap<String,String> item2Attributes=item2.getAttributes();
+        string="price: "+item1.getPriceWithSale()+"----"+item2.getPrice()+"\n";
+        for (String key : attributesKey) {
+            string+=key+": "+item1Attributes.get(key)+"----"+item2Attributes.get(key)+"\n";
+        }
+        return string;
     }
 
     public ArrayList<String> showItemComments(String itemid){
@@ -141,27 +155,24 @@ public class ItemAndCategoryController {
             String requestID=controller.getAlphaNumericString(controller.getIdSize(),"Requests");
             RequestController.getInstance().addCommentRequest(requestID,comment);
         }
-        return"Succesdful: your comment has been added";
+        return"Successful: your comment has been added";
     }
 
-    public void rate(int score, String itemId) {
+    public String rate(int score, String itemId) {
         if(isThereItemWithId(itemId)==false){
-            System.out.println("we do not have this Item in our storage with that ID");
-            return;
+            return "Error: invalid id";
         }
         User user=controller.currentOnlineUser;
         if(!(user instanceof Buyer)){
-            System.out.println("you can not Rate the Items!");
-            return;
+           return "Error: you cant rate an item";
         }
         Item item=getItemById(itemId);
         if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
             Rating rating=new Rating(score,user.getUsername(),itemId);
             item.addRating(rating);
-            System.out.println("thanks for your Rating!");
-            return;
+            return "Successful: your have rated the item";
         }
-        System.out.println("you did not buy that item and you are not allowed for rating!");
+         return "";
     }
 
     public String digest(String itemId){

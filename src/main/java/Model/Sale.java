@@ -1,6 +1,7 @@
 package Model;
 
 import Control.Controller;
+import Control.ItemAndCategoryController;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,16 @@ public class Sale {
 
     public boolean saleHasItemWithID(String id) {
         return false;
+    }
+
+    public String itemsInfo(){
+    String string="";
+    Item item;
+        for (String id : itemId) {
+            item= ItemAndCategoryController.getInstance().getItemById(id);
+            string+="item id: "+id+"price before sale: "+item.getPrice()+"  price after sale: "+item.getPriceWithSale()+"\n";
+        }
+        return string;
     }
 
     @Override

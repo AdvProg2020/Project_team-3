@@ -139,13 +139,30 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
+   public String printItemsWithSale(){
+    ArrayList<Sale> allSale=getAllSaleFromDataBase();
+    String string="";
+       for (Sale sale : allSale) {
+           string+=sale.itemsInfo()+"\n";
+       }
+       if(string.isEmpty()){
+           return "there are no sales right now.";
+       }
+       return string;
+   }
+
    public String editDiscountCodePercentage(String discountID,int percentage){
         DiscountCode discountCode=getDiscountCodeById(discountID);
         if(discountCode==null) {
             return "Error: Discount code doesnt exist";
         }
         discountCode.setDiscountPercentage(percentage);
-        return "Successful:";
+       try {
+           Database.getInstance().saveDiscountCode(discountCode);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return "Successful:";
     }
 
     public String editDiscountCodeEndTime(String discountID,Date endTime){
@@ -154,6 +171,11 @@ public class SaleAndDiscountCodeController {
             return "Error: Discount code doesnt exist";
         }
         discountCode.setEndTime(endTime);
+        try {
+            Database.getInstance().saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
             return "Successful";
     }
 

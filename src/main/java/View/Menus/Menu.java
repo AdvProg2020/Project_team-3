@@ -198,12 +198,13 @@ public abstract class Menu {
         if (ItemAndCategoryController.getInstance().isThereItemWithId(id) == false) {
             System.out.println("Error: invalid id");
         }
+        View.setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);
     }
 
-    private void back() {
-
+    public void back() {
+      View.setCurrentMenu(View.previousMenu);
     }
 
 
