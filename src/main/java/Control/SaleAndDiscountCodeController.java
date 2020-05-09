@@ -80,7 +80,7 @@ public class SaleAndDiscountCodeController {
         if(id==null){
             return "Error: sale doesnt exist";
         }
-        Database.deleteSale(sale);
+        Database.getInstance().deleteSale(sale);
            return "Successful";
     }
 
@@ -89,7 +89,7 @@ public class SaleAndDiscountCodeController {
         if(id==null){
             return "Error: discount code doesnt exist";
         }
-        Database.deleteDiscountCode(code);
+        Database.getInstance().deleteDiscountCode(code);
            return "Successful";
     }
 
@@ -163,7 +163,7 @@ public class SaleAndDiscountCodeController {
         }
         DiscountCode discountCode=new DiscountCode(percentage,end);
         try {
-            Database.saveDiscountCode(discountCode);
+            Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
             e.printStackTrace();
         }

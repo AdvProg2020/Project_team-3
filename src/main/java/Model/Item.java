@@ -1,7 +1,9 @@
 package Model;
 
 import Control.Controller;
+import Control.Database;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +15,7 @@ public class Item {
     private String brand;
     private int timesBought;
     private double price;
-    private double inStock;
+    private int inStock;
     private int viewCount;
     private HashMap<String,String > attributes;
     private ArrayList<String> attributesKey;
@@ -22,7 +24,7 @@ public class Item {
     private ArrayList<String>buyerUserName;
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
-    private boolean isInSale;
+    private Sale sale;
     //constructor
     public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,ArrayList<String> attributesKey,int inStock){
         this.name=name;
@@ -40,10 +42,14 @@ public class Item {
         timesBought=0;
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
-        isInSale=false;
         buyerUserName=new ArrayList<>();
     }
     //getters
+    public boolean isInStock(){
+        if(inStock==0)
+            return false;
+        return true;
+    }
 
     public double getPrice() {
         return price;
@@ -73,8 +79,12 @@ public class Item {
         return state;
     }
 
-    public ArrayList<Rating> getAllRatings() {
-        return allRatings;
+    public double getRating(){
+        double ratingSum=0;
+        for (Rating rating : allRatings) {
+            ratingSum+=rating.getScore();
+        }
+        return ratingSum/allRatings.size();
     }
     //setters
     public void setDescription(String description) {
@@ -93,6 +103,9 @@ public class Item {
         this.timesBought = timesBought;
     }
 
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -124,10 +137,6 @@ public class Item {
         this.categoryName = categoryName;
     }
 
-    public void setInStock(double inStock) {
-        this.inStock = inStock;
-    }
-
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
     }
@@ -155,28 +164,32 @@ public class Item {
 
     public void addComment(Comment newComment){
         this.allComments.add(newComment);
+        try {
+            Database.getInstance().saveItem(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addRating(Rating newRating){
         this.allRatings.add(newRating);
-    }
-
-    public float getScore(){
-        return 5;
-    }
-
-    public boolean getIsInSale() {
-        return isInSale;
-    }
-
-    public void setInSale(boolean inSale) {
-        isInSale = inSale;
+        try {
+            Database.getInstance().saveItem(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<String> getBuyerUserName() {
         return buyerUserName;
     }
 
+    public boolean isInSale(){
+        if(sale==null){
+            return false;
+        }
+            return true;
+    }
     public void addBuyerUserName(String userName){
         buyerUserName.add(userName);
     }
@@ -186,4 +199,25 @@ public class Item {
         return false;
     }
 
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+
+    public String showAttributes(){
+        String string="";
+        for (String key : attributesKey) {
+            string+=key+":"+attributes.get(key);
+        }
+        return string;
+    }
+
+    @Override
+    public String toString() {
+       String string="item id: "+id+"\nitem Name: "+name+  "\nSeller name: "+sellerName+"\nis in stock: "+ isInStock()+"\nprice: "+price;
+       if(isInSale()){
+           string+="\nprice after sale: " +price*sale.getOffPercentage()/100;
+       }
+       string+="\nRating= "+getRating();
+       return string;
+    }
 }

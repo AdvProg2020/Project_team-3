@@ -90,7 +90,7 @@ public class UserController {
         }
         Buyer user=new Buyer(money,username,password,name,lastName,email,number);
         try{
-            Database.saveUser(user);} catch (IOException e) {
+            Database.getInstance().saveUser(user);} catch (IOException e) {
             e.printStackTrace();
         }
         return "Successful: User registered.";
@@ -102,7 +102,7 @@ public class UserController {
         }
         Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);
         try{
-            Database.saveUser(user);
+            Database.getInstance().saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,7 +166,7 @@ public class UserController {
         if(user==null){
             return "Error: user doesnt exist";
         }
-        Database.deleteUser(user);
+        Database.getInstance().deleteUser(user);
             return "Successful:";
     }
 
@@ -187,7 +187,7 @@ public class UserController {
             ((Seller)user).setCompanyName(newValue);
         }
         try{
-            Database.saveUser(user);
+            Database.getInstance().saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }

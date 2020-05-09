@@ -71,7 +71,7 @@ public class RequestController {
         if(!(user instanceof Buyer)) return;
         ((Buyer) user).addDiscount(discountID);
         try {
-            Database.saveUser(user);
+            Database.getInstance().saveUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class RequestController {
     public void addUserRequest(String requestID, Seller newUser)  {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
         try {
-            Database.saveRequest(newRequest);
+            Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class RequestController {
         newSale.addStatus();
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
         try {
-            Database.saveRequest(newRequest);
+            Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class RequestController {
     public void addItemRequest(String requestId, Item newItem)  {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
         try {
-            Database.saveRequest(newRequest);
+            Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +109,7 @@ public class RequestController {
         newComment.inProcess();
         CommentRequest commentRequest=new CommentRequest(requestId,newComment);
         try {
-            Database.saveRequest(commentRequest);
+            Database.getInstance().saveRequest(commentRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,7 +120,7 @@ public class RequestController {
         newSale.editStatus();
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
         try {
-            Database.saveRequest(newRequest);
+            Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,7 +129,7 @@ public class RequestController {
     public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue)  {
         ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
         try {
-            Database.saveRequest(newRequest);
+            Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -142,20 +142,20 @@ public class RequestController {
                 User user=UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
                 if(user instanceof  Seller) ((Seller) user).Validate();
                 try {
-                    Database.saveUser(user);
+                    Database.getInstance().saveUser(user);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if(accepted instanceof SaleRequest){
                 try {
                     ((SaleRequest) accepted).getNewSale().acceptStatus();
-                    Database.saveSale(((SaleRequest) accepted).getNewSale());
+                    Database.getInstance().saveSale(((SaleRequest) accepted).getNewSale());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if(accepted instanceof ItemRequest){
                 try {
-                    Database.saveItem(((ItemRequest) accepted).getNewItem());
+                    Database.getInstance().saveItem(((ItemRequest) accepted).getNewItem());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -169,12 +169,12 @@ public class RequestController {
                 Item item=ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
                 item.addComment(comment);
                 try {
-                    Database.saveItem(item);
+                    Database.getInstance().saveItem(item);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            Database.deleteRequest(accepted);
+            Database.getInstance().deleteRequest(accepted);
             return "Successful: request accepted";
     }
     ///after accepting requests
@@ -191,7 +191,7 @@ public class RequestController {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }
         try {
-            Database.saveSale(sale);
+            Database.getInstance().saveSale(sale);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -214,11 +214,10 @@ public class RequestController {
             item.setState(newFieldValue);
         }else if(changedField.equals("category Name")){
             item.setCategoryName(newFieldValue);
-        }else if(changedField.equals("in stock")){
-            item.setInStock(Double.parseDouble(newFieldValue));
-        }
+        }else if(changedField.equals("inStock"))
+            item.setInStock(Integer.parseInt(newFieldValue));
         try {
-            Database.saveItem(item);
+            Database.getInstance().saveItem(item);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -227,10 +226,10 @@ public class RequestController {
     public String declineRequest(String requestID){
         Request declined=getRequestById(requestID);
         if(declined instanceof AccountRequest){
-            Database.deleteUser(((AccountRequest) declined).getUser());
+            Database.getInstance().deleteUser(((AccountRequest) declined).getUser());
         }
         if(declined==null){ return "Error: request doesnt exist"; }
-        Database.deleteRequest(declined);
+        Database.getInstance().deleteRequest(declined);
         return "Successful: request declined";
     }
 

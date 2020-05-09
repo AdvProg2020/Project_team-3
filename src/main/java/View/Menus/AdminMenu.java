@@ -162,22 +162,22 @@ public class AdminMenu extends UserMenu {
     }
 
     private void printUsers() {
-        ArrayList<String> allUserNames = Database.printFolderContent("Users");
+        ArrayList<String> allUserNames = Database.getInstance().printFolderContent("Users");
         printList(allUserNames);
     }
 
     private void showAllproducts() {
-        ArrayList<String> allItems = Database.printFolderContent("Items");
+        ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
         printList(allItems);
     }
 
     private void showAllRequests() {
-        ArrayList<String> allRequests = Database.printFolderContent("Requests");
+        ArrayList<String> allRequests = Database.getInstance().printFolderContent("Requests");
         printList(allRequests);
     }
 
     private void viewAllDiscountCodes() {
-        ArrayList<String> allDiscountCodes = Database.printFolderContent("Discount Codes");
+        ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("Discount Codes");
         printList(allDiscountCodes);
     }
 
@@ -224,12 +224,12 @@ public class AdminMenu extends UserMenu {
     }
 
     private void manageAllProducts() {
-        ArrayList<String> allItems = Database.printFolderContent("Items");
+        ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
         printList(allItems);
     }
 
     private void manageRequests() {
-        ArrayList<String> allRequests = Database.printFolderContent("Requests");
+        ArrayList<String> allRequests = Database.getInstance().printFolderContent("Requests");
         printList(allRequests);
     }
 

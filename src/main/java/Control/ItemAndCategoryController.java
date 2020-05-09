@@ -28,7 +28,7 @@ public class ItemAndCategoryController {
         if(item==null){
             return "Error: item doesnt exist";
         }
-        Database.deleteItem(item);
+        Database.getInstance().deleteItem(item);
         return "Successful:";
     }
 
@@ -162,6 +162,14 @@ public class ItemAndCategoryController {
         System.out.println("you did not buy that item and you are not allowed for rating!");
     }
 
+    public String digest(String itemId){
+   return getItemById(itemId).toString();
+    }
+
+    public String showAttributes(String itemId){
+        return getItemById(itemId).showAttributes();
+    }
+
     public void addCategory(String name , ArrayList<String>attributes) {
         if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
             return;
@@ -171,7 +179,7 @@ public class ItemAndCategoryController {
         getCurrentCategory().addSubCategory(category);
         category.setAttributes(attributes);
         try {
-            Database.saveMainCategory();
+            Database.getInstance().saveMainCategory();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -268,7 +276,7 @@ public class ItemAndCategoryController {
         Category category=getCategoryByName(lastName);
         category.setName(newName);
         try {
-            Database.saveMainCategory();
+            Database.getInstance().saveMainCategory();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -289,7 +297,7 @@ public class ItemAndCategoryController {
         Category parent=category.getParent();
         parent.removeSubCategory(category);
         try {
-            Database.saveMainCategory();
+            Database.getInstance().saveMainCategory();
         } catch (IOException e) {
             e.printStackTrace();
         }

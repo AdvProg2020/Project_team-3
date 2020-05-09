@@ -13,24 +13,22 @@ public class DiscountsMenu extends Menu {
 
     @Override
     public void run(){
-
+        System.out.println(View.ANSI_BLUE + "You are in the Discount menu." + View.ANSI_RESET);
+        String command = View.read.nextLine();
+        execute(command);
     }
-
-  /*  @Override
-    public void show(){
-
-    }*/
-
-
 
     @Override
     public void execute(String command){
+     if(command.equals("offs")){
 
+     }
     }
 
     @Override
     public void help(){
-
+    System.out.println("offs");
+    System.out.println("show product [product id]");
     }
 
     public void offs(){

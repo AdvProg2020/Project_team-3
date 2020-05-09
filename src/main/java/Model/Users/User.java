@@ -93,8 +93,8 @@ public abstract class User {
                 money=seller.getMoney();
             }
             Buyer buyer=new Buyer(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
-            Database.deleteUser(this);
-            try { Database.saveUser(buyer); } catch (IOException e) { e.printStackTrace(); }
+            Database.getInstance().deleteUser(this);
+            try { Database.getInstance().saveUser(buyer); } catch (IOException e) { e.printStackTrace(); }
             return "User "+getUsername()+" type changed from "+getType()+" to "+type;
         }
         if(type.equalsIgnoreCase("Seller")){
@@ -104,14 +104,14 @@ public abstract class User {
                 money=buyer.getMoney();
             }
             Seller seller=new Seller(0,getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber(),null);
-            Database.deleteUser(this);
-            try { Database.saveUser(seller); } catch (IOException e) { e.printStackTrace(); }
+            Database.getInstance().deleteUser(this);
+            try { Database.getInstance().saveUser(seller); } catch (IOException e) { e.printStackTrace(); }
             return "User "+getUsername()+" type changed from "+getType()+" to "+type;
         }
         if(type.equalsIgnoreCase("Admin")){
             Admin admin=new Admin(getUsername(),getPassword(),getName(),getLastName(),getEmail(),getNumber());
-            Database.deleteUser(this);
-            try { Database.saveUser(admin); } catch (IOException e) { e.printStackTrace(); }
+            Database.getInstance().deleteUser(this);
+            try { Database.getInstance().saveUser(admin); } catch (IOException e) { e.printStackTrace(); }
             return "User "+getUsername()+" type changed from "+getType()+" to "+type;
         }
         return "Error: invalid type";

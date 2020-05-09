@@ -15,9 +15,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Database<Public> {
+    private static  Database database;
+    private Database() {
+    }
 
+    public static Database getInstance() {
+        if (database == null)
+            database = new Database();
+        return database;
+    }
 
-    public static void saveUser(User user) throws IOException {
+    public  void saveUser(User user) throws IOException {
     Gson gson=new GsonBuilder().setPrettyPrinting().create();
     String Username=user.getUsername();
     String path="Resource"+File.separator+"Users";
@@ -31,7 +39,7 @@ public class Database<Public> {
     writer.close();
     }
 
-    public static void saveRequest(Request request)throws IOException{
+    public  void saveRequest(Request request)throws IOException{
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String requestID=request.getRequestId();
         String path="Resource"+File.separator+"Requests";
@@ -46,7 +54,7 @@ public class Database<Public> {
     }
 
 
-    public static void saveItem(Item item) throws IOException {
+    public  void saveItem(Item item) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=item.getId();
         String path="Resource"+File.separator+"Items";
@@ -60,7 +68,7 @@ public class Database<Public> {
         writer.close();
     }
 
-    public static void saveSale(Sale sale) throws IOException {
+    public  void saveSale(Sale sale) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=sale.getId();
         String path="Resource"+File.separator+"Sales";
@@ -74,7 +82,7 @@ public class Database<Public> {
         writer.close();
     }
 
-    public static void saveDiscountCode(DiscountCode discount) throws IOException {
+    public  void saveDiscountCode(DiscountCode discount) throws IOException {
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String id=discount.getDiscountId();
         String path="Resource"+File.separator+"Discount Codes";
@@ -88,7 +96,7 @@ public class Database<Public> {
         writer.close();
     }
 
-    public static  void saveMainCategory() throws IOException{
+    public   void saveMainCategory() throws IOException{
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         String path="Resource"+File.separator+"Main Category";
         String name="Main Category"+".json";
@@ -102,7 +110,7 @@ public class Database<Public> {
     }
 
 
-    public static void deleteUser(User user){
+    public  void deleteUser(User user){
         String Username=user.getUsername();
         String path="Resource"+File.separator+"Users";
         String name=Username+".json";
@@ -110,7 +118,7 @@ public class Database<Public> {
         file.delete();
     }
 
-    public static void deleteItem(Item item){
+    public void deleteItem(Item item){
         String id=item.getId();
         String path="Resource"+File.separator+"Items";
         String name=id+".json";
@@ -118,7 +126,7 @@ public class Database<Public> {
         file.delete();
     }
 
-    public static void deleteSale(Sale sale){
+    public void deleteSale(Sale sale){
         String id=sale.getId();
         String path="Resource"+File.separator+"Sales";
         String name=id+".json";
@@ -126,7 +134,7 @@ public class Database<Public> {
         file.delete();
     }
 
-    public static void deleteRequest(Request request){
+    public  void deleteRequest(Request request){
         String id=request.getRequestId();
         String path="Resource"+File.separator+"Requests";
         String name=id+".json";
@@ -134,7 +142,7 @@ public class Database<Public> {
         file.delete();
     }
 
-    public static void deleteDiscountCode(DiscountCode discount){
+    public  void deleteDiscountCode(DiscountCode discount){
         String id=discount.getDiscountId();
         String path="Resource"+File.separator+"Discount Codes";
         String name=id+".json";
@@ -142,7 +150,7 @@ public class Database<Public> {
         file.delete();
     }
 
-    public static void initiate(){
+    public  void initiate(){
         File file=new File("Resource");
         if(!file.exists()){
             file.mkdir();
@@ -174,7 +182,7 @@ public class Database<Public> {
         Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
     }
 
-    public static ArrayList<String> printFolderContent(String folderName){
+    public  ArrayList<String> printFolderContent(String folderName){
         ArrayList<String> fileNames=new ArrayList();
         String path="Resource"+File.separator+folderName;
         File[] files = new File(path).listFiles();
