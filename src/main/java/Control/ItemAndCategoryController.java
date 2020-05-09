@@ -42,6 +42,23 @@ public class ItemAndCategoryController {
             return true;
     }
 
+    public String addItemToCart(String itemId){
+        if(isThereItemWithId(itemId)==false){
+            return "Error: invalid id";
+        }
+        return getCurrentShoppingCart().add(itemId);
+    }
+
+    public String cartIncreaseDecrease(String itemid,int count){ //for decrease count needs to be negative
+        if(isThereItemWithId(itemid)==false){
+            return "Error: invalid id";
+        }
+        if(count<0){
+        count=getCurrentShoppingCart().getItemCount(itemid)-count;
+         }
+        return getCurrentShoppingCart().changeCountBy(itemid,count);
+    }
+
     public Item getItemById(String id) {
         String path="Resource"+File.separator+"Items";
         String name=id+".json";
@@ -79,54 +96,17 @@ public class ItemAndCategoryController {
         return "hello";
     }
 
-    public String addToBucket(String itemId) {
-        if(isThereItemWithId(itemId)==false) {
-            System.out.println("we do not have item with this id!");
-            return "we do not have that item!";
+    public ArrayList<String> showItemComments(String itemid){
+        ArrayList<String> allComments=new ArrayList<>();
+        for (Comment comment : getItemById(itemid).getAllComments()) {
+            allComments.add(comment.getUsername()+": "+comment.getText());
         }
-        if(controller.currentOnlineUser!=null&&controller.currentOnlineUser instanceof Buyer){
-            Cart cart=((Buyer) controller.getCurrentOnlineUser()).getCart();
-            if(((Buyer) controller.getCurrentOnlineUser()).getMoney()<
-            getItemById(itemId).getPrice()+cart.getCartPrice())
-            {return "your money is less than the price!";}
-            int count=cart.getItemCount(itemId);
-            cart.add(itemId ,count+1);
-        }else if(controller.getCurrentOnlineUser()==null){
-            controller.currentShoppingCart=new Cart("");
-            int count=controller.currentShoppingCart.getItemCount(itemId);
-            controller.currentShoppingCart.add(itemId , count+1);
-        }
-        return "successfully added to cart!";
-    }
-
-    public String removeItemFromBucket(String itemId) {
-        if(isThereItemWithId(itemId)==false) {
-            return "we do not have item with this id!";
-        }
-        if(controller.getCurrentOnlineUser()!=null && controller.getCurrentOnlineUser() instanceof Buyer){
-            if(((Buyer) controller.getCurrentOnlineUser()).getCart().is_Empty()==true)
-                return "you did not bought any thing!";
-            Cart cart=((Buyer) controller.getCurrentOnlineUser()).getCart();
-            if(cart.includesItem(itemId)==false){
-                return "you did not bought item with this item ID!";
-            }
-            cart.remove(getItemById(itemId).getName());
-        }else if(controller.getCurrentOnlineUser()==null){
-            if(controller.currentShoppingCart.is_Empty()==true){
-                return "you did not bought any thing!";
-            }
-            controller.currentShoppingCart=new Cart("");
-            if(controller.currentShoppingCart.includesItem(itemId)==false){
-                return "you did not bought item with this item ID!";
-            }
-            controller.currentShoppingCart.remove(getItemById(itemId).getName());
-        }
-        return "the Item removed successfully!";
+        return allComments;
     }
 
     public void comment(String text, String itemId){
         if(isThereItemWithId(itemId)==false){
-            System.out.println("we do not have this Item in our storage with that ID");
+            System.out.println("Error: invalid id");
             return;
         }
         Item item=getItemById(itemId);
@@ -234,9 +214,6 @@ public class ItemAndCategoryController {
         return controller.currentShoppingCart;
     }
 
-    public void setCurrentShoppingCart(Cart currentShoppingCart) {
-        controller.currentShoppingCart = currentShoppingCart;
-    }
 
     public ArrayList<Item> getAllItemFromDataBase(){
         String path="Resource"+File.separator+"Items";

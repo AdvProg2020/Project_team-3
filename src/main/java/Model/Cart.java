@@ -16,14 +16,16 @@ public class Cart {
         allItemId=new ArrayList<>();
     }
 
-    public void add(String itemId,int count){
+    public String add(String itemId){
+        if(0==ItemAndCategoryController.getInstance().getItemById(itemId).getInStock()){
+            return "Error: there isn't enough in stock";
+        }
     if(allItemCount.get(itemId)==null) {
-        allItemCount.put(itemId, count);
+        allItemCount.put(itemId,1);
         allItemId.add(itemId);
-        return;
-    }
-        changeCountBy(itemId,count);
-        return;
+        return "Successful";
+    }else{
+        return "Error: item is already in the cart"; }
     }
 
     public void remove(String itemName){
@@ -36,8 +38,18 @@ public class Cart {
      return false;
     }
 
-    public void changeCountBy(String itemId,int count){
+    public String changeCountBy(String itemId,int count){
+       if(count>ItemAndCategoryController.getInstance().getItemById(itemId).getInStock()){
+           return "Error: there isn't enough in stock";
+       }
        allItemCount.replace(itemId,count);
+       if(count<=0){
+           allItemCount.remove(itemId);
+           allItemId.remove(itemId);
+       }else{
+           allItemCount.replace(itemId,count);
+       }
+           return "Successful";
     }
 
     public String getUsername() {

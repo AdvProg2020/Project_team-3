@@ -2,6 +2,8 @@ package View.Menus;
 
 import Control.ItemAndCategoryController;
 
+import java.util.ArrayList;
+
 public class ItemMenu extends Menu {
     private static ItemMenu itemMenu;
     private String itemID;
@@ -29,23 +31,36 @@ public class ItemMenu extends Menu {
       if(command.equals("attributes")){
           attributes();
       }
+      if(command.equals("add to cart")){
+          addToCart();
+      }
+      if(command.equals("comments")){
+          comments();
+      }
+      if(command.equals("add comments")){
+          addComment();
+      }
+        if(command.equals("help")){
+            help();
+        }
     }
 
     @Override
     public void help(){
      System.out.println("digest");  //done
-     System.out.println("add to cart");
+     System.out.println("add to cart"); //done
      System.out.println("attributes");  //done
      System.out.println("compare [product id]");
-     System.out.println("comments");
+     System.out.println("comments");  //done
+     System.out.println("add comment"); //
     }
 
     public void digest(){
-      System.out.println(ItemAndCategoryController.getInstance().digest(itemID));
+        System.out.println(ItemAndCategoryController.getInstance().digest(itemID));
     }
 
     public void addToCart(){
-
+        System.out.println(ItemAndCategoryController.getInstance().addItemToCart(itemID));
     }
 
     public void attributes(){
@@ -57,11 +72,18 @@ public class ItemMenu extends Menu {
     }
 
     public void comments(){
-
+        ArrayList<String> allComment=ItemAndCategoryController.getInstance().showItemComments(itemID);
+        if(allComment.isEmpty()){
+            System.out.println("this item doesnt have any comments");
+        }
+        for (String comment : allComment) {
+            System.out.println(comment);
+        }
     }
 
     public void addComment(){
-
+     String comment=View.read.nextLine();
+     ItemAndCategoryController.getInstance().comment(comment,itemID);
     }
 
     public void setItemID(String itemID) {

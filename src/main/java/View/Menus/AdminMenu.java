@@ -124,11 +124,10 @@ public class AdminMenu extends UserMenu {
         System.out.println("create discount code");     //done
         System.out.println("view discount code");         //done but need test
         System.out.println("view discount code [id]");   //done
-        System.out.println("view sale [id]");
         System.out.println("edit discount code [id]");
         System.out.println("remove discount code [id]"); //done but need test
         System.out.println("manage requests");           //done but need test
-        System.out.println("details requests [request id]");  //done but request info need to be added
+        System.out.println("detail request [request id]");  //done but request info need to be added
         System.out.println("accept [request id]");    //done but need test
         System.out.println("decline [request id]");   //done but need test
         System.out.println("logout");                //done

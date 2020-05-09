@@ -22,6 +22,7 @@ public class View {
 
     public static void run() {
         System.out.println(ANSI_WHITE+"Team 3 MVC Shop Project, Phase 1 ..."+ANSI_RESET);
+       // currentMenu=ItemMenu.getInstance();
         while(programRunning){
             currentMenu.run();
         }

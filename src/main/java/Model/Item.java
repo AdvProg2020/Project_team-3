@@ -81,10 +81,13 @@ public class Item {
 
     public double getRating(){
         double ratingSum=0;
+        if(allRatings.size()==0){
+            return 0;
+        } else{
         for (Rating rating : allRatings) {
             ratingSum+=rating.getScore();
         }
-        return ratingSum/allRatings.size();
+        return ratingSum/allRatings.size();}
     }
     //setters
     public void setDescription(String description) {
@@ -119,7 +122,7 @@ public class Item {
         this.price = price;
     }
 
-    public double getInStock() {
+    public int getInStock() {
         return inStock;
     }
 
@@ -206,7 +209,7 @@ public class Item {
     public String showAttributes(){
         String string="";
         for (String key : attributesKey) {
-            string+=key+":"+attributes.get(key);
+            string+=key+":"+attributes.get(key)+"/n";
         }
         return string;
     }
