@@ -143,10 +143,13 @@ public class SearchAndFilter {
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
                 currentViewableItems=filterByCompanyName(filteredCompanyName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("item Name")){
                 currentViewableItems=filterByItemName(filteredItemName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("price")){
                 currentViewableItems=filterByPrice(minimumPrice,maximumPrice);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
         }else if(disabled.equals("company Name")){
@@ -154,10 +157,13 @@ public class SearchAndFilter {
             currentViewableItems.clear();
             if(availableFilters.contains("category")){
                 currentViewableItems=filterByCategory(filteredCategory.getName());
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("item Name")){
                 currentViewableItems=filterByItemName(filteredItemName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("price")){
                 currentViewableItems=filterByPrice(minimumPrice,maximumPrice);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
         }else if(disabled.equals("item Name")){
@@ -165,10 +171,13 @@ public class SearchAndFilter {
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
                 currentViewableItems=filterByCompanyName(filteredCompanyName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("category")){
                 currentViewableItems=filterByCategory(filteredCategory.getName());
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("price")){
                 currentViewableItems=filterByPrice(minimumPrice,maximumPrice);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
 
@@ -177,10 +186,13 @@ public class SearchAndFilter {
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
                 currentViewableItems=filterByCompanyName(filteredCompanyName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("item Name")){
                 currentViewableItems=filterByItemName(filteredItemName);
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }if(availableFilters.contains("category")){
                 currentViewableItems=filterByCategory(filteredCategory.getName());
+                if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
         }
