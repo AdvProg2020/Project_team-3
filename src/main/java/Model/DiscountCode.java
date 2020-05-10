@@ -1,7 +1,6 @@
 package Model;
 
 import Control.Controller;
-import Model.Users.User;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,9 +22,9 @@ public class DiscountCode {
     }
     //getters
 
-    public int getUsage(User user){
-        if(this.allUsers.containsKey(user)){
-            return this.allUsers.get(user);
+    public int getUsage(String userID){
+        if(this.allUsers.containsKey(userID)){
+            return this.allUsers.get(userID);
         }
         return -1;
     }
@@ -61,13 +60,15 @@ public class DiscountCode {
     }
 
     //add user
-    public void addUser(String userID){
+    private void addUser(String userID){
         this.allUsers.put(userID , 0);
     }
 
     public void addUsage(String  userID){
         if(this.allUsers.containsKey(userID)) {
             this.allUsers.put(userID, this.allUsers.get(userID) + 1);
+        }else{
+            addUser(userID);
         }
     }
 

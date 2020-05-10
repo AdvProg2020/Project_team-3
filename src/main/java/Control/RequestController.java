@@ -1,6 +1,7 @@
 package Control;
 
 import Model.Comment;
+import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.*;
 import Model.Sale;
@@ -70,8 +71,11 @@ public class RequestController {
         if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)==false) return;
         if(!(user instanceof Buyer)) return;
         ((Buyer) user).addDiscount(discountID);
+        DiscountCode discountCode=SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID);
+        discountCode.addUsage(username);
         try {
             Database.getInstance().saveUser(user);
+            Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
             e.printStackTrace();
         }
