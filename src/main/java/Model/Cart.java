@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
-    String username;
     HashMap<String,Integer> allItemCount;
     ArrayList<String> allItemId;
 
-    public Cart(String username){
-        this.username=username;
+    public Cart(){
         allItemCount=new HashMap<>();
         allItemId=new ArrayList<>();
     }
@@ -53,10 +51,6 @@ public class Cart {
            return "Successful";
     }
 
-
-    public String getUsername() {
-        return username;
-    }
 
     public boolean includesItem(String itemId){
         if(allItemCount.get(itemId)==null){

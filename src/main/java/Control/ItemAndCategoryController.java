@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
@@ -51,6 +50,9 @@ public class ItemAndCategoryController {
             return string;
         }
     }
+
+
+
     public String addItemToCart(String itemId){
         if(isThereItemWithId(itemId)==false){
             return "Error: invalid id";
@@ -274,20 +276,6 @@ public class ItemAndCategoryController {
         return  allItems;
     }
 
-
-
-    private static  void DFSCategory(Category category , ArrayList<Category> removed){
-        removed.add(category);
-        for(String id:category.getAllItemsID()){
-            Item item=getInstance().getItemById(id);
-            Database.getInstance().deleteItem(item);
-        }
-        Iterator<String> iterator=category.getSubCategories().iterator();
-        while(iterator.hasNext()){
-            DFSCategory(getInstance().getCategoryByName(iterator.next()), removed);
-        }
-    }
-
     public void editCategoryName(String lastName , String newName){
         Category category=getCategoryByName(lastName);
         category.setName(newName);
@@ -297,15 +285,14 @@ public class ItemAndCategoryController {
             e.printStackTrace();
         }
     }
-    /////////////nemidonam che jori bayad attribute ru avaz kard!
-    public void removeCategory(String name){
-        Category category=getCategoryByName(name);
-        ArrayList<Category>removed=new ArrayList<>();
-        DFSCategory(category,removed);
-        for(Category category1:removed){
-            Database.getInstance().deleteCategory(category1);
-        }
-    }
+
+  public void removeCategory(String name){
+      Category category=getCategoryByName(name);
+      for (String subCategory : category.getSubCategories()) {
+          removeCategory(subCategory);
+      }
+      Database.getInstance().deleteCategory(category);
+  }
 
     public ArrayList<Item> getInSaleItems(){
         ArrayList<Item> allItems=getInstance().getAllItemFromDataBase();
@@ -315,7 +302,7 @@ public class ItemAndCategoryController {
         return  allItems;
     }
 
-    public void loadMainCategory(){
+  /*  public void loadMainCategory(){
         Category category=new Category("Main");
         try {
             Database.getInstance().saveCategory(category);
@@ -323,6 +310,6 @@ public class ItemAndCategoryController {
             e.printStackTrace();
         }
         controller.currentCategory=category;
-    }
+    } */
 
 }

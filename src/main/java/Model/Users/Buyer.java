@@ -17,7 +17,7 @@ public class Buyer extends User {
         this.money=money;
         buyLogs=new ArrayList<>();
         allDiscounts=new ArrayList<>();
-        cart=new Cart(username);
+        cart=new Cart();
     }
 
     @Override

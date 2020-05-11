@@ -150,11 +150,13 @@ public class UserController {
     public String returnUserType(String username){
        return getUserByUsername(username).getType();
     }
+
     public String logout(){
         if(controller.currentOnlineUser==null){
             return View.ANSI_RED+ "Error: Not logged in!"+View.ANSI_RESET;
         }
         controller.currentOnlineUser=null;
+        controller.emptyCart();
         return "Success: Logged out.";
     }
 

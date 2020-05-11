@@ -2,7 +2,6 @@ package View.Menus;
 
 import Control.ItemAndCategoryController;
 import Control.UserController;
-import Model.Cart;
 import Model.Users.Buyer;
 import Model.Users.User;
 
@@ -136,26 +135,6 @@ public class BuyerMenu extends UserMenu {
         System.out.println(View.ANSI_BLUE+UserController.getInstance().currentOnlineUserBalance()+View.ANSI_RESET);
     }
 
-    private void increaseProduct(String command){
-        if(command.split(" ").length!=2){
-            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
-            return;
-        }
-        String id = command.split(" ")[1];
-        Cart cart = ItemAndCategoryController.getInstance().getCurrentShoppingCart();
-        cart.changeCountBy(id,1);
-        System.out.println("Increased successfully.");
-    }
-    private void decreaseProduct(String command){
-        if(command.split(" ").length!=2){
-            System.out.println(View.ANSI_RED+"Invalid product ID."+View.ANSI_RESET);
-            return;
-        }
-        String id = command.split(" ")[1];
-        Cart cart = ItemAndCategoryController.getInstance().getCurrentShoppingCart();
-        cart.changeCountBy(id,-1);
-        System.out.println("Decreased successfully.");
-    }
 
     private void viewDiscountCodes(){
         Buyer buyer = (Buyer)UserController.getInstance().getCurrentOnlineUser();

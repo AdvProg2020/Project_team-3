@@ -1,6 +1,8 @@
 package View.Menus;
 
+import Control.Controller;
 import Control.ItemAndCategoryController;
+import Control.UserController;
 
 import java.util.regex.Matcher;
 
@@ -36,6 +38,10 @@ public class CartMenu extends Menu {
         }
         if (command.equals("help")) {
             help();
+            return;
+        }
+        if(command.equals("purchase")){
+            purchase();
             return;
         }
         Matcher matcher = View.getMatcher("increase (\\S+)", command);
@@ -83,6 +89,19 @@ public class CartMenu extends Menu {
 
     public void showTotalPrice() {
         System.out.println(ItemAndCategoryController.getInstance().getCartPrice());
+    }
+
+    public void purchase(){
+       if(Controller.getInstance().isLogin()==false){
+           System.out.println("Error: please login to continue");
+           return;
+       }
+       if(UserController.getInstance().returnUserType(UserController.getInstance().getCurrentOnlineUser().getUsername()).equals("Buyer")){
+           View.setCurrentMenu(PurchaseMenu.getInstance());
+           View.setPreviousMenu(CartMenu.getInstance());
+           return;
+       }
+          System.out.println("you must be a Buyer to buy items");
     }
 
 }

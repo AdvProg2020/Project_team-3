@@ -1,6 +1,6 @@
 package View.Menus;
 
-import Control.ItemAndCategoryController;
+import Control.SearchAndFilter;
 import Model.Category;
 
 public class ShopMenu extends Menu {
@@ -41,7 +41,7 @@ public class ShopMenu extends Menu {
         } else if (command.equals("sorting")) {
 
         } else if (command.equals("show available sorts")) {
-
+             showAvailableFilters();
         } else if (command.startsWith("sort ")) {
 
         } else if (command.equals("current sort")) {
@@ -71,12 +71,12 @@ public class ShopMenu extends Menu {
         System.out.println("current filters");
         System.out.println("disable filter [a selected filter]");
         System.out.println("sorting");
-        System.out.println("show available sorts");
+        System.out.println("show available sorts");   //done
         System.out.println("sort [an available sort]");
         System.out.println("current sort");
         System.out.println("disable sort");
         System.out.println("show products");
-        System.out.println("show product [product id]");
+        System.out.println("show product [product id]"); //done
         System.out.println("show category [category name]");
         System.out.println("back");
     }
@@ -103,7 +103,7 @@ public class ShopMenu extends Menu {
     }
 
     public void showAvailableFilters() {
-
+     System.out.println(SearchAndFilter.getInstance().showAllFilters());
     }
 
     public void currentFilters() {
@@ -139,18 +139,8 @@ public class ShopMenu extends Menu {
     }
 
     public void showProduct(String command) {
-        if (command.split(" ").length != 3) {
-            System.out.println(View.ANSI_RED + "Invalid ID." + View.ANSI_RESET);
-            return;
-        }
         String itemID = command.split(" ")[2];
-        if (!ItemAndCategoryController.getInstance().currentViewableItemsContainsItem(itemID)) {
-            System.out.println(View.ANSI_RED + "Invalid ID." + View.ANSI_RESET);
-            return;
-        }
-
-        ItemMenu.getInstance().setItemID(itemID);
-        View.setCurrentMenu(ItemMenu.getInstance());
+        viewItem(itemID);
     }
 
 }

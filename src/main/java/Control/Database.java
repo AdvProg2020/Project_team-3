@@ -99,7 +99,7 @@ public class Database<Public> {
 
     public   void saveCategory(Category category) throws IOException{
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String path="Resource"+File.separator+"Category";
+        String path="Resource"+File.separator+"Categories";
         String name=category.getName()+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()){
@@ -138,7 +138,7 @@ public class Database<Public> {
 
     public void deleteCategory(Category category){
         String categoryName=category.getName();
-        String path="Resource"+File.separator+"Category";
+        String path="Resource"+File.separator+"Categories";
         String name=categoryName+".json";
         File file=new File(path+File.separator+name);
         file.delete();
@@ -181,7 +181,7 @@ public class Database<Public> {
         if(!file.exists()){
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Category");
+        file=new File("Resource"+File.separator+"Categories");
         if(!file.exists()){
             file.mkdir();
         }
@@ -190,7 +190,6 @@ public class Database<Public> {
             file.mkdir();
         }
         Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
-        ItemAndCategoryController.getInstance().loadMainCategory();
     }
 
     public  ArrayList<String> printFolderContent(String folderName){

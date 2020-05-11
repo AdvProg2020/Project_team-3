@@ -201,11 +201,11 @@ public class SearchAndFilter {
 
 
     public String showAllFilters(){
-        return "you can filter by"+"\n"+
-                "price: minimum price and maximum price"+"\n"+
-                "company Name"+"\n"+
-                "item Name"+"\n"+
-                "category"+"\n";
+        return "you can use different the filter with these commands"+"\n"+
+                "sort price min to max"+"\n"+
+                "sort price max to min"+"\n"+
+                "sort company name"+"\n"+
+                "sort item name "+"\n";
     }
 
 

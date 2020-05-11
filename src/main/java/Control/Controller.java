@@ -12,7 +12,7 @@ public class Controller {
     private static Controller controller;
     User currentOnlineUser;
     Category currentCategory;
-    Cart ShoppingCart=new Cart("");
+    Cart ShoppingCart=new Cart();
     int idSize=5;
 
     private Controller() {
@@ -28,6 +28,15 @@ public class Controller {
         return ShoppingCart;
     }
 
+    public void emptyCart(){
+    ShoppingCart=new Cart();
+    }
+
+    public boolean isLogin(){
+        if(currentOnlineUser==null)
+            return false;
+            return true;
+    }
     public int getIdSize() {
         return idSize;
     }
