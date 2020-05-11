@@ -56,4 +56,8 @@ public class View {
     public static Scanner getRead() {
         return read;
     }
+
+    public static Menu getPreviousMenu() {
+        return previousMenu;
+    }
 }

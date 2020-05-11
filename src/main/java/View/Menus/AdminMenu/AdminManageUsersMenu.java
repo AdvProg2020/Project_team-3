@@ -1,8 +1,7 @@
-package View.Menus.SubMenus;
+package View.Menus.AdminMenu;
 
 import Control.Database;
 import Control.UserController;
-import View.Menus.AdminMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 

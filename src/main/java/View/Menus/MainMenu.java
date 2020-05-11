@@ -3,6 +3,8 @@ package View.Menus;
 import Control.UserController;
 import Model.Users.Admin;
 import Model.Users.Seller;
+import View.Menus.AdminMenu.AdminMenu;
+import View.Menus.SellerMenu.SellerMenu;
 
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;

@@ -1,7 +1,8 @@
-package View.Menus;
+package View.Menus.SellerMenu;
 
 import Control.Controller;
 import Model.Users.Seller;
+import View.Menus.*;
 
 import java.util.regex.Matcher;
 
@@ -19,7 +20,7 @@ public class SellerMenu extends UserMenu {
     @Override
     public void run(){
         System.out.println(View.ANSI_BLUE+"You are in the Seller menu."+View.ANSI_RESET);
-        String command = View.read.nextLine();
+        String command = View.getRead().nextLine();
         execute(command);
     }
 
@@ -41,18 +42,7 @@ public class SellerMenu extends UserMenu {
         }
         if(command.equals("manage products")){
             manageProducts();
-        }
-        if(command.startsWith("view ")){
-            matcher=View.getMatcher("view (\\S+)",command);
-            if(matcher.matches()){
-                viewItem(matcher.group(1));
-            }
-        }
-        if(command.startsWith("view buyers ")){
-            viewBuyers(command);
-        }
-        if(command.startsWith("edit product ")){
-            editProduct();
+            View.setCurrentMenu(SellerManageProductsMenu.getInstance());
         }
         if(command.equals("add product")){
             addItem();
@@ -65,15 +55,7 @@ public class SellerMenu extends UserMenu {
         }
         if(command.equals("view offs")){
             viewAllOffs();
-        }
-        if(command.startsWith("view off ")){
-            viewOff(command);
-        }
-        if(command.startsWith("edit off ")){
-            editSale();
-        }
-        if(command.equals("add off")){
-            addSale();
+            View.setCurrentMenu(SellerManageOffsMenu.getInstance());
         }
         if(command.equals("view balance")){
             viewBalance();
@@ -82,11 +64,11 @@ public class SellerMenu extends UserMenu {
             logout();
         }
         if(command.equals("offs")){
-            View.previousMenu = SellerMenu.getInstance();
+            View.setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
         }
         else if(command.equals("products")){
-            View.previousMenu = SellerMenu.getInstance();
+            View.setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
         }
         else if(command.equals("help")){
@@ -105,16 +87,16 @@ public class SellerMenu extends UserMenu {
         System.out.println("view company information");
         System.out.println("view sales history");
         System.out.println("manage products");
-        System.out.println("view [productId]");
-        System.out.println("view buyers [productId]");
-        System.out.println("edit product [productId]");
+        //System.out.println("view [productId]");
+        //System.out.println("view buyers [productId]");
+        //System.out.println("edit product [productId]");
         System.out.println("add product");
         System.out.println("remove product [productId]");
         System.out.println("show categories");
         System.out.println("view offs");
-        System.out.println("view off [offId]");
-        System.out.println("edit off [offId]");
-        System.out.println("add off");
+        //System.out.println("view off [offId]");
+        //System.out.println("edit off [offId]");
+        //System.out.println("add off");
         System.out.println("view balance");
     }
 
@@ -133,14 +115,6 @@ public class SellerMenu extends UserMenu {
         System.out.println(seller.getAllItemsString());
     }
 
-    public void viewBuyers(String command){
-
-    }
-
-    public void editProduct(){
-
-    }
-
     public void addItem(){
         String Name=readName("Please enter item Name");
         String company=readName("Please enter your Brand name");
@@ -156,20 +130,7 @@ public class SellerMenu extends UserMenu {
     public void showCategories(){
 
     }
-
-    public void viewOff(String command){
-
-    }
-
     private void viewAllOffs(){
-
-    }
-
-    public void editSale(){
-
-    }
-
-    public void addSale(){
 
     }
 

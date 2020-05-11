@@ -1,11 +1,10 @@
-package View.Menus;
+package View.Menus.AdminMenu;
 
-import Control.*;
+import Control.Database;
+import Control.ItemAndCategoryController;
+import Control.SaleAndDiscountCodeController;
 import Model.Sale;
-import View.Menus.SubMenus.AdminManageCategoriesMenu;
-import View.Menus.SubMenus.AdminManageDiscountCodesMenu;
-import View.Menus.SubMenus.AdminManageRequestsMenu;
-import View.Menus.SubMenus.AdminManageUsersMenu;
+import View.Menus.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +26,7 @@ public class AdminMenu extends UserMenu {
     @Override
     public void run() {
         System.out.println(View.ANSI_BLUE + "You are in the Admin menu." + View.ANSI_RESET);
-        String command = View.read.nextLine();
+        String command = View.getRead().nextLine();
         execute(command);
     }
 
@@ -38,7 +37,7 @@ public class AdminMenu extends UserMenu {
             logout();
         }
         if(command.equals("offs")){
-            View.previousMenu = AdminMenu.getInstance();
+            View.setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
         }
         else if (command.equals("help")) {
@@ -62,7 +61,7 @@ public class AdminMenu extends UserMenu {
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
         }
         else if(command.equals("products")){
-            View.previousMenu = AdminMenu.getInstance();
+            View.setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
         }
         else if (command.equals("manage requests")) {
