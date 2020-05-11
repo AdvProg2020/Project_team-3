@@ -107,16 +107,10 @@ public class BuyerMenu extends UserMenu {
         System.out.println("view personal info");
         System.out.println("edit [field]");
         System.out.println("view cart");
-        //System.out.println("show products");
-        //System.out.println("view [productId]");
-        //System.out.println("increase [productId]");
-        //System.out.println("decrease [productId]");
-        //System.out.println("show total price");
-        //System.out.println("purchase");
         System.out.println("view orders");
         System.out.println("show order [orderId]");
         System.out.println("rate [productId] [1-5]");
-        System.out.println("view balance");  //done
+        System.out.println("view balance");
         System.out.println("view discount codes");
         System.out.println("logout");
         System.out.println("back");

@@ -140,6 +140,10 @@ public class AdminMenu extends UserMenu {
         System.out.println("detail request [request id]");  //done but request info need to be added
         System.out.println("accept [request id]");    //done but need test
         System.out.println("decline [request id]");   //done but need test
+        System.out.println("manage categories");
+        System.out.println("edit category [category name]");
+        System.out.println("add [category name]");
+        System.out.println("remove [category name]");
         System.out.println("logout");                //done
     }
 

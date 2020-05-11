@@ -77,6 +77,7 @@ public class ShopMenu extends Menu {
         System.out.println("disable sort");
         System.out.println("show products");
         System.out.println("show product [product id]");
+        System.out.println("show category [category name]");
         System.out.println("back");
     }
 
