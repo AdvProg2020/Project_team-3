@@ -35,7 +35,6 @@ public class Buyer extends User {
         String ans = "";
         for(BuyLog buyLog:buyLogs){
             ans += buyLog.toString();
-            ans += "\n";
         }
         return ans;
     }
@@ -48,10 +47,6 @@ public class Buyer extends User {
 
     public void removeDiscount(String discountID){
         if(this.allDiscounts.contains(discountID)) this.allDiscounts.remove(discountID);
-    }
-
-    public boolean hasBoughtInPast(){
-        return false;
     }
 
     public boolean hasDiscountID(String id){
@@ -84,6 +79,5 @@ public class Buyer extends User {
         }
         return ans;
     }
-
 
 }

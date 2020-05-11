@@ -73,7 +73,10 @@ public class BuyerMenu extends UserMenu {
             //
         }
         else if(command.startsWith("rate ")){
-            //
+          matcher=View.getMatcher("rate (\\S+) ([1-2-3-4-5])",command);
+          if(matcher.matches()){
+              rate(matcher.group(1),Integer.parseInt(matcher.group(2)));
+          }
         }
         else if(command.equals("view balance")){
             viewBalance();
@@ -141,6 +144,8 @@ public class BuyerMenu extends UserMenu {
         System.out.println(buyer.getDiscountCodes());
     }
 
-
+    private void rate(String itemid,int score){
+       System.out.println(ItemAndCategoryController.getInstance().rate(score,itemid));
+    }
 
 }

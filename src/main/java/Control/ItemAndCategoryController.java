@@ -168,13 +168,22 @@ public class ItemAndCategoryController {
         if(!(user instanceof Buyer)){
            return "Error: you cant rate an item";
         }
+        Buyer buyer=(Buyer) user;
         Item item=getItemById(itemId);
-        if(item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())){
-            Rating rating=new Rating(score,user.getUsername(),itemId);
-            item.addRating(rating);
-            return "Successful: your have rated the item";
+        if(!item.isBuyerWithUserName(buyer.getUsername())){
+            return "Error: you must first buy this item";
         }
-         return "";
+        if(item.hasUserRated(buyer.getUsername())){
+            return "Error: you have already rated this item";
+        }
+        Rating rating=new Rating(score,buyer.getUsername(),itemId);
+        item.addRating(rating);
+        try {
+            Database.getInstance().saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Successful: your have rated the item";
     }
 
     public String digest(String itemId){

@@ -92,6 +92,14 @@ public class Item {
         return state;
     }
 
+    public boolean hasUserRated(String username){
+        for (Rating rating : allRatings) {
+            if(rating.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
     public double getRating(){
         double ratingSum=0;
         if(allRatings.size()==0){
@@ -206,6 +214,7 @@ public class Item {
         }
             return true;
     }
+
     public void addBuyerUserName(String userName){
         buyerUserName.add(userName);
     }
