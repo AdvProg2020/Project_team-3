@@ -101,7 +101,7 @@ public abstract class Menu {
             ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
             System.out.println(ans);
             return ans.startsWith("Succ");*/
-            System.out.println("You cant make a admin account.");
+            System.out.println("You cant make an admin account.");
             return false;
         }
 
