@@ -118,7 +118,7 @@ public class BuyerMenu extends UserMenu {
     private void showTotalPrice(){
         User user = UserController.getInstance().getCurrentOnlineUser();
         System.out.print(View.ANSI_BLUE+"Total Price:"+View.ANSI_RESET);
-        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().getCartPrice());
+        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().getCartPriceWithoutDiscountCode());
     }
 
     private void purchase(){

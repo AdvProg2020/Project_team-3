@@ -30,7 +30,9 @@ public class LoginRegisterMenu extends Menu {
             help();
         } else if (command.equals("back")) {
             View.setCurrentMenu(MainMenu.getInstance());
-        } else {
+        } else if(command.equals("logout")){
+            logout();
+        } else{
             System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
         }
     }

@@ -8,10 +8,14 @@ import java.util.HashMap;
 public class Cart {
     HashMap<String,Integer> allItemCount;
     ArrayList<String> allItemId;
-
+    DiscountCode discountCode;
     public Cart(){
         allItemCount=new HashMap<>();
         allItemId=new ArrayList<>();
+    }
+
+    public void setDiscountCode(DiscountCode discountCode) {
+        this.discountCode = discountCode;
     }
 
     public String add(String itemId){
@@ -66,13 +70,21 @@ public class Cart {
         return 0;
     }
 
-    public double getCartPrice(){
+    public double getCartPriceWithoutDiscountCode(){
         double price = 0;
         for (String id : allItemId) {
             price+=ItemAndCategoryController.getInstance().getItemById(id).getPrice() * allItemCount.get(id);
         }
         return price;
         }
+
+     public double getCartPriceWithDiscountCode(){
+         int code=100;
+         if(discountCode!=null){
+             code=discountCode.getDiscountPercentage();
+         }
+         return getCartPriceWithoutDiscountCode()*code;
+     }
 
     @Override
     public String toString(){

@@ -88,7 +88,7 @@ public class CartMenu extends Menu {
     }
 
     public void showTotalPrice() {
-        System.out.println(ItemAndCategoryController.getInstance().getCartPrice());
+        System.out.println(ItemAndCategoryController.getInstance().getCartPriceWithoutDiscountCode());
     }
 
     public void purchase(){

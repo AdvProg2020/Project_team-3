@@ -72,10 +72,10 @@ public class ItemAndCategoryController {
         return getCurrentShoppingCart().changeCountBy(itemid,count);
     }
 
-    public double getCartPrice(){
-        return getCurrentShoppingCart().getCartPrice();
+    public double getCartPriceWithoutDiscountCode(){
+        return getCurrentShoppingCart().getCartPriceWithoutDiscountCode();
     }
-
+    public double getCartPriceWithDiscountCode(){return getCurrentShoppingCart().getCartPriceWithDiscountCode();}
     public Item getItemById(String id) {
         String path="Resource"+File.separator+"Items";
         String name=id+".json";

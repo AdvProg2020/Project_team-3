@@ -1,5 +1,6 @@
 package View.Menus;
 
+import Control.Controller;
 import Control.ItemAndCategoryController;
 import Control.UserController;
 import View.Menus.AdminMenu.AdminMenu;
@@ -22,15 +23,10 @@ public abstract class Menu {
     public abstract void execute(String command);
 
     public boolean login(String command) {
-        /*System.out.print("Enter your username:");
-        String username = View.read.nextLine();
-        System.out.print("Enter your password:");
-        String password = View.read.nextLine();
-
-        String ans = UserController.getInstance().login(username, password);
-        System.out.println(ans);
-        return ans.startsWith("Success");*/
-
+        if(Controller.getInstance().isLogin()==true){
+            System.out.println("Error: logout first");
+            return false;
+        }
         if (command.split(" ").length != 2) {
             System.out.println(View.ANSI_RED + "Invalid username." + View.ANSI_RESET);
             return false;
