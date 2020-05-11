@@ -21,7 +21,7 @@ public class View {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void run() {
-        System.out.println(ANSI_WHITE + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
+        System.out.println(ANSI_RED + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
       /*  currentMenu=CartMenu.getInstance();
         ItemAndCategoryController.getInstance().addItemToCart("tzNov");
         ItemAndCategoryController.getInstance().addItemToCart("o3E1D");
@@ -49,8 +49,7 @@ public class View {
 
     public static Matcher getMatcher(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
-        return matcher;
+        return pattern.matcher(input);
     }
 
     public static Scanner getRead() {

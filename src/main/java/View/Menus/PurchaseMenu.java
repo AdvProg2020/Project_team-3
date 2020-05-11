@@ -32,17 +32,17 @@ public class PurchaseMenu extends Menu {
     }
 
     public void discountCode(){
-        System.out.println("please enter your discount code\nif you dont have one enter --continue--");
+        System.out.println("please enter your discount code\nif you don't have one enter --continue--");
         String discountId=View.read.nextLine();
         if(discountId.equals("continue")){
             return;
         }
-        if(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountId)==false){
+        if(!SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountId)){
             System.out.println("invalid id");
             discountCode();
             return;
         }
-        System.out.println("Successfull: price before discount="+ ItemAndCategoryController.getInstance().getCartPriceWithoutDiscountCode() +"price after discount="+ItemAndCategoryController.getInstance().getCartPriceWithDiscountCode());
+        System.out.println("Successful: price before discount="+ ItemAndCategoryController.getInstance().getCartPriceWithoutDiscountCode() +"price after discount="+ItemAndCategoryController.getInstance().getCartPriceWithDiscountCode());
     }
 
     public void pay(){

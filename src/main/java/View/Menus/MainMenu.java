@@ -9,8 +9,6 @@ import View.Menus.ShopMenu.ShopMenu;
 
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;
-    private int optionCount = 4;
-
     private MainMenu() {
     }
 

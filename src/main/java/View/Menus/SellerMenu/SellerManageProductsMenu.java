@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 
 public class SellerManageProductsMenu extends UserMenu {
     private static SellerManageProductsMenu sellerManageProductsMenu;
-    private int optionCount = 6;
     private SellerManageProductsMenu(){ }
 
     public static SellerManageProductsMenu getInstance(){

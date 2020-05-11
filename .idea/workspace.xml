@@ -2,15 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/FilterMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/SortMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Control/SearchAndFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Control/SearchAndFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageCategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageCategoriesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageRequestsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageRequestsMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageOffsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageOffsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageProductsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageProductsMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the Last UML.uml" beforeDir="false" afterPath="$PROJECT_DIR$/the Last UML.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/FilterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/FilterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/SortMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/SortMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,13 +128,6 @@
       <workItem from="1589068693459" duration="1475000" />
       <workItem from="1589070245126" duration="980000" />
       <workItem from="1589128067626" duration="928000" />
-    </task>
-    <task id="LOCAL-00003" summary="User set as abstract">
-      <created>1586706815934</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1586706815934</updated>
     </task>
     <task id="LOCAL-00004" summary="User set as abstract">
       <created>1586721832246</created>
@@ -460,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589205844825</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="segregated ShopMenu">
+      <created>1589226551664</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1589226551664</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +492,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small fixes to account." />
     <MESSAGE value="small fixes." />
     <MESSAGE value="Category added to some methods!" />
     <MESSAGE value="remove Item from Bucket!" />
@@ -505,7 +516,8 @@
     <MESSAGE value="fixed SearchAndFilter and added sort Item!" />
     <MESSAGE value="added ChosClasses" />
     <MESSAGE value="segregated admin submenus" />
-    <option name="LAST_COMMIT_MESSAGE" value="segregated admin submenus" />
+    <MESSAGE value="segregated ShopMenu" />
+    <option name="LAST_COMMIT_MESSAGE" value="segregated ShopMenu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -543,11 +555,11 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="637" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1588330446121" />
-    <state x="713" y="202" key="CommitChangelistDialog2" timestamp="1589205843381">
+    <state x="713" y="202" key="CommitChangelistDialog2" timestamp="1589226550001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1589128633979" />
-    <state x="713" y="202" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589205843381" />
+    <state x="713" y="202" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589226550001" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1029@0.23.1792.1029" timestamp="1588420415868" />
@@ -628,11 +640,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="496" y="275" key="Vcs.Push.Dialog.v2" timestamp="1589222431649">
-      <screen x="0" y="23" width="1792" height="1029" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589226554039">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589128687969" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589205847953" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589226554039" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />

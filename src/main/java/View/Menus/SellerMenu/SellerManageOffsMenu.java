@@ -5,7 +5,6 @@ import View.Menus.View;
 
 public class SellerManageOffsMenu extends UserMenu {
     private static SellerManageOffsMenu sellerManageOffsMenu;
-    private int optionCount = 6;
     private SellerManageOffsMenu(){ }
 
     public static SellerManageOffsMenu getInstance(){

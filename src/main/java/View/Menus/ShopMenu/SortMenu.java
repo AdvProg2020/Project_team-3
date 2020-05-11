@@ -5,7 +5,6 @@ import View.Menus.View;
 
 public class SortMenu extends Menu {
     private static SortMenu sortMenu;
-    private int optionCount = 6;
 
     private SortMenu() {
     }

@@ -138,7 +138,7 @@ public class SearchAndFilter {
 
 
     public ArrayList<Item> disableFilter(String disabled){
-        if(disabled.equals("category")){
+        if(disabled.equalsIgnoreCase("category")){
             availableFilters.remove("category");
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
@@ -152,7 +152,7 @@ public class SearchAndFilter {
                 if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
-        }else if(disabled.equals("company Name")){
+        }else if(disabled.equalsIgnoreCase("company Name")){
             availableFilters.remove("company Name");
             currentViewableItems.clear();
             if(availableFilters.contains("category")){
@@ -166,7 +166,7 @@ public class SearchAndFilter {
                 if(currentViewableItems.isEmpty()) return currentViewableItems;
             }
             return currentViewableItems;
-        }else if(disabled.equals("item Name")){
+        }else if(disabled.equalsIgnoreCase("item Name")){
             availableFilters.remove("item Name");
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
@@ -181,7 +181,7 @@ public class SearchAndFilter {
             }
             return currentViewableItems;
 
-        }else if(disabled.equals("price")){
+        }else if(disabled.equalsIgnoreCase("price")){
             availableFilters.remove("price");
             currentViewableItems.clear();
             if(availableFilters.contains("company Name")){
@@ -207,7 +207,6 @@ public class SearchAndFilter {
                 "sort company name"+"\n"+
                 "sort item name "+"\n";
     }
-
 
     ///getters and setters!
     public Category getFilteredCategory() {

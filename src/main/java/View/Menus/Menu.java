@@ -10,12 +10,6 @@ import java.util.ArrayList;
 
 public abstract class Menu {
 
-    public int optionCount;
-
-    public int getOptionCount() {
-        return optionCount;
-    }
-
     public abstract void help();
 
     public abstract void run();
@@ -23,7 +17,7 @@ public abstract class Menu {
     public abstract void execute(String command);
 
     public boolean login(String command) {
-        if(Controller.getInstance().isLogin()==true){
+        if(Controller.getInstance().isLogin()){
             System.out.println("Error: logout first");
             return false;
         }
@@ -193,7 +187,7 @@ public abstract class Menu {
     }
 
     public void viewItem(String id){
-        if (ItemAndCategoryController.getInstance().isThereItemWithId(id) == false) {
+        if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
             System.out.println("Error: invalid id");
         }
         View.setPreviousMenu(View.getCurrentMenu());

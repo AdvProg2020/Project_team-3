@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 
 public class AdminManageRequestsMenu extends UserMenu {
     private static AdminManageRequestsMenu adminManageRequestsMenu;
-    private int optionCount = 6;
     private AdminManageRequestsMenu(){ }
 
     public static AdminManageRequestsMenu getInstance(){

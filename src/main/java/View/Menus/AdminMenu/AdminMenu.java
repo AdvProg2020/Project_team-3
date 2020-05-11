@@ -13,7 +13,6 @@ import java.util.regex.Matcher;
 
 public class AdminMenu extends UserMenu {
     private static AdminMenu adminMenu;
-    private int optionCount = 9;
 
     private AdminMenu() {
     }

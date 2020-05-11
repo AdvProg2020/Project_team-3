@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 
 public class DiscountsMenu extends Menu {
     private static DiscountsMenu discountsMenu;
-    private int optionCount = 6;
     private DiscountsMenu(){ }
 
     public static DiscountsMenu getInstance(){

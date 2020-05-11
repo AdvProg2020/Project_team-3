@@ -6,7 +6,6 @@ import View.Menus.View;
 
 public class FilterMenu extends Menu {
     private static FilterMenu filterMenu;
-    private int optionCount = 6;
 
     private FilterMenu() {
     }

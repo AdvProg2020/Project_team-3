@@ -7,7 +7,6 @@ import View.Menus.View;
 public class ShopMenu extends Menu {
     private static ShopMenu shopMenu;
     private Category currentCategory;
-    private int optionCount = 6;
 
     private ShopMenu() {
     }

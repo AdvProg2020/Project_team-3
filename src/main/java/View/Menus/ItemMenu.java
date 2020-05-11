@@ -8,8 +8,6 @@ import java.util.regex.Matcher;
 public class ItemMenu extends Menu {
     private static ItemMenu itemMenu;
     private String itemID;
-    private int optionCount = 4;
-
     private ItemMenu() {
     }
 

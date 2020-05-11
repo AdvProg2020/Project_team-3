@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 
 public class AdminManageDiscountCodesMenu extends UserMenu {
     private static AdminManageDiscountCodesMenu adminManageDiscountCodesMenu;
-    private int optionCount = 6;
     private AdminManageDiscountCodesMenu(){ }
 
     public static AdminManageDiscountCodesMenu getInstance(){

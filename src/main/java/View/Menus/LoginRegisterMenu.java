@@ -2,8 +2,6 @@ package View.Menus;
 
 public class LoginRegisterMenu extends Menu {
     private static LoginRegisterMenu loginRegisterMenu;
-    private int optionCount = 4;
-
     private LoginRegisterMenu() {
     }
 
