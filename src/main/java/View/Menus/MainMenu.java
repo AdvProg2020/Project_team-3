@@ -10,6 +10,7 @@ import View.Menus.ShopMenu.ShopMenu;
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;
     private MainMenu() {
+
     }
 
     public static MainMenu getInstance() {
