@@ -20,7 +20,9 @@ public class AdminManageUsersMenu extends UserMenu {
     }
 
     public void run(){
-
+        help();
+        String command = View.getRead().nextLine();
+        execute(command);
     }
     @Override
     public void execute(String command) {

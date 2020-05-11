@@ -20,7 +20,7 @@
     <node x="200.0" y="980.0">View.Menus.AdminMenu.AdminMenu</node>
     <node x="168.0" y="3096.0">java</node>
     <node x="2796.0" y="2804.0">javax</node>
-    <node x="902.5" y="332.0">View.Menus.View.Menus.ShopMenu</node>
+    <node x="902.5" y="332.0">View.Menus.View.Menus.ShopMenu.ShopMenu</node>
     <node x="672.5" y="0.0">View.Menus.View.Menus.Menu</node>
     <node x="111.5" y="560.0">View.Menus.View.Menus.UserMenu</node>
     <node x="700.0" y="2642.0">Model.Requests.SaleRequest</node>
@@ -65,7 +65,7 @@
       <point x="502.2000000000001" y="2590.0" />
       <point x="-54.799999999999955" y="69.5" />
     </edge>
-    <edge source="View.Menus.View.Menus.ShopMenu" target="View.Menus.View.Menus.Menu">
+    <edge source="View.Menus.View.Menus.ShopMenu.ShopMenu" target="View.Menus.View.Menus.Menu">
       <point x="0.0" y="-298.5" />
       <point x="997.5" y="311.0" />
       <point x="822.2857142857142" y="311.0" />

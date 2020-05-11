@@ -5,6 +5,7 @@ import Model.Users.Admin;
 import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
+import View.Menus.ShopMenu.ShopMenu;
 
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;
