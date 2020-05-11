@@ -22,7 +22,7 @@ public class View {
 
     public static void run() {
         System.out.println(ANSI_RED + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
-      /*  currentMenu=CartMenu.getInstance();
+      /*currentMenu=CartMenu.getInstance();
         ItemAndCategoryController.getInstance().addItemToCart("tzNov");
         ItemAndCategoryController.getInstance().addItemToCart("o3E1D");
         ItemAndCategoryController.getInstance().addItemToCart("ajGfW"); */
