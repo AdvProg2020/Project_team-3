@@ -2,33 +2,51 @@ package Model.Logs;
 
 import Control.Controller;
 import Control.ItemAndCategoryController;
+import Control.UserController;
 import Model.Item;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BuyLog {
+
     private String id;
-    private int time;
-    private double saleAmount;
+    private Date time;
+    private ArrayList<Double> price;
     private ArrayList<String> allItemsID;
-    private ArrayList<String> discountCodeId;
-    private String sellerName;
-    private String BuyerName;
+    private ArrayList<String> sellerName;
+    private ArrayList<Integer> count;
     private String deliveryState;
-    private static String idCount="00000000";
-    public BuyLog(double saleAmount, ArrayList<String> allItemsName, String sellerName, String buyerName
-    ) {
-        this.saleAmount = saleAmount;
-        this.allItemsID = allItemsName;
-        this.sellerName = sellerName;
-        BuyerName = buyerName;
-        id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize()," ");
+    private double saleAmount;
+    private String buyerName;
+
+    public BuyLog(String buyerName) {
+    price=new ArrayList<>();
+    allItemsID=new ArrayList<>();
+    sellerName=new ArrayList<>();
+    count=new ArrayList<>();
+    this.buyerName=buyerName;
+    id=Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"");
+    }
+
+    public void addItem(double price,int count,String itemid,String sellerName){
+     this.price.add(price);
+     this.count.add(count);
+     this.allItemsID.add(itemid);
+     this.sellerName.add(sellerName);
+
+     SaleLog saleLog=new SaleLog(id,time,price,itemid,buyerName,count);
+     UserController.getInstance().assignSaleLog(sellerName,saleLog);
     }
 
     @Override
     public String toString(){
-        String ans = "Order ID:" + id +"   ";
-        ans += "Total price:" + saleAmount + "   ";
+       String ans="";
+       int index=0;
+        for (String id : allItemsID) {
+            ans+="item id: "+id+" seller name: "+sellerName.get(index)+" count: "+count.get(index)+"\n";
+            index++;
+        }
         return ans;
     }
 
@@ -50,44 +68,6 @@ public class BuyLog {
             if(itemID.equals(id)) return ItemAndCategoryController.getInstance().getItemById(id);
         }
         return null;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public ArrayList<String> getDiscountCodeId() {
-        return discountCodeId;
-    }
-
-    public void addDiscountCode(String id){
-        discountCodeId.add(id);
-    }
-
-    public boolean hasDiscountWithID(String id)
-    {
-        if(discountCodeId.contains(id)) return true;
-        return false;
-    }
-
-    public String removeDiscountCode(String id){
-        if(hasDiscountWithID(id)==true){
-            discountCodeId.remove(id);
-            return "removed successfully!";
-        }
-        return "we do not have that discount code!";
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public String getBuyerName() {
-        return BuyerName;
     }
 
     public String getDeliveryState() {

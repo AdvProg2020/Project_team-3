@@ -31,9 +31,6 @@ public class Buyer extends User {
         return response;
     }
 
-    public ArrayList<BuyLog> getBuyLogs() {
-        return buyLogs;
-    }
     public String getBuyLogsString(){
         String ans = "";
         for(BuyLog buyLog:buyLogs){
@@ -44,25 +41,6 @@ public class Buyer extends User {
     }
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
-
-    public void assignCart(Cart cart){
-        this.cart=cart;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public boolean doesHaveEnoughMoneyToBuyCart(){
-        return false;
-    }
-
-    public String buy(){
-    if(!doesHaveEnoughMoneyToBuyCart()){
-        return "Error: dont have enough money";
-    }
-        return "bayad buylog sakhte shavad";
-    }
 
     public void addDiscount(String discountId){
         this.allDiscounts.add(discountId);

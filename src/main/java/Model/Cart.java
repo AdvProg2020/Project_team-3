@@ -1,6 +1,8 @@
 package Model;
 
 import Control.ItemAndCategoryController;
+import Control.UserController;
+import Model.Logs.BuyLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ public class Cart {
     HashMap<String,Integer> allItemCount;
     ArrayList<String> allItemId;
     DiscountCode discountCode;
+
     public Cart(){
         allItemCount=new HashMap<>();
         allItemId=new ArrayList<>();
@@ -97,9 +100,21 @@ public class Cart {
         return cart;
     }
 
+    public void buy(String buyerName){
+        BuyLog buyLog=new BuyLog(buyerName);
+        int count=0;
+        for (String itemid : allItemId) {
+            double price=ItemAndCategoryController.getInstance().getItemById(itemid).getPrice();
+            String sellerName=ItemAndCategoryController.getInstance().getItemById(itemid).getSellerName();
+            buyLog.addItem(price,allItemCount.get(itemid),itemid,sellerName);
+        }
+        empty();
+        UserController.getInstance().assignBuyLog(buyerName,buyLog);
+    }
 
-    void empty(){
+    private void empty(){
+        allItemId.clear();
         allItemCount.clear();
-       allItemId.clear();
+        discountCode=null;
     }
 }

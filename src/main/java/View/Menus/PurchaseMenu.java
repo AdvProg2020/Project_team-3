@@ -2,6 +2,7 @@ package View.Menus;
 
 import Control.ItemAndCategoryController;
 import Control.SaleAndDiscountCodeController;
+import Control.UserController;
 
 public class PurchaseMenu extends Menu {
     private static PurchaseMenu purchaseMenu;
@@ -48,6 +49,7 @@ public class PurchaseMenu extends Menu {
         System.out.println("Are you sure you want to buy these items?(enter yes to continue or anything else to exit process)");
         String command=View.read.nextLine();
         if(command.equals("yes")){
+            System.out.println(UserController.getInstance().buy());
             return;
         }
            View.setCurrentMenu(CartMenu.getInstance());

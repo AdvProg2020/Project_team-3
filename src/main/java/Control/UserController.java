@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Cart;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Users.Admin;
@@ -62,16 +63,6 @@ public class UserController {
             return ((Seller) getCurrentOnlineUser()).getMoney();
         }
             return -111;
-    }
-
-    public ArrayList<BuyLog> getBuyerBuyLogs(String username){
-        Buyer buyer= (Buyer) getCurrentOnlineUser();
-       return buyer.getBuyLogs();
-    }
-
-    public ArrayList<SaleLog> getSellerBuyLogs(String username){
-        Seller seller= (Seller) getCurrentOnlineUser();
-        return seller.getSellLogs();
     }
 
     public boolean isThereUserWithUsername(String username) {
@@ -231,4 +222,38 @@ public class UserController {
         return getUserByUsername(username).changeTypeTo(type);
     }
 
+    public void assignBuyLog(String buyerName,BuyLog buyLog){
+    Buyer buyer=(Buyer) getUserByUsername(buyerName);
+    buyer.addBuyLog(buyLog);
+        try {
+            Database.getInstance().saveUser(buyer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void assignSaleLog(String sellerName,SaleLog saleLog){
+        Seller seller=(Seller) getUserByUsername(sellerName);
+        seller.addSaleLog(saleLog);
+        seller.setMoney(seller.getMoney()+saleLog.getPrice());
+        try {
+            Database.getInstance().saveUser(seller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String buy(){
+        if(!(getCurrentOnlineUser() instanceof Buyer)){
+            return "Error: must be a buyer to buy items";
+        }
+        Buyer buyer=(Buyer) getCurrentOnlineUser();
+        Cart cart=Controller.getInstance().getCurrentShoppingCart();
+        double price=cart.getCartPriceWithDiscountCode();
+        if(price>buyer.getMoney()){
+            return "Error: not enough money";
+        }
+        buyer.setMoney(buyer.getMoney()-cart.getCartPriceWithoutDiscountCode());
+        cart.buy(buyer.getUsername());
+        return "Successful:";
+    }
 }
