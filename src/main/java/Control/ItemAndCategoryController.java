@@ -51,7 +51,15 @@ public class ItemAndCategoryController {
         }
     }
 
-
+    public boolean isThereCategoryWithName(String name) {
+        String path="Resource"+File.separator+"Categories";
+        String fileName=name+".json";
+        File file=new File(path+File.separator+fileName);
+        if(!file.exists()){
+            return false;
+        }
+        return true;
+    }
 
     public String addItemToCart(String itemId){
         if(isThereItemWithId(itemId)==false){
@@ -94,7 +102,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getCategoryByName(String categoryName){
-        String path="Resource"+File.separator+"Category";
+        String path="Resource"+File.separator+"Categories";
         String name=categoryName+".json";
         File file=new File(path+File.separator+name);
         if(!file.exists()) return  null;
@@ -194,21 +202,33 @@ public class ItemAndCategoryController {
         return getItemById(itemId).showAttributes();
     }
 
-
-    public void addCategory(String name , ArrayList<String>attributes) {
-        if(getCurrentCategory().hasSubCategoryWithName(name)==true) {
-            return;
+    public String addCategory(String name,ArrayList<String>attributes,String fatherName) {
+        if(isThereCategoryWithName(name)) {
+            return "Error: category with this name already exist";
         }
-        Category category=new Category(name);
-        category.setParent(getCurrentCategory().getName());
-        getCurrentCategory().addSubCategory(category.getName());
-        category.setAttributes(attributes);
+    if(!isThereCategoryWithName(fatherName))  {
+        return "Error: father category doesnt exist";
+    }
+        Category category=new Category(name,attributes,fatherName);
         try {
-            Database.getInstance().saveCategory(getCurrentCategory());
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "Successful";
+    }
+
+    public String addCategory(String name,ArrayList<String>attributes) {
+        if(isThereCategoryWithName(name)) {
+            return "Error: category with this name already exist";
+        }
+        Category category=new Category(name,attributes);
+        try {
+            Database.getInstance().saveCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Successful";
     }
 
     public Boolean buy() {
@@ -295,12 +315,17 @@ public class ItemAndCategoryController {
         }
     }
 
-  public void removeCategory(String name){
+  public String removeCategory(String name){
       Category category=getCategoryByName(name);
+      if(category==null){
+          return "Error: invalid name";
+      }
       for (String subCategory : category.getSubCategories()) {
+          if(subCategory!=null)
           removeCategory(subCategory);
       }
       Database.getInstance().deleteCategory(category);
+        return "Successful";
   }
 
     public ArrayList<Item> getInSaleItems(){

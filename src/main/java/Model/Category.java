@@ -13,8 +13,15 @@ public class Category {
         return allItemsID.contains(id);
     }
 
-    public Category(String name) {
+    public Category(String name,ArrayList<String> attributes,String parent) {
         this.name = name;
+        this.attributes=attributes;
+        this.parent=parent;
+    }
+
+    public Category(String name,ArrayList<String> attributes) {
+        this.name = name;
+        this.attributes=attributes;
     }
 
     public String getName() {

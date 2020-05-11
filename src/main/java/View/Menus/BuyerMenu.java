@@ -42,24 +42,10 @@ public class BuyerMenu extends UserMenu {
         matcher = View.getMatcher("edit (\\S+)", command);
         if (matcher.matches()) {
             editPersonalInfo(matcher.group(1));
-        }
-        /*else if(command.equals("show products")){
-            viewCart();
-        }*/
-        else if(command.equals("products")){
+        } else if(command.equals("products")){
             View.previousMenu = BuyerMenu.getInstance();
             View.setCurrentMenu(ShopMenu.getInstance());
-        }
-        /*else if(command.startsWith("increase ")){
-            increaseProduct(command);
-        }
-        else if(command.startsWith("decrease ")){
-            decreaseProduct(command);
-        }
-        else if(command.equals("show total price")){
-            showTotalPrice();
-        }*/
-        else if(command.equals("view cart")){
+        } else if(command.equals("view cart")){
             View.previousMenu = BuyerMenu.getInstance();
             View.setCurrentMenu(CartMenu.getInstance());
         }/*
