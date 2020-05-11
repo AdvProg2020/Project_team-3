@@ -52,4 +52,8 @@ public class View {
         Matcher matcher = pattern.matcher(input);
         return matcher;
     }
+
+    public static Scanner getRead() {
+        return read;
+    }
 }

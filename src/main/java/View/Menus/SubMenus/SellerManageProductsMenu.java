@@ -1,6 +1,7 @@
 package View.Menus.SubMenus;
 
 import View.Menus.UserMenu;
+import View.Menus.View;
 
 public class SellerManageProductsMenu extends UserMenu {
     private static SellerManageProductsMenu sellerManageProductsMenu;
@@ -14,7 +15,9 @@ public class SellerManageProductsMenu extends UserMenu {
     }
 
     public void run(){
-
+        help();
+        String command = View.getRead().nextLine();
+        execute(command);
     }
     @Override
     public void execute(String command) {
