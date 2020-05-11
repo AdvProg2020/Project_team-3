@@ -238,7 +238,7 @@ public class Item {
 
     @Override
     public String toString() {
-       String string="item id: "+id+"\nitem Name: "+name+  "\nSeller name: "+sellerName+"\nis in stock: "+ isInStock()+"\nprice: "+price;
+       String string=name+"\nID: "+id+  "\nSeller:"+sellerName+"\nStock:"+ isInStock()+"\nPrice:"+price;
        if(isInSale()){
            string+="\nprice after sale: " +price*sale.getOffPercentage()/100;
        }
@@ -247,7 +247,6 @@ public class Item {
     }
 
     public String toSimpleString(){
-        String ans="ID:"+id+"   Name"+name+"   Price:"+price;
-        return ans;
+        return"ID:"+id+"   Name"+name+"   Price:"+price;
     }
 }

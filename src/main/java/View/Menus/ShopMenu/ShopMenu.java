@@ -1,5 +1,6 @@
 package View.Menus.ShopMenu;
 
+import Control.ItemAndCategoryController;
 import Model.Category;
 import View.Menus.Menu;
 import View.Menus.View;
@@ -27,13 +28,13 @@ public class ShopMenu extends Menu {
     @Override
     public void execute(String command) {
         if (command.equals("view categories")) {
-            //neshon dadane hamme mahsolat
+            //neshon dadane hamme category ha
         } else if (command.equals("filtering")) {
             View.setCurrentMenu(FilterMenu.getInstance());
         } else if (command.equals("sorting")) {
             View.setCurrentMenu(SortMenu.getInstance());
         } else if (command.equals("show products")) {
-
+            System.out.print(ItemAndCategoryController.getInstance().getCurrentViewableItemsString());
         } else if (command.startsWith("show product ")) {
             showProduct(command);
         } else if (command.equals("help")) {

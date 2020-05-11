@@ -38,7 +38,7 @@ public class ItemAndCategoryController {
     public String deleteItem(String id) {
         Item item = getItemById(id);
         if (item == null) {
-            return "Error: item doesnt exist";
+            return "Error: item doesn't exist";
         }
         Database.getInstance().deleteItem(item);
         return "Successful:";
@@ -54,15 +54,6 @@ public class ItemAndCategoryController {
         return true;
     }
 
-    public String showCart() {
-        String string = getCurrentShoppingCart().toString();
-        if (string.isEmpty()) {
-            return "Cart is empty";
-        } else {
-            return string;
-        }
-    }
-
     public boolean isThereCategoryWithName(String name) {
         String path = "Resource" + File.separator + "Categories";
         String fileName = name + ".json";
@@ -73,32 +64,6 @@ public class ItemAndCategoryController {
         return true;
     }
 
-    public String addItemToCart(String itemId) {
-        if (isThereItemWithId(itemId) == false) {
-            return "Error: invalid id";
-        }
-        return getCurrentShoppingCart().add(itemId);
-    }
-
-    public String cartIncreaseDecrease(String itemid, int count) { //for decrease count needs to be negative
-        if (isThereItemWithId(itemid) == false) {
-            return "Error: invalid id";
-        }
-        if (count < 0) {
-            count = getCurrentShoppingCart().getItemCount(itemid) + count;
-        } else {
-            count += getCurrentShoppingCart().getItemCount(itemid);
-        }
-        return getCurrentShoppingCart().changeCountBy(itemid, count);
-    }
-
-    public double getCartPriceWithoutDiscountCode() {
-        return getCurrentShoppingCart().getCartPriceWithoutDiscountCode();
-    }
-
-    public double getCartPriceWithDiscountCode() {
-        return getCurrentShoppingCart().getCartPriceWithDiscountCode();
-    }
 
     public Item getItemById(String id) {
         String path = "Resource" + File.separator + "Items";
@@ -165,7 +130,7 @@ public class ItemAndCategoryController {
     }
 
     public String comment(String text, String itemId) {
-        if (isThereItemWithId(itemId) == false) {
+        if (!isThereItemWithId(itemId)) {
             return "Error: invalid id";
         }
         Item item = getItemById(itemId);
@@ -185,7 +150,7 @@ public class ItemAndCategoryController {
     }
 
     public String rate(int score, String itemId) {
-        if (isThereItemWithId(itemId) == false) {
+        if (!isThereItemWithId(itemId)) {
             return "Error: invalid id";
         }
         User user = controller.currentOnlineUser;
@@ -249,7 +214,7 @@ public class ItemAndCategoryController {
 
     public Boolean buy() {
         return false;
-    }
+    } //<=== in che kossherie?
 
     public void sortBy(String sortByWhat) {
 
@@ -276,6 +241,23 @@ public class ItemAndCategoryController {
         return currentViewableItems;
     }
 
+    public String getCurrentViewableItemsString(){
+        String ans="";
+        for(Item item:currentViewableItems){
+            ans += item.toSimpleString();
+            ans += "\n";
+        }
+        return ans;
+    }
+
+    public void setViewableToCategory(String categoryName){
+        ArrayList<Item> toBeSet = new ArrayList<>();
+        for(String id:getCategoryByName(categoryName).getAllItemsID()){
+            toBeSet.add(getItemById(id));
+        }
+        currentViewableItems = toBeSet;
+    }
+
     public ArrayList<Item> idToItemInCurrentCategory() {
         ArrayList<Item> allItems = new ArrayList<>();
         Category current = controller.currentCategory;
@@ -287,11 +269,6 @@ public class ItemAndCategoryController {
         }
         return allItems;
     }
-
-    public Cart getCurrentShoppingCart() {
-        return controller.ShoppingCart;
-    }
-
 
     public boolean currentViewableItemsContainsItem(String itemID) {
         return currentViewableItems.contains(getItemById(itemID));
@@ -342,7 +319,7 @@ public class ItemAndCategoryController {
     public ArrayList<Item> getInSaleItems() {
         ArrayList<Item> allItems = getInstance().getAllItemFromDataBase();
         for (Item item : allItems) {
-            if (item.isInSale() == false) allItems.remove(item);
+            if (!item.isInSale()) allItems.remove(item);
         }
         return allItems;
     }

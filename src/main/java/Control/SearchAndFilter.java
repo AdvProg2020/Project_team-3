@@ -113,7 +113,7 @@ public class SearchAndFilter {
                 currentViewableItems=ItemAndCategoryController.getInstance().getInSaleItems();
         }
 
-        if(maximumPrice==0 && maximumPrice==0) return currentViewableItems;
+        if(maximumPrice==0 && minimumPrice==0) return currentViewableItems;
         else if(maximumPrice==0 && minimumPrice>0){
             for(Item item:currentViewableItems){
                 if(item.getPrice()<minimumPrice) currentViewableItems.remove(item);
