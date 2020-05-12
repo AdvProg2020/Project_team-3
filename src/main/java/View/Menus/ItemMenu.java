@@ -29,24 +29,40 @@ public class ItemMenu extends Menu {
     public void execute(String command) {
         if (command.equals("digest")) {
             digest();
-        } else if (command.equals("attributes")) {
+            return;
+        }
+        if (command.equals("attributes")) {
             attributes();
-        } else if (command.equals("add to cart")) {
+            return;
+        }
+        if (command.equals("add to cart")) {
             addToCart();
-        } else if (command.equals("comments")) {
+            return;
+        }
+        if (command.equals("comments")) {
             comments();
-        } else if (command.equals("add comment")) {
+            return;
+        }
+        if (command.equals("add comment")) {
             addComment();
-        } else if (command.equals("help")) {
+            return;
+        }
+        if (command.equals("help")) {
             help();
-        }else{
+            return;
+        }
+        if (command.equals("back")){
+            back();
+            return;
+        }
+
         Matcher matcher=View.getMatcher("compare (\\S+)",command);
         if(matcher.matches()){
             compare(matcher.group(1));
             return;
         }
         System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-        }
+
     }
 
     @Override

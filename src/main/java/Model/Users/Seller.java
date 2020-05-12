@@ -63,6 +63,8 @@ public class Seller extends User {
     }
 
     public void addSaleLog(SaleLog saleLog) {
+        sellLogs.add(saleLog);
+        money+=saleLog.getPrice();
     }
 
     public void addSoldItemID(String id) {

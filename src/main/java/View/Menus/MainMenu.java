@@ -32,18 +32,21 @@ public class MainMenu extends Menu {
         }else if(command.equals("2")){
             View.setCurrentMenu(ShopMenu.getInstance());
         }else if(command.equals("3")){
-            View.previousMenu = MainMenu.getInstance();
             View.setCurrentMenu(DiscountsMenu.getInstance());
+            View.setPreviousMenu(MainMenu.getInstance());
         }else if(command.equals("4")){
             run();
         }else if(command.equals("5")) {
-            View.previousMenu = MainMenu.getInstance();
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            View.setPreviousMenu(MainMenu.getInstance());
         }else if(command.equals("6")){
             logout();
             run();
+        }else if(command.equals("7")){
+            View.setCurrentMenu(CartMenu.getInstance());
+            View.setPreviousMenu(MainMenu.getInstance());
         }
-        else if(command.equals("7")){
+        else if(command.equals("8")){
             exit();
         }
 
@@ -75,7 +78,7 @@ public class MainMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_PURPLE + "You are in the main menu.\nSelect a number." + View.ANSI_RESET);
-        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Login/Register\n6- Logout\n7- Exit");
+        System.out.println("1- Enter user zone\n2- Enter the shop\n3- View ongoing sales \n4- Help\n5- Login/Register\n6- Logout\n7- Cart Menu\n8- Exit");
         System.out.println(View.ANSI_WHITE+"You can type \"help\" in any menu to get help, this has been removed \nfrom the list of commands to avoid complication."+View.ANSI_RESET);
     }
 

@@ -3,6 +3,7 @@ package View.Menus.ShopMenu;
 import ControllerTest.Database;
 import ControllerTest.ItemAndCategoryController;
 import Model.Category;
+import View.Menus.MainMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -52,10 +53,10 @@ public class ShopMenu extends Menu {
             return;
         }
         if (command.equals("back")) {
-            back();
+            View.setCurrentMenu(MainMenu.getInstance());
             return;
         }
-        if(command.equals("show all items")){
+        if(command.equals("show all products")){
            showallItems();
            return;
         }

@@ -212,10 +212,6 @@ public class ItemAndCategoryController {
         return "Successful";
     }
 
-    public Boolean buy() {
-        return false;
-    } //<=== in che kossherie?
-
     public void sortBy(String sortByWhat) {
 
     }
@@ -232,6 +228,19 @@ public class ItemAndCategoryController {
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: your request to add the item was sent to the admins.";
+    }
+
+    public void addItemToCategory(String itemid,String categoryName){
+        Category category=getCategoryByName(categoryName);
+        if(category==null){
+            return;
+        }
+        category.addItem(itemid);
+        try {
+            Database.getInstance().saveCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Category getCurrentCategory() {

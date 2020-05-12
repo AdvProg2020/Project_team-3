@@ -86,7 +86,7 @@ public class Cart {
          if(discountCode!=null){
              code=discountCode.getDiscountPercentage();
          }
-         return getCartPriceWithoutDiscountCode()*code;
+         return getCartPriceWithoutDiscountCode()*code/100;
      }
 
     @Override

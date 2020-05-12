@@ -17,7 +17,6 @@ public class BuyLog {
     private ArrayList<String> sellerName;
     private ArrayList<Integer> count;
     private String deliveryState;
-    private double saleAmount;
     private String buyerName;
 
     public BuyLog(String buyerName) {
@@ -48,10 +47,6 @@ public class BuyLog {
             index++;
         }
         return ans;
-    }
-
-    public double getSaleAmount() {
-        return saleAmount;
     }
 
     public ArrayList<String> getAllItemsID() {

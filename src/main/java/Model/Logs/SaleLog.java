@@ -22,7 +22,7 @@ public class SaleLog {
     }
 
     public double getPrice() {
-        return price;
+        return price*count;
     }
 
     @Override

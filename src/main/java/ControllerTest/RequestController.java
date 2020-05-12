@@ -161,7 +161,9 @@ public class RequestController {
                 }
             }else if(accepted instanceof ItemRequest){
                 try {
-                    Database.getInstance().saveItem(((ItemRequest) accepted).getNewItem());
+                    Item item=((ItemRequest) accepted).getNewItem();
+                    Database.getInstance().saveItem(item);
+                    ItemAndCategoryController.getInstance().addItemToCategory(item.getId(),item.getCategoryName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

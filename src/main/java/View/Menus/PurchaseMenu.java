@@ -50,6 +50,8 @@ public class PurchaseMenu extends Menu {
         String command=View.read.nextLine();
         if(command.equals("yes")){
             System.out.println(UserController.getInstance().buy());
+            View.setCurrentMenu(CartMenu.getInstance());
+            View.setPreviousMenu(MainMenu.getInstance());
             return;
         }
            View.setCurrentMenu(CartMenu.getInstance());

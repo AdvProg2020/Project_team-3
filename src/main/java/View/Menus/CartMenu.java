@@ -44,6 +44,9 @@ public class CartMenu extends Menu {
             purchase();
             return;
         }
+        if(command.equals("back")){
+            View.setCurrentMenu(MainMenu.getInstance());
+        }
         Matcher matcher = View.getMatcher("increase (\\S+)", command);
         if (matcher.matches()) {
             increase(matcher.group(1));

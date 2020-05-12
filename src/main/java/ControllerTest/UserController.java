@@ -253,6 +253,11 @@ public class UserController {
             return "Error: not enough money";
         }
         buyer.setMoney(buyer.getMoney()-cart.getCartPriceWithoutDiscountCode());
+        try {
+            Database.getInstance().saveUser(buyer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cart.buy(buyer.getUsername());
         return "Successful:";
     }
