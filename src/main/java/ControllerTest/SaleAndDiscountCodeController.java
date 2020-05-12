@@ -1,4 +1,4 @@
-package Control;
+package ControllerTest;
 
 import Model.DiscountCode;
 import Model.Sale;

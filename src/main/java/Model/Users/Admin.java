@@ -1,7 +1,7 @@
 package Model.Users;
 
-import Control.Database;
-import Control.UserController;
+import ControllerTest.Database;
+import ControllerTest.UserController;
 
 import java.io.IOException;
 

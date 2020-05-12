@@ -1,8 +1,8 @@
 package View.Menus;
 
-import Control.Controller;
-import Control.ItemAndCategoryController;
-import Control.UserController;
+import ControllerTest.Controller;
+import ControllerTest.ItemAndCategoryController;
+import ControllerTest.UserController;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
 

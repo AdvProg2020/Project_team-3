@@ -1,8 +1,8 @@
 package Model.Logs;
 
-import Control.Controller;
-import Control.ItemAndCategoryController;
-import Control.UserController;
+import ControllerTest.Controller;
+import ControllerTest.ItemAndCategoryController;
+import ControllerTest.UserController;
 import Model.Item;
 
 import java.util.ArrayList;

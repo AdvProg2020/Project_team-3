@@ -1,8 +1,8 @@
 package View.Menus;
 
-import Control.ItemAndCategoryController;
-import Control.SaleAndDiscountCodeController;
-import Control.UserController;
+import ControllerTest.CartController;
+import ControllerTest.SaleAndDiscountCodeController;
+import ControllerTest.UserController;
 
 public class PurchaseMenu extends Menu {
     private static PurchaseMenu purchaseMenu;
@@ -42,7 +42,7 @@ public class PurchaseMenu extends Menu {
             discountCode();
             return;
         }
-        System.out.println("Successful: price before discount="+ ItemAndCategoryController.getInstance().getCartPriceWithoutDiscountCode() +"price after discount="+ItemAndCategoryController.getInstance().getCartPriceWithDiscountCode());
+        System.out.println("Successful: price before discount="+ CartController.getInstance().getCartPriceWithoutDiscountCode() +"price after discount="+CartController.getInstance().getCartPriceWithDiscountCode());
     }
 
     public void pay(){

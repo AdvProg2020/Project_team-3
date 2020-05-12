@@ -1,7 +1,7 @@
 package View.Menus.AdminMenu;
 
-import Control.Database;
-import Control.ItemAndCategoryController;
+import ControllerTest.Database;
+import ControllerTest.ItemAndCategoryController;
 import View.Menus.UserMenu;
 import View.Menus.View;
 

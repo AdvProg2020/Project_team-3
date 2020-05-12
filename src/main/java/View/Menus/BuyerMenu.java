@@ -1,7 +1,8 @@
 package View.Menus;
 
-import Control.ItemAndCategoryController;
-import Control.UserController;
+import ControllerTest.CartController;
+import ControllerTest.ItemAndCategoryController;
+import ControllerTest.UserController;
 import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.ShopMenu.ShopMenu;
@@ -107,7 +108,7 @@ public class BuyerMenu extends UserMenu {
     private void showTotalPrice(){
         User user = UserController.getInstance().getCurrentOnlineUser();
         System.out.print(View.ANSI_BLUE+"Total Price:"+View.ANSI_RESET);
-        System.out.println(ItemAndCategoryController.getInstance().getCurrentShoppingCart().getCartPriceWithoutDiscountCode());
+        System.out.println(CartController.getInstance().getCurrentShoppingCart().getCartPriceWithoutDiscountCode());
     }
 
     private void purchase(){

@@ -1,4 +1,4 @@
-package Control;
+package ControllerTest;
 
 import Model.*;
 import Model.Users.Buyer;

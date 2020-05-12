@@ -1,6 +1,6 @@
 package Model;
 
-import Control.Controller;
+import ControllerTest.Controller;
 
 import java.util.Date;
 import java.util.HashMap;

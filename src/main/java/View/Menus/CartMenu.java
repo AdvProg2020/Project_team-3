@@ -1,8 +1,8 @@
 package View.Menus;
 
-import Control.Controller;
-import Control.ItemAndCategoryController;
-import Control.UserController;
+import ControllerTest.CartController;
+import ControllerTest.Controller;
+import ControllerTest.UserController;
 
 import java.util.regex.Matcher;
 
@@ -76,19 +76,19 @@ public class CartMenu extends Menu {
     }
 
     public void showProducts() {
-        System.out.println(ItemAndCategoryController.getInstance().showCart());
+       System.out.println(CartController.getInstance().showCart());
     }
 
     public void increase(String itemID) {
-        System.out.println(ItemAndCategoryController.getInstance().cartIncreaseDecrease(itemID, 1));
+        System.out.println(CartController.getInstance().cartIncreaseDecrease(itemID, 1));
     }
 
     public void decrease(String itemID) {
-        System.out.println(ItemAndCategoryController.getInstance().cartIncreaseDecrease(itemID, -1));
+        System.out.println(CartController.getInstance().cartIncreaseDecrease(itemID, -1));
     }
 
     public void showTotalPrice() {
-        System.out.println(ItemAndCategoryController.getInstance().getCartPriceWithoutDiscountCode());
+        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
     }
 
     public void purchase(){

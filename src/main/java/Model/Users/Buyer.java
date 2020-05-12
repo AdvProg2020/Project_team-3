@@ -1,6 +1,6 @@
 package Model.Users;
 
-import Control.SaleAndDiscountCodeController;
+import ControllerTest.SaleAndDiscountCodeController;
 import Model.Cart;
 import Model.Logs.BuyLog;
 

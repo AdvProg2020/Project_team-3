@@ -1,6 +1,7 @@
 package View.Menus;
 
-import Control.ItemAndCategoryController;
+import ControllerTest.CartController;
+import ControllerTest.ItemAndCategoryController;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -63,7 +64,7 @@ public class ItemMenu extends Menu {
     }
 
     public void addToCart() {
-        System.out.println(ItemAndCategoryController.getInstance().addItemToCart(itemID));
+        System.out.println(CartController.getInstance().addItemToCart(itemID));
     }
 
     public void attributes() {

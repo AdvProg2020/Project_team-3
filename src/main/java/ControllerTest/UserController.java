@@ -1,4 +1,4 @@
-package Control;
+package ControllerTest;
 
 import Model.Cart;
 import Model.Logs.BuyLog;
@@ -130,7 +130,7 @@ public class UserController {
         return moneyDouble;
     }
 
-    public boolean isValidEmail(String email){
+    public  boolean isValidEmail(String email){
         return Controller.getMatcher(email,"^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
     }
 

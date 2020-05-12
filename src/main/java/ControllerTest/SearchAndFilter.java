@@ -1,4 +1,4 @@
-package Control;
+package ControllerTest;
 
 import Model.Category;
 import Model.Item;

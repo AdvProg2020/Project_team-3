@@ -1,6 +1,6 @@
 package View.Menus.ShopMenu;
 
-import Control.SearchAndFilter;
+import ControllerTest.SearchAndFilter;
 import View.Menus.Menu;
 import View.Menus.View;
 
