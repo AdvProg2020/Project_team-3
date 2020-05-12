@@ -30,7 +30,10 @@ public class AdminManageCategoriesMenu extends UserMenu {
             showAllCategories();
             return;
         }
-
+        if(command.equals("back")){
+            View.setCurrentMenu(AdminMenu.getInstance());
+            return;
+        }
         matcher=View.getMatcher("remove (\\S+)",command);
         if(matcher.matches()){
             removeCategory(matcher.group(1));
@@ -49,7 +52,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
         System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the admin menu."+View.ANSI_RESET);
         System.out.println("manage categories"); //done
         System.out.println("edit category [category name]");
-        System.out.println("add [category name]");
+        System.out.println("add [category name]");  //done
         System.out.println("remove [category name]"); //done
     }
     private void showAllCategories() {
@@ -75,8 +78,8 @@ public class AdminManageCategoriesMenu extends UserMenu {
         if(command.equals("no")){
             return;
         }
-        if(fatherCategory.isEmpty()){
-        System.out.println(ItemAndCategoryController.getInstance().addCategory(name,attributes,fatherCategory));
+        if(fatherCategory.isBlank()){
+        System.out.println(ItemAndCategoryController.getInstance().addCategory(name,attributes));
         }else {
             System.out.println((ItemAndCategoryController.getInstance().addCategory(name,attributes,fatherCategory)));
         }

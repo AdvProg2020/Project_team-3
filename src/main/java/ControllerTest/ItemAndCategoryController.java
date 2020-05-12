@@ -224,7 +224,11 @@ public class ItemAndCategoryController {
 
     }
 
-    public String addItem(Item item) {
+    public String addItem(String Name,String companyName,String description,double price,int instock,String categoryName,ArrayList<String> attributeValue,HashMap<String,String> attribute) {
+        if(!isThereCategoryWithName(categoryName)){
+            return "Error: invalid category name";
+        }
+        Item item=new Item(Name,companyName,description,"",price,controller.currentOnlineUser.getUsername(),categoryName,attribute,attributeValue,instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: your request to add the item was sent to the admins.";

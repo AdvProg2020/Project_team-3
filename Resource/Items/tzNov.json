@@ -1,0 +1,24 @@
+{
+  "id": "tzNov",
+  "state": "doejoe",
+  "description": "blahblah",
+  "name": "laptop",
+  "brand": "dell",
+  "timesBought": 0,
+  "price": 25.0,
+  "inStock": 10,
+  "viewCount": 0,
+  "attributes": {
+    "vazn": "345",
+    "salam": "cece"
+  },
+  "attributesKey": [
+    "vazn",
+    "salam"
+  ],
+  "sellerName": "ali",
+  "categoryName": "jum",
+  "buyerUserName": [],
+  "allRatings": [],
+  "allComments": []
+}

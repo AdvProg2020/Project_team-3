@@ -1,0 +1,24 @@
+{
+  "id": "o3E1D",
+  "state": "doejoe",
+  "description": "blahblah",
+  "name": "laptop",
+  "brand": "dell",
+  "timesBought": 0,
+  "price": 25.0,
+  "inStock": 10,
+  "viewCount": 0,
+  "attributes": {
+    "vazn": "038018301",
+    "salam": "sncscisicjs"
+  },
+  "attributesKey": [
+    "vazn",
+    "salam"
+  ],
+  "sellerName": "ali",
+  "categoryName": "jum",
+  "buyerUserName": [],
+  "allRatings": [],
+  "allComments": []
+}

@@ -55,6 +55,8 @@ public class RequestController {
                 return gson.fromJson(content, CommentRequest.class);}
             if(content.contains("\"type\": \"ItemEdit\"")){
                 return gson.fromJson(content, ItemEdit.class);}
+            if(content.contains("\"type\": \"ItemRequest\"")){
+                return gson.fromJson(content, ItemRequest.class);}
             if(content.contains("\"type\": \"SaleEdit\"")){
                 return gson.fromJson(content, SaleEdit.class);}
             if(content.contains("\"type\": \"SaleRequest\"")){

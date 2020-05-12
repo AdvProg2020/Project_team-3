@@ -157,12 +157,18 @@ public abstract class Menu {
         if (!message.isEmpty())
             System.out.println(message);
         String number = View.read.nextLine();
+        System.out.println(number);
+        try{
         int num = Integer.parseInt(number);
-        if (((num > limit) || (num < 0)) && (limit != -1)) {
-            System.out.println("Invalid please try again");
-            return readNumber(limit, "");
+            if (((num > limit) || (num < 0)) && (limit != -1)) {
+                System.out.println("Invalid please try again");
+                return readNumber(limit, "");
+            }
+            return num;}
+        catch (Exception expection){
+            System.out.println("invalid number");
+            return readNumber(limit,message);
         }
-        return num;
     }
 
     public double readDoubleNumber(String message) {

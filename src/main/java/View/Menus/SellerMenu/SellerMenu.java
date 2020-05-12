@@ -1,10 +1,16 @@
 package View.Menus.SellerMenu;
 
 import ControllerTest.Controller;
+import ControllerTest.ItemAndCategoryController;
 import Model.Users.Seller;
-import View.Menus.*;
+import View.Menus.DiscountsMenu;
+import View.Menus.MainMenu;
 import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.UserMenu;
+import View.Menus.View;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 
 public class SellerMenu extends UserMenu {
@@ -121,6 +127,21 @@ public class SellerMenu extends UserMenu {
         String description=readName("Please enter your item description");
         double price=readDoubleNumber("please enter item price");
         int inStock=readNumber(-1,"how many of this item do you wish to sell?");
+        String category=readName("please enter category name");
+       HashMap<String,String> attribute=new HashMap<>();
+        ArrayList<String> attributeValue=new ArrayList<>();
+        while(true){
+            System.out.println("please enter a new attribute. (type next to continue)");
+            String a=View.getRead().nextLine();
+            if(a.equals("next")){
+                break;
+            }
+            System.out.println("please enter attribute value.");
+            String b=View.getRead().nextLine();
+            attributeValue.add(a);
+            attribute.put(a,b);
+        }
+        System.out.println(ItemAndCategoryController.getInstance().addItem(Name,company,description,price,inStock,category,attributeValue,attribute));
     }
 
     public void removeProduct(){
