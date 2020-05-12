@@ -1,0 +1,34 @@
+{
+  "money": 500.0,
+  "buyLogs": [
+    {
+      "id": "p2gfy",
+      "price": [
+        420.0
+      ],
+      "allItemsID": [
+        "gHhhH"
+      ],
+      "sellerName": [
+        "hesabi"
+      ],
+      "count": [
+        1
+      ],
+      "saleAmount": 0.0,
+      "buyerName": "yoda"
+    }
+  ],
+  "cart": {
+    "allItemCount": {},
+    "allItemId": []
+  },
+  "allDiscounts": [],
+  "username": "yoda",
+  "password": "1234",
+  "name": "f",
+  "lastName": "f",
+  "email": "f@gmail.com",
+  "number": "09873211232",
+  "type": "Buyer"
+}

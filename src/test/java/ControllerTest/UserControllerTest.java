@@ -3,8 +3,6 @@ package ControllerTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class UserControllerTest {
 
     @Test
@@ -25,6 +23,13 @@ public class UserControllerTest {
 
     @Test
     public void isThereUserWithUsername() {
+        UserController.getInstance().registerBuyer(500,"amir","1234","amirreza","mirzaei","amirreza@gamil.com","09126783212");
+        UserController.getInstance().registerAdmin("arman","1234","arman","soleymani","arman@gmail.com","09123107635");
+        UserController.getInstance().registerSeller(500,"alireza","1234","ali","eiji","eiji@gmail.com","09126329832","digikala");
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("amir"));
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("arman"));
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("alireza"));
+        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername("asgargoli"));
     }
 
     @Test

@@ -1,0 +1,22 @@
+{
+  "id": "gHhhH",
+  "state": "",
+  "description": "jfoejfoejfoe",
+  "name": "dell",
+  "brand": "sdf",
+  "timesBought": 0,
+  "price": 420.0,
+  "inStock": 25,
+  "viewCount": 0,
+  "attributes": {
+    "vazn": "20kg"
+  },
+  "attributesKey": [
+    "vazn"
+  ],
+  "sellerName": "hesabi",
+  "categoryName": "laptop",
+  "buyerUserName": [],
+  "allRatings": [],
+  "allComments": []
+}
