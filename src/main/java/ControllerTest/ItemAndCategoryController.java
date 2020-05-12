@@ -249,7 +249,7 @@ public class ItemAndCategoryController {
 
     public ArrayList<Item> getCurrentViewableItems() {
         if (currentViewableItems == null) {
-            currentViewableItems = idToItemInCurrentCategory();
+            currentViewableItems = getCategoryItems(getCurrentCategory().getName());
         }
         return currentViewableItems;
     }
@@ -271,7 +271,7 @@ public class ItemAndCategoryController {
         currentViewableItems = toBeSet;
     }
 
-    public ArrayList<Item> idToItemInCurrentCategory() {
+    public ArrayList<Item> getCategoryItems(String categoryName) {
         ArrayList<Item> allItems = new ArrayList<>();
         Category current = controller.currentCategory;
         ArrayList<String> itemIDs = current.getAllItemsID();
@@ -281,6 +281,10 @@ public class ItemAndCategoryController {
             allItems.add(item);
         }
         return allItems;
+    }
+
+    public String getCategoryItemsString(String categoryName){
+        return "paniz";
     }
 
     public boolean currentViewableItemsContainsItem(String itemID) {

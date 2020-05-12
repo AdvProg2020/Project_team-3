@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/Users/hesabi.json" beforeDir="false" afterPath="$PROJECT_DIR$/Resource/Users/hesabi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ControllerTest/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ControllerTest/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ControllerTest/UserControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControllerTest/ItemAndCategoryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
