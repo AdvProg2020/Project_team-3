@@ -152,9 +152,9 @@ public class UserController {
     }
 
     public String deleteUser(String username) {
-        if(username.equals(getCurrentOnlineUser().getUsername())){
-            return "Error: you cant remove your own account";
-        }
+       // if(username.equals(getCurrentOnlineUser().getUsername())){
+          //  return "Error: you cant remove your own account";
+        //}
         User user=getUserByUsername(username);
         if(user==null){
             return "Error: user doesnt exist";
@@ -196,7 +196,7 @@ public class UserController {
     }
 
     public ArrayList<User> getAllUserFromDataBase(){
-        String path="Resource"+File.separator+"Discount Codes";
+        String path="Resource"+File.separator+"Users";
         File file=new File(path);
         File [] allFiles=file.listFiles();
         String fileContent = null;
