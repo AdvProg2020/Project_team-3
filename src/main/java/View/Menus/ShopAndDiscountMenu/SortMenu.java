@@ -1,4 +1,4 @@
-package View.Menus.ShopMenu;
+package View.Menus.ShopAndDiscountMenu;
 
 import View.Menus.Menu;
 import View.Menus.View;
@@ -44,7 +44,7 @@ public class SortMenu extends Menu {
         } else if (command.equals("help")) {
             help();
         } else if (command.equals("back")) {
-            View.setCurrentMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(getPreviousMenu());
         } else {
             System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
         }

@@ -102,7 +102,7 @@ public class CartMenu extends Menu {
        }
        if(UserController.getInstance().returnUserType(UserController.getInstance().getCurrentOnlineUser().getUsername()).equals("Buyer")){
            View.setCurrentMenu(PurchaseMenu.getInstance());
-           View.setPreviousMenu(CartMenu.getInstance());
+           PurchaseMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
            return;
        }
           System.out.println("you must be a Buyer to buy items");

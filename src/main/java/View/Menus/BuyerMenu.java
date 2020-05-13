@@ -5,7 +5,8 @@ import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Users.Buyer;
 import Model.Users.User;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 
 import java.util.regex.Matcher;
 
@@ -37,7 +38,7 @@ public class BuyerMenu extends UserMenu {
             return;
         }
         if (command.equals("offs")) {
-            View.previousMenu = BuyerMenu.getInstance();
+            DiscountsMenu.getInstance().setPreviousMenu(BuyerMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
             return;
         }
@@ -50,11 +51,11 @@ public class BuyerMenu extends UserMenu {
             editPersonalInfo(matcher.group(1));
             return;
         } else if (command.equals("products")) {
-            View.previousMenu = BuyerMenu.getInstance();
+            ShopMenu.getInstance().setPreviousMenu(BuyerMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
             return;
         } else if (command.equals("view cart")) {
-            View.previousMenu = BuyerMenu.getInstance();
+            CartMenu.getInstance().setPreviousMenu(BuyerMenu.getInstance());
             View.setCurrentMenu(CartMenu.getInstance());
             return;
         } else if (command.equals("view orders")) {
@@ -129,8 +130,8 @@ public class BuyerMenu extends UserMenu {
         System.out.println(buyer.getDiscountCodes());
     }
 
-    private void rate(String itemid, int score) {
-        System.out.println(ItemAndCategoryController.getInstance().rate(score, itemid));
+    private void rate(String itemID, int score) {
+        System.out.println(ItemAndCategoryController.getInstance().rate(score, itemID));
     }
 
 }

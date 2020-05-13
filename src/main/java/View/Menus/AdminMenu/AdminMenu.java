@@ -5,7 +5,8 @@ import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
 import Model.Sale;
 import View.Menus.*;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class AdminMenu extends UserMenu {
             logout();
         }
         if (command.equals("offs")) {
-            View.setPreviousMenu(AdminMenu.getInstance());
+            DiscountsMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
         } else if (command.equals("help")) {
             help();
@@ -54,7 +55,7 @@ public class AdminMenu extends UserMenu {
             showAllCategories();
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
         } else if (command.equals("products")) {
-            View.setPreviousMenu(AdminMenu.getInstance());
+            ShopMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
         } else if (command.equals("manage requests")) {
             showAllRequests();

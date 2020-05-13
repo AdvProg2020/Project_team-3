@@ -3,7 +3,7 @@ package Controller;
 import Model.*;
 import Model.Users.Buyer;
 import Model.Users.User;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 public class ItemMenu extends Menu {
     private static ItemMenu itemMenu;
     private String itemID;
+    private Menu previousMenu;
     private ItemMenu() {
     }
 
@@ -16,6 +17,10 @@ public class ItemMenu extends Menu {
         if (itemMenu == null)
             itemMenu = new ItemMenu();
         return itemMenu;
+    }
+
+    public void setPreviousMenu(Menu previousMenu) {
+        this.previousMenu = previousMenu;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class ItemMenu extends Menu {
             return;
         }
         if (command.equals("back")){
-            back();
+            View.setCurrentMenu(previousMenu);
             return;
         }
 
