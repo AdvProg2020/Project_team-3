@@ -1,7 +1,6 @@
 package ControllerTest;
 
 import Model.Cart;
-import Model.Category;
 import Model.Users.User;
 
 import java.io.File;
@@ -11,7 +10,6 @@ import java.util.regex.Pattern;
 public class Controller {
     private static Controller controller;
     User currentOnlineUser;
-    Category currentCategory;
     Cart ShoppingCart=new Cart();
     int idSize=5;
 

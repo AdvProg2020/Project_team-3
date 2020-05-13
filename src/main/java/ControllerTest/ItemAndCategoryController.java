@@ -3,6 +3,8 @@ package ControllerTest;
 import Model.*;
 import Model.Users.Buyer;
 import Model.Users.User;
+import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -196,6 +198,13 @@ public class ItemAndCategoryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Category father = getCategoryByName(fatherName);
+        father.addSubCategory(name);
+        try {
+            Database.getInstance().saveCategory(father);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "Successful";
     }
 
@@ -244,7 +253,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getCurrentCategory() {
-        return controller.currentCategory;
+        return ShopMenu.getInstance().getCurrentCategory();
     }
 
     public ArrayList<Item> getCurrentViewableItems() {
@@ -273,7 +282,7 @@ public class ItemAndCategoryController {
 
     public ArrayList<Item> getCategoryItems(String categoryName) {
         ArrayList<Item> allItems = new ArrayList<>();
-        Category current = controller.currentCategory;
+        Category current = getCurrentCategory();
         ArrayList<String> itemIDs = current.getAllItemsID();
         Item item;
         for (String id : itemIDs) {
@@ -285,6 +294,26 @@ public class ItemAndCategoryController {
 
     public String getCategoryItemsString(String categoryName){
         return "paniz";
+    }
+
+    public Category getBaseCategory() {return getCategoryByName("Main");}
+
+    public Category previousCategory(Category currentCategory){
+        try{
+            Category category = getCategoryByName(currentCategory.getParent());
+                if(category == null) return currentCategory;
+                return category;
+        }catch (Exception e){
+            return currentCategory;
+        }
+    }
+
+    public String openCategory(String name,Category currentCategory){
+        if(!isThereCategoryWithName(name)){
+            return View.ANSI_RED+"No such category."+View.ANSI_RESET;
+        }
+        ShopMenu.getInstance().setCurrentCategory(getCategoryByName(name));
+        return "Loading...";
     }
 
     public boolean currentViewableItemsContainsItem(String itemID) {

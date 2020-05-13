@@ -3,7 +3,6 @@ package View.Menus.ShopMenu;
 import ControllerTest.Database;
 import ControllerTest.ItemAndCategoryController;
 import Model.Category;
-import View.Menus.MainMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -26,14 +25,24 @@ public class ShopMenu extends Menu {
     @Override
     public void run() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu." + View.ANSI_RESET);
+        System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
         String command = View.getRead().nextLine();
         execute(command);
     }
 
     @Override
     public void execute(String command) {
-        if (command.equals("view categories")) {
-            viewCategories();
+        Matcher matcher;
+        if (command.equals("view subcategories")) {
+            viewSubCategories();
+            return;
+        }
+        if (command.equals("view all categories")) {
+            viewAllCategories();
+            return;
+        }
+        if (command.equals("previous category")) {
+            previousCategory();
             return;
         }
         if (command.equals("filtering")) {
@@ -53,18 +62,23 @@ public class ShopMenu extends Menu {
             return;
         }
         if (command.equals("back")) {
-            View.setCurrentMenu(MainMenu.getInstance());
+            View.setCurrentMenu(View.getPreviousMenu());
             return;
         }
-        if(command.equals("show all products")){
-           showallItems();
-           return;
+        if (command.equals("show all products")) {
+            showAllItems();
+            return;
         }
 
-        Matcher matcher = View.getMatcher("show product (\\S+)", command);
+        matcher = View.getMatcher("show product (\\S+)", command);
         if (matcher.matches()) {
-            String itemId = matcher.group(1);
             viewItem(matcher.group(1));
+            return;
+        }
+
+        matcher = View.getMatcher("open (\\S+)", command);
+        if (matcher.matches()) {
+            openCategory(matcher.group(1));
             return;
         }
 
@@ -75,24 +89,28 @@ public class ShopMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu.\nType your command in one of these formats:" + View.ANSI_RESET);
-        System.out.println("view categories"); //done
+        System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
+        System.out.println("view categories");
+        System.out.println("view all categories");
+        System.out.println("open [category name]");
+        System.out.println("previous category");
         System.out.println("filtering");
         System.out.println("sorting");
         System.out.println("show products");
         System.out.println("show all products");   //done
         System.out.println("show product [product id]"); //done
-        System.out.println("show category [category name]");
+        //System.out.println("show category [category name]");
         System.out.println("back");
-        //System.out.println("show available filters");
-        //System.out.println("filter [an available filter]");
-        //System.out.println("current filters");
-        //System.out.println("disable filter [a selected filter]");
-        //System.out.println("show available sorts");   //done
-        //System.out.println("sort [an available sort]");
-        //System.out.println("current sort");
-        //System.out.println("disable sort");
+
     }
 
+    private void openCategory(String name) {
+        System.out.println(ItemAndCategoryController.getInstance().openCategory(name,currentCategory));
+    }
+
+    private void previousCategory(){
+        currentCategory = ItemAndCategoryController.getInstance().previousCategory(currentCategory);
+    }
 
     public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
@@ -106,14 +124,17 @@ public class ShopMenu extends Menu {
 
     }
 
-    public void showallItems(){
+    public void showAllItems() {
         ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
         printList(allItems);
     }
 
-    public void viewCategories() {
-        ArrayList<String> allCategories = Database.getInstance().printFolderContent("Categories");
-        printList(allCategories);
+    public void viewSubCategories() {
+        printList(currentCategory.getSubCategories());
+    }
+
+    public void viewAllCategories() {
+        printList(Database.getInstance().printFolderContent("Categories"));
     }
 
     public void filtering() {

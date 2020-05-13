@@ -53,13 +53,8 @@ public class Category {
     }
 
     public boolean hasSubCategoryWithName(String name) {
-        if (subCategories.isEmpty()) return false;
-        for (String category : subCategories) {
-            if (category.equals(name)) return true;
-        }
-        return false;
+        return subCategories.contains(name);
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -74,7 +69,7 @@ public class Category {
     }
 
     public void addSubCategory(String category) {
-        if (this.hasSubCategoryWithName(category) == true) return;
+        if (subCategories.contains(category)) return;
         this.subCategories.add(category);
     }
 
@@ -99,7 +94,7 @@ public class Category {
     }
 
     public void removeSubCategory(String category) {
-        if (this.hasSubCategoryWithName(category) == true) return;
+        if (this.hasSubCategoryWithName(category)) return;
         this.subCategories.remove(category);
     }
 }
