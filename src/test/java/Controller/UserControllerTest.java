@@ -67,7 +67,7 @@ public class UserControllerTest {
 
     @Test
     public void registerSeller() {
-        UserController.getInstance().registerSeller(500,"Reza","Rail","Reza","Pishro",
+        UserController.getInstance().registerSeller(500,"Rezapishro","Rail","Reza","Pishro",
                 "r.p@gmail.com","33824264","Rail");
 
     }

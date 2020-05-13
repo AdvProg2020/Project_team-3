@@ -360,6 +360,12 @@ public class ItemAndCategoryController {
 
     public void editCategoryName(String lastName, String newName) {
         Category category = getCategoryByName(lastName);
+        String path="Resource"+File.separator+"Categories";
+        String fileName=lastName+".json";
+        System.out.println(fileName);
+        File file=new File(path+File.separator+fileName);
+        System.out.println(file.exists());
+        file.delete();
         category.setName(newName);
         try {
             Database.getInstance().saveCategory(category);

@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Requests.Request;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RequestControllerTest {
@@ -10,10 +12,16 @@ public class RequestControllerTest {
 
     @Test
     public void isThereRequestWithId() {
+        Assert.assertTrue(RequestController.getInstance().isThereRequestWithId("0qCgu"));
+        Assert.assertFalse(RequestController.getInstance().isThereRequestWithId("sdf"));
     }
 
     @Test
     public void getRequestById() {
+       Request request=RequestController.getInstance().getRequestById("0qCgu");
+       Request request1=RequestController.getInstance().getRequestById("g9gYa");
+       Assert.assertNotNull(request);
+       Assert.assertNotNull(request1);
     }
 
     @Test
@@ -47,7 +55,7 @@ public class RequestControllerTest {
 
     @Test
     public void acceptRequest() {
-        RequestController.getInstance().acceptRequest("Of5IO");
+     RequestController.getInstance().acceptRequest("OEiPS");
     }
 
     @Test

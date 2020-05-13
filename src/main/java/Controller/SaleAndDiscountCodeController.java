@@ -201,5 +201,9 @@ public class SaleAndDiscountCodeController {
         return discountCode.toString();
     }
 
+    public void editSale(String saleID,String changedField,String newFieldValue){
+        String requestID=Controller.getInstance().getAlphaNumericString(5,"Sales");
+        RequestController.getInstance().editSaleRequest(requestID,saleID,changedField,newFieldValue);
+    }
 
 }

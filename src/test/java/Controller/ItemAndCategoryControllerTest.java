@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
-
 public class ItemAndCategoryControllerTest {
 
     @Test
@@ -51,7 +49,7 @@ public class ItemAndCategoryControllerTest {
     public void comment() {
         UserController.getInstance().login("Reza","Rail");
         String text="this is the best item in the world!";
-        ItemAndCategoryController.getInstance().comment(text,"MH2LP");
+        ItemAndCategoryController.getInstance().comment(text,"uCe78");
     }
 
     @Test
@@ -100,6 +98,7 @@ public class ItemAndCategoryControllerTest {
     public void addItemToCategory() {
         Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
         Category category=ItemAndCategoryController.getInstance().getCategoryByName("lavazem manzel");
+        //category.addItem();
     }
 
     @Test
@@ -148,6 +147,8 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void editCategoryName() {
+        String newName="Home Appliances";
+        ItemAndCategoryController.getInstance().editCategoryName("lavazem manzel",newName);
     }
 
     @Test
