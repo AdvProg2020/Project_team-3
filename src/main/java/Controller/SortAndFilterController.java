@@ -4,7 +4,7 @@ import Model.Item;
 
 import java.util.ArrayList;
 
-public class SearchAndFilterController {
+public class SortAndFilterController {
     int activeSort;
     Boolean filterPriceRange = false;
     Boolean filterCategoryName = false;
@@ -13,14 +13,14 @@ public class SearchAndFilterController {
     double maxPrice;
     String categoryName;
     String brandName;
-    public static SearchAndFilterController searchAndFilterController;
+    public static SortAndFilterController sortAndFilterController;
 
-    private SearchAndFilterController() {
+    private SortAndFilterController() {
     }
 
-    public static SearchAndFilterController getInstance() {
-        if (searchAndFilterController == null) searchAndFilterController = new SearchAndFilterController();
-        return searchAndFilterController;
+    public static SortAndFilterController getInstance() {
+        if (sortAndFilterController == null) sortAndFilterController = new SortAndFilterController();
+        return sortAndFilterController;
     }
 
     public ArrayList<String> show(String categoryName){
@@ -159,6 +159,13 @@ public class SearchAndFilterController {
                 "\nsort by price high to low" +   //sort number 2
                 "\nsort by rating" +              //sort number 3
                 "\nsort by comment count";      //sort number 4
+    }
+
+    public void reset(){
+        filterBrand=false;
+        filterCategoryName=false;
+        filterPriceRange=false;
+        activeSort=0;
     }
 }
 

@@ -147,6 +147,7 @@ public class UserController {
         }
         controller.currentOnlineUser=null;
         controller.emptyCart();
+        SortAndFilterController.getInstance().reset();
         return "Success: Logged out.";
     }
 

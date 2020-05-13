@@ -2,7 +2,7 @@ package View.Menus.ShopAndDiscountMenu;
 
 import Controller.Database;
 import Controller.ItemAndCategoryController;
-import Controller.SearchAndFilterController;
+import Controller.SortAndFilterController;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -51,7 +51,7 @@ public class ShopMenu extends Menu {
             return;
         }
         if (command.equals("show products")) {
-            System.out.println(SearchAndFilterController.getInstance().show(categoryName));
+            System.out.println(SortAndFilterController.getInstance().show(categoryName));
             return;
         }
         if (command.equals("help")) {
@@ -87,12 +87,12 @@ public class ShopMenu extends Menu {
     public void help() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu.\nType your command in one of these formats:" + View.ANSI_RESET);
        // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
-        System.out.println("view all categories");
-        System.out.println("open [category name]");
-        System.out.println("previous category");
-        System.out.println("filtering");
-        System.out.println("sorting");
-        System.out.println("show products");
+        System.out.println("view all categories"); //done
+        System.out.println("open [category name]"); //done
+        System.out.println("previous category");  //done
+        System.out.println("filtering");  //done
+        System.out.println("sorting");   //done
+        System.out.println("show products");  //done
         System.out.println("show all products");   //done
         System.out.println("show product [product id]"); //done
         System.out.println("back");
@@ -115,10 +115,6 @@ public class ShopMenu extends Menu {
         return categoryName;
     }
 
-    public void cart() {
-
-    }
-
     public void showAllItems() {
         ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
         printList(allItems);
@@ -132,41 +128,5 @@ public class ShopMenu extends Menu {
         printList(Database.getInstance().printFolderContent("Categories"));
     }
 
-    public void filtering() {
-
-    }
-
-    public void currentFilters() {
-
-    }
-
-    public void disableFilter() {
-
-    }
-
-    public void sorting() {
-
-    }
-
-    public void sort() {
-
-    }
-
-    public void currentSort() {
-
-    }
-
-    public void disableSort() {
-
-    }
-
-    public void showProducts() {
-
-    }
-
-    public void showProduct(String command) {
-        String itemID = command.split(" ")[2];
-        viewItem(itemID);
-    }
 
 }
