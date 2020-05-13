@@ -19,39 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ControllerTest/SaleAndDiscountCodeControllerTest.java" afterDir="false" />
+    <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="some tests added to the project for code Coverage!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/Users/alireza.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/Users/amir.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource/Users/arman.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/AlphabeticComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/CartController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/Database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/GradeComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/InStockComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/ItemAndCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/PriceComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/RequestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/SaleAndDiscountCodeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/SearchAndFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/SortItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/ViewCountComparator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageCategoriesMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageCategoriesMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageUsersMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageUsersMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/BuyerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/BuyerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ItemMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/PurchaseMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/PurchaseMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Controller/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Controller/UserControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Controller/ItemAndCategoryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/ItemAndCategoryControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Controller/SearchAndFilterControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +81,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="Controller" />
       <recent name="ControllerTest" />
       <recent name="Control" />
     </key>
@@ -246,14 +218,7 @@
       <workItem from="1589268419932" duration="1480000" />
       <workItem from="1589286194687" duration="7311000" />
       <workItem from="1589359021168" duration="2759000" />
-      <workItem from="1589363373346" duration="1652000" />
-    </task>
-    <task id="LOCAL-00007" summary="removing Item added to controller class!">
-      <created>1586805043021</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1586805043021</updated>
+      <workItem from="1589363373346" duration="2965000" />
     </task>
     <task id="LOCAL-00008" summary="removing Item added to controller class!">
       <created>1586805066173</created>
@@ -591,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589328553304</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="some tests added to the project for code Coverage!">
+      <created>1589365071451</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1589365071453</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +582,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed more menus" />
     <MESSAGE value="made first 2 menus operational" />
     <MESSAGE value="added viewPI" />
     <MESSAGE value="request finalized!" />
@@ -635,7 +606,8 @@
     <MESSAGE value="fixed typos, removed optionCount" />
     <MESSAGE value="gitignore?" />
     <MESSAGE value="revamped ShopMenu structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="revamped ShopMenu structure" />
+    <MESSAGE value="some tests added to the project for code Coverage!" />
+    <option name="LAST_COMMIT_MESSAGE" value="some tests added to the project for code Coverage!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -762,10 +734,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="496" y="275" key="Vcs.Push.Dialog.v2" timestamp="1589359347884">
-      <screen x="0" y="23" width="1792" height="1029" />
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2" timestamp="1589365084743">
+      <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589128687969" />
+    <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589365084743" />
     <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589328556996" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
@@ -794,10 +766,10 @@
     <state x="679" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1029@0.23.1792.1029" timestamp="1589359340934" />
     <state x="679" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1030@0.23.1792.1030" timestamp="1586800021593" />
     <state x="679" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1031@0.23.1792.1031" timestamp="1586799915256" />
-    <state x="404" y="159" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1589298268957">
+    <state x="404" y="159" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1589365694498">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="404" y="159" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.984@0.0.1280.984" timestamp="1589298268957" />
+    <state x="404" y="159" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.984@0.0.1280.984" timestamp="1589365694498" />
     <state x="398" y="295" key="git4idea.merge.GitPullDialog" timestamp="1586970399370">
       <screen x="0" y="0" width="1280" height="984" />
     </state>

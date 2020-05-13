@@ -2,6 +2,8 @@ package Controller;
 
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class ItemAndCategoryControllerTest {
 
     @Test
@@ -97,7 +99,23 @@ public class ItemAndCategoryControllerTest {
     }
 
     @Test
-    public void idToItemInCurrentCategory() {
+    public void getCategoryItems() {
+    }
+
+    @Test
+    public void getCategoryItemsString() {
+    }
+
+    @Test
+    public void getBaseCategory() {
+    }
+
+    @Test
+    public void previousCategory() {
+    }
+
+    @Test
+    public void openCategory() {
     }
 
     @Test
