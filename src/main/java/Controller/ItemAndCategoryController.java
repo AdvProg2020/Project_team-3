@@ -14,13 +14,13 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 /*
-* aghajan, kolliate dastan ine ke, inja in arraylist e CURRENT_VIEWABLE_ITEMS ro darim.
-* yaro harja bekhad mahsolat ro bebine (ya age live bashe bokonim tu cheshe kirish) miad az controller ye getter e kiri
-* seda mizane, in getter miad ye stringi chizi be niabat az CURRENT_VIEWABLE_ITEMS tof mikone tu system.out.
-* hala mikhay sort koni? tartibe CURRENT_VIEWABLE_ITEMS ro sort kon. mikhai filter koni? filteresh kon.
-* BOZORGTARIN bazeii ke currentviewableitems mitone darbar begire CATEGORY iie ke toshim.
-*
-* */
+ * aghajan, kolliate dastan ine ke, inja in arraylist e CURRENT_VIEWABLE_ITEMS ro darim.
+ * yaro harja bekhad mahsolat ro bebine (ya age live bashe bokonim tu cheshe kirish) miad az controller ye getter e kiri
+ * seda mizane, in getter miad ye stringi chizi be niabat az CURRENT_VIEWABLE_ITEMS tof mikone tu system.out.
+ * hala mikhay sort koni? tartibe CURRENT_VIEWABLE_ITEMS ro sort kon. mikhai filter koni? filteresh kon.
+ * BOZORGTARIN bazeii ke currentviewableitems mitone darbar begire CATEGORY iie ke toshim.
+ *
+ * */
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
@@ -229,19 +229,19 @@ public class ItemAndCategoryController {
 
     }
 
-    public String addItem(String Name,String companyName,String description,double price,int instock,String categoryName,ArrayList<String> attributeValue,HashMap<String,String> attribute) {
-        if(!isThereCategoryWithName(categoryName)){
+    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, ArrayList<String> attributeValue, HashMap<String, String> attribute) {
+        if (!isThereCategoryWithName(categoryName)) {
             return "Error: invalid category name";
         }
-        Item item=new Item(Name,companyName,description,"",price,controller.currentOnlineUser.getUsername(),categoryName,attribute,attributeValue,instock);
+        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, attributeValue, instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: your request to add the item was sent to the admins.";
     }
 
-    public void addItemToCategory(String itemid,String categoryName){
-        Category category=getCategoryByName(categoryName);
-        if(category==null){
+    public void addItemToCategory(String itemid, String categoryName) {
+        Category category = getCategoryByName(categoryName);
+        if (category == null) {
             return;
         }
         category.addItem(itemid);
@@ -263,18 +263,18 @@ public class ItemAndCategoryController {
         return currentViewableItems;
     }
 
-    public String getCurrentViewableItemsString(){
-        String ans="";
-        for(Item item:currentViewableItems){
+    public String getCurrentViewableItemsString() {
+        String ans = "";
+        for (Item item : currentViewableItems) {
             ans += item.toSimpleString();
             ans += "\n";
         }
         return ans;
     }
 
-    public void setViewableToCategory(String categoryName){
+    public void setViewableToCategory(String categoryName) {
         ArrayList<Item> toBeSet = new ArrayList<>();
-        for(String id:getCategoryByName(categoryName).getAllItemsID()){
+        for (String id : getCategoryByName(categoryName).getAllItemsID()) {
             toBeSet.add(getItemById(id));
         }
         currentViewableItems = toBeSet;
@@ -292,25 +292,27 @@ public class ItemAndCategoryController {
         return allItems;
     }
 
-    public String getCategoryItemsString(String categoryName){
+    public String getCategoryItemsString(String categoryName) {
         return "paniz";
     }
 
-    public Category getBaseCategory() {return getCategoryByName("Main");}
+    public Category getBaseCategory() {
+        return getCategoryByName("Main");
+    }
 
-    public Category previousCategory(Category currentCategory){
-        try{
+    public Category previousCategory(Category currentCategory) {
+        try {
             Category category = getCategoryByName(currentCategory.getParent());
-                if(category == null) return currentCategory;
-                return category;
-        }catch (Exception e){
+            if (category == null) return currentCategory;
+            return category;
+        } catch (Exception e) {
             return currentCategory;
         }
     }
 
-    public String openCategory(String name,Category currentCategory){
-        if(!isThereCategoryWithName(name)){
-            return View.ANSI_RED+"No such category."+View.ANSI_RESET;
+    public String openCategory(String name, Category currentCategory) {
+        if (!isThereCategoryWithName(name)) {
+            return View.ANSI_RED + "No such category." + View.ANSI_RESET;
         }
         ShopMenu.getInstance().setCurrentCategory(getCategoryByName(name));
         return "Loading...";
