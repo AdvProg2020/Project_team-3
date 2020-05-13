@@ -152,9 +152,9 @@ public class UserController {
     }
 
     public String deleteUser(String username) {
-       // if(username.equals(getCurrentOnlineUser().getUsername())){
-          //  return "Error: you cant remove your own account";
-        //}
+        if(username.equals(getCurrentOnlineUser().getUsername())){
+            return "Error: you cant remove your own account";
+        }
         User user=getUserByUsername(username);
         if(user==null){
             return "Error: user doesnt exist";

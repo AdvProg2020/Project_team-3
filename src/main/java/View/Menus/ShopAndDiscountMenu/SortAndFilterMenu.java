@@ -52,9 +52,13 @@ public class SortAndFilterMenu extends Menu {
             defaultSortAndFilter();
             return;
         }
-        matcher = View.getMatcher("sort (\\S+)", command);
+        if(command.equals("back")){
+            View.setCurrentMenu(ShopMenu.getInstance());
+        }
+        matcher = View.getMatcher("sort (\\D+)", command);
         if (matcher.matches()) {
             sort(command);
+            return;
         }
         System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
 
@@ -63,7 +67,7 @@ public class SortAndFilterMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_WHITE + "Enter your command in the following formats or type back to go to the shop menu." + View.ANSI_RESET);
-        System.out.println("show available filters"); //done
+        System.out.println(View.ANSI_CYAN+"show available filters"); //done
         System.out.println("filter [an available filter]");
         System.out.println("current filters"); //done
         System.out.println("disable filter [a selected filter]");
@@ -71,7 +75,7 @@ public class SortAndFilterMenu extends Menu {
         System.out.println("sort [an available sort]"); //done
         System.out.println("current sort");   //done
         System.out.println("disable sort");   //done
-        System.out.println("default sort and filter");
+        System.out.println("default sort and filter"+View.ANSI_RESET);
     }
 
     public void showAvailableFilters() {

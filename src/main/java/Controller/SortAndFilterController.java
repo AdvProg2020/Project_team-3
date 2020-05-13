@@ -23,10 +23,11 @@ public class SortAndFilterController {
         return sortAndFilterController;
     }
 
-    public ArrayList<String> show(String categoryName){
-        ArrayList<String> allItemsId=ItemAndCategoryController.getInstance().getCategoryItems(categoryName);
+    public ArrayList<String> show(String categoryName) {
+        ArrayList<String> allItemsId = ItemAndCategoryController.getInstance().getCategoryItems(categoryName);
         return show(allItemsId);
     }
+
     public ArrayList<String> show(ArrayList<String> allItemsId) {
         ArrayList<String> filteredItems = new ArrayList<>();
         for (String id : allItemsId) {
@@ -161,11 +162,11 @@ public class SortAndFilterController {
                 "\nsort by comment count";      //sort number 4
     }
 
-    public void reset(){
-        filterBrand=false;
-        filterCategoryName=false;
-        filterPriceRange=false;
-        activeSort=0;
+    public void reset() {
+        filterBrand = false;
+        filterCategoryName = false;
+        filterPriceRange = false;
+        activeSort = 0;
     }
 }
 
