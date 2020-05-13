@@ -2,7 +2,7 @@ package View.Menus.ShopAndDiscountMenu;
 
 import Controller.Database;
 import Controller.ItemAndCategoryController;
-import Model.Category;
+import Controller.SearchAndFilterController;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 
 public class ShopMenu extends Menu {
     private static ShopMenu shopMenu;
-    private Category currentCategory;
+    private String categoryName;
 
     private ShopMenu() {
     }
@@ -25,7 +25,7 @@ public class ShopMenu extends Menu {
     @Override
     public void run() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu." + View.ANSI_RESET);
-        System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
+       // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
         String command = View.getRead().nextLine();
         execute(command);
     }
@@ -45,18 +45,13 @@ public class ShopMenu extends Menu {
             previousCategory();
             return;
         }
-        if (command.equals("filtering")) {
-            FilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
-            View.setCurrentMenu(FilterMenu.getInstance());
-            return;
-        }
-        if (command.equals("sorting")) {
-            SortMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
-            View.setCurrentMenu(SortMenu.getInstance());
+        if ((command.equals("filtering"))||(command.equals("sorting"))) {
+            SortAndFilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
         }
         if (command.equals("show products")) {
-            System.out.print(ItemAndCategoryController.getInstance().getCurrentViewableItemsString());
+            System.out.println(SearchAndFilterController.getInstance().show(categoryName));
             return;
         }
         if (command.equals("help")) {
@@ -91,8 +86,7 @@ public class ShopMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu.\nType your command in one of these formats:" + View.ANSI_RESET);
-        System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
-        System.out.println("view categories");
+       // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
         System.out.println("view all categories");
         System.out.println("open [category name]");
         System.out.println("previous category");
@@ -101,25 +95,24 @@ public class ShopMenu extends Menu {
         System.out.println("show products");
         System.out.println("show all products");   //done
         System.out.println("show product [product id]"); //done
-        //System.out.println("show category [category name]");
         System.out.println("back");
 
     }
 
     private void openCategory(String name) {
-        System.out.println(ItemAndCategoryController.getInstance().openCategory(name,currentCategory));
+        System.out.println(ItemAndCategoryController.getInstance().openCategory(name));
     }
 
     private void previousCategory(){
-        currentCategory = ItemAndCategoryController.getInstance().previousCategory(currentCategory);
+        categoryName = ItemAndCategoryController.getInstance().previousCategory(categoryName);
     }
 
-    public void setCurrentCategory(Category currentCategory) {
-        this.currentCategory = currentCategory;
+    public void setCurrentCategory(String categoryName) {
+        this.categoryName=categoryName;
     }
 
-    public Category getCurrentCategory() {
-        return currentCategory;
+    public String getCurrentCategory() {
+        return categoryName;
     }
 
     public void cart() {
@@ -132,7 +125,7 @@ public class ShopMenu extends Menu {
     }
 
     public void viewSubCategories() {
-        printList(currentCategory.getSubCategories());
+        printList(ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getSubCategories());
     }
 
     public void viewAllCategories() {

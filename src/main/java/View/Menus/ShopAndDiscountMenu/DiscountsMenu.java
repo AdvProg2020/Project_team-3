@@ -31,14 +31,9 @@ public class DiscountsMenu extends Menu {
             offs();
             return;
         }
-        else if (command.equals("filtering")) {
-            FilterMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
-            View.setCurrentMenu(FilterMenu.getInstance());
-            return;
-        }
-        else if (command.equals("sorting")) {
-            SortMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
-            View.setCurrentMenu(SortMenu.getInstance());
+        else if ((command.equals("filtering"))||(command.equals("sorting"))) {
+            SortAndFilterMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
+            View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
         }
         else if (command.equals("help")) {

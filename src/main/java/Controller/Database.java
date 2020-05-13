@@ -195,6 +195,12 @@ public class Database<Public> {
             file.mkdir();
         }
         Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
+        Category category=new Category("Main",null);
+        try {
+            saveCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public  ArrayList<String> printFolderContent(String folderName){

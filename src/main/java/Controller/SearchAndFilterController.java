@@ -23,6 +23,10 @@ public class SearchAndFilterController {
         return searchAndFilterController;
     }
 
+    public ArrayList<String> show(String categoryName){
+        ArrayList<String> allItemsId=ItemAndCategoryController.getInstance().getCategoryItems(categoryName);
+        return show(allItemsId);
+    }
     public ArrayList<String> show(ArrayList<String> allItemsId) {
         ArrayList<String> filteredItems = new ArrayList<>();
         for (String id : allItemsId) {
