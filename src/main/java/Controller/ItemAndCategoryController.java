@@ -1,6 +1,9 @@
 package Controller;
 
-import Model.*;
+import Model.Category;
+import Model.Comment;
+import Model.Item;
+import Model.Rating;
 import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
@@ -370,6 +373,11 @@ public class ItemAndCategoryController {
             if (!item.isInSale()) allItems.remove(item);
         }
         return allItems;
+    }
+
+    public void editItem(String changedField,String newFiled,String itemID){
+        String requestID=Controller.getInstance().getAlphaNumericString(5,"Requests");
+        RequestController.getInstance().editItemRequest(requestID,itemID,changedField,newFiled);
     }
 
   /*  public void loadMainCategory(){

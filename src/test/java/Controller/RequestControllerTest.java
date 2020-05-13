@@ -42,10 +42,12 @@ public class RequestControllerTest {
 
     @Test
     public void editItemRequest() {
+        ItemAndCategoryController.getInstance().editItem("price","800","MH2LP");
     }
 
     @Test
     public void acceptRequest() {
+        RequestController.getInstance().acceptRequest("Of5IO");
     }
 
     @Test
@@ -58,6 +60,7 @@ public class RequestControllerTest {
 
     @Test
     public void declineRequest() {
+        RequestController.getInstance().declineRequest("ZYhJN");
     }
 
     @Test

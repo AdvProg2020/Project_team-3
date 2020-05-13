@@ -139,8 +139,8 @@ public class RequestController {
         }
     }
 
-    public void editItemRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
-        ItemEdit newRequest = new ItemEdit(requestId, saleID, changedFiled, newFieldValue);
+    public void editItemRequest(String requestId, String itemID, String changedFiled, String newFieldValue) {
+        ItemEdit newRequest = new ItemEdit(requestId, itemID, changedFiled, newFieldValue);
         try {
             Database.getInstance().saveRequest(newRequest);
         } catch (IOException e) {

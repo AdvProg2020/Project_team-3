@@ -1,6 +1,11 @@
 package Controller;
 
+import Model.Category;
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -44,6 +49,9 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void comment() {
+        UserController.getInstance().login("Reza","Rail");
+        String text="this is the best item in the world!";
+        ItemAndCategoryController.getInstance().comment(text,"MH2LP");
     }
 
     @Test
@@ -60,6 +68,9 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addCategory() {
+        ArrayList<String>attributes=new ArrayList<>();
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes);
+
     }
 
     @Test
@@ -76,10 +87,19 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItem() {
+        UserController.getInstance().login("Reza","Rail");
+        ArrayList<String>attributeKey=new ArrayList<>();
+        HashMap<String ,String> attributes=new HashMap<>();
+        ItemAndCategoryController.getInstance().addItem("Vaccum","Reza",
+                "this is nice",400,300,"lavazem manzel",attributeKey
+        ,attributes);
+
     }
 
     @Test
     public void addItemToCategory() {
+        Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName("lavazem manzel");
     }
 
     @Test
