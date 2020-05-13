@@ -10,29 +10,30 @@ import java.util.regex.Matcher;
 
 public class AdminManageRequestsMenu extends UserMenu {
     private static AdminManageRequestsMenu adminManageRequestsMenu;
-    private AdminManageRequestsMenu(){ }
 
-    public static AdminManageRequestsMenu getInstance(){
-        if(adminManageRequestsMenu==null)
+    private AdminManageRequestsMenu() {
+    }
+
+    public static AdminManageRequestsMenu getInstance() {
+        if (adminManageRequestsMenu == null)
             adminManageRequestsMenu = new AdminManageRequestsMenu();
         return adminManageRequestsMenu;
     }
 
-    public void run(){
+    public void run() {
         help();
         String command = View.getRead().nextLine();
         execute(command);
     }
+
     @Override
     public void execute(String command) {
         Matcher matcher;
         if (command.equals("manage requests")) {
             showAllRequests();
-        }
-        else if(command.equals("back")){
+        } else if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
-        }
-        else if(command.equals("help")){
+        } else if (command.equals("help")) {
             help();
         }
         matcher = View.getMatcher("detail request (\\S+)", command);
@@ -50,8 +51,9 @@ public class AdminManageRequestsMenu extends UserMenu {
         }
 
     }
-    public void help(){
-        System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the admin menu."+View.ANSI_RESET);
+
+    public void help() {
+        System.out.println(View.ANSI_WHITE + "Enter your command in the following formats or type back to go to the admin menu." + View.ANSI_RESET);
         System.out.println("manage requests");           //done but need test
         System.out.println("detail request [request id]");  //done but request info need to be added
         System.out.println("accept [request id]");    //done but need test

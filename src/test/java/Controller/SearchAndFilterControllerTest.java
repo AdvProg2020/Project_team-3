@@ -2,7 +2,7 @@ package Controller;
 
 import org.junit.Test;
 
-public class SearchAndFilterTest {
+public class SearchAndFilterControllerTest {
 
     @Test
     public void getInstance() {

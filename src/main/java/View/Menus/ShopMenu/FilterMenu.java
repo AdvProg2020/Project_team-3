@@ -1,6 +1,6 @@
 package View.Menus.ShopMenu;
 
-import Controller.SearchAndFilter;
+import Controller.SearchAndFilterController;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -52,7 +52,7 @@ public class FilterMenu extends Menu {
     }
 
     public void showAvailableFilters() {
-        System.out.println(SearchAndFilter.getInstance().showAllFilters());
+        System.out.println(SearchAndFilterController.getInstance().showAllFilters());
     }
 
 }

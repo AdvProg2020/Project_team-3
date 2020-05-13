@@ -36,40 +36,32 @@ public class AdminMenu extends UserMenu {
         if (command.equals("logout")) {
             logout();
         }
-        if(command.equals("offs")){
+        if (command.equals("offs")) {
             View.setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
-        }
-        else if (command.equals("help")) {
+        } else if (command.equals("help")) {
             help();
-        }
-        else if (command.equals("back")){
+        } else if (command.equals("back")) {
             View.setCurrentMenu(MainMenu.getInstance());
-        }
-        else if (command.equals("manage users")) {
+        } else if (command.equals("manage users")) {
             printUsers();
             View.setCurrentMenu(AdminManageUsersMenu.getInstance());
-        }
-        else if (command.equals("view personal info")) {
+        } else if (command.equals("view personal info")) {
             viewPersonalInfo();
-        }
-        else if (command.equals("manage all products")) {
+        } else if (command.equals("manage all products")) {
             showAllProducts();
-        }
-        else if(command.equals("manage categories")){
+        } else if (command.equals("manage categories")) {
             showAllCategories();
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
-        }
-        else if(command.equals("products")){
+        } else if (command.equals("products")) {
             View.setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
-        }
-        else if (command.equals("manage requests")) {
+        } else if (command.equals("manage requests")) {
             showAllRequests();
             View.setCurrentMenu(AdminManageRequestsMenu.getInstance());
-        }else if(command.equals("create discount code")){
+        } else if (command.equals("create discount code")) {
             createDiscountCode();
-        }else if(command.equals("view discount codes")){
+        } else if (command.equals("view discount codes")) {
             viewAllDiscountCodes();
             View.setCurrentMenu(AdminManageDiscountCodesMenu.getInstance());
         }
@@ -85,7 +77,7 @@ public class AdminMenu extends UserMenu {
 
     @Override
     public void help() {
-        System.out.println(View.ANSI_BLUE+"You are in the Admin menu.\nType your command in one of these formats:"+View.ANSI_RESET);
+        System.out.println(View.ANSI_BLUE + "You are in the Admin menu.\nType your command in one of these formats:" + View.ANSI_RESET);
         System.out.println("view personal info"); //done
         System.out.println("edit [field]");
         System.out.println("manage users");  //done
@@ -128,7 +120,6 @@ public class AdminMenu extends UserMenu {
     }
 
 
-
     private void deleteSale(String id) {
         System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
     }
@@ -162,15 +153,13 @@ public class AdminMenu extends UserMenu {
     }
 
     private void createDiscountCode() {
-    int percentage=readNumber(101,"please enter discount percentage:");
-    int day=readNumber(32,"please enter expiration date:");
-    int month=readNumber(13,"please enter expiration month:");
-    int year=readNumber(2025,"please enter expiration year:");
-    Date date=new Date(year-1900,month-1,day);
-    System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,date));
+        int percentage = readNumber(101, "please enter discount percentage:");
+        int day = readNumber(32, "please enter expiration date:");
+        int month = readNumber(13, "please enter expiration month:");
+        int year = readNumber(2025, "please enter expiration year:");
+        Date date = new Date(year - 1900, month - 1, day);
+        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage, date));
     }
-
-
 
 
     private void manageAllProducts() {
@@ -195,8 +184,6 @@ public class AdminMenu extends UserMenu {
     private void removeProduct() {
 
     }
-
-
 
 
 }

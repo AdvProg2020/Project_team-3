@@ -12,22 +12,22 @@ public class SaleLog {
     private String deliveryState;
 
 
-    public SaleLog(String id,Date time,double price,String itemId,String buyerName,int count) {
-       this.id=id;
-       this.time=time;
-       this.price=price;
-       this.itemId=itemId;
-       this.buyerName=buyerName;
-       this.count=count;
+    public SaleLog(String id, Date time, double price, String itemId, String buyerName, int count) {
+        this.id = id;
+        this.time = time;
+        this.price = price;
+        this.itemId = itemId;
+        this.buyerName = buyerName;
+        this.count = count;
     }
 
     public double getPrice() {
-        return price*count;
+        return price * count;
     }
 
     @Override
-    public String toString(){
-        return "item id: "+id+" buyer name: "+buyerName+" count: "+count+" price: "+price;
+    public String toString() {
+        return "item id: " + id + " buyer name: " + buyerName + " count: " + count + " price: " + price;
     }
 }
 
