@@ -21,7 +21,45 @@ public class SearchAndFilterController {
     }
 
     public ArrayList<String> show(){
-       return new ArrayList<String>();
+       ArrayList<String> allItemsId= null;
+       ArrayList<String> filteredItems=new ArrayList<>();
+        for (String id : allItemsId) {
+            if(isAccepted(id))
+                filteredItems.add(id);
+        }
+        if(activeSort==0){
+            filteredItems= SortComperators.getInstance().sortByView(filteredItems);
+        }else if(activeSort==1){
+            filteredItems= SortComperators.getInstance().sortByPriceLowToHigh(filteredItems);
+        }else if(activeSort==2){
+            filteredItems= SortComperators.getInstance().sortByPriceHighToLow(filteredItems);
+        }else if(activeSort==3){
+            filteredItems= SortComperators.getInstance().sortByRating(filteredItems);
+        }else if(activeSort==4){
+            filteredItems= SortComperators.getInstance().SortByCommentCount(filteredItems);
+        }
+        return filteredItems;
+     }
+
+   public String activateSort(String sortName){
+       if(sortName.equals("sort by price low to high")){
+           activeSort=1;
+           return "Successful";
+       }else if(sortName.equals("sort by price high to low")){
+           activeSort=2;
+           return "Successful";
+       }else if(sortName.equals("sort by rating")){
+           activeSort=3;
+           return "Successful";
+       }else if(sortName.equals("sort by comment count")){
+           activeSort=4;
+           return "Successful";
+       }
+          return"Error: invalid sort";
+   }
+
+   public void disableSort(){
+       activeSort=0;
    }
 
    public void activateFilterPriceRange(int minPrice,int maxPrice){
@@ -52,8 +90,8 @@ public class SearchAndFilterController {
        filterBrand=false;
    }
 
-    private boolean isAccepted(String itemid){
-      Item item=ItemAndCategoryController.getInstance().getItemById(itemid);
+    private boolean isAccepted(String itemId){
+      Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
       if(item==null){
           return false;
       }
@@ -89,33 +127,32 @@ public class SearchAndFilterController {
 
    public String showActiveSort(){
        if(activeSort==0){
-           return "you have no active sort";
+           return "you have no active sort , the items will be sorted by view count";
        }else if(activeSort==1){
-           return "sort by price low to high.";
+           return "sort by price low to high";
        }else if(activeSort==2){
-           return  "sort by price high to low.";
+           return  "sort by price high to low";
        }else if(activeSort==3){
-           return "sort by rating.";
+           return "sort by rating";
        }else if(activeSort==4){
-           return   "sort by comment count.";
-       }else if(activeSort==5){
-           return   "sort by views.";
+           return   "sort by comment count";
        }
        return "";
    }
+
     public String showAllAvailableFilters(){
-        return "filter price [min] to [max]."+
-                "\nfilter by category name."+
-                "\nfilter by brand name.";
+        return "filter price [min] to [max]"+
+                "\nfilter by category name"+
+                "\nfilter by brand name";
 
     }
 
     public String showAllAvailableSorts(){
-        return "sort by price low to high."+      //sort number 1
-                "\nsort by price high to low."+   //sort number 2
-                "\nsort by rating."+              //sort number 3
-                "\nsort by comment count."+       //sort number 4
-                "\nsort by views.";               //sort number 5
+                                                 //sort number 0 is the default sort by view
+        return "sort by price low to high"+      //sort number 1
+                "\nsort by price high to low"+   //sort number 2
+                "\nsort by rating"+              //sort number 3
+                "\nsort by comment count";      //sort number 4
     }
 }
 
