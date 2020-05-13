@@ -52,7 +52,7 @@ public class FilterMenu extends Menu {
     }
 
     public void showAvailableFilters() {
-        System.out.println(SearchAndFilterController.getInstance().showAllFilters());
+        System.out.println(SearchAndFilterController.getInstance().showAllAvailableFilters());
     }
 
 }

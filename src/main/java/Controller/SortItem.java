@@ -1,13 +1,7 @@
 package Controller;
 
-import Model.Item;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 public class SortItem {
-    private static SortItem sortItem;
+ /*   private static SortItem sortItem;
     private String currentSort = new String();
 
 
@@ -102,7 +96,7 @@ class AlphabeticComparator implements Comparator<Item> {
     public int compare(Item item1, Item item2) {
         int literalDiffrence = item1.getName().compareTo(item2.getName());
         return literalDiffrence;
-    }
+    } */
 }
 
 

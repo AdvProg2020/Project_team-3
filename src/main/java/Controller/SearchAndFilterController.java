@@ -1,266 +1,121 @@
 package Controller;
 
-import Model.Category;
 import Model.Item;
-import View.Menus.DiscountsMenu;
-import View.Menus.ItemMenu;
-import View.Menus.View;
 
 import java.util.ArrayList;
 
 public class SearchAndFilterController {
-    private Category filteredCategory;
-    private String filteredCompanyName;
-    private String filteredItemName;
-    private double minimumPrice;
-    private double maximumPrice;
-    private ArrayList<String> availableFilters = new ArrayList<>();
-    public static SearchAndFilterController searchAndFilterController;
-    private ArrayList<Item> currentViewableItems = new ArrayList<>();
-
-
-    private SearchAndFilterController() {
-    }
-
-    public static SearchAndFilterController getInstance() {
+   int activeSort;
+   Boolean filterPriceRange=false;
+   Boolean filterCategoryName=false;
+   Boolean filterBrand=false;
+   double minPrice;
+   double maxPrice;
+   String categoryName;
+   String brandName;
+   public static SearchAndFilterController searchAndFilterController;
+   private SearchAndFilterController() { }
+   public static SearchAndFilterController getInstance() {
         if (searchAndFilterController == null) searchAndFilterController = new SearchAndFilterController();
         return searchAndFilterController;
     }
 
+    public ArrayList<String> show(){
+       return new ArrayList<String>();
+   }
 
-    public ArrayList<Item> getCurrentViewableItems() {
-        return currentViewableItems;
-    }
+   public void activateFilterPriceRange(int minPrice,int maxPrice){
+    filterPriceRange=true;
+    this.minPrice=minPrice;
+    this.maxPrice=maxPrice;
+   }
 
-    public boolean currentViewableItemsContainsItem(String itemID) {
-        for (Item item : currentViewableItems) {
-            if (item.getId().equals(itemID)) return true;
+   public void activateFilterCategoryName(String categoryName){
+   filterCategoryName=true;
+   this.categoryName=categoryName;
+   }
+
+   public void activateFilterBrandName(String brandName){
+   filterBrand=true;
+   this.brandName=brandName;
+   }
+
+   public void disableFilterPriceRange(){
+       filterPriceRange=false;
+   }
+
+   public void disableFilterCategoryName(){
+       filterCategoryName=false;
+   }
+
+   public void disableFilterBrandName(){
+       filterBrand=false;
+   }
+
+    private boolean isAccepted(String itemid){
+      Item item=ItemAndCategoryController.getInstance().getItemById(itemid);
+      if(item==null){
+          return false;
+      }
+      double price=item.getPriceWithSale();
+      if((filterPriceRange==true)&&((price<minPrice)||(price>maxPrice))){
+         return false;
+      }
+      if((filterCategoryName==true)&&(!item.getCategoryName().equals(categoryName))){
+          return false;
+      }
+      if((filterBrand==true)&&(!item.getBrand().equals(brandName))){
+          return false;
         }
-        return false;
+      return true;
     }
 
+    public String showActiveFilters(){
+      String ans="";
+      if(filterBrand==true){
+          ans+="filter by brand";
+      }
+      if(filterCategoryName==true){
+          ans+="\nfilter by category name: "+categoryName;
+      }
+      if(filterPriceRange==true){
+          ans+="\nfilter by price range min="+minPrice+" max="+maxPrice;
+      }
+      if(ans.isBlank()){
+          ans="you have No active filter";
+      }
+      return ans;
+   }
 
-    public ArrayList<Item> filterByCategory(String categoryName) {
-        if (availableFilters.contains("category")) {
-            currentViewableItems = disableFilter("category");
-        }
-        if (!availableFilters.contains("category")) availableFilters.add("category");
-        setFilteredCategory(ItemAndCategoryController.getInstance().getCategoryByName(categoryName));
-        if (currentViewableItems.isEmpty()) {
-            if (View.getCurrentMenu() instanceof ItemMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-            else if (View.getCurrentMenu() instanceof DiscountsMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getInSaleItems();
-        }
-        for (Item item : currentViewableItems) {
-            if (!item.getCategoryName().equals(categoryName)) currentViewableItems.remove(item);
-        }
-        return currentViewableItems;
+   public String showActiveSort(){
+       if(activeSort==0){
+           return "you have no active sort";
+       }else if(activeSort==1){
+           return "sort by price low to high.";
+       }else if(activeSort==2){
+           return  "sort by price high to low.";
+       }else if(activeSort==3){
+           return "sort by rating.";
+       }else if(activeSort==4){
+           return   "sort by comment count.";
+       }else if(activeSort==5){
+           return   "sort by views.";
+       }
+       return "";
+   }
+    public String showAllAvailableFilters(){
+        return "filter price [min] to [max]."+
+                "\nfilter by category name."+
+                "\nfilter by brand name.";
+
     }
 
-    public ArrayList<Item> filterByItemName(String itemName) {
-        if (availableFilters.contains("item Name")) {
-            currentViewableItems = disableFilter("item Name");
-        }
-        if (!availableFilters.contains("item Name")) availableFilters.add("item Name");
-        setFilteredItemName(itemName);
-        if (currentViewableItems.isEmpty()) {
-            if (View.getCurrentMenu() instanceof ItemMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-            else if (View.getCurrentMenu() instanceof DiscountsMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getInSaleItems();
-        }
-        for (Item item : currentViewableItems) {
-            if (!item.getName().equals(itemName)) {
-                currentViewableItems.remove(item);
-            }
-        }
-        return currentViewableItems;
-    }
-
-    public ArrayList<Item> filterByCompanyName(String companyName) {
-        if (availableFilters.contains("company Name")) {
-            currentViewableItems = disableFilter("company Name");
-        }
-        if (!availableFilters.contains("company Name")) availableFilters.add("company Name");
-        setFilteredCompanyName(companyName);
-
-        if (currentViewableItems.isEmpty()) {
-            if (View.getCurrentMenu() instanceof ItemMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-            else if (View.getCurrentMenu() instanceof DiscountsMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getInSaleItems();
-        }
-
-        for (Item item : currentViewableItems) {
-            if (!item.getBrand().equals(companyName)) {
-                currentViewableItems.remove(item);
-            }
-        }
-        return currentViewableItems;
-    }
-
-    public ArrayList<Item> filterByPrice(double minimumPrice, double maximumPrice) {
-        if (availableFilters.contains("price")) {
-            currentViewableItems = disableFilter("price");
-        }
-        if (!availableFilters.contains("price")) availableFilters.add("price");
-        setMinimumPrice(minimumPrice);
-        setMaximumPrice(maximumPrice);
-        if (currentViewableItems.isEmpty()) {
-            if (View.getCurrentMenu() instanceof ItemMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-            else if (View.getCurrentMenu() instanceof DiscountsMenu)
-                currentViewableItems = ItemAndCategoryController.getInstance().getInSaleItems();
-        }
-
-        if (maximumPrice == 0 && minimumPrice == 0) return currentViewableItems;
-        else if (maximumPrice == 0 && minimumPrice > 0) {
-            for (Item item : currentViewableItems) {
-                if (item.getPrice() < minimumPrice) currentViewableItems.remove(item);
-            }
-            return currentViewableItems;
-        } else if (minimumPrice == 0 && maximumPrice > 0) {
-            for (Item item : currentViewableItems) {
-                if (item.getPrice() > maximumPrice) currentViewableItems.remove(item);
-            }
-            return currentViewableItems;
-        } else if (maximumPrice > 0 && maximumPrice > 0) {
-            for (Item item : currentViewableItems) {
-                if (item.getPrice() > maximumPrice || item.getPrice() < minimumPrice)
-                    currentViewableItems.remove(item);
-            }
-            return currentViewableItems;
-        }
-        return currentViewableItems;
-    }
-
-
-    public ArrayList<Item> disableFilter(String disabled) {
-        if (disabled.equalsIgnoreCase("category")) {
-            availableFilters.remove("category");
-            currentViewableItems.clear();
-            if (availableFilters.contains("company Name")) {
-                currentViewableItems = filterByCompanyName(filteredCompanyName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("item Name")) {
-                currentViewableItems = filterByItemName(filteredItemName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("price")) {
-                currentViewableItems = filterByPrice(minimumPrice, maximumPrice);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            return currentViewableItems;
-        } else if (disabled.equalsIgnoreCase("company Name")) {
-            availableFilters.remove("company Name");
-            currentViewableItems.clear();
-            if (availableFilters.contains("category")) {
-                currentViewableItems = filterByCategory(filteredCategory.getName());
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("item Name")) {
-                currentViewableItems = filterByItemName(filteredItemName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("price")) {
-                currentViewableItems = filterByPrice(minimumPrice, maximumPrice);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            return currentViewableItems;
-        } else if (disabled.equalsIgnoreCase("item Name")) {
-            availableFilters.remove("item Name");
-            currentViewableItems.clear();
-            if (availableFilters.contains("company Name")) {
-                currentViewableItems = filterByCompanyName(filteredCompanyName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("category")) {
-                currentViewableItems = filterByCategory(filteredCategory.getName());
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("price")) {
-                currentViewableItems = filterByPrice(minimumPrice, maximumPrice);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            return currentViewableItems;
-
-        } else if (disabled.equalsIgnoreCase("price")) {
-            availableFilters.remove("price");
-            currentViewableItems.clear();
-            if (availableFilters.contains("company Name")) {
-                currentViewableItems = filterByCompanyName(filteredCompanyName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("item Name")) {
-                currentViewableItems = filterByItemName(filteredItemName);
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            if (availableFilters.contains("category")) {
-                currentViewableItems = filterByCategory(filteredCategory.getName());
-                if (currentViewableItems.isEmpty()) return currentViewableItems;
-            }
-            return currentViewableItems;
-        }
-        return null;
-    }
-
-
-    public String showAllFilters() {
-        return "you can use different the filter with these commands" + "\n" +
-                "sort price min to max" + "\n" +
-                "sort price max to min" + "\n" +
-                "sort company name" + "\n" +
-                "sort item name " + "\n";
-    }
-
-    ///getters and setters!
-    public Category getFilteredCategory() {
-        return filteredCategory;
-    }
-
-    public void setFilteredCategory(Category filteredCategory) {
-        this.filteredCategory = filteredCategory;
-    }
-
-    public String getFilteredCompanyName() {
-        return filteredCompanyName;
-    }
-
-    public void setFilteredCompanyName(String filteredCompanyName) {
-        this.filteredCompanyName = filteredCompanyName;
-    }
-
-    public String getFilteredItemName() {
-        return filteredItemName;
-    }
-
-    public void setFilteredItemName(String filteredItemName) {
-        this.filteredItemName = filteredItemName;
-    }
-
-    public double getMinimumPrice() {
-        return minimumPrice;
-    }
-
-    public void setMinimumPrice(double minimumPrice) {
-        this.minimumPrice = minimumPrice;
-    }
-
-    public double getMaximumPrice() {
-        return maximumPrice;
-    }
-
-    public void setMaximumPrice(double maximumPrice) {
-        this.maximumPrice = maximumPrice;
-    }
-
-    public ArrayList<String> getAvailableFilters() {
-        return availableFilters;
-    }
-
-    public void setAvailableFilters(ArrayList<String> availableFilters) {
-        this.availableFilters = availableFilters;
+    public String showAllAvailableSorts(){
+        return "sort by price low to high."+      //sort number 1
+                "\nsort by price high to low."+   //sort number 2
+                "\nsort by rating."+              //sort number 3
+                "\nsort by comment count."+       //sort number 4
+                "\nsort by views.";               //sort number 5
     }
 }
+
