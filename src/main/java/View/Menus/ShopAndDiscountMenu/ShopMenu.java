@@ -25,7 +25,7 @@ public class ShopMenu extends Menu {
     @Override
     public void run() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu." + View.ANSI_RESET);
-       // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
+        // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
         String command = View.getRead().nextLine();
         execute(command);
     }
@@ -45,7 +45,7 @@ public class ShopMenu extends Menu {
             previousCategory();
             return;
         }
-        if ((command.equals("filtering"))||(command.equals("sorting"))) {
+        if ((command.equals("filtering")) || (command.equals("sorting"))) {
             SortAndFilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
             View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
@@ -86,7 +86,7 @@ public class ShopMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_YELLOW + "You are in the shop menu.\nType your command in one of these formats:" + View.ANSI_RESET);
-       // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
+        // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
         System.out.println("view all categories"); //done
         System.out.println("open [category name]"); //done
         System.out.println("previous category");  //done
@@ -103,12 +103,12 @@ public class ShopMenu extends Menu {
         System.out.println(ItemAndCategoryController.getInstance().openCategory(name));
     }
 
-    private void previousCategory(){
+    private void previousCategory() {
         categoryName = ItemAndCategoryController.getInstance().previousCategory(categoryName);
     }
 
     public void setCurrentCategory(String categoryName) {
-        this.categoryName=categoryName;
+        this.categoryName = categoryName;
     }
 
     public String getCurrentCategory() {

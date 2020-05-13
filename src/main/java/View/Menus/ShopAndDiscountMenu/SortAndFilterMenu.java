@@ -17,12 +17,14 @@ public class SortAndFilterMenu extends Menu {
             sortAndFilterMenu = new SortAndFilterMenu();
         return sortAndFilterMenu;
     }
+
     @Override
     public void run() {
         help();
         String command = View.getRead().nextLine();
         execute(command);
     }
+
     @Override
     public void execute(String command) {
         Matcher matcher;
@@ -30,36 +32,37 @@ public class SortAndFilterMenu extends Menu {
             showAvailableFilters();
             return;
         }
-        if(command.equals("show available sorts")){
+        if (command.equals("show available sorts")) {
             showAvailableSorts();
             return;
         }
-        if(command.equals("current sort")){
+        if (command.equals("current sort")) {
             currentSort();
             return;
         }
-        if(command.equals("disable sort")){
+        if (command.equals("disable sort")) {
             disableSort();
             return;
         }
-        if(command.equals("current filters")){
+        if (command.equals("current filters")) {
             currentFilters();
             return;
         }
-        if(command.equals("default sort and filter")){
+        if (command.equals("default sort and filter")) {
             defaultSortAndFilter();
             return;
         }
-        matcher=View.getMatcher("sort (\\S+)",command);
-        if(matcher.matches()){
+        matcher = View.getMatcher("sort (\\S+)", command);
+        if (matcher.matches()) {
             sort(command);
         }
         System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
 
     }
+
     @Override
     public void help() {
-        System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the shop menu."+View.ANSI_RESET);
+        System.out.println(View.ANSI_WHITE + "Enter your command in the following formats or type back to go to the shop menu." + View.ANSI_RESET);
         System.out.println("show available filters"); //done
         System.out.println("filter [an available filter]");
         System.out.println("current filters"); //done
@@ -74,22 +77,28 @@ public class SortAndFilterMenu extends Menu {
     public void showAvailableFilters() {
         System.out.println(SortAndFilterController.getInstance().showAllAvailableFilters());
     }
-    public void showAvailableSorts(){
+
+    public void showAvailableSorts() {
         System.out.println(SortAndFilterController.getInstance().showAllAvailableSorts());
     }
-    public void currentSort(){
+
+    public void currentSort() {
         System.out.println(SortAndFilterController.getInstance().showActiveSort());
     }
-    public void disableSort(){
+
+    public void disableSort() {
         SortAndFilterController.getInstance().disableSort();
     }
-    public void sort(String command){
+
+    public void sort(String command) {
         System.out.println(SortAndFilterController.getInstance().activateSort(command));
     }
-    public void currentFilters(){
+
+    public void currentFilters() {
         System.out.println(SortAndFilterController.getInstance().showActiveFilters());
     }
-    public void defaultSortAndFilter(){
+
+    public void defaultSortAndFilter() {
         SortAndFilterController.getInstance().reset();
     }
 }
