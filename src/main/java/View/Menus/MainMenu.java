@@ -5,7 +5,10 @@ import Model.Users.Admin;
 import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
+import View.Menus.ShopAndDiscountMenu.FilterMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.SortMenu;
 
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;
@@ -33,23 +36,32 @@ public class MainMenu extends Menu {
             View.setCurrentMenu(ShopMenu.getInstance());
         }else if(command.equals("3")){
             View.setCurrentMenu(DiscountsMenu.getInstance());
-            View.setPreviousMenu(MainMenu.getInstance());
+            DiscountsMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
         }else if(command.equals("4")){
             run();
         }else if(command.equals("5")) {
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
-            View.setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
         }else if(command.equals("6")){
             logout();
             run();
         }else if(command.equals("7")){
             View.setCurrentMenu(CartMenu.getInstance());
-            View.setPreviousMenu(MainMenu.getInstance());
+            CartMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
         }
         else if(command.equals("8")){
             exit();
         }
-
+        if (command.equals("filtering")) {
+            FilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(FilterMenu.getInstance());
+            return;
+        }
+        if (command.equals("sorting")) {
+            SortMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(SortMenu.getInstance());
+            return;
+        }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
             run();

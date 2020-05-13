@@ -9,6 +9,7 @@ import View.Menus.SellerMenu.SellerMenu;
 import java.util.ArrayList;
 
 public abstract class Menu {
+    private Menu previousMenu;
 
     public abstract void help();
 
@@ -108,6 +109,14 @@ public abstract class Menu {
 
     }
 
+    public void setPreviousMenu(Menu previousMenu) {
+        this.previousMenu = previousMenu;
+    }
+
+    public Menu getPreviousMenu() {
+        return previousMenu;
+    }
+
     private String enterUsername() {
         System.out.print("Enter your username:");
         String username = View.read.nextLine();
@@ -196,15 +205,10 @@ public abstract class Menu {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
             System.out.println("Error: invalid id");
         }
-        View.setPreviousMenu(View.getCurrentMenu());
+        ItemMenu.getInstance().setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);
     }
-
-    public void back() {
-      View.setCurrentMenu(View.previousMenu);
-    }
-
 
 }
 

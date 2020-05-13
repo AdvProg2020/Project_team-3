@@ -1,6 +1,6 @@
 import Controller.Database;
 import Controller.ItemAndCategoryController;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.View;
 
 public class Main {

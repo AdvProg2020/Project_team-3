@@ -1,4 +1,4 @@
-package View.Menus.ShopMenu;
+package View.Menus.ShopAndDiscountMenu;
 
 import Controller.Database;
 import Controller.ItemAndCategoryController;
@@ -46,10 +46,12 @@ public class ShopMenu extends Menu {
             return;
         }
         if (command.equals("filtering")) {
+            FilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
             View.setCurrentMenu(FilterMenu.getInstance());
             return;
         }
         if (command.equals("sorting")) {
+            SortMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
             View.setCurrentMenu(SortMenu.getInstance());
             return;
         }
@@ -62,7 +64,7 @@ public class ShopMenu extends Menu {
             return;
         }
         if (command.equals("back")) {
-            View.setCurrentMenu(View.getPreviousMenu());
+            View.setCurrentMenu(getPreviousMenu());
             return;
         }
         if (command.equals("show all products")) {

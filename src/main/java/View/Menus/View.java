@@ -8,7 +8,6 @@ public class View {
     static Scanner read = new Scanner(System.in);  //package access
     private static boolean programRunning = true;
     private static Menu currentMenu = MainMenu.getInstance();
-    static Menu previousMenu=MainMenu.getInstance();
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -31,10 +30,6 @@ public class View {
         }
     }
 
-    public static void setPreviousMenu(Menu previousMenu) {
-        View.previousMenu = previousMenu;
-    }
-
     public static void setProgramRunning(boolean programRunning) {
         View.programRunning = programRunning;
     }
@@ -54,9 +49,5 @@ public class View {
 
     public static Scanner getRead() {
         return read;
-    }
-
-    public static Menu getPreviousMenu() {
-        return previousMenu;
     }
 }

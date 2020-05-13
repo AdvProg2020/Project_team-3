@@ -3,9 +3,9 @@ package View.Menus.SellerMenu;
 import Controller.Controller;
 import Controller.ItemAndCategoryController;
 import Model.Users.Seller;
-import View.Menus.DiscountsMenu;
+import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.MainMenu;
-import View.Menus.ShopMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -81,12 +81,12 @@ public class SellerMenu extends UserMenu {
             return;
         }
         if(command.equals("offs")){
-            View.setPreviousMenu(SellerMenu.getInstance());
+            DiscountsMenu.getInstance().setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
             return;
         }
         else if(command.equals("products")){
-            View.setPreviousMenu(SellerMenu.getInstance());
+            ShopMenu.getInstance().setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
             return;
         }
