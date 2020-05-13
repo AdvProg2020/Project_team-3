@@ -1,8 +1,8 @@
 package View.Menus;
 
-import ControllerTest.CartController;
-import ControllerTest.SaleAndDiscountCodeController;
-import ControllerTest.UserController;
+import Controller.CartController;
+import Controller.SaleAndDiscountCodeController;
+import Controller.UserController;
 
 public class PurchaseMenu extends Menu {
     private static PurchaseMenu purchaseMenu;

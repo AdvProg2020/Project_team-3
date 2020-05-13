@@ -1,7 +1,7 @@
 package View.Menus.SellerMenu;
 
-import ControllerTest.Controller;
-import ControllerTest.ItemAndCategoryController;
+import Controller.Controller;
+import Controller.ItemAndCategoryController;
 import Model.Users.Seller;
 import View.Menus.DiscountsMenu;
 import View.Menus.MainMenu;

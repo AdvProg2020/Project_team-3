@@ -1,6 +1,6 @@
 package Model.Users;
 
-import ControllerTest.ItemAndCategoryController;
+import Controller.ItemAndCategoryController;
 import Model.Logs.SaleLog;
 import Model.Sale;
 

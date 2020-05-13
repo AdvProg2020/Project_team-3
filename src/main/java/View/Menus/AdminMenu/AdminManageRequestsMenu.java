@@ -1,7 +1,7 @@
 package View.Menus.AdminMenu;
 
-import ControllerTest.Database;
-import ControllerTest.RequestController;
+import Controller.Database;
+import Controller.RequestController;
 import View.Menus.UserMenu;
 import View.Menus.View;
 

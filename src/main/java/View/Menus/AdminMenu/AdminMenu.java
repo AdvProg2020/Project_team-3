@@ -1,8 +1,8 @@
 package View.Menus.AdminMenu;
 
-import ControllerTest.Database;
-import ControllerTest.ItemAndCategoryController;
-import ControllerTest.SaleAndDiscountCodeController;
+import Controller.Database;
+import Controller.ItemAndCategoryController;
+import Controller.SaleAndDiscountCodeController;
 import Model.Sale;
 import View.Menus.*;
 import View.Menus.ShopMenu.ShopMenu;

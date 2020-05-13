@@ -1,7 +1,7 @@
 package View.Menus.ShopMenu;
 
-import ControllerTest.Database;
-import ControllerTest.ItemAndCategoryController;
+import Controller.Database;
+import Controller.ItemAndCategoryController;
 import Model.Category;
 import View.Menus.Menu;
 import View.Menus.View;

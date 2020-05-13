@@ -1,6 +1,6 @@
 package View.Menus;
 
-import ControllerTest.SaleAndDiscountCodeController;
+import Controller.SaleAndDiscountCodeController;
 
 import java.util.regex.Matcher;
 

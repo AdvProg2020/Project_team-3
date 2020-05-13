@@ -1,6 +1,6 @@
 package View.Menus.SellerMenu;
 
-import ControllerTest.Controller;
+import Controller.Controller;
 import Model.Users.Seller;
 import View.Menus.UserMenu;
 import View.Menus.View;

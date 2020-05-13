@@ -1,7 +1,7 @@
 package Model;
 
-import ControllerTest.ItemAndCategoryController;
-import ControllerTest.UserController;
+import Controller.ItemAndCategoryController;
+import Controller.UserController;
 import Model.Logs.BuyLog;
 
 import java.util.ArrayList;

@@ -21,19 +21,39 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControllerTest/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControllerTest/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ItemAndCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/RequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/SearchAndFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SearchAndFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/SortItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SortItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControllerTest/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Sale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageCategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageCategoriesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageRequestsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageRequestsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/BuyerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/DiscountsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ItemMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/PurchaseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/FilterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/FilterMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopMenu/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ControllerTest/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ControllerTest/ItemAndCategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ControllerTest/ItemAndCategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Project_team-3.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageCategoriesMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageCategoriesMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ShopMenu/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ShopMenu/ShopMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/UserMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest/ItemAndCategoryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/ItemAndCategoryControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest/RequestControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/RequestControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest/SearchAndFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/SearchAndFilterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ControllerTest/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/UserControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,12 +131,12 @@
       <module name="Project_team-3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ControllerTest.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ControllerTest" />
-      <option name="MAIN_CLASS_NAME" value="ControllerTest.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="Controller" />
+      <option name="MAIN_CLASS_NAME" value="Controller.UserControllerTest" />
       <option name="METHOD_NAME" value="isValidEmail" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -127,12 +147,12 @@
       <module name="Project_team-3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ControllerTest.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ControllerTest" />
-      <option name="MAIN_CLASS_NAME" value="ControllerTest.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="Controller" />
+      <option name="MAIN_CLASS_NAME" value="Controller.UserControllerTest" />
       <option name="METHOD_NAME" value="isValidPhoneNumber" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -143,12 +163,12 @@
       <module name="Project_team-3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ControllerTest.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ControllerTest" />
-      <option name="MAIN_CLASS_NAME" value="ControllerTest.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="Controller" />
+      <option name="MAIN_CLASS_NAME" value="Controller.UserControllerTest" />
       <option name="METHOD_NAME" value="login" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -159,12 +179,12 @@
       <module name="Project_team-3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ControllerTest.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ControllerTest" />
-      <option name="MAIN_CLASS_NAME" value="ControllerTest.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="Controller" />
+      <option name="MAIN_CLASS_NAME" value="Controller.UserControllerTest" />
       <option name="METHOD_NAME" value="returnUserType" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -218,13 +238,6 @@
       <workItem from="1589128067626" duration="928000" />
       <workItem from="1589268419932" duration="1480000" />
       <workItem from="1589286194687" duration="7311000" />
-    </task>
-    <task id="LOCAL-00006" summary="new version">
-      <created>1586800983522</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1586800983522</updated>
     </task>
     <task id="LOCAL-00007" summary="removing Item added to controller class!">
       <created>1586805043021</created>
@@ -562,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589230110219</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="revamped ShopMenu structure">
+      <created>1589328553304</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1589328553304</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove Item from Bucket!" />
     <MESSAGE value="fixed more menus" />
     <MESSAGE value="made first 2 menus operational" />
     <MESSAGE value="added viewPI" />
@@ -607,7 +626,8 @@
     <MESSAGE value="segregated ShopMenu" />
     <MESSAGE value="fixed typos, removed optionCount" />
     <MESSAGE value="gitignore?" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore?" />
+    <MESSAGE value="revamped ShopMenu structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="revamped ShopMenu structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -645,11 +665,11 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="637" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1588330446121" />
-    <state x="514" y="117" key="CommitChangelistDialog2" timestamp="1589306669264">
+    <state x="514" y="117" key="CommitChangelistDialog2" timestamp="1589329037147">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1589128633979" />
-    <state x="514" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589306669264" />
+    <state x="514" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589329037147" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1029@0.23.1792.1029" timestamp="1588420415868" />
@@ -734,11 +754,11 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589306673250">
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589328556996">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589128687969" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589306673250" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589328556996" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />

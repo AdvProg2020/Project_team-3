@@ -1,7 +1,7 @@
 package View.Menus;
 
-import ControllerTest.Controller;
-import ControllerTest.UserController;
+import Controller.Controller;
+import Controller.UserController;
 import Model.Users.Seller;
 import Model.Users.User;
 

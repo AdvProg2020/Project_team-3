@@ -1,7 +1,7 @@
 package Model;
 
-import ControllerTest.Controller;
-import ControllerTest.Database;
+import Controller.Controller;
+import Controller.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
