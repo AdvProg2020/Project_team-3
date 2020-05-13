@@ -42,9 +42,9 @@ public class SellerManageOffsMenu extends UserMenu {
     public void help(){
         System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the seller menu."+View.ANSI_RESET);
         System.out.println("view offs");
-        //System.out.println("view off [offId]");
-        //System.out.println("edit off [offId]");
-        //System.out.println("add off");
+        System.out.println("view off [offId]");
+        System.out.println("edit off [offId]");
+        System.out.println("add off");
     }
 
     private void viewAllOffs(){

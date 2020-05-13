@@ -107,6 +107,7 @@ public class Cart {
             double price=ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();
             String sellerName=ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName();
             buyLog.addItem(price,allItemCount.get(itemID),itemID,sellerName);
+            ItemAndCategoryController.getInstance().getItemById(itemID).addTimesBoughtBy(allItemCount.get(itemID));
         }
         empty();
         UserController.getInstance().assignBuyLog(buyerName,buyLog);

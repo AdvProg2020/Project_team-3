@@ -1,10 +1,8 @@
 package View.Menus;
 
-import Controller.CartController;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Users.Buyer;
-import Model.Users.User;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
 
@@ -62,7 +60,10 @@ public class BuyerMenu extends UserMenu {
             viewOrders();
             return;
         } else if (command.startsWith("show order ")) {
-            //do sth
+            matcher = View.getMatcher("show order (\\S+)", command);
+            if (matcher.matches()) {
+                showOrder(matcher.group(1));
+            }
             return;
         } else if (command.startsWith("rate ")) {
             matcher = View.getMatcher("rate (\\S+) ([1-2-3-4-5])", command);
@@ -104,14 +105,14 @@ public class BuyerMenu extends UserMenu {
         System.out.println("back");
     }
 
-    private void showTotalPrice() {
+    /*private void showTotalPrice() {
         User user = UserController.getInstance().getCurrentOnlineUser();
         System.out.print(View.ANSI_BLUE + "Total Price:" + View.ANSI_RESET);
         System.out.println(CartController.getInstance().getCurrentShoppingCart().getCartPriceWithoutDiscountCode());
-    }
+    }*/
 
-    private void purchase() {
-        View.setCurrentMenu(PurchaseMenu.getInstance());
+    private void showOrder(String ID) {
+
     }
 
     private void viewOrders() {
