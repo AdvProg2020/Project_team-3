@@ -41,7 +41,7 @@ public class AdminManageUsersMenu extends UserMenu {
         }
         matcher = View.getMatcher("change type (\\S+) (\\S+)", command);
         if (matcher.matches()) {
-            changeType(matcher.group(1), matcher.group(2));
+            //changeType(matcher.group(1), matcher.group(2));
         }
         if (command.equals("help")) {
             help();
@@ -65,9 +65,7 @@ public class AdminManageUsersMenu extends UserMenu {
         System.out.println(UserController.getInstance().deleteUser(username));
     }
 
-    private void changeType(String username, String type) {
-        System.out.println(UserController.getInstance().changeTypeTo(username, type));
-    }
+
 
     private void printUsers() {
         ArrayList<String> allUserNames = Database.getInstance().printFolderContent("Users");

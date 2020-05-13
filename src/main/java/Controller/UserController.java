@@ -218,9 +218,7 @@ public class UserController {
         return  allUser;
     }
 
-    public String changeTypeTo(String username,String type){
-        return getUserByUsername(username).changeTypeTo(type);
-    }
+
 
     public void assignBuyLog(String buyerName,BuyLog buyLog){
     Buyer buyer=(Buyer) getUserByUsername(buyerName);
