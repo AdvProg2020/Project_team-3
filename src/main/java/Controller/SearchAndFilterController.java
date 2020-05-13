@@ -23,8 +23,7 @@ public class SearchAndFilterController {
         return searchAndFilterController;
     }
 
-    public ArrayList<String> show() {
-        ArrayList<String> allItemsId = null;
+    public ArrayList<String> show(ArrayList<String> allItemsId) {
         ArrayList<String> filteredItems = new ArrayList<>();
         for (String id : allItemsId) {
             if (isAccepted(id))
