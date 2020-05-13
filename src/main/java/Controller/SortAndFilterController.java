@@ -151,15 +151,14 @@ public class SortAndFilterController {
         return "filter price [min] to [max]" +
                 "\nfilter by category name" +
                 "\nfilter by brand name";
-
     }
 
     public String showAllAvailableSorts() {
-        //sort number 0 is the default sort by view
-        return "sort by price low to high" +      //sort number 1
-                "\nsort by price high to low" +   //sort number 2
-                "\nsort by rating" +              //sort number 3
-                "\nsort by comment count";      //sort number 4
+                                                 //sort number 0 is the default sort by view
+        return "sort by price low to high" +     //sort number 1
+                "\nsort by price high to low" +  //sort number 2
+                "\nsort by rating" +             //sort number 3
+                "\nsort by comment count";       //sort number 4
     }
 
     public void reset() {

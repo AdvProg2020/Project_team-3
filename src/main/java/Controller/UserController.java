@@ -152,6 +152,9 @@ public class UserController {
     }
 
     public String deleteUser(String username) {
+        if(getCurrentOnlineUser()==null){
+            return "Error:";
+        }
         if(username.equals(getCurrentOnlineUser().getUsername())){
             return "Error: you cant remove your own account";
         }
@@ -164,7 +167,6 @@ public class UserController {
     }
 
     public void editPersonalInfo(String username,String field,String newValue) {
-
         User user=getUserByUsername(username);
         if(field.equals("Name")){
             user.setName(newValue);
@@ -184,7 +186,6 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public String viewPersonalInfo(String username){
@@ -217,8 +218,6 @@ public class UserController {
             }
         return  allUser;
     }
-
-
 
     public void assignBuyLog(String buyerName,BuyLog buyLog){
     Buyer buyer=(Buyer) getUserByUsername(buyerName);

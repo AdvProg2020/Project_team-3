@@ -105,12 +105,6 @@ public class BuyerMenu extends UserMenu {
         System.out.println("back");
     }
 
-    /*private void showTotalPrice() {
-        User user = UserController.getInstance().getCurrentOnlineUser();
-        System.out.print(View.ANSI_BLUE + "Total Price:" + View.ANSI_RESET);
-        System.out.println(CartController.getInstance().getCurrentShoppingCart().getCartPriceWithoutDiscountCode());
-    }*/
-
     private void showOrder(String ID) {
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         System.out.println(buyer.getBuyLogByID(ID).toString());
@@ -125,7 +119,6 @@ public class BuyerMenu extends UserMenu {
         System.out.print("Your current balance is:");
         System.out.println(View.ANSI_BLUE + UserController.getInstance().currentOnlineUserBalance() + View.ANSI_RESET);
     }
-
 
     private void viewDiscountCodes() {
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
