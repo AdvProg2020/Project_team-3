@@ -20,11 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2020_10_42_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2020_10_42_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_2_18_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_2_18_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_2_18_PM__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_2_18_PM__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_3_36_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_3_36_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_7_40_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_2020_7_40_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ItemAndCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ItemAndCategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Admin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -751,11 +754,11 @@
     <state x="573" y="364" key="com.intellij.ide.util.TipDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1586702723468" />
     <state x="573" y="365" key="com.intellij.ide.util.TipDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1586626975654" />
     <state x="573" y="365" key="com.intellij.ide.util.TipDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1589012229957" />
-    <state x="728" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589376796680">
+    <state x="728" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589388184935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="485" y="415" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1589363468591" />
-    <state x="728" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589376796680" />
+    <state x="728" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589388184935" />
     <state x="679" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586723466502" />
     <state x="679" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586710980699" />
     <state x="679" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1029@0.23.1792.1029" timestamp="1589365687166" />
@@ -782,59 +785,60 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="22" y="111" key="new project wizard/0.0.1280.984@0.0.1280.984" timestamp="1588413385170" />
-    <state x="561" y="249" width="670" height="679" key="search.everywhere.popup" timestamp="1589225363534">
-      <screen x="0" y="23" width="1792" height="1029" />
+    <state x="601" y="228" width="718" height="687" key="search.everywhere.popup" timestamp="1589388379228">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="401" y="216" width="672" height="650" key="search.everywhere.popup/0.0.1280.984@0.0.1280.984" timestamp="1588414535180" />
+    <state x="601" y="228" width="718" height="687" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589388379228" />
     <state x="561" y="249" width="670" height="676" key="search.everywhere.popup/0.23.1792.1026@0.23.1792.1026" timestamp="1586627384494" />
     <state x="561" y="249" width="670" height="678" key="search.everywhere.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1586627614127" />
     <state x="561" y="249" width="670" height="679" key="search.everywhere.popup/0.23.1792.1029@0.23.1792.1029" timestamp="1589225363534" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_editPersonalInfo.ic" NAME="UserControllerTest.editPersonalInfo Coverage Results" MODIFIED="1589297542356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_returnUserType.ic" NAME="UserControllerTest.returnUserType Coverage Results" MODIFIED="1589298120076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidEmail.ic" NAME="UserControllerTest.isValidEmail Coverage Results" MODIFIED="1589298084934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_login.ic" NAME="UserControllerTest.login Coverage Results" MODIFIED="1589298592334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getUserByUsername.ic" NAME="UserControllerTest.getUserByUsername Coverage Results" MODIFIED="1589289650624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_deleteUser.ic" NAME="UserControllerTest.deleteUser Coverage Results" MODIFIED="1589290545356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_comment.ic" NAME="ItemAndCategoryControllerTest.comment Coverage Results" MODIFIED="1589374326931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addCategory.ic" NAME="ItemAndCategoryControllerTest.addCategory Coverage Results" MODIFIED="1589372028986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_validateMoney.ic" NAME="UserControllerTest.validateMoney Coverage Results" MODIFIED="1589286483642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_acceptRequest.ic" NAME="RequestControllerTest.acceptRequest Coverage Results" MODIFIED="1589374372340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_editItemRequest.ic" NAME="RequestControllerTest.editItemRequest Coverage Results" MODIFIED="1589373785954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getAllUserFromDataBase.ic" NAME="UserControllerTest.getAllUserFromDataBase Coverage Results" MODIFIED="1589297986424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getUserByUsername.ic" NAME="UserControllerTest.getUserByUsername Coverage Results" MODIFIED="1589289650624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addCategory.ic" NAME="ItemAndCategoryControllerTest.addCategory Coverage Results" MODIFIED="1589372028986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_returnUserType.ic" NAME="UserControllerTest.returnUserType Coverage Results" MODIFIED="1589298120076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_comment.ic" NAME="ItemAndCategoryControllerTest.comment Coverage Results" MODIFIED="1589374326931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_editItemRequest.ic" NAME="RequestControllerTest.editItemRequest Coverage Results" MODIFIED="1589373785954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidEmail.ic" NAME="UserControllerTest.isValidEmail Coverage Results" MODIFIED="1589298084934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_editPersonalInfo.ic" NAME="UserControllerTest.editPersonalInfo Coverage Results" MODIFIED="1589297542356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_validateMoney.ic" NAME="UserControllerTest.validateMoney Coverage Results" MODIFIED="1589286483642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_login.ic" NAME="UserControllerTest.login Coverage Results" MODIFIED="1589298592334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_declineRequest.ic" NAME="RequestControllerTest.declineRequest Coverage Results" MODIFIED="1589373826033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidPhoneNumber.ic" NAME="UserControllerTest.isValidPhoneNumber Coverage Results" MODIFIED="1589298101207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_deleteUser.ic" NAME="UserControllerTest.deleteUser Coverage Results" MODIFIED="1589290545356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addItem.ic" NAME="ItemAndCategoryControllerTest.addItem Coverage Results" MODIFIED="1589374169984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidPhoneNumber.ic" NAME="UserControllerTest.isValidPhoneNumber Coverage Results" MODIFIED="1589298101207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
     </SUITE>
   </component>
 </project>

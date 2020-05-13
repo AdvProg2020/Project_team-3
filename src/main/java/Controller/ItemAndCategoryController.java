@@ -79,15 +79,15 @@ public class ItemAndCategoryController {
         return null;
     }
 
-    public String viewItem(String id){
+    public String viewItem(String id) {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
-            return (View.ANSI_RED+"Error: invalid id\n"+View.ANSI_RESET);
+            return (View.ANSI_RED + "Error: invalid id\n" + View.ANSI_RESET);
         }
         Item item = getItemById(id);
         item.addViewsBy(1);
-        try{
+        try {
             Database.getInstance().saveItem(item);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -258,7 +258,7 @@ public class ItemAndCategoryController {
         return getCategoryByName(ShopMenu.getInstance().getCurrentCategory());
     }
 
-   public ArrayList<String> getCategoryItems(String categoryName) {
+   /*public ArrayList<String> getCategoryItems(String categoryName) {
         ArrayList<String> allItemsId = new ArrayList<>();
         Category current = getCurrentCategory();
         ArrayList<String> itemIDs = current.getAllItemsID();
@@ -267,6 +267,18 @@ public class ItemAndCategoryController {
             allItemsId.add(id);
         }
         return allItemsId;
+    }*/
+
+    public ArrayList<String> getCategoryItems(String categoryName) { //<== in miad itemaye bache hasham mide, test konid!
+        Category category = getCategoryByName(categoryName);
+        if (category.getSubCategories().isEmpty()) return category.getAllItemsID();
+
+        ArrayList<String> allItems = new ArrayList<>();
+        for (String subCategoryName : category.getSubCategories()) {
+            allItems.addAll(getCategoryItems(subCategoryName));
+        }
+        allItems.addAll(category.getAllItemsID());
+        return allItems;
     }
 
     public String getCategoryItemsString(String categoryName) {
@@ -278,7 +290,7 @@ public class ItemAndCategoryController {
     }
 
     public String previousCategory(String categoryName) {
-       Category currentCategory=getCategoryByName(categoryName);
+        Category currentCategory = getCategoryByName(categoryName);
         try {
             Category category = getCategoryByName(currentCategory.getParent());
             if (category == null) return currentCategory.getName();
@@ -321,10 +333,10 @@ public class ItemAndCategoryController {
 
     public void editCategoryName(String lastName, String newName) {
         Category category = getCategoryByName(lastName);
-        String path="Resource"+File.separator+"Categories";
-        String fileName=lastName+".json";
+        String path = "Resource" + File.separator + "Categories";
+        String fileName = lastName + ".json";
         System.out.println(fileName);
-        File file=new File(path+File.separator+fileName);
+        File file = new File(path + File.separator + fileName);
         System.out.println(file.exists());
         file.delete();
         category.setName(newName);
@@ -356,9 +368,9 @@ public class ItemAndCategoryController {
         return allItems;
     }
 
-    public void editItem(String changedField,String newFiled,String itemID){
-        String requestID=Controller.getInstance().getAlphaNumericString(5,"Requests");
-        RequestController.getInstance().editItemRequest(requestID,itemID,changedField,newFiled);
+    public void editItem(String changedField, String newFiled, String itemID) {
+        String requestID = Controller.getInstance().getAlphaNumericString(5, "Requests");
+        RequestController.getInstance().editItemRequest(requestID, itemID, changedField, newFiled);
     }
 
 }
