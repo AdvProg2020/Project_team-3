@@ -31,8 +31,8 @@ public class BuyerMenu extends UserMenu {
     public void execute(String command) {
         Matcher matcher;
         if (command.equals("logout")) {
-            logout();
-            View.setCurrentMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
             return;
         }
         if (command.equals("offs")) {

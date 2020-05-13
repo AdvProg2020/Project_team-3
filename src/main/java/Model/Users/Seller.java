@@ -96,21 +96,12 @@ public class Seller extends User {
 
     }
 
-    public String printItems() {
-        return "hello";
-    }
-
-
     public void editSale(Sale sale, Sale updatedSale) {
 
     }
 
     public void removeItem(String itemId) {
 
-    }
-
-    public boolean isSaleInPast() {
-        return false;
     }
 
     public void setMoney(double money) {
@@ -121,29 +112,21 @@ public class Seller extends User {
         return this.money;
     }
 
-    public boolean isSoldInPast() {
-        return false;
-    }
-
     public void Validate() {
         this.valid = true;
     }
 
-    public boolean getValid() {
-        return valid;
-    }
-
     public String getSaleLogsString(){
-        String ans = "";
+        String ans="ID          buyer name        count         price\n";
         for(SaleLog saleLog:sellLogs){
-            ans += saleLog.toString();
+            ans += saleLog.toSimpleString();
             ans += "\n";
         }
         return ans;
     }
 
     public String getAllItemsString(){
-        String ans="";
+        String ans="ID         name        price";
         for(String id:allItemsId){
             ans+= ItemAndCategoryController.getInstance().getItemById(id).toSimpleString();
             ans+="\n";

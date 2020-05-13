@@ -1,125 +1,30 @@
 package View.Menus;
 
-import Controller.Controller;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
-import View.Menus.AdminMenu.AdminMenu;
-import View.Menus.SellerMenu.SellerMenu;
 
 import java.util.ArrayList;
 
 public abstract class Menu {
     private Menu previousMenu;
 
-    public abstract void help();
+    protected abstract void help();
 
-    public abstract void run();
+    protected abstract void run();
 
-    public abstract void execute(String command);
-
-    public boolean login(String command) {
-        if(Controller.getInstance().isLogin()){
-            System.out.println("Error: logout first");
-            return false;
-        }
-        if (command.split(" ").length != 2) {
-            System.out.println(View.ANSI_RED + "Invalid username." + View.ANSI_RESET);
-            return false;
-        }
-        System.out.print("Enter your password:");
-        String password = View.read.nextLine();
-        String username = command.split(" ")[1];
-
-        String ans = UserController.getInstance().login(username, password);
-        System.out.println(ans);
-        if (ans.startsWith("Success")) {
-            if (UserController.getInstance().returnUserType(username).equals("Admin")) {
-                View.setCurrentMenu(AdminMenu.getInstance());
-            }
-            if (UserController.getInstance().returnUserType(username).equals("Buyer")) {
-                View.setCurrentMenu(BuyerMenu.getInstance());
-            }
-            if (UserController.getInstance().returnUserType(username).equals("Seller")) {
-                View.setCurrentMenu(SellerMenu.getInstance());
-            }
-        }
-        return ans.startsWith("Success");
-    }
-
-    public boolean registerAdmin() {
-        String username = enterUsername();
-        System.out.print("Enter your password:");
-        String password = View.read.nextLine();
-        System.out.print("Enter your first name:");
-        String firstName = View.read.nextLine();
-        System.out.print("Enter your surname:");
-        String lastName = View.read.nextLine();
-        String email = enterEmail();
-        String number = enterNumber();
-        String ans = UserController.getInstance().registerAdmin(username, password, number, lastName, email, number);
-        System.out.println(ans);
-        return ans.startsWith("Success");
-    }
-
-    public boolean register(String command) {
-        if (command.split(" ").length != 4) {
-            System.out.println(View.ANSI_RED + "Invalid username/account type." + View.ANSI_RESET);
-            return false;
-        }
-        String key = command.split(" ")[2];
-        if (!key.equals("buyer") && !key.equals("seller") && !key.equals("admin")) {
-            System.out.println(View.ANSI_RED + "Invalid account type." + View.ANSI_RESET);
-            return false;
-        }
-
-        String username = command.split(" ")[3];
-
-
-        System.out.print("Enter your password:");
-        String password = View.read.nextLine();
-        System.out.print("Enter your first name:");
-        String firstName = View.read.nextLine();
-        System.out.print("Enter your surname:");
-        String lastName = View.read.nextLine();
-        String email = enterEmail();
-        double money = enterMoney();
-        String number = enterNumber();
-
-        String ans;
-
-        if (key.equals("buyer")) {
-            ans = UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number);
-            System.out.println(ans);
-            return ans.startsWith("Success");
-        } else if (key.equals("seller")) {
-            System.out.print("Enter your company name:");
-            String companyName = View.read.nextLine();
-            ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
-            System.out.println(ans);
-            return ans.startsWith("Success");
-        } else {
-            /*
-            ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
-            System.out.println(ans);
-            return ans.startsWith("Succ");*/
-            System.out.println("You cant make an admin account.");
-            return false;
-        }
-
-
-    }
+    protected abstract void execute(String command);
 
     public void setPreviousMenu(Menu previousMenu) {
         this.previousMenu = previousMenu;
     }
 
-    public Menu getPreviousMenu() {
-        if(previousMenu==null)
+    protected Menu getPreviousMenu() {
+        if (previousMenu == null)
             return MainMenu.getInstance();
         return previousMenu;
     }
 
-    private String enterUsername() {
+    protected String enterUsername() {
         System.out.print("Enter your username:");
         String username = View.read.nextLine();
         if (UserController.getInstance().isThereUserWithUsername(username)) {
@@ -129,7 +34,7 @@ public abstract class Menu {
         return username;
     }
 
-    String enterEmail() {
+    protected String enterEmail() {
         System.out.print("Enter a valid email:");
         String email = View.read.nextLine();
         if (!UserController.getInstance().isValidEmail(email)) {
@@ -139,7 +44,7 @@ public abstract class Menu {
         return email;
     }
 
-    private Double enterMoney() {
+    protected Double enterMoney() {
         System.out.print("Enter your starting money:");
         String money = View.read.nextLine();
         if (UserController.getInstance().validateMoney(money) == -1) {
@@ -149,12 +54,12 @@ public abstract class Menu {
         return UserController.getInstance().validateMoney(money);
     }
 
-    public String readName(String message) {
+    protected String readName(String message) {
         System.out.println(message);
         return View.read.nextLine();
     }
 
-    String enterNumber() {
+    protected String enterNumber() {
         System.out.print("Enter a valid phone number:");
         String number = View.read.nextLine();
         if (!UserController.getInstance().isValidPhoneNumber(number)) {
@@ -164,35 +69,30 @@ public abstract class Menu {
         return number;
     }
 
-    public int readNumber(int limit, String message) {   //if limit is -1 there is no limit for int number
+    protected int readNumber(int limit, String message) {   //if limit is -1 there is no limit for int number
         if (!message.isEmpty())
             System.out.println(message);
         String number = View.read.nextLine();
         System.out.println(number);
-        try{
-        int num = Integer.parseInt(number);
+        try {
+            int num = Integer.parseInt(number);
             if (((num > limit) || (num < 0)) && (limit != -1)) {
                 System.out.println("Invalid please try again");
                 return readNumber(limit, "");
             }
-            return num;}
-        catch (Exception expection){
+            return num;
+        } catch (Exception expection) {
             System.out.println("invalid number");
-            return readNumber(limit,message);
+            return readNumber(limit, message);
         }
     }
 
-    public double readDoubleNumber(String message) {
+    protected double readDoubleNumber(String message) {
         System.out.println(message);
         return View.read.nextDouble();
     }
 
-    public void logout() {
-        System.out.println(UserController.getInstance().logout());
-        View.setCurrentMenu(MainMenu.getInstance());
-    }
-
-    public void printList(ArrayList<String> stringList) {
+    protected void printList(ArrayList<String> stringList) {
         int count = 1;
         for (String s : stringList) {
             System.out.println(count + "-" + s);
@@ -203,12 +103,12 @@ public abstract class Menu {
         }
     }
 
-    public void viewItem(String id){
-       String ans=ItemAndCategoryController.getInstance().viewItem(id);
-       if(ans.startsWith("Error")){
-           System.out.println(ans);
-           return;
-       }
+    protected void viewItem(String id) {
+        String ans = ItemAndCategoryController.getInstance().viewItem(id);
+        if (ans.startsWith("Error")) {
+            System.out.println(ans);
+            return;
+        }
         ItemMenu.getInstance().setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);

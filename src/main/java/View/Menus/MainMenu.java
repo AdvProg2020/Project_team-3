@@ -41,10 +41,11 @@ public class MainMenu extends Menu {
         }else if(command.equals("4")){
             run();
         }else if(command.equals("5")) {
-            View.setCurrentMenu(LoginRegisterMenu.getInstance());
             LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
         }else if(command.equals("6")){
-            logout();
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
             run();
         }else if(command.equals("7")){
             View.setCurrentMenu(CartMenu.getInstance());

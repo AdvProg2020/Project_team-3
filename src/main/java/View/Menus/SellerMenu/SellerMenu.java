@@ -3,6 +3,7 @@ package View.Menus.SellerMenu;
 import Controller.Controller;
 import Controller.ItemAndCategoryController;
 import Model.Users.Seller;
+import View.Menus.LoginRegisterMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
@@ -77,7 +78,8 @@ public class SellerMenu extends UserMenu {
             return;
         }
         if(command.equals("logout")){
-            logout();
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
             return;
         }
         if(command.equals("offs")){

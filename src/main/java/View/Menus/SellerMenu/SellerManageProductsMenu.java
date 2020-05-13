@@ -2,6 +2,8 @@ package View.Menus.SellerMenu;
 
 import Controller.Controller;
 import Model.Users.Seller;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -27,25 +29,42 @@ public class SellerManageProductsMenu extends UserMenu {
         Matcher matcher;
         if(command.equals("manage products")){
             manageProducts();
+            return;
         }
         if(command.startsWith("view ")){
             matcher=View.getMatcher("view (\\S+)",command);
             if(matcher.matches()){
                 viewItem(matcher.group(1));
             }
+            return;
         }
         if(command.startsWith("view buyers ")){
             viewBuyers(command);
+            return;
         }
         if(command.startsWith("edit ")){
-            editProduct(command);
+            matcher=View.getMatcher("edit (\\S+)",command);
+            if(matcher.matches()){
+                editProduct(matcher.group(1));
+            }
+            return;
         }
         if(command.equals("back")){
             View.setCurrentMenu(SellerMenu.getInstance());
+            return;
         }
         if(command.equals("help")){
             help();
+            return;
         }
+        if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
+
+        System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
+
     }
     public void help(){
         System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the seller menu."+View.ANSI_RESET);
@@ -64,7 +83,14 @@ public class SellerManageProductsMenu extends UserMenu {
 
     }
 
-    public void editProduct(String command){
-
+    public void editProduct(String ID){
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        if(!seller.hasItem(ID)){
+            System.out.println(View.ANSI_RED+"Invalid item ID."+View.ANSI_RESET);
+            return;
+        }
+        SellerEditItemMenu.getInstance().setItemID(ID);
+        SellerEditItemMenu.getInstance().setPreviousMenu(SellerManageProductsMenu.getInstance());
+        View.setCurrentMenu(SellerEditItemMenu.getInstance());
     }
 }

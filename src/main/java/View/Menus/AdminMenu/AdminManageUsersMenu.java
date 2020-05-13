@@ -2,6 +2,8 @@ package View.Menus.AdminMenu;
 
 import Controller.Database;
 import Controller.UserController;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -32,21 +34,34 @@ public class AdminManageUsersMenu extends UserMenu {
         matcher = View.getMatcher("delete user (\\S+)", command);
         if (matcher.matches()) {
             deleteUser(matcher.group(1));
+            return;
         }
         matcher = View.getMatcher("view (\\S+)", command);
         if (matcher.matches()) {
             viewPersonalInfo(matcher.group(1));
+            return;
         } else if (command.equals("create manager profile")) {
-            registerAdmin();
+            LoginRegisterMenu.getInstance().registerAdmin();
+            return;
         }
         if (command.equals("help")) {
             help();
+            return;
         }
         if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
+            return;
         } else if (command.equals("manage users")) {
             printUsers();
+            return;
         }
+        if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
+        System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
+
     }
 
     public void help() {

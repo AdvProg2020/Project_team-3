@@ -35,7 +35,8 @@ public class AdminMenu extends UserMenu {
     public void execute(String command) {
         Matcher matcher;
         if (command.equals("logout")) {
-            logout();
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
         }
         if (command.equals("offs")) {
             DiscountsMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
@@ -93,7 +94,7 @@ public class AdminMenu extends UserMenu {
     }
 
     private void AddAdminAccount() {
-        registerAdmin();
+        LoginRegisterMenu.getInstance().registerAdmin();
     }
 
     private void showAllSales() {

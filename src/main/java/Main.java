@@ -12,8 +12,12 @@ public class Main {
 }
 
 //edit discount code
-//edit category
-//item hameye attribute haye category dashte bashahd  //mirza
+//edit category <= bade inke paiini anjam beshe mishe ino anjam dad
+//   ||
+//   \/
+//**MOHEM **  item hameye attribute haye category dashte bashahd  //mirza <=== olaviat!
+//   /\
+//   ||
 //moshahade sabeghe forosh              //mirza
 //moshahade buy log     //mirza
 
@@ -33,3 +37,10 @@ public class Main {
 
 //safhe haraj ride
 
+//time: tabe'e deprecate shode ye kari beshe
+//method e passtime tuye view => miad discountcode haye expire shodaro hazf mikone va besorate random be karbara code takhfif ba darsad random o ina mide
+//age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal)
+
+
+//dar akhar: agge hich admini vojod nadare nafare aval bayad betone be onvane ADMIN sabtenam kone be mola
+//dar akhar: bayad enumerate beshe status ha

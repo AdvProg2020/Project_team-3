@@ -2,6 +2,8 @@ package View.Menus.AdminMenu;
 
 import Controller.Database;
 import Controller.SaleAndDiscountCodeController;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -34,24 +36,38 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
         matcher = View.getMatcher("view discount code (\\S+)", command);
         if (matcher.matches()) {
             viewDiscountCode(matcher.group(1));
+            return;
         }
         matcher = View.getMatcher("edit discount code (\\S+)", command);
         if (matcher.matches()) {
             editDiscountCode(matcher.group(1));
+            return;
         }
         matcher = View.getMatcher("remove discount code (\\S+)", command);
         if (matcher.matches()) {
             deleteDiscountCode(matcher.group(1));
+            return;
         } else if (command.equals("view discount codes")) {
             viewAllDiscountCodes();
             View.setCurrentMenu(AdminManageDiscountCodesMenu.getInstance());
+            return;
         }
         if (command.equals("help")) {
             help();
+            return;
         }
         if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
+            return;
         }
+        if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
+
+        System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
+
     }
 
     public void help() {

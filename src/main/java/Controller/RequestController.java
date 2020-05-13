@@ -222,20 +222,26 @@ public class RequestController {
         if (item == null) return;
         String changedField = itemEdit.getChangedField();
         String newFieldValue = itemEdit.getNewFieldValue();
-        if (changedField.equals("price")) {
+        if (changedField.equalsIgnoreCase("price")) {
             item.setPrice(Double.parseDouble(newFieldValue));
-        } else if (changedField.equals("name")) {
+        } else if (changedField.equalsIgnoreCase("name")) {
             item.setName(newFieldValue);
-        } else if (changedField.equals("brand")) {
+        } else if (changedField.equalsIgnoreCase("brand")) {
             item.setBrand(newFieldValue);
-        } else if (changedField.equals("description")) {
+        } else if (changedField.equalsIgnoreCase("description")) {
             item.setDescription(newFieldValue);
-        } else if (changedField.equals("state")) {
+        } else if (changedField.equalsIgnoreCase("state")) {
             item.setState(newFieldValue);
-        } else if (changedField.equals("category Name")) {
+        } else if (changedField.equalsIgnoreCase("category Name")) {
             item.setCategoryName(newFieldValue);
-        } else if (changedField.equals("inStock"))
+        } else if (changedField.equalsIgnoreCase("inStock")) {
             item.setInStock(Integer.parseInt(newFieldValue));
+        }
+            else {
+            item.setAttribute(changedField,newFieldValue);
+        }
+
+
         try {
             Database.getInstance().saveItem(item);
         } catch (IOException e) {

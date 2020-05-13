@@ -60,6 +60,21 @@ public class ItemMenu extends Menu {
             View.setCurrentMenu(previousMenu);
             return;
         }
+        else if(command.equals("login")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ItemMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("register")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ItemMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ItemMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
 
         Matcher matcher=View.getMatcher("compare (\\S+)",command);
         if(matcher.matches()){
@@ -79,6 +94,10 @@ public class ItemMenu extends Menu {
         System.out.println("compare [product id]");  //done
         System.out.println("comments");  //done
         System.out.println("add comment"); //done
+        System.out.println("back");
+        System.out.println("login (opens login/register panel)");
+        System.out.println("register (opens login/register panel");
+        System.out.println("logout");
     }
 
     public void digest() {

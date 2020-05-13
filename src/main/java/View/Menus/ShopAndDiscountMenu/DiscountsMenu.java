@@ -1,6 +1,7 @@
 package View.Menus.ShopAndDiscountMenu;
 
 import Controller.SaleAndDiscountCodeController;
+import View.Menus.LoginRegisterMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -44,6 +45,21 @@ public class DiscountsMenu extends Menu {
             View.setCurrentMenu(getPreviousMenu());
             return;
         }
+        else if(command.equals("login")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("register")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(DiscountsMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
         Matcher matcher = View.getMatcher("show product (\\S+)", command);
         if (matcher.matches()) {
             viewItem(matcher.group(1));
@@ -57,6 +73,9 @@ public class DiscountsMenu extends Menu {
         System.out.println(View.ANSI_BLACK + "You are in the Discounts menu.\nType your command in one of these formats:" + View.ANSI_RESET);
         System.out.println("offs");
         System.out.println("show product [product id]");
+        System.out.println("login (opens login/register panel)");
+        System.out.println("register (opens login/register panel");
+        System.out.println("logout");
     }
 
     public void offs() {

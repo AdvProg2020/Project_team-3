@@ -3,6 +3,7 @@ package View.Menus.ShopAndDiscountMenu;
 import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SortAndFilterController;
+import View.Menus.LoginRegisterMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -66,6 +67,21 @@ public class ShopMenu extends Menu {
             showAllItems();
             return;
         }
+        else if(command.equals("login")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("register")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            return;
+        }
+        else if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
 
         matcher = View.getMatcher("show product (\\S+)", command);
         if (matcher.matches()) {
@@ -96,6 +112,9 @@ public class ShopMenu extends Menu {
         System.out.println("show all products");   //done
         System.out.println("show product [product id]"); //done
         System.out.println("back");
+        System.out.println("login (opens login/register panel)");
+        System.out.println("register (opens login/register panel");
+        System.out.println("logout");
 
     }
 

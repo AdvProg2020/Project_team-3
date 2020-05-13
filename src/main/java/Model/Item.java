@@ -236,9 +236,13 @@ public class Item {
         return string;
     }
 
+    public void setAttribute(String attributeName,String value){
+        attributes.replace(attributeName,value);
+    }
+
     @Override
     public String toString() {
-       String string=name+"\nID: "+id+  "\nSeller:"+sellerName+"\nStock:"+ isInStock()+"\nPrice:"+price;
+       String string=name+"\nID: "+id+  "\nSeller:"+sellerName+"\nStock:"+ inStock+"\nPrice:"+price;
        if(isInSale()){
            string+="\nprice after sale: " +price*sale.getOffPercentage()/100;
        }
@@ -247,7 +251,7 @@ public class Item {
     }
 
     public String toSimpleString(){
-        return"ID:"+id+"   Name"+name+"   Price:"+price;
+        return id+"        "+name+"        "+price;
     }
 
     public void addViewsBy(int count){

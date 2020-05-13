@@ -29,5 +29,9 @@ public class SaleLog {
     public String toString() {
         return "item id: " + id + " buyer name: " + buyerName + " count: " + count + " price: " + price;
     }
+
+    public String toSimpleString(){
+        return id + "     " + buyerName + "     " + count + "     " + price;
+    }
 }
 

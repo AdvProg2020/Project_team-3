@@ -2,6 +2,8 @@ package View.Menus.AdminMenu;
 
 import Controller.Database;
 import Controller.ItemAndCategoryController;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -46,6 +48,11 @@ public class AdminManageCategoriesMenu extends UserMenu {
         matcher = View.getMatcher("add (\\S+)", command);
         if (matcher.matches()) {
             addCategory(matcher.group(1));
+            return;
+        }
+        if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
             return;
         }
 

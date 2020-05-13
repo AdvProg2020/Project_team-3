@@ -44,6 +44,10 @@ public class CartMenu extends Menu {
             purchase();
             return;
         }
+        else if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+        }
         if(command.equals("back")){
             View.setCurrentMenu(MainMenu.getInstance());
         }
@@ -77,6 +81,7 @@ public class CartMenu extends Menu {
         System.out.println("show total price");      //done
         System.out.println("purchase");
         System.out.println("back");
+        System.out.println("logout");
     }
 
     public void showProducts() {

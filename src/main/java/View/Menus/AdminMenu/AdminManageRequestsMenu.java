@@ -2,6 +2,8 @@ package View.Menus.AdminMenu;
 
 import Controller.Database;
 import Controller.RequestController;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -31,24 +33,38 @@ public class AdminManageRequestsMenu extends UserMenu {
         Matcher matcher;
         if (command.equals("manage requests")) {
             showAllRequests();
+            return;
         } else if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
+            return;
         } else if (command.equals("help")) {
             help();
+            return;
         }
         matcher = View.getMatcher("detail request (\\S+)", command);
         if (matcher.matches()) {
             detailRequest(matcher.group(1));
+            return;
         }
         matcher = View.getMatcher("accept (\\S+)", command);
         if (matcher.matches()) {
             acceptRequestId(matcher.group(1));
+            return;
         }
 
         matcher = View.getMatcher("decline (\\S+)", command);
         if (matcher.matches()) {
             declineRequestId(matcher.group(1));
+            return;
         }
+        if(command.equals("logout")){
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
+            return;
+        }
+
+        System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
+
 
     }
 
