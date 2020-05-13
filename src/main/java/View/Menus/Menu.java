@@ -114,6 +114,8 @@ public abstract class Menu {
     }
 
     public Menu getPreviousMenu() {
+        if(previousMenu==null)
+            return MainMenu.getInstance();
         return previousMenu;
     }
 
@@ -202,7 +204,11 @@ public abstract class Menu {
     }
 
     public void viewItem(String id){
-        System.out.print(ItemAndCategoryController.getInstance().viewItem(id));
+       String ans=ItemAndCategoryController.getInstance().viewItem(id);
+       if(ans.startsWith("Error")){
+           System.out.println(ans);
+           return;
+       }
         ItemMenu.getInstance().setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);

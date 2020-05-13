@@ -82,25 +82,13 @@ public class AdminMenu extends UserMenu {
         System.out.println("view personal info"); //done
         System.out.println("edit [field]");
         System.out.println("manage users");  //done
-        //System.out.println("delete user [username]"); //done
-        //System.out.println("view [username]");    //done
         System.out.println("change type [username] [role]");  //done but need test
-        //System.out.println("create manager profile"); //done
         System.out.println("manage all products");    //done  but need test
         System.out.println("remove [product id]");    //done but need test
         System.out.println("create discount code");     //done
         System.out.println("view discount codes");         //done but need test
-        //System.out.println("view discount code [id]");   //done
-        //System.out.println("edit discount code [id]");
-        //System.out.println("remove discount code [id]"); //done but need test
         System.out.println("manage requests");           //done but need test
-        //System.out.println("detail request [request id]");  //done but request info need to be added
-        //System.out.println("accept [request id]");    //done but need test
-        //System.out.println("decline [request id]");   //done but need test
         System.out.println("manage categories");
-        //System.out.println("edit category [category name]");
-        //System.out.println("add [category name]");
-        //System.out.println("remove [category name]");
         System.out.println("logout");                //done
     }
 
@@ -149,10 +137,6 @@ public class AdminMenu extends UserMenu {
         //set current menu to category menu
     }
 
-    private void removeProducts() {
-
-    }
-
     private void createDiscountCode() {
         int percentage = readNumber(101, "please enter discount percentage:");
         int day = readNumber(32, "please enter expiration date:");
@@ -172,19 +156,4 @@ public class AdminMenu extends UserMenu {
         ArrayList<String> allRequests = Database.getInstance().printFolderContent("Requests");
         printList(allRequests);
     }
-
-    private void requestDetails() {
-
-    }
-
-    private void manageCategories() {
-
-    }
-
-
-    private void removeProduct() {
-
-    }
-
-
 }

@@ -6,9 +6,9 @@ import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
-import View.Menus.ShopAndDiscountMenu.FilterMenu;
+import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
-import View.Menus.ShopAndDiscountMenu.SortMenu;
+
 
 public class MainMenu extends Menu {
     private static MainMenu mainMenu;
@@ -30,6 +30,7 @@ public class MainMenu extends Menu {
     }
 
     public void execute(String command){
+        System.out.println(command);
         if(command.equals("1")){
             userMenu();
         }else if(command.equals("2")){
@@ -52,19 +53,13 @@ public class MainMenu extends Menu {
         else if(command.equals("8")){
             exit();
         }
-        if (command.equals("filtering")) {
-            FilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
-            View.setCurrentMenu(FilterMenu.getInstance());
-            return;
-        }
-        if (command.equals("sorting")) {
-            SortMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
-            View.setCurrentMenu(SortMenu.getInstance());
+        else if (command.equals("filtering")||(command.equals("sorting"))) {
+            SortAndFilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
+            View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
-            run();
         }
     }
 

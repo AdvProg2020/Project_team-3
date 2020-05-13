@@ -16,14 +16,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-/*
- * aghajan, kolliate dastan ine ke, inja in arraylist e CURRENT_VIEWABLE_ITEMS ro darim.
- * yaro harja bekhad mahsolat ro bebine (ya age live bashe bokonim tu cheshe kirish) miad az controller ye getter e kiri
- * seda mizane, in getter miad ye stringi chizi be niabat az CURRENT_VIEWABLE_ITEMS tof mikone tu system.out.
- * hala mikhay sort koni? tartibe CURRENT_VIEWABLE_ITEMS ro sort kon. mikhai filter koni? filteresh kon.
- * BOZORGTARIN bazeii ke currentviewableitems mitone darbar begire CATEGORY iie ke toshim.
- *
- * */
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
@@ -238,13 +230,6 @@ public class ItemAndCategoryController {
         return "Successful";
     }
 
-    public void sortBy(String sortByWhat) {
-
-    }
-
-    public void filterBy(String filterByWhat) {
-
-    }
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, ArrayList<String> attributeValue, HashMap<String, String> attribute) {
         if (!isThereCategoryWithName(categoryName)) {
@@ -270,43 +255,18 @@ public class ItemAndCategoryController {
     }
 
     public Category getCurrentCategory() {
-        return ShopMenu.getInstance().getCurrentCategory();
+        return getCategoryByName(ShopMenu.getInstance().getCurrentCategory());
     }
 
-    public ArrayList<Item> getCurrentViewableItems() {
-        if (currentViewableItems == null) {
-            currentViewableItems = getCategoryItems(getCurrentCategory().getName());
-        }
-        return currentViewableItems;
-    }
-
-    public String getCurrentViewableItemsString() {
-        String ans = "";
-        for (Item item : currentViewableItems) {
-            ans += item.toSimpleString();
-            ans += "\n";
-        }
-        return ans;
-    }
-
-    public void setViewableToCategory(String categoryName) {
-        ArrayList<Item> toBeSet = new ArrayList<>();
-        for (String id : getCategoryByName(categoryName).getAllItemsID()) {
-            toBeSet.add(getItemById(id));
-        }
-        currentViewableItems = toBeSet;
-    }
-
-    public ArrayList<Item> getCategoryItems(String categoryName) {
-        ArrayList<Item> allItems = new ArrayList<>();
+   public ArrayList<String> getCategoryItems(String categoryName) {
+        ArrayList<String> allItemsId = new ArrayList<>();
         Category current = getCurrentCategory();
         ArrayList<String> itemIDs = current.getAllItemsID();
         Item item;
         for (String id : itemIDs) {
-            item = ItemAndCategoryController.getInstance().getItemById(id);
-            allItems.add(item);
+            allItemsId.add(id);
         }
-        return allItems;
+        return allItemsId;
     }
 
     public String getCategoryItemsString(String categoryName) {
@@ -317,21 +277,22 @@ public class ItemAndCategoryController {
         return getCategoryByName("Main");
     }
 
-    public Category previousCategory(Category currentCategory) {
+    public String previousCategory(String categoryName) {
+       Category currentCategory=getCategoryByName(categoryName);
         try {
             Category category = getCategoryByName(currentCategory.getParent());
-            if (category == null) return currentCategory;
-            return category;
+            if (category == null) return currentCategory.getName();
+            return category.getName();
         } catch (Exception e) {
-            return currentCategory;
+            return currentCategory.getName();
         }
     }
 
-    public String openCategory(String name, Category currentCategory) {
+    public String openCategory(String name) {
         if (!isThereCategoryWithName(name)) {
             return View.ANSI_RED + "No such category." + View.ANSI_RESET;
         }
-        ShopMenu.getInstance().setCurrentCategory(getCategoryByName(name));
+        ShopMenu.getInstance().setCurrentCategory(name);
         return "Loading...";
     }
 
@@ -399,15 +360,5 @@ public class ItemAndCategoryController {
         String requestID=Controller.getInstance().getAlphaNumericString(5,"Requests");
         RequestController.getInstance().editItemRequest(requestID,itemID,changedField,newFiled);
     }
-
-  /*  public void loadMainCategory(){
-        Category category=new Category("Main");
-        try {
-            Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        controller.currentCategory=category;
-    } */
 
 }

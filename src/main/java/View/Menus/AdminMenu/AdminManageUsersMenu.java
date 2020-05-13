@@ -39,10 +39,6 @@ public class AdminManageUsersMenu extends UserMenu {
         } else if (command.equals("create manager profile")) {
             registerAdmin();
         }
-        //matcher = View.getMatcher("change type (\\S+) (\\S+)", command);
-        //if (matcher.matches()) {
-            //changeType(matcher.group(1), matcher.group(2));
-        //}
         if (command.equals("help")) {
             help();
         }
