@@ -14,6 +14,7 @@ public class RequestControllerTest {
     public void isThereRequestWithId() {
         Assert.assertTrue(RequestController.getInstance().isThereRequestWithId("0qCgu"));
         Assert.assertFalse(RequestController.getInstance().isThereRequestWithId("sdf"));
+        System.out.println("sdf");
     }
 
     @Test
