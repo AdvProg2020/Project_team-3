@@ -7,6 +7,7 @@ import Model.Item;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class BuyLog {
 
@@ -14,8 +15,10 @@ public class BuyLog {
     private Date time;
     private ArrayList<Double> price;
     private ArrayList<String> allItemsID;
-    private ArrayList<String> sellerName;
-    private ArrayList<Integer> count;
+    //private ArrayList<String> sellerName;
+    private HashMap<String,String> itemsSeller;
+    private HashMap<String,Integer> itemsCount;
+    //private ArrayList<Integer> count;
     private String deliveryState;
     private String buyerName;
     private String address;
@@ -23,30 +26,30 @@ public class BuyLog {
     public BuyLog(String buyerName,String address) {
         price = new ArrayList<>();
         allItemsID = new ArrayList<>();
-        sellerName = new ArrayList<>();
-        count = new ArrayList<>();
+        //sellerName = new ArrayList<>();
+        itemsSeller = new HashMap<>();
+        itemsCount = new HashMap<>();
+        //count = new ArrayList<>();
         this.buyerName = buyerName;
         id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "");
         this.address = address;
     }
 
-    public void addItem(double price, int count, String itemid, String sellerName) {
+    public void addItem(double price, int count, String itemID, String sellerName) {
         this.price.add(price);
-        this.count.add(count);
-        this.allItemsID.add(itemid);
-        this.sellerName.add(sellerName);
-
-        SaleLog saleLog = new SaleLog(id, time, price, itemid, buyerName, count);
+        this.allItemsID.add(itemID);
+        this.itemsSeller.put(itemID,sellerName);
+        this.itemsCount.put(itemID,count);
+        SaleLog saleLog = new SaleLog(id, time, price, itemID, buyerName, count);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }
 
     @Override
     public String toString() {
         String ans = "";
-        int index = 0;
+
         for (String id : allItemsID) {
-            ans += "item id: " + id + " seller name: " + sellerName.get(index) + " count: " + count.get(index) + "\n";
-            index++;
+            ans += "item ID:" + id + " seller name: " + itemsSeller.get(id) + " count: " + itemsCount.get(id) + "\n";
         }
         return ans;
     }
@@ -65,6 +68,10 @@ public class BuyLog {
             if (itemID.equals(id)) return ItemAndCategoryController.getInstance().getItemById(id);
         }
         return null;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getDeliveryState() {

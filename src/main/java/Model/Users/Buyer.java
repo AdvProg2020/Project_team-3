@@ -80,4 +80,11 @@ public class Buyer extends User {
         return ans;
     }
 
+    public BuyLog getBuyLogByID(String ID){
+        for(BuyLog buyLog:buyLogs){
+            if(buyLog.getId().equals(ID)) return buyLog;
+        }
+        return null;
+    }
+
 }

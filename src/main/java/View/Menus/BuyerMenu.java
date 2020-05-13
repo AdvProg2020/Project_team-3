@@ -112,7 +112,8 @@ public class BuyerMenu extends UserMenu {
     }*/
 
     private void showOrder(String ID) {
-
+        Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
+        System.out.println(buyer.getBuyLogByID(ID).toString());
     }
 
     private void viewOrders() {
