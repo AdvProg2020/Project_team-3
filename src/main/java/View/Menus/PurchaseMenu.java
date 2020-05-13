@@ -17,14 +17,18 @@ public class PurchaseMenu extends Menu {
     }
      @Override
     public void run() {
-        System.out.println(View.ANSI_BLUE + "You are in the purchase menu." + View.ANSI_RESET);
+        System.out.println(View.ANSI_CYAN + "You are in the purchase menu." + View.ANSI_RESET);
         personalInfo();
         discountCode();
         pay();
     }
 
-    @Override public void execute(String command){ }
-    @Override public void help(){ }
+    @Override public void execute(String command){
+
+    }
+    @Override public void help(){
+
+    }
 
     public void personalInfo(){
         System.out.println("please enter your address");

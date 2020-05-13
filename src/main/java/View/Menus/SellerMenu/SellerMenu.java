@@ -35,54 +35,71 @@ public class SellerMenu extends UserMenu {
         Matcher matcher;
         if(command.equals("view personal info")){
             viewPersonalInfo();
+            return;
         }
         matcher = View.getMatcher("edit (\\S+)", command);
         if (matcher.matches()) {
             editPersonalInfo(matcher.group(1));
+            return;
         }
         if(command.equals("view company information")){
             viewCompany();
+            return;
         }
         if(command.equals("view sales history")){
             viewSalesHistory();
+            return;
         }
         if(command.equals("manage products")){
             manageProducts();
             View.setCurrentMenu(SellerManageProductsMenu.getInstance());
+            return;
         }
         if(command.equals("add product")){
             addItem();
+            return;
         }
         if(command.equals("remove product")){
             removeProduct();
+            return;
         }
         if(command.equals("show categories")){
             View.setCurrentMenu(ShopMenu.getInstance());
+            return;
         }
         if(command.equals("view offs")){
             viewAllOffs();
             View.setCurrentMenu(SellerManageOffsMenu.getInstance());
+            return;
         }
         if(command.equals("view balance")){
             viewBalance();
+            return;
         }
         if(command.equals("logout")){
             logout();
+            return;
         }
         if(command.equals("offs")){
             View.setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
+            return;
         }
         else if(command.equals("products")){
             View.setPreviousMenu(SellerMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
+            return;
         }
         else if(command.equals("help")){
             help();
+            return;
         }
         else if(command.equals("back")){
             View.setCurrentMenu(MainMenu.getInstance());
+            return;
         }
+
+        System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
     }
 
     @Override
@@ -93,16 +110,10 @@ public class SellerMenu extends UserMenu {
         System.out.println("view company information");
         System.out.println("view sales history");
         System.out.println("manage products");
-        //System.out.println("view [productId]");
-        //System.out.println("view buyers [productId]");
-        //System.out.println("edit product [productId]");
         System.out.println("add product");
         System.out.println("remove product [productId]");
         System.out.println("show categories");
         System.out.println("view offs");
-        //System.out.println("view off [offId]");
-        //System.out.println("edit off [offId]");
-        //System.out.println("add off");
         System.out.println("view balance");
     }
 
@@ -148,9 +159,6 @@ public class SellerMenu extends UserMenu {
 
     }
 
-    public void showCategories(){
-
-    }
     private void viewAllOffs(){
 
     }

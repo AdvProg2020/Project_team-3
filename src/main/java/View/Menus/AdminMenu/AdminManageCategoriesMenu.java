@@ -66,7 +66,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
     }
 
     private void addCategory(String name) {
-        System.out.println("enter category attributes.enter next to continue.");
+        System.out.println("Enter category attributes. Enter next to continue.");
         ArrayList<String> attributes = new ArrayList<>();
         String attribute;
         while (true) {
@@ -76,9 +76,9 @@ public class AdminManageCategoriesMenu extends UserMenu {
             }
             attributes.add(attribute);
         }
-        System.out.println("enter father category name.(press enter if you want to make a main category)");
+        System.out.println("Enter father category name. [press enter if you want to make a main category]");
         String fatherCategory = View.getRead().nextLine();
-        System.out.println("are you sure you want to make this category.(yes or no)");
+        System.out.println("Are you sure you want to make this category? [yes/no]");
         String command = View.getRead().nextLine();
         if (command.equals("no")) {
             return;

@@ -67,6 +67,7 @@ public class ItemMenu extends Menu {
 
     @Override
     public void help() {
+        System.out.println(View.ANSI_PURPLE+"You are viewing an item (ID:"+itemID+"). Enter your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("digest");  //done
         System.out.println("add to cart"); //done
         System.out.println("attributes");  //done
@@ -94,7 +95,7 @@ public class ItemMenu extends Menu {
     public void comments() {
         ArrayList<String> allComment = ItemAndCategoryController.getInstance().showItemComments(itemID);
         if (allComment.isEmpty()) {
-            System.out.println("this item doesnt have any comments");
+            System.out.println(View.ANSI_RED+"This item doesn't have any comments"+View.ANSI_RESET);
         }
         for (String comment : allComment) {
             System.out.println(comment);
@@ -102,7 +103,7 @@ public class ItemMenu extends Menu {
     }
 
     public void addComment() {
-        System.out.println("please enter your comment or enter exit to go back");
+        System.out.println("Please enter your comment or enter exit to go back.");
         String comment = View.read.nextLine();
         if (comment.equals("exit")) {
             return;

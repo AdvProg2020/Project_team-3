@@ -68,15 +68,15 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
 
     private void editDiscountCode(String discountID) {
         if (SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID) == false) {
-            System.out.println("Error: invalid id");
+            System.out.println("Error: invalid ID");
             return;
         }
-        System.out.println("enter -edit date- if you wish to change the date.\nenter -edit offpercent- if you wish to change the offpercentage.");
+        System.out.println("Enter -edit date- if you wish to change the date.\nEnter -edit offpercent- if you wish to change the off percentage.");
         String command = View.getRead().nextLine();
         if (command.equals("edit date")) {
-            int day = readNumber(32, "please enter new expiration date:");
-            int month = readNumber(13, "please enter new expiration month:");
-            int year = readNumber(2025, "please enter new expiration year:");
+            int day = readNumber(32, "Please enter new expiration date:");
+            int month = readNumber(13, "Please enter new expiration month:");
+            int year = readNumber(2025, "Please enter new expiration year:");
             Date date = new Date(year - 1900, month - 1, day);
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountID, date));
             return;
@@ -85,7 +85,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountID, percentage));
             return;
         }
-        System.out.println("invalid command. you have been sent to the admin menu");
+        System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
     }
 
     private void deleteDiscountCode(String id) {

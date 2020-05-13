@@ -61,7 +61,6 @@ public class CartMenu extends Menu {
 
         matcher = View.getMatcher("view (\\S+)", command);
         if (matcher.matches()) {
-            String itemId = matcher.group(1);
             viewItem(matcher.group(1));
             return;
         }
@@ -70,12 +69,14 @@ public class CartMenu extends Menu {
 
     @Override
     public void help() {
+        System.out.println(View.ANSI_CYAN+"You are viewing your cart. Enter your command in one of these formats:"+View.ANSI_RESET);
         System.out.println("show products");   //done
         System.out.println("view [product id]"); //done
         System.out.println("increase [product id]");  //done
         System.out.println("decrease [product id]");  //done
         System.out.println("show total price");      //done
         System.out.println("purchase");
+        System.out.println("back");
     }
 
     public void showProducts() {
