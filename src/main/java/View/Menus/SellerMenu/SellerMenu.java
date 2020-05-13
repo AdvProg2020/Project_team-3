@@ -166,7 +166,8 @@ public class SellerMenu extends UserMenu {
     }
 
     public void viewBalance(){
-
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        System.out.println("Your balance is:"+seller.getMoney());
     }
 
 }

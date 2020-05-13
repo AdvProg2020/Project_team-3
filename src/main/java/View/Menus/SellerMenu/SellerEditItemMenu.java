@@ -1,11 +1,11 @@
 package View.Menus.SellerMenu;
 
+import Controller.ItemAndCategoryController;
+import Model.Item;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
-
-import java.util.regex.Matcher;
 
 public class SellerEditItemMenu extends UserMenu {
     private static SellerEditItemMenu sellerEditItemMenu;
@@ -19,38 +19,65 @@ public class SellerEditItemMenu extends UserMenu {
     }
 
     public void run(){
-        help();
+        System.out.println(View.ANSI_WHITE+"Enter the field you wish to edit or type back to go to the product management menu."+View.ANSI_RESET);
         String command = View.getRead().nextLine();
         execute(command);
     }
 
     public void execute(String command){
-        Matcher matcher;
+        if(command.equals("back")){
+            View.setCurrentMenu(SellerManageProductsMenu.getInstance());
 
-
-
-        if(command.equals("logout")){
+        }
+        else if(command.equals("back to SellerMenu")){
+            View.setCurrentMenu(SellerMenu.getInstance());
+        }
+        else if(isValidKey(command)){
+            setAttribute(command);
+        }
+        else if(command.equals("logout")){
             LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             LoginRegisterMenu.getInstance().logout();
-            return;
+
         }
-        System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
+        else System.out.println(View.ANSI_RED + "Invalid command/field." + View.ANSI_RESET);
 
     }
 
     public void help(){
-        System.out.println(View.ANSI_WHITE+"Enter your command in the following formats or type back to go to the product management menu."+View.ANSI_RESET);
-        System.out.println("edit name");
-        System.out.println("edit brand");
-        System.out.println("edit description");
-        System.out.println("edit price");
-        System.out.println("edit stock");
-        System.out.println("edit category");
-        System.out.println("edit detail [attribute]");
+        System.out.println(View.ANSI_WHITE+"Enter the field you wish to edit or type back to go to the product management menu."+View.ANSI_RESET);
+        System.out.println("fields can be one of the following:");
+        System.out.println("name,brand,price,description,stock,category name");
+        System.out.println("or a custom attribute.");
+        System.out.println("You can also type a command in one of these formats:");
+        System.out.println("back");
         System.out.println("back to SellerMenu");
+        System.out.println("logout");
     }
 
     public void setItemID(String itemID) {
         this.itemID = itemID;
+    }
+
+    private void setAttribute(String key){
+        System.out.print("Enter a new value for "+key+":");
+        String value = View.getRead().nextLine();
+        System.out.println("Are you sure? [*anything*/no]");
+        String command = View.getRead().nextLine();
+        if (command.equals("no")) {
+            return;
+        }
+        ItemAndCategoryController.getInstance().editItem(key,value,itemID);
+    }
+
+    private boolean isValidKey(String key){
+        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+        if(key.equalsIgnoreCase("name")||key.equalsIgnoreCase("brand")
+        || key.equalsIgnoreCase("price") || key.equalsIgnoreCase("stock")
+        || key.equalsIgnoreCase("description") || key.equalsIgnoreCase("category name")) return true;
+
+        if(item.hasAttribute(key)) return true;
+
+        return false;
     }
 }

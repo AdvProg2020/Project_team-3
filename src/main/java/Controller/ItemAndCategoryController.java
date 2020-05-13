@@ -368,9 +368,9 @@ public class ItemAndCategoryController {
         return allItems;
     }
 
-    public void editItem(String changedField, String newFiled, String itemID) {
+    public void editItem(String changedField, String newField, String itemID) {
         String requestID = Controller.getInstance().getAlphaNumericString(5, "Requests");
-        RequestController.getInstance().editItemRequest(requestID, itemID, changedField, newFiled);
+        RequestController.getInstance().editItemRequest(requestID, itemID, changedField, newField);
     }
 
 }

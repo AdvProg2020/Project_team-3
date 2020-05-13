@@ -235,6 +235,9 @@ public class Item {
         }
         return string;
     }
+    public boolean hasAttribute(String key){
+        return attributes.containsKey(key);
+    }
 
     public void setAttribute(String attributeName,String value){
         attributes.replace(attributeName,value);

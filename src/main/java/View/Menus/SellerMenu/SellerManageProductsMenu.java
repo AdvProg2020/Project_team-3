@@ -1,6 +1,8 @@
 package View.Menus.SellerMenu;
 
 import Controller.Controller;
+import Controller.*;
+import Model.Item;
 import Model.Users.Seller;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
@@ -39,7 +41,11 @@ public class SellerManageProductsMenu extends UserMenu {
             return;
         }
         if(command.startsWith("view buyers ")){
-            viewBuyers(command);
+            matcher=View.getMatcher("view buyers (\\S+)",command);
+            if(matcher.matches()){
+                viewBuyers(matcher.group(1));
+            }
+
             return;
         }
         if(command.startsWith("edit ")){
@@ -79,8 +85,15 @@ public class SellerManageProductsMenu extends UserMenu {
         System.out.println(seller.getAllItemsString());
     }
 
-    public void viewBuyers(String command){
+    public void viewBuyers(String ID){
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        if(!seller.hasItem(ID)){
+            System.out.println(View.ANSI_RED+"Invalid item ID."+View.ANSI_RESET);
+            return;
+        }
 
+        Item item = ItemAndCategoryController.getInstance().getItemById(ID);
+        printList(item.getBuyerUserName());
     }
 
     public void editProduct(String ID){

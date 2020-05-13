@@ -85,7 +85,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
         }
         System.out.println("Enter father category name. [press enter if you want to make a main category]");
         String fatherCategory = View.getRead().nextLine();
-        System.out.println("Are you sure you want to make this category? [yes/no]");
+        System.out.println("Are you sure you want to make this category? [*anything*/no]");
         String command = View.getRead().nextLine();
         if (command.equals("no")) {
             return;
