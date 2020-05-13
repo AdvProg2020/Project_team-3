@@ -18,14 +18,16 @@ public class BuyLog {
     private ArrayList<Integer> count;
     private String deliveryState;
     private String buyerName;
+    private String address;
 
-    public BuyLog(String buyerName) {
+    public BuyLog(String buyerName,String address) {
         price = new ArrayList<>();
         allItemsID = new ArrayList<>();
         sellerName = new ArrayList<>();
         count = new ArrayList<>();
         this.buyerName = buyerName;
         id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "");
+        this.address = address;
     }
 
     public void addItem(double price, int count, String itemid, String sellerName) {

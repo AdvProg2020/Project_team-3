@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Cart;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Users.Admin;
@@ -240,23 +239,4 @@ public class UserController {
         }
     }
 
-    public String buy(){
-        if(!(getCurrentOnlineUser() instanceof Buyer)){
-            return "Error: must be a buyer to buy items";
-        }
-        Buyer buyer=(Buyer) getCurrentOnlineUser();
-        Cart cart=Controller.getInstance().getCurrentShoppingCart();
-        double price=cart.getCartPriceWithDiscountCode();
-        if(price>buyer.getMoney()){
-            return "Error: not enough money";
-        }
-        buyer.setMoney(buyer.getMoney()-cart.getCartPriceWithoutDiscountCode());
-        try {
-            Database.getInstance().saveUser(buyer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        cart.buy(buyer.getUsername());
-        return "Successful:";
-    }
 }

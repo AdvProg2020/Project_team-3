@@ -38,7 +38,7 @@ public class Cart {
        allItemId.remove(itemName);
     }
 
-    public boolean is_Empty(){
+    public boolean isEmpty(){
      if(allItemId.size()==0)   return true;
      return false;
     }
@@ -100,13 +100,13 @@ public class Cart {
         return cart;
     }
 
-    public void buy(String buyerName){
-        BuyLog buyLog=new BuyLog(buyerName);
+    public void buy(String buyerName,String address){
+        BuyLog buyLog=new BuyLog(buyerName,address);
         int count=0;
-        for (String itemid : allItemId) {
-            double price=ItemAndCategoryController.getInstance().getItemById(itemid).getPrice();
-            String sellerName=ItemAndCategoryController.getInstance().getItemById(itemid).getSellerName();
-            buyLog.addItem(price,allItemCount.get(itemid),itemid,sellerName);
+        for (String itemID : allItemId) {
+            double price=ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();
+            String sellerName=ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName();
+            buyLog.addItem(price,allItemCount.get(itemID),itemID,sellerName);
         }
         empty();
         UserController.getInstance().assignBuyLog(buyerName,buyLog);

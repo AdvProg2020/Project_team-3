@@ -2,7 +2,6 @@ package View.Menus;
 
 import Controller.CartController;
 import Controller.SaleAndDiscountCodeController;
-import Controller.UserController;
 
 public class PurchaseMenu extends Menu {
     private static PurchaseMenu purchaseMenu;
@@ -19,9 +18,9 @@ public class PurchaseMenu extends Menu {
     @Override
     public void run() {
         System.out.println(View.ANSI_CYAN + "You are in the purchase menu." + View.ANSI_RESET);
-        personalInfo();
+        String address = readAddress();
         discountCode();
-        pay();
+        pay(address);
     }
 
     @Override
@@ -34,9 +33,9 @@ public class PurchaseMenu extends Menu {
 
     }
 
-    public void personalInfo() {
-        System.out.println("please enter your address");
-        String address = View.read.nextLine();
+    public String readAddress() {
+        System.out.print("Please enter your address:");
+        return View.read.nextLine();
     }
 
     public void discountCode() {
@@ -50,14 +49,14 @@ public class PurchaseMenu extends Menu {
             discountCode();
             return;
         }
-        System.out.println("Successful: price before discount=" + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount=" + CartController.getInstance().getCartPriceWithDiscountCode());
+        System.out.println("Successful: price before discount = " + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount = " + CartController.getInstance().getCartPriceWithDiscountCode());
     }
 
-    public void pay() {
+    public void pay(String address) {
         System.out.println("Are you sure you want to buy these items? (enter yes to continue or anything else to exit process)");
         String command = View.read.nextLine();
         if (command.equals("yes")) {
-            System.out.println(UserController.getInstance().buy());
+            System.out.println(CartController.getInstance().buy(address));
             View.setCurrentMenu(CartMenu.getInstance());
             CartMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             return;

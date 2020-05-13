@@ -249,4 +249,12 @@ public class Item {
     public String toSimpleString(){
         return"ID:"+id+"   Name"+name+"   Price:"+price;
     }
+
+    public void addViewsBy(int count){
+        this.viewCount+=count;
+    }
+
+    public void addTimesBoughtBy(int count){
+        this.timesBought += count;
+    }
 }

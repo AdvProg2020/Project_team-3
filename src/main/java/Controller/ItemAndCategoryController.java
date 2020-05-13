@@ -87,6 +87,20 @@ public class ItemAndCategoryController {
         return null;
     }
 
+    public String viewItem(String id){
+        if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
+            return (View.ANSI_RED+"Error: invalid id\n"+View.ANSI_RESET);
+        }
+        Item item = getItemById(id);
+        item.addViewsBy(1);
+        try{
+            Database.getInstance().saveItem(item);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public Category getCategoryByName(String categoryName) {
         String path = "Resource" + File.separator + "Categories";
         String name = categoryName + ".json";
