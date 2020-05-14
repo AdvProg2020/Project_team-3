@@ -160,14 +160,4 @@ public class AdminMenu extends UserMenu {
         System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,startTime,endTime,addedUsers,usageCount,maxDiscount));
     }
 
-
-    private void manageAllProducts() {
-        ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
-        printList(allItems);
-    }
-
-    private void manageRequests() {
-        ArrayList<String> allRequests = Database.getInstance().printFolderContent("Requests");
-        printList(allRequests);
-    }
 }
