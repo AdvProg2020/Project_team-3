@@ -198,11 +198,11 @@ public class SaleAndDiscountCodeController {
         return "Successful";
     }
 
-    public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount) {
+    public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount,double maxDiscount) {
         if(!endTime.isAfter(startTime)){
             return "Error: ending time is after the starting time!";
         }
-        DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount);
+        DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount,maxDiscount);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -217,6 +217,11 @@ public class SaleAndDiscountCodeController {
             return "Error: discount code doesnt exist";
         }
         return discountCode.toString();
+    }
+
+    public boolean userCanUseDiscountCode(String discountID){
+        DiscountCode discountCode = getDiscountCodeById(discountID);
+        return discountCode.userCanUse(Controller.getInstance().currentOnlineUser.getUsername());
     }
 
     public void editSale(String saleID, String changedField, String newFieldValue) {

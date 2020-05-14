@@ -18,9 +18,6 @@ public class Main {
 //selller menu kheili ridmane
 //darkhast ezafeye sell
 
-//eslah discount code
-
-// adam tavanayi estefade az code takhfif bad az chand bar
 
 //filter bar asas attribute     //mirza
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe

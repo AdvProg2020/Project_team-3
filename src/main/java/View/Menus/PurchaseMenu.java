@@ -50,6 +50,11 @@ public class PurchaseMenu extends Menu {
             discountCode(address);
             return;
         }
+        if(!SaleAndDiscountCodeController.getInstance().userCanUseDiscountCode(discountId)){
+            System.out.println("Deprecated discount code. Try again.");
+            discountCode(address);
+            return;
+        }
         System.out.println("Successful: price before discount = " + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount = " + CartController.getInstance().getCartPriceWithDiscountCode());
         pay(address,true,discountId);
     }

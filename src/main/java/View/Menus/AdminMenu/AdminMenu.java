@@ -144,6 +144,7 @@ public class AdminMenu extends UserMenu {
     void createDiscountCode() {
         int percentage = readNumber(101, "Please enter discount percentage:");
         int usageCount = readNumber(1000,"Enter the number of times this code can be used (max:1000):");
+        double maxDiscount = readNumber(-1D,"Enter the maximum limit for this discount code:");
         LocalDateTime startTime = getDate("Enter a valid day as the starting time in the following format: dd/MM/yyyy 'at' HH:mm");
         LocalDateTime endTime = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy 'at' HH:mm");
 
@@ -156,7 +157,7 @@ public class AdminMenu extends UserMenu {
             addedUsers.add(username);
         }
 
-        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,startTime,endTime,addedUsers,usageCount));
+        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,startTime,endTime,addedUsers,usageCount,maxDiscount));
     }
 
 

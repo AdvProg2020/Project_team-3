@@ -89,7 +89,7 @@ public class CartController {
         if (price > buyer.getMoney()) {
             return "Error: not enough money";
         }
-        buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
+        buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithDiscountCode());
         try {
             Database.getInstance().saveUser(buyer);
         } catch (IOException e) {

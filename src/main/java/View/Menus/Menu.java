@@ -87,6 +87,22 @@ public abstract class Menu {
         }
     }
 
+    protected double readNumber(double limit, String message) { //balaii amma double
+        String number = View.read.nextLine();
+        System.out.println(number);
+        try {
+            double num = Double.parseDouble(number);
+            if (((num > limit) || (num < 0)) && (limit != -1)) {
+                System.out.println("Invalid please try again");
+                return readNumber(limit, "");
+            }
+            return num;
+        } catch (Exception e) {
+            System.out.println("invalid number");
+            return readNumber(limit, message);
+        }
+    }
+
     protected double readDoubleNumber(String message) {
         System.out.println(message);
         return View.read.nextDouble();
