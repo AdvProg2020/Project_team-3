@@ -298,7 +298,7 @@ public class UserController {
                 return "Error: invalid buyLog";
             }
                 return buyer.getBuyLogByID(index).toString();
-        } catch (Exception expection){
+        } catch (Exception e){
             return "Error: invalid id";
         }
     }

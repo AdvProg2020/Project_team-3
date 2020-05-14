@@ -2,31 +2,23 @@ package Model;
 
 import Controller.Controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.HashMap;
 
 public class DiscountCode {
 
-    private HashMap<String,Integer>allUsers;
+    //private HashMap<String,Integer>allUsers;
     private String discountId;
     private int discountPercentage;
-    private Date startTime;
-    private Date endTime;
+    private int usageCount;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     //constructor
     public DiscountCode(int discountPercentage,Date endTime){
         this.discountId=Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Discount Codes");
         this.discountPercentage=discountPercentage;
-        startTime=new Date();
-        this.endTime=endTime;
-        this.allUsers=new HashMap<>();
-    }
-    //getters
 
-    public int getUsage(String userID){
-        if(this.allUsers.containsKey(userID)){
-            return this.allUsers.get(userID);
-        }
-        return -1;
+        //this.allUsers=new HashMap<>();
     }
 
     @Override
@@ -37,10 +29,6 @@ public class DiscountCode {
         return ans;
     }
 
-    public HashMap<String, Integer> getAllUsers() {
-        return allUsers;
-    }
-
     public String getDiscountId() {
         return discountId;
     }
@@ -49,8 +37,6 @@ public class DiscountCode {
         return discountPercentage;
     }
 
-
-    //setters
     public void setDiscountId(String discountId) {
         this.discountId = discountId;
     }
@@ -59,24 +45,19 @@ public class DiscountCode {
         this.discountPercentage = discountPercentage;
     }
 
-    //add user
-    private void addUser(String userID){
-        this.allUsers.put(userID , 0);
-    }
-
-    public void addUsage(String  userID){
-        if(this.allUsers.containsKey(userID)) {
-            this.allUsers.put(userID, this.allUsers.get(userID) + 1);
-        }else{
-            addUser(userID);
-        }
-    }
-
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
 
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
 
-
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 }

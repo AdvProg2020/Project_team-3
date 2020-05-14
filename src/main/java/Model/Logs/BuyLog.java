@@ -12,25 +12,25 @@ public class BuyLog {
 
 
     private Date time;
-    private ArrayList<Double> price;
     private ArrayList<String> allItemsID;
     private HashMap<String,String> itemsSeller;
     private HashMap<String,Integer> itemsCount;
+    private HashMap<String,Double> itemsPrice;
     private String deliveryState;
     private String buyerName;
     private String address;
 
     public BuyLog(String buyerName,String address) {
-        price = new ArrayList<>();
         allItemsID = new ArrayList<>();
         itemsSeller = new HashMap<>();
         itemsCount = new HashMap<>();
+        itemsPrice = new HashMap<>();
         this.buyerName = buyerName;
         this.address = address;
     }
 
     public void addItem(double price, int count, String itemID, String sellerName) {
-        this.price.add(price);
+        this.itemsPrice.put(itemID,price);
         this.allItemsID.add(itemID);
         this.itemsSeller.put(itemID,sellerName);
         this.itemsCount.put(itemID,count);
@@ -40,12 +40,18 @@ public class BuyLog {
 
     @Override
     public String toString() {
-        String ans = "";
+        String ans ="Total sum:"+totalPrice();
+        ans += "\nAddress:" + address;
+        ans += "\nitem ID        price       seller          count\n";
 
         for (String id : allItemsID) {
-            ans += "item ID:" + id + " seller name: " + itemsSeller.get(id) + " count: " + itemsCount.get(id) + "\n";
+            ans +=  id + "     " +itemsPrice.get(id)+"       "+itemsSeller.get(id) + "    " + itemsCount.get(id) + "\n";
         }
         return ans;
+    }
+
+    public String toSimpleString(){
+        return time+"   "+totalPrice();
     }
 
     public ArrayList<String> getAllItemsID() {
@@ -70,6 +76,14 @@ public class BuyLog {
 
     public void setDeliveryState(String newState) {
         this.deliveryState = newState;
+    }
+
+    public double totalPrice(){
+        double ans = 0;
+        for(String id:allItemsID){
+            ans += itemsPrice.get(id);
+        }
+        return ans;
     }
 
 }

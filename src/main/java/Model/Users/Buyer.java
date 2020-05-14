@@ -1,7 +1,7 @@
 package Model.Users;
 
-import Controller.SaleAndDiscountCodeController;
 import Model.Cart;
+import Model.DiscountCode;
 import Model.Logs.BuyLog;
 
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ public class Buyer extends User {
     private double money;
     private ArrayList<BuyLog> buyLogs;
     private Cart cart;
-    private ArrayList<String>allDiscounts;
+    private ArrayList<DiscountCode> discountCodes;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,number,"Buyer");
         this.money=money;
         buyLogs=new ArrayList<>();
-        allDiscounts=new ArrayList<>();
+        discountCodes=new ArrayList<>();
         cart=new Cart();
     }
 
@@ -36,7 +36,7 @@ public class Buyer extends User {
         int count=1;
         for(BuyLog buyLog:buyLogs){
             ans+=count+"-";
-            ans += buyLog.toString();
+            ans += buyLog.toSimpleString();
             count++;
         }
         return ans;
@@ -48,24 +48,25 @@ public class Buyer extends User {
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
-    public void addDiscount(String discountId){
-        this.allDiscounts.add(discountId);
+    public void addDiscount(DiscountCode discountCode){
+        this.discountCodes.add(discountCode);
     }
 
     public void removeDiscount(String discountID){
-        if(this.allDiscounts.contains(discountID)) this.allDiscounts.remove(discountID);
+        DiscountCode toBeRemoved = getDiscountById(discountID);
+        discountCodes.remove(toBeRemoved);
     }
 
-    public boolean hasDiscountID(String id){
-        return  this.allDiscounts.contains(id);
+    public boolean hasDiscountID(String ID){
+        for(DiscountCode discountCode: discountCodes){
+            if(discountCode.getDiscountId().equals(ID)) return true;
+        }
+        return false;
     }
 
-    public String getDiscountById(String id){
-        if(this.hasDiscountID(id)){
-            for(String iterateID:allDiscounts){
-                if(iterateID.equals(id)) return iterateID;
-            }
-
+    public DiscountCode getDiscountById(String ID){
+        for(DiscountCode discountCode:discountCodes){
+            if(discountCode.getDiscountId().equals(ID)) return discountCode;
         }
         return null;
     }
@@ -80,8 +81,8 @@ public class Buyer extends User {
 
     public String getDiscountCodes() {
         String ans = "";
-        for(String id:allDiscounts){
-            ans += SaleAndDiscountCodeController.getInstance().getDiscountCodeById(id).toString();
+        for(DiscountCode discountCode:discountCodes){
+            ans += discountCode.toString();
             ans += "\n";
         }
         return ans;
