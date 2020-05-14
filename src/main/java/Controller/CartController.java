@@ -78,7 +78,7 @@ public class CartController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cart.buy(buyer.getUsername(),address);
+        cart.buy(buyer.getUsername(), address);
         return "Successful:";
     }
 }

@@ -236,9 +236,8 @@ public class RequestController {
             item.setCategoryName(newFieldValue);
         } else if (changedField.equalsIgnoreCase("stock")) {
             item.setInStock(Integer.parseInt(newFieldValue));
-        }
-            else {
-            item.setAttribute(changedField,newFieldValue);
+        } else {
+            item.setAttribute(changedField, newFieldValue);
         }
 
 

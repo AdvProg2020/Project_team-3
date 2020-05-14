@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Database<Public> {
-    private static  Database database;
+    private static Database database;
+
     private Database() {
     }
 
@@ -26,176 +27,176 @@ public class Database<Public> {
         return database;
     }
 
-    public  void saveUser(User user) throws IOException {
-    Gson gson=new GsonBuilder().setPrettyPrinting().create();
-    String Username=user.getUsername();
-    String path="Resource"+File.separator+"Users";
-    String name=Username+".json";
-    File file=new File(path+File.separator+name);
-        if(!file.exists()){
+    public void saveUser(User user) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String Username = user.getUsername();
+        String path = "Resource" + File.separator + "Users";
+        String name = Username + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             file.createNewFile();
         }
-    FileWriter writer=new FileWriter(file);
-    writer.write(gson.toJson(user));
-    writer.close();
+        FileWriter writer = new FileWriter(file);
+        writer.write(gson.toJson(user));
+        writer.close();
     }
 
-    public  void saveRequest(Request request)throws IOException{
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String requestID=request.getRequestId();
-        String path="Resource"+File.separator+"Requests";
-        String name=requestID+".json";
-        File file=new File(path+File.separator+name);
-            if(!file.exists()){
-                file.createNewFile();
-            }
-        FileWriter writer=new FileWriter(file);
+    public void saveRequest(Request request) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String requestID = request.getRequestId();
+        String path = "Resource" + File.separator + "Requests";
+        String name = requestID + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter writer = new FileWriter(file);
         writer.write(gson.toJson(request));
         writer.close();
     }
 
 
-    public  void saveItem(Item item) throws IOException {
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String id=item.getId();
-        String path="Resource"+File.separator+"Items";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        if(!file.exists()){
+    public void saveItem(Item item) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String id = item.getId();
+        String path = "Resource" + File.separator + "Items";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter writer=new FileWriter(file);
+        FileWriter writer = new FileWriter(file);
         writer.write(gson.toJson(item));
         writer.close();
     }
 
-    public  void saveSale(Sale sale) throws IOException {
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String id=sale.getId();
-        String path="Resource"+File.separator+"Sales";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        if(!file.exists()){
+    public void saveSale(Sale sale) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String id = sale.getId();
+        String path = "Resource" + File.separator + "Sales";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter writer=new FileWriter(file);
+        FileWriter writer = new FileWriter(file);
         writer.write(gson.toJson(sale));
         writer.close();
     }
 
-    public  void saveDiscountCode(DiscountCode discount) throws IOException {
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String id=discount.getDiscountId();
-        String path="Resource"+File.separator+"Discount Codes";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
-        if(!file.exists()){
+    public void saveDiscountCode(DiscountCode discount) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String id = discount.getDiscountId();
+        String path = "Resource" + File.separator + "Discount Codes";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter writer=new FileWriter(file);
+        FileWriter writer = new FileWriter(file);
         writer.write(gson.toJson(discount));
         writer.close();
     }
 
-    public   void saveCategory(Category category) throws IOException{
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        String path="Resource"+File.separator+"Categories";
-        String name=category.getName()+".json";
-        File file=new File(path+File.separator+name);
-        if(!file.exists()){
+    public void saveCategory(Category category) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String path = "Resource" + File.separator + "Categories";
+        String name = category.getName() + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter writer=new FileWriter(file);
+        FileWriter writer = new FileWriter(file);
         writer.write(gson.toJson(category));
         writer.close();
     }
 
 
-    public  void deleteUser(User user){
-        String Username=user.getUsername();
-        String path="Resource"+File.separator+"Users";
-        String name=Username+".json";
-        File file=new File(path+File.separator+name);
+    public void deleteUser(User user) {
+        String Username = user.getUsername();
+        String path = "Resource" + File.separator + "Users";
+        String name = Username + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
-    public void deleteItem(Item item){
-        String id=item.getId();
-        String path="Resource"+File.separator+"Items";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
+    public void deleteItem(Item item) {
+        String id = item.getId();
+        String path = "Resource" + File.separator + "Items";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
-    public void deleteSale(Sale sale){
-        String id=sale.getId();
-        String path="Resource"+File.separator+"Sales";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
+    public void deleteSale(Sale sale) {
+        String id = sale.getId();
+        String path = "Resource" + File.separator + "Sales";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
 
-    public void deleteCategory(Category category){
+    public void deleteCategory(Category category) {
         Item item;
-        for(String id:category.getSubCategories()){
-            item=ItemAndCategoryController.getInstance().getItemById(id);
+        for (String id : category.getSubCategories()) {
+            item = ItemAndCategoryController.getInstance().getItemById(id);
             deleteItem(item);
         }
-        String categoryName=category.getName();
-        String path="Resource"+File.separator+"Categories";
-        String name=categoryName+".json";
-        File file=new File(path+File.separator+name);
+        String categoryName = category.getName();
+        String path = "Resource" + File.separator + "Categories";
+        String name = categoryName + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
-    public  void deleteRequest(Request request){
-        String id=request.getRequestId();
-        String path="Resource"+File.separator+"Requests";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
+    public void deleteRequest(Request request) {
+        String id = request.getRequestId();
+        String path = "Resource" + File.separator + "Requests";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
-    public  void deleteDiscountCode(DiscountCode discount){
-        String id=discount.getDiscountId();
-        String path="Resource"+File.separator+"Discount Codes";
-        String name=id+".json";
-        File file=new File(path+File.separator+name);
+    public void deleteDiscountCode(DiscountCode discount) {
+        String id = discount.getDiscountId();
+        String path = "Resource" + File.separator + "Discount Codes";
+        String name = id + ".json";
+        File file = new File(path + File.separator + name);
         file.delete();
     }
 
-    public  void initiate(){
-        File file=new File("Resource");
-        if(!file.exists()){
+    public void initiate() {
+        File file = new File("Resource");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Users");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Users");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Items");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Items");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Sales");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Sales");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Discount Codes");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Discount Codes");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Categories");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Categories");
+        if (!file.exists()) {
             file.mkdir();
         }
-        file=new File("Resource"+File.separator+"Requests");
-        if(!file.exists()){
+        file = new File("Resource" + File.separator + "Requests");
+        if (!file.exists()) {
             file.mkdir();
         }
-        Admin.addAdminAccount("admin","12345","admin","admin","admin","admin");
-        Category category=new Category("Main",null);
+        Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
+        Category category = new Category("Main", null);
         try {
             saveCategory(category);
         } catch (IOException e) {
@@ -203,13 +204,13 @@ public class Database<Public> {
         }
     }
 
-    public  ArrayList<String> printFolderContent(String folderName){
-        ArrayList<String> fileNames=new ArrayList();
-        String path="Resource"+File.separator+folderName;
+    public ArrayList<String> printFolderContent(String folderName) {
+        ArrayList<String> fileNames = new ArrayList();
+        String path = "Resource" + File.separator + folderName;
         File[] files = new File(path).listFiles();
         for (File file : files) {
             if (file.isFile()) {
-                fileNames.add(file.getName().replace(".json",""));
+                fileNames.add(file.getName().replace(".json", ""));
             }
         }
         return fileNames;

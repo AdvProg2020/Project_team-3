@@ -4,7 +4,7 @@ import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.View;
 
 public class Main {
-    public static void main (String[] args)  {
+    public static void main(String[] args) {
         Database.getInstance().initiate();
         ShopMenu.getInstance().setCurrentCategory(ItemAndCategoryController.getInstance().getBaseCategory().getName());
         View.run();
@@ -30,7 +30,7 @@ public class Main {
 //filter bar asas in stock      //mirza
 //filter bar asas esm           //mirza
 //filter bar asas attribute     //mirza
-
+//bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 //safhe haraj ride
 
 //time: tabe'e deprecate shode ye kari beshe

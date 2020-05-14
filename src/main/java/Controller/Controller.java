@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 public class Controller {
     private static Controller controller;
     User currentOnlineUser;
-    Cart ShoppingCart=new Cart();
-    int idSize=5;
+    Cart ShoppingCart = new Cart();
+    int idSize = 5;
 
     private Controller() {
     }
@@ -26,15 +26,16 @@ public class Controller {
         return ShoppingCart;
     }
 
-    public void emptyCart(){
-    ShoppingCart=new Cart();
+    public void emptyCart() {
+        ShoppingCart = new Cart();
     }
 
-    public boolean isLogin(){
-        if(currentOnlineUser==null)
+    public boolean isLogin() {
+        if (currentOnlineUser == null)
             return false;
-            return true;
+        return true;
     }
+
     public int getIdSize() {
         return idSize;
     }
@@ -51,25 +52,24 @@ public class Controller {
     }
 
 
-   public  String getAlphaNumericString(int n,String folderName)
-    {
+    public String getAlphaNumericString(int n, String folderName) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         StringBuilder sb = new StringBuilder(n);
         for (int i = 0; i < n; i++) {
 
-            int index = (int)(AlphaNumericString.length() * Math.random());
+            int index = (int) (AlphaNumericString.length() * Math.random());
             sb.append(AlphaNumericString.charAt(index));
         }
-        String path="Resource"+File.separator+folderName;
-        String name=sb+".json";
-        File file=new File(path+File.separator+name);
-        if(!file.exists()){
+        String path = "Resource" + File.separator + folderName;
+        String name = sb + ".json";
+        File file = new File(path + File.separator + name);
+        if (!file.exists()) {
             return sb.toString();
         }
-        return getAlphaNumericString(n,folderName);
+        return getAlphaNumericString(n, folderName);
     }
 
-    public static Matcher getMatcher(String string,String regex){
+    public static Matcher getMatcher(String string, String regex) {
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(string);
     }
