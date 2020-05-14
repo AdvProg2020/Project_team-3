@@ -184,7 +184,7 @@ public class Database<Public> {
         if (!file.exists()) {
             file.mkdir();
         }
-        file = new File("Resource" + File.separator + "Discount Codes");
+        file = new File("Resource" + File.separator + "DiscountCodes");
         if (!file.exists()) {
             file.mkdir();
         }

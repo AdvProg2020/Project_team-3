@@ -4,6 +4,7 @@ import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Logs.BuyLog;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -103,7 +104,7 @@ public class Cart {
     }
 
     public void buy(String buyerName, String address) {
-        BuyLog buyLog = new BuyLog(buyerName, address,getCartPriceWithoutDiscountCode()-getCartPriceWithDiscountCode());
+        BuyLog buyLog = new BuyLog(buyerName, address,getCartPriceWithoutDiscountCode()-getCartPriceWithDiscountCode(), LocalDateTime.now());
         int count = 0;
         for (String itemID : allItemId) {
             double price = ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();

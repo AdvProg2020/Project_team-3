@@ -105,7 +105,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public ArrayList<DiscountCode> getAllDiscountCodesFromDataBase() {
-        String path = "Resource" + File.separator + "Discount Codes";
+        String path = "Resource" + File.separator + "DiscountCodes";
         File file = new File(path);
         File[] allFiles = file.listFiles();
         String fileContent = null;

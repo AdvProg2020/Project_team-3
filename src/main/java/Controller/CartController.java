@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Cart;
+import Model.DiscountCode;
 import Model.Item;
 import Model.Users.Buyer;
 
@@ -85,11 +86,13 @@ public class CartController {
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
         double price = cart.getCartPriceWithDiscountCode();
-        cart.setDiscountCode(SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID));
+        DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID);
+        cart.setDiscountCode(discountCode);
         if (price > buyer.getMoney()) {
             return "Error: not enough money";
         }
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithDiscountCode());
+        discountCode.useDiscountCode(buyer.getUsername());
         try {
             Database.getInstance().saveUser(buyer);
         } catch (IOException e) {

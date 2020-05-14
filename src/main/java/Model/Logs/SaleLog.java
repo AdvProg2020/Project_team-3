@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class SaleLog {
 
-    private LocalDateTime time;
+    private String time;
     private double price;
     private String itemId;
     private String buyerName;
@@ -13,7 +13,7 @@ public class SaleLog {
 
 
     public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count) {
-        this.time = time;
+        this.time = time.toString();
         this.price = price;
         this.itemId = itemId;
         this.buyerName = buyerName;
@@ -26,7 +26,7 @@ public class SaleLog {
 
     @Override
     public String toString() {
-        return " buyer name: " + buyerName + " count: " + count + " price: " + price;
+        return " buyer name: " + buyerName + " count: " + count + " price: " + price+"   time:"+time;
     }
 
     public String toSimpleString() {
