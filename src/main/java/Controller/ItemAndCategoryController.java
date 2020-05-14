@@ -4,6 +4,8 @@ import Model.Category;
 import Model.Comment;
 import Model.Item;
 import Model.Rating;
+import Model.Requests.ItemRequest;
+import Model.Requests.Request;
 import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
@@ -323,6 +325,36 @@ public class ItemAndCategoryController {
 
     public void editCategoryName(String lastName, String newName) {
         Category category = getCategoryByName(lastName);
+        for (String categoryName : category.getSubCategories()) {
+            Category category1 = getCategoryByName(categoryName);
+            category1.setParent(newName);
+            try {
+                Database.getInstance().saveCategory(category1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        for (String id : category.getAllItemsID()) {
+            Item item = ItemAndCategoryController.getInstance().getItemById(id);
+            Database.getInstance().deleteItem(item);
+            item.setCategoryName(newName);
+            try {
+                Database.getInstance().saveItem(item);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            if(request instanceof ItemRequest){
+                ((ItemRequest) request).getNewItem().setCategoryName(newName);
+                try {
+                    Database.getInstance().saveRequest(request);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         String path = "Resource" + File.separator + "Categories";
         String fileName = lastName + ".json";
         System.out.println(fileName);

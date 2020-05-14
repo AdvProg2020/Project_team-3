@@ -123,7 +123,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public ArrayList<Sale> getAllSaleFromDataBase() {
-        String path = "Resource" + File.separator + "Discount Codes";
+        String path = "Resource" + File.separator + "Sales";
         File file = new File(path);
         File[] allFiles = file.listFiles();
         String fileContent = null;
@@ -171,7 +171,7 @@ public class SaleAndDiscountCodeController {
         if (discountCode == null) {
             return "Error: Discount code doesnt exist";
         }
-        discountCode.setEndTime(endTime);
+       // discountCode.setEndTime(endTime);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -201,9 +201,9 @@ public class SaleAndDiscountCodeController {
         return discountCode.toString();
     }
 
-    public void editSale(String saleID,String changedField,String newFieldValue){
-        String requestID=Controller.getInstance().getAlphaNumericString(5,"Sales");
-        RequestController.getInstance().editSaleRequest(requestID,saleID,changedField,newFieldValue);
+    public void editSale(String saleID, String changedField, String newFieldValue) {
+        String requestID = Controller.getInstance().getAlphaNumericString(5, "Sales");
+        RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
     }
 
 }

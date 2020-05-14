@@ -4,6 +4,8 @@ import Model.Requests.Request;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class RequestControllerTest {
 
     @Test
@@ -12,17 +14,21 @@ public class RequestControllerTest {
 
     @Test
     public void isThereRequestWithId() {
-        Assert.assertTrue(RequestController.getInstance().isThereRequestWithId("0qCgu"));
-        Assert.assertFalse(RequestController.getInstance().isThereRequestWithId("sdf"));
-        System.out.println("sdf");
+        ArrayList<Request> allRequest=RequestController.getInstance().getAllRequestFromDataBase();
+        if(allRequest.isEmpty()) return;
+        for(Request request:allRequest){
+            Assert.assertTrue(RequestController.getInstance().isThereRequestWithId(request.getRequestId()));
+        }
+        Assert.assertFalse(RequestController.getInstance().isThereRequestWithId("BehaeenFrj"));
     }
 
     @Test
     public void getRequestById() {
-       Request request=RequestController.getInstance().getRequestById("0qCgu");
-       Request request1=RequestController.getInstance().getRequestById("g9gYa");
-       Assert.assertNotNull(request);
-       Assert.assertNotNull(request1);
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        if(allRequests.isEmpty()) return;
+        for(Request request:allRequests){
+            System.out.println(RequestController.getInstance().getRequestById(request.getRequestId()));
+        }
     }
 
     @Test
@@ -51,12 +57,15 @@ public class RequestControllerTest {
 
     @Test
     public void editItemRequest() {
-        ItemAndCategoryController.getInstance().editItem("price","800","MH2LP");
+
     }
 
     @Test
     public void acceptRequest() {
-     RequestController.getInstance().acceptRequest("OEiPS");
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
     }
 
     @Test
@@ -69,11 +78,18 @@ public class RequestControllerTest {
 
     @Test
     public void declineRequest() {
-        RequestController.getInstance().declineRequest("ZYhJN");
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().declineRequest(request.getRequestId());
+        }
     }
 
     @Test
     public void getAllRequestFromDataBase() {
+        ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            System.out.println(request.getType());
+        }
     }
 
     @Test

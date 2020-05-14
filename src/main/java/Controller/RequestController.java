@@ -1,10 +1,7 @@
 package Controller;
 
-import Model.Comment;
-import Model.DiscountCode;
-import Model.Item;
+import Model.*;
 import Model.Requests.*;
-import Model.Sale;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
@@ -79,9 +76,9 @@ public class RequestController {
         User user = UserController.getInstance().getUserByUsername(username);
         if (SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID) == false) return;
         if (!(user instanceof Buyer)) return;
-        ((Buyer) user).addDiscount(discountID);
+        //((Buyer) user).addDiscount(discountID);
         DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID);
-        discountCode.addUsage(username);
+        //discountCode.addUsage(username);
         try {
             Database.getInstance().saveUser(user);
             Database.getInstance().saveDiscountCode(discountCode);
@@ -230,17 +227,11 @@ public class RequestController {
             item.setBrand(newFieldValue);
         } else if (changedField.equalsIgnoreCase("description")) {
             item.setDescription(newFieldValue);
-        } else if (changedField.equalsIgnoreCase("state")) {
-            item.setState(newFieldValue);
-        } else if (changedField.equalsIgnoreCase("category Name")) {
-            item.setCategoryName(newFieldValue);
-        } else if (changedField.equalsIgnoreCase("stock")) {
+        } else if (changedField.equalsIgnoreCase("inStock")) {
             item.setInStock(Integer.parseInt(newFieldValue));
         } else {
             item.setAttribute(changedField, newFieldValue);
         }
-
-
         try {
             Database.getInstance().saveItem(item);
         } catch (IOException e) {
@@ -287,6 +278,9 @@ public class RequestController {
                 allRequests.add(gson.fromJson(fileContent, SaleEdit.class));
             }
             if (fileContent.contains("\"type\": \"SaleRequest\"")) {
+                allRequests.add(gson.fromJson(fileContent, SaleRequest.class));
+            }
+            if (fileContent.contains("\"type\": \"ItemRequest\"")) {
                 allRequests.add(gson.fromJson(fileContent, SaleRequest.class));
             }
         }
