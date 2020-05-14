@@ -60,6 +60,10 @@ public class SortAndFilterMenu extends Menu {
             disableFilterAvailability();
             return;
         }
+        if(command.equals("filter by availability")){
+            filterAvailability();
+            return;
+        }
         if (command.equals("disable filter by price")) {
             disableFilterPriceRange();
             return;
@@ -75,6 +79,33 @@ public class SortAndFilterMenu extends Menu {
         if (command.equals("disable filter by category")) {
             disableFilterCategory();
             return;
+        }
+        matcher=View.getMatcher("filter by brand (\\S+)",command);
+        if(matcher.matches()){
+            filterBrandName(matcher.group(1));
+            return;
+        }
+        matcher=View.getMatcher("filter by category (\\S+)",command);
+        if(matcher.matches()){
+            filterCategory(matcher.group(1));
+            return;
+        }
+        matcher=View.getMatcher("filter by name (\\S+)",command);
+        if(matcher.matches()){
+            filterName(matcher.group(1));
+            return;
+        }
+        matcher=View.getMatcher("filter by price (\\d+) to (\\d+)",command);
+        if(matcher.matches()){
+            try{
+                int min=Integer.parseInt(matcher.group(1));
+                int max=Integer.parseInt(matcher.group(2));
+                filterPriceRange(min,max);
+                return;
+            }catch (Exception exception){
+                System.out.println("please enter Integer number for price range");
+                return;
+            }
         }
         matcher = View.getMatcher("sort (\\D+)", command);
         if (matcher.matches()) {
@@ -98,52 +129,55 @@ public class SortAndFilterMenu extends Menu {
         System.out.println("disable sort");   //done
         System.out.println("default sort and filter" + View.ANSI_RESET);
     }
-
     public void showAvailableFilters() {
         System.out.println(SortAndFilterController.getInstance().showAllAvailableFilters());
     }
-
     public void showAvailableSorts() {
         System.out.println(SortAndFilterController.getInstance().showAllAvailableSorts());
     }
-
     public void currentSort() {
         System.out.println(SortAndFilterController.getInstance().showActiveSort());
     }
-
     public void disableSort() {
         SortAndFilterController.getInstance().disableSort();
     }
-
     public void sort(String command) {
         System.out.println(SortAndFilterController.getInstance().activateSort(command));
     }
-
     public void currentFilters() {
         System.out.println(SortAndFilterController.getInstance().showActiveFilters());
     }
-
     public void defaultSortAndFilter() {
         SortAndFilterController.getInstance().reset();
     }
-
     public void disableFilterName() {
         SortAndFilterController.getInstance().disableFilterName();
     }
-
     public void disableFilterCategory() {
         SortAndFilterController.getInstance().disableFilterCategoryName();
     }
-
     public void disableFilterAvailability() {
         SortAndFilterController.getInstance().disableFilterAvailability();
     }
-
     public void disableFilterBrandName() {
         SortAndFilterController.getInstance().disableFilterBrandName();
     }
-
     public void disableFilterPriceRange() {
         SortAndFilterController.getInstance().disableFilterPriceRange();
+    }
+    public void filterAvailability(){
+        SortAndFilterController.getInstance().activateFilterAvailability();
+    }
+    public void filterBrandName(String brand){
+        SortAndFilterController.getInstance().activateFilterBrandName(brand);
+    }
+    public void filterCategory(String categoryName){
+        SortAndFilterController.getInstance().activateFilterCategoryName(categoryName);
+    }
+    public void filterName(String name){
+        SortAndFilterController.getInstance().activateFilterName(name);
+    }
+    public void filterPriceRange(int min,int max){
+        SortAndFilterController.getInstance().activateFilterPriceRange(min,max);
     }
 }

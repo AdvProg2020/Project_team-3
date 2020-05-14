@@ -121,6 +121,7 @@ public class Database<Public> {
     }
 
     public void deleteItem(Item item) {
+        item.delete();
         String id = item.getId();
         String path = "Resource" + File.separator + "Items";
         String name = id + ".json";

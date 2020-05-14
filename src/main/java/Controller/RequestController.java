@@ -200,9 +200,9 @@ public class RequestController {
         String changedField = saleEdit.getChangedFieled();
         String newFieldValue = saleEdit.getNewFieldValue();
         if (changedField.equals("start Time")) {
-            sale.setStartTime(Integer.parseInt(newFieldValue));
+           // sale.setStartTime(Integer.parseInt(newFieldValue));
         } else if (changedField.equals("end Time")) {
-            sale.setEndTime(Integer.parseInt(newFieldValue));
+           // sale.setEndTime(Integer.parseInt(newFieldValue));
         } else if (changedField.equals("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }

@@ -236,7 +236,6 @@ public class SaleAndDiscountCodeController {
                 deleteDiscountCode(discountCode.getDiscountId());
             }
         }
-
     }
 
     protected void deleteDeprecatedSales(LocalDateTime currentTime){

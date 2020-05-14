@@ -73,9 +73,6 @@ public class DiscountsMenu extends Menu {
         System.out.println(View.ANSI_BLACK + "You are in the Discounts menu.\nType your command in one of these formats:" + View.ANSI_RESET);
         System.out.println("offs");
         System.out.println("show product [product id]");
-        System.out.println("login (opens login/register panel)");
-        System.out.println("register (opens login/register panel");
-        System.out.println("logout");
     }
 
     public void offs() {

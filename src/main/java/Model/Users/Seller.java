@@ -1,6 +1,7 @@
 package Model.Users;
 
 import Controller.ItemAndCategoryController;
+import Model.Item;
 import Model.Logs.SaleLog;
 import Model.Sale;
 
@@ -81,6 +82,16 @@ public class Seller extends User {
     public void deleteItem(String itemId){
         allItemsId.remove(itemId);
     }
+
+    public void delete(){
+        for (String id : allItemsId) {
+            Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item==null)
+                continue;
+            item.delete();
+        }
+    }
+
     public boolean hasItem(String id) {
         return allItemsId.contains(id);
     }
@@ -101,10 +112,6 @@ public class Seller extends User {
     }
 
     public void editSale(Sale sale, Sale updatedSale) {
-
-    }
-
-    public void removeItem(String itemId) {
 
     }
 

@@ -167,6 +167,10 @@ public class UserController {
         if (user == null) {
             return "Error: user doesnt exist";
         }
+        if(user instanceof Seller){
+            Seller seller=(Seller) user;
+            seller.delete();
+        }
         Database.getInstance().deleteUser(user);
         return "Successful:";
     }
@@ -265,7 +269,7 @@ public class UserController {
         User user = getUserByUsername(username);
         if (user instanceof Seller) {
             Seller seller = (Seller) user;
-            seller.removeItem(id);
+            seller.deleteItem(id);
             try {
                 Database.getInstance().saveUser(seller);
             } catch (IOException e) {

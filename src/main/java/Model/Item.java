@@ -72,6 +72,19 @@ public class Item {
         return true;
     }
 
+    public void delete(){
+    Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
+    if(category==null){
+        return;
+    }
+    category.removeItem(id);
+        try {
+            Database.getInstance().saveCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public double getPrice() {
         return price;
     }

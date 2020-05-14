@@ -43,11 +43,11 @@ public class SaleAndDiscountCodeControllerTest {
         Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereSaleWithId("Behaeen"));
     }
 
-    @Test
+  /*  @Test
     public void addSale() {
         Sale sale=new Sale(2300,4500,20);
         SaleAndDiscountCodeController.getInstance().addSale(sale);
-    }
+    } */
 
     @Test
     public void deleteSale() {

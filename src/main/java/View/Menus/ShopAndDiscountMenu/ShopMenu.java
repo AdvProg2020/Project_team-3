@@ -112,10 +112,6 @@ public class ShopMenu extends Menu {
         System.out.println("show all products");   //done
         System.out.println("show product [product id]"); //done
         System.out.println("back");
-        System.out.println("login (opens login/register panel)");
-        System.out.println("register (opens login/register panel");
-        System.out.println("logout");
-
     }
 
     private void openCategory(String name) {

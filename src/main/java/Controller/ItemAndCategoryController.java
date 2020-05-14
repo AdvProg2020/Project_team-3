@@ -40,7 +40,7 @@ public class ItemAndCategoryController {
             return "Error: item doesn't exist";
         }
         Database.getInstance().deleteItem(item);
-        UserController.getInstance().deleteItemFromSeller(id, item.getSellerName());
+        UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
         return "Successful:";
     }
 
