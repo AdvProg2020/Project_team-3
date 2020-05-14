@@ -62,7 +62,12 @@ public class BuyerMenu extends UserMenu {
         } else if (command.startsWith("show order ")) {
             matcher = View.getMatcher("show order (\\S+)", command);
             if (matcher.matches()) {
-                showOrder(matcher.group(1));
+               try{
+                   showOrder(Integer.parseInt(matcher.group(1))-1);
+               }catch (Exception exception){
+                   System.out.println("Error: invalid id");
+                   return;
+               }
             }
             return;
         } else if (command.startsWith("rate ")) {
@@ -105,9 +110,8 @@ public class BuyerMenu extends UserMenu {
         System.out.println("back");
     }
 
-    private void showOrder(String ID) {
-        Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
-        System.out.println(buyer.getBuyLogByID(ID).toString());
+    private void showOrder(int index) {
+        System.out.println(UserController.getInstance().getBuyLog(index));
     }
 
     private void viewOrders() {

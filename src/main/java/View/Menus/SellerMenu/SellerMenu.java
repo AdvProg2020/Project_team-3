@@ -2,10 +2,11 @@ package View.Menus.SellerMenu;
 
 import Controller.Controller;
 import Controller.ItemAndCategoryController;
+import Controller.UserController;
 import Model.Users.Seller;
 import View.Menus.LoginRegisterMenu;
-import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.MainMenu;
+import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
@@ -125,8 +126,7 @@ public class SellerMenu extends UserMenu {
     }
 
     public void viewSalesHistory(){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        System.out.println(seller.getSaleLogsString());
+        System.out.println(UserController.getInstance().getSaleHistory());
     }
 
     public void manageProducts(){

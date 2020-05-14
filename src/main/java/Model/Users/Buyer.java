@@ -33,10 +33,17 @@ public class Buyer extends User {
 
     public String getBuyLogsString(){
         String ans = "";
+        int count=1;
         for(BuyLog buyLog:buyLogs){
+            ans+=count+"-";
             ans += buyLog.toString();
+            count++;
         }
         return ans;
+    }
+
+    public int getBuyLogSize() {
+        return buyLogs.size();
     }
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
@@ -80,11 +87,12 @@ public class Buyer extends User {
         return ans;
     }
 
-    public BuyLog getBuyLogByID(String ID){
-        for(BuyLog buyLog:buyLogs){
-            if(buyLog.getId().equals(ID)) return buyLog;
+    public BuyLog getBuyLogByID(int index){
+      try{
+          return buyLogs.get(index);
+      }catch(Exception expection){
+          return null;
         }
-        return null;
     }
 
 }

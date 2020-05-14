@@ -194,9 +194,6 @@ public class Item {
         return viewCount;
     }
 
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
 
     public void addAttribute(String name,String value){}
 
@@ -248,7 +245,7 @@ public class Item {
         String string="";
         ArrayList<String> attributesKey= ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getAttributes();
         for (String key : attributesKey) {
-            string+=key+":"+attributes.get(key)+"/n";
+            string+=key+":"+attributes.get(key)+"\n";
         }
         return string;
     }

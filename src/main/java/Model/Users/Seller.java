@@ -122,9 +122,12 @@ public class Seller extends User {
 
     public String getSaleLogsString(){
         String ans="ID          buyer name        count         price\n";
+        int count=1;
         for(SaleLog saleLog:sellLogs){
+            ans +=count+"-";
             ans += saleLog.toSimpleString();
             ans += "\n";
+            count++;
         }
         return ans;
     }

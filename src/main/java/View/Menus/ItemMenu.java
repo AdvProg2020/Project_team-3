@@ -88,12 +88,12 @@ public class ItemMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_PURPLE+"You are viewing an item (ID:"+itemID+"). Enter your command in one of these formats:"+View.ANSI_RESET);
-        System.out.println("digest");  //done
-        System.out.println("add to cart"); //done
-        System.out.println("attributes");  //done
-        System.out.println("compare [product id]");  //done
-        System.out.println("comments");  //done
-        System.out.println("add comment"); //done
+        System.out.println("digest");
+        System.out.println("add to cart");
+        System.out.println("attributes");
+        System.out.println("compare [product id]");
+        System.out.println("comments");
+        System.out.println("add comment");
         System.out.println("back");
         System.out.println("login (opens login/register panel)");
         System.out.println("register (opens login/register panel");

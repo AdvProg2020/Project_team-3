@@ -3,7 +3,7 @@ package Model.Logs;
 import java.util.Date;
 
 public class SaleLog {
-    private String id;
+
     private Date time;
     private double price;
     private String itemId;
@@ -12,8 +12,7 @@ public class SaleLog {
     private String deliveryState;
 
 
-    public SaleLog(String id, Date time, double price, String itemId, String buyerName, int count) {
-        this.id = id;
+    public SaleLog( Date time, double price, String itemId, String buyerName, int count) {
         this.time = time;
         this.price = price;
         this.itemId = itemId;
@@ -27,11 +26,11 @@ public class SaleLog {
 
     @Override
     public String toString() {
-        return "item id: " + id + " buyer name: " + buyerName + " count: " + count + " price: " + price;
+        return  " buyer name: " + buyerName + " count: " + count + " price: " + price;
     }
 
     public String toSimpleString(){
-        return id + "     " + buyerName + "     " + count + "     " + price;
+        return  buyerName + "     " + count + "     " + price;
     }
 }
 

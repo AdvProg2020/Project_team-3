@@ -259,17 +259,6 @@ public class ItemAndCategoryController {
         return getCategoryByName(ShopMenu.getInstance().getCurrentCategory());
     }
 
-   /*public ArrayList<String> getCategoryItems(String categoryName) {
-        ArrayList<String> allItemsId = new ArrayList<>();
-        Category current = getCurrentCategory();
-        ArrayList<String> itemIDs = current.getAllItemsID();
-        Item item;
-        for (String id : itemIDs) {
-            allItemsId.add(id);
-        }
-        return allItemsId;
-    }*/
-
     public ArrayList<String> getCategoryItems(String categoryName) { //<== in miad itemaye bache hasham mide, test konid!
         Category category = getCategoryByName(categoryName);
         if (category.getSubCategories().isEmpty()) return category.getAllItemsID();
@@ -374,4 +363,10 @@ public class ItemAndCategoryController {
         RequestController.getInstance().editItemRequest(requestID, itemID, changedField, newField);
     }
 
+    public void addView(String itemId){
+        Item item=getItemById(itemId);
+        if(item==null)
+            return;
+        item.addViewsBy(1);
+    }
 }

@@ -109,6 +109,7 @@ public abstract class Menu {
             System.out.println(ans);
             return;
         }
+        ItemAndCategoryController.getInstance().addView(id);
         ItemMenu.getInstance().setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);

@@ -273,4 +273,33 @@ public class UserController {
             }
         }
     }
+
+    public String getSaleHistory(){
+        if(getCurrentOnlineUser() instanceof Seller==false){
+            return "Error:";  //this wont happen because we call this function in the seller menu
+        }
+        Seller seller=(Seller) getCurrentOnlineUser();
+        if(seller==null){
+            return "Error:";
+        }
+        return seller.getSaleLogsString();
+    }
+
+    public String getBuyLog(int index){
+        if(getCurrentOnlineUser() instanceof Buyer==false){
+            return "Error:";  //this wont happen because we call this function in the buyer menu
+        }
+        Buyer buyer=(Buyer) getCurrentOnlineUser();
+        if(buyer==null){
+            return "Error:";
+        }
+        try{
+            if(index>buyer.getBuyLogSize()-1){
+                return "Error: invalid buyLog";
+            }
+                return buyer.getBuyLogByID(index).toString();
+        } catch (Exception expection){
+            return "Error: invalid id";
+        }
+    }
 }
