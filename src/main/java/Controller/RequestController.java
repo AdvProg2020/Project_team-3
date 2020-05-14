@@ -11,6 +11,8 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class RequestController {
@@ -199,10 +201,14 @@ public class RequestController {
         if (sale == null) return;
         String changedField = saleEdit.getChangedFieled();
         String newFieldValue = saleEdit.getNewFieldValue();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
+
         if (changedField.equals("start Time")) {
-            sale.setStartTime(Integer.parseInt(newFieldValue));
+            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            sale.setStartTime(date);
         } else if (changedField.equals("end Time")) {
-            sale.setEndTime(Integer.parseInt(newFieldValue));
+            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            sale.setEndTime(date);
         } else if (changedField.equals("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }
