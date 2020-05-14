@@ -95,7 +95,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public boolean isThereDiscountCodeWithId(String id) {
-        String path = "Resource" + File.separator + "Discount Codes";
+        String path = "Resource" + File.separator + "DiscountCodes";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {

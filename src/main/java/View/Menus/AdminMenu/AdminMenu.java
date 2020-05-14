@@ -133,7 +133,7 @@ public class AdminMenu extends UserMenu {
     }
 
     private void viewAllDiscountCodes() {
-        ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("Discount Codes");
+        ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("DiscountCodes");
         printList(allDiscountCodes);
     }
 
@@ -145,8 +145,8 @@ public class AdminMenu extends UserMenu {
         int percentage = readNumber(101, "Please enter discount percentage:");
         int usageCount = readNumber(1000,"Enter the number of times this code can be used (max:1000):");
         double maxDiscount = readNumber(-1D,"Enter the maximum limit for this discount code:");
-        LocalDateTime startTime = getDate("Enter a valid day as the starting time in the following format: dd/MM/yyyy 'at' HH:mm");
-        LocalDateTime endTime = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy 'at' HH:mm");
+        LocalDateTime startTime = getDate("Enter a valid day as the starting time in the following format: dd/MM/yyyy HH:mm");
+        LocalDateTime endTime = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy HH:mm");
 
         System.out.println("What users do you want to add? Type done to finish.");
         String username;

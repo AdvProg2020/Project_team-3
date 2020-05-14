@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Sale {
     private String id;
     private ArrayList<String> itemId = new ArrayList<>();
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private int offPercentage;
 
     private enum Status {accepted, addingProcess, editingProcess}
@@ -19,8 +19,8 @@ public class Sale {
     Status status;
 
     public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage) {
-        this.startTime = startTime.toString();
-        this.endTime = endTime.toString();
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.offPercentage = offPercentage;
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Sales");
     }
@@ -38,11 +38,11 @@ public class Sale {
     }
 
     public LocalDateTime getEndTime() {
-        return LocalDateTime.parse(endTime);
+        return endTime;
     }
 
     public LocalDateTime getStartTime() {
-        return LocalDateTime.parse(startTime);
+        return startTime;
     }
 
     public int getOffPercentage() {
@@ -50,11 +50,11 @@ public class Sale {
     }
 
     public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime.toString();
+        this.startTime = startTime;
     }
 
     public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime.toString();
+        this.endTime = endTime;
     }
 
     public void setOffPercentage(int offPercentage) {

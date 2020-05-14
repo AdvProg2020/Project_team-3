@@ -133,14 +133,14 @@ public abstract class Menu {
 
     protected LocalDateTime getDate(String message){
         LocalDateTime date;
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         System.out.println(message);
         String dateString = View.getRead().nextLine();
         try{
             date = LocalDateTime.parse(dateString,dateTimeFormatter);
             return date;
         }catch (Exception e){
-            System.out.println(View.ANSI_RED+"Invalid date. Try again.");
+            System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
             date = getDate(message);
         }
         return date;

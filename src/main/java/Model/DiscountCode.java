@@ -14,15 +14,15 @@ public class DiscountCode {
     private double maxDiscount;
     private HashMap<String, Integer> usageCount;
     private int usageCountInt;
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     //constructor
     public DiscountCode(int discountPercentage, LocalDateTime startTime, LocalDateTime endTime, ArrayList<String> validUsers, int usageCountInt,double maxDiscount) {
         this.discountId = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Discount Codes");
         this.discountPercentage = discountPercentage;
-        this.startTime = startTime.toString();
-        this.endTime = endTime.toString();
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.maxDiscount = maxDiscount;
         this.usageCount = new HashMap<>();
         for (String username : validUsers) {
@@ -53,15 +53,15 @@ public class DiscountCode {
     }
 
     public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime.toString();
+        this.endTime = endTime;
     }
 
     public LocalDateTime getEndTime() {
-        return LocalDateTime.parse(endTime);
+        return endTime;
     }
 
     public LocalDateTime getStartTime() {
-        return LocalDateTime.parse(startTime);
+        return startTime;
     }
 
     public boolean hasUser(String userID) {

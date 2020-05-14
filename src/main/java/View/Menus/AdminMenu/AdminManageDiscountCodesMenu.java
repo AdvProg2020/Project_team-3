@@ -94,7 +94,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
         System.out.println("Enter -edit date- if you wish to change the ending date.\nEnter -edit offpercent- if you wish to change the off percentage.\nEnter -edit usage- to edit how many times this code can be used.");
         String command = View.getRead().nextLine();
         if (command.equals("edit date")) {
-            LocalDateTime date = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy 'at' HH:mm");
+            LocalDateTime date = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy HH:mm");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountID, date));
             return;
         } else if (command.equals("edit offpercent")) {
