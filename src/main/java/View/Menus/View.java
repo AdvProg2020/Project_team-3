@@ -49,4 +49,5 @@ public class View {
     public static Scanner getRead() {
         return read;
     }
+
 }

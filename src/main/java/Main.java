@@ -22,7 +22,6 @@ public class Main {
 //filter bar asas attribute     //mirza
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 
-//seller ke delete mishe itemasham delete beshe az category//mirza
 
 //discount code , sale , log ha <= time daran
 //method e passtime tuye view => miad discountcode haye expire shodaro hazf mikone va besorate random be karbara code takhfif ba darsad random o ina mide
