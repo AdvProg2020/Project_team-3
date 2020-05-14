@@ -70,8 +70,6 @@ public abstract class Menu {
     }
 
     protected int readNumber(int limit, String message) {   //if limit is -1 there is no limit for int number
-        if (!message.isEmpty())
-            System.out.println(message);
         String number = View.read.nextLine();
         System.out.println(number);
         try {

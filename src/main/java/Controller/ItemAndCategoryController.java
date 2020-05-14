@@ -38,7 +38,7 @@ public class ItemAndCategoryController {
             return "Error: item doesn't exist";
         }
         Database.getInstance().deleteItem(item);
-        UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
+        UserController.getInstance().deleteItemFromSeller(id, item.getSellerName());
         return "Successful:";
     }
 
@@ -232,11 +232,11 @@ public class ItemAndCategoryController {
     }
 
 
-    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName,  HashMap<String, String> attribute) {
+    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
         if (!isThereCategoryWithName(categoryName)) {
             return "Error: invalid category name";
         }
-        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute,  instock);
+        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: your request to add the item was sent to the admins.";
@@ -292,10 +292,10 @@ public class ItemAndCategoryController {
 
     public String openCategory(String name) {
         if (!isThereCategoryWithName(name)) {
-            return View.ANSI_RED + "No such category." + View.ANSI_RESET;
+            return View.ANSI_RED + "Error: No such category." + View.ANSI_RESET;
         }
         ShopMenu.getInstance().setCurrentCategory(name);
-        return "Loading...";
+        return "Successful:";
     }
 
     public boolean currentViewableItemsContainsItem(String itemID) {
@@ -363,9 +363,9 @@ public class ItemAndCategoryController {
         RequestController.getInstance().editItemRequest(requestID, itemID, changedField, newField);
     }
 
-    public void addView(String itemId){
-        Item item=getItemById(itemId);
-        if(item==null)
+    public void addView(String itemId) {
+        Item item = getItemById(itemId);
+        if (item == null)
             return;
         item.addViewsBy(1);
     }

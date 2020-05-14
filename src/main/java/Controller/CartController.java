@@ -46,11 +46,7 @@ public class CartController {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemid)) {
             return "Error: invalid id";
         }
-        if (count < 0) {
-            count = getCurrentShoppingCart().getItemCount(itemid) + count;
-        } else {
-            count += getCurrentShoppingCart().getItemCount(itemid);
-        }
+        count += getCurrentShoppingCart().getItemCount(itemid);
         return getCurrentShoppingCart().changeCountBy(itemid, count);
     }
 

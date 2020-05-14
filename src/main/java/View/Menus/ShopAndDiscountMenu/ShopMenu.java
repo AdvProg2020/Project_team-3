@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 
 public class ShopMenu extends Menu {
     private static ShopMenu shopMenu;
-    private String categoryName;
+    private String categoryName="Main";
 
     private ShopMenu() {
     }
@@ -119,7 +119,11 @@ public class ShopMenu extends Menu {
     }
 
     private void openCategory(String name) {
-        System.out.println(ItemAndCategoryController.getInstance().openCategory(name));
+        String ans=ItemAndCategoryController.getInstance().openCategory(name);
+        System.out.println(ans);
+        if(ans.startsWith("Successful")){
+            categoryName=name;
+        }
     }
 
     private void previousCategory() {

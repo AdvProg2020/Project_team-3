@@ -54,6 +54,7 @@ public class SortAndFilterMenu extends Menu {
         }
         if(command.equals("back")){
             View.setCurrentMenu(ShopMenu.getInstance());
+            return;
         }
         matcher = View.getMatcher("sort (\\D+)", command);
         if (matcher.matches()) {

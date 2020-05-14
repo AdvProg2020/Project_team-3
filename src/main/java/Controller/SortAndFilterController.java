@@ -9,8 +9,8 @@ public class SortAndFilterController {
     Boolean filterPriceRange = false;
     Boolean filterCategoryName = false;
     Boolean filterBrand = false;
-    Boolean filterName=false;
-    Boolean filterAvailability;
+    Boolean filterName = false;
+    Boolean filterAvailability = false;
     double minPrice;
     double maxPrice;
     String categoryName;
@@ -88,13 +88,13 @@ public class SortAndFilterController {
         this.brandName = brandName;
     }
 
-    public void activateFilterName(String name){
-        filterName=true;
-        this.name=name;
+    public void activateFilterName(String name) {
+        filterName = true;
+        this.name = name;
     }
 
-    public void activateFilterAvailability(){
-      filterAvailability=true;
+    public void activateFilterAvailability() {
+        filterAvailability = true;
     }
 
     public void disableFilterPriceRange() {
@@ -109,14 +109,21 @@ public class SortAndFilterController {
         filterBrand = false;
     }
 
-    public void disableFilterName(){filterName=false;}
+    public void disableFilterName() {
+        filterName = false;
+    }
 
-    public void disableFilterAvailability(){ filterAvailability=false; }
+    public void disableFilterAvailability() {
+        filterAvailability = false;
+    }
 
     private boolean isAccepted(String itemId) {
         Item item = ItemAndCategoryController.getInstance().getItemById(itemId);
-        int instock=item.getInStock();
-        String itemName=item.getName();
+        if (item == null) {
+            return false;
+        }
+        int instock = item.getInStock();
+        String itemName = item.getName();
         if (item == null) {
             return false;
         }
@@ -130,10 +137,10 @@ public class SortAndFilterController {
         if ((filterBrand == true) && (!item.getBrand().equals(brandName))) {
             return false;
         }
-        if((filterName==true)&&(itemName.contains(name)==false)){
+        if ((filterName == true) && (itemName.contains(name) == false)) {
             return false;
         }
-        if((filterAvailability==true)&&(instock==0)){
+        if ((filterAvailability == true) && (instock == 0)) {
             return false;
         }
         return true;
@@ -150,8 +157,8 @@ public class SortAndFilterController {
         if (filterPriceRange == true) {
             ans += "\nfilter by price range min=" + minPrice + " max=" + maxPrice;
         }
-        if(filterName==true){
-            ans+= "\nfilter by name: "+name;
+        if (filterName == true) {
+            ans += "\nfilter by name: " + name;
         }
         if (ans.isBlank()) {
             ans = "you have No active filter";
@@ -177,13 +184,13 @@ public class SortAndFilterController {
     public String showAllAvailableFilters() {
         return "filter price [min] to [max]" +
                 "\nfilter by category name" +
-                "\nfilter by brand name"+
-                "\nfilter by name [name]"+
+                "\nfilter by brand name" +
+                "\nfilter by name [name]" +
                 "\nfilter by availability";
     }
 
     public String showAllAvailableSorts() {
-                                                 //sort number 0 is the default sort by view
+        //sort number 0 is the default sort by view
         return "sort by price low to high" +     //sort number 1
                 "\nsort by price high to low" +  //sort number 2
                 "\nsort by rating" +             //sort number 3
@@ -194,7 +201,7 @@ public class SortAndFilterController {
         filterBrand = false;
         filterCategoryName = false;
         filterPriceRange = false;
-        filterName=false;
+        filterName = false;
         activeSort = 0;
     }
 }
