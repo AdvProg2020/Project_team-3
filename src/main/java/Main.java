@@ -26,6 +26,7 @@ public class Main {
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 //safhe haraj ride
 
+//seller ke delete mishe itemasham delete beshe //mirza
 
 //discount code , sale , log ha <= time daran
 //method e passtime tuye view => miad discountcode haye expire shodaro hazf mikone va besorate random be karbara code takhfif ba darsad random o ina mide

@@ -183,8 +183,8 @@ public class SortAndFilterController {
 
     public String showAllAvailableFilters() {
         return "filter price [min] to [max]" +
-                "\nfilter by category name" +
-                "\nfilter by brand name" +
+                "\nfilter by category [name]" +
+                "\nfilter by brand [name]" +
                 "\nfilter by name [name]" +
                 "\nfilter by availability";
     }

@@ -52,8 +52,28 @@ public class SortAndFilterMenu extends Menu {
             defaultSortAndFilter();
             return;
         }
-        if(command.equals("back")){
+        if (command.equals("back")) {
             View.setCurrentMenu(ShopMenu.getInstance());
+            return;
+        }
+        if (command.equals("disable filter by availability")) {
+            disableFilterAvailability();
+            return;
+        }
+        if (command.equals("disable filter by price")) {
+            disableFilterPriceRange();
+            return;
+        }
+        if (command.equals("disable filter by name")) {
+            disableFilterName();
+            return;
+        }
+        if (command.equals("disable filter by brand")) {
+            disableFilterBrandName();
+            return;
+        }
+        if (command.equals("disable filter by category")) {
+            disableFilterCategory();
             return;
         }
         matcher = View.getMatcher("sort (\\D+)", command);
@@ -68,7 +88,7 @@ public class SortAndFilterMenu extends Menu {
     @Override
     public void help() {
         System.out.println(View.ANSI_WHITE + "Enter your command in the following formats or type back to go to the shop menu." + View.ANSI_RESET);
-        System.out.println(View.ANSI_CYAN+"show available filters"); //done
+        System.out.println(View.ANSI_CYAN + "show available filters"); //done
         System.out.println("filter [an available filter]");
         System.out.println("current filters"); //done
         System.out.println("disable filter [a selected filter]");
@@ -76,7 +96,7 @@ public class SortAndFilterMenu extends Menu {
         System.out.println("sort [an available sort]"); //done
         System.out.println("current sort");   //done
         System.out.println("disable sort");   //done
-        System.out.println("default sort and filter"+View.ANSI_RESET);
+        System.out.println("default sort and filter" + View.ANSI_RESET);
     }
 
     public void showAvailableFilters() {
@@ -105,5 +125,25 @@ public class SortAndFilterMenu extends Menu {
 
     public void defaultSortAndFilter() {
         SortAndFilterController.getInstance().reset();
+    }
+
+    public void disableFilterName() {
+        SortAndFilterController.getInstance().disableFilterName();
+    }
+
+    public void disableFilterCategory() {
+        SortAndFilterController.getInstance().disableFilterCategoryName();
+    }
+
+    public void disableFilterAvailability() {
+        SortAndFilterController.getInstance().disableFilterAvailability();
+    }
+
+    public void disableFilterBrandName() {
+        SortAndFilterController.getInstance().disableFilterBrandName();
+    }
+
+    public void disableFilterPriceRange() {
+        SortAndFilterController.getInstance().disableFilterPriceRange();
     }
 }
