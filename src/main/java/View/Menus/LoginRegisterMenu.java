@@ -129,12 +129,11 @@ public class LoginRegisterMenu extends Menu {
             System.out.println(ans);
             return ans.startsWith("Success");
         } else {
-            /*
-            ans = UserController.getInstance().registerAdmin(username,password,firstName,lastName,email,number);
+            ans = UserController.getInstance().registerFirstAdmin(username,password,firstName,lastName,email,number);
             System.out.println(ans);
-            return ans.startsWith("Succ");*/
-            System.out.println("You cant make an admin account.");
-            return false;
+            return ans.startsWith("Succ");
+            /*System.out.println("You cant make an admin account.");
+            return false;*/
         }
 
 

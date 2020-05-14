@@ -6,7 +6,6 @@ import Model.Item;
 import Model.Requests.Request;
 import Model.Sale;
 import Model.Users.User;
-import View.Menus.LoginRegisterMenu;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -196,10 +195,10 @@ public class Database<Public> {
         if (!file.exists()) {
             file.mkdir();
         }
-        if(printFolderContent("Users").isEmpty()){
+        /*if(printFolderContent("Users").isEmpty()){
             System.out.println("there are no admin account.please renter the information to make an admin.");
             LoginRegisterMenu.getInstance().registerAdmin();
-        }
+        }*/
         //Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
         Category category = new Category("Main", null);
         try {
@@ -215,9 +214,9 @@ public class Database<Public> {
         File[] files = new File(path).listFiles();
         for (File file : files) {
             if (file.isFile()) {
-                if(file.getName().equals(".DS_Store")){
+                /*if(file.getName().equals(".DS_Store")){
                     continue;
-                }
+                }*/
                 fileNames.add(file.getName().replace(".json", ""));
             }
         }
