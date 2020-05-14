@@ -11,11 +11,13 @@ public class SortAndFilterController {
     Boolean filterBrand = false;
     Boolean filterName = false;
     Boolean filterAvailability = false;
+    Boolean filterAttribute=false;
     double minPrice;
     double maxPrice;
     String categoryName;
     String brandName;
     String name;
+    String attribute;
     public static SortAndFilterController sortAndFilterController;
 
     private SortAndFilterController() {
@@ -97,6 +99,11 @@ public class SortAndFilterController {
         filterAvailability = true;
     }
 
+    public void activateFilterAttribute(String attribute){
+        filterAttribute=true;
+        this.attribute=attribute;
+    }
+
     public void disableFilterPriceRange() {
         filterPriceRange = false;
     }
@@ -115,6 +122,10 @@ public class SortAndFilterController {
 
     public void disableFilterAvailability() {
         filterAvailability = false;
+    }
+
+    public void disableFilterAttribute(){
+        filterAttribute=false;
     }
 
     private boolean isAccepted(String itemId) {
@@ -143,6 +154,9 @@ public class SortAndFilterController {
         if ((filterAvailability == true) && (instock == 0)) {
             return false;
         }
+        if((filterAttribute==true)&&(item.hasAttribute(attribute))){
+            return false;
+        }
         return true;
     }
 
@@ -159,6 +173,9 @@ public class SortAndFilterController {
         }
         if (filterName == true) {
             ans += "\nfilter by name: " + name;
+        }
+        if(filterAttribute==true){
+            ans+="\nfilter by attribute: "+attribute;
         }
         if (ans.isBlank()) {
             ans = "you have No active filter";
@@ -186,7 +203,8 @@ public class SortAndFilterController {
                 "\nfilter by category [name]" +
                 "\nfilter by brand [name]" +
                 "\nfilter by name [name]" +
-                "\nfilter by availability";
+                "\nfilter by availability"+
+                "\nfilter by attribute [name]";
     }
 
     public String showAllAvailableSorts() {
