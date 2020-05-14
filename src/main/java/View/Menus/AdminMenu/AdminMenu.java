@@ -4,12 +4,15 @@ import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
 import Model.Sale;
-import View.Menus.*;
+import View.Menus.LoginRegisterMenu;
+import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
+import View.Menus.UserMenu;
+import View.Menus.View;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.regex.Matcher;
 
 public class AdminMenu extends UserMenu {
@@ -138,13 +141,22 @@ public class AdminMenu extends UserMenu {
         //set current menu to category menu
     }
 
-    private void createDiscountCode() {
-        int percentage = readNumber(101, "please enter discount percentage:");
-        int day = readNumber(32, "please enter expiration date:");
-        int month = readNumber(13, "please enter expiration month:");
-        int year = readNumber(2025, "please enter expiration year:");
-        Date date = new Date(year - 1900, month - 1, day);
-        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage, date));
+    void createDiscountCode() {
+        int percentage = readNumber(101, "Please enter discount percentage:");
+        int usageCount = readNumber(1000,"Enter the number of times this code can be used (max:1000):");
+        LocalDateTime startTime = getDate("Enter a valid day as the starting time in the following format: dd/MM/yyyy 'at' HH:mm");
+        LocalDateTime endTime = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy 'at' HH:mm");
+
+        System.out.println("What users do you want to add? Type done to finish.");
+        String username;
+        ArrayList<String> addedUsers = new ArrayList<>();
+        while(true){
+            username = View.getRead().nextLine();
+            if(username.equals("done")) break;
+            addedUsers.add(username);
+        }
+
+        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,startTime,endTime,addedUsers,usageCount));
     }
 
 

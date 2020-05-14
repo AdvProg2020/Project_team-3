@@ -1,10 +1,10 @@
 package Model.Logs;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class SaleLog {
 
-    private Date time;
+    private LocalDateTime time;
     private double price;
     private String itemId;
     private String buyerName;
@@ -12,7 +12,7 @@ public class SaleLog {
     private String deliveryState;
 
 
-    public SaleLog( Date time, double price, String itemId, String buyerName, int count) {
+    public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count) {
         this.time = time;
         this.price = price;
         this.itemId = itemId;
@@ -26,11 +26,11 @@ public class SaleLog {
 
     @Override
     public String toString() {
-        return  " buyer name: " + buyerName + " count: " + count + " price: " + price;
+        return " buyer name: " + buyerName + " count: " + count + " price: " + price;
     }
 
-    public String toSimpleString(){
-        return  buyerName + "     " + count + "     " + price;
+    public String toSimpleString() {
+        return buyerName + "     " + count + "     " + price;
     }
 }
 

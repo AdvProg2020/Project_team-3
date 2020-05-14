@@ -4,14 +4,14 @@ import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Item;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class BuyLog {
 
 
-    private Date time;
+    private LocalDateTime time;
     private ArrayList<String> allItemsID;
     private HashMap<String,String> itemsSeller;
     private HashMap<String,Integer> itemsCount;
@@ -40,7 +40,7 @@ public class BuyLog {
 
     @Override
     public String toString() {
-        String ans ="Total sum:"+totalPrice();
+        String ans ="Total sum:"+totalPrice()+"   "+time.toString();
         ans += "\nAddress:" + address;
         ans += "\nitem ID        price       seller          count\n";
 
@@ -86,4 +86,7 @@ public class BuyLog {
         return ans;
     }
 
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
 }

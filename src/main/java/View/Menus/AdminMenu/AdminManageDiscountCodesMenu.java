@@ -7,8 +7,8 @@ import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.regex.Matcher;
 
 public class AdminManageDiscountCodesMenu extends UserMenu {
@@ -56,6 +56,9 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
             help();
             return;
         }
+        else if (command.equals("create discount code")) {
+            AdminMenu.getInstance().createDiscountCode();
+        }
         if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
             return;
@@ -73,6 +76,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
     public void help() {
         System.out.println(View.ANSI_WHITE + "Enter your command in the following formats or type back to go to the admin menu." + View.ANSI_RESET);
         System.out.println("view discount code");         //done but need test
+        System.out.println("create discount code");
         System.out.println("view discount code [id]");   //done
         System.out.println("edit discount code [id]");
         System.out.println("remove discount code [id]");
@@ -87,18 +91,19 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
             System.out.println("Error: invalid ID");
             return;
         }
-        System.out.println("Enter -edit date- if you wish to change the date.\nEnter -edit offpercent- if you wish to change the off percentage.");
+        System.out.println("Enter -edit date- if you wish to change the ending date.\nEnter -edit offpercent- if you wish to change the off percentage.\nEnter -edit usage- to edit how many times this code can be used.");
         String command = View.getRead().nextLine();
         if (command.equals("edit date")) {
-            int day = readNumber(32, "Please enter new expiration date:");
-            int month = readNumber(13, "Please enter new expiration month:");
-            int year = readNumber(2025, "Please enter new expiration year:");
-            Date date = new Date(year - 1900, month - 1, day);
+            LocalDateTime date = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy 'at' HH:mm");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountID, date));
             return;
         } else if (command.equals("edit offpercent")) {
             int percentage = readNumber(101, "please enter new discount percentage:");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountID, percentage));
+            return;
+        } else if (command.equals("edit usage")){
+            int usage = readNumber(1000,"please enter e new usage count (max:1000):");
+            System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountID,usage));
             return;
         }
         System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);

@@ -1,5 +1,7 @@
 package View.Menus;
 
+import Controller.Controller;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +24,7 @@ public class View {
     public static void run() {
         System.out.println(ANSI_RED + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
         while (programRunning) {
+            Controller.getInstance().updateDateAndTime();
             currentMenu.run();
         }
     }

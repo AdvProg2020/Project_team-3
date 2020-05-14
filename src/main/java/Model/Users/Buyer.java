@@ -1,5 +1,6 @@
 package Model.Users;
 
+import Controller.SaleAndDiscountCodeController;
 import Model.Cart;
 import Model.DiscountCode;
 import Model.Logs.BuyLog;
@@ -11,12 +12,10 @@ public class Buyer extends User {
     private double money;
     private ArrayList<BuyLog> buyLogs;
     private Cart cart;
-    private ArrayList<DiscountCode> discountCodes;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,number,"Buyer");
         this.money=money;
         buyLogs=new ArrayList<>();
-        discountCodes=new ArrayList<>();
         cart=new Cart();
     }
 
@@ -48,7 +47,7 @@ public class Buyer extends User {
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
-    public void addDiscount(DiscountCode discountCode){
+    /*public void addDiscount(DiscountCode discountCode){
         this.discountCodes.add(discountCode);
     }
 
@@ -69,7 +68,7 @@ public class Buyer extends User {
             if(discountCode.getDiscountId().equals(ID)) return discountCode;
         }
         return null;
-    }
+    }*/
 
     public double getMoney() {
         return money;
@@ -81,9 +80,11 @@ public class Buyer extends User {
 
     public String getDiscountCodes() {
         String ans = "";
-        for(DiscountCode discountCode:discountCodes){
-            ans += discountCode.toString();
-            ans += "\n";
+        for(DiscountCode discountCode: SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase()){
+            if(discountCode.hasUser(this.getUsername())){
+                ans += discountCode.toString();
+                ans += "\n";
+            }
         }
         return ans;
     }

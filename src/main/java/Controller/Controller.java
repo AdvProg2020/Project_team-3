@@ -82,5 +82,11 @@ public class Controller {
         this.currentOnlineUser = currentOnlineUser;
     }
 
+    public void updateDateAndTime(){
+        //in miad discount code hayi ke tarikh gozashte hastan va sale haye tarikh gozashte ro pak mikone
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales();
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes();
+    }
+
 
 }

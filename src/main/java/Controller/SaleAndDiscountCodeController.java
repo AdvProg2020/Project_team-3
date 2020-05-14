@@ -8,8 +8,8 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
@@ -166,12 +166,15 @@ public class SaleAndDiscountCodeController {
         return "Successful:";
     }
 
-    public String editDiscountCodeEndTime(String discountID, Date endTime) {
+    public String editDiscountCodeEndTime(String discountID, LocalDateTime endTime) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
             return "Error: Discount code doesnt exist";
         }
-       // discountCode.setEndTime(endTime);
+        if(!endTime.isAfter(discountCode.getStartTime())){
+            return "Error: ending time is after the starting time!";
+        }
+       discountCode.setEndTime(endTime);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -180,11 +183,26 @@ public class SaleAndDiscountCodeController {
         return "Successful";
     }
 
-    public String addDiscountCode(int percentage, Date end) {
-        if (end.before(new Date())) {
-            return "Error: invalid date";
+    public String editDiscountCodeUsageCount(String discountID,int newUsage){
+        if(newUsage<=0) return "Error: usage count has to be positive.";
+        DiscountCode discountCode = getDiscountCodeById(discountID);
+        if (discountCode == null) {
+            return "Error: Discount code doesnt exist";
         }
-        DiscountCode discountCode = new DiscountCode(percentage, end);
+        discountCode.changeUsageCount(newUsage);
+        try {
+            Database.getInstance().saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Successful";
+    }
+
+    public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount) {
+        if(!endTime.isAfter(startTime)){
+            return "Error: ending time is after the starting time!";
+        }
+        DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -206,4 +224,11 @@ public class SaleAndDiscountCodeController {
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
     }
 
+    protected void deleteDeprecatedDiscountCodes(){
+
+    }
+
+    protected void deleteDeprecatedSales(){
+
+    }
 }

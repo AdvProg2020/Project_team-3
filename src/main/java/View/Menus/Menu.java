@@ -3,6 +3,8 @@ package View.Menus;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public abstract class Menu {
@@ -111,6 +113,21 @@ public abstract class Menu {
         ItemMenu.getInstance().setPreviousMenu(View.getCurrentMenu());
         View.setCurrentMenu(ItemMenu.getInstance());
         ItemMenu.getInstance().setItemID(id);
+    }
+
+    protected LocalDateTime getDate(String message){
+        LocalDateTime date;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
+        System.out.println(message);
+        String dateString = View.getRead().nextLine();
+        try{
+            date = LocalDateTime.parse(dateString,dateTimeFormatter);
+            return date;
+        }catch (Exception e){
+            System.out.println(View.ANSI_RED+"Invalid date. Try again.");
+            date = getDate(message);
+        }
+        return date;
     }
 
 }
