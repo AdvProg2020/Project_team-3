@@ -87,7 +87,7 @@ public class Database<Public> {
     public void saveDiscountCode(DiscountCode discount) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String id = discount.getDiscountId();
-        String path = "Resource" + File.separator + "Discount Codes";
+        String path = "Resource" + File.separator + "DiscountCodes";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
@@ -161,7 +161,7 @@ public class Database<Public> {
 
     public void deleteDiscountCode(DiscountCode discount) {
         String id = discount.getDiscountId();
-        String path = "Resource" + File.separator + "Discount Codes";
+        String path = "Resource" + File.separator + "Discount9999999Codes";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         file.delete();
@@ -216,6 +216,7 @@ public class Database<Public> {
         }
         return fileNames;
     }
+
 
 }
 

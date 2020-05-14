@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Category;
 import Model.Item;
+import Model.Requests.Request;
+import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,10 +18,15 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void deleteItem() {
+        addItem();
+        ArrayList<Item>allItem=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item=allItem.get(0);
+        ItemAndCategoryController.getInstance().deleteItem(item.getId());
     }
 
     @Test
     public void isThereItemWithId() {
+        addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems){
             Assert.assertTrue(ItemAndCategoryController.getInstance().isThereItemWithId(item.getId()));
@@ -29,12 +36,14 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void isThereCategoryWithName() {
+        addItem();
         Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Behaeen"));
     }
 
     @Test
     public void getItemById() {
+        addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems){
             System.out.println(ItemAndCategoryController.getInstance().getItemById(item.getId()).getId());
@@ -44,6 +53,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getCategoryByName() {
+        addItem();
         Category category=ItemAndCategoryController.getInstance().getCategoryByName("Vacuum");
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Behaeen");
         Assert.assertNotNull(category);
@@ -75,6 +85,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void comment() {
+        addItem();
         UserController.getInstance().login("Alireza","Behaeen");
         String text="that was very nice!";
         ArrayList<Item>allItems= ItemAndCategoryController.getInstance().getAllItemFromDataBase();
@@ -86,6 +97,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void rate() {
+
     }
 
     @Test
@@ -101,8 +113,9 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addCategory() {
+        Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
-        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes);
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
         ArrayList<String>attributes1=new ArrayList<>();
         ItemAndCategoryController.getInstance().addCategory("Vacuum",attributes1,"lavazem manzel");
         ArrayList<String>attributes2=new ArrayList<>();
@@ -125,18 +138,24 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItem() {
-        UserController.getInstance().login("Alireza","Behaeen");
+        User seller =UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
         HashMap<String , String>attributes1=new HashMap();
-        HashMap<String,String>attributes2=new HashMap<>();
+        HashMap<String,String> attributes2=new HashMap<>();
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
         ,"this is vaccum",500,300,"Vacuum",
-                attributes);
+               attributes);
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
         ,"this is oven",5000,3000,"Oven",attributes1);
         ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
                 "this is microWave",600,200,"microwave",attributes2);
+        UserController.getInstance().logout();
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
     }
 
     @Test
@@ -162,6 +181,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getCategoryItems() {
+
     }
 
     @Test
@@ -186,6 +206,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getAllItemFromDataBase() {
+        addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems){
             System.out.println(item.getId());
@@ -200,7 +221,6 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void removeCategory() {
-        addCategory();
         addItem();
         ItemAndCategoryController.getInstance().removeCategory("Vacuum");
     }
@@ -211,6 +231,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void editItem(){
+        addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         if(allItems.isEmpty()) return;
         Item item=allItems.get(0);
@@ -219,6 +240,11 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().editItem("brand","Khazar",item.getId());
         ItemAndCategoryController.getInstance().editItem("description","this is a xamp",item.getId());
         ItemAndCategoryController.getInstance().editItem("inStock","600",item.getId());
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase() ;
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+
     }
 
 }

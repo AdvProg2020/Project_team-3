@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Requests.Request;
 import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
@@ -74,6 +75,10 @@ public class UserControllerTest {
     public  void registerSeller() {
         UserController.getInstance().registerSeller(500,"Alireza","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
     }
 
     @Test
@@ -85,7 +90,8 @@ public class UserControllerTest {
     @Test
     public void login() {
         registration();
-        UserController.getInstance().login("Alireza","Behaeen");
+        User user1=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login("Alireza",user1.getPassword());
         User user=UserController.getInstance().getCurrentOnlineUser();
         Assert.assertNotNull(user);
         System.out.println(UserController.getInstance().logout());
@@ -140,7 +146,8 @@ public class UserControllerTest {
     @Test
     public void deleteUser() {
         registration();
-        UserController.getInstance().login("Alireza","alireza79");
+        User user1=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login("Alireza",user1.getPassword());
         UserController.getInstance().deleteUser("Arman");
         UserController.getInstance().deleteUser("Ho3ein");
         UserController.getInstance().deleteUser("Alireza");
@@ -179,6 +186,7 @@ public class UserControllerTest {
 
     @Test
     public void getAllUserFromDataBase() {
+        registration();
         ArrayList<User> allUsers=UserController.getInstance().getAllUserFromDataBase();
         for(User user:allUsers) System.out.println(UserController.getInstance().viewPersonalInfo(user.getUsername()));
     }
