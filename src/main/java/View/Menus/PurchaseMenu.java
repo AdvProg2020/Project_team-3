@@ -19,8 +19,8 @@ public class PurchaseMenu extends Menu {
     public void run() {
         System.out.println(View.ANSI_CYAN + "You are in the purchase menu." + View.ANSI_RESET);
         String address = readAddress();
-        discountCode();
-        pay(address);
+        discountCode(address);
+
     }
 
     @Override
@@ -38,27 +38,33 @@ public class PurchaseMenu extends Menu {
         return View.read.nextLine();
     }
 
-    public void discountCode() {
+    public void discountCode(String address) {
         System.out.println("please enter your discount code\nif you don't have one enter --continue--");
         String discountId = View.read.nextLine();
         if (discountId.equals("continue")) {
+            pay(address,false,discountId);
             return;
         }
         if (!SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountId)) {
             System.out.println("invalid id");
-            discountCode();
+            discountCode(address);
             return;
         }
         System.out.println("Successful: price before discount = " + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount = " + CartController.getInstance().getCartPriceWithDiscountCode());
+        pay(address,true,discountId);
     }
 
-    public void pay(String address) {
+    public void pay(String address,boolean hasDiscount,String discountID) {
         System.out.println("Are you sure you want to buy these items? (enter yes to continue or anything else to exit process)");
         String command = View.read.nextLine();
         if (command.equals("yes")) {
-            System.out.println(CartController.getInstance().buy(address));
-            View.setCurrentMenu(CartMenu.getInstance());
+            if(hasDiscount)
+                System.out.println(CartController.getInstance().buy(address,discountID));
+            else
+                System.out.println(CartController.getInstance().buy(address));
             CartMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            View.setCurrentMenu(CartMenu.getInstance());
+
             return;
         }
         View.setCurrentMenu(CartMenu.getInstance());

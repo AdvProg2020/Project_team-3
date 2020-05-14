@@ -64,7 +64,28 @@ public class CartController {
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
+        double price = cart.getCartPriceWithoutDiscountCode();
+        if (price > buyer.getMoney()) {
+            return "Error: not enough money";
+        }
+        buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
+        try {
+            Database.getInstance().saveUser(buyer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        cart.buy(buyer.getUsername(), address);
+        return "Successful:";
+    }
+
+    public String buy(String address,String discountID) {
+        if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
+            return "Error: must be a buyer to buy items";
+        }
+        Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
+        Cart cart = Controller.getInstance().getCurrentShoppingCart();
         double price = cart.getCartPriceWithDiscountCode();
+        cart.setDiscountCode(SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID));
         if (price > buyer.getMoney()) {
             return "Error: not enough money";
         }

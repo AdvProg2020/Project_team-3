@@ -21,13 +21,14 @@ public class BuyLog {
     private String address;
     private Double discountGrandTotal;
 
-    public BuyLog(String buyerName,String address) {
+    public BuyLog(String buyerName,String address,double discountGrandTotal) {
         allItemsID = new ArrayList<>();
         itemsSeller = new HashMap<>();
         itemsCount = new HashMap<>();
         itemsPrice = new HashMap<>();
         this.buyerName = buyerName;
         this.address = address;
+        this.discountGrandTotal = discountGrandTotal;
     }
 
     public void addItem(double price, int count, String itemID, String sellerName) {
