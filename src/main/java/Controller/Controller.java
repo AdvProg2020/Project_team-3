@@ -4,6 +4,7 @@ import Model.Cart;
 import Model.Users.User;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,8 +85,9 @@ public class Controller {
 
     public void updateDateAndTime(){
         //in miad discount code hayi ke tarikh gozashte hastan va sale haye tarikh gozashte ro pak mikone
-        SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales();
-        SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes();
+        LocalDateTime currentTime = LocalDateTime.now();
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales(currentTime);
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes(currentTime);
     }
 
 

@@ -229,11 +229,23 @@ public class SaleAndDiscountCodeController {
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
     }
 
-    protected void deleteDeprecatedDiscountCodes(){
+    protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime){
+        ArrayList<DiscountCode> allDiscountCodes = getAllDiscountCodesFromDataBase();
+        for(DiscountCode discountCode:allDiscountCodes){
+            if(discountCode.getEndTime().isBefore(currentTime)){
+                deleteDiscountCode(discountCode.getDiscountId());
+            }
+        }
 
     }
 
-    protected void deleteDeprecatedSales(){
+    protected void deleteDeprecatedSales(LocalDateTime currentTime){
+        ArrayList<Sale> allSales = getAllSaleFromDataBase();
+        for(Sale sale:allSales){
+            if(sale.getEndTime().isBefore(currentTime)){
+                deleteSale(sale.getId());
+            }
+        }
 
     }
 }

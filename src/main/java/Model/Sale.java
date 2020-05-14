@@ -3,13 +3,14 @@ package Model;
 import Controller.Controller;
 import Controller.ItemAndCategoryController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Sale {
     private String id;
     private ArrayList<String> itemId = new ArrayList<>();
-    private int startTime;
-    private int endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private int offPercentage;
 
     private enum Status {accepted, addingProcess, editingProcess}
@@ -17,7 +18,7 @@ public class Sale {
     ;
     Status status;
 
-    public Sale(int startTime, int endTime, int offPercentage) {
+    public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.offPercentage = offPercentage;
@@ -36,11 +37,11 @@ public class Sale {
         status = Status.addingProcess;
     }
 
-    public int getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public int getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
@@ -48,11 +49,11 @@ public class Sale {
         return offPercentage;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
