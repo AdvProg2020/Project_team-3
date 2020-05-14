@@ -22,7 +22,7 @@ public class View {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void run() {
-        System.out.println(ANSI_RED + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "Team 3 MVC Shop Project, Phase 1 ..." + ANSI_RESET);
         while (programRunning) {
             Controller.getInstance().updateDateAndTime();
             currentMenu.run();

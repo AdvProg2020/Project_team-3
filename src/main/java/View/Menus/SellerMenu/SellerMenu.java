@@ -70,7 +70,7 @@ public class SellerMenu extends UserMenu {
             return;
         }
         if(command.equals("view offs")){
-            viewAllOffs();
+            SellerManageOffsMenu.getInstance().viewAllOffs();
             View.setCurrentMenu(SellerManageOffsMenu.getInstance());
             return;
         }
@@ -163,9 +163,6 @@ public class SellerMenu extends UserMenu {
 
     }
 
-    private void viewAllOffs(){
-
-    }
 
     public void viewBalance(){
         Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();

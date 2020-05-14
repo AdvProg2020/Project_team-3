@@ -102,12 +102,15 @@ public class CartMenu extends Menu {
 
     public void purchase(){
        if(Controller.getInstance().isLogin()==false){
-           System.out.println("Error: please login to continue");
+           System.out.println("Error: You must be logged in.");
+           LoginRegisterMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
+           LoginRegisterMenu.getInstance().setIntendedMenu("PurchaseMenu");
+           View.setCurrentMenu(LoginRegisterMenu.getInstance());
            return;
        }
        if(UserController.getInstance().returnUserType(UserController.getInstance().getCurrentOnlineUser().getUsername()).equals("Buyer")){
-           View.setCurrentMenu(PurchaseMenu.getInstance());
            PurchaseMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
+           View.setCurrentMenu(PurchaseMenu.getInstance());
            return;
        }
           System.out.println("you must be a Buyer to buy items");

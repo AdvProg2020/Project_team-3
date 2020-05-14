@@ -2,6 +2,7 @@ package Controller;
 
 import Model.DiscountCode;
 import Model.Sale;
+import Model.Users.Seller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -70,11 +71,47 @@ public class SaleAndDiscountCodeController {
         return true;
     }
 
-    public String addSale(Sale sale) {
+    public String getSellerSalesString(String username){
+        String ans = "ID          off percentage       ends in\n";
+        for (Sale sale:getSellerSales(username)){
+            ans += sale.toSimpleString() + "\n";
+        }
+        return ans;
+    }
+
+    public String addSale(LocalDateTime startTime,LocalDateTime endTime, int offPercentage,ArrayList<String> saleItems){
+        if(!endTime.isAfter(startTime)){
+            return "Error: ending time is after the starting time!";
+        }
+        Seller seller = (Seller)UserController.getInstance().getCurrentOnlineUser();
+        for(String item:saleItems){
+            if(!seller.hasItem(item)){
+                return "Error: you do not have "+item+" in stock.";
+            }
+        }
+        Sale sale = new Sale(startTime,endTime,offPercentage,UserController.getInstance().getCurrentOnlineUser().getUsername(),saleItems);
+        String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
+        RequestController.getInstance().addSaleRequest(requestID,sale);
+        return "Successful: your request to add the sale was sent to the admins.";
+    }
+
+    public ArrayList<Sale> getSellerSales(String username){
+        if(!(UserController.getInstance().getUserByUsername(username) instanceof Seller)){
+            return null;
+        }
+        ArrayList<Sale> allSales = getAllSaleFromDataBase();
+        ArrayList<Sale> ans = new ArrayList<>();
+        for(Sale sale:allSales){
+            if(sale.getSellerUsername().equals(username)) ans.add(sale);
+        }
+        return ans;
+    }
+
+    /*public String addSale(Sale sale) {
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addSaleRequest(requestID, sale);
         return "your request for adding Sale was sent to our Admins!";
-    }
+    }*/
 
     public String deleteSale(String id) {
         Sale sale = getSaleById(id);
@@ -92,6 +129,10 @@ public class SaleAndDiscountCodeController {
         }
         Database.getInstance().deleteDiscountCode(code);
         return "Successful";
+    }
+
+    public void giveRandomDiscountCode(){
+
     }
 
     public boolean isThereDiscountCodeWithId(String id) {
@@ -140,7 +181,7 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
-    public String printItemsWithSale() {
+    /*public String printItemsWithSale() {
         ArrayList<Sale> allSale = getAllSaleFromDataBase();
         String string = "";
         for (Sale sale : allSale) {
@@ -150,7 +191,7 @@ public class SaleAndDiscountCodeController {
             return "there are no sales right now.";
         }
         return string;
-    }
+    }*/
 
     public ArrayList<String> getAllItemsIDWithSale(){
         ArrayList<Sale> allSale = getAllSaleFromDataBase();

@@ -56,8 +56,8 @@ public class SaleAndDiscountCodeControllerTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        Sale sale=new Sale(dateTime,dateTime1,20);
-        SaleAndDiscountCodeController.getInstance().addSale(sale);
+
+        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,null);
         ArrayList<Request> allRequest=RequestController.getInstance().getAllRequestFromDataBase();
         //System.out.println(allRequest.size());
          for(Request request:allRequest){

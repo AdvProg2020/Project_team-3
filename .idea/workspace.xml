@@ -21,12 +21,35 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SortAndFilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SortAndFilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/SortAndFilterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/SortAndFilterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/SortAndFilterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/SortAndFilterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Sale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/CartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/LoginRegisterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageOffsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerManageOffsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/SellerMenu/SellerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Controller/SaleAndDiscountCodeControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Controller/SaleAndDiscountCodeControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller/SaleAndDiscountCodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/SaleAndDiscountCodeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/DiscountCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/DiscountCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Logs/BuyLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Logs/BuyLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Logs/SaleLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Logs/SaleLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Sale$Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Sale$Status.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Sale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Sale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/CartMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/LoginRegisterMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/LoginRegisterMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerManageOffsMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerManageOffsMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/SellerMenu/SellerMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ShopAndDiscountMenu/ShopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ShopAndDiscountMenu/ShopMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Menus/ShopAndDiscountMenu/SortAndFilterMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Menus/ShopAndDiscountMenu/SortAndFilterMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/Controller/SaleAndDiscountCodeControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Controller/SaleAndDiscountCodeControllerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +169,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SaleAndDiscountCodeControllerTest.addSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_team-3" />
       <extension name="coverage">
         <pattern>
@@ -155,8 +178,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Controller" />
-      <option name="MAIN_CLASS_NAME" value="Controller.UserControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="Controller.SaleAndDiscountCodeControllerTest" />
+      <option name="METHOD_NAME" value="addSale" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,10 +188,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SaleAndDiscountCodeControllerTest.addSale" />
         <item itemvalue="JUnit.RequestControllerTest" />
         <item itemvalue="JUnit.SaleAndDiscountCodeControllerTest" />
         <item itemvalue="JUnit.ItemAndCategoryControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -664,42 +688,42 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="420" y="217" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1588413377104" />
-    <state width="914" height="38" key="GridCell.Tab.0.bottom" timestamp="1589489942561">
+    <state width="1877" height="547" key="GridCell.Tab.0.bottom" timestamp="1589496225818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="662" height="197" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1589485155114" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1588439324726" />
-    <state width="914" height="38" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589489942561" />
+    <state width="1877" height="547" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589496225818" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207499" />
     <state width="875" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092564" />
     <state width="875" height="279" key="GridCell.Tab.0.bottom/0.23.1792.1029@0.23.1792.1029" timestamp="1589441029225" />
     <state width="875" height="279" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1589441295566" />
-    <state width="914" height="38" key="GridCell.Tab.0.center" timestamp="1589489942561">
+    <state width="1877" height="547" key="GridCell.Tab.0.center" timestamp="1589496225818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="662" height="197" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1589485155113" />
     <state width="875" height="277" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1588439324725" />
-    <state width="914" height="38" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589489942561" />
+    <state width="1877" height="547" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589496225818" />
     <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092563" />
     <state width="875" height="279" key="GridCell.Tab.0.center/0.23.1792.1029@0.23.1792.1029" timestamp="1589441029224" />
     <state width="875" height="279" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1589441295565" />
-    <state width="914" height="38" key="GridCell.Tab.0.left" timestamp="1589489942561">
+    <state width="1877" height="547" key="GridCell.Tab.0.left" timestamp="1589496225817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="662" height="197" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1589485155113" />
     <state width="875" height="277" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1588439324725" />
-    <state width="914" height="38" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589489942561" />
+    <state width="1877" height="547" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589496225817" />
     <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092563" />
     <state width="875" height="279" key="GridCell.Tab.0.left/0.23.1792.1029@0.23.1792.1029" timestamp="1589441029224" />
     <state width="875" height="279" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1589441295565" />
-    <state width="914" height="38" key="GridCell.Tab.0.right" timestamp="1589489942561">
+    <state width="1877" height="547" key="GridCell.Tab.0.right" timestamp="1589496225818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="662" height="197" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1589485155114" />
     <state width="875" height="277" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1588439324726" />
-    <state width="914" height="38" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589489942561" />
+    <state width="1877" height="547" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589496225818" />
     <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1586705207498" />
     <state width="875" height="277" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1586711092564" />
     <state width="875" height="279" key="GridCell.Tab.0.right/0.23.1792.1029@0.23.1792.1029" timestamp="1589441029225" />
@@ -774,10 +798,10 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="404" y="159" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.984@0.0.1280.984" timestamp="1589298268957" />
-    <state x="657" y="118" width="606" height="804" key="find.popup" timestamp="1589486808753">
+    <state x="657" y="118" width="606" height="804" key="find.popup" timestamp="1589492434037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="657" y="118" width="606" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589486808753" />
+    <state x="657" y="118" width="606" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589492434037" />
     <state x="398" y="295" key="git4idea.merge.GitPullDialog" timestamp="1586970399370">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -806,37 +830,25 @@
     <state x="561" y="249" width="670" height="679" key="search.everywhere.popup/0.23.1792.1029@0.23.1792.1029" timestamp="1589225363534" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_returnUserType.ic" NAME="UserControllerTest.returnUserType Coverage Results" MODIFIED="1589298120076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1589485319727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_acceptRequest.ic" NAME="RequestControllerTest.acceptRequest Coverage Results" MODIFIED="1589477189181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getAllUserFromDataBase.ic" NAME="UserControllerTest.getAllUserFromDataBase Coverage Results" MODIFIED="1589297986424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addCategory.ic" NAME="ItemAndCategoryControllerTest.addCategory Coverage Results" MODIFIED="1589480406667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_login.ic" NAME="UserControllerTest.login Coverage Results" MODIFIED="1589476799589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_editPersonalInfo.ic" NAME="UserControllerTest.editPersonalInfo Coverage Results" MODIFIED="1589297542356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$SaleAndDiscountCodeControllerTest_deleteSale.ic" NAME="SaleAndDiscountCodeControllerTest.deleteSale Coverage Results" MODIFIED="1589478066505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_getCategoryByName.ic" NAME="ItemAndCategoryControllerTest.getCategoryByName Coverage Results" MODIFIED="1589479962812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$SaleAndDiscountCodeControllerTest.ic" NAME="SaleAndDiscountCodeControllerTest Coverage Results" MODIFIED="1589485337645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getUserByUsername.ic" NAME="UserControllerTest.getUserByUsername Coverage Results" MODIFIED="1589289650624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidPhoneNumber.ic" NAME="UserControllerTest.isValidPhoneNumber Coverage Results" MODIFIED="1589298101207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_returnUserType.ic" NAME="UserControllerTest.returnUserType Coverage Results" MODIFIED="1589298120076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1589485319727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest.ic" NAME="ItemAndCategoryControllerTest Coverage Results" MODIFIED="1589485328875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_getCategoryByName.ic" NAME="ItemAndCategoryControllerTest.getCategoryByName Coverage Results" MODIFIED="1589479962812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$SaleAndDiscountCodeControllerTest_addSale.ic" NAME="SaleAndDiscountCodeControllerTest.addSale Coverage Results" MODIFIED="1589477998819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -845,33 +857,45 @@
     <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest.ic" NAME="RequestControllerTest Coverage Results" MODIFIED="1589485344265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidEmail.ic" NAME="UserControllerTest.isValidEmail Coverage Results" MODIFIED="1589298084934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_validateMoney.ic" NAME="UserControllerTest.validateMoney Coverage Results" MODIFIED="1589286483642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addItem.ic" NAME="ItemAndCategoryControllerTest.addItem Coverage Results" MODIFIED="1589480095037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_editItemRequest.ic" NAME="RequestControllerTest.editItemRequest Coverage Results" MODIFIED="1589373785954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_comment.ic" NAME="ItemAndCategoryControllerTest.comment Coverage Results" MODIFIED="1589374326931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_acceptRequest.ic" NAME="RequestControllerTest.acceptRequest Coverage Results" MODIFIED="1589477189181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidEmail.ic" NAME="UserControllerTest.isValidEmail Coverage Results" MODIFIED="1589298084934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_editPersonalInfo.ic" NAME="UserControllerTest.editPersonalInfo Coverage Results" MODIFIED="1589297542356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest.ic" NAME="ItemAndCategoryControllerTest Coverage Results" MODIFIED="1589485328875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_validateMoney.ic" NAME="UserControllerTest.validateMoney Coverage Results" MODIFIED="1589286483642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_login.ic" NAME="UserControllerTest.login Coverage Results" MODIFIED="1589476799589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_declineRequest.ic" NAME="RequestControllerTest.declineRequest Coverage Results" MODIFIED="1589373826033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_deleteUser.ic" NAME="UserControllerTest.deleteUser Coverage Results" MODIFIED="1589290545356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ControllerTest.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_getAllUserFromDataBase.ic" NAME="UserControllerTest.getAllUserFromDataBase Coverage Results" MODIFIED="1589297986424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ControllerTest.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$RequestControllerTest_declineRequest.ic" NAME="RequestControllerTest.declineRequest Coverage Results" MODIFIED="1589373826033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Project_team_3$All_in_Project_team_3.ic" NAME="All in Project_team-3 Coverage Results" MODIFIED="1589485250066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_team_3$ItemAndCategoryControllerTest_addItem.ic" NAME="ItemAndCategoryControllerTest.addItem Coverage Results" MODIFIED="1589480095037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Project_team_3$All_in_Project_team_3.ic" NAME="All in Project_team-3 Coverage Results" MODIFIED="1589485250066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Project_team_3$SaleAndDiscountCodeControllerTest_deleteSale.ic" NAME="SaleAndDiscountCodeControllerTest.deleteSale Coverage Results" MODIFIED="1589478066505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$SaleAndDiscountCodeControllerTest.ic" NAME="SaleAndDiscountCodeControllerTest Coverage Results" MODIFIED="1589485337645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project_team_3$UserControllerTest_isValidPhoneNumber.ic" NAME="UserControllerTest.isValidPhoneNumber Coverage Results" MODIFIED="1589298101207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ControllerTest.*</FILTER>
+    </SUITE>
   </component>
 </project>

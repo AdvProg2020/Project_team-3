@@ -87,7 +87,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
     }
 
     private void editDiscountCode(String discountID) {
-        if (SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID) == false) {
+        if (!SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)) {
             System.out.println("Error: invalid ID");
             return;
         }
@@ -114,7 +114,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
     }
 
     private void viewAllDiscountCodes() {
-        ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("Discount Codes");
+        ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("DiscountCodes");
         printList(allDiscountCodes);
     }
 }
