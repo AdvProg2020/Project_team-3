@@ -21,16 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DiscountCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/BuyLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Logs/SaleLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Users/Buyer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminManageDiscountCodesMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,13 +221,6 @@
       <workItem from="1589382509197" duration="3439000" />
       <workItem from="1589438745803" duration="2957000" />
       <workItem from="1589456488626" duration="2805000" />
-    </task>
-    <task id="LOCAL-00011" summary="added methods to Controller">
-      <created>1586886157608</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1586886157608</updated>
     </task>
     <task id="LOCAL-00012" summary="added methods to Item">
       <created>1586887215487</created>
@@ -573,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589411640459</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="made small fixes for DiscountCode :)">
+      <created>1589466346177</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1589466346178</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add item to cart added!" />
     <MESSAGE value="small fixes!" />
     <MESSAGE value="buy log sell Log!" />
     <MESSAGE value="mange request and some other features!" />
@@ -618,7 +609,8 @@
     <MESSAGE value="made small fixes" />
     <MESSAGE value="made small changes" />
     <MESSAGE value="added SellerEditItemMenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="added SellerEditItemMenu" />
+    <MESSAGE value="made small fixes for DiscountCode :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="made small fixes for DiscountCode :)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -656,11 +648,11 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="637" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1589385020396" />
-    <state x="514" y="117" key="CommitChangelistDialog2" timestamp="1589411633500">
+    <state x="514" y="117" key="CommitChangelistDialog2" timestamp="1589466341416">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1589128633979" />
-    <state x="514" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589411633500" />
+    <state x="514" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589466341416" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1029@0.23.1792.1029" timestamp="1588420415868" />
@@ -750,11 +742,11 @@
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1029@0.23.1792.1029" timestamp="1589441711265" />
-    <state x="496" y="275" key="Vcs.Push.Dialog.v2" timestamp="1589441347367">
-      <screen x="0" y="23" width="1792" height="1029" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589466349121">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589128687969" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589411644501" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589466349121" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />

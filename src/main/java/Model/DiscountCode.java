@@ -81,4 +81,14 @@ public class DiscountCode {
 
         }
     }
+
+    public void useDiscountCode(String username){
+        int currentCount = usageCount.get(username);
+        currentCount--;
+        usageCount.replace(username,currentCount);
+    }
+
+    public boolean userCanUse(String username){
+        return (usageCount.get(username) > 0);
+    }
 }

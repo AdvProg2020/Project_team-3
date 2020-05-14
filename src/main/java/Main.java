@@ -19,14 +19,14 @@ public class Main {
 //darkhast ezafeye sell
 
 //eslah discount code
-//didan discount code haye karbar
+
 // adam tavanayi estefade az code takhfif bad az chand bar
 
 //filter bar asas attribute     //mirza
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 //safhe haraj ride
 
-//time: tabe'e deprecate shode ye kari beshe <=> discountCode hamintor
+
 //discount code , sale , log ha <= time daran
 //method e passtime tuye view => miad discountcode haye expire shodaro hazf mikone va besorate random be karbara code takhfif ba darsad random o ina mide
 //age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal)

@@ -19,6 +19,7 @@ public class BuyLog {
     private String deliveryState;
     private String buyerName;
     private String address;
+    private Double discountGrandTotal;
 
     public BuyLog(String buyerName,String address) {
         allItemsID = new ArrayList<>();
@@ -41,6 +42,7 @@ public class BuyLog {
     @Override
     public String toString() {
         String ans ="Total sum:"+totalPrice()+"   "+time.toString();
+        ans += "\nDiscount:" + discountGrandTotal;
         ans += "\nAddress:" + address;
         ans += "\nitem ID        price       seller          count\n";
 
@@ -88,5 +90,9 @@ public class BuyLog {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    public void setDiscountGrandTotal(Double discountGrandTotal) {
+        this.discountGrandTotal = discountGrandTotal;
     }
 }
