@@ -152,6 +152,17 @@ public class SaleAndDiscountCodeController {
         return string;
     }
 
+    public ArrayList<String> getAllItemsIDWithSale(){
+        ArrayList<Sale> allSale = getAllSaleFromDataBase();
+        ArrayList<String> itemsID = new ArrayList<>();
+
+        for(Sale sale:allSale){
+            itemsID.addAll(sale.getAllItemId());
+        }
+
+        return itemsID;
+    }
+
     public String editDiscountCodePercentage(String discountID, int percentage) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {

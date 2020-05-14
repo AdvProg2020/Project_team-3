@@ -21,7 +21,6 @@ public class Main {
 
 //filter bar asas attribute     //mirza
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
-//safhe haraj ride
 
 //seller ke delete mishe itemasham delete beshe az category//mirza
 

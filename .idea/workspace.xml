@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="24eca9d0-438e-44dc-94b8-2228ccb90737" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/AdminMenu/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SaleAndDiscountCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Sale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/DiscountsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Menus/ShopAndDiscountMenu/DiscountsMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,13 +212,6 @@
       <workItem from="1589438745803" duration="2957000" />
       <workItem from="1589456488626" duration="2805000" />
       <workItem from="1589470893846" duration="527000" />
-    </task>
-    <task id="LOCAL-00017" summary="small fixes in the fields of buyer or seller!">
-      <created>1586970391813</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1586970391813</updated>
     </task>
     <task id="LOCAL-00018" summary="small fixes added to Seller and buyer">
       <created>1586971346533</created>
@@ -555,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589486180884</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="removed duplicate methods :)&#10;added println message to readNumber">
+      <created>1589486915163</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1589486915163</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="enum added!" />
     <MESSAGE value="a" />
     <MESSAGE value="fixed registerAdmin return message" />
     <MESSAGE value="fixed adminmenu back" />
@@ -600,7 +600,8 @@
     <MESSAGE value="fixed sale edit date request bug :D" />
     <MESSAGE value="fixed Gson reflective bug :)" />
     <MESSAGE value="fixed LocalDateTime 'at' &lt;3" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed LocalDateTime 'at' &lt;3" />
+    <MESSAGE value="removed duplicate methods :)&#10;added println message to readNumber" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed duplicate methods :)&#10;added println message to readNumber" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="198" key="#Notifications" timestamp="1586627765726">
@@ -638,11 +639,11 @@
       <screen x="0" y="23" width="1792" height="1029" />
     </state>
     <state x="637" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1029@0.23.1792.1029" timestamp="1589385020396" />
-    <state x="930" y="143" key="CommitChangelistDialog2" timestamp="1589486175086">
+    <state x="930" y="143" key="CommitChangelistDialog2" timestamp="1589486910150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="107" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1589128633979" />
-    <state x="930" y="143" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589486175086" />
+    <state x="930" y="143" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589486910150" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1586627782952" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1028@0.23.1792.1028" timestamp="1586711100625" />
     <state x="479" y="135" key="CommitChangelistDialog2/0.23.1792.1029@0.23.1792.1029" timestamp="1588420415868" />
@@ -733,11 +734,11 @@
     </state>
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1586627357368" />
     <state x="384" y="114" key="SettingsEditor/0.23.1792.1029@0.23.1792.1029" timestamp="1589441711265" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589486184362">
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2" timestamp="1589486920048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="354" y="240" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1589128687969" />
-    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589486184362" />
+    <state x="531" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589486920048" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1024@0.23.1792.1024" timestamp="1586703445554" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1026@0.23.1792.1026" timestamp="1586714382119" />
     <state x="496" y="273" key="Vcs.Push.Dialog.v2/0.23.1792.1028@0.23.1792.1028" timestamp="1586628138286" />

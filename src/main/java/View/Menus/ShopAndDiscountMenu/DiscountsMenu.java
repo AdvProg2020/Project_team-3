@@ -1,6 +1,7 @@
 package View.Menus.ShopAndDiscountMenu;
 
 import Controller.SaleAndDiscountCodeController;
+import Controller.SortAndFilterController;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.Menu;
 import View.Menus.View;
@@ -76,7 +77,7 @@ public class DiscountsMenu extends Menu {
     }
 
     public void offs() {
-        System.out.println(SaleAndDiscountCodeController.getInstance().printItemsWithSale());
+        System.out.println(SortAndFilterController.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale()));
     }
 
 }

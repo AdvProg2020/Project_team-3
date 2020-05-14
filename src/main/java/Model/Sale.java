@@ -65,6 +65,10 @@ public class Sale {
         return id;
     }
 
+    public ArrayList<String> getAllItemId() {
+        return itemId;
+    }
+
     public void addItemToSale(String Id) {
         itemId.add(id);
     }

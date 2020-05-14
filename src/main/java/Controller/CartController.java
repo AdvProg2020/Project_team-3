@@ -98,6 +98,11 @@ public class CartController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            Database.getInstance().saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cart.buy(buyer.getUsername(), address);
         return "Successful:";
     }
