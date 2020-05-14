@@ -30,6 +30,9 @@ public class Sale {
 
     public void acceptStatus() {
         status = Status.accepted;
+        for(String ID : itemId){
+            ItemAndCategoryController.getInstance().getItemById(ID).setSale(this);
+        }
     }
 
     public void editStatus() {

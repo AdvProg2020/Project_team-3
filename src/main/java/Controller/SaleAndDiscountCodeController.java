@@ -88,6 +88,9 @@ public class SaleAndDiscountCodeController {
             if(!seller.hasItem(item)){
                 return "Error: you do not have "+item+" in stock.";
             }
+            if(ItemAndCategoryController.getInstance().getItemById(item).isInSale()){
+                return "Error: "+item+" is already in a sale.";
+            }
         }
         Sale sale = new Sale(startTime,endTime,offPercentage,UserController.getInstance().getCurrentOnlineUser().getUsername(),saleItems);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");

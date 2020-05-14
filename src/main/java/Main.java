@@ -11,16 +11,20 @@ public class Main {
     }
 }
 
+
+
+
 //edit category
 
 //edit sale
+
 //darkhast ezafeye sell
 
+// mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!!
+// item o ina ham hamintor
 
 
 
-
-//MOHEM: har item dar aane vahed mitone toye 1 sale bashe va sale motalegh be foroshande hast!
 
 //teste addSale fail shod chon ba method e kosshere kiri ke hazf kardam neveshte shode bod kir tosh miram pakesh mikonam
 
