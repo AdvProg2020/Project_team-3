@@ -141,20 +141,22 @@ public class SellerMenu extends UserMenu {
         double price=readDoubleNumber("please enter item price");
         int inStock=readNumber(-1,"how many of this item do you wish to sell?");
         String category=readName("please enter category name");
-       HashMap<String,String> attribute=new HashMap<>();
-        ArrayList<String> attributeValue=new ArrayList<>();
-        while(true){
-            System.out.println("please enter a new attribute. (type next to continue)");
-            String a=View.getRead().nextLine();
-            if(a.equals("next")){
-                break;
-            }
-            System.out.println("please enter attribute value.");
-            String b=View.getRead().nextLine();
-            attributeValue.add(a);
-            attribute.put(a,b);
+        if(ItemAndCategoryController.getInstance().isThereCategoryWithName(category)==false){
+            System.out.println("Error: invalid category Name");
+            return;
         }
-        System.out.println(ItemAndCategoryController.getInstance().addItem(Name,company,description,price,inStock,category,attributeValue,attribute));
+        HashMap<String,String> attributeValue=new HashMap<>();
+        ArrayList<String> attributeKey=ItemAndCategoryController.getInstance().getCategoryByName(category).getAttributes();
+        System.out.println("please enter the attribute value(enter exit to quit the process)");
+        for (String key : attributeKey) {
+            System.out.println(key+":");
+            String value=View.getRead().nextLine();
+            if(value.equals("exit")){
+                return;
+            }
+            attributeValue.put(key,value);
+        }
+        System.out.println(ItemAndCategoryController.getInstance().addItem(Name,company,description,price,inStock,category,attributeValue));
     }
 
     public void removeProduct(){

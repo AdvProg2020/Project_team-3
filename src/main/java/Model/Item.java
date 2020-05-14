@@ -2,6 +2,8 @@ package Model;
 
 import Controller.Controller;
 import Controller.Database;
+import Controller.ItemAndCategoryController;
+import Controller.UserController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ public class Item {
     private int inStock;
     private int viewCount;
     private HashMap<String,String > attributes;
-    private ArrayList<String> attributesKey;
     private String sellerName;
     private String categoryName;
     private ArrayList<String>buyerUserName;
@@ -26,7 +27,7 @@ public class Item {
     private ArrayList<Comment>allComments;
     private Sale sale;
     //constructor
-    public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,ArrayList<String> attributesKey,int inStock){
+    public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
         this.brand=brand;
         this.description=description;
@@ -36,7 +37,6 @@ public class Item {
         this.sellerName=sellerName;
         this.categoryName=categoryName;
         this.attributes=attributes;
-        this.attributesKey=attributesKey;
         this.inStock=inStock;
         this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Items");
         timesBought=0;
@@ -44,11 +44,27 @@ public class Item {
         allComments=new ArrayList<>();
         buyerUserName=new ArrayList<>();
     }
+
+    public Item(Item item){
+        this.name=item.name;
+        this.brand=item.brand;
+        this.description=item.description;
+        this.state=item.state;
+        this.price=item.price;
+        this.timesBought=0;
+        this.sellerName=item.sellerName;
+        this.categoryName=item.categoryName;
+        this.attributes=item.attributes;
+        this.inStock=item.inStock;
+        this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Items");
+        timesBought=0;
+        allRatings=new ArrayList<>();
+        allComments=new ArrayList<>();
+        buyerUserName=new ArrayList<>();
+        UserController.getInstance().assignItemToSeller(id,sellerName);
+    }
     //getters
 
-    public ArrayList<String> getAttributesKey() {
-        return attributesKey;
-    }
 
     public boolean isInStock(){
         if(inStock==0)
@@ -230,11 +246,13 @@ public class Item {
 
     public String showAttributes(){
         String string="";
+        ArrayList<String> attributesKey= ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getAttributes();
         for (String key : attributesKey) {
             string+=key+":"+attributes.get(key)+"/n";
         }
         return string;
     }
+
     public boolean hasAttribute(String key){
         return attributes.containsKey(key);
     }

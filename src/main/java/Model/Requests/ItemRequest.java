@@ -13,12 +13,12 @@ public class ItemRequest  extends Request {
     }
 
     public Item getNewItem() {
-        return newItem;
+        return new Item(newItem);
     }
 
     @Override
     public String toString(){
-        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Item Brand:"+newItem.getBrand()+"\n";
+        return "item Name: "+newItem.getName()+"\n"+"type: "+getType()+"\n"+"Item Brand:"+newItem.getBrand()+"\n";
     }
 
 

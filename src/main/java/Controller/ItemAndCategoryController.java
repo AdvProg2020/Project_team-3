@@ -38,6 +38,7 @@ public class ItemAndCategoryController {
             return "Error: item doesn't exist";
         }
         Database.getInstance().deleteItem(item);
+        UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
         return "Successful:";
     }
 
@@ -122,7 +123,7 @@ public class ItemAndCategoryController {
             return "Error: invalid id";
         }
         String string;
-        ArrayList<String> attributesKey = item1.getAttributesKey();
+        ArrayList<String> attributesKey = ItemAndCategoryController.getInstance().getCategoryByName(item1.getCategoryName()).getAttributes();
         HashMap<String, String> item1Attributes = item1.getAttributes();
         HashMap<String, String> item2Attributes = item2.getAttributes();
         string = "price: " + item1.getPriceWithSale() + "----" + item2.getPrice() + "\n";
@@ -231,11 +232,11 @@ public class ItemAndCategoryController {
     }
 
 
-    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, ArrayList<String> attributeValue, HashMap<String, String> attribute) {
+    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName,  HashMap<String, String> attribute) {
         if (!isThereCategoryWithName(categoryName)) {
             return "Error: invalid category name";
         }
-        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, attributeValue, instock);
+        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute,  instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: your request to add the item was sent to the admins.";

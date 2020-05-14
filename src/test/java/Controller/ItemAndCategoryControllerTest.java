@@ -89,7 +89,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<String>attributeKey=new ArrayList<>();
         HashMap<String ,String> attributes=new HashMap<>();
         ItemAndCategoryController.getInstance().addItem("Vaccum","Reza",
-                "this is nice",400,300,"lavazem manzel",attributeKey
+                "this is nice",400,300,"lavazem manzel"
         ,attributes);
 
     }

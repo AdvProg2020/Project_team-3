@@ -74,9 +74,13 @@ public class Seller extends User {
         return soldItemsId.contains(id);
     }
 
-    public void addAllItemID(String id) {
+    public void addItemID(String id) {
+        allItemsId.add(id);
     }
 
+    public void deleteItem(String itemId){
+        allItemsId.remove(itemId);
+    }
     public boolean hasItem(String id) {
         return allItemsId.contains(id);
     }

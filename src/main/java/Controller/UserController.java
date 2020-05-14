@@ -239,4 +239,29 @@ public class UserController {
         }
     }
 
+    public void assignItemToSeller(String id,String username){
+        User user=getUserByUsername(username);
+        if(user instanceof Seller){
+            Seller seller=(Seller) user;
+            seller.addItemID(id);
+            try {
+                Database.getInstance().saveUser(seller);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void deleteItemFromSeller(String id,String username){
+        User user=getUserByUsername(username);
+        if(user instanceof Seller){
+            Seller seller=(Seller) user;
+            seller.removeItem(id);
+            try {
+                Database.getInstance().saveUser(seller);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

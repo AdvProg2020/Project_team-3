@@ -30,7 +30,6 @@ public class MainMenu extends Menu {
     }
 
     public void execute(String command){
-        System.out.println(command);
         if(command.equals("1")){
             userMenu();
         }else if(command.equals("2")){
@@ -58,6 +57,8 @@ public class MainMenu extends Menu {
             SortAndFilterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
             View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
+        }else if(command.equals("logout")){
+            System.out.println(UserController.getInstance().logout());
         }
         else{
             System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
