@@ -1,0 +1,14 @@
+{
+  "newSale": {
+    "id": "BhXec",
+    "itemId": [],
+    "startTime": 2300,
+    "endTime": 4500,
+    "offPercentage": 20,
+    "status": "addingProcess"
+  },
+  "requestId": "Q9rpI",
+  "message": "new Model.Sale with IdBhXecis requested for being add to your System!",
+  "isAccepted": false,
+  "type": "SaleRequest"
+}
