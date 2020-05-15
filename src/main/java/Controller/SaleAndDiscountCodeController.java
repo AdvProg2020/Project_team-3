@@ -254,7 +254,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount,double maxDiscount) {
-        if(endTime.isAfter(startTime)){
+        if(!endTime.isAfter(startTime)){
             return "Error: ending time is after the starting time!";
         }
         DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount,maxDiscount);
@@ -287,7 +287,7 @@ public class SaleAndDiscountCodeController {
     protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime){
         ArrayList<DiscountCode> allDiscountCodes = getAllDiscountCodesFromDataBase();
         for(DiscountCode discountCode:allDiscountCodes){
-            if(discountCode.getEndTime().isAfter(currentTime)){
+            if(discountCode.getEndTime().isBefore(currentTime)){
                 deleteDiscountCode(discountCode.getDiscountId());
             }
         }
@@ -296,7 +296,7 @@ public class SaleAndDiscountCodeController {
     protected void deleteDeprecatedSales(LocalDateTime currentTime){
         ArrayList<Sale> allSales = getAllSaleFromDataBase();
         for(Sale sale:allSales){
-            if(sale.getEndTime().isAfter(currentTime)){
+            if(sale.getEndTime().isBefore(currentTime)){
                 deleteSale(sale.getId());
             }
         }
