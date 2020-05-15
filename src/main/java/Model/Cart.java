@@ -81,15 +81,18 @@ public class Cart {
     }
 
     public double getCartPriceWithDiscountCode() {
-        int code = 100;
         if (discountCode != null) {
+            int code;
             code = discountCode.getDiscountPercentage();
+
+            double totalDiscount = getCartPriceWithoutDiscountCode() - getCartPriceWithoutDiscountCode() * code / 100;
+            if (totalDiscount > discountCode.getMaxDiscount()) {
+                return getCartPriceWithoutDiscountCode() - discountCode.getMaxDiscount();
+            }
+            return getCartPriceWithoutDiscountCode() * (100 - code) / 100;
+        } else {
+            return getCartPriceWithoutDiscountCode();
         }
-        double totalDiscount = getCartPriceWithoutDiscountCode() - getCartPriceWithoutDiscountCode() * code / 100;
-        if(totalDiscount > discountCode.getMaxDiscount()){
-            return getCartPriceWithoutDiscountCode() - discountCode.getMaxDiscount();
-        }
-        return getCartPriceWithoutDiscountCode() * (100-code) / 100;
     }
 
     @Override
@@ -104,7 +107,7 @@ public class Cart {
     }
 
     public void buy(String buyerName, String address) {
-        BuyLog buyLog = new BuyLog(buyerName, address,getCartPriceWithoutDiscountCode()-getCartPriceWithDiscountCode(), LocalDateTime.now());
+        BuyLog buyLog = new BuyLog(buyerName, address, getCartPriceWithoutDiscountCode() - getCartPriceWithDiscountCode(), LocalDateTime.now());
         int count = 0;
         for (String itemID : allItemId) {
             double price = ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();

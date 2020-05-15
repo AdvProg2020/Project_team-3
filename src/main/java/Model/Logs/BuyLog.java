@@ -1,9 +1,11 @@
 package Model.Logs;
 
+import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Item;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +42,11 @@ public class BuyLog {
         Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
         item.addTimesBoughtBy(count);
         item.addBuyerUserName(buyerName);
+        try {
+            Database.getInstance().saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price, itemID, buyerName, count);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }
