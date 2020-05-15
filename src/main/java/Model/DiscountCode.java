@@ -32,6 +32,14 @@ public class DiscountCode {
         //this.allUsers=new HashMap<>();
     }
 
+    public int getUsageCountInt() {
+        return usageCountInt;
+    }
+
+    public void setUsageCountInt(int usageCountInt) {
+        this.usageCountInt = usageCountInt;
+    }
+
     @Override
     public String toString() {
         String ans = "DiscountCode ID:" + discountId + "   ";

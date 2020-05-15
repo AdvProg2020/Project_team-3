@@ -221,7 +221,7 @@ public class ItemAndCategoryController {
         return "Successful";
     }
 
-    public String addCategory(String name, ArrayList<String> attributes) {
+    /*public String addCategory(String name, ArrayList<String> attributes) {
         if (isThereCategoryWithName(name)) {
             return "Error: category with this name already exist";
         }
@@ -232,7 +232,7 @@ public class ItemAndCategoryController {
             e.printStackTrace();
         }
         return "Successful";
-    }
+    }*/
 
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
@@ -427,5 +427,10 @@ public class ItemAndCategoryController {
         if (item == null)
             return;
         item.addViewsBy(1);
+        try {
+            Database.getInstance().saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -74,20 +74,7 @@ public class RequestController {
         return null;
     }
 
-    public void giveDiscountCodeToUser(String discountID, String username) {
-        User user = UserController.getInstance().getUserByUsername(username);
-        if (SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID) == false) return;
-        if (!(user instanceof Buyer)) return;
-        //((Buyer) user).addDiscount(discountID);
-        DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID);
-        //discountCode.addUsage(username);
-        try {
-            Database.getInstance().saveUser(user);
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void addUserRequest(String requestID, Seller newUser) {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
@@ -203,7 +190,6 @@ public class RequestController {
         String newFieldValue = saleEdit.getNewFieldValue();
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
-
         if (changedField.equals("start Time")) {
             LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
             sale.setStartTime(date);
