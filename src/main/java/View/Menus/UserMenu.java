@@ -28,7 +28,6 @@ public abstract class UserMenu extends Menu {
     public void editPersonalInfo(String field) {
         String username = UserController.getInstance().getCurrentOnlineUser().getUsername();
         User user = UserController.getInstance().getUserByUsername(username);
-
         if (field.equalsIgnoreCase("Name")) {
             editName(username);
         } else if (field.equalsIgnoreCase("Surname")) {
