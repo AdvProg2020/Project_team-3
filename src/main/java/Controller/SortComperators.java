@@ -30,6 +30,7 @@ public class SortComperators {
     protected ArrayList<String> sortByRating(ArrayList<String> allItemsId) {
         ArrayList<Item> allItems = getAllItem(allItemsId);
         Collections.sort(allItems, new ratingComparator());
+        Collections.reverse(allItems);
         return getAllId(allItems);
     }
 
@@ -48,6 +49,7 @@ public class SortComperators {
     protected ArrayList<String> SortByCommentCount(ArrayList<String> allItemsId) {
         ArrayList<Item> allItems = getAllItem(allItemsId);
         Collections.sort(allItems, new commentCountComparator());
+        Collections.reverse(allItems);
         return getAllId(allItems);
     }
 

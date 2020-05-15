@@ -10,36 +10,35 @@ public class Main {
     }
 }
 
-//seller gable accept shudan natune login kone
-//item esmesh biad
-//request esmesh biad
-//discount code esmesh biad
-//beshe hame discount codaro did to admin
-//logout dar hamaje ye bar emtehan shaavd
-//to shop intendet set nemishe
-
-//edit category
-
-//edit sale
-
-//admin o seller natonan comment bezaran
-
-//darkhast ezafeye sell
-
-// mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!!
-// item o ina ham hamintor
 
 
+//request esmesh biad  mirza
+
+//discount code esmesh biad mirza
+
+//logout dar hamaje ye bar emtehan shaavd <= kolli
 
 
-//teste addSale fail shod chon ba method e kosshere kiri ke hazf kardam neveshte shode bod kir tosh miram pakesh mikonam
+//edit category mirza
 
-//age login nabod khast karaye khass bokone redirect beshe be loginRegisterMenu na inke serfan error begire  (safhe 18 doc khate 3,4)
+//edit sale arman
 
-//bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 
-//SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
-//age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal)
+//admin o seller natonan comment bezaran mirza
+
+// filter by attribute biad esme attribute ro begire badesh biad meghdare begire o ina. mirza
+
+//filter by sellername mirza
+
+//darkhast ezafeye sale arman
+
+// mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
+// item o ina ham hamintor (???)
+
+//SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode(); arman
+//age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal) arman
+
+
 
 
 
