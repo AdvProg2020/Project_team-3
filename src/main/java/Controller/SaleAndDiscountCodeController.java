@@ -284,6 +284,14 @@ public class SaleAndDiscountCodeController {
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
     }
 
+    public boolean canAddItemToSale(String itemID){
+        if(!(UserController.getInstance().getCurrentOnlineUser() instanceof Seller)){
+            return false;
+        }
+        Seller seller = (Seller)UserController.getInstance().getCurrentOnlineUser();
+        return (seller.hasItem(itemID) && !ItemAndCategoryController.getInstance().getItemById(itemID).isInSale());
+    }
+
     protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime){
         ArrayList<DiscountCode> allDiscountCodes = getAllDiscountCodesFromDataBase();
         for(DiscountCode discountCode:allDiscountCodes){
