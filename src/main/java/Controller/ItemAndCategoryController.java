@@ -448,4 +448,11 @@ public class ItemAndCategoryController {
             e.printStackTrace();
         }
     }
+
+    public double getScore(String itemID){
+        Item item = getItemById(itemID);
+        if(item==null)
+            return 0D;
+        return item.getRating();
+    }
 }

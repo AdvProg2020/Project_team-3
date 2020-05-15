@@ -22,6 +22,8 @@ public class Main {
 
 //edit sale
 
+//admin o seller natonan comment bezaran
+
 //darkhast ezafeye sell
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!!

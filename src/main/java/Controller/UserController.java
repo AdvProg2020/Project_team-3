@@ -55,7 +55,8 @@ public class UserController {
     }
 
     public User getCurrentOnlineUser() {
-        return controller.currentOnlineUser;
+        if(Controller.getInstance().currentOnlineUser == null) return null;
+        return getUserByUsername(Controller.getInstance().currentOnlineUser.getUsername());
     }
 
     public double currentOnlineUserBalance() {

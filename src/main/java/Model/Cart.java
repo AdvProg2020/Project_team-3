@@ -75,7 +75,7 @@ public class Cart {
     public double getCartPriceWithoutDiscountCode() {
         double price = 0;
         for (String id : allItemId) {
-            price += ItemAndCategoryController.getInstance().getItemById(id).getPrice() * allItemCount.get(id);
+            price += ItemAndCategoryController.getInstance().getItemById(id).getPriceWithSale() * allItemCount.get(id);
         }
         return price;
     }

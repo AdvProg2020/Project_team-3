@@ -75,6 +75,10 @@ public class ItemMenu extends Menu {
             LoginRegisterMenu.getInstance().logout();
             return;
         }
+        else if(command.equals("show score")){
+            showScore();
+            return;
+        }
 
         Matcher matcher=View.getMatcher("compare (\\S+)",command);
         if(matcher.matches()){
@@ -95,9 +99,7 @@ public class ItemMenu extends Menu {
         System.out.println("comments");
         System.out.println("add comment");
         System.out.println("back");
-        System.out.println("login (opens login/register panel)");
-        System.out.println("register (opens login/register panel");
-        System.out.println("logout");
+        System.out.println("show score");
     }
 
     public void digest() {
@@ -137,5 +139,9 @@ public class ItemMenu extends Menu {
 
     public void setItemID(String itemID) {
         this.itemID = itemID;
+    }
+
+    private void showScore(){
+        System.out.println(ItemAndCategoryController.getInstance().getScore(itemID));
     }
 }
