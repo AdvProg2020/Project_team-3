@@ -155,8 +155,8 @@ public class SaleAndDiscountCodeControllerTest {
     @Test
     public void addDiscountCode() {
         ArrayList<String>validUsers=new ArrayList<>();
-        String startTime="1400-02-25 22:30";
-        String endTime="1400-02-27 22:30";
+        String startTime="2014-02-25 22:30";
+        String endTime="2020-02-27 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);

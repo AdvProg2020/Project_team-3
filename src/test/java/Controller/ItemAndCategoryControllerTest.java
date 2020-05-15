@@ -69,6 +69,12 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void searchItemInCategory() {
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item=allItems.get(0);
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
+        Assert.assertTrue(ItemAndCategoryController.getInstance().searchItemInCategory(category.getName(),item.getId()));
+
 
     }
 
@@ -150,7 +156,7 @@ public class ItemAndCategoryControllerTest {
     public void addItem() {
         User seller =UserController.getInstance().getUserByUsername("Alireza");
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
-        //addCategory();
+        addCategory();
         HashMap<String,String>attributes=new HashMap<>();
         HashMap<String , String>attributes1=new HashMap();
         HashMap<String,String> attributes2=new HashMap<>();
@@ -191,7 +197,10 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getCategoryItems() {
-
+        ArrayList <String>allItems=ItemAndCategoryController.getInstance().getCategoryItems("lavazem manzel");
+        for(String id:allItems){
+            System.out.println(id);
+        }
     }
 
     @Test
