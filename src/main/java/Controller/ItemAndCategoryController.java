@@ -52,8 +52,8 @@ public class ItemAndCategoryController {
         if(user instanceof Buyer){
             return "Error: ";
         }
-        Database.getInstance().deleteItem(item);
         UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
+        Database.getInstance().deleteItem(item);
         return "Successful:";
     }
 
