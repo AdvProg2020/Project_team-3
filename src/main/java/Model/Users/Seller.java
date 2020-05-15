@@ -39,6 +39,10 @@ public class Seller extends User {
         return response;
     }
 
+    public Boolean getValid(){
+        return valid;
+    }
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
@@ -123,7 +127,7 @@ public class Seller extends User {
         return this.money;
     }
 
-    public void Validate() {
+    public void validate() {
         this.valid = true;
     }
 

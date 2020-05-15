@@ -137,6 +137,12 @@ public class UserController {
         if (!user.doesPasswordMatch(password)) {
             return "Error: Incorrect password!";
         }
+        if(user instanceof Seller){
+            Seller seller=(Seller) user;
+            if(!seller.getValid()){
+                return "Error: your account is not accepted yet";
+            }
+        }
         controller.currentOnlineUser = user;
         Controller.getInstance().setCurrentOnlineUser(user);
         return "Success: Login successful.";
@@ -329,5 +335,6 @@ public class UserController {
         User user = getUserByUsername(username);
         return user.getType();
     }
+
 
 }
