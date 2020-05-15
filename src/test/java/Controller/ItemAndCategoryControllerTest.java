@@ -2,12 +2,16 @@ package Controller;
 
 import Model.Category;
 import Model.Item;
+import Model.Requests.ItemRequest;
 import Model.Requests.Request;
+import Model.Sale;
 import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 import javax.xml.crypto.Data;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -288,6 +292,26 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getInSaleItems() {
+        /*addItem();
+        UserController.getInstance().registerSeller(500,"Alireza","alireza79",
+                "reza","pishro","alireza@gmail.com","33824264","benz");
+        acceptRequests();
+        User user=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login("Alireza",user.getPassword());
+        String startTime="1399-02-25 21:30";
+        String endTime="1399-02-27 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
+        ArrayList<String>saleItems=new ArrayList<>();
+        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        acceptRequests();
+        ArrayList<Item>allItems= ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+        Sale sale=allSales.get(0);
+        for(Item item:allItems){
+           // sale.addItemToSale(item.getId());
+        }*/
     }
 
     @Test

@@ -204,6 +204,14 @@ public class SaleAndDiscountCodeControllerTest {
         Database.getInstance().deleteSale(allSales.get(0));
     }
 
+    @Test
+    public void getSellerSale(){
+        addSale();
+        System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSales("Alireza"));
+        Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("Alireza"));
+        ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+        for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
+    }
 
 
 }
