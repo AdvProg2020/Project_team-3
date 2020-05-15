@@ -48,7 +48,7 @@ public class UserControllerTest {
         registration();
         User user=UserController.getInstance().getUserByUsername("Alireza");
         User user1= UserController.getInstance().getUserByUsername("Arman");
-        UserController.getInstance().login("Alireza","alireza79");
+        UserController.getInstance().login("Alireza",user.getPassword());
         Assert.assertEquals(UserController.getInstance().currentOnlineUserBalance(), ((Seller) user).getMoney(),3);
         UserController.getInstance().logout();
         UserController.getInstance().login("Arman","Hitler");
@@ -84,7 +84,7 @@ public class UserControllerTest {
     @Test
     public  void registerAdmin() {
         UserController.getInstance().registerAdmin("Ho3ein","Yad","Ho3ein","Rahmati"
-        ,"h.rah@gmail.com","33142220");
+                ,"h.rah@gmail.com","33142220");
     }
 
     @Test

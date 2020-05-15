@@ -3,6 +3,7 @@ package Controller;
 import Model.DiscountCode;
 import Model.Requests.Request;
 import Model.Sale;
+import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,6 +12,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class SaleAndDiscountCodeControllerTest {
+
+    public void acceptRequests(){
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+    }
 
     @Test
     public void getInstance() {
@@ -30,12 +38,12 @@ public class SaleAndDiscountCodeControllerTest {
     @Test
     public void getSaleById() {
         //addSale();
-       ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
-       if(allSales.isEmpty()) return;
-       for(Sale sale:allSales){
-           System.out.println(sale.getId());
-       }
-       Assert.assertNull(SaleAndDiscountCodeController.getInstance().getSaleById("Behaeen"));
+        ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+        if(allSales.isEmpty()) return;
+        for(Sale sale:allSales){
+            System.out.println(sale.getId());
+        }
+        Assert.assertNull(SaleAndDiscountCodeController.getInstance().getSaleById("Behaeen"));
     }
 
     @Test
@@ -51,23 +59,22 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void addSale() {
+        User user=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login("Alireza",user.getPassword());
         String startTime="1399-02-25 21:30";
         String endTime="1399-02-27 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //DateTimeFormatter formatter1=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-
-        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,null);
-        ArrayList<Request> allRequest=RequestController.getInstance().getAllRequestFromDataBase();
-        //System.out.println(allRequest.size());
-         for(Request request:allRequest){
-           RequestController.getInstance().acceptRequest(request.getRequestId());
-        }
+        ArrayList<String>saleItems=new ArrayList<>();
+        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        acceptRequests();
     }
 
     @Test
     public void deleteSale() {
-        //addSale();
+        addSale();
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         if(allSales.isEmpty()) return;
         SaleAndDiscountCodeController.getInstance().deleteSale(allSales.get(0).getId());
@@ -80,20 +87,20 @@ public class SaleAndDiscountCodeControllerTest {
         ArrayList<DiscountCode>allDiscountCodes=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
         if(allDiscountCodes.isEmpty())return;
         SaleAndDiscountCodeController.getInstance().deleteDiscountCode(allDiscountCodes.get(0).getDiscountId());
-        Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(allDiscountCodes.get(0).getDiscountId()));
+        // Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(allDiscountCodes.get(0).getDiscountId()));
 
     }
 
-    /*@Test
+    @Test
     public void isThereDiscountCodeWithId() {
         addDiscountCode();
         ArrayList<DiscountCode>allDiscountCodes=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
         if(allDiscountCodes.isEmpty())return;
         for(DiscountCode discountCode:allDiscountCodes){
-            //Assert.assertTrue(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountCode.getDiscountId()));
+            Assert.assertTrue(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountCode.getDiscountId()));
         }
         SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId("Behaeen");
-    }*/
+    }
 
     @Test
     public void getAllDiscountCodesFromDataBase() {
@@ -134,7 +141,7 @@ public class SaleAndDiscountCodeControllerTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountCode.getDiscountId()
-        ,dateTime1);
+                ,dateTime1);
     }
     @Test
     public void editDiscountCodeUsage(){
@@ -154,14 +161,14 @@ public class SaleAndDiscountCodeControllerTest {
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
-        ,6,50);
+                ,6,50);
     }
 
     @Test
     public void printDiscount() {
     }
 
-   /* @Test
+    @Test
     public void editSale() {
         addSale();
         ArrayList<Sale> allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
@@ -169,10 +176,13 @@ public class SaleAndDiscountCodeControllerTest {
         String startTime="1400-02-25 22:30";
         String endTime="1400-02-27 22:30";
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"off Percentage","90");
+        acceptRequests();
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"start Time",startTime);
+        acceptRequests();
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"end Time",endTime);
-        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
-        for(Request request:allRequests) RequestController.getInstance().acceptRequest(request.getRequestId());
+        acceptRequests();
+    }
 
-    }*/
+
+
 }

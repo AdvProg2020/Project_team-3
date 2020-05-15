@@ -325,6 +325,9 @@ public class ItemAndCategoryController {
 
     public void editCategoryName(String lastName, String newName) {
         Category category = getCategoryByName(lastName);
+        Category parent=getCategoryByName(category.getParent());
+        parent.getSubCategories().remove(lastName);
+        parent.getSubCategories().add(newName);
         for (String categoryName : category.getSubCategories()) {
             Category category1 = getCategoryByName(categoryName);
             category1.setParent(newName);
@@ -363,6 +366,7 @@ public class ItemAndCategoryController {
         file.delete();
         category.setName(newName);
         try {
+            Database.getInstance().saveCategory(parent);
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
@@ -370,17 +374,16 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
-        Category category = getCategoryByName(name);
-        if (category == null) {
-            return "Error: invalid name";
-        }
-        for (String subCategory : category.getSubCategories()) {
-            if (subCategory != null)
-                removeCategory(subCategory);
-        }
-        Database.getInstance().deleteCategory(category);
-        return "Successful";
+        return "";
     }
+
+    public void DFSCategory(String categoryName,ArrayList<Category>removed){
+        Category category=getCategoryByName(categoryName);
+
+
+
+    }
+
 
     public ArrayList<Item> getInSaleItems() {
         ArrayList<Item> allItems = getInstance().getAllItemFromDataBase();
