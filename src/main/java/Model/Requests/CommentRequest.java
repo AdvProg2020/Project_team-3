@@ -8,6 +8,7 @@ public class CommentRequest extends Request {
     public CommentRequest(String requestId, Comment newComment) {
         super(requestId);
         this.newComment = newComment;
+        this.setMessage("User "+newComment.getUsername()+" wants to write "+newComment.getText());
         setType("CommentRequest");
     }
 
