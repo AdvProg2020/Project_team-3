@@ -8,6 +8,7 @@ import Model.Requests.ItemEdit;
 import Model.Requests.ItemRequest;
 import Model.Requests.Request;
 import Model.Users.Buyer;
+import Model.Users.Seller;
 import Model.Users.User;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.View;
@@ -37,6 +38,16 @@ public class ItemAndCategoryController {
     }
 
     public String deleteItem(String id) {
+        User user=UserController.getInstance().getCurrentOnlineUser();
+        if(user instanceof Seller){
+            Seller seller=(Seller) user;
+            if(!seller.hasItem(id)){
+                return "Error: you can only delete your own items!";
+            }
+        }
+        if(user instanceof Buyer){
+            return "Error: ";
+        }
         Item item = getItemById(id);
         if (item == null) {
             return "Error: item doesn't exist";

@@ -61,10 +61,6 @@ public class SellerMenu extends UserMenu {
             addItem();
             return;
         }
-        if(command.equals("remove product")){
-            removeProduct();
-            return;
-        }
         if(command.equals("show categories")){
             View.setCurrentMenu(ShopMenu.getInstance());
             return;
@@ -114,7 +110,6 @@ public class SellerMenu extends UserMenu {
         System.out.println("view sales history");
         System.out.println("manage products");
         System.out.println("add product");
-        System.out.println("remove product [productId]");
         System.out.println("show categories");
         System.out.println("view offs");
         System.out.println("view balance");
