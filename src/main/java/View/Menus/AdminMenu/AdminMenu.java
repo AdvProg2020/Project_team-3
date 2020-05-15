@@ -3,6 +3,7 @@ package View.Menus.AdminMenu;
 import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
+import Controller.UserController;
 import Model.Sale;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
@@ -77,7 +78,7 @@ public class AdminMenu extends UserMenu {
         } else if (command.equals("create discount code")) {
             createDiscountCode();
             return;
-        } else if (command.equals("view discount codes")) {
+        } else if (command.equals("manage discount codes")) {
             viewAllDiscountCodes();
             View.setCurrentMenu(AdminManageDiscountCodesMenu.getInstance());
             return;
@@ -105,7 +106,7 @@ public class AdminMenu extends UserMenu {
         System.out.println("manage all products");    //done  but need test
         System.out.println("remove [product id]");    //done but need test
         System.out.println("create discount code");     //done
-        System.out.println("view discount codes");         //done but need test
+        System.out.println("manage discount codes");         //done but need test
         System.out.println("manage requests");           //done but need test
         System.out.println("manage categories");
         System.out.println("logout");                //done
@@ -168,6 +169,10 @@ public class AdminMenu extends UserMenu {
         ArrayList<String> addedUsers = new ArrayList<>();
         while(true){
             username = View.getRead().nextLine();
+            if(!UserController.getInstance().isThereUserWithUsername(username)){
+                System.out.println(View.ANSI_RED+"Error:No such user!"+View.ANSI_RESET);
+                continue;
+            }
             if(username.equals("done")) break;
             addedUsers.add(username);
         }

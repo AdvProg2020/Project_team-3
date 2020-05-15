@@ -156,7 +156,7 @@ public class Database<Public> {
 
     public void deleteDiscountCode(DiscountCode discount) {
         String id = discount.getDiscountId();
-        String path = "Resource" + File.separator + "Discount9999999Codes";
+        String path = "Resource" + File.separator + "DiscountCodes";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         file.delete();
