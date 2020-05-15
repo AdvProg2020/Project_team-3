@@ -5,6 +5,8 @@ import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Controller.SaleAndDiscountCodeController;
+import com.google.gson.internal.$Gson$Preconditions;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +106,7 @@ public class Item {
         if(sale==null){
             return price;
         }else{
-            return price*sale.getOffPercentage()/100;
+            return price*(100-sale.getOffPercentage())/100;
         }
     }
 
@@ -260,7 +262,11 @@ public class Item {
     }
 
     public void setSale(String saleId) {
-       this.saleId = saleId;
+        String previousSale = saleId;
+        this.saleId = saleId;
+        Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(previousSale);
+        if(sale==null) return;
+        sale.removeItemFromSale(this.id);
     }
 
     public String showAttributes(){

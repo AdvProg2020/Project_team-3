@@ -55,7 +55,7 @@ public class PurchaseMenu extends Menu {
             discountCode(address);
             return;
         }
-        System.out.println("Successful: price before discount = " + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount = " + CartController.getInstance().getCartPriceWithDiscountCode());
+        System.out.println("Successful: price before discount = " + CartController.getInstance().getCartPriceWithoutDiscountCode() + "price after discount = " + CartController.getInstance().getCartPriceWithDiscountCode(discountId));
         pay(address,true,discountId);
     }
 

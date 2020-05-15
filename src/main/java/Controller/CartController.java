@@ -55,8 +55,13 @@ public class CartController {
         return getCurrentShoppingCart().getCartPriceWithoutDiscountCode();
     }
 
-    public double getCartPriceWithDiscountCode() {
-        return getCurrentShoppingCart().getCartPriceWithDiscountCode();
+    public double getCartPriceWithDiscountCode(String discountCodeID) {
+        Cart cart = getCurrentShoppingCart();
+        DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountCodeID);
+        cart.setDiscountCode(discountCode);
+        double ans = getCurrentShoppingCart().getCartPriceWithDiscountCode();
+        cart.setDiscountCode(null);
+        return ans;
     }
 
     public String buy(String address) {
@@ -85,8 +90,9 @@ public class CartController {
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
-        double price = cart.getCartPriceWithDiscountCode();
         DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(discountID);
+        cart.setDiscountCode(discountCode);
+        double price = cart.getCartPriceWithDiscountCode();
         cart.setDiscountCode(discountCode);
         if (price > buyer.getMoney()) {
             return "Error: not enough money";

@@ -89,7 +89,7 @@ public class Cart {
         if(totalDiscount > discountCode.getMaxDiscount()){
             return getCartPriceWithoutDiscountCode() - discountCode.getMaxDiscount();
         }
-        return getCartPriceWithoutDiscountCode() * code / 100;
+        return getCartPriceWithoutDiscountCode() * (100-code) / 100;
     }
 
     @Override
