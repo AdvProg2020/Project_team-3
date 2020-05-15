@@ -103,11 +103,15 @@ public class CartMenu extends Menu {
     }
 
     public void purchase(){
-       if(Controller.getInstance().isLogin()==false){
-           System.out.println("Error: You must be logged in.");
+       if(!Controller.getInstance().isLogin()){
+           System.out.println(View.ANSI_RED+"Error: You must be logged in."+View.ANSI_RESET);
            LoginRegisterMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
            LoginRegisterMenu.getInstance().setIntendedMenu("PurchaseMenu");
            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+           return;
+       }
+       if(CartController.getInstance().getCartPriceWithoutDiscountCode()==0D){
+           System.out.println(View.ANSI_RED+"Error: Your cart is empty , cattle."+View.ANSI_RESET);
            return;
        }
        if(UserController.getInstance().returnUserType(UserController.getInstance().getCurrentOnlineUser().getUsername()).equals("Buyer")){
@@ -115,7 +119,7 @@ public class CartMenu extends Menu {
            View.setCurrentMenu(PurchaseMenu.getInstance());
            return;
        }
-          System.out.println("you must be a Buyer to buy items");
+          System.out.println(View.ANSI_RED+"Error:You must be a Buyer to buy items"+View.ANSI_RESET);
     }
 
 }

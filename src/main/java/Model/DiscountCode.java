@@ -44,7 +44,8 @@ public class DiscountCode {
     public String toString() {
         String ans = "DiscountCode ID:" + discountId + "   ";
         ans += discountPercentage + "%   ";
-        ans +="starts in:"+startTime;
+        ans += "limit:"+maxDiscount;
+        ans +="   starts in:"+startTime;
         ans += "   ends in:" + endTime;
         return ans;
     }
