@@ -191,13 +191,14 @@ public class Database<Public> {
         if (!file.exists()) {
             file.mkdir();
         }
-        Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
-        Category category = new Category("Main", null);
-        try {
-            saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(UserController.getInstance().isThereUserWithUsername("admin")) {
+            Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
         }
+        if(!ItemAndCategoryController.getInstance().isThereCategoryWithName("Main")){
+            Category category = new Category("Main", null);
+        }
+
+
     }
 
     public ArrayList<String> printFolderContent(String folderName) {
