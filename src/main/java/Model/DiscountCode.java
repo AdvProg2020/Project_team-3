@@ -83,11 +83,12 @@ public class DiscountCode {
     }
 
     public void changeUsageCount(int newCount) {
+        int previousCount = usageCountInt;
         usageCountInt = newCount;
         int userCount;
         for (String username : usageCount.keySet()) {
             userCount = usageCount.get(username);
-            userCount += newCount - usageCountInt;
+            userCount += newCount - previousCount;
 
             usageCount.replace(username, userCount);
 
