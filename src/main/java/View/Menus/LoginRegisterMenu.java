@@ -176,6 +176,10 @@ public class LoginRegisterMenu extends Menu {
             PurchaseMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
             View.setCurrentMenu(PurchaseMenu.getInstance());
         }
+        else if(intendedMenu.equals("MainMenu")){
+            MainMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            View.setCurrentMenu(MainMenu.getInstance());
+        }
 
     }
 }
