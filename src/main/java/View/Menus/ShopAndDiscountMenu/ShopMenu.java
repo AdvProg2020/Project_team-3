@@ -52,7 +52,7 @@ public class ShopMenu extends Menu {
          return;
       }
       if (command.equals("show products")) {
-         System.out.println(SortAndFilterController.getInstance().show(categoryName));
+         printList(SortAndFilterController.getInstance().show(categoryName));
          return;
       }
       if (command.equals("help")) {
@@ -132,7 +132,7 @@ public class ShopMenu extends Menu {
    }
 
    public void showAllItems() {
-      System.out.println(SortAndFilterController.getInstance().show("Main"));
+      printList(SortAndFilterController.getInstance().show("Main"));
    }
 
    public void viewSubCategories() {
