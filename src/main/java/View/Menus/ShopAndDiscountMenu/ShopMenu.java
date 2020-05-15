@@ -26,7 +26,7 @@ public class ShopMenu extends Menu {
    @Override
    public void run() {
       System.out.println(View.ANSI_YELLOW + "You are in the shop menu." + View.ANSI_RESET);
-      // System.out.println(View.ANSI_YELLOW+"You are currently in the "+currentCategory.getName()+" category."+View.ANSI_RESET);
+      System.out.println(View.ANSI_YELLOW+"You are currently in the "+categoryName+" category."+View.ANSI_RESET);
       String command = View.getRead().nextLine();
       execute(command);
    }
@@ -132,8 +132,7 @@ public class ShopMenu extends Menu {
    }
 
    public void showAllItems() {
-      ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
-      printList(allItems);
+      System.out.println(SortAndFilterController.getInstance().show("Main"));
    }
 
    public void viewSubCategories() {

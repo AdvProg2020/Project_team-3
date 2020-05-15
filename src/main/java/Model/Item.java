@@ -283,7 +283,7 @@ public class Item {
     }
 
     public String showIdWithName(){
-        return "id: "+id+"name: "+name+" price="+price;
+        return "id: "+id+" name: "+name+" price="+price;
     }
     public void addViewsBy(int count){
         this.viewCount+=count;
