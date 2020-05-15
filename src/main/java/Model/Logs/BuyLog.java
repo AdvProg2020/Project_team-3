@@ -37,6 +37,9 @@ public class BuyLog {
         this.allItemsID.add(itemID);
         this.itemsSeller.put(itemID,sellerName);
         this.itemsCount.put(itemID,count);
+        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+        item.addTimesBoughtBy(count);
+        item.addBuyerUserName(buyerName);
         SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price, itemID, buyerName, count);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }
