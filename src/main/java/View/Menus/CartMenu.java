@@ -47,9 +47,11 @@ public class CartMenu extends Menu {
         else if(command.equals("logout")){
             LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             LoginRegisterMenu.getInstance().logout();
+            return;
         }
         if(command.equals("back")){
             View.setCurrentMenu(MainMenu.getInstance());
+            return;
         }
         Matcher matcher = View.getMatcher("increase (\\S+)", command);
         if (matcher.matches()) {

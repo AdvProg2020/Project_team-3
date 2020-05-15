@@ -19,7 +19,7 @@ public class Admin extends User {
     @Override
     public String getPersonalInfo() {
         String response = "";
-        response += "You are an Admin.\n";
+        response += "Admin.\n";
         response += "Name: " + getName() + "\n";
         response += "Surname: " + getLastName() + "\n";
         response += "Email: " + getEmail() + "\n";

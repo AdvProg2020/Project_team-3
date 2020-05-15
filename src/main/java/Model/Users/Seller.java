@@ -30,7 +30,7 @@ public class Seller extends User {
     @Override
     public String getPersonalInfo() {
         String response = "";
-        response += "You are a seller\n";
+        response += "Seller\n";
         response += "Name: " + getName() + "\n";
         response += "Surname: " + getLastName() + "\n";
         response += "Email: " + getEmail() + "\n";
