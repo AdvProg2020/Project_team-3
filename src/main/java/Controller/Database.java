@@ -139,11 +139,6 @@ public class Database<Public> {
 
 
     public void deleteCategory(Category category) {
-        Item item;
-        for (String id : category.getSubCategories()) {
-            item = ItemAndCategoryController.getInstance().getItemById(id);
-            deleteItem(item);
-        }
         String categoryName = category.getName();
         String path = "Resource" + File.separator + "Categories";
         String name = categoryName + ".json";

@@ -150,7 +150,7 @@ public class ItemAndCategoryControllerTest {
     public void addItem() {
         User seller =UserController.getInstance().getUserByUsername("Alireza");
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
-        addCategory();
+        //addCategory();
         HashMap<String,String>attributes=new HashMap<>();
         HashMap<String , String>attributes1=new HashMap();
         HashMap<String,String> attributes2=new HashMap<>();
