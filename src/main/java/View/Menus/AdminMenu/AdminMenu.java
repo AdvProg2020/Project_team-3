@@ -177,7 +177,7 @@ public class AdminMenu extends UserMenu {
             addedUsers.add(username);
         }
 
-        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,startTime,endTime,addedUsers,usageCount,maxDiscount));
+        System.out.println(SaleAndDiscountCodeController.getInstance().addDiscountCode(percentage,endTime,startTime,addedUsers,usageCount,maxDiscount));
     }
 
 }
