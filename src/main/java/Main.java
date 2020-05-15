@@ -13,18 +13,12 @@ public class Main {
 
 //logout dar hamaje ye bar emtehan shaavd <= kolli
 
-
 //edit category mirza
 
-//edit sale arman
-
-//darkhast ezafeye sale arman
+// bayad vaghti migim item tuye sale hast (salemenu) va vaghti miaim gheymatesho kam mikonim , beine starttime o endtime bashim!!!! <= 0317
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
 // item o ina ham hamintor (???)
-
-//SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode(); arman
-//age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal) arman
 
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa

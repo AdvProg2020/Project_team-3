@@ -2,13 +2,14 @@ package Model.Requests;
 
 public class SaleEdit extends Request {
     private String saleID;
-    private String changedFiled;
+    private String changedField;
     private String newFieldValue;
     /////overloaded Constructor
-    public SaleEdit(String requestId, String saleID , String changedFiled , String newFieldValue) {
+    public SaleEdit(String requestId, String saleID , String changedField , String newFieldValue) {
         super(requestId);
         this.saleID = saleID;
-        this.changedFiled=changedFiled;
+        this.changedField=changedField;
+        this.setMessage("Request to change "+changedField+" to "+newFieldValue);
         this.newFieldValue=newFieldValue;
         setType("SaleEdit");
     }
@@ -21,15 +22,15 @@ public class SaleEdit extends Request {
         return newFieldValue;
     }
 
-    public String getChangedFieled() {
-        return changedFiled;
+    public String getChangedField() {
+        return changedField;
     }
 
     @Override
     public String toString(){
         return "id :"+getRequestId()+"\n"+
                 "type: "+getType()+"\n"+
-                "changed Field: "+getChangedFieled()+"\n"+
+                "changed Field: "+getChangedField()+"\n"+
                 "new Field value:"+getNewFieldValue();
     }
 }

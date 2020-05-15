@@ -2,7 +2,9 @@ package Controller;
 
 import Model.DiscountCode;
 import Model.Sale;
+import Model.Users.Buyer;
 import Model.Users.Seller;
+import Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SaleAndDiscountCodeController {
     Controller controller = Controller.getInstance();
@@ -135,7 +138,20 @@ public class SaleAndDiscountCodeController {
     }
 
     public void giveRandomDiscountCode(){
+        ArrayList<Buyer> allBuyers = UserController.getInstance().getAllBuyers();
+        Random random = new Random();
+        int randomIndex = random.nextInt(allBuyers.size());
+        Buyer buyer = allBuyers.get(randomIndex);
+        giveGiftDiscountCode(buyer.getUsername());
+    }
 
+    public void giveGiftDiscountCode(String username){
+        ArrayList<String> allUsers = new ArrayList<>();
+        allUsers.add(username);
+        LocalDateTime startTime = LocalDateTime.now();
+        LocalDateTime endTime = LocalDateTime.now();
+        endTime.plusDays(7);
+        addDiscountCode(5,endTime,startTime,allUsers,1,500000);
     }
 
     public boolean isThereDiscountCodeWithId(String id) {
@@ -193,18 +209,6 @@ public class SaleAndDiscountCodeController {
         return allSaleToString;
     }
 
-    /*public String printItemsWithSale() {
-        ArrayList<Sale> allSale = getAllSaleFromDataBase();
-        String string = "";
-        for (Sale sale : allSale) {
-            string += sale.itemsInfo() + "\n";
-        }
-        if (string.isEmpty()) {
-            return "there are no sales right now.";
-        }
-        return string;
-    }*/
-
     public ArrayList<String> getAllItemsIDWithSale(){
         ArrayList<Sale> allSale = getAllSaleFromDataBase();
         ArrayList<String> itemsID = new ArrayList<>();
@@ -219,9 +223,23 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodePercentage(String discountID, int percentage) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: Discount code doesnt exist";
+            return "Error: invalid ID for discount code.";
         }
         discountCode.setDiscountPercentage(percentage);
+        try {
+            Database.getInstance().saveDiscountCode(discountCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Successful:";
+    }
+
+    public String editDiscountCodeMaxDiscount(String discountID,double amount){
+        DiscountCode discountCode = getDiscountCodeById(discountID);
+        if (discountCode == null) {
+            return "Error: invalid ID for discount code.";
+        }
+        discountCode.setMaxDiscount(amount);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -233,7 +251,7 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodeEndTime(String discountID, LocalDateTime endTime) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: Discount code doesnt exist";
+            return "Error: invalid ID for discount code.";
         }
         if(!endTime.isAfter(discountCode.getStartTime())){
             return "Error: ending time is after the starting time!";
@@ -251,7 +269,7 @@ public class SaleAndDiscountCodeController {
         if(newUsage<=0) return "Error: usage count has to be positive.";
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: Discount code doesnt exist";
+            return "Error: invalid ID for discount code.";
         }
         discountCode.changeUsageCount(newUsage);
         try {
@@ -288,9 +306,11 @@ public class SaleAndDiscountCodeController {
         return discountCode.userCanUse(Controller.getInstance().currentOnlineUser.getUsername());
     }
 
-    public void editSale(String saleID, String changedField, String newFieldValue) {
+    public String editSale(String saleID, String changedField, String newFieldValue) {
+        if(!isThereSaleWithId(saleID)) return "Error: invalid ID";
         String requestID = Controller.getInstance().getAlphaNumericString(5, "Sales");
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
+        return "Success:";
     }
 
     public boolean canAddItemToSale(String itemID){

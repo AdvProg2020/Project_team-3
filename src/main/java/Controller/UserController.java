@@ -256,6 +256,17 @@ public class UserController {
         return allUser;
     }
 
+    protected ArrayList<Buyer> getAllBuyers(){
+        ArrayList<User> allUsers = getAllUserFromDataBase();
+        ArrayList<Buyer> ans = new ArrayList<>();
+
+        for(User user:allUsers){
+            if(user instanceof Buyer) ans.add((Buyer)user);
+        }
+
+        return ans;
+    }
+
     public void assignBuyLog(String buyerName, BuyLog buyLog) {
         Buyer buyer = (Buyer) getUserByUsername(buyerName);
         buyer.addBuyLog(buyLog);

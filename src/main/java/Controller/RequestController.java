@@ -186,17 +186,17 @@ public class RequestController {
     public void SaleEditing(SaleEdit saleEdit) {
         Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleEdit.getSaleID());
         if (sale == null) return;
-        String changedField = saleEdit.getChangedFieled();
+        String changedField = saleEdit.getChangedField();
         String newFieldValue = saleEdit.getNewFieldValue();
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
-        if (changedField.equals("start Time")) {
+        if (changedField.equalsIgnoreCase("start Time")) {
             LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
             sale.setStartTime(date);
-        } else if (changedField.equals("end Time")) {
+        } else if (changedField.equalsIgnoreCase("end Time")) {
             LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
             sale.setEndTime(date);
-        } else if (changedField.equals("off Percentage")) {
+        } else if (changedField.equalsIgnoreCase("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }
         try {

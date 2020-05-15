@@ -88,7 +88,9 @@ public class Controller {
         LocalDateTime currentTime = LocalDateTime.now();
         SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales(currentTime);
         SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes(currentTime);
-        SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
+        if(currentTime.getDayOfMonth() % 13 == 2){
+            SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
+        }
     }
 
 

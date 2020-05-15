@@ -89,24 +89,24 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
     }
 
     private void editDiscountCode(String discountID) {
-        if (!SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountID)) {
-            System.out.println("Error: invalid ID");
-            return;
-        }
-        System.out.println("Enter -edit date- if you wish to change the ending date.\nEnter -edit offpercent- if you wish to change the off percentage.\nEnter -edit usage- to edit how many times this code can be used.");
+        System.out.println("Enter -edit date- if you wish to change the ending date.\nEnter -edit offpercent- if you wish to change the off percentage.\nEnter -edit usage- to edit how many times this code can be used.\n" +
+                "Enter -edit max- to edit the maximum amount of discount");
         String command = View.getRead().nextLine();
         if (command.equals("edit date")) {
             LocalDateTime date = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy HH:mm");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountID, date));
             return;
         } else if (command.equals("edit offpercent")) {
-            int percentage = readNumber(101, "please enter new discount percentage:");
+            int percentage = readNumber(101, "please enter new discount percentage(Integer):");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountID, percentage));
             return;
         } else if (command.equals("edit usage")){
-            int usage = readNumber(1000,"please enter e new usage count (max:1000):");
+            int usage = readNumber(1000,"please enter e new usage count (Integer,max:1000):");
             System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountID,usage));
             return;
+        } else if(command.equals("edit max")){
+            double max = readNumber(-1D,"please enter a new max. discount (Double):");
+            System.out.println(SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(discountID,max));
         }
         System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);
     }

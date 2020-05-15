@@ -105,6 +105,10 @@ public class DiscountCode {
       return maxDiscount;
    }
 
+   public void setMaxDiscount(double maxDiscount) {
+      this.maxDiscount = maxDiscount;
+   }
+
    public void useDiscountCode(String username) {
       int currentCount = usageCount.get(username);
       currentCount--;

@@ -97,6 +97,9 @@ public class CartController {
         if (price > buyer.getMoney()) {
             return "Error: not enough money";
         }
+        if(price > 1000000){
+            SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
+        }
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithDiscountCode());
         discountCode.useDiscountCode(buyer.getUsername());
         try {

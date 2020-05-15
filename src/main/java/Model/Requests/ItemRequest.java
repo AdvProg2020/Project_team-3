@@ -7,7 +7,7 @@ public class ItemRequest  extends Request {
     public ItemRequest(String requestId, Item newItem) {
         super(requestId);
         this.newItem = newItem;
-        String news="new Item with information "+newItem.toSimpleString()+" is requested for being added in your System";
+        String news="Request to add Item \""+newItem.getName()+"\" at a price of "+newItem.getPrice();
         this.setMessage(news);
         setType("ItemRequest");
     }
