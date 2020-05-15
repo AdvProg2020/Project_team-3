@@ -50,7 +50,11 @@ public class SortAndFilterController {
         } else if (activeSort == 4) {
             filteredItems = SortComperators.getInstance().SortByCommentCount(filteredItems);
         }
-        return filteredItems;
+        ArrayList<String> itemIdWithName=new ArrayList<>();
+        for (String filteredItem : filteredItems) {
+            itemIdWithName.add(ItemAndCategoryController.getInstance().getItemById(filteredItem).showIdWithName());
+        }
+        return itemIdWithName;
     }
 
     public String activateSort(String sortName) {

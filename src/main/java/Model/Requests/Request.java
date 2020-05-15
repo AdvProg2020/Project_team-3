@@ -20,9 +20,7 @@ public abstract class Request {
         this.requestId = requestId;
     }
 
-    public String getMessage() {
-        return message;
-    }
+    public String getMessage() { return message; }
 
     public void setMessage(String message) {
         this.message = message;
