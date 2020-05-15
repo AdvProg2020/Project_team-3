@@ -159,7 +159,7 @@ public class SaleAndDiscountCodeControllerTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime,dateTime1,validUsers
+        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
                 ,6,50);
     }
 

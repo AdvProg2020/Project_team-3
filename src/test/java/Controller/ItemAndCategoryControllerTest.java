@@ -197,6 +197,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getCategoryItems() {
+        addItem();
         ArrayList <String>allItems=ItemAndCategoryController.getInstance().getCategoryItems("lavazem manzel");
         for(String id:allItems){
             System.out.println(id);
@@ -234,13 +235,13 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void editCategoryName() {
-        //addCategory();
+        addCategory();
         ItemAndCategoryController.getInstance().editCategoryName("Vacuum","jaroo barghi");
     }
 
     @Test
     public void removeCategory() {
-        //addItem();
+        addItem();
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
     }
 
