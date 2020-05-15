@@ -37,7 +37,7 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void getSaleById() {
-        //addSale();
+        addSale();
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         if(allSales.isEmpty()) return;
         for(Sale sale:allSales){
@@ -48,7 +48,7 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void isThereSaleWithId() {
-        //addSale();
+        addSale();
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         if(allSales.isEmpty()) return;
         for(Sale sale:allSales){
@@ -88,7 +88,6 @@ public class SaleAndDiscountCodeControllerTest {
         if(allDiscountCodes.isEmpty())return;
         SaleAndDiscountCodeController.getInstance().deleteDiscountCode(allDiscountCodes.get(0).getDiscountId());
         // Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(allDiscountCodes.get(0).getDiscountId()));
-
     }
 
     @Test
@@ -160,12 +159,16 @@ public class SaleAndDiscountCodeControllerTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
+        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime,dateTime1,validUsers
                 ,6,50);
     }
 
     @Test
     public void printDiscount() {
+        addDiscountCode();
+        ArrayList<DiscountCode> allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        DiscountCode discountCode=allDiscounts.get(0);
+        SaleAndDiscountCodeController.getInstance().printDiscount(discountCode.getDiscountId());
     }
 
     @Test
