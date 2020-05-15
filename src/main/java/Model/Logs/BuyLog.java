@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class BuyLog {
 
 
-    private LocalDateTime time;
+    private String time;
     private ArrayList<String> allItemsID;
     private HashMap<String,String> itemsSeller;
     private HashMap<String,Integer> itemsCount;
@@ -29,7 +29,7 @@ public class BuyLog {
         this.buyerName = buyerName;
         this.address = address;
         this.discountGrandTotal = discountGrandTotal;
-        this.time = time;
+        this.time = time.toString();
     }
 
     public void addItem(double price, int count, String itemID, String sellerName) {
@@ -37,7 +37,7 @@ public class BuyLog {
         this.allItemsID.add(itemID);
         this.itemsSeller.put(itemID,sellerName);
         this.itemsCount.put(itemID,count);
-        SaleLog saleLog = new SaleLog(time, price, itemID, buyerName, count);
+        SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price, itemID, buyerName, count);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }
 
@@ -91,7 +91,7 @@ public class BuyLog {
     }
 
     public void setTime(LocalDateTime time) {
-        this.time = time;
+        this.time = time.toString();
     }
 
     public void setDiscountGrandTotal(Double discountGrandTotal) {

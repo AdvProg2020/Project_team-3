@@ -1,9 +1,15 @@
 package View.Menus.SellerMenu;
 
+import Controller.SaleAndDiscountCodeController;
+import Controller.UserController;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 public class SellerManageOffsMenu extends UserMenu {
     private static SellerManageOffsMenu sellerManageOffsMenu;
@@ -22,12 +28,16 @@ public class SellerManageOffsMenu extends UserMenu {
     }
     @Override
     public void execute(String command) {
+        Matcher matcher;
         if(command.equals("view offs")){
             viewAllOffs();
             return;
         }
         if(command.startsWith("view off ")){
-            viewOff(command);
+            matcher=View.getMatcher("view off (\\S+)",command);
+            if(matcher.matches()){
+                viewOff(matcher.group(1));
+            }
             return;
         }
         if(command.startsWith("edit off ")){
@@ -63,21 +73,42 @@ public class SellerManageOffsMenu extends UserMenu {
         System.out.println("add off");
     }
 
-    private void viewAllOffs(){
+    protected void viewAllOffs(){
+        System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSalesString(UserController.getInstance().getCurrentOnlineUser().getUsername()));
+    }
+
+    protected void viewOff(String offID){
+        if(!SaleAndDiscountCodeController.getInstance().isThereSaleWithId(offID)){
+            System.out.println(View.ANSI_RED+"No sale with this ID"+View.ANSI_RESET);
+            return;
+        }
+        if(!SaleAndDiscountCodeController.getInstance().getSaleById(offID).getSellerUsername().equals(UserController.getInstance().getCurrentOnlineUser().getUsername())){
+            System.out.println(View.ANSI_RED+"This sale does not belong to you."+View.ANSI_RESET);
+            return;
+        }
+        System.out.println(SaleAndDiscountCodeController.getInstance().getSaleById(offID).toString());
+    }
+
+
+
+    protected void editSale(){
 
     }
 
-    public void viewOff(String command){
+    protected void addSale(){
+        int percentage = readNumber(101, "Please enter sale percentage:");
+        LocalDateTime startTime = getDate("Enter a valid day as the starting time in the following format: dd/MM/yyyy HH:mm");
+        LocalDateTime endTime = getDate("Enter a valid day as the end time in the following format: dd/MM/yyyy HH:mm");
 
-    }
+        System.out.println("What items (ID) do you want to add? Type done to finish.");
+        String itemID;
+        ArrayList<String> addedItems = new ArrayList<>();
+        while(true){
+            itemID = View.getRead().nextLine();
+            if(itemID.equals("done")) break;
+            addedItems.add(itemID);
+        }
 
-
-
-    public void editSale(){
-
-    }
-
-    public void addSale(){
-
+        System.out.println(SaleAndDiscountCodeController.getInstance().addSale(startTime,endTime,percentage,addedItems));
     }
 }

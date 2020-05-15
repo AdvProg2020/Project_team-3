@@ -235,10 +235,7 @@ public class Item {
     }
 
     public boolean isInSale(){
-        if(sale==null){
-            return false;
-        }
-            return true;
+        return sale==null;
     }
 
     public void addBuyerUserName(String userName){
@@ -292,4 +289,7 @@ public class Item {
     public void addTimesBoughtBy(int count){
         this.timesBought += count;
     }
+
+
+
 }

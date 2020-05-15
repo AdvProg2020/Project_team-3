@@ -88,6 +88,7 @@ public class Controller {
         LocalDateTime currentTime = LocalDateTime.now();
         SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales(currentTime);
         SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes(currentTime);
+        SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
     }
 
 

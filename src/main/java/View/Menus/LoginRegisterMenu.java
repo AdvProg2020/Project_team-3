@@ -2,9 +2,16 @@ package View.Menus;
 
 import Controller.Controller;
 import Controller.UserController;
+import Model.Users.Admin;
+import Model.Users.Buyer;
+import Model.Users.Seller;
+import View.Menus.AdminMenu.AdminMenu;
+import View.Menus.SellerMenu.SellerMenu;
 
 public class LoginRegisterMenu extends Menu {
     private static LoginRegisterMenu loginRegisterMenu;
+    private String intendedMenu;
+
     private LoginRegisterMenu() {
     }
 
@@ -30,10 +37,10 @@ public class LoginRegisterMenu extends Menu {
         } else if (command.equals("help")) {
             help();
         } else if (command.equals("back")) {
-            View.setCurrentMenu(MainMenu.getInstance());
-        } else if(command.equals("logout")){
+            View.setCurrentMenu(getPreviousMenu());
+        } else if (command.equals("logout")) {
             logout();
-        } else{
+        } else {
             System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
         }
     }
@@ -47,14 +54,14 @@ public class LoginRegisterMenu extends Menu {
         System.out.println("back");
     }
 
-    public boolean login(String command) {
-        if(Controller.getInstance().isLogin()){
+    public void login(String command) {
+        if (Controller.getInstance().isLogin()) {
             System.out.println("Error: logout first");
-            return false;
+            return;
         }
         if (command.split(" ").length != 2) {
             System.out.println(View.ANSI_RED + "Invalid username." + View.ANSI_RESET);
-            return false;
+            return;
         }
         System.out.print("Enter your password:");
         String password = View.read.nextLine();
@@ -73,8 +80,12 @@ public class LoginRegisterMenu extends Menu {
                 View.setCurrentMenu(SellerMenu.getInstance());
             }
         }*/
-        View.setCurrentMenu(this.getPreviousMenu());
-        return ans.startsWith("Success");
+
+        if (ans.startsWith("Success")) {
+            goToIntendedMenu();
+        } else {
+            View.setCurrentMenu(loginRegisterMenu);
+        }
     }
 
     public boolean registerAdmin() {
@@ -87,7 +98,7 @@ public class LoginRegisterMenu extends Menu {
         String lastName = View.read.nextLine();
         String email = enterEmail();
         String number = enterNumber();
-        String ans = UserController.getInstance().registerAdmin(username, password, number, lastName, email, number);
+        String ans = UserController.getInstance().registerAdmin(username, password, firstName, lastName, email, number);
         System.out.println(ans);
         return ans.startsWith("Success");
     }
@@ -129,7 +140,7 @@ public class LoginRegisterMenu extends Menu {
             System.out.println(ans);
             return ans.startsWith("Success");
         } else {
-            ans = UserController.getInstance().registerFirstAdmin(username,password,firstName,lastName,email,number);
+            ans = UserController.getInstance().registerFirstAdmin(username, password, firstName, lastName, email, number);
             System.out.println(ans);
             return ans.startsWith("Succ");
             /*System.out.println("You cant make an admin account.");
@@ -144,4 +155,27 @@ public class LoginRegisterMenu extends Menu {
         View.setCurrentMenu(this.getPreviousMenu());
     }
 
+    public void setIntendedMenu(String intendedMenu) {
+        this.intendedMenu = intendedMenu;
+    }
+
+    private void goToIntendedMenu() {
+        if (intendedMenu.equals("UserMenu")) {
+            if (UserController.getInstance().getCurrentOnlineUser() instanceof Admin) {
+                View.setCurrentMenu(AdminMenu.getInstance());
+            } else if (UserController.getInstance().getCurrentOnlineUser() instanceof Seller) {
+                View.setCurrentMenu(SellerMenu.getInstance());
+            } else {
+                View.setCurrentMenu(BuyerMenu.getInstance());
+            }
+        } else if (intendedMenu.equals("PurchaseMenu")) {
+            if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+                System.out.println("you must be a Buyer to buy items");
+                return;
+            }
+            PurchaseMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
+            View.setCurrentMenu(PurchaseMenu.getInstance());
+        }
+
+    }
 }

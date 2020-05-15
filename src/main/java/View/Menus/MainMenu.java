@@ -6,8 +6,8 @@ import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
-import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
 
 
 public class MainMenu extends Menu {
@@ -72,7 +72,10 @@ public class MainMenu extends Menu {
     private void userMenu(){
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             View.setCurrentMenu(MainMenu.getInstance());
-            System.out.println(View.ANSI_RED+"You are not logged in."+View.ANSI_RESET);
+            System.out.println(View.ANSI_RED+"You must be logged in to do this action."+View.ANSI_RESET);
+            LoginRegisterMenu.getInstance().setIntendedMenu("UserMenu");
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
             return;
         }
         if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){

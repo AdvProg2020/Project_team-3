@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 public class Sale {
     private String id;
+    private String sellerUsername;
     private ArrayList<String> itemId = new ArrayList<>();
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private String startTime;
+    private String endTime;
     private int offPercentage;
 
     private enum Status {accepted, addingProcess, editingProcess}
@@ -18,15 +19,20 @@ public class Sale {
     ;
     Status status;
 
-    public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage) {
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage,String sellerUsername,ArrayList<String> saleItems) {
+        this.startTime = startTime.toString();
+        this.endTime = endTime.toString();
         this.offPercentage = offPercentage;
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Sales");
+        this.sellerUsername = sellerUsername;
+        itemId = saleItems;
     }
 
     public void acceptStatus() {
         status = Status.accepted;
+        for(String ID : itemId){
+            ItemAndCategoryController.getInstance().getItemById(ID).setSale(this);
+        }
     }
 
     public void editStatus() {
@@ -38,11 +44,11 @@ public class Sale {
     }
 
     public LocalDateTime getEndTime() {
-        return endTime;
+        return LocalDateTime.parse(endTime);
     }
 
     public LocalDateTime getStartTime() {
-        return startTime;
+        return LocalDateTime.parse(startTime);
     }
 
     public int getOffPercentage() {
@@ -50,11 +56,11 @@ public class Sale {
     }
 
     public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+        this.startTime = startTime.toString();
     }
 
     public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+        this.endTime = endTime.toString();
     }
 
     public void setOffPercentage(int offPercentage) {
@@ -77,6 +83,10 @@ public class Sale {
         return false;
     }
 
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
     public String itemsInfo(){
     String string="";
     Item item;
@@ -89,11 +99,20 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "id: " + getId() + "\n" +
+        String ans= "id: " + getId() + "\n" +
                 "Off Percentage: " + getOffPercentage() + "\n" +
                 "Status: " + status + "\n" +
                 "Start Time: " + getStartTime() + "\n" +
                 "End Time: " + getEndTime() + "\n";
+        ans += "Items in Sale:\nID             name              price\n";
+        for(String itemID:itemId){
+            ans+=ItemAndCategoryController.getInstance().getItemById(itemID).toSimpleString();
+        }
+        return ans;
+    }
+
+    public String toSimpleString(){
+        return id + "           " + offPercentage + "      " + endTime;
     }
 
 

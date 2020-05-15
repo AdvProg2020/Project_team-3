@@ -11,18 +11,34 @@ public class Main {
     }
 }
 
-//edit discount code
-//edit category <= bade inke paiini anjam beshe mishe ino anjam dad
 
-//moshahede kharidaran yek mahsol
-//selller menu kheili ridmane
+
+
+//edit category
+
+//edit sale
+
 //darkhast ezafeye sell
+
+// mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!!
+// item o ina ham hamintor
+
+
+
+
+//teste addSale fail shod chon ba method e kosshere kiri ke hazf kardam neveshte shode bod kir tosh miram pakesh mikonam
+
+//age login nabod khast karaye khass bokone redirect beshe be loginRegisterMenu na inke serfan error begire  (safhe 18 doc khate 3,4)
 
 //bahs edit item ham bayad dorost beshe yani barasas attribute haye category anjam beshe
 
-//discount code , sale , log ha <= time daran
-//method e passtime tuye view => miad discountcode haye expire shodaro hazf mikone va besorate random be karbara code takhfif ba darsad random o ina mide
+//SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
 //age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal)
+
+
+
+
 
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
+//loginregistermenu intendedmenu enum beshe
