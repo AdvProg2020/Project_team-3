@@ -7,6 +7,7 @@ import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -131,6 +132,11 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void digest() {
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item=allItems.get(0);
+        System.out.println(ItemAndCategoryController.getInstance().digest(item.getId()));
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -195,7 +201,6 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItemToCategory() {
-
     }
 
     @Test
@@ -232,10 +237,19 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getBaseCategory() {
+        addItem();
+        ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        System.out.println(ItemAndCategoryController.getInstance().getBaseCategory().getName());
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
     public void previousCategory() {
+        addItem();
+        ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        System.out.println(ItemAndCategoryController.getInstance().previousCategory("Vacuum"));
+        System.out.println(ItemAndCategoryController.getInstance().previousCategory("Main"));
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
@@ -288,6 +302,26 @@ public class ItemAndCategoryControllerTest {
         acceptRequests();
         ItemAndCategoryController.getInstance().editItem("inStock","600",item.getId());
         acceptRequests();
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+    }
+    @Test
+    public void viewItem(){
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        if(allItems.isEmpty()) return;
+        System.out.println(ItemAndCategoryController.getInstance().viewItem("sdfsdfsdfsdf"));
+        Item item=allItems.get(0);
+        System.out.println(ItemAndCategoryController.getInstance().viewItem(item.getId()));
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+    }
+
+    @Test
+    public void addView(){
+        addItem();
+        ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item1=allItems.get(0);
+        ItemAndCategoryController.getInstance().addView(item1.getId());
+        for(Item item:allItems)Database.getInstance().deleteItem(item);
     }
 
 }

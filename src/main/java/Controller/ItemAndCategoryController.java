@@ -427,5 +427,10 @@ public class ItemAndCategoryController {
         if (item == null)
             return;
         item.addViewsBy(1);
+        try {
+            Database.getInstance().saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
