@@ -74,41 +74,41 @@ public class SaleAndDiscountCodeController {
         return true;
     }
 
-    public String getSellerSalesString(String username){
+    public String getSellerSalesString(String username) {
         String ans = "ID          off percentage       ends in\n";
-        for (Sale sale:getSellerSales(username)){
+        for (Sale sale : getSellerSales(username)) {
             ans += sale.toSimpleString() + "\n";
         }
         return ans;
     }
 
-    public String addSale(LocalDateTime startTime,LocalDateTime endTime, int offPercentage,ArrayList<String> saleItems){
-        if(!endTime.isAfter(startTime)){
+    public String addSale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage, ArrayList<String> saleItems) {
+        if (!endTime.isAfter(startTime)) {
             return "Error: ending time is after the starting time!";
         }
-        Seller seller = (Seller)UserController.getInstance().getCurrentOnlineUser();
-        for(String item:saleItems){
-            if(!seller.hasItem(item)){
-                return "Error: you do not have "+item+" in stock.";
+        Seller seller = (Seller) UserController.getInstance().getCurrentOnlineUser();
+        for (String item : saleItems) {
+            if (!seller.hasItem(item)) {
+                return "Error: you do not have " + item + " in stock.";
             }
-            if(ItemAndCategoryController.getInstance().getItemById(item).isInSale()){
-                return "Error: "+item+" is already in a sale.";
+            if (ItemAndCategoryController.getInstance().getItemById(item).isInSale()) {
+                return "Error: " + item + " is already in a sale.";
             }
         }
-        Sale sale = new Sale(startTime,endTime,offPercentage,UserController.getInstance().getCurrentOnlineUser().getUsername(),saleItems);
+        Sale sale = new Sale(startTime, endTime, offPercentage, UserController.getInstance().getCurrentOnlineUser().getUsername(), saleItems);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
-        RequestController.getInstance().addSaleRequest(requestID,sale);
+        RequestController.getInstance().addSaleRequest(requestID, sale);
         return "Successful: your request to add the sale was sent to the admins.";
     }
 
-    public ArrayList<Sale> getSellerSales(String username){
-        if(!(UserController.getInstance().getUserByUsername(username) instanceof Seller)){
+    public ArrayList<Sale> getSellerSales(String username) {
+        if (!(UserController.getInstance().getUserByUsername(username) instanceof Seller)) {
             return null;
         }
         ArrayList<Sale> allSales = getAllSaleFromDataBase();
         ArrayList<Sale> ans = new ArrayList<>();
-        for(Sale sale:allSales){
-            if(sale.getSellerUsername().equals(username)) ans.add(sale);
+        for (Sale sale : allSales) {
+            if (sale.getSellerUsername().equals(username)) ans.add(sale);
         }
         return ans;
     }
@@ -130,28 +130,32 @@ public class SaleAndDiscountCodeController {
 
     public String deleteDiscountCode(String id) {
         DiscountCode code = getDiscountCodeById(id);
-        if ((id == null)||(code == null)) {
+        if ((id == null) || (code == null)) {
             return "Error: discount code doesnt exist";
         }
         Database.getInstance().deleteDiscountCode(code);
         return "Successful";
     }
 
-    public void giveRandomDiscountCode(){
+    public void giveRandomDiscountCode() {
         ArrayList<Buyer> allBuyers = UserController.getInstance().getAllBuyers();
         Random random = new Random();
-        int randomIndex = random.nextInt(allBuyers.size());
-        Buyer buyer = allBuyers.get(randomIndex);
-        giveGiftDiscountCode(buyer.getUsername());
+        int randomIndex;
+        Buyer buyer;
+        for(int i=0;i<3;i++) {
+            randomIndex = random.nextInt(allBuyers.size());
+            buyer = allBuyers.get(randomIndex);
+            giveGiftDiscountCode(buyer.getUsername());
+        }
     }
 
-    public void giveGiftDiscountCode(String username){
+    public void giveGiftDiscountCode(String username) {
         ArrayList<String> allUsers = new ArrayList<>();
         allUsers.add(username);
         LocalDateTime startTime = LocalDateTime.now();
         LocalDateTime endTime = LocalDateTime.now();
         endTime.plusDays(7);
-        addDiscountCode(5,endTime,startTime,allUsers,1,500000);
+        addDiscountCode(5, endTime, startTime, allUsers, 1, 500000);
     }
 
     public boolean isThereDiscountCodeWithId(String id) {
@@ -200,20 +204,20 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
-    public ArrayList<String> getAllSaleFromDataBaseToString(){
-        ArrayList<Sale> allSale=getAllSaleFromDataBase();
-        ArrayList<String> allSaleToString=new ArrayList<>();
+    public ArrayList<String> getAllSaleFromDataBaseToString() {
+        ArrayList<Sale> allSale = getAllSaleFromDataBase();
+        ArrayList<String> allSaleToString = new ArrayList<>();
         for (Sale sale : allSale) {
             allSaleToString.add(sale.toString());
         }
         return allSaleToString;
     }
 
-    public ArrayList<String> getAllItemsIDWithSale(){
+    public ArrayList<String> getAllItemsIDWithSale() {
         ArrayList<Sale> allSale = getAllSaleFromDataBase();
         ArrayList<String> itemsID = new ArrayList<>();
 
-        for(Sale sale:allSale){
+        for (Sale sale : allSale) {
             itemsID.addAll(sale.getAllItemId());
         }
 
@@ -234,7 +238,7 @@ public class SaleAndDiscountCodeController {
         return "Successful:";
     }
 
-    public String editDiscountCodeMaxDiscount(String discountID,double amount){
+    public String editDiscountCodeMaxDiscount(String discountID, double amount) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
             return "Error: invalid ID for discount code.";
@@ -253,10 +257,10 @@ public class SaleAndDiscountCodeController {
         if (discountCode == null) {
             return "Error: invalid ID for discount code.";
         }
-        if(!endTime.isAfter(discountCode.getStartTime())){
+        if (!endTime.isAfter(discountCode.getStartTime())) {
             return "Error: ending time is after the starting time!";
         }
-       discountCode.setEndTime(endTime);
+        discountCode.setEndTime(endTime);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -265,8 +269,8 @@ public class SaleAndDiscountCodeController {
         return "Successful";
     }
 
-    public String editDiscountCodeUsageCount(String discountID,int newUsage){
-        if(newUsage<=0) return "Error: usage count has to be positive.";
+    public String editDiscountCodeUsageCount(String discountID, int newUsage) {
+        if (newUsage <= 0) return "Error: usage count has to be positive.";
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
             return "Error: invalid ID for discount code.";
@@ -280,11 +284,11 @@ public class SaleAndDiscountCodeController {
         return "Successful";
     }
 
-    public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount,double maxDiscount) {
-        if(!endTime.isAfter(startTime)){
+    public String addDiscountCode(int percentage, LocalDateTime endTime, LocalDateTime startTime, ArrayList<String> validUsers, int usageCount, double maxDiscount) {
+        if (!endTime.isAfter(startTime)) {
             return "Error: ending time is after the starting time!";
         }
-        DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount,maxDiscount);
+        DiscountCode discountCode = new DiscountCode(percentage, startTime, endTime, validUsers, usageCount, maxDiscount);
         try {
             Database.getInstance().saveDiscountCode(discountCode);
         } catch (IOException e) {
@@ -301,39 +305,39 @@ public class SaleAndDiscountCodeController {
         return discountCode.toString();
     }
 
-    public boolean userCanUseDiscountCode(String discountID){
+    public boolean userCanUseDiscountCode(String discountID) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         return discountCode.userCanUse(Controller.getInstance().currentOnlineUser.getUsername());
     }
 
     public String editSale(String saleID, String changedField, String newFieldValue) {
-        if(!isThereSaleWithId(saleID)) return "Error: invalid ID";
+        if (!isThereSaleWithId(saleID)) return "Error: invalid ID";
         String requestID = Controller.getInstance().getAlphaNumericString(5, "Sales");
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
         return "Success:";
     }
 
-    public boolean canAddItemToSale(String itemID){
-        if(!(UserController.getInstance().getCurrentOnlineUser() instanceof Seller)){
+    public boolean canAddItemToSale(String itemID) {
+        if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Seller)) {
             return false;
         }
-        Seller seller = (Seller)UserController.getInstance().getCurrentOnlineUser();
+        Seller seller = (Seller) UserController.getInstance().getCurrentOnlineUser();
         return (seller.hasItem(itemID) && !ItemAndCategoryController.getInstance().getItemById(itemID).isInSale());
     }
 
-    protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime){
+    protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime) {
         ArrayList<DiscountCode> allDiscountCodes = getAllDiscountCodesFromDataBase();
-        for(DiscountCode discountCode:allDiscountCodes){
-            if(discountCode.getEndTime().isBefore(currentTime)){
+        for (DiscountCode discountCode : allDiscountCodes) {
+            if (discountCode.getEndTime().isBefore(currentTime)) {
                 deleteDiscountCode(discountCode.getDiscountId());
             }
         }
     }
 
-    protected void deleteDeprecatedSales(LocalDateTime currentTime){
+    protected void deleteDeprecatedSales(LocalDateTime currentTime) {
         ArrayList<Sale> allSales = getAllSaleFromDataBase();
-        for(Sale sale:allSales){
-            if(sale.getEndTime().isBefore(currentTime)){
+        for (Sale sale : allSales) {
+            if (sale.getEndTime().isBefore(currentTime)) {
                 deleteSale(sale.getId());
             }
         }
