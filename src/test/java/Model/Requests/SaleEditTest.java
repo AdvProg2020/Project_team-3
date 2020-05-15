@@ -25,7 +25,7 @@ public class SaleEditTest extends TestCase {
     }
 
     public void testGetChangedFieled() {
-        System.out.println(addRequest().getChangedFieled());
+        System.out.println(addRequest().getChangedField());
     }
 
     public void testTestToString() {
