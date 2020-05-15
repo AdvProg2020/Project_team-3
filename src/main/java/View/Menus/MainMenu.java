@@ -40,6 +40,7 @@ public class MainMenu extends Menu {
         }else if(command.equals("4")){
             run();
         }else if(command.equals("5")) {
+            LoginRegisterMenu.getInstance().setIntendedMenu("MainMenu");
             LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
         }else if(command.equals("6")){
