@@ -22,15 +22,19 @@ public class RequestControllerTest {
             Assert.assertTrue(RequestController.getInstance().isThereRequestWithId(request.getRequestId()));
         }
         Assert.assertFalse(RequestController.getInstance().isThereRequestWithId("BehaeenFrj"));
+        declineRequest();
     }
 
     @Test
     public void getRequestById() {
+        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+                "reza","pishro","alireza@gmail.com","33824264","benz");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         if(allRequests.isEmpty()) return;
         for(Request request:allRequests){
             System.out.println(RequestController.getInstance().getRequestById(request.getRequestId()));
         }
+        declineRequest();
     }
 
     @Test

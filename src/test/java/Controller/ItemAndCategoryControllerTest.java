@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ItemAndCategoryControllerTest {
@@ -29,6 +30,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item>allItem=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         Item item=allItem.get(0);
         ItemAndCategoryController.getInstance().deleteItem(item.getId());
+        for(Item item1:allItem) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -39,6 +41,7 @@ public class ItemAndCategoryControllerTest {
             Assert.assertTrue(ItemAndCategoryController.getInstance().isThereItemWithId(item.getId()));
         }
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereItemWithId("Behaeen"));
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -46,6 +49,8 @@ public class ItemAndCategoryControllerTest {
         addItem();
         Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Behaeen"));
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -55,7 +60,7 @@ public class ItemAndCategoryControllerTest {
         for(Item item:allItems){
             System.out.println(ItemAndCategoryController.getInstance().getItemById(item.getId()).getId());
         }
-
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -65,6 +70,8 @@ public class ItemAndCategoryControllerTest {
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Behaeen");
         Assert.assertNotNull(category);
         Assert.assertNull(category1);
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -74,16 +81,17 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
         Assert.assertTrue(ItemAndCategoryController.getInstance().searchItemInCategory(category.getName(),item.getId()));
-
-
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
     public void compare() {
+        addItem();
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         if(allItems.size()<2) return;
         String string=ItemAndCategoryController.getInstance().compare(allItems.get(0).getId(),allItems.get(1).getId());
         System.out.println(string);
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
@@ -95,11 +103,14 @@ public class ItemAndCategoryControllerTest {
         for(String attribute:string){
             System.out.println(string);
         }
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
     public void comment() {
         addItem();
+        UserController.getInstance().registerBuyer(500,"Arman","Hitler",
+                "Arman","S","arman@gmail.com","33151603");
         User user=UserController.getInstance().getUserByUsername("Arman");
         UserController.getInstance().login("Arman",user.getPassword());
         String text="that was very nice!";
@@ -108,6 +119,9 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         ItemAndCategoryController.getInstance().comment(text,item.getId());
         acceptRequests();
+        System.out.println(ItemAndCategoryController.getInstance().showItemComments(item.getId()));
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        Database.getInstance().deleteUser(user);
     }
 
     @Test
@@ -125,6 +139,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         String attributes=ItemAndCategoryController.getInstance().showAttributes(allItems.get(0).getId());
         System.out.println(attributes);
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
@@ -154,7 +169,10 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItem() {
-        User seller =UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+                "reza","pishro","alireza@gmail.com","33824264","benz");
+        acceptRequests();
+        User seller =UserController.getInstance().getUserByUsername("Ali");
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
@@ -172,6 +190,7 @@ public class ItemAndCategoryControllerTest {
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
+        //Database.getInstance().deleteUser(seller);
     }
 
     @Test
@@ -202,6 +221,9 @@ public class ItemAndCategoryControllerTest {
         for(String id:allItems){
             System.out.println(id);
         }
+        addItem();
+        ArrayList<Item>allItems1=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        for(Item item:allItems1) Database.getInstance().deleteItem(item);
     }
 
     @Test
@@ -231,11 +253,12 @@ public class ItemAndCategoryControllerTest {
         for(Item item:allItems){
             System.out.println(item.getId());
         }
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
     public void editCategoryName() {
-        addCategory();
+        addItem();
         ItemAndCategoryController.getInstance().editCategoryName("Vacuum","jaroo barghi");
     }
 
