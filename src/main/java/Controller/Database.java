@@ -130,6 +130,12 @@ public class Database<Public> {
     }
 
     public void deleteSale(Sale sale) {
+        for (String id : sale.getAllItemId()) {
+            Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item!=null) {
+                item.setSale("");
+            }
+        }
         String id = sale.getId();
         String path = "Resource" + File.separator + "Sales";
         String name = id + ".json";
@@ -202,8 +208,6 @@ public class Database<Public> {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     public ArrayList<String> printFolderContent(String folderName) {

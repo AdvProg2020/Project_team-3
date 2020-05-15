@@ -10,7 +10,7 @@ public class SaleRequest extends Request {
     public SaleRequest(String requestId, Sale newSale) {
         super(requestId);
         this.newSale=newSale;
-        String news="new Model.Sale with Id"+this.newSale.getId()+"is requested for being add to your System!";
+        String news="new Model.Sale with Id "+this.newSale.getId()+" is requested for being add to your System!";
         this.setMessage(news);
         setType("SaleRequest");
     }

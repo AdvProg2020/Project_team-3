@@ -4,7 +4,7 @@ import Controller.Controller;
 import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
-
+import Controller.SaleAndDiscountCodeController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public class Item {
     private ArrayList<String>buyerUserName;
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
-    private Sale sale;
+    private String saleId;
     //constructor
     public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
@@ -38,6 +38,7 @@ public class Item {
         this.categoryName=categoryName;
         this.attributes=attributes;
         this.inStock=inStock;
+        saleId="";
         this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Items");
         timesBought=0;
         allRatings=new ArrayList<>();
@@ -58,6 +59,7 @@ public class Item {
         this.inStock=item.inStock;
         this.id= Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(),"Items");
         timesBought=0;
+        saleId="";
         allRatings=new ArrayList<>();
         allComments=new ArrayList<>();
         buyerUserName=new ArrayList<>();
@@ -74,15 +76,23 @@ public class Item {
 
     public void delete(){
     Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
-    if(category==null){
-        return;
-    }
-    category.removeItem(id);
+    Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(id);
+    if(category!=null){
+        category.removeItem(id);
         try {
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+   if(sale!=null){
+       sale.removeItemFromSale(id);
+       try {
+           Database.getInstance().saveSale(sale);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
     }
 
     public double getPrice() {
@@ -90,6 +100,7 @@ public class Item {
     }
 
     public double getPriceWithSale(){
+        Sale sale= SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
         if(sale==null){
             return price;
         }else{
@@ -235,6 +246,7 @@ public class Item {
     }
 
     public boolean isInSale(){
+        Sale sale= SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
         return sale!=null;
     }
 
@@ -247,8 +259,8 @@ public class Item {
         return false;
     }
 
-    public void setSale(Sale sale) {
-        this.sale = sale;
+    public void setSale(String saleId) {
+       this.saleId = saleId;
     }
 
     public String showAttributes(){
@@ -272,6 +284,7 @@ public class Item {
     public String toString() {
        String string=name+"\nID: "+id+  "\nSeller:"+sellerName+"\nStock:"+ inStock+"\nPrice:"+price;
        if(isInSale()){
+           Sale sale= SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
            string+="\nprice after sale: " +price*sale.getOffPercentage()/100;
        }
        string+="\nRating= "+getRating();
