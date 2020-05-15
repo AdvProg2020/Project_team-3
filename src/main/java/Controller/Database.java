@@ -211,9 +211,9 @@ public class Database<Public> {
         File[] files = new File(path).listFiles();
         for (File file : files) {
             if (file.isFile()) {
-                /*if(file.getName().equals(".DS_Store")){
+                if(file.getName().equals(".DS_Store")){
                     continue;
-                }*/
+                }
                 fileNames.add(file.getName().replace(".json", ""));
             }
         }

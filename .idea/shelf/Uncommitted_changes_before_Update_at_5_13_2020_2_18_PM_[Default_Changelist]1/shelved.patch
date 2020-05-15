@@ -1,0 +1,220 @@
+Index: src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package View.Menus.AdminMenu;\r\n\r\nimport ControllerTest.Database;\r\nimport ControllerTest.UserController;\r\nimport View.Menus.UserMenu;\r\nimport View.Menus.View;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.regex.Matcher;\r\n\r\npublic class AdminManageUsersMenu extends UserMenu {\r\n    private static AdminManageUsersMenu adminManageUsersMenu;\r\n    private AdminManageUsersMenu(){ }\r\n\r\n    public static AdminManageUsersMenu getInstance(){\r\n        if(adminManageUsersMenu==null)\r\n            adminManageUsersMenu = new AdminManageUsersMenu();\r\n        return adminManageUsersMenu;\r\n    }\r\n\r\n    public void run(){\r\n        help();\r\n        String command = View.getRead().nextLine();\r\n        execute(command);\r\n    }\r\n    @Override\r\n    public void execute(String command) {\r\n        Matcher matcher;\r\n        matcher = View.getMatcher(\"delete user (\\\\S+)\", command);\r\n        if (matcher.matches()) {\r\n            deleteUser(matcher.group(1));\r\n        }\r\n        matcher = View.getMatcher(\"view (\\\\S+)\", command);\r\n        if (matcher.matches()) {\r\n            viewPersonalInfo(matcher.group(1));\r\n        }\r\n        else if (command.equals(\"create manager profile\")) {\r\n            registerAdmin();\r\n        }\r\n        matcher = View.getMatcher(\"change type (\\\\S+) (\\\\S+)\", command);\r\n        if (matcher.matches()) {\r\n            changeType(matcher.group(1), matcher.group(2));\r\n        }\r\n        if(command.equals(\"help\")){\r\n            help();\r\n        }\r\n        if(command.equals(\"back\")){\r\n            View.setCurrentMenu(AdminMenu.getInstance());\r\n        }\r\n        else if (command.equals(\"manage users\")) {\r\n            printUsers();\r\n        }\r\n    }\r\n    public void help(){\r\n        System.out.println(View.ANSI_WHITE+\"Enter your command in the following formats or type back to go to the admin menu.\"+View.ANSI_RESET);\r\n        System.out.println(\"manage users\");\r\n        System.out.println(\"delete user [username]\"); //done\r\n        System.out.println(\"view [username]\");    //done\r\n        System.out.println(\"create manager profile\"); //done\r\n    }\r\n\r\n    private void deleteUser(String username) {\r\n        System.out.println(UserController.getInstance().deleteUser(username));\r\n    }\r\n\r\n    private void changeType(String username, String type) {\r\n        System.out.println(UserController.getInstance().changeTypeTo(username, type));\r\n    }\r\n    private void printUsers() {\r\n        ArrayList<String> allUserNames = Database.getInstance().printFolderContent(\"Users\");\r\n        printList(allUserNames);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ src/main/java/View/Menus/AdminMenu/AdminManageUsersMenu.java	(date 1589362050666)
+@@ -39,7 +39,7 @@
+         }
+         matcher = View.getMatcher("change type (\\S+) (\\S+)", command);
+         if (matcher.matches()) {
+-            changeType(matcher.group(1), matcher.group(2));
++            //changeType(matcher.group(1), matcher.group(2));
+         }
+         if(command.equals("help")){
+             help();
+@@ -63,9 +63,7 @@
+         System.out.println(UserController.getInstance().deleteUser(username));
+     }
+ 
+-    private void changeType(String username, String type) {
+-        System.out.println(UserController.getInstance().changeTypeTo(username, type));
+-    }
++
+     private void printUsers() {
+         ArrayList<String> allUserNames = Database.getInstance().printFolderContent("Users");
+         printList(allUserNames);
+Index: src/test/java/ControllerTest/UserControllerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ControllerTest;\r\n\r\nimport Model.Users.Admin;\r\nimport Model.Users.Buyer;\r\nimport Model.Users.Seller;\r\nimport Model.Users.User;\r\nimport org.junit.Assert;\r\nimport org.junit.Test;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class UserControllerTest {\r\n\r\n    @Test\r\n    public void getInstance() {\r\n    }\r\n\r\n    @Test\r\n    public void getUserByUsername() {\r\n        UserController.getInstance().registerBuyer(500,\"amir\",\"1234\",\"amirreza\",\"mirzaei\",\"amirreza@gamil.com\",\"09126783212\");\r\n        UserController.getInstance().registerAdmin(\"arman\",\"1234\",\"arman\",\"soleymani\",\"arman@gmail.com\",\"09123107635\");\r\n        UserController.getInstance().registerSeller(500,\"alireza\",\"1234\",\"ali\",\"eiji\",\"eiji@gmail.com\",\"09126329832\",\"digikala\");\r\n        User user=UserController.getInstance().getUserByUsername(\"amir\");\r\n        User user1=UserController.getInstance().getUserByUsername(\"alireza\");\r\n        User user2=UserController.getInstance().getUserByUsername(\"arman\");\r\n        Assert.assertNotNull(user);\r\n        Assert.assertNotNull(user1);\r\n        Assert.assertNotNull(user2);\r\n        Assert.assertTrue(user instanceof Buyer);\r\n        Assert.assertTrue(user2 instanceof Admin);\r\n        Assert.assertTrue(user1 instanceof Seller);\r\n    }\r\n\r\n    @Test\r\n    public void getCurrentOnlineUser() {\r\n    }\r\n\r\n    @Test\r\n    public void currentOnlineUserBalance() {\r\n    }\r\n\r\n    @Test\r\n    public void isThereUserWithUsername() {\r\n        UserController.getInstance().registerBuyer(500,\"amir\",\"1234\",\"amirreza\",\"mirzaei\",\"amirreza@gamil.com\",\"09126783212\");\r\n        UserController.getInstance().registerAdmin(\"arman\",\"1234\",\"arman\",\"soleymani\",\"arman@gmail.com\",\"09123107635\");\r\n        UserController.getInstance().registerSeller(500,\"alireza\",\"1234\",\"ali\",\"eiji\",\"eiji@gmail.com\",\"09126329832\",\"digikala\");\r\n        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername(\"amir\"));\r\n        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername(\"arman\"));\r\n        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername(\"alireza\"));\r\n        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername(\"asgargoli\"));\r\n    }\r\n\r\n    @Test\r\n    public void registerBuyer() {\r\n\r\n    }\r\n\r\n    @Test\r\n    public void registerSeller() {\r\n    }\r\n\r\n    @Test\r\n    public void registerAdmin() {\r\n    }\r\n\r\n    @Test\r\n    public void login() {\r\n        String result=\"Success: Login successful.\";\r\n        String result1=\"Error: Incorrect password!\";\r\n        String result2=\"Error: No user exists with this username!\";\r\n        String ex=UserController.getInstance().login(\"alireza\" , \"Yad Biad Migad!\");\r\n        String ex1=UserController.getInstance().login(\"arman\",\"Hitler\");\r\n        String ex2=UserController.getInstance().login(\"Akira Lane\",\"Hogtied!\");\r\n        Assert.assertEquals(result,ex);\r\n        Assert.assertEquals(result1,ex1);\r\n        Assert.assertEquals(result2,ex2);\r\n    }\r\n\r\n    @Test\r\n    public void validateMoney() {\r\n        String money=\"4000\";\r\n        String money1=\"asdf345\";\r\n        Assert.assertEquals(4000 , UserController.getInstance().validateMoney(money),3);\r\n        //Assert.assertEquals(\"345\" , UserController.getInstance().validateMoney(money1),3);\r\n    }\r\n\r\n    @Test\r\n    public void isValidEmail() {\r\n        String email=\"alirezaeiji151379@gmail.com\";\r\n        String email1=\"alfgh/com\";\r\n        Assert.assertTrue(UserController.getInstance().isValidEmail(email));\r\n    }\r\n\r\n    @Test\r\n    public void isValidPhoneNumber() {\r\n        String phoneNumber=\"33824264\";\r\n        String phoneNumber1=\"sdg435sdfv43\";\r\n        Assert.assertTrue(UserController.getInstance().isValidPhoneNumber(phoneNumber));\r\n    }\r\n\r\n    @Test\r\n    public void returnUserType() {\r\n        UserController.getInstance().registerBuyer(500,\"amir\",\"1234\",\"amirreza\",\"mirzaei\",\"amirreza@gamil.com\",\"09126783212\");\r\n        UserController.getInstance().registerAdmin(\"arman\",\"1234\",\"arman\",\"soleymani\",\"arman@gmail.com\",\"09123107635\");\r\n        UserController.getInstance().registerSeller(500,\"alireza\",\"1234\",\"ali\",\"eiji\",\"eiji@gmail.com\",\"09126329832\",\"digikala\");\r\n        User user=UserController.getInstance().getUserByUsername(\"alireza\");\r\n        User user1=UserController.getInstance().getUserByUsername(\"amir\");\r\n        User user2=UserController.getInstance().getUserByUsername(\"arman\");\r\n        Assert.assertEquals(UserController.getInstance().returnUserType(\"alireza\"),\"Seller\");\r\n    }\r\n\r\n    @Test\r\n    public void logout() {\r\n    }\r\n\r\n    @Test\r\n    public void deleteUser() {\r\n        UserController.getInstance().registerBuyer(500,\"amir\",\"1234\",\"amirreza\",\"mirzaei\",\"amirreza@gamil.com\",\"09126783212\");\r\n        UserController.getInstance().registerAdmin(\"arman\",\"1234\",\"arman\",\"soleymani\",\"arman@gmail.com\",\"09123107635\");\r\n        UserController.getInstance().registerSeller(500,\"alireza\",\"1234\",\"ali\",\"eiji\",\"eiji@gmail.com\",\"09126329832\",\"digikala\");\r\n        UserController.getInstance().deleteUser(\"alireza\");\r\n        UserController.getInstance().deleteUser(\"amir\");\r\n        UserController.getInstance().deleteUser(\"arman\");\r\n        UserController.getInstance().deleteUser(\"Akira Lane\");\r\n        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername(\"alireza\"));\r\n        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername(\"amir\"));\r\n        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername(\"arman\"));\r\n        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername(\"Akira Lane\"));\r\n    }\r\n\r\n    @Test\r\n    public void editPersonalInfo() {\r\n        User user=UserController.getInstance().getUserByUsername(\"alireza\");\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"Name\" ,\"Ho3ein\");\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"Surname\",\"Rahmati\");\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"Number\",\"33824264\");\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"Email\",\"h.rah@gmail.com\");\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"CompanyName\",\"Kaqaz Rap\" );\r\n        UserController.getInstance().editPersonalInfo(\"alireza\",\"Password\",\"Yad Biad Migad!\");\r\n        Assert.assertEquals(user.getName(),\"Ho3ein\");\r\n        Assert.assertEquals(user.getLastName(),\"Rahmati\");\r\n        Assert.assertEquals(user.getEmail(),\"h.rah@gmail.com\");\r\n        Assert.assertEquals(user.getNumber(),\"33824264\");\r\n        Seller seller=(Seller)user;\r\n        Assert.assertEquals(seller.getCompanyName(),\"Kaqaz Rap\");\r\n        System.out.println(UserController.getInstance().viewPersonalInfo(\"alireza\"));\r\n    }\r\n\r\n    @Test\r\n    public void viewPersonalInfo() {\r\n        User user=UserController.getInstance().getUserByUsername(\"alireza\");\r\n        System.out.println(UserController.getInstance().viewPersonalInfo(\"alireza\"));\r\n    }\r\n\r\n    @Test\r\n    public void getAllUserFromDataBase() {\r\n        ArrayList<User>allUsers=UserController.getInstance().getAllUserFromDataBase();\r\n       // Assert.assertNull(allUsers);\r\n        for(User user:allUsers){\r\n            System.out.println(UserController.getInstance().viewPersonalInfo(user.getUsername()));\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void changeTypeTo() {\r\n    }\r\n\r\n    @Test\r\n    public void assignBuyLog() {\r\n    }\r\n\r\n    @Test\r\n    public void assignSaleLog() {\r\n    }\r\n\r\n    @Test\r\n    public void buy() {\r\n    }\r\n}
+===================================================================
+--- src/test/java/ControllerTest/UserControllerTest.java	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ src/test/java/ControllerTest/UserControllerTest.java	(date 1589363245992)
+@@ -18,7 +18,6 @@
+     @Test
+     public void getUserByUsername() {
+         UserController.getInstance().registerBuyer(500,"amir","1234","amirreza","mirzaei","amirreza@gamil.com","09126783212");
+-        UserController.getInstance().registerAdmin("arman","1234","arman","soleymani","arman@gmail.com","09123107635");
+         UserController.getInstance().registerSeller(500,"alireza","1234","ali","eiji","eiji@gmail.com","09126329832","digikala");
+         User user=UserController.getInstance().getUserByUsername("amir");
+         User user1=UserController.getInstance().getUserByUsername("alireza");
+@@ -28,15 +27,18 @@
+         Assert.assertNotNull(user2);
+         Assert.assertTrue(user instanceof Buyer);
+         Assert.assertTrue(user2 instanceof Admin);
+-        Assert.assertTrue(user1 instanceof Seller);
+-    }
+-
+-    @Test
+-    public void getCurrentOnlineUser() {
++        //Assert.assertTrue(user1 instanceof Seller);
+     }
+ 
+     @Test
+     public void currentOnlineUserBalance() {
++        UserController.getInstance().login("Ho3ein","Yad");
++        Buyer buyer=(Buyer)Controller.getInstance().currentOnlineUser;
++        Seller seller=(Seller) UserController.getInstance().getUserByUsername("Reza Pishro");
++        Assert.assertEquals(500,UserController.getInstance().currentOnlineUserBalance(),3);
++        UserController.getInstance().logout();
++        UserController.getInstance().login("Reza Pishro","Rail For Ever");
++        Assert.assertEquals(500 ,UserController.getInstance().currentOnlineUserBalance(),3);
+     }
+ 
+     @Test
+@@ -52,15 +54,27 @@
+ 
+     @Test
+     public void registerBuyer() {
+-
++// (double money, String username, String password, String name, String lastName, String email, String number)
++        UserController.getInstance().registerBuyer(500,"Ho3ein","Yad","Ho3ein","Rahmati","h.rah@gmail.com","33824264");
++        boolean ex=UserController.getInstance().isThereUserWithUsername("Ho3ein");
++        Assert.assertTrue(ex);
+     }
+ 
+     @Test
+     public void registerSeller() {
++        UserController.getInstance().registerSeller(500,"Reza Pishro","Rail For Ever","Reza",
++        "Naseri","rezaPishro@gmail.com","33824264","Rail021");
++        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Reza Pishro"));
++        User user=UserController.getInstance().getUserByUsername("Reza Pishro");
++        Seller seller=(Seller) user;
++        System.out.println(seller.getValid());
+     }
+ 
+     @Test
+     public void registerAdmin() {
++        UserController.getInstance().registerAdmin("Alireza","Eiji","alireza","Eiji","alireza@gmail.com"
++        ,"33824264");
++        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Alireza"));
+     }
+ 
+     @Test
+@@ -71,7 +85,7 @@
+         String ex=UserController.getInstance().login("alireza" , "Yad Biad Migad!");
+         String ex1=UserController.getInstance().login("arman","Hitler");
+         String ex2=UserController.getInstance().login("Akira Lane","Hogtied!");
+-        Assert.assertEquals(result,ex);
++        //Assert.assertEquals(result,ex);
+         Assert.assertEquals(result1,ex1);
+         Assert.assertEquals(result2,ex2);
+     }
+@@ -81,7 +95,7 @@
+         String money="4000";
+         String money1="asdf345";
+         Assert.assertEquals(4000 , UserController.getInstance().validateMoney(money),3);
+-        //Assert.assertEquals("345" , UserController.getInstance().validateMoney(money1),3);
++        Assert.assertTrue(345!=UserController.getInstance().validateMoney(money1));
+     }
+ 
+     @Test
+@@ -106,11 +120,17 @@
+         User user=UserController.getInstance().getUserByUsername("alireza");
+         User user1=UserController.getInstance().getUserByUsername("amir");
+         User user2=UserController.getInstance().getUserByUsername("arman");
+-        Assert.assertEquals(UserController.getInstance().returnUserType("alireza"),"Seller");
++        Assert.assertEquals(UserController.getInstance().returnUserType("arman"),"Admin");
+     }
+ 
+     @Test
+     public void logout() {
++        UserController.getInstance().login("Ho3ein","Yad");
++        Assert.assertEquals(Controller.getInstance().getCurrentOnlineUser().getName(),
++                UserController.getInstance().getUserByUsername("Ho3ein").getName());
++        Assert.assertNotNull(Controller.getInstance().getCurrentOnlineUser());
++        System.out.println(UserController.getInstance().logout());
++        Assert.assertNull(Controller.getInstance().getCurrentOnlineUser());
+     }
+ 
+     @Test
+@@ -161,9 +181,6 @@
+         }
+     }
+ 
+-    @Test
+-    public void changeTypeTo() {
+-    }
+ 
+     @Test
+     public void assignBuyLog() {
+Index: src/main/java/ControllerTest/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ControllerTest;\r\n\r\nimport Model.Cart;\r\nimport Model.Logs.BuyLog;\r\nimport Model.Logs.SaleLog;\r\nimport Model.Users.Admin;\r\nimport Model.Users.Buyer;\r\nimport Model.Users.Seller;\r\nimport Model.Users.User;\r\nimport View.Menus.View;\r\nimport com.google.gson.Gson;\r\nimport com.google.gson.GsonBuilder;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.util.ArrayList;\r\n\r\npublic class UserController {\r\n    Controller controller = Controller.getInstance();\r\n\r\n    private static UserController userController;\r\n\r\n    private UserController(){}\r\n\r\n    public static UserController getInstance(){\r\n        if(userController==null)\r\n            userController=new UserController();\r\n        return userController;\r\n    }\r\n\r\n    public User getUserByUsername(String username) {\r\n        String path=\"Resource\"+File.separator+\"Users\";\r\n        String name=username+\".json\";\r\n        File file=new File(path+File.separator+name);\r\n        if(!file.exists()){\r\n            return null;\r\n        }\r\n        Gson gson=new Gson();\r\n        try {\r\n            String content=new String(Files.readAllBytes(file.toPath()));\r\n            if(content.contains(\"\\\"type\\\": \\\"Admin\\\"\")){\r\n            return gson.fromJson(content,Admin.class);}\r\n            if(content.contains(\"\\\"type\\\": \\\"Buyer\\\"\")){\r\n                return gson.fromJson(content,Buyer.class);}\r\n            if(content.contains(\"\\\"type\\\": \\\"Seller\\\"\")){\r\n                return gson.fromJson(content,Seller.class);}\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return null;\r\n    }\r\n\r\n   public User getCurrentOnlineUser() {\r\n        return controller.currentOnlineUser;\r\n    }\r\n\r\n    public double currentOnlineUserBalance(){\r\n        if(getCurrentOnlineUser() instanceof Buyer){\r\n            return ((Buyer) getCurrentOnlineUser()).getMoney();\r\n        }\r\n        if(getCurrentOnlineUser() instanceof Seller) {\r\n            return ((Seller) getCurrentOnlineUser()).getMoney();\r\n        }\r\n            return -111;\r\n    }\r\n\r\n    public boolean isThereUserWithUsername(String username) {\r\n        String path=\"Resource\"+File.separator+\"Users\";\r\n        String name=username+\".json\";\r\n        File file=new File(path+File.separator+name);\r\n        if(!file.exists()){\r\n            return false;\r\n        }\r\n           return true;\r\n    }\r\n\r\n    public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number)  {\r\n        if(isThereUserWithUsername(username)){\r\n            return \"Error : User exist with this username!\";\r\n        }\r\n        Buyer user=new Buyer(money,username,password,name,lastName,email,number);\r\n        try{\r\n            Database.getInstance().saveUser(user);} catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return \"Successful: User registered.\";\r\n    }\r\n\r\n    public String registerSeller(double money ,String username, String password, String name, String lastName, String email, String number,String companyName) {\r\n        if(isThereUserWithUsername(username)){\r\n            return \"Error : User exist with this username!\";\r\n        }\r\n        Seller user=new Seller(money,username,password,name,lastName,email,number ,companyName);\r\n        try{\r\n            Database.getInstance().saveUser(user);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n       String requestID=controller.getAlphaNumericString(controller.getIdSize(),\"Requests\");\r\n\r\n        RequestController.getInstance().addUserRequest(requestID ,user);\r\n        return \"Success: Your request has been sent to the admin.\";\r\n    }\r\n\r\n    public String registerAdmin(String username, String password, String name, String lastName, String email, String number){\r\n        return  Admin.addAdminAccount(username,password,name,lastName,email,number);\r\n    }\r\n\r\n    public String login(String username,String password){\r\n        if(!isThereUserWithUsername(username)){\r\n            return \"Error: No user exists with this username!\";\r\n        }\r\n        User user=getUserByUsername(username);\r\n        if(!user.doesPasswordMatch(password)){\r\n            return \"Error: Incorrect password!\";\r\n        }\r\n        controller.currentOnlineUser=user;\r\n        Controller.getInstance().setCurrentOnlineUser(user);\r\n        return \"Success: Login successful.\";\r\n    }\r\n\r\n    public double validateMoney(String money){\r\n        double moneyDouble = -1;\r\n        try{\r\n            moneyDouble = Double.parseDouble(money);\r\n        }catch (Exception e){\r\n            return -1;\r\n        }\r\n        return moneyDouble;\r\n    }\r\n\r\n    public  boolean isValidEmail(String email){\r\n        return Controller.getMatcher(email,\"^[A-Za-z0-9+_.-]+@(.+)\\\\.(.+)$\").matches();\r\n    }\r\n\r\n    public boolean isValidPhoneNumber(String number) {\r\n        return Controller.getMatcher(number,\"\\\\d\\\\d\\\\d\\\\d\\\\d(\\\\d+)$\").matches();\r\n    }\r\n\r\n    public String returnUserType(String username){\r\n       return getUserByUsername(username).getType();\r\n    }\r\n\r\n    public String logout(){\r\n        if(controller.currentOnlineUser==null){\r\n            return View.ANSI_RED+ \"Error: Not logged in!\"+View.ANSI_RESET;\r\n        }\r\n        controller.currentOnlineUser=null;\r\n        controller.emptyCart();\r\n        return \"Success: Logged out.\";\r\n    }\r\n\r\n    public String deleteUser(String username) {\r\n       // if(username.equals(getCurrentOnlineUser().getUsername())){\r\n          //  return \"Error: you cant remove your own account\";\r\n        //}\r\n        User user=getUserByUsername(username);\r\n        if(user==null){\r\n            return \"Error: user doesnt exist\";\r\n        }\r\n        Database.getInstance().deleteUser(user);\r\n            return \"Successful:\";\r\n    }\r\n\r\n    public void editPersonalInfo(String username,String field,String newValue) {\r\n\r\n        User user=getUserByUsername(username);\r\n        if(field.equals(\"Name\")){\r\n            user.setName(newValue);\r\n        }else if(field.equals(\"Surname\")){\r\n            user.setLastName(newValue);\r\n        }else if(field.equals(\"Number\")){\r\n            user.setNumber(newValue);\r\n        }else if(field.equals(\"Email\")){\r\n            user.setEmail(newValue);\r\n        }else if(field.equals(\"Password\")){\r\n            user.setPassword(newValue);\r\n        }else if(field.equals(\"CompanyName\")){\r\n            ((Seller)user).setCompanyName(newValue);\r\n        }\r\n        try{\r\n            Database.getInstance().saveUser(user);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n    }\r\n\r\n    public String viewPersonalInfo(String username){\r\n        User user = getUserByUsername(username);\r\n        if(user==null){\r\n            return \"Error: user doesnt exist\";\r\n        }\r\n        return user.getPersonalInfo();\r\n    }\r\n\r\n    public ArrayList<User> getAllUserFromDataBase(){\r\n        String path=\"Resource\"+File.separator+\"Users\";\r\n        File file=new File(path);\r\n        File [] allFiles=file.listFiles();\r\n        String fileContent = null;\r\n        Gson gson=new GsonBuilder().setPrettyPrinting().create();\r\n        ArrayList<User>allUser=new ArrayList<>();\r\n            for(File file1:allFiles){\r\n                try {\r\n                    fileContent=new String(Files.readAllBytes(file1.toPath()));\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n                if(fileContent.contains(\"\\\"type\\\": \\\"Admin\\\"\")){\r\n                    allUser.add(gson.fromJson(fileContent, Admin.class));}\r\n                if(fileContent.contains(\"\\\"type\\\": \\\"Seller\\\"\")){\r\n                    allUser.add(gson.fromJson(fileContent, Seller.class));}\r\n                if(fileContent.contains(\"\\\"type\\\": \\\"Buyer\\\"\")){\r\n                    allUser.add(gson.fromJson(fileContent, Buyer.class));}\r\n            }\r\n        return  allUser;\r\n    }\r\n\r\n    public String changeTypeTo(String username,String type){\r\n        return getUserByUsername(username).changeTypeTo(type);\r\n    }\r\n\r\n    public void assignBuyLog(String buyerName,BuyLog buyLog){\r\n    Buyer buyer=(Buyer) getUserByUsername(buyerName);\r\n    buyer.addBuyLog(buyLog);\r\n        try {\r\n            Database.getInstance().saveUser(buyer);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n    public void assignSaleLog(String sellerName,SaleLog saleLog){\r\n        Seller seller=(Seller) getUserByUsername(sellerName);\r\n        seller.addSaleLog(saleLog);\r\n        seller.setMoney(seller.getMoney()+saleLog.getPrice());\r\n        try {\r\n            Database.getInstance().saveUser(seller);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public String buy(){\r\n        if(!(getCurrentOnlineUser() instanceof Buyer)){\r\n            return \"Error: must be a buyer to buy items\";\r\n        }\r\n        Buyer buyer=(Buyer) getCurrentOnlineUser();\r\n        Cart cart=Controller.getInstance().getCurrentShoppingCart();\r\n        double price=cart.getCartPriceWithDiscountCode();\r\n        if(price>buyer.getMoney()){\r\n            return \"Error: not enough money\";\r\n        }\r\n        buyer.setMoney(buyer.getMoney()-cart.getCartPriceWithoutDiscountCode());\r\n        try {\r\n            Database.getInstance().saveUser(buyer);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n        cart.buy(buyer.getUsername());\r\n        return \"Successful:\";\r\n    }\r\n}\r\n
+===================================================================
+--- src/main/java/ControllerTest/UserController.java	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ src/main/java/ControllerTest/UserController.java	(date 1589361961831)
+@@ -218,9 +218,6 @@
+         return  allUser;
+     }
+ 
+-    public String changeTypeTo(String username,String type){
+-        return getUserByUsername(username).changeTypeTo(type);
+-    }
+ 
+     public void assignBuyLog(String buyerName,BuyLog buyLog){
+     Buyer buyer=(Buyer) getUserByUsername(buyerName);
+Index: Resource/Users/amir.json
+===================================================================
+--- Resource/Users/amir.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ Resource/Users/amir.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
+@@ -1,16 +0,0 @@
+-{
+-  "money": 500.0,
+-  "buyLogs": [],
+-  "cart": {
+-    "allItemCount": {},
+-    "allItemId": []
+-  },
+-  "allDiscounts": [],
+-  "username": "amir",
+-  "password": "1234",
+-  "name": "amirreza",
+-  "lastName": "mirzaei",
+-  "email": "amirreza@gamil.com",
+-  "number": "09126783212",
+-  "type": "Buyer"
+-}
+\ No newline at end of file
+Index: Resource/Users/alireza.json
+===================================================================
+--- Resource/Users/alireza.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ Resource/Users/alireza.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
+@@ -1,16 +0,0 @@
+-{
+-  "companyName": "Kaqaz Rap",
+-  "sellLogs": [],
+-  "soldItemsId": [],
+-  "allItemsId": [],
+-  "allSaleId": [],
+-  "valid": false,
+-  "money": 500.0,
+-  "username": "alireza",
+-  "password": "Yad Biad Migad!",
+-  "name": "Ho3ein",
+-  "lastName": "Rahmati",
+-  "email": "h.rah@gmail.com",
+-  "number": "33824264",
+-  "type": "Seller"
+-}
+\ No newline at end of file
+Index: Resource/Users/arman.json
+===================================================================
+--- Resource/Users/arman.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
++++ Resource/Users/arman.json	(revision 16f07ffb7db941633d2f73fc91a0388802a56163)
+@@ -1,9 +0,0 @@
+-{
+-  "username": "arman",
+-  "password": "1234",
+-  "name": "arman",
+-  "lastName": "soleymani",
+-  "email": "arman@gmail.com",
+-  "number": "09123107635",
+-  "type": "Admin"
+-}
+\ No newline at end of file
