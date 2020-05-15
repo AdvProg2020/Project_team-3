@@ -23,6 +23,7 @@ public class SortComperators {
     protected ArrayList<String> sortByView(ArrayList<String> allItemsId) {
         ArrayList<Item> allItems = getAllItem(allItemsId);
         Collections.sort(allItems, new ViewCountComparator());
+        Collections.reverse(allItems);
         return getAllId(allItems);
     }
 
