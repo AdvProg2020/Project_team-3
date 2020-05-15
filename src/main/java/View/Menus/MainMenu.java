@@ -1,8 +1,6 @@
 package View.Menus;
 
 import Controller.UserController;
-import Model.Users.Admin;
-import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
@@ -79,9 +77,9 @@ public class MainMenu extends Menu {
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
             return;
         }
-        if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin){
+        if(    UserController.getInstance().getUserType().equals("Admin")){
             View.setCurrentMenu(AdminMenu.getInstance());
-        }else if(UserController.getInstance().getCurrentOnlineUser() instanceof Seller){
+        }else if(    UserController.getInstance().getUserType().equals("Seller")){
             View.setCurrentMenu(SellerMenu.getInstance());
         }else{
             View.setCurrentMenu(BuyerMenu.getInstance());

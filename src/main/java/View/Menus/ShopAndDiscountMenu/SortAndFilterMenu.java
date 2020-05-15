@@ -108,9 +108,9 @@ public class SortAndFilterMenu extends Menu {
          filterName(matcher.group(1));
          return;
       }
-      matcher = View.getMatcher("filter by attribute (\\S+)", command);
+      matcher = View.getMatcher("filter by attribute (\\S+) (\\S+)", command);
       if (matcher.matches()) {
-         filterAttribute(matcher.group(1));
+         filterAttribute(matcher.group(1),matcher.group(2));
          return;
       }
       matcher = View.getMatcher("filter by price (\\d+) to (\\d+)", command);
@@ -224,8 +224,8 @@ public class SortAndFilterMenu extends Menu {
       SortAndFilterController.getInstance().activateFilterPriceRange(min, max);
    }
 
-   public void filterAttribute(String attribute) {
-      SortAndFilterController.getInstance().activateFilterAttribute(attribute);
+   public void filterAttribute(String attributeKey,String attributeValue) {
+      SortAndFilterController.getInstance().activateFilterAttribute(attributeKey,attributeValue);
    }
 
    public void filterSellerName(String sellerName) {

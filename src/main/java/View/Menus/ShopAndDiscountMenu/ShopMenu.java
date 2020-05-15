@@ -7,7 +7,6 @@ import View.Menus.LoginRegisterMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class ShopMenu extends Menu {

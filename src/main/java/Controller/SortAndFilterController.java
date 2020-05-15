@@ -18,7 +18,8 @@ public class SortAndFilterController {
    String categoryName;
    String brandName;
    String name;
-   String attribute;
+   String attributeKey;
+   String attributeValue;
    String sellerName;
    public static SortAndFilterController sortAndFilterController;
 
@@ -105,9 +106,10 @@ public class SortAndFilterController {
       filterAvailability = true;
    }
 
-   public void activateFilterAttribute(String attribute) {
+   public void activateFilterAttribute(String attributeKey,String attributeValue) {
       filterAttribute = true;
-      this.attribute = attribute;
+      this.attributeKey=attributeKey;
+      this.attributeValue=attributeValue;
    }
 
    public void activateFilterSellerName(String sellerName) {
@@ -169,7 +171,10 @@ public class SortAndFilterController {
       if ((filterAvailability == true) && (instock == 0)) {
          return false;
       }
-      if ((filterAttribute == true) && (item.hasAttribute(attribute))) {
+      if ((filterAttribute == true) && (item.getAttributes().containsKey(attributeKey))&&(!item.getAttributes().get(attributeKey).equals(attributeValue))) {
+         return false;
+      }
+      if ((filterAttribute == true) && !(item.getAttributes().containsKey(attributeKey))) {
          return false;
       }
       if ((filterSellerName == true) && (!item.getSellerName().equals(sellerName))) {
@@ -193,7 +198,7 @@ public class SortAndFilterController {
          ans += "\nfilter by name: " + name;
       }
       if (filterAttribute == true) {
-         ans += "\nfilter by attribute: " + attribute;
+         ans += "\nfilter by attribute attributeKey: " + attributeKey+" attributeValue: "+attributeValue;
       }
       if (filterSellerName == true) {
          ans += "\nfilter by seller: " + sellerName;
@@ -225,7 +230,7 @@ public class SortAndFilterController {
               "\nfilter by brand [name]" +
               "\nfilter by name [name]" +
               "\nfilter by availability" +
-              "\nfilter by attribute [name]" +
+              "\nfilter by attribute [key] [value]" +
               "\nfilter by seller [seller name]";
    }
 

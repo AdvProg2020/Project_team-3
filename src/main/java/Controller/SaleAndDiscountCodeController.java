@@ -184,6 +184,15 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
+    public ArrayList<String> getAllSaleFromDataBaseToString(){
+        ArrayList<Sale> allSale=getAllSaleFromDataBase();
+        ArrayList<String> allSaleToString=new ArrayList<>();
+        for (Sale sale : allSale) {
+            allSaleToString.add(sale.toString());
+        }
+        return allSaleToString;
+    }
+
     /*public String printItemsWithSale() {
         ArrayList<Sale> allSale = getAllSaleFromDataBase();
         String string = "";

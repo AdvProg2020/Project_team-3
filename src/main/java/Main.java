@@ -18,8 +18,6 @@ public class Main {
 
 //edit sale arman
 
-// filter by attribute biad esme attribute ro begire badesh biad meghdare begire o ina. mirza
-
 //darkhast ezafeye sale arman
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
@@ -31,4 +29,4 @@ public class Main {
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
 //loginregistermenu intendedmenu enum beshe
-//mvc rayat shavad
+//mvc rayat shavad   (buyerMenu,SellerMenu,SellermanageproductMenu faghat nistan)

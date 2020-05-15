@@ -2,9 +2,6 @@ package View.Menus;
 
 import Controller.Controller;
 import Controller.UserController;
-import Model.Users.Admin;
-import Model.Users.Buyer;
-import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
@@ -162,15 +159,15 @@ public class LoginRegisterMenu extends Menu {
 
     private void goToIntendedMenu() {
         if (intendedMenu.equals("UserMenu")) {
-            if (UserController.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            if ( UserController.getInstance().getUserType().equals("Admin")) {
                 View.setCurrentMenu(AdminMenu.getInstance());
-            } else if (UserController.getInstance().getCurrentOnlineUser() instanceof Seller) {
+            } else if ( UserController.getInstance().getUserType().equals("Seller")) {
                 View.setCurrentMenu(SellerMenu.getInstance());
             } else {
                 View.setCurrentMenu(BuyerMenu.getInstance());
             }
         } else if (intendedMenu.equals("PurchaseMenu")) {
-            if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+            if (!( UserController.getInstance().getUserType().equals("Buyer"))){
                 System.out.println("you must be a Buyer to buy items");
                 return;
             }

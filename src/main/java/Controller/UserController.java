@@ -334,8 +334,15 @@ public class UserController {
 
     public String getUserType(String username){
         User user = getUserByUsername(username);
+        if(user==null){
+            return "Error:";
+        }
         return user.getType();
     }
-
+    public String getUserType(){
+        if(getCurrentOnlineUser()==null)
+            return "Error";
+        return getUserType(getCurrentOnlineUser().getUsername());
+    }
 
 }

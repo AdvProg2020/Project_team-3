@@ -4,7 +4,6 @@ import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
 import Controller.UserController;
-import Model.Sale;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
@@ -117,10 +116,11 @@ public class AdminMenu extends UserMenu {
     }
 
     private void showAllSales() {
-        ArrayList<Sale> allSales = SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
+        printList(SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBaseToString());
+      /*  ArrayList<Sale> allSales = SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         for (Sale sale : allSales) {
             System.out.println(sale);
-        }
+        } */
     }
 
 

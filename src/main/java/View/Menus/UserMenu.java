@@ -2,8 +2,6 @@ package View.Menus;
 
 import Controller.Controller;
 import Controller.UserController;
-import Model.Users.Seller;
-import Model.Users.User;
 
 public abstract class UserMenu extends Menu {
 
@@ -27,7 +25,6 @@ public abstract class UserMenu extends Menu {
 
     public void editPersonalInfo(String field) {
         String username = UserController.getInstance().getCurrentOnlineUser().getUsername();
-        User user = UserController.getInstance().getUserByUsername(username);
         if (field.equalsIgnoreCase("Name")) {
             editName(username);
         } else if (field.equalsIgnoreCase("Surname")) {
@@ -36,7 +33,7 @@ public abstract class UserMenu extends Menu {
             editEmail(username);
         } else if (field.equalsIgnoreCase("Number")) {
             editNumber(username);
-        } else if (field.equalsIgnoreCase("Company") && user instanceof Seller) {
+        } else if (field.equalsIgnoreCase("Company") && UserController.getInstance().returnUserType(username).equals("Seller")) {
             editCompanyName(username);
         } else if (field.equalsIgnoreCase("Password")) {
             editPassword(username);
