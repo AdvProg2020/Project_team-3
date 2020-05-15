@@ -144,7 +144,7 @@ public class Seller extends User {
     }
 
     public String getAllItemsString(){
-        String ans="ID         name        price";
+        String ans="ID         name        price\n";
         for(String id:allItemsId){
             ans+= ItemAndCategoryController.getInstance().getItemById(id).toSimpleString();
             ans+="\n";

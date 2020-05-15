@@ -9,6 +9,8 @@ public class ItemEdit extends Request {
     public ItemEdit(String requestId, String itemID, String changedField, String newFieldValue) {
         super(requestId);
         this.itemID = itemID;
+        String news="Edit Item "+itemID+" field \""+changedField+"\" to "+newFieldValue;
+        this.setMessage(news);
         this.changedField = changedField;
         this.newFieldValue = newFieldValue;
         setType("ItemEdit");

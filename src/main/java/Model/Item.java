@@ -235,7 +235,7 @@ public class Item {
     }
 
     public boolean isInSale(){
-        return sale==null;
+        return sale!=null;
     }
 
     public void addBuyerUserName(String userName){
