@@ -7,6 +7,7 @@ import Model.Users.Buyer;
 import Model.Users.Seller;
 import View.Menus.AdminMenu.AdminMenu;
 import View.Menus.SellerMenu.SellerMenu;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
 
 public class LoginRegisterMenu extends Menu {
     private static LoginRegisterMenu loginRegisterMenu;
@@ -179,6 +180,10 @@ public class LoginRegisterMenu extends Menu {
         else if(intendedMenu.equals("MainMenu")){
             MainMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             View.setCurrentMenu(MainMenu.getInstance());
+        }
+        else if(intendedMenu.equals("ShopMenu")){
+            ShopMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            View.setCurrentMenu(ShopMenu.getInstance());
         }
 
     }

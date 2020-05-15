@@ -67,6 +67,7 @@ public class ShopMenu extends Menu {
          showAllItems();
          return;
       } else if (command.equals("login")) {
+         LoginRegisterMenu.getInstance().setIntendedMenu("ShopMenu");
          LoginRegisterMenu.getInstance().setPreviousMenu(ShopMenu.getInstance());
          View.setCurrentMenu(LoginRegisterMenu.getInstance());
          return;
