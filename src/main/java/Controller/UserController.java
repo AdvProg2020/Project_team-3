@@ -205,7 +205,7 @@ public class UserController {
             user.setEmail(newValue);
         } else if (field.equals("Password")) {
             user.setPassword(newValue);
-        } else if (field.equals("CompanyName")) {
+        } else if ((field.equals("CompanyName"))&&(user instanceof Seller)) {
             ((Seller) user).setCompanyName(newValue);
         }
         try {

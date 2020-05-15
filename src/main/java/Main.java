@@ -14,6 +14,8 @@ public class Main {
 //seller gable accept shudan natune login kone
 //item esmesh biad
 //request esmesh biad
+//discount code esmesh biad
+//beshe hame discount codaro did to admin
 //logout dar hamaje ye bar emtehan shaavd
 //to shop intendet set nemishe
 
