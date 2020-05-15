@@ -39,6 +39,10 @@ public class ItemAndCategoryController {
 
     public String deleteItem(String id) {
         User user=UserController.getInstance().getCurrentOnlineUser();
+        Item item = getItemById(id);
+        if (item == null) {
+            return "Error: item doesn't exist";
+        }
         if(user instanceof Seller){
             Seller seller=(Seller) user;
             if(!seller.hasItem(id)){
@@ -48,12 +52,8 @@ public class ItemAndCategoryController {
         if(user instanceof Buyer){
             return "Error: ";
         }
-        Item item = getItemById(id);
-        if (item == null) {
-            return "Error: item doesn't exist";
-        }
-        Database.getInstance().deleteItem(item);
         UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
+        Database.getInstance().deleteItem(item);
         return "Successful:";
     }
 
