@@ -196,7 +196,6 @@ public class ItemAndCategoryControllerTest {
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
-        //Database.getInstance().deleteUser(seller);
     }
 
     @Test

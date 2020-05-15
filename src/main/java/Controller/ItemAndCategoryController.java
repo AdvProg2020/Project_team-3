@@ -4,6 +4,7 @@ import Model.Category;
 import Model.Comment;
 import Model.Item;
 import Model.Rating;
+import Model.Requests.ItemEdit;
 import Model.Requests.ItemRequest;
 import Model.Requests.Request;
 import Model.Users.Buyer;
@@ -325,12 +326,17 @@ public class ItemAndCategoryController {
     }
 
     public void editCategoryName(String lastName, String newName) {
-        Category category = getCategoryByName(lastName);
-        Category parent=getCategoryByName(category.getParent());
-        parent.getSubCategories().remove(lastName);
-        parent.getSubCategories().add(newName);
-        for (String categoryName : category.getSubCategories()) {
-            Category category1 = getCategoryByName(categoryName);
+        Category category=getCategoryByName(lastName);
+        Category father=getCategoryByName(category.getParent());
+        father.getSubCategories().remove(lastName);
+        father.getSubCategories().add(newName);
+        try {
+            Database.getInstance().saveCategory(father);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for(String categoryName:category.getSubCategories()){
+            Category category1=getCategoryByName(categoryName);
             category1.setParent(newName);
             try {
                 Database.getInstance().saveCategory(category1);
@@ -338,40 +344,28 @@ public class ItemAndCategoryController {
                 e.printStackTrace();
             }
         }
-        for (String id : category.getAllItemsID()) {
-            Item item = ItemAndCategoryController.getInstance().getItemById(id);
-            Database.getInstance().deleteItem(item);
-            item.setCategoryName(newName);
-            try {
-                Database.getInstance().saveItem(item);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
-        for(Request request:allRequests){
-            if(request instanceof ItemRequest){
-                ((ItemRequest) request).getNewItem().setCategoryName(newName);
+        for(String id:category.getAllItemsID()){
+            Item item=getItemById(id);
+            if(item!=null){
+                item.setCategoryName(newName);
                 try {
-                    Database.getInstance().saveRequest(request);
+                    Database.getInstance().saveItem(item);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-        String path = "Resource" + File.separator + "Categories";
-        String fileName = lastName + ".json";
-        System.out.println(fileName);
-        File file = new File(path + File.separator + fileName);
-        System.out.println(file.exists());
-        file.delete();
         category.setName(newName);
         try {
-            Database.getInstance().saveCategory(parent);
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String path="Resources"+File.separator+"Categories";
+        File file=new File(path+File.separator+lastName+".json");
+        System.out.println(file.getName());
+        file.delete();
+
     }
 
     public String removeCategory(String name) {
