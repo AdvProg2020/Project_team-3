@@ -326,6 +326,9 @@ public class ItemAndCategoryController {
     }
 
     public void editCategoryName(String lastName, String newName) {
+        System.out.println(lastName);
+        System.out.println(isThereCategoryWithName(lastName));
+        if(isThereCategoryWithName(lastName)==false)return;
         Category category=getCategoryByName(lastName);
         Category father=getCategoryByName(category.getParent());
         father.getSubCategories().remove(lastName);
@@ -355,17 +358,24 @@ public class ItemAndCategoryController {
                 }
             }
         }
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            if(request instanceof ItemRequest){
+              ((ItemRequest) request).getNewItem().setCategoryName(newName);
+                try {
+                    Database.getInstance().saveRequest(request);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         category.setName(newName);
         try {
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String path="Resources"+File.separator+"Categories";
-        File file=new File(path+File.separator+lastName+".json");
-        System.out.println(file.getName());
-        file.delete();
-
+        Database.getInstance().deleteCategory(getCategoryByName(lastName));
     }
 
     public String removeCategory(String name) {
