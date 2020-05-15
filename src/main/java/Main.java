@@ -11,8 +11,11 @@ public class Main {
     }
 }
 
-
-
+//seller gable accept shudan natune login kone
+//item esmesh biad
+//request esmesh biad
+//logout dar hamaje ye bar emtehan shaavd
+//to shop intendet set nemishe
 
 //edit category
 

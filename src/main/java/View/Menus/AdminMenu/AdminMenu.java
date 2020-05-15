@@ -40,44 +40,59 @@ public class AdminMenu extends UserMenu {
         if (command.equals("logout")) {
             LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             LoginRegisterMenu.getInstance().logout();
+            return;
         }
         if (command.equals("offs")) {
             DiscountsMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(DiscountsMenu.getInstance());
+            return;
         } else if (command.equals("help")) {
             help();
+            return;
         } else if (command.equals("back")) {
             View.setCurrentMenu(MainMenu.getInstance());
+            return;
         } else if (command.equals("manage users")) {
             printUsers();
             View.setCurrentMenu(AdminManageUsersMenu.getInstance());
+            return;
         } else if (command.equals("view personal info")) {
             viewPersonalInfo();
+            return;
         } else if (command.equals("manage all products")) {
             showAllProducts();
+            return;
         } else if (command.equals("manage categories")) {
             showAllCategories();
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
+            return;
         } else if (command.equals("products")) {
             ShopMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
+            return;
         } else if (command.equals("manage requests")) {
             showAllRequests();
             View.setCurrentMenu(AdminManageRequestsMenu.getInstance());
+            return;
         } else if (command.equals("create discount code")) {
             createDiscountCode();
+            return;
         } else if (command.equals("view discount codes")) {
             viewAllDiscountCodes();
             View.setCurrentMenu(AdminManageDiscountCodesMenu.getInstance());
+            return;
         }
         matcher = View.getMatcher("edit (\\S+)", command);
         if (matcher.matches()) {
             editPersonalInfo(matcher.group(1));
+            return;
         }
         matcher = View.getMatcher("remove (\\S+)", command);
         if (matcher.matches()) {
             deleteItem(matcher.group(1));
+            return;
         }
+        System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
     }
 
     @Override

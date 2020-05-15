@@ -22,7 +22,7 @@ public class Buyer extends User {
     @Override
     public  String getPersonalInfo(){
         String response="";
-        response+="You are a buyer.\n";
+        response+="Buyer.\n";
         response+="Name: "+getName()+"\n";
         response+="Surname: "+getLastName()+"\n";
         response+="Email: "+getEmail()+"\n";
