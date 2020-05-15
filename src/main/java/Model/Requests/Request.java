@@ -16,10 +16,6 @@ public abstract class Request {
         return requestId;
     }
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
     public String getMessage() { return message; }
 
     public void setMessage(String message) {
