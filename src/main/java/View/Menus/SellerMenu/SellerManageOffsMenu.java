@@ -106,6 +106,10 @@ public class SellerManageOffsMenu extends UserMenu {
         while(true){
             itemID = View.getRead().nextLine();
             if(itemID.equals("done")) break;
+            if(!SaleAndDiscountCodeController.getInstance().canAddItemToSale(itemID)){
+                System.out.println(View.ANSI_RED+"Error:invalid item!"+View.ANSI_RESET);
+                continue;
+            }
             addedItems.add(itemID);
         }
 
