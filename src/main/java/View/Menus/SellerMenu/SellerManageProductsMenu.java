@@ -48,10 +48,20 @@ public class SellerManageProductsMenu extends UserMenu {
 
             return;
         }
+        if(command.equals("add product")){
+            SellerMenu.getInstance().addItem();
+        }
         if(command.startsWith("edit product ")){
             matcher=View.getMatcher("edit product (\\S+)",command);
             if(matcher.matches()){
                 editProduct(matcher.group(1));
+            }
+            return;
+        }
+        if(command.startsWith("remove product")){
+            matcher=View.getMatcher("remove product (\\S+)",command);
+            if(matcher.matches()){
+                removeProduct(matcher.group(1));
             }
             return;
         }
@@ -78,6 +88,7 @@ public class SellerManageProductsMenu extends UserMenu {
         System.out.println("view [productId]");
         System.out.println("view buyers [productId]");
         System.out.println("edit product [productId]");
+        System.out.println("remove product [productId]");
     }
 
     public void manageProducts(){
@@ -105,5 +116,9 @@ public class SellerManageProductsMenu extends UserMenu {
         SellerEditItemMenu.getInstance().setItemID(ID);
         SellerEditItemMenu.getInstance().setPreviousMenu(SellerManageProductsMenu.getInstance());
         View.setCurrentMenu(SellerEditItemMenu.getInstance());
+    }
+
+    public void removeProduct(String itemID){
+        System.out.println(ItemAndCategoryController.getInstance().deleteItem(itemID));
     }
 }
