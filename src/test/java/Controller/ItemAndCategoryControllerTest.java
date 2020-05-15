@@ -254,6 +254,11 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void openCategory() {
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        System.out.println(ItemAndCategoryController.getInstance().openCategory("Vacuum"));
+        System.out.println(ItemAndCategoryController.getInstance().openCategory("sdfsdf"));
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
@@ -321,6 +326,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         Item item1=allItems.get(0);
         ItemAndCategoryController.getInstance().addView(item1.getId());
+        ItemAndCategoryController.getInstance().addView("sdfsdfsdfsdfsdf");
         for(Item item:allItems)Database.getInstance().deleteItem(item);
     }
 
