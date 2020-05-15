@@ -36,6 +36,7 @@ public class Buyer extends User {
         for(BuyLog buyLog:buyLogs){
             ans+=count+"-";
             ans += buyLog.toSimpleString();
+            ans += "\n";
             count++;
         }
         return ans;
