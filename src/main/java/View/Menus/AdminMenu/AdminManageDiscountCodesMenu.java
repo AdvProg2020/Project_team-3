@@ -58,6 +58,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
         }
         else if (command.equals("create discount code")) {
             AdminMenu.getInstance().createDiscountCode();
+            return;
         }
         if (command.equals("back")) {
             View.setCurrentMenu(AdminMenu.getInstance());
@@ -68,6 +69,7 @@ public class AdminManageDiscountCodesMenu extends UserMenu {
             LoginRegisterMenu.getInstance().logout();
             return;
         }
+
 
         System.out.println(View.ANSI_RED + "Invalid command." + View.ANSI_RESET);
 

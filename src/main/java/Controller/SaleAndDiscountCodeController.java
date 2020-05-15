@@ -254,7 +254,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public String addDiscountCode(int percentage, LocalDateTime endTime,LocalDateTime startTime,ArrayList<String> validUsers,int usageCount,double maxDiscount) {
-        if(!endTime.isAfter(startTime)){
+        if(endTime.isAfter(startTime)){
             return "Error: ending time is after the starting time!";
         }
         DiscountCode discountCode = new DiscountCode(percentage,startTime,endTime,validUsers,usageCount,maxDiscount);
