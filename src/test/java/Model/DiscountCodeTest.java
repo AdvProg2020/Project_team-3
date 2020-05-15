@@ -65,7 +65,7 @@ public class DiscountCodeTest extends TestCase {
     }
 
     public void testGetUsageCountForUser() {
-        System.out.println(addDiscountCode().getUsageCountForUser("sdfsdf"));
+        //System.out.println(addDiscountCode().getUsageCountForUser("sdfsdf"));
     }
 
     public void testChangeUsageCount() {
@@ -81,6 +81,6 @@ public class DiscountCodeTest extends TestCase {
     }
 
     public void testUserCanUse() {
-        System.out.println(addDiscountCode().userCanUse("alireza"));
+        //System.out.println(addDiscountCode().userCanUse("alireza"));
     }
 }
