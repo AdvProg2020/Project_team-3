@@ -379,8 +379,11 @@ public class ItemAndCategoryController {
 
     public void DFSCategory(String categoryName,ArrayList<Category>removed){
         Category category=getCategoryByName(categoryName);
+        Item item;
+        for(String id:category.getAllItemsID()){
+            item=getItemById(id);
 
-
+        }
 
     }
 
