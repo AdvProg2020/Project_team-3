@@ -287,7 +287,7 @@ public class SaleAndDiscountCodeController {
     protected void deleteDeprecatedDiscountCodes(LocalDateTime currentTime){
         ArrayList<DiscountCode> allDiscountCodes = getAllDiscountCodesFromDataBase();
         for(DiscountCode discountCode:allDiscountCodes){
-            if(discountCode.getEndTime().isBefore(currentTime)){
+            if(discountCode.getEndTime().isAfter(currentTime)){
                 deleteDiscountCode(discountCode.getDiscountId());
             }
         }
@@ -296,7 +296,7 @@ public class SaleAndDiscountCodeController {
     protected void deleteDeprecatedSales(LocalDateTime currentTime){
         ArrayList<Sale> allSales = getAllSaleFromDataBase();
         for(Sale sale:allSales){
-            if(sale.getEndTime().isBefore(currentTime)){
+            if(sale.getEndTime().isAfter(currentTime)){
                 deleteSale(sale.getId());
             }
         }
