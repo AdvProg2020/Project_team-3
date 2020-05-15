@@ -191,11 +191,16 @@ public class Database<Public> {
         if (!file.exists()) {
             file.mkdir();
         }
-        if(UserController.getInstance().isThereUserWithUsername("admin")) {
+        if(!UserController.getInstance().isThereUserWithUsername("admin")) {
             Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
         }
         if(!ItemAndCategoryController.getInstance().isThereCategoryWithName("Main")){
             Category category = new Category("Main", null);
+            try {
+                saveCategory(category);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
