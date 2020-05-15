@@ -9,12 +9,7 @@ public class Main {
         View.run();
     }
 }
-
-
-
 //request esmesh biad  mirza
-
-//discount code esmesh biad mirza
 
 //logout dar hamaje ye bar emtehan shaavd <= kolli
 
@@ -23,12 +18,7 @@ public class Main {
 
 //edit sale arman
 
-
-//admin o seller natonan comment bezaran mirza
-
 // filter by attribute biad esme attribute ro begire badesh biad meghdare begire o ina. mirza
-
-//filter by sellername mirza
 
 //darkhast ezafeye sale arman
 
@@ -38,12 +28,7 @@ public class Main {
 //SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode(); arman
 //age kharid balaye 1 milion bod ye code takhfif ashghal be karbar hedie dade beshe (5% ba saghfe ashghali dar hade chosmesghal) arman
 
-
-
-
-
-
-
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
 //loginregistermenu intendedmenu enum beshe
+//mvc rayat shavad

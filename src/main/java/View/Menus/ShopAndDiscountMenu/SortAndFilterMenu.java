@@ -84,9 +84,18 @@ public class SortAndFilterMenu extends Menu {
          disableFilterAttribute();
          return;
       }
+      if (command.equals("disable filter by seller")) {
+         disableFilterSellerName();
+         return;
+      }
       matcher = View.getMatcher("filter by brand (\\S+)", command);
       if (matcher.matches()) {
          filterBrandName(matcher.group(1));
+         return;
+      }
+      matcher = View.getMatcher("filter by seller (\\S+)", command);
+      if (matcher.matches()) {
+         filterSellerName(matcher.group(1));
          return;
       }
       matcher = View.getMatcher("filter by category (\\S+)", command);
@@ -191,6 +200,10 @@ public class SortAndFilterMenu extends Menu {
       SortAndFilterController.getInstance().disableFilterAttribute();
    }
 
+   public void disableFilterSellerName() {
+      SortAndFilterController.getInstance().disableFilterSellerName();
+   }
+
    public void filterAvailability() {
       SortAndFilterController.getInstance().activateFilterAvailability();
    }
@@ -214,4 +227,9 @@ public class SortAndFilterMenu extends Menu {
    public void filterAttribute(String attribute) {
       SortAndFilterController.getInstance().activateFilterAttribute(attribute);
    }
+
+   public void filterSellerName(String sellerName) {
+      SortAndFilterController.getInstance().activateFilterSellerName(sellerName);
+   }
+
 }

@@ -164,6 +164,9 @@ public class ItemAndCategoryController {
         if (controller.currentOnlineUser == null) {
             return "Error: please sign in to comment";
         }
+        if(controller.currentOnlineUser instanceof Buyer==false){
+            return "Error: you must be a buyer to post a comment.";
+        }
         if (item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())) {
             Comment comment = new Comment(controller.currentOnlineUser.getUsername(), itemId, text, true);
             String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");

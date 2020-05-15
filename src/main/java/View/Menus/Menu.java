@@ -90,7 +90,6 @@ public abstract class Menu {
     protected double readNumber(double limit, String message) { //balaii amma double
         System.out.println(message);
         String number = View.read.nextLine();
-        System.out.println(number);
         try {
             double num = Double.parseDouble(number);
             if (((num > limit) || (num < 0)) && (limit != -1)) {
