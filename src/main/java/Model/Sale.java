@@ -31,7 +31,7 @@ public class Sale {
     public void acceptStatus() {
         status = Status.accepted;
         for(String ID : itemId){
-            ItemAndCategoryController.getInstance().getItemById(ID).setSale(this);
+            ItemAndCategoryController.getInstance().getItemById(ID).setSale(this.id);
         }
     }
 
@@ -79,6 +79,9 @@ public class Sale {
         itemId.add(id);
     }
 
+    public void removeItemFromSale(String id){
+        itemId.remove(id);
+    }
     public boolean saleHasItemWithID(String id) {
         return false;
     }
