@@ -48,8 +48,8 @@ public class SellerManageProductsMenu extends UserMenu {
 
             return;
         }
-        if(command.startsWith("edit ")){
-            matcher=View.getMatcher("edit (\\S+)",command);
+        if(command.startsWith("edit product ")){
+            matcher=View.getMatcher("edit product (\\S+)",command);
             if(matcher.matches()){
                 editProduct(matcher.group(1));
             }

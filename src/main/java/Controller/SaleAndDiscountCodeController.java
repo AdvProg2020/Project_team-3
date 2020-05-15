@@ -127,7 +127,7 @@ public class SaleAndDiscountCodeController {
 
     public String deleteDiscountCode(String id) {
         DiscountCode code = getDiscountCodeById(id);
-        if (id == null) {
+        if ((id == null)||(code == null)) {
             return "Error: discount code doesnt exist";
         }
         Database.getInstance().deleteDiscountCode(code);

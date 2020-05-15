@@ -142,7 +142,7 @@ public class RequestController {
         }
         if (accepted instanceof AccountRequest) {
             User user = UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
-            if (user instanceof Seller) ((Seller) user).Validate();
+            if (user instanceof Seller) ((Seller) user).validate();
             try {
                 Database.getInstance().saveUser(user);
             } catch (IOException e) {

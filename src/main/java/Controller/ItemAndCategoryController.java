@@ -375,7 +375,7 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
-        if(isThereCategoryWithName(name)==false) return "we do not have that category!";
+        if(isThereCategoryWithName(name)==false) return "Error: invalid category name!";
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());
         parent.getSubCategories().remove(category.getName());
@@ -390,7 +390,7 @@ public class ItemAndCategoryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "successful";
+        return "successful:";
     }
 
     private void DFSCategory(String categoryName,ArrayList<Category>removed){

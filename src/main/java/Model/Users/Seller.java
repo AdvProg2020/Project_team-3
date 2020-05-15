@@ -39,6 +39,10 @@ public class Seller extends User {
         return response;
     }
 
+    public Boolean getValid(){
+        return valid;
+    }
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
@@ -123,7 +127,7 @@ public class Seller extends User {
         return this.money;
     }
 
-    public void Validate() {
+    public void validate() {
         this.valid = true;
     }
 
@@ -140,7 +144,7 @@ public class Seller extends User {
     }
 
     public String getAllItemsString(){
-        String ans="ID         name        price";
+        String ans="ID         name        price\n";
         for(String id:allItemsId){
             ans+= ItemAndCategoryController.getInstance().getItemById(id).toSimpleString();
             ans+="\n";
