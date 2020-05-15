@@ -139,6 +139,7 @@ public class SellerMenu extends UserMenu {
         String company=readName("Please enter your Brand name");
         String description=readName("Please enter your item description");
         double price=readDoubleNumber("please enter item price");
+        View.getRead().nextLine();
         int inStock=readNumber(-1,"how many of this item do you wish to sell?");
         String category=readName("please enter category name");
         if(ItemAndCategoryController.getInstance().isThereCategoryWithName(category)==false){
@@ -148,13 +149,15 @@ public class SellerMenu extends UserMenu {
         HashMap<String,String> attributeValue=new HashMap<>();
         ArrayList<String> attributeKey=ItemAndCategoryController.getInstance().getCategoryByName(category).getAttributes();
         System.out.println("please enter the attribute value(enter exit to quit the process)");
-        for (String key : attributeKey) {
-            System.out.println(key+":");
-            String value=View.getRead().nextLine();
-            if(value.equals("exit")){
-                return;
+        if(attributeKey!=null) {
+            for (String key : attributeKey) {
+                System.out.println(key + ":");
+                String value = View.getRead().nextLine();
+                if (value.equals("exit")) {
+                    return;
+                }
+                attributeValue.put(key, value);
             }
-            attributeValue.put(key,value);
         }
         System.out.println(ItemAndCategoryController.getInstance().addItem(Name,company,description,price,inStock,category,attributeValue));
     }
