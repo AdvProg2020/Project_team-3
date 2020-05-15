@@ -325,4 +325,9 @@ public class UserController {
         }
     }
 
+    public String getUserType(String username){
+        User user = getUserByUsername(username);
+        return user.getType();
+    }
+
 }

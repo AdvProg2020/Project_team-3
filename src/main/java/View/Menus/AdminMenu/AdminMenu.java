@@ -169,11 +169,11 @@ public class AdminMenu extends UserMenu {
         ArrayList<String> addedUsers = new ArrayList<>();
         while(true){
             username = View.getRead().nextLine();
-            if(!UserController.getInstance().isThereUserWithUsername(username)){
-                System.out.println(View.ANSI_RED+"Error:No such user!"+View.ANSI_RESET);
+            if(username.equals("done")) break;
+            if(!UserController.getInstance().isThereUserWithUsername(username) || !UserController.getInstance().getUserType(username).equals("Buyer")){
+                System.out.println(View.ANSI_RED+"Error:invalid user!"+View.ANSI_RESET);
                 continue;
             }
-            if(username.equals("done")) break;
             addedUsers.add(username);
         }
 
