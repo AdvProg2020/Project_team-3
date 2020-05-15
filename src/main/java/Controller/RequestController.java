@@ -201,7 +201,8 @@ public class RequestController {
         if (sale == null) return;
         String changedField = saleEdit.getChangedFieled();
         String newFieldValue = saleEdit.getNewFieldValue();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
 
         if (changedField.equals("start Time")) {
             LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);

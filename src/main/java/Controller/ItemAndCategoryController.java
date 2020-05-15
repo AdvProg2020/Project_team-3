@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
@@ -325,6 +326,9 @@ public class ItemAndCategoryController {
 
     public void editCategoryName(String lastName, String newName) {
         Category category = getCategoryByName(lastName);
+        Category parent=getCategoryByName(category.getParent());
+        parent.getSubCategories().remove(lastName);
+        parent.getSubCategories().add(newName);
         for (String categoryName : category.getSubCategories()) {
             Category category1 = getCategoryByName(categoryName);
             category1.setParent(newName);
@@ -363,6 +367,7 @@ public class ItemAndCategoryController {
         file.delete();
         category.setName(newName);
         try {
+            Database.getInstance().saveCategory(parent);
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
@@ -370,17 +375,39 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
-        Category category = getCategoryByName(name);
-        if (category == null) {
-            return "Error: invalid name";
+        if(isThereCategoryWithName(name)==false) return "we do not have that category!";
+        Category category=getCategoryByName(name);
+        Category parent=getCategoryByName(category.getParent());
+        parent.getSubCategories().remove(category.getName());
+        ArrayList<Category>removedCategories=new ArrayList<>();
+        DFSCategory(name,removedCategories);
+        for(Category category1:removedCategories){
+            Database.getInstance().deleteCategory(category1);
         }
-        for (String subCategory : category.getSubCategories()) {
-            if (subCategory != null)
-                removeCategory(subCategory);
+        try {
+            Database.getInstance().saveCategory(parent);
+            Database.getInstance().deleteCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Database.getInstance().deleteCategory(category);
-        return "Successful";
+        return "successful";
     }
+
+    private void DFSCategory(String categoryName,ArrayList<Category>removed){
+        Category category=getCategoryByName(categoryName);
+        Item item;
+        for(String id:category.getAllItemsID()){
+            item=getItemById(id);
+            Database.getInstance().deleteItem(item);
+        }
+        Iterator<String>subCats=category.getSubCategories().iterator();
+        while(subCats.hasNext()){
+            Category category1=getCategoryByName(subCats.next());
+            removed.add(category1);
+            DFSCategory(category1.getName(),removed);
+        }
+    }
+
 
     public ArrayList<Item> getInSaleItems() {
         ArrayList<Item> allItems = getInstance().getAllItemFromDataBase();
