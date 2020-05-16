@@ -61,7 +61,7 @@ public class Category {
     }
 
     public void rename(String name) {
-        this.name = name;
+
         for (String id : allItemsID) {
             Item item= ItemAndCategoryController.getInstance().getItemById(id);
             if(item==null) continue;
