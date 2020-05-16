@@ -13,6 +13,8 @@ public class Main {
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
 
+//edit sale kam kardan va afzodane item be sale !
+
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
 //loginregistermenu intendedmenu enum beshe

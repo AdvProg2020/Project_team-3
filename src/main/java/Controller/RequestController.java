@@ -151,10 +151,10 @@ public class RequestController {
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
         if (changedField.equalsIgnoreCase("start Time")) {
-            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            LocalDateTime date = LocalDateTime.parse(newFieldValue);
             sale.setStartTime(date);
         } else if (changedField.equalsIgnoreCase("end Time")) {
-            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            LocalDateTime date = LocalDateTime.parse(newFieldValue);
             sale.setEndTime(date);
         } else if (changedField.equalsIgnoreCase("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
