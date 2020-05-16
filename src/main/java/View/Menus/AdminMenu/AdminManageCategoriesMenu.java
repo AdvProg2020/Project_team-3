@@ -112,7 +112,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
          System.out.println("Error: invalid category name");
          return;
      }
-     System.out.println("enter your command in one of these formats\nadd attribute [attribute]\nedit name [name]\nback");
+     System.out.println(View.ANSI_BLUE+"enter your command in one of these formats\nadd attribute [attribute]\nedit name [name]\nback"+View.ANSI_RESET);
      String command=View.getRead().nextLine();
      if(command.equals("back")){
          return;
@@ -127,6 +127,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
          renameCategory(categoryName,matcher.group(1));
          return;
      }
+     System.out.println(View.ANSI_RED+"invalid command"+View.ANSI_RESET);
     }
 
     private void removeCategory(String name) {
