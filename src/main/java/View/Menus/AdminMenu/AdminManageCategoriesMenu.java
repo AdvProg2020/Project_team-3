@@ -117,7 +117,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
      if(command.equals("back")){
          return;
      }
-     Matcher matcher=View.getMatcher("add attribute (\\S+)",command);
+     Matcher matcher=View.getMatcher("add attribute ([A-Za-z0-9]+)",command);
      if(matcher.matches()){
          addAttribute(categoryName,matcher.group(1));
          return;
