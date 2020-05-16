@@ -1,72 +1,104 @@
 package Controller;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class SortAndFilterControllerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testGetInstance() {
+public class SortAndFilterControllerTest {
+
+    @Test
+    public void getInstance() {
     }
 
+    @Test
+    public void show() {
+    }
+
+    @Test
     public void testShow() {
     }
 
-    public void testTestShow() {
+    @Test
+    public void activateSort() {
     }
 
-    public void testActivateSort() {
+    @Test
+    public void disableSort() {
     }
 
-    public void testDisableSort() {
+    @Test
+    public void activateFilterPriceRange() {
     }
 
-    public void testActivateFilterPriceRange() {
+    @Test
+    public void activateFilterCategoryName() {
     }
 
-    public void testActivateFilterCategoryName() {
+    @Test
+    public void activateFilterBrandName() {
     }
 
-    public void testActivateFilterBrandName() {
+    @Test
+    public void activateFilterName() {
     }
 
-    public void testActivateFilterName() {
+    @Test
+    public void activateFilterAvailability() {
     }
 
-    public void testActivateFilterAvailability() {
+    @Test
+    public void activateFilterAttribute() {
     }
 
-    public void testActivateFilterAttribute() {
+    @Test
+    public void activateFilterSellerName() {
     }
 
-    public void testDisableFilterPriceRange() {
+    @Test
+    public void disableFilterPriceRange() {
     }
 
-    public void testDisableFilterCategoryName() {
+    @Test
+    public void disableFilterCategoryName() {
     }
 
-    public void testDisableFilterBrandName() {
+    @Test
+    public void disableFilterBrandName() {
     }
 
-    public void testDisableFilterName() {
+    @Test
+    public void disableFilterName() {
     }
 
-    public void testDisableFilterAvailability() {
+    @Test
+    public void disableFilterAvailability() {
     }
 
-    public void testDisableFilterAttribute() {
+    @Test
+    public void disableFilterAttribute() {
     }
 
-    public void testShowActiveFilters() {
+    @Test
+    public void disableFilterSellerName() {
     }
 
-    public void testShowActiveSort() {
+    @Test
+    public void showActiveFilters() {
     }
 
-    public void testShowAllAvailableFilters() {
+    @Test
+    public void showActiveSort() {
     }
 
-    public void testShowAllAvailableSorts() {
+    @Test
+    public void showAllAvailableFilters() {
     }
 
-    public void testReset() {
+    @Test
+    public void showAllAvailableSorts() {
+    }
+
+    @Test
+    public void reset() {
     }
 }

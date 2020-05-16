@@ -1,33 +1,44 @@
 package Controller;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CartControllerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testGetInstance() {
+public class CartControllerTest {
+
+    @Test
+    public void getInstance() {
     }
 
-    public void testGetCurrentShoppingCart() {
+    @Test
+    public void getCurrentShoppingCart() {
     }
 
-    public void testShowCart() {
+    @Test
+    public void showCart() {
     }
 
-    public void testAddItemToCart() {
+    @Test
+    public void addItemToCart() {
     }
 
-    public void testCartIncreaseDecrease() {
+    @Test
+    public void cartIncreaseDecrease() {
     }
 
-    public void testGetCartPriceWithoutDiscountCode() {
+    @Test
+    public void getCartPriceWithoutDiscountCode() {
     }
 
-    public void testGetCartPriceWithDiscountCode() {
+    @Test
+    public void getCartPriceWithDiscountCode() {
     }
 
+    @Test
+    public void buy() {
+    }
+
+    @Test
     public void testBuy() {
-    }
-
-    public void testTestBuy() {
     }
 }
