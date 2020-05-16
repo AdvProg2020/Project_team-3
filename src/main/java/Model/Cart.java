@@ -113,7 +113,9 @@ public class Cart {
             double price = ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();
             String sellerName = ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName();
             buyLog.addItem(price, allItemCount.get(itemID), itemID, sellerName);
-            ItemAndCategoryController.getInstance().getItemById(itemID).addTimesBoughtBy(allItemCount.get(itemID));
+            Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+            item.addTimesBoughtBy(allItemCount.get(itemID));
+            item.setInStock(item.getInStock()-count);
         }
         empty();
         UserController.getInstance().assignBuyLog(buyerName, buyLog);
