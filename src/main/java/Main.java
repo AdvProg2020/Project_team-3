@@ -9,7 +9,6 @@ public class Main {
         View.run();
     }
 }
-//request esmesh biad  mirza
 
 //logout dar hamaje ye bar emtehan shaavd <= kolli
 
@@ -23,4 +22,3 @@ public class Main {
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
 //loginregistermenu intendedmenu enum beshe
-//mvc rayat shavad   (buyerMenu,SellerMenu,SellermanageproductMenu faghat nistan)

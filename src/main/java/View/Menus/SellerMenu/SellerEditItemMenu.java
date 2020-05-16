@@ -1,7 +1,6 @@
 package View.Menus.SellerMenu;
 
 import Controller.ItemAndCategoryController;
-import Model.Item;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.UserMenu;
@@ -71,12 +70,11 @@ public class SellerEditItemMenu extends UserMenu {
     }
 
     private boolean isValidKey(String key){
-        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
         if(key.equalsIgnoreCase("name")||key.equalsIgnoreCase("brand")
         || key.equalsIgnoreCase("price") || key.equalsIgnoreCase("stock")
         || key.equalsIgnoreCase("description") || key.equalsIgnoreCase("category name")) return true;
 
-        if(item.hasAttribute(key)) return true;
+        if(ItemAndCategoryController.getInstance().doesItemHaveAttribute(itemID,key)) return true;
 
         return false;
     }

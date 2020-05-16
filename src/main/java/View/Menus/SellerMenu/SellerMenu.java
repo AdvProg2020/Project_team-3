@@ -1,9 +1,7 @@
 package View.Menus.SellerMenu;
 
-import Controller.Controller;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
-import Model.Users.Seller;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
@@ -116,8 +114,7 @@ public class SellerMenu extends UserMenu {
     }
 
     public void viewCompany(){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        System.out.println("Your current company is:"+seller.getCompanyName());
+        System.out.println("Your current company is:"+UserController.getInstance().getSellerCompany());
     }
 
     public void viewSalesHistory(){
@@ -125,8 +122,7 @@ public class SellerMenu extends UserMenu {
     }
 
     public void manageProducts(){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        System.out.println(seller.getAllItemsString());
+        System.out.println(UserController.getInstance().getSellerItems());
     }
 
     public void addItem(){
@@ -157,14 +153,9 @@ public class SellerMenu extends UserMenu {
         System.out.println(ItemAndCategoryController.getInstance().addItem(Name,company,description,price,inStock,category,attributeValue));
     }
 
-    public void removeProduct(){
-
-    }
-
-
     public void viewBalance(){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        System.out.println("Your balance is:"+seller.getMoney());
+        System.out.print("Your current balance is:");
+        System.out.println(View.ANSI_BLUE + UserController.getInstance().currentOnlineUserBalance() + View.ANSI_RESET);
     }
 
 }

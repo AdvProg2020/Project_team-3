@@ -8,7 +8,7 @@ public class AccountRequest extends Request {
     public AccountRequest(String requestId, Seller user) {
         super(requestId);
         this.seller = user;
-        String news = "Request to add new seller with username " + user.getUsername() + " and starting money of "+((Seller)user).getMoney();
+        String news = "request id: "+requestId+" Request to add new seller with username " + user.getUsername() + " and starting money of "+((Seller)user).getMoney();
         this.setMessage(news);
         setType("AccountRequest");
     }
@@ -19,7 +19,7 @@ public class AccountRequest extends Request {
 
     @Override
     public String toString() {
-        return "id: " + getRequestId() + "\n" + "type: " + getType() + "\n" + "UserName:" + seller.getUsername() + "\n";
+        return "id: " + getRequestId() + "   " + "type: " + getType();
     }
 
 }

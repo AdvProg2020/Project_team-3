@@ -235,6 +235,18 @@ public class Database<Public> {
          return discountCodeInfo;
       }
 
+      if (folderName.equals("Requests")) {
+         ArrayList<String> requestInfo = new ArrayList<>();
+         for (String fileName : fileNames) {
+            Request request = RequestController.getInstance().getRequestById(fileName);
+            if (request == null) {
+               continue;
+            }
+            requestInfo.add(request.toString());
+         }
+         return requestInfo;
+      }
+
       return fileNames;
    }
 
