@@ -28,88 +28,112 @@ public class Database<Public> {
       return database;
    }
 
-   public void saveUser(User user) throws IOException {
+   public void saveUser(User user)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String Username = user.getUsername();
       String path = "Resource" + File.separator + "Users";
       String name = Username + ".json";
       File file = new File(path + File.separator + name);
+      try{
       if (!file.exists()) {
          file.createNewFile();
       }
-      FileWriter writer = new FileWriter(file);
-      writer.write(gson.toJson(user));
-      writer.close();
+         FileWriter writer = new FileWriter(file);
+         writer.write(gson.toJson(user));
+         writer.close();
+      }catch(IOException exception){
+         exception.printStackTrace();
+      }
    }
 
-   public void saveRequest(Request request) throws IOException {
+   public void saveRequest(Request request)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String requestID = request.getRequestId();
       String path = "Resource" + File.separator + "Requests";
       String name = requestID + ".json";
       File file = new File(path + File.separator + name);
+      try{
       if (!file.exists()) {
          file.createNewFile();
       }
-      FileWriter writer = new FileWriter(file);
-      writer.write(gson.toJson(request));
-      writer.close();
+         FileWriter writer = new FileWriter(file);
+         writer.write(gson.toJson(request));
+         writer.close();
+      }catch(IOException exception){
+         exception.printStackTrace();
+      }
    }
 
 
-   public void saveItem(Item item) throws IOException {
+   public void saveItem(Item item)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = item.getId();
       String path = "Resource" + File.separator + "Items";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
+      try{
       if (!file.exists()) {
          file.createNewFile();
       }
       FileWriter writer = new FileWriter(file);
       writer.write(gson.toJson(item));
-      writer.close();
+      writer.close(); }
+      catch(IOException exception){
+         exception.printStackTrace();
+      }
    }
 
-   public void saveSale(Sale sale) throws IOException {
+   public void saveSale(Sale sale)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = sale.getId();
       String path = "Resource" + File.separator + "Sales";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
+      try{
       if (!file.exists()) {
          file.createNewFile();
       }
       FileWriter writer = new FileWriter(file);
       writer.write(gson.toJson(sale));
       writer.close();
+      }catch(IOException exception){
+         exception.printStackTrace();
+      }
    }
 
-   public void saveDiscountCode(DiscountCode discount) throws IOException {
+   public void saveDiscountCode(DiscountCode discount) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = discount.getDiscountId();
       String path = "Resource" + File.separator + "DiscountCodes";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
-      if (!file.exists()) {
-         file.createNewFile();
+      try {
+         if (!file.exists()) {
+            file.createNewFile();
+         }
+         FileWriter writer = new FileWriter(file);
+         writer.write(gson.toJson(discount));
+         writer.close();
+         }catch(IOException exception){
+         exception.printStackTrace();
       }
-      FileWriter writer = new FileWriter(file);
-      writer.write(gson.toJson(discount));
-      writer.close();
    }
 
-   public void saveCategory(Category category) throws IOException {
+   public void saveCategory(Category category) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String path = "Resource" + File.separator + "Categories";
       String name = category.getName() + ".json";
       File file = new File(path + File.separator + name);
-      if (!file.exists()) {
-         file.createNewFile();
+      try {
+         if (!file.exists()) {
+            file.createNewFile();
+         }
+         FileWriter writer = new FileWriter(file);
+         writer.write(gson.toJson(category));
+         writer.close();
+      }catch(IOException exception){
+         exception.printStackTrace();
       }
-      FileWriter writer = new FileWriter(file);
-      writer.write(gson.toJson(category));
-      writer.close();
    }
 
 
@@ -203,11 +227,7 @@ public class Database<Public> {
       }
       if (!ItemAndCategoryController.getInstance().isThereCategoryWithName("Main")) {
          Category category = new Category("Main", null);
-         try {
             saveCategory(category);
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
       }
    }
 

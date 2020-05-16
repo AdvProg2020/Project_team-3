@@ -84,11 +84,7 @@ public class UserController {
             return "Error : User exist with this username!";
         }
         Buyer user = new Buyer(money, username, password, name, lastName, email, number);
-        try {
-            Database.getInstance().saveUser(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(user);
         return "Successful: User registered.";
     }
 
@@ -97,11 +93,7 @@ public class UserController {
             return "Error : User exist with this username!";
         }
         Seller user = new Seller(money, username, password, name, lastName, email, number, companyName);
-        try {
-            Database.getInstance().saveUser(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(user);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
 
         RequestController.getInstance().addUserRequest(requestID, user);
@@ -121,11 +113,7 @@ public class UserController {
             return "Error : User exist with this username!";
         }
         Admin admin = new Admin(username,password,name,lastName,email,number);
-        try {
-            Database.getInstance().saveUser(admin);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(admin);
         return "Success: You own this shop.";
 
     }
@@ -215,11 +203,7 @@ public class UserController {
         } else if ((field.equals("CompanyName"))&&(user instanceof Seller)) {
             ((Seller) user).setCompanyName(newValue);
         }
-        try {
-            Database.getInstance().saveUser(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(user);
     }
 
     public String viewPersonalInfo(String username) {
@@ -270,22 +254,14 @@ public class UserController {
     public void assignBuyLog(String buyerName, BuyLog buyLog) {
         Buyer buyer = (Buyer) getUserByUsername(buyerName);
         buyer.addBuyLog(buyLog);
-        try {
-            Database.getInstance().saveUser(buyer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(buyer);
     }
 
     public void assignSaleLog(String sellerName, SaleLog saleLog) {
         Seller seller = (Seller) getUserByUsername(sellerName);
         seller.addSaleLog(saleLog);
         seller.setMoney(seller.getMoney() + saleLog.getPrice());
-        try {
-            Database.getInstance().saveUser(seller);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(seller);
     }
 
     public void assignItemToSeller(String id, String username) {
@@ -293,11 +269,7 @@ public class UserController {
         if (user instanceof Seller) {
             Seller seller = (Seller) user;
             seller.addItemID(id);
-            try {
-                Database.getInstance().saveUser(seller);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Database.getInstance().saveUser(seller);
         }
     }
 
@@ -306,11 +278,7 @@ public class UserController {
         if (user instanceof Seller) {
             Seller seller = (Seller) user;
             seller.deleteItem(id);
-            try {
-                Database.getInstance().saveUser(seller);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Database.getInstance().saveUser(seller);
         }
     }
 

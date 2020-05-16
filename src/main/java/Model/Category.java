@@ -66,31 +66,19 @@ public class Category {
             Item item= ItemAndCategoryController.getInstance().getItemById(id);
             if(item==null) continue;
             item.setCategoryName(name);
-            try {
-                Database.getInstance().saveItem(item);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Database.getInstance().saveItem(item);
         }
         Category father=ItemAndCategoryController.getInstance().getCategoryByName(parent);
         if(father!=null){
             father.removeSubCategory(this.name);
             father.addSubCategory(name);
-            try {
-                Database.getInstance().saveCategory(father);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Database.getInstance().saveCategory(father);
         }
         for (String subCategory : subCategories) {
             Category sub=ItemAndCategoryController.getInstance().getCategoryByName(subCategory);
             if(sub!=null){
                 sub.setParent(name);
-                try {
                     Database.getInstance().saveCategory(sub);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

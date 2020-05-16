@@ -42,11 +42,7 @@ public class BuyLog {
         Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
         item.addTimesBoughtBy(count);
         item.addBuyerUserName(buyerName);
-        try {
-            Database.getInstance().saveItem(item);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveItem(item);
         SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price, itemID, buyerName, count);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }

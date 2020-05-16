@@ -9,11 +9,7 @@ public class Admin extends User {
 
     public Admin(String username, String password, String name, String lastName, String email, String number) {
         super(username, password, name, lastName, email, number, "Admin");
-        try {
-            Database.getInstance().saveUser(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(this);
     }
 
     @Override
@@ -31,12 +27,8 @@ public class Admin extends User {
         if (UserController.getInstance().isThereUserWithUsername(username)) {
             return "Error: user exists with this username";
         }
-        try {
             Database.getInstance().saveUser(new Admin(username, password, name, lastName, email, number));
             return "Successful: User registered";
-        } catch (IOException e) {
-            return "Error";
-        }
     }
 
     public void deleteUser(String username) {
