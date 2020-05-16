@@ -1,5 +1,6 @@
 package Model.Users;
 
+import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Model.Item;
 import Model.Logs.SaleLog;
@@ -71,6 +72,7 @@ public class Seller extends User {
             if(item==null)
                 continue;
             item.delete();
+            Database.getInstance().deleteItem(item);
         }
     }
 
