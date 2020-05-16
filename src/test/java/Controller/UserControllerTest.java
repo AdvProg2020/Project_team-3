@@ -229,6 +229,15 @@ public class UserControllerTest {
         System.out.println(UserController.getInstance().getUserType("Alireza"));
     }
 
+    @Test
+    public void isLogin(){
+        registration();
+        User user=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login(user.getUsername(),user.getPassword());
+        System.out.println(Controller.getInstance().isLogin());
+        UserController.getInstance().logout();
+        System.out.println(Controller.getInstance().isLogin());
+    }
 
 
 }

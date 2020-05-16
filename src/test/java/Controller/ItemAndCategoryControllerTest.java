@@ -193,12 +193,12 @@ public class ItemAndCategoryControllerTest {
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
-                ,"this is vaccum",500,0,"Vacuum",
+                ,"this is vaccum",500,10,"Vacuum",
                 attributes);
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
-                ,"this is oven",5000,0,"Oven",attributes1);
+                ,"this is oven",5000,10,"Oven",attributes1);
         ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
-                "this is microWave",600,0,"microwave",attributes2);
+                "this is microWave",600,10,"microwave",attributes2);
         UserController.getInstance().logout();
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
@@ -315,7 +315,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Sale sale=allSales.get(0);
         for(Item item:allItems){
-            SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
+           SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
         }
         System.out.println(ItemAndCategoryController.getInstance().getInSaleItems());
     }

@@ -88,9 +88,9 @@ public class Item {
        sale.removeItemFromSale(id);
            Database.getInstance().saveSale(sale);
    }
-        Seller seller=(Seller) UserController.getInstance().getUserByUsername(this.getSellerName());
-        seller.deleteItem(this.getId());
-            Database.getInstance().saveUser(seller);
+        //Seller seller=(Seller) UserController.getInstance().getUserByUsername(this.getSellerName());
+        //seller.deleteItem(this.getId());
+       // Database.getInstance().saveUser(seller);
     }
 
     public double getPrice() {

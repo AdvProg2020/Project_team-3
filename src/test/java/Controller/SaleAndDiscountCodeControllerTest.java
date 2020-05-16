@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.Category;
 import Model.DiscountCode;
+import Model.Item;
 import Model.Requests.Request;
 import Model.Sale;
 import Model.Users.User;
@@ -10,9 +12,50 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class SaleAndDiscountCodeControllerTest {
+
+    @Test
+    public void addCategory() {
+        Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
+        ArrayList<String>attributes=new ArrayList<>();
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
+        ArrayList<String>attributes1=new ArrayList<>();
+        ItemAndCategoryController.getInstance().addCategory("Vacuum",attributes1,"lavazem manzel");
+        ArrayList<String>attributes2=new ArrayList<>();
+        ItemAndCategoryController.getInstance().addCategory("Oven",attributes2,"lavazem manzel");
+        ArrayList<String>attributes3=new ArrayList<>();
+        ItemAndCategoryController.getInstance().addCategory("microwave",attributes3,"lavazem manzel");
+    }
+
+    public void addItem() {
+        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+                "reza","pishro","alireza@gmail.com","33824264","benz");
+        acceptRequests();
+        User seller =UserController.getInstance().getUserByUsername("Ali");
+        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        addCategory();
+        HashMap<String,String> attributes=new HashMap<>();
+        attributes.put("price","cheap");
+        HashMap<String , String>attributes1=new HashMap();
+        attributes1.put("price","expensive");
+        HashMap<String,String> attributes2=new HashMap<>();
+        attributes2.put("price","cheap");
+        ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
+                ,"this is vaccum",500,10,"Vacuum",
+                attributes);
+        ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
+                ,"this is oven",5000,10,"Oven",attributes1);
+        ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
+                "this is microWave",600,10,"microwave",attributes2);
+        UserController.getInstance().logout();
+        ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequests){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+    }
 
     public void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
@@ -63,17 +106,18 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void addSale() {
-        UserController.getInstance().registerSeller(500,"alima","alireza79",
-                "reza","pishro","alireza@gmail.com","33824264","benz");
+        addItem();
         acceptRequests();
-        User user=UserController.getInstance().getUserByUsername("alima");
-        UserController.getInstance().login("Alima",user.getPassword());
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        User user=UserController.getInstance().getUserByUsername("Ali");
+        UserController.getInstance().login("Ali",user.getPassword());
         String startTime="20-02-2005 21:30";
         String endTime="12-02-2007 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         ArrayList<String>saleItems=new ArrayList<>();
+        saleItems.add(allItems.get(0).getId());
         SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
         acceptRequests();
     }

@@ -85,6 +85,7 @@ public class CartControllerTest {
     @Test
     public void getCurrentShoppingCart() {
         Assert.assertNotNull(CartController.getInstance().getCurrentShoppingCart());
+        Assert.assertNotNull(CartController.getInstance().getCurrentShoppingCart());
     }
 
     @Test

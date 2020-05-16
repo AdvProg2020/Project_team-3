@@ -41,18 +41,6 @@ public class Controller {
         return idSize;
     }
 
-    public boolean isAValidCommand(String command) {
-        if (command.length() > 3) return false;
-        int commandNumber;
-        try {
-            commandNumber = Integer.parseInt(command);
-        } catch (Exception e) {
-            return false;
-        }
-        return commandNumber >= 0;
-    }
-
-
     public String getAlphaNumericString(int n, String folderName) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
         StringBuilder sb = new StringBuilder(n);
