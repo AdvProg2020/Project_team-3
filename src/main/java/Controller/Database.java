@@ -230,7 +230,6 @@ public class Database<Public> {
             saveCategory(category);
       }
    }
-
    public ArrayList<String> printFolderContent(String folderName) {
       ArrayList<String> fileNames = new ArrayList();
       String path = "Resource" + File.separator + folderName;
@@ -243,7 +242,6 @@ public class Database<Public> {
             fileNames.add(file.getName().replace(".json", ""));
          }
       }
-
       if (folderName.equals("DiscountCodes")) {
          ArrayList<String> discountCodeInfo = new ArrayList<>();
          for (String fileName : fileNames) {
@@ -255,7 +253,6 @@ public class Database<Public> {
          }
          return discountCodeInfo;
       }
-
       if (folderName.equals("Requests")) {
          ArrayList<String> requestInfo = new ArrayList<>();
          for (String fileName : fileNames) {
@@ -267,12 +264,8 @@ public class Database<Public> {
          }
          return requestInfo;
       }
-
       return fileNames;
    }
-
-
 }
-
 
 
