@@ -247,6 +247,7 @@ public class SortAndFilterController {
       filterCategoryName = false;
       filterPriceRange = false;
       filterName = false;
+      filterAttribute = false;
       activeSort = 0;
    }
 }
