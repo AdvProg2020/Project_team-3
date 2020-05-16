@@ -353,8 +353,6 @@ public class SaleAndDiscountCodeController {
         Sale sale=getSaleById(saleID);
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         item.setSale(saleID);
-        double inStock= item.getPrice()*(1-((double)sale.getOffPercentage()/100));
-        item.setInStock((int) inStock);
         sale.addItemToSale(itemID);
         Seller seller=(Seller) UserController.getInstance().getUserByUsername(item.getSellerName());
         seller.addAllSaleId(sale.getId());

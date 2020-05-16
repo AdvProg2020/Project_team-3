@@ -5,6 +5,7 @@ import Model.Item;
 import Model.Requests.ItemRequest;
 import Model.Requests.Request;
 import Model.Sale;
+import Model.Users.Seller;
 import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -186,8 +187,11 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
+        attributes.put("price","cheap");
         HashMap<String , String>attributes1=new HashMap();
+        attributes1.put("price","expensive");
         HashMap<String,String> attributes2=new HashMap<>();
+        attributes2.put("price","cheap");
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
                 ,"this is vaccum",500,0,"Vacuum",
                 attributes);
@@ -203,11 +207,12 @@ public class ItemAndCategoryControllerTest {
     }
 
     @Test
-    public void addItemToCategory() {
-    }
-
-    @Test
     public void getCurrentCategory() {
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        ItemAndCategoryController.getInstance().openCategory("lavazem manzel");
+        System.out.println(ItemAndCategoryController.getInstance().getCurrentCategory().getName());
+        for(Item item:allItems) Database.getInstance().deleteItem(item);
     }
 
     @Test
@@ -353,5 +358,57 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().addView("sdfsdfsdfsdfsdf");
         for(Item item:allItems)Database.getInstance().deleteItem(item);
     }
+
+    @Test
+    public void getScoreTest(){
+        /*
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item=allItems.get(0);
+        */
+    }
+    @Test
+    public void ItemHasAttribute(){
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Item item=allItems.get(0);
+        System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
+        System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
+        System.out.println(item.getAttributes().get("price"));
+       for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+    }
+
+    @Test
+    public void getItemBuyer(){
+
+    }
+
+    @Test
+    public void doesSellerHadItem(){
+        addItem();
+        Seller user=(Seller) UserController.getInstance().getUserByUsername("Ali");
+        System.out.println(user.getUsername());
+        UserController.getInstance().login(user.getUsername(),user.getPassword());
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        System.out.println(UserController.getInstance().doesSellerHaveItem("sdf"));
+        Item item=allItems.get(0);
+        System.out.println(UserController.getInstance().doesSellerHaveItem(item.getId()));
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+    }
+
+    @Test
+    public void sellerItems(){
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Seller seller= (Seller) UserController.getInstance().getUserByUsername("Ali");
+        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        System.out.println(UserController.getInstance().getSellerItems());
+        UserController.getInstance().logout();
+        System.out.println(UserController.getInstance().getSellerItems());
+        for(Item item:allItems)Database.getInstance().deleteItem(item);
+    }
+
+
+
 
 }

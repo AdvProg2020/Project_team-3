@@ -84,6 +84,7 @@ public class Seller extends User {
     }
 
     public void deleteItem(String itemId){
+        if(!this.hasItem(itemId)) return;
         allItemsId.remove(itemId);
     }
 

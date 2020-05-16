@@ -6,6 +6,7 @@ import Model.Item;
 import Model.Requests.Request;
 import Model.Sale;
 import Model.Users.Admin;
+import Model.Users.Seller;
 import Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

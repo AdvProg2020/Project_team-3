@@ -203,4 +203,32 @@ public class UserControllerTest {
     @Test
     public void buy() {
     }
+    @Test
+    public void getAllBuyers(){
+        registration();
+        ArrayList<Buyer>allBuyers=UserController.getInstance().getAllBuyers();
+        System.out.println(allBuyers);
+    }
+    @Test
+    public void getSellerCompany(){
+        registration();
+        Seller seller=(Seller)UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        System.out.println(UserController.getInstance().getSellerCompany());
+        UserController.getInstance().logout();
+        System.out.println(UserController.getInstance().getSellerCompany());
+    }
+    @Test
+    public void getUserType(){
+        registration();
+        User user=UserController.getInstance().getUserByUsername("Alireza");
+        UserController.getInstance().login(user.getUsername(),user.getPassword());
+        System.out.println(UserController.getInstance().getUserType());
+        UserController.getInstance().logout();
+        System.out.println(UserController.getInstance().getUserType());
+        System.out.println(UserController.getInstance().getUserType("Alireza"));
+    }
+
+
+
 }

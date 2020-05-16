@@ -5,6 +5,7 @@ import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Controller.SaleAndDiscountCodeController;
+import Model.Users.Seller;
 import com.google.gson.internal.$Gson$Preconditions;
 
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class Item {
         return true;
     }
 
-    public void delete(){
+    public void delete() {
     Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
     Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(id);
     if(category!=null){
@@ -95,6 +96,13 @@ public class Item {
            e.printStackTrace();
        }
    }
+        Seller seller=(Seller) UserController.getInstance().getUserByUsername(this.getSellerName());
+        seller.deleteItem(this.getId());
+        try {
+            Database.getInstance().saveUser(seller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public double getPrice() {
@@ -312,6 +320,8 @@ public class Item {
         this.timesBought += count;
     }
 
-
+    public String getSaleId() {
+        return saleId;
+    }
 
 }
