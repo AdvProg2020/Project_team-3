@@ -43,15 +43,15 @@ public class SortAndFilterController {
             filteredItems.add(id);
       }
       if (activeSort == 0) {
-         filteredItems = SortComperators.getInstance().sortByView(filteredItems);
+         filteredItems = SortComparators.getInstance().sortByView(filteredItems);
       } else if (activeSort == 1) {
-         filteredItems = SortComperators.getInstance().sortByPriceLowToHigh(filteredItems);
+         filteredItems = SortComparators.getInstance().sortByPriceLowToHigh(filteredItems);
       } else if (activeSort == 2) {
-         filteredItems = SortComperators.getInstance().sortByPriceHighToLow(filteredItems);
+         filteredItems = SortComparators.getInstance().sortByPriceHighToLow(filteredItems);
       } else if (activeSort == 3) {
-         filteredItems = SortComperators.getInstance().sortByRating(filteredItems);
+         filteredItems = SortComparators.getInstance().sortByRating(filteredItems);
       } else if (activeSort == 4) {
-         filteredItems = SortComperators.getInstance().SortByCommentCount(filteredItems);
+         filteredItems = SortComparators.getInstance().SortByCommentCount(filteredItems);
       }
       ArrayList<String> itemIdWithName = new ArrayList<>();
       for (String filteredItem : filteredItems) {
