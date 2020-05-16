@@ -294,6 +294,7 @@ public class Item {
             return "id: "+id+" name: "+name+" price="+price;
         return "id: "+id+" name: "+name+" price="+price+"  price w/ sale:"+getPriceWithSale();
     }
+
     public void addViewsBy(int count){
         this.viewCount+=count;
     }

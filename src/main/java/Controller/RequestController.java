@@ -121,8 +121,15 @@ public class RequestController {
             if (user instanceof Seller) ((Seller) user).validate();
             Database.getInstance().saveUser(user);
         } else if (accepted instanceof SaleRequest) {
-                ((SaleRequest) accepted).getNewSale().acceptStatus();
+                Sale sale=((SaleRequest) accepted).getNewSale();
+                sale.acceptStatus();
+            for (String id : sale.getAllItemId()) {
+                Item item=ItemAndCategoryController.getInstance().getItemById(id);
+                if(item==null) continue;
+                item.setSale(sale.getId());
+            }
                 Database.getInstance().saveSale(((SaleRequest) accepted).getNewSale());
+
         } else if (accepted instanceof ItemRequest) {
                 Item item = ((ItemRequest) accepted).getNewItem();
                 Database.getInstance().saveItem(item);
