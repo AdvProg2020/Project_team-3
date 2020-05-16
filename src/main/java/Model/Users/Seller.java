@@ -51,32 +51,9 @@ public class Seller extends User {
         return companyName;
     }
 
-    public ArrayList<SaleLog> getSellLogs() {
-        return sellLogs;
-    }
-
-    public ArrayList<String> getAllItemsId() {
-        return allItemsId;
-    }
-
-    public ArrayList<String> getAllSaleId() {
-        return allSaleId;
-    }
-
-    public ArrayList<String> getSoldItemsId() {
-        return soldItemsId;
-    }
-
     public void addSaleLog(SaleLog saleLog) {
         sellLogs.add(saleLog);
         money+=saleLog.getPrice();
-    }
-
-    public void addSoldItemID(String id) {
-    }
-
-    public boolean hasSoldItem(String id) {
-        return soldItemsId.contains(id);
     }
 
     public void addItemID(String id) {
@@ -108,18 +85,6 @@ public class Seller extends User {
 
     public boolean hasSale(String id) {
         return allSaleId.contains(id);
-    }
-
-    public void addSale(double amount) {
-
-    }
-
-    public void addItemToSale(String itemid) {
-
-    }
-
-    public void editSale(Sale sale, Sale updatedSale) {
-
     }
 
     public void setMoney(double money) {

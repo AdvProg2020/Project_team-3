@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Logs.BuyLog;
@@ -116,6 +117,7 @@ public class Cart {
             Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
             item.addTimesBoughtBy(allItemCount.get(itemID));
             item.setInStock(item.getInStock()-count);
+            Database.getInstance().saveItem(item);
         }
         empty();
         UserController.getInstance().assignBuyLog(buyerName, buyLog);
