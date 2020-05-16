@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SortComperators {
-    private static SortComperators sortComperators;
+public class SortComparators {
+    private static SortComparators sortComperators;
     private String currentSort = new String();
 
 
-    private SortComperators() {
+    private SortComparators() {
     }
 
-    protected static SortComperators getInstance() {
+    protected static SortComparators getInstance() {
         if (sortComperators == null)
-            sortComperators = new SortComperators();
+            sortComperators = new SortComparators();
         return sortComperators;
     }
 

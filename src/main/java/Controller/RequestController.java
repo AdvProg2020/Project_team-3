@@ -127,6 +127,7 @@ public class RequestController {
                 Item item=ItemAndCategoryController.getInstance().getItemById(id);
                 if(item==null) continue;
                 item.setSale(sale.getId());
+                Database.getInstance().saveItem(item);
             }
                 Database.getInstance().saveSale(((SaleRequest) accepted).getNewSale());
 

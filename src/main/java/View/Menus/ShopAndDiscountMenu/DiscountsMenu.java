@@ -77,7 +77,7 @@ public class DiscountsMenu extends Menu {
     }
 
     public void offs() {
-        System.out.println(SortAndFilterController.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale()));
+        printList(SortAndFilterController.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale()));
     }
 
 }

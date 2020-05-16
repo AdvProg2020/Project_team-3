@@ -73,8 +73,9 @@ public class BuyerMenu extends UserMenu {
             matcher = View.getMatcher("rate (\\S+) ([1-2-3-4-5])", command);
             if (matcher.matches()) {
                 rate(matcher.group(1), Integer.parseInt(matcher.group(2)));
+                return;
             }
-            return;
+
         } else if (command.equals("view balance")) {
             viewBalance();
             return;

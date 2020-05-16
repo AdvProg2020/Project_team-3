@@ -9,15 +9,8 @@ public class Main {
         View.run();
     }
 }
-// bayad vaghti migim item tuye sale hast (salemenu) va vaghti miaim gheymatesho kam mikonim , beine starttime o endtime bashim!!!! <= 0317
-
-// mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
-
 
 //edit category : add attribute [attribute e space dar]
 
-//vaghti foroshande delete mishe , bayad item haye seller az va khode itema hazf beshan !!
-
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
-//loginregistermenu intendedmenu enum beshe

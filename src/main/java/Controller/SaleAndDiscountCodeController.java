@@ -153,7 +153,7 @@ public class SaleAndDiscountCodeController {
         allUsers.add(username);
         LocalDateTime startTime = LocalDateTime.now();
         LocalDateTime endTime = LocalDateTime.now();
-        endTime.plusDays(7);
+        endTime = endTime.plusDays(7);
         addDiscountCode(5, endTime, startTime, allUsers, 1, 500000);
     }
 
@@ -213,11 +213,13 @@ public class SaleAndDiscountCodeController {
     }
 
     public ArrayList<String> getAllItemsIDWithSale() {
-        ArrayList<Sale> allSale = getAllSaleFromDataBase();
+        ArrayList<Item> allItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         ArrayList<String> itemsID = new ArrayList<>();
 
-        for (Sale sale : allSale) {
-            itemsID.addAll(sale.getAllItemId());
+        for (Item item : allItems) {
+            if(item.isInSale()){
+                itemsID.add(item.getId());
+            }
         }
 
         return itemsID;

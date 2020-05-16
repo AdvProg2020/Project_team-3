@@ -9,6 +9,7 @@ import Model.Users.Seller;
 import com.google.gson.internal.$Gson$Preconditions;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,13 +71,6 @@ public class Item {
     }
     //getters
 
-
-    public boolean isInStock(){
-        if(inStock==0)
-            return false;
-        return true;
-    }
-
     public void delete() {
     Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
     Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(id);
@@ -101,9 +95,13 @@ public class Item {
         Sale sale= SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
         if(sale==null){
             return price;
-        }else{
-            return price*(100-sale.getOffPercentage())/100;
         }
+        LocalDateTime startTime = sale.getStartTime();
+        if(startTime.isAfter(LocalDateTime.now())){
+            return price;
+        }
+        return price*(100-sale.getOffPercentage())/100;
+
     }
 
     public String getBrand() {
@@ -118,16 +116,8 @@ public class Item {
         return id;
     }
 
-    public int getTimesBought() {
-        return timesBought;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public String getState() {
-        return state;
     }
 
     public boolean hasUserRated(String username){
@@ -157,14 +147,6 @@ public class Item {
         this.id = id;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setTimesBought(int timesBought) {
-        this.timesBought = timesBought;
-    }
-
     public void setInStock(int inStock) {
         this.inStock = inStock;
     }
@@ -188,8 +170,6 @@ public class Item {
     public String getCategoryName() {
         return categoryName;
     }
-
-
 
     public String getSellerName() {
         return sellerName;
@@ -215,11 +195,6 @@ public class Item {
     public int getViewCount() {
         return viewCount;
     }
-
-
-    public void addAttribute(String name,String value){}
-
-    public void editAttribute(String name,String newValue){}
 
     public void addComment(Comment newComment){
         this.allComments.add(newComment);
@@ -292,6 +267,11 @@ public class Item {
     public String showIdWithName(){
         if(!isInSale())
             return "id: "+id+" name: "+name+" price="+price;
+        Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
+        LocalDateTime startTime = sale.getStartTime();
+        if(startTime.isAfter(LocalDateTime.now())){
+            return "id: "+id+" name: "+name+" price="+price;
+        }
         return "id: "+id+" name: "+name+" price="+price+"  price w/ sale:"+getPriceWithSale();
     }
 
@@ -303,8 +283,5 @@ public class Item {
         this.timesBought += count;
     }
 
-    public String getSaleId() {
-        return saleId;
-    }
 
 }
