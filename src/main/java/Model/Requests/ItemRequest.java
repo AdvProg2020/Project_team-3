@@ -18,7 +18,7 @@ public class ItemRequest  extends Request {
 
     @Override
     public String toString(){
-        return "item Name: "+newItem.getName()+"   "+"type: "+getType();
+        return "id: " + getRequestId()+"   item Name: "+newItem.getName()+"   "+"type: "+getType();
     }
 
 

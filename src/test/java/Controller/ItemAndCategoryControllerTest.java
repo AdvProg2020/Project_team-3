@@ -286,7 +286,7 @@ public class ItemAndCategoryControllerTest {
     @Test
     public void editCategoryName() {
         addItem();
-        ItemAndCategoryController.getInstance().editCategoryName("lavazem manzel","Home appliance");
+        ItemAndCategoryController.getInstance().renameCategory("lavazem manzel","Home appliance");
     }
 
     @Test

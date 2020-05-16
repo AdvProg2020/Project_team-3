@@ -1,5 +1,9 @@
 package Model;
 
+import Controller.Database;
+import Controller.ItemAndCategoryController;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Category {
@@ -56,8 +60,39 @@ public class Category {
         return subCategories.contains(name);
     }
 
-    public void setName(String name) {
+    public void rename(String name) {
         this.name = name;
+        for (String id : allItemsID) {
+            Item item= ItemAndCategoryController.getInstance().getItemById(id);
+            if(item==null) continue;
+            item.setCategoryName(name);
+            try {
+                Database.getInstance().saveItem(item);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Category father=ItemAndCategoryController.getInstance().getCategoryByName(parent);
+        if(father!=null){
+            father.removeSubCategory(this.name);
+            father.addSubCategory(name);
+            try {
+                Database.getInstance().saveCategory(father);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        for (String subCategory : subCategories) {
+            Category sub=ItemAndCategoryController.getInstance().getCategoryByName(subCategory);
+            if(sub!=null){
+                sub.setParent(name);
+                try {
+                    Database.getInstance().saveCategory(sub);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public ArrayList<String> getAllItemsID() {
@@ -94,7 +129,7 @@ public class Category {
     }
 
     public void removeSubCategory(String category) {
-        if (this.hasSubCategoryWithName(category)) return;
+        if (!this.hasSubCategoryWithName(category)) return;
         this.subCategories.remove(category);
     }
 }
