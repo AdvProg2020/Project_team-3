@@ -367,7 +367,7 @@ public class ItemAndCategoryController {
             e.printStackTrace();
         }
         Database.getInstance().deleteCategory(getCategoryByName(oldName));
-        return "Successful";
+        return "Successful: ";
     }
 
     public String removeCategory(String name) {

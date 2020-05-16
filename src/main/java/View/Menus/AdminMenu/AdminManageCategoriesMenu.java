@@ -51,7 +51,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
             addCategory(matcher.group(1));
             return;
         }
-        matcher = View.getMatcher("edit category [category name]",command);
+        matcher = View.getMatcher("edit category (\\S+)",command);
         if(matcher.matches()){
             editCategory(matcher.group(1));
             return;
@@ -117,24 +117,27 @@ public class AdminManageCategoriesMenu extends UserMenu {
      if(command.equals("back")){
          return;
      }
-     Matcher matcher=View.getMatcher("add attrbiute (\\S+)",command);
+     Matcher matcher=View.getMatcher("add attribute (\\S+)",command);
      if(matcher.matches()){
-         renameCategory(categoryName,matcher.group(1));
+         addAttribute(categoryName,matcher.group(1));
          return;
      }
      matcher=View.getMatcher("edit name (\\S+)",command);
      if(matcher.matches()){
-         addAttribute(categoryName,matcher.group(1));
+         renameCategory(categoryName,matcher.group(1));
          return;
      }
     }
 
     private void removeCategory(String name) {
+        if(name.equals("Main")){
+            System.out.println("Error: you cant delete Main");
+        }
         System.out.println(ItemAndCategoryController.getInstance().removeCategory(name));
     }
 
     private void renameCategory(String oldName,String newName){
-      System.out.println(ItemAndCategoryController.getInstance().renameCategory(oldName,newName));
+       System.out.println(ItemAndCategoryController.getInstance().renameCategory(oldName,newName));
     }
 
     private void addAttribute(String categoryName,String newAttribute){
