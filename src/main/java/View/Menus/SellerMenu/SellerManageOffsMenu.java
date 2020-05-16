@@ -94,7 +94,10 @@ public class SellerManageOffsMenu extends UserMenu {
 
 
     protected void editSale(String saleID){
-
+        if(!SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername().equals(UserController.getInstance().getCurrentOnlineUser().getUsername())){
+            System.out.println(View.ANSI_RED+"This sale does not belong to you."+View.ANSI_RESET);
+            return;
+        }
         System.out.println("Enter -edit [start/end] date- if you wish to change the starting/ending date.\nEnter -edit offpercent- if you wish to change the off percentage.");
         String command = View.getRead().nextLine();
         if(command.equals("edit end date")){

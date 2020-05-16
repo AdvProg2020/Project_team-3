@@ -47,6 +47,9 @@ public class CartController {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemid)) {
             return "Error: invalid id";
         }
+        if(getCurrentShoppingCart().includesItem(itemid)==false){
+            return "Error: you must first add this item to your cart";
+        }
         count += getCurrentShoppingCart().getItemCount(itemid);
         return getCurrentShoppingCart().changeCountBy(itemid, count);
     }

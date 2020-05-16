@@ -24,7 +24,4 @@ public class SaleRequest extends Request {
         return "id: "+getRequestId()+"   "+"type: "+getType();
     }
 
-
-
-
 }

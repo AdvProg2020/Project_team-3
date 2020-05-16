@@ -260,7 +260,6 @@ public class UserController {
     public void assignSaleLog(String sellerName, SaleLog saleLog) {
         Seller seller = (Seller) getUserByUsername(sellerName);
         seller.addSaleLog(saleLog);
-        seller.setMoney(seller.getMoney() + saleLog.getPrice());
         Database.getInstance().saveUser(seller);
     }
 

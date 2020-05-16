@@ -121,8 +121,15 @@ public class RequestController {
             if (user instanceof Seller) ((Seller) user).validate();
             Database.getInstance().saveUser(user);
         } else if (accepted instanceof SaleRequest) {
-                ((SaleRequest) accepted).getNewSale().acceptStatus();
+                Sale sale=((SaleRequest) accepted).getNewSale();
+                sale.acceptStatus();
+            for (String id : sale.getAllItemId()) {
+                Item item=ItemAndCategoryController.getInstance().getItemById(id);
+                if(item==null) continue;
+                item.setSale(sale.getId());
+            }
                 Database.getInstance().saveSale(((SaleRequest) accepted).getNewSale());
+
         } else if (accepted instanceof ItemRequest) {
                 Item item = ((ItemRequest) accepted).getNewItem();
                 Database.getInstance().saveItem(item);
@@ -151,10 +158,10 @@ public class RequestController {
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm");
         if (changedField.equalsIgnoreCase("start Time")) {
-            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            LocalDateTime date = LocalDateTime.parse(newFieldValue);
             sale.setStartTime(date);
         } else if (changedField.equalsIgnoreCase("end Time")) {
-            LocalDateTime date = LocalDateTime.parse(newFieldValue,formatter);
+            LocalDateTime date = LocalDateTime.parse(newFieldValue);
             sale.setEndTime(date);
         } else if (changedField.equalsIgnoreCase("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
