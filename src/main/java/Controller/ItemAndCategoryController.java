@@ -254,6 +254,8 @@ public class ItemAndCategoryController {
         if (!isThereCategoryWithName(categoryName)) {
             return "Error: invalid category name";
         }
+        if(UserController.getInstance().getCurrentOnlineUser()==null)
+            return"Error: ";
         Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);

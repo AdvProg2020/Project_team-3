@@ -9,9 +9,6 @@ public class Main {
         View.run();
     }
 }
-
-//edit category mirza
-
 // bayad vaghti migim item tuye sale hast (salemenu) va vaghti miaim gheymatesho kam mikonim , beine starttime o endtime bashim!!!! <= 0317
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
