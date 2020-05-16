@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.ItemAndCategoryController;
+
 import java.util.ArrayList;
 
 public class Category {
@@ -56,8 +58,24 @@ public class Category {
         return subCategories.contains(name);
     }
 
-    public void setName(String name) {
+    public void rename(String name) {
         this.name = name;
+        for (String id : allItemsID) {
+            Item item= ItemAndCategoryController.getInstance().getItemById(id);
+            if(item==null) continue;
+            item.setCategoryName(name);
+        }
+        Category father=ItemAndCategoryController.getInstance().getCategoryByName(parent);
+        if(father!=null){
+            father.removeSubCategory(this.name);
+            father.addSubCategory(name);
+        }
+        for (String subCategory : subCategories) {
+            Category sub=ItemAndCategoryController.getInstance().getCategoryByName(subCategory);
+            if(sub!=null){
+                sub.setParent(name);
+            }
+        }
     }
 
     public ArrayList<String> getAllItemsID() {

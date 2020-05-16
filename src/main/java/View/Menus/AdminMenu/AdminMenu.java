@@ -63,7 +63,6 @@ public class AdminMenu extends UserMenu {
             showAllProducts();
             return;
         } else if (command.equals("manage categories")) {
-            showAllCategories();
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
             return;
         } else if (command.equals("products")) {
@@ -98,17 +97,17 @@ public class AdminMenu extends UserMenu {
     @Override
     public void help() {
         System.out.println(View.ANSI_BLUE + "You are in the Admin menu.\nType your command in one of these formats:" + View.ANSI_RESET);
-        System.out.println("view personal info"); //done
+        System.out.println("view personal info");
         System.out.println("edit [field]");
-        System.out.println("manage users");  //done
-        System.out.println("change type [username] [role]");  //done but need test
-        System.out.println("manage all products");    //done  but need test
-        System.out.println("remove [product id]");    //done but need test
-        System.out.println("create discount code");     //done
-        System.out.println("manage discount codes");         //done but need test
-        System.out.println("manage requests");           //done but need test
+        System.out.println("manage users");
+        System.out.println("change type [username] [role]");
+        System.out.println("manage all products");
+        System.out.println("remove [product id]");
+        System.out.println("create discount code");
+        System.out.println("manage discount codes");
+        System.out.println("manage requests");
         System.out.println("manage categories");
-        System.out.println("logout");                //done
+        System.out.println("logout");
     }
 
     private void AddAdminAccount() {
@@ -117,10 +116,6 @@ public class AdminMenu extends UserMenu {
 
     private void showAllSales() {
         printList(SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBaseToString());
-      /*  ArrayList<Sale> allSales = SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
-        for (Sale sale : allSales) {
-            System.out.println(sale);
-        } */
     }
 
 
@@ -151,10 +146,6 @@ public class AdminMenu extends UserMenu {
     private void viewAllDiscountCodes() {
         ArrayList<String> allDiscountCodes = Database.getInstance().printFolderContent("DiscountCodes");
         printList(allDiscountCodes);
-    }
-
-    private void showAllCategories() {
-        //set current menu to category menu
     }
 
     void createDiscountCode() {

@@ -339,42 +339,18 @@ public class ItemAndCategoryController {
         return allItems;
     }
 
-    public void editCategoryName(String lastName, String newName) {
-        System.out.println(lastName);
-        System.out.println(isThereCategoryWithName(lastName));
-        if(isThereCategoryWithName(lastName)==false)return;
-        Category category=getCategoryByName(lastName);
-        Category father=getCategoryByName(category.getParent());
-        father.getSubCategories().remove(lastName);
-        father.getSubCategories().add(newName);
-        try {
-            Database.getInstance().saveCategory(father);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public String renameCategory(String oldName,String newName){
+        Category category=getCategoryByName(oldName);
+        if(category==null){
+            return "Error: invalid category name";
         }
-        for(String categoryName:category.getSubCategories()){
-            Category category1=getCategoryByName(categoryName);
-            category1.setParent(newName);
-            try {
-                Database.getInstance().saveCategory(category1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(isThereCategoryWithName(newName)){
+            return "Error: category with this name already exists";
         }
-        for(String id:category.getAllItemsID()){
-            Item item=getItemById(id);
-            if(item!=null){
-                item.setCategoryName(newName);
-                try {
-                    Database.getInstance().saveItem(item);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        category.rename(newName);  //this will also change parent and father and item category name
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
-            if(request instanceof ItemRequest){
+            if((request instanceof ItemRequest)&&((ItemRequest) request).getNewItem().getCategoryName().equals(oldName)){
               ((ItemRequest) request).getNewItem().setCategoryName(newName);
                 try {
                     Database.getInstance().saveRequest(request);
@@ -383,13 +359,13 @@ public class ItemAndCategoryController {
                 }
             }
         }
-        category.setName(newName);
         try {
             Database.getInstance().saveCategory(category);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Database.getInstance().deleteCategory(getCategoryByName(lastName));
+        Database.getInstance().deleteCategory(getCategoryByName(oldName));
+        return "Successful";
     }
 
     public String removeCategory(String name) {
@@ -471,5 +447,22 @@ public class ItemAndCategoryController {
         Item item=getItemById(id);
         if(item==null) return false;
         return item.hasAttribute(key);
+    }
+
+    public String addAttributeToCategory(String categoryName,String attribute){
+        Category category=getCategoryByName(categoryName);
+        if(category==null){
+            return "Error: invalid category name";
+        }
+        if(category.getAttributes().contains(attribute)){
+            return "Error: category already has this attribute";
+        }
+        category.addAttribute(attribute);
+        try {
+            Database.getInstance().saveCategory(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+           return "Successful: attribute added";
     }
 }

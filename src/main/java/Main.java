@@ -10,14 +10,11 @@ public class Main {
     }
 }
 
-//logout dar hamaje ye bar emtehan shaavd <= kolli
-
 //edit category mirza
 
 // bayad vaghti migim item tuye sale hast (salemenu) va vaghti miaim gheymatesho kam mikonim , beine starttime o endtime bashim!!!! <= 0317
 
 // mogheii ke sale haro migirim bayad onaii ke accepted hastan ro bede na hammashono !!!! (???)
-// item o ina ham hamintor (???)
 
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa

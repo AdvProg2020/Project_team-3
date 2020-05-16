@@ -7,6 +7,7 @@ import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
@@ -48,6 +49,11 @@ public class AdminManageCategoriesMenu extends UserMenu {
         matcher = View.getMatcher("add (\\S+)", command);
         if (matcher.matches()) {
             addCategory(matcher.group(1));
+            return;
+        }
+        matcher = View.getMatcher("edit category [category name]",command);
+        if(matcher.matches()){
+            editCategory(matcher.group(1));
             return;
         }
         if(command.equals("logout")){
@@ -97,13 +103,42 @@ public class AdminManageCategoriesMenu extends UserMenu {
         }
     }
 
-    private void editCategory() {
-
+    private void editCategory(String categoryName) {
+     if(categoryName.equals("Main")){
+         System.out.println("Error: you cant edit Main");
+         return;
+     }
+     if(!ItemAndCategoryController.getInstance().isThereCategoryWithName(categoryName)){
+         System.out.println("Error: invalid category name");
+         return;
+     }
+     System.out.println("enter your command in one of these formats\nadd attribute [attribute]\nedit name [name]\nback");
+     String command=View.getRead().nextLine();
+     if(command.equals("back")){
+         return;
+     }
+     Matcher matcher=View.getMatcher("add attrbiute (\\S+)",command);
+     if(matcher.matches()){
+         renameCategory(categoryName,matcher.group(1));
+         return;
+     }
+     matcher=View.getMatcher("edit name (\\S+)",command);
+     if(matcher.matches()){
+         addAttribute(categoryName,matcher.group(1));
+         return;
+     }
     }
 
     private void removeCategory(String name) {
         System.out.println(ItemAndCategoryController.getInstance().removeCategory(name));
     }
 
+    private void renameCategory(String oldName,String newName){
+      System.out.println(ItemAndCategoryController.getInstance().renameCategory(oldName,newName));
+    }
+
+    private void addAttribute(String categoryName,String newAttribute){
+        System.out.println(ItemAndCategoryController.getInstance().addAttributeToCategory(categoryName,newAttribute));
+    }
 
 }
