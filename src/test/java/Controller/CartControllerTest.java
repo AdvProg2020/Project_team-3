@@ -2,12 +2,15 @@ package Controller;
 
 import Model.Cart;
 import Model.Category;
+import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.Request;
 import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,6 +23,17 @@ public class CartControllerTest {
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
+    }
+
+    public void addDiscountCode() {
+        ArrayList<String>validUsers=new ArrayList<>();
+        String startTime="25-02-2014 22:30";
+        String endTime="27-02-2020 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
+        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
+                ,6,50);
     }
 
     public void addCategory() {
@@ -106,12 +120,33 @@ public class CartControllerTest {
 
     @Test
     public void getCartPriceWithoutDiscountCode() {
-
-
+        addItem();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        for(Item item:allItems) System.out.println(CartController.getInstance().addItemToCart(item.getId()));
+        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),2));
+        System.out.println(CartController.getInstance().showCart());
+        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
+        System.out.println(CartController.getInstance().showCart());
+        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
+        for(Item item:allItems)Database.getInstance().deleteItem(item);
     }
 
     @Test
     public void getCartPriceWithDiscountCode() {
+        addItem();
+        addDiscountCode();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        ArrayList<DiscountCode>allDiscountCodes=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        DiscountCode discountCode=allDiscountCodes.get(0);
+        for(Item item:allItems) System.out.println(CartController.getInstance().addItemToCart(item.getId()));
+        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),2));
+        System.out.println(CartController.getInstance().showCart());
+        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
+        System.out.println(CartController.getInstance().showCart());
+        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
+        System.out.println(CartController.getInstance().getCartPriceWithDiscountCode(discountCode.getDiscountId()));
+        for(Item item:allItems)Database.getInstance().deleteItem(item);
+        for(DiscountCode discountCode1:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode1);
     }
 
     @Test

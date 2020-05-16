@@ -213,5 +213,13 @@ public class SaleAndDiscountCodeControllerTest {
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
     }
 
+    @Test
+    public void giveGiftDiscount(){
+        UserController.getInstance().registerBuyer(500,"Arman","Hitler",
+                "Arman","S","arman@gmail.com","33151603");
+        SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode("Arman");
+        ArrayList<DiscountCode>allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        for(DiscountCode discountCode:allDiscounts)Database.getInstance().deleteDiscountCode(discountCode);
+    }
 
 }
