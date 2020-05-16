@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.DiscountCode;
+import Model.Item;
 import Model.Sale;
 import Model.Users.Buyer;
 import Model.Users.Seller;
@@ -113,11 +114,6 @@ public class SaleAndDiscountCodeController {
         return ans;
     }
 
-    /*public String addSale(Sale sale) {
-        String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
-        RequestController.getInstance().addSaleRequest(requestID, sale);
-        return "your request for adding Sale was sent to our Admins!";
-    }*/
 
     public String deleteSale(String id) {
         Sale sale = getSaleById(id);
@@ -342,5 +338,33 @@ public class SaleAndDiscountCodeController {
             }
         }
 
+    }
+
+    public String addItemToSale(String itemID,String saleID){
+        if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)==false){
+            return "invalid item id!";
+        }
+        if(isThereSaleWithId(saleID)==false){
+            return "invalid sale id!";
+        }
+        if(canAddItemToSale(itemID)==false){
+            return "the item can not be added to sale!";
+        }
+        Sale sale=getSaleById(saleID);
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        item.setSale(saleID);
+        double inStock= item.getPrice()*(1-((double)sale.getOffPercentage()/100));
+        item.setInStock((int) inStock);
+        sale.addItemToSale(itemID);
+        Seller seller=(Seller) UserController.getInstance().getUserByUsername(item.getSellerName());
+        seller.addAllSaleId(sale.getId());
+        try {
+            Database.getInstance().saveUser(seller);
+            Database.getInstance().saveSale(sale);
+            Database.getInstance().saveItem(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "the item added to sale successfully!";
     }
 }

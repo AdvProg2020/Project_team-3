@@ -63,14 +63,14 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void addSale() {
-        UserController.getInstance().registerSeller(500,"Alireza","alireza79",
+        UserController.getInstance().registerSeller(500,"alima","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User user=UserController.getInstance().getUserByUsername("Alireza");
-        UserController.getInstance().login("Alireza",user.getPassword());
-        String startTime="1399-02-25 21:30";
-        String endTime="1399-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        User user=UserController.getInstance().getUserByUsername("alima");
+        UserController.getInstance().login("Alima",user.getPassword());
+        String startTime="20-02-2005 21:30";
+        String endTime="12-02-2007 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         ArrayList<String>saleItems=new ArrayList<>();
@@ -155,7 +155,7 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountCode.getDiscountId()
                 ,dateTime1);
         System.out.println(discountCode.getEndTime().toString());
-        Database.getInstance().deleteDiscountCode(discountCode);
+       // Database.getInstance().deleteDiscountCode(discountCode);
     }
     @Test
     public void editDiscountCodeUsage(){
@@ -170,9 +170,9 @@ public class SaleAndDiscountCodeControllerTest {
     @Test
     public void addDiscountCode() {
         ArrayList<String>validUsers=new ArrayList<>();
-        String startTime="2014-02-25 22:30";
-        String endTime="2020-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String startTime="25-02-2014 22:30";
+        String endTime="27-02-2020 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
@@ -190,11 +190,11 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void editSale() {
-        addSale();
+        //addSale();
         ArrayList<Sale> allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         if(allSales.isEmpty()) return;
-        String startTime="1400-02-25 22:30";
-        String endTime="1400-02-27 22:30";
+        String startTime="25-02-2012 22:30";
+        String endTime="27-02-2015 22:30";
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"off Percentage","90");
         acceptRequests();
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"start Time",startTime);
@@ -207,8 +207,8 @@ public class SaleAndDiscountCodeControllerTest {
     @Test
     public void getSellerSale(){
         addSale();
-        System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSales("Alireza"));
-        Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("Alireza"));
+        System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSales("alima"));
+        Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("alima"));
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
     }

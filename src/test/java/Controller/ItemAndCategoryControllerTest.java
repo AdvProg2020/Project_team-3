@@ -189,12 +189,12 @@ public class ItemAndCategoryControllerTest {
         HashMap<String , String>attributes1=new HashMap();
         HashMap<String,String> attributes2=new HashMap<>();
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
-                ,"this is vaccum",500,300,"Vacuum",
+                ,"this is vaccum",500,0,"Vacuum",
                 attributes);
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
-                ,"this is oven",5000,3000,"Oven",attributes1);
+                ,"this is oven",5000,0,"Oven",attributes1);
         ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
-                "this is microWave",600,200,"microwave",attributes2);
+                "this is microWave",600,0,"microwave",attributes2);
         UserController.getInstance().logout();
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
@@ -281,7 +281,7 @@ public class ItemAndCategoryControllerTest {
     @Test
     public void editCategoryName() {
         addItem();
-        ItemAndCategoryController.getInstance().editCategoryName("Vacuum","jaroo barghi");
+        ItemAndCategoryController.getInstance().editCategoryName("lavazem manzel","Home appliance");
     }
 
     @Test
@@ -292,15 +292,15 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getInSaleItems() {
-        /*addItem();
-        UserController.getInstance().registerSeller(500,"Alireza","alireza79",
+        addItem();
+        UserController.getInstance().registerSeller(500,"Ali","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User user=UserController.getInstance().getUserByUsername("Alireza");
-        UserController.getInstance().login("Alireza",user.getPassword());
-        String startTime="1399-02-25 21:30";
-        String endTime="1399-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        User user=UserController.getInstance().getUserByUsername("Ali");
+        UserController.getInstance().login("Ali",user.getPassword());
+        String startTime="20-04-2003 21:30";
+        String endTime="05-02-2005 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         ArrayList<String>saleItems=new ArrayList<>();
@@ -310,8 +310,9 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Sale sale=allSales.get(0);
         for(Item item:allItems){
-           // sale.addItemToSale(item.getId());
-        }*/
+            SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
+        }
+        System.out.println(ItemAndCategoryController.getInstance().getInSaleItems());
     }
 
     @Test

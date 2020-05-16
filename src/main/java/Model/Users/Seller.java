@@ -101,6 +101,8 @@ public class Seller extends User {
     }
 
     public void addAllSaleId(String id) {
+        if(hasSale(id)==true) return;
+        allSaleId.add(id);
     }
 
     public boolean hasSale(String id) {
