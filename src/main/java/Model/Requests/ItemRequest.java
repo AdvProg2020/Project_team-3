@@ -18,7 +18,7 @@ public class ItemRequest  extends Request {
 
     @Override
     public String toString(){
-        return "item Name: "+newItem.getName()+"\n"+"type: "+getType()+"\n"+"Item Brand:"+newItem.getBrand()+"\n";
+        return "item Name: "+newItem.getName()+"   "+"type: "+getType();
     }
 
 

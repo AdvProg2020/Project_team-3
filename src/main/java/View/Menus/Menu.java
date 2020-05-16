@@ -110,6 +110,9 @@ public abstract class Menu {
 
     protected void printList(ArrayList<String> stringList) {
         int count = 1;
+        if(stringList==null){
+            System.out.println("empty");
+        }
         for (String s : stringList) {
             System.out.println(count + "-" + s);
             count++;

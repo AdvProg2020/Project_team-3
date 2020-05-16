@@ -18,7 +18,7 @@ public class CommentRequest extends Request {
 
     @Override
     public String toString() {
-        return "id: " + getRequestId() + "\n" + "type: " + getType() + "\n" + "Comment:" + newComment.getText() + "\n";
+        return "id: " + getRequestId() + "   " + "type: " + getType();
     }
 
 

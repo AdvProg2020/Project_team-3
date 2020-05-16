@@ -28,9 +28,6 @@ public class SaleEdit extends Request {
 
     @Override
     public String toString(){
-        return "id :"+getRequestId()+"\n"+
-                "type: "+getType()+"\n"+
-                "changed Field: "+getChangedField()+"\n"+
-                "new Field value:"+getNewFieldValue();
+        return "id :"+getRequestId()+"   "+ "type: "+getType();
     }
 }

@@ -1,7 +1,5 @@
 package View.Menus;
 
-import Controller.Controller;
-
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

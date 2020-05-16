@@ -66,7 +66,7 @@ public class UserController {
         if (getCurrentOnlineUser() instanceof Seller) {
             return ((Seller) getCurrentOnlineUser()).getMoney();
         }
-        return -111;
+        return 0;
     }
 
     public boolean isThereUserWithUsername(String username) {
@@ -326,13 +326,10 @@ public class UserController {
     }
 
     public String getBuyLog(int index){
-        if(getCurrentOnlineUser() instanceof Buyer==false){
+        if((getCurrentOnlineUser()==null)||(getCurrentOnlineUser() instanceof Buyer==false)){
             return "Error:";  //this wont happen because we call this function in the buyer menu
         }
         Buyer buyer=(Buyer) getCurrentOnlineUser();
-        if(buyer==null){
-            return "Error:";
-        }
         try{
             if(index>buyer.getBuyLogSize()-1){
                 return "Error: invalid buyLog";
@@ -341,6 +338,14 @@ public class UserController {
         } catch (Exception e){
             return "Error: invalid id";
         }
+    }
+
+    public String getAllBuyLogs(){
+        if((getCurrentOnlineUser()==null)||(getCurrentOnlineUser() instanceof Buyer==false)){
+            return "Error:";  //this wont happen because we call this function in the buyer menu
+        }
+        Buyer buyer=(Buyer) getCurrentOnlineUser();
+        return buyer.getBuyLogsString();
     }
 
     public String getUserType(String username){
@@ -356,4 +361,33 @@ public class UserController {
         return getUserType(getCurrentOnlineUser().getUsername());
     }
 
+    public String getSellerItems()  {
+        if((getCurrentOnlineUser()!=null)&&(getCurrentOnlineUser() instanceof Seller)){
+            Seller seller=(Seller) getCurrentOnlineUser();
+            return seller.getAllItemsString();
+        }
+        return "Error: ";
+    }
+
+    public String getSellerCompany() {
+        if((getCurrentOnlineUser()!=null)&&(getCurrentOnlineUser() instanceof Seller)){
+            Seller seller=(Seller) getCurrentOnlineUser();
+            return seller.getCompanyName();
+        }
+        return "Error: ";
+    }
+
+    public Boolean doesSellerHaveItem(String itemId){
+        if((getCurrentOnlineUser() instanceof Seller==false)||(getCurrentOnlineUser()==null))
+            return false;
+        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
+        return seller.hasItem(itemId);
+    }
+
+    public String getBuyerDiscountCode(){
+        if((getCurrentOnlineUser() instanceof Buyer==false)||(getCurrentOnlineUser()==null))
+            return "";
+        Buyer buyer=(Buyer) getCurrentOnlineUser();
+        return buyer.getDiscountCodes();
+    }
 }

@@ -2,7 +2,6 @@ package View.Menus;
 
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
-import Model.Users.Buyer;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
 import View.Menus.ShopAndDiscountMenu.ShopMenu;
 
@@ -115,8 +114,7 @@ public class BuyerMenu extends UserMenu {
     }
 
     private void viewOrders() {
-        Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
-        System.out.println(buyer.getBuyLogsString());
+        System.out.println(UserController.getInstance().getAllBuyLogs());
     }
 
     private void viewBalance() {
@@ -125,8 +123,7 @@ public class BuyerMenu extends UserMenu {
     }
 
     private void viewDiscountCodes() {
-        Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
-        System.out.println(buyer.getDiscountCodes());
+        System.out.println(UserController.getInstance().getBuyerDiscountCode());
     }
 
     private void rate(String itemID, int score) {

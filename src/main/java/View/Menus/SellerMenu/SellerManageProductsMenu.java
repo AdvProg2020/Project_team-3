@@ -1,9 +1,6 @@
 package View.Menus.SellerMenu;
 
-import Controller.Controller;
 import Controller.*;
-import Model.Item;
-import Model.Users.Seller;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.UserMenu;
@@ -92,24 +89,19 @@ public class SellerManageProductsMenu extends UserMenu {
     }
 
     public void manageProducts(){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        System.out.println(seller.getAllItemsString());
+        System.out.println(UserController.getInstance().getSellerItems());
     }
 
     public void viewBuyers(String ID){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        if(!seller.hasItem(ID)){
+        if(!UserController.getInstance().doesSellerHaveItem(ID)){
             System.out.println(View.ANSI_RED+"Invalid item ID."+View.ANSI_RESET);
             return;
         }
-
-        Item item = ItemAndCategoryController.getInstance().getItemById(ID);
-        printList(item.getBuyerUserName());
+        printList(ItemAndCategoryController.getInstance().getItemBuyer(ID));
     }
 
     public void editProduct(String ID){
-        Seller seller = (Seller) Controller.getInstance().getCurrentOnlineUser();
-        if(!seller.hasItem(ID)){
+        if(!UserController.getInstance().doesSellerHaveItem(ID)){
             System.out.println(View.ANSI_RED+"Invalid item ID."+View.ANSI_RESET);
             return;
         }

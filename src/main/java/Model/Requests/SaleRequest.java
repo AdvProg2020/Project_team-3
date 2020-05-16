@@ -21,7 +21,7 @@ public class SaleRequest extends Request {
 
     @Override
     public String toString(){
-        return "id: "+getRequestId()+"\n"+"type: "+getType()+"\n"+"Sale time:"+newSale.getStartTime()+"\n";
+        return "id: "+getRequestId()+"   "+"type: "+getType();
     }
 
 

@@ -458,4 +458,18 @@ public class ItemAndCategoryController {
             return 0D;
         return item.getRating();
     }
+
+    public ArrayList<String> getItemBuyer(String itemId){
+        Item item=getItemById(itemId);
+        if(item==null){
+            return null;
+        }
+        return item.getBuyerUserName();
+    }
+
+    public boolean doesItemHaveAttribute(String id,String key){
+        Item item=getItemById(id);
+        if(item==null) return false;
+        return item.hasAttribute(key);
+    }
 }
