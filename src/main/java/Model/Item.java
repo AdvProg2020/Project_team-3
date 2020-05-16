@@ -82,27 +82,15 @@ public class Item {
     Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(id);
     if(category!=null){
         category.removeItem(id);
-        try {
             Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
    if(sale!=null){
        sale.removeItemFromSale(id);
-       try {
            Database.getInstance().saveSale(sale);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
    }
         Seller seller=(Seller) UserController.getInstance().getUserByUsername(this.getSellerName());
         seller.deleteItem(this.getId());
-        try {
             Database.getInstance().saveUser(seller);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public double getPrice() {
@@ -235,20 +223,12 @@ public class Item {
 
     public void addComment(Comment newComment){
         this.allComments.add(newComment);
-        try {
             Database.getInstance().saveItem(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void addRating(Rating newRating){
         this.allRatings.add(newRating);
-        try {
-            Database.getInstance().saveItem(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveItem(this);
     }
 
     public ArrayList<String> getBuyerUserName() {

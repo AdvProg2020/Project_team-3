@@ -75,11 +75,7 @@ public class CartController {
             return "Error: not enough money";
         }
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
-        try {
             Database.getInstance().saveUser(buyer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         cart.buy(buyer.getUsername(), address);
         return "Successful:";
     }
@@ -102,16 +98,8 @@ public class CartController {
         }
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithDiscountCode());
         discountCode.useDiscountCode(buyer.getUsername());
-        try {
             Database.getInstance().saveUser(buyer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         cart.buy(buyer.getUsername(), address);
         return "Successful:";
     }

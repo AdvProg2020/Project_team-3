@@ -226,11 +226,7 @@ public class SaleAndDiscountCodeController {
             return "Error: invalid ID for discount code.";
         }
         discountCode.setDiscountPercentage(percentage);
-        try {
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveDiscountCode(discountCode);
         return "Successful:";
     }
 
@@ -240,11 +236,7 @@ public class SaleAndDiscountCodeController {
             return "Error: invalid ID for discount code.";
         }
         discountCode.setMaxDiscount(amount);
-        try {
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveDiscountCode(discountCode);
         return "Successful:";
     }
 
@@ -257,11 +249,7 @@ public class SaleAndDiscountCodeController {
             return "Error: ending time is after the starting time!";
         }
         discountCode.setEndTime(endTime);
-        try {
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveDiscountCode(discountCode);
         return "Successful";
     }
 
@@ -272,11 +260,7 @@ public class SaleAndDiscountCodeController {
             return "Error: invalid ID for discount code.";
         }
         discountCode.changeUsageCount(newUsage);
-        try {
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveDiscountCode(discountCode);
         return "Successful";
     }
 
@@ -285,11 +269,7 @@ public class SaleAndDiscountCodeController {
             return "Error: ending time is after the starting time!";
         }
         DiscountCode discountCode = new DiscountCode(percentage, startTime, endTime, validUsers, usageCount, maxDiscount);
-        try {
-            Database.getInstance().saveDiscountCode(discountCode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveDiscountCode(discountCode);
         return "Successful: discount code created";
     }
 
@@ -356,13 +336,9 @@ public class SaleAndDiscountCodeController {
         sale.addItemToSale(itemID);
         Seller seller=(Seller) UserController.getInstance().getUserByUsername(item.getSellerName());
         seller.addAllSaleId(sale.getId());
-        try {
-            Database.getInstance().saveUser(seller);
-            Database.getInstance().saveSale(sale);
-            Database.getInstance().saveItem(item);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveUser(seller);
+        Database.getInstance().saveSale(sale);
+        Database.getInstance().saveItem(item);
         return "the item added to sale successfully!";
     }
 }

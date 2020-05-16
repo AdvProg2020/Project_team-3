@@ -78,60 +78,36 @@ public class RequestController {
 
     public void addUserRequest(String requestID, Seller newUser) {
         AccountRequest newRequest = new AccountRequest(requestID, newUser);
-        try {
-            Database.getInstance().saveRequest(newRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(newRequest);
     }
 
     public void addSaleRequest(String requestId, Sale newSale) {
         newSale.addStatus();
         SaleRequest newRequest = new SaleRequest(requestId, newSale);
-        try {
-            Database.getInstance().saveRequest(newRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(newRequest);
     }
 
     public void addItemRequest(String requestId, Item newItem) {
         ItemRequest newRequest = new ItemRequest(requestId, newItem);
-        try {
-            Database.getInstance().saveRequest(newRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(newRequest);
     }
 
     public void addCommentRequest(String requestId, Comment newComment) {
         newComment.inProcess();
         CommentRequest commentRequest = new CommentRequest(requestId, newComment);
-        try {
-            Database.getInstance().saveRequest(commentRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(commentRequest);
     }
 
     public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
         Sale newSale = SaleAndDiscountCodeController.getInstance().getSaleById(saleID);
         newSale.editStatus();
         SaleEdit newRequest = new SaleEdit(requestId, saleID, changedFiled, newFieldValue);
-        try {
-            Database.getInstance().saveRequest(newRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(newRequest);
     }
 
     public void editItemRequest(String requestId, String itemID, String changedFiled, String newFieldValue) {
         ItemEdit newRequest = new ItemEdit(requestId, itemID, changedFiled, newFieldValue);
-        try {
-            Database.getInstance().saveRequest(newRequest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveRequest(newRequest);
     }
 
     ///after accept or decline
@@ -143,26 +119,14 @@ public class RequestController {
         if (accepted instanceof AccountRequest) {
             User user = UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
             if (user instanceof Seller) ((Seller) user).validate();
-            try {
-                Database.getInstance().saveUser(user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Database.getInstance().saveUser(user);
         } else if (accepted instanceof SaleRequest) {
-            try {
                 ((SaleRequest) accepted).getNewSale().acceptStatus();
                 Database.getInstance().saveSale(((SaleRequest) accepted).getNewSale());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } else if (accepted instanceof ItemRequest) {
-            try {
                 Item item = ((ItemRequest) accepted).getNewItem();
                 Database.getInstance().saveItem(item);
                 ItemAndCategoryController.getInstance().addItemToCategory(item.getId(), item.getCategoryName());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } else if (accepted instanceof ItemEdit) {
             requestController.ItemEditing((ItemEdit) accepted);
         } else if (accepted instanceof SaleEdit) {
@@ -172,11 +136,7 @@ public class RequestController {
             comment.accept();
             Item item = ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
             item.addComment(comment);
-            try {
                 Database.getInstance().saveItem(item);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         Database.getInstance().deleteRequest(accepted);
         return "Successful: request accepted";
@@ -199,11 +159,7 @@ public class RequestController {
         } else if (changedField.equalsIgnoreCase("off Percentage")) {
             sale.setOffPercentage(Integer.parseInt(newFieldValue));
         }
-        try {
             Database.getInstance().saveSale(sale);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     ///after accepting requests
@@ -225,11 +181,7 @@ public class RequestController {
         } else {
             item.setAttribute(changedField, newFieldValue);
         }
-        try {
             Database.getInstance().saveItem(item);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public String declineRequest(String requestID) {

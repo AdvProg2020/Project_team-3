@@ -197,11 +197,7 @@ public class ItemAndCategoryController {
         }
         Rating rating = new Rating(score, buyer.getUsername(), itemId);
         item.addRating(rating);
-        try {
-            Database.getInstance().saveItem(item);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveItem(item);
         return "Successful: your have rated the item";
     }
 
@@ -221,18 +217,10 @@ public class ItemAndCategoryController {
             return "Error: father category doesnt exist";
         }
         Category category = new Category(name, attributes, fatherName);
-        try {
             Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Category father = getCategoryByName(fatherName);
         father.addSubCategory(name);
-        try {
             Database.getInstance().saveCategory(father);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return "Successful";
     }
 
@@ -268,11 +256,7 @@ public class ItemAndCategoryController {
             return;
         }
         category.addItem(itemid);
-        try {
             Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public Category getCurrentCategory() {
@@ -354,18 +338,10 @@ public class ItemAndCategoryController {
         for(Request request:allRequests){
             if((request instanceof ItemRequest)&&((ItemRequest) request).getNewItem().getCategoryName().equals(oldName)){
               ((ItemRequest) request).getNewItem().setCategoryName(newName);
-                try {
                     Database.getInstance().saveRequest(request);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
-        try {
-            Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveCategory(category);
         Database.getInstance().deleteCategory(getCategoryByName(oldName));
         return "Successful: ";
     }
@@ -380,12 +356,8 @@ public class ItemAndCategoryController {
         for(Category category1:removedCategories){
             Database.getInstance().deleteCategory(category1);
         }
-        try {
-            Database.getInstance().saveCategory(parent);
-            Database.getInstance().deleteCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveCategory(parent);
+        Database.getInstance().deleteCategory(category);
         return "successful:";
     }
 
@@ -423,11 +395,7 @@ public class ItemAndCategoryController {
         if (item == null)
             return;
         item.addViewsBy(1);
-        try {
-            Database.getInstance().saveItem(item);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveItem(item);
     }
 
     public double getScore(String itemID){
@@ -460,11 +428,7 @@ public class ItemAndCategoryController {
             return "Error: category already has this attribute";
         }
         category.addAttribute(attribute);
-        try {
-            Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Database.getInstance().saveCategory(category);
            return "Successful: attribute added";
     }
 }
