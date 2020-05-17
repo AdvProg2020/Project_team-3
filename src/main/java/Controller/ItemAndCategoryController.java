@@ -372,6 +372,7 @@ public class ItemAndCategoryController {
         Item item;
         for(String id:category.getAllItemsID()){
             item=getItemById(id);
+            if(item!=null)
             Database.getInstance().deleteItem(item);
         }
         Iterator<String>subCats=category.getSubCategories().iterator();
