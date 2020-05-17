@@ -198,6 +198,7 @@ public class SortAndFilterControllerTest {
 
     @Test
     public void showActiveFilters() {
+        SortAndFilterController.getInstance().reset();
         assertEquals(SortAndFilterController.getInstance().showActiveFilters(),"you have No active filter");
         SortAndFilterController.getInstance().activateFilterAttribute("test","test");
         SortAndFilterController.getInstance().activateFilterBrandName("test");

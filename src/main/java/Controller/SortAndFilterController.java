@@ -250,6 +250,7 @@ public class SortAndFilterController {
       filterName = false;
       filterAttribute = false;
       activeSort = 0;
+      filterAvailability = false;
    }
 }
 
