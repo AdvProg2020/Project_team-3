@@ -213,9 +213,7 @@ public class SortAndFilterController {
    }
 
    public String showActiveSort() {
-      if (activeSort == 0) {
-         return "you have no active sort , the items will be sorted by view count";
-      } else if (activeSort == 1) {
+      if (activeSort == 1) {
          return "sort by price low to high";
       } else if (activeSort == 2) {
          return "sort by price high to low";
@@ -224,7 +222,7 @@ public class SortAndFilterController {
       } else if (activeSort == 4) {
          return "sort by comment count";
       }
-      return "";
+      return "you have no active sort , the items will be sorted by view count";
    }
 
    public String showAllAvailableFilters() {
