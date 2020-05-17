@@ -1,39 +1,52 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CartTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testSetDiscountCode() {
+public class CartTest {
+
+    @Test
+    public void setDiscountCode() {
     }
 
-    public void testAdd() {
+    @Test
+    public void add() {
     }
 
-    public void testRemove() {
+    @Test
+    public void remove() {
     }
 
-    public void testIsEmpty() {
+    @Test
+    public void isEmpty() {
     }
 
-    public void testChangeCountBy() {
+    @Test
+    public void changeCountBy() {
     }
 
-    public void testIncludesItem() {
+    @Test
+    public void includesItem() {
     }
 
-    public void testGetItemCount() {
+    @Test
+    public void getItemCount() {
     }
 
-    public void testGetCartPriceWithoutDiscountCode() {
+    @Test
+    public void getCartPriceWithoutDiscountCode() {
     }
 
-    public void testGetCartPriceWithDiscountCode() {
+    @Test
+    public void getCartPriceWithDiscountCode() {
     }
 
-    public void testTestToString() {
+    @Test
+    public void testToString() {
     }
 
-    public void testBuy() {
+    @Test
+    public void buy() {
     }
 }

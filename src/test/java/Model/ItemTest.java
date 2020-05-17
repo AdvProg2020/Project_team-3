@@ -1,141 +1,160 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class ItemTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testIsInStock() {
+public class ItemTest {
+
+    @Test
+    public void delete() {
     }
 
-    public void testDelete() {
+    @Test
+    public void getPrice() {
     }
 
-    public void testGetPrice() {
+    @Test
+    public void getPriceWithSale() {
     }
 
-    public void testGetPriceWithSale() {
+    @Test
+    public void getBrand() {
     }
 
-    public void testGetBrand() {
+    @Test
+    public void getName() {
     }
 
-    public void testTestGetName() {
+    @Test
+    public void getId() {
     }
 
-    public void testGetId() {
+    @Test
+    public void getDescription() {
     }
 
-    public void testGetTimesBought() {
+    @Test
+    public void hasUserRated() {
     }
 
-    public void testGetDescription() {
+    @Test
+    public void getRating() {
     }
 
-    public void testGetState() {
+    @Test
+    public void setDescription() {
     }
 
-    public void testHasUserRated() {
+    @Test
+    public void setId() {
     }
 
-    public void testGetRating() {
+    @Test
+    public void setInStock() {
     }
 
-    public void testSetDescription() {
+    @Test
+    public void setName() {
     }
 
-    public void testSetId() {
+    @Test
+    public void setBrand() {
     }
 
-    public void testSetState() {
+    @Test
+    public void setPrice() {
     }
 
-    public void testSetTimesBought() {
+    @Test
+    public void getInStock() {
     }
 
-    public void testSetInStock() {
+    @Test
+    public void getCategoryName() {
     }
 
-    public void testTestSetName() {
+    @Test
+    public void getSellerName() {
     }
 
-    public void testSetBrand() {
+    @Test
+    public void setCategoryName() {
     }
 
-    public void testSetPrice() {
+    @Test
+    public void setSellerName() {
     }
 
-    public void testGetInStock() {
+    @Test
+    public void getAttributes() {
     }
 
-    public void testGetCategoryName() {
+    @Test
+    public void getAllComments() {
     }
 
-    public void testGetSellerName() {
+    @Test
+    public void getViewCount() {
     }
 
-    public void testSetCategoryName() {
+    @Test
+    public void addComment() {
     }
 
-    public void testSetSellerName() {
+    @Test
+    public void addRating() {
     }
 
-    public void testGetAttributes() {
+    @Test
+    public void getBuyerUserName() {
     }
 
-    public void testGetAllComments() {
+    @Test
+    public void isInSale() {
     }
 
-    public void testGetViewCount() {
+    @Test
+    public void addBuyerUserName() {
     }
 
-    public void testAddAttribute() {
+    @Test
+    public void isBuyerWithUserName() {
     }
 
-    public void testEditAttribute() {
+    @Test
+    public void setSale() {
     }
 
-    public void testAddComment() {
+    @Test
+    public void showAttributes() {
     }
 
-    public void testAddRating() {
+    @Test
+    public void hasAttribute() {
     }
 
-    public void testGetBuyerUserName() {
+    @Test
+    public void setAttribute() {
     }
 
-    public void testIsInSale() {
+    @Test
+    public void testToString() {
     }
 
-    public void testAddBuyerUserName() {
+    @Test
+    public void toSimpleString() {
     }
 
-    public void testIsBuyerWithUserName() {
+    @Test
+    public void showIdWithName() {
     }
 
-    public void testSetSale() {
+    @Test
+    public void addViewsBy() {
     }
 
-    public void testShowAttributes() {
-    }
-
-    public void testHasAttribute() {
-    }
-
-    public void testSetAttribute() {
-    }
-
-    public void testTestToString() {
-    }
-
-    public void testToSimpleString() {
-    }
-
-    public void testShowIdWithName() {
-    }
-
-    public void testAddViewsBy() {
-    }
-
-    public void testAddTimesBoughtBy() {
+    @Test
+    public void addTimesBoughtBy() {
     }
 }

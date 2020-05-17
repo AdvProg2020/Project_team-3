@@ -1,24 +1,32 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CommentTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testAccept() {
+public class CommentTest {
+
+    @Test
+    public void accept() {
     }
 
-    public void testInProcess() {
+    @Test
+    public void inProcess() {
     }
 
-    public void testGetUsername() {
+    @Test
+    public void getUsername() {
     }
 
-    public void testGetItemId() {
+    @Test
+    public void getItemId() {
     }
 
-    public void testGetText() {
+    @Test
+    public void getText() {
     }
 
-    public void testGetHasBought() {
+    @Test
+    public void getHasBought() {
     }
 }

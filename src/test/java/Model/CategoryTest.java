@@ -1,57 +1,76 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CategoryTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testHasItemWithID() {
+public class CategoryTest {
+
+    @Test
+    public void hasItemWithID() {
     }
 
-    public void testTestGetName() {
+    @Test
+    public void getName() {
     }
 
-    public void testAddAttribute() {
+    @Test
+    public void addAttribute() {
     }
 
-    public void testSetAttributes() {
+    @Test
+    public void setAttributes() {
     }
 
-    public void testAddItem() {
+    @Test
+    public void addItem() {
     }
 
-    public void testRemoveItem() {
+    @Test
+    public void removeItem() {
     }
 
-    public void testHasSubCategoryWithName() {
+    @Test
+    public void hasSubCategoryWithName() {
     }
 
-    public void testTestSetName() {
+    @Test
+    public void rename() {
     }
 
-    public void testGetAllItemsID() {
+    @Test
+    public void getAllItemsID() {
     }
 
-    public void testGetAttributes() {
+    @Test
+    public void getAttributes() {
     }
 
-    public void testAddSubCategory() {
+    @Test
+    public void addSubCategory() {
     }
 
-    public void testGetParent() {
+    @Test
+    public void getParent() {
     }
 
-    public void testSetParent() {
+    @Test
+    public void setParent() {
     }
 
-    public void testSetAllItemsID() {
+    @Test
+    public void setAllItemsID() {
     }
 
-    public void testGetSubCategories() {
+    @Test
+    public void getSubCategories() {
     }
 
-    public void testSetSubCategories() {
+    @Test
+    public void setSubCategories() {
     }
 
-    public void testRemoveSubCategory() {
+    @Test
+    public void removeSubCategory() {
     }
 }

@@ -1,23 +1,16 @@
 package Model.Requests;
 
-import Model.Users.Seller;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class AccountRequestTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public AccountRequest addRequest(){
-        Seller seller=new Seller(500,"alireza"
-        ,"sdf","alireza","eiji","sdf@gmail.com"
-        ,"33824264","benz");
-        AccountRequest accountRequest=new AccountRequest("sdf",seller);
-        return accountRequest;
+public class AccountRequestTest {
+
+    @Test
+    public void getUser() {
     }
 
-    public void testGetUser() {
-        System.out.println(addRequest().getUser().getUsername());
-    }
-
-    public void testTestToString() {
-        System.out.println(addRequest());
+    @Test
+    public void testToString() {
     }
 }

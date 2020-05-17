@@ -1,15 +1,20 @@
 package Model.Logs;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class SaleLogTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testGetPrice() {
+public class SaleLogTest {
+
+    @Test
+    public void getPrice() {
     }
 
-    public void testTestToString() {
+    @Test
+    public void testToString() {
     }
 
-    public void testToSimpleString() {
+    @Test
+    public void toSimpleString() {
     }
 }

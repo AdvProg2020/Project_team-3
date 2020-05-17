@@ -1,28 +1,24 @@
 package Model.Requests;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class ItemEditTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public ItemEdit addRequest(){
-        ItemEdit itemEdit=new ItemEdit("sdf","sdfd","Name"
-        ,"sdfsdf");
-        return itemEdit;
+public class ItemEditTest {
+
+    @Test
+    public void getItemID() {
     }
 
-    public void testGetItemID() {
-        System.out.println(addRequest().getItemID());
+    @Test
+    public void getChangedField() {
     }
 
-    public void testGetChangedField() {
-        System.out.println(addRequest().getChangedField());
+    @Test
+    public void getNewFieldValue() {
     }
 
-    public void testGetNewFieldValue() {
-        System.out.println(addRequest().getNewFieldValue());
-    }
-
-    public void testTestToString() {
-        System.out.println(addRequest().toString());
+    @Test
+    public void testToString() {
     }
 }

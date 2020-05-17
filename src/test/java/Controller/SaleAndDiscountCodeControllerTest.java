@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class SaleAndDiscountCodeControllerTest {
 
-    @Test
+
     public void addCategory() {
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
@@ -56,6 +56,37 @@ public class SaleAndDiscountCodeControllerTest {
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
     }
+
+    @Test
+    public void addSale() {
+        addItem();
+        acceptRequests();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        User user=UserController.getInstance().getUserByUsername("Ali");
+        UserController.getInstance().login("Ali",user.getPassword());
+        String startTime="20-02-2005 21:30";
+        String endTime="12-02-2007 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
+        ArrayList<String>saleItems=new ArrayList<>();
+        saleItems.add(allItems.get(0).getId());
+        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        acceptRequests();
+    }
+
+    @Test
+    public void addDiscountCode() {
+        ArrayList<String>validUsers=new ArrayList<>();
+        String startTime="25-02-2014 22:30";
+        String endTime="27-02-2020 22:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
+        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
+                ,6,50);
+    }
+
 
     public void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
@@ -105,22 +136,18 @@ public class SaleAndDiscountCodeControllerTest {
     }
 
     @Test
-    public void addSale() {
-        addItem();
-        acceptRequests();
-        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        User user=UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login("Ali",user.getPassword());
-        String startTime="20-02-2005 21:30";
-        String endTime="12-02-2007 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
-        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        ArrayList<String>saleItems=new ArrayList<>();
-        saleItems.add(allItems.get(0).getId());
-        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
-        acceptRequests();
+    public void isThereDiscountCodeWithId() {
+        addDiscountCode();
+        ArrayList<DiscountCode>allDiscountCodes=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        if(allDiscountCodes.isEmpty())return;
+        for(DiscountCode discountCode:allDiscountCodes){
+            Assert.assertTrue(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountCode.getDiscountId()));
+        }
+        SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId("Behaeen");
+        for(DiscountCode discountCode:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode);
     }
+
+
 
     @Test
     public void deleteSale() {
@@ -142,17 +169,6 @@ public class SaleAndDiscountCodeControllerTest {
        for(DiscountCode discountCode:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode);
     }
 
-    @Test
-    public void isThereDiscountCodeWithId() {
-        addDiscountCode();
-        ArrayList<DiscountCode>allDiscountCodes=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
-        if(allDiscountCodes.isEmpty())return;
-        for(DiscountCode discountCode:allDiscountCodes){
-            Assert.assertTrue(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(discountCode.getDiscountId()));
-        }
-        SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId("Behaeen");
-        for(DiscountCode discountCode:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode);
-    }
 
     @Test
     public void getAllDiscountCodesFromDataBase() {
@@ -211,17 +227,6 @@ public class SaleAndDiscountCodeControllerTest {
        Database.getInstance().deleteDiscountCode(discountCode);
     }
 
-    @Test
-    public void addDiscountCode() {
-        ArrayList<String>validUsers=new ArrayList<>();
-        String startTime="25-02-2014 22:30";
-        String endTime="27-02-2020 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
-        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
-                ,6,50);
-    }
 
     @Test
     public void printDiscount() {

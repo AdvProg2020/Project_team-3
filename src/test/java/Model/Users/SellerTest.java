@@ -1,81 +1,72 @@
 package Model.Users;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class SellerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testGetPersonalInfo() {
+public class SellerTest {
+
+    @Test
+    public void getPersonalInfo() {
     }
 
-    public void testGetValid() {
+    @Test
+    public void getValid() {
     }
 
-    public void testSetCompanyName() {
+    @Test
+    public void setCompanyName() {
     }
 
-    public void testGetCompanyName() {
+    @Test
+    public void getCompanyName() {
     }
 
-    public void testGetSellLogs() {
+    @Test
+    public void addSaleLog() {
     }
 
-    public void testGetAllItemsId() {
+    @Test
+    public void addItemID() {
     }
 
-    public void testGetAllSaleId() {
+    @Test
+    public void deleteItem() {
     }
 
-    public void testGetSoldItemsId() {
+    @Test
+    public void delete() {
     }
 
-    public void testAddSaleLog() {
+    @Test
+    public void hasItem() {
     }
 
-    public void testAddSoldItemID() {
+    @Test
+    public void addAllSaleId() {
     }
 
-    public void testHasSoldItem() {
+    @Test
+    public void hasSale() {
     }
 
-    public void testAddItemID() {
+    @Test
+    public void setMoney() {
     }
 
-    public void testDeleteItem() {
+    @Test
+    public void getMoney() {
     }
 
-    public void testDelete() {
+    @Test
+    public void validate() {
     }
 
-    public void testHasItem() {
+    @Test
+    public void getSaleLogsString() {
     }
 
-    public void testAddAllSaleId() {
-    }
-
-    public void testHasSale() {
-    }
-
-    public void testAddSale() {
-    }
-
-    public void testAddItemToSale() {
-    }
-
-    public void testEditSale() {
-    }
-
-    public void testSetMoney() {
-    }
-
-    public void testGetMoney() {
-    }
-
-    public void testValidate() {
-    }
-
-    public void testGetSaleLogsString() {
-    }
-
-    public void testGetAllItemsString() {
+    @Test
+    public void getAllItemsString() {
     }
 }
