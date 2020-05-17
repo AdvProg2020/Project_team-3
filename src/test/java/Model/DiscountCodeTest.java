@@ -1,86 +1,76 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import static org.junit.Assert.*;
 
-public class DiscountCodeTest extends TestCase {
-    public DiscountCode addDiscountCode(){
-        ArrayList<String> validUsers=new ArrayList<>();
-        String startTime="2014-02-25 22:30";
-        String endTime="2020-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
-        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        DiscountCode discountCode=new DiscountCode(50,dateTime
-        ,dateTime1,validUsers,10,40);
-        return discountCode;
+public class DiscountCodeTest {
+
+    @Test
+    public void getUsageCountInt() {
     }
 
-
-    public void testGetUsageCountInt() {
-        System.out.println(addDiscountCode().getUsageCountInt());
+    @Test
+    public void setUsageCountInt() {
     }
 
-    public void testSetUsageCountInt() {
-        addDiscountCode().setUsageCountInt(30);
+    @Test
+    public void testToString() {
     }
 
-    public void testTestToString() {
-        System.out.println(addDiscountCode());
+    @Test
+    public void toSimpleString() {
     }
 
-    public void testGetDiscountId() {
-        System.out.println(addDiscountCode().getDiscountId());
+    @Test
+    public void getDiscountId() {
     }
 
-    public void testGetDiscountPercentage() {
-        System.out.println(addDiscountCode().getDiscountPercentage());
+    @Test
+    public void getDiscountPercentage() {
     }
 
-    public void testSetDiscountPercentage() {
-        addDiscountCode().setUsageCountInt(34);
-        System.out.println(addDiscountCode().getDiscountPercentage());
+    @Test
+    public void setDiscountPercentage() {
     }
 
-    public void testSetEndTime() {
-        String endTime="2020-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(endTime, formatter);
-        addDiscountCode().setEndTime(dateTime);
+    @Test
+    public void setEndTime() {
     }
 
-    public void testGetEndTime() {
-        System.out.println(addDiscountCode().getEndTime());
+    @Test
+    public void getEndTime() {
     }
 
-    public void testGetStartTime() {
-        System.out.println(addDiscountCode().getStartTime());
+    @Test
+    public void getStartTime() {
     }
 
-    public void testHasUser() {
-        System.out.println(addDiscountCode().hasUser("sdf"));
+    @Test
+    public void hasUser() {
     }
 
-    public void testGetUsageCountForUser() {
-        //System.out.println(addDiscountCode().getUsageCountForUser("sdfsdf"));
+    @Test
+    public void getUsageCountForUser() {
     }
 
-    public void testChangeUsageCount() {
-        addDiscountCode().changeUsageCount(89);
-        System.out.println(addDiscountCode().getUsageCountInt());
+    @Test
+    public void changeUsageCount() {
     }
 
-    public void testGetMaxDiscount() {
-        System.out.println(addDiscountCode().getMaxDiscount());
+    @Test
+    public void getMaxDiscount() {
     }
 
-    public void testUseDiscountCode() {
+    @Test
+    public void setMaxDiscount() {
     }
 
-    public void testUserCanUse() {
-        //System.out.println(addDiscountCode().userCanUse("alireza"));
+    @Test
+    public void useDiscountCode() {
+    }
+
+    @Test
+    public void userCanUse() {
     }
 }

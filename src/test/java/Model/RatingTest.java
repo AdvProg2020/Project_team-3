@@ -1,23 +1,20 @@
 package Model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class RatingTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public Rating addRate(){
-        Rating rating=new Rating(4,"sdfgh","sdfghy");
-        return  rating;
+public class RatingTest {
+
+    @Test
+    public void getScore() {
     }
 
-    public void testGetScore() {
-        System.out.println(addRate().getScore());
+    @Test
+    public void getItemId() {
     }
 
-    public void testGetItemId() {
-        System.out.println(addRate().getItemId());
-    }
-
-    public void testGetUsername() {
-        System.out.println(addRate().getUsername());
+    @Test
+    public void getUsername() {
     }
 }

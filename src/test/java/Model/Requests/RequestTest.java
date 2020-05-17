@@ -1,18 +1,28 @@
 package Model.Requests;
 
-import Model.Comment;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class RequestTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public CommentRequest addRequest(){
-        Comment comment=new Comment("sdf","sdf","asdfasdf",false);
-        CommentRequest commentRequest=new CommentRequest("sdf",comment);
-        return  commentRequest;
+public class RequestTest {
+
+    @Test
+    public void getRequestId() {
     }
 
-    public void testGetMessage() {
-        System.out.println(addRequest().getMessage());
+    @Test
+    public void getMessage() {
     }
 
+    @Test
+    public void setMessage() {
+    }
+
+    @Test
+    public void getType() {
+    }
+
+    @Test
+    public void setType() {
+    }
 }

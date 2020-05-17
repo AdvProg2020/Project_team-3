@@ -1,39 +1,52 @@
 package Model.Logs;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class BuyLogTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testAddItem() {
+public class BuyLogTest {
+
+    @Test
+    public void addItem() {
     }
 
-    public void testTestToString() {
+    @Test
+    public void testToString() {
     }
 
-    public void testToSimpleString() {
+    @Test
+    public void toSimpleString() {
     }
 
-    public void testGetAllItemsID() {
+    @Test
+    public void getAllItemsID() {
     }
 
-    public void testHasItemID() {
+    @Test
+    public void hasItemID() {
     }
 
-    public void testGetItemById() {
+    @Test
+    public void getItemById() {
     }
 
-    public void testGetDeliveryState() {
+    @Test
+    public void getDeliveryState() {
     }
 
-    public void testSetDeliveryState() {
+    @Test
+    public void setDeliveryState() {
     }
 
-    public void testTotalPrice() {
+    @Test
+    public void totalPrice() {
     }
 
-    public void testSetTime() {
+    @Test
+    public void setTime() {
     }
 
-    public void testSetDiscountGrandTotal() {
+    @Test
+    public void setDiscountGrandTotal() {
     }
 }

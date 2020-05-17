@@ -1,34 +1,24 @@
 package Model.Requests;
 
-import Model.Item;
-import Model.Sale;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import static org.junit.Assert.*;
 
-public class SaleEditTest extends TestCase {
+public class SaleEditTest {
 
-    public SaleEdit addRequest(){
-        SaleEdit saleEdit=new SaleEdit("sdf","sdf","sdfsdf","sdf");
-        return  saleEdit;
+    @Test
+    public void getSaleID() {
     }
 
-
-    public void testGetSaleID() {
-        System.out.println(addRequest().getSaleID());
+    @Test
+    public void getNewFieldValue() {
     }
 
-    public void testGetNewFieldValue() {
-        System.out.println(addRequest().getNewFieldValue());
+    @Test
+    public void getChangedField() {
     }
 
-    public void testGetChangedFieled() {
-        System.out.println(addRequest().getChangedField());
-    }
-
-    public void testTestToString() {
-        System.out.println(addRequest().toString());
+    @Test
+    public void testToString() {
     }
 }

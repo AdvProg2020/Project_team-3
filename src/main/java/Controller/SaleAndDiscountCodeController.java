@@ -328,25 +328,4 @@ public class SaleAndDiscountCodeController {
 
     }
 
-    public String addItemToSale(String itemID,String saleID){
-        if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)==false){
-            return "invalid item id!";
-        }
-        if(isThereSaleWithId(saleID)==false){
-            return "invalid sale id!";
-        }
-        if(canAddItemToSale(itemID)==false){
-            return "the item can not be added to sale!";
-        }
-        Sale sale=getSaleById(saleID);
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        item.setSale(saleID);
-        sale.addItemToSale(itemID);
-        Seller seller=(Seller) UserController.getInstance().getUserByUsername(item.getSellerName());
-        seller.addAllSaleId(sale.getId());
-        Database.getInstance().saveUser(seller);
-        Database.getInstance().saveSale(sale);
-        Database.getInstance().saveItem(item);
-        return "the item added to sale successfully!";
-    }
 }

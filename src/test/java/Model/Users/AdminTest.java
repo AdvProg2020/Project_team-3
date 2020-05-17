@@ -1,23 +1,20 @@
 package Model.Users;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class AdminTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public Admin addAdmin(){
-        Admin admin=new Admin("asdfg","sdfgh"
-        ,"sdfgh","rtfg","a@gmail.com","33824264");
-        return admin;
+public class AdminTest {
+
+    @Test
+    public void getPersonalInfo() {
     }
 
-
-    public void testGetPersonalInfo() {
-        System.out.println(addAdmin().getPersonalInfo());
+    @Test
+    public void addAdminAccount() {
     }
 
-    public void testAddAdminAccount() {
-    }
-
-    public void testDeleteUser() {
+    @Test
+    public void deleteUser() {
     }
 }

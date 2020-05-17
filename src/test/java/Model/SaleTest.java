@@ -1,112 +1,80 @@
 package Model;
 
-import Model.Requests.ItemRequest;
-import Model.Requests.SaleRequest;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
+import static org.junit.Assert.*;
 
-public class SaleTest extends TestCase {
+public class SaleTest {
 
-    public Sale addSale(){
-         String startTime="1399-02-25 21:30";
-         String endTime="1399-02-27 22:30";
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
-         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-         ArrayList<String> allItems=new ArrayList<>();
-         Sale sale=new Sale(dateTime,dateTime1,20,"sdfsdf",allItems);
-         return sale;
+    @Test
+    public void acceptStatus() {
     }
 
-    public void testAcceptStatus() {
-        addSale().acceptStatus();
-        System.out.println(addSale().status);
+    @Test
+    public void editStatus() {
     }
 
-    public void testEditStatus() {
-        addSale().editStatus();
-        System.out.println(addSale().status);
+    @Test
+    public void addStatus() {
     }
 
-    public void testAddStatus() {
-        addSale().addStatus();
-        System.out.println(addSale().status);
+    @Test
+    public void getEndTime() {
     }
 
-    public void testGetEndTime() {
-        System.out.println(addSale().getEndTime());
+    @Test
+    public void getStartTime() {
     }
 
-    public void testGetStartTime() {
-        System.out.println(addSale().getStartTime());
+    @Test
+    public void getOffPercentage() {
     }
 
-    public void testGetOffPercentage() {
-        System.out.println(addSale().getOffPercentage());
+    @Test
+    public void setStartTime() {
     }
 
-    public void testSetStartTime() {
-        String startTime="1399-02-25 21:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
-        addSale().setStartTime(dateTime);
+    @Test
+    public void setEndTime() {
     }
 
-    public void testSetEndTime() {
-        String endTime="1399-02-27 22:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
-        addSale().setEndTime(dateTime1);
+    @Test
+    public void setOffPercentage() {
     }
 
-    public void testSetOffPercentage() {
-        addSale().setOffPercentage(90);
-        System.out.println(addSale().getOffPercentage());
+    @Test
+    public void getId() {
     }
 
-    public void testGetId() {
-        System.out.println(addSale().getId());
+    @Test
+    public void getAllItemId() {
     }
 
-    public void testGetAllItemId() {
-        HashMap<String,String> attributes=new HashMap<>();
-        Item item=new Item("alireza","Benz","sdf","",500,
-                "sdfsdf","asedf",attributes,600);
-        addSale().addItemToSale(item.getId());
-        System.out.println(addSale().getAllItemId());
+    @Test
+    public void addItemToSale() {
     }
 
-
-    public void testSaleHasItemWithID() {
-        HashMap <String,String> attributes=new HashMap<>();
-        Item item=new Item("alireza","Benz","sdf","",500,
-                "sdfsdf","asedf",attributes,600);
-        ItemRequest itemRequest=new ItemRequest("sdf",item);
-        System.out.println(addSale().saleHasItemWithID(item.getId()));
-
+    @Test
+    public void removeItemFromSale() {
     }
 
-    public void testGetSellerUsername() {
-        System.out.println(addSale().getSellerUsername());
+    @Test
+    public void saleHasItemWithID() {
     }
 
-    public void testItemsInfo() {
-        HashMap <String,String> attributes=new HashMap<>();
-        Item item=new Item("alireza","Benz","sdf","",500,
-                "sdfsdf","asedf",attributes,600);
-        ItemRequest itemRequest=new ItemRequest("sdf",item);
-        System.out.println(addSale().itemsInfo());
+    @Test
+    public void getSellerUsername() {
     }
 
-    public void testTestToString() {
-        System.out.println(addSale().toString());
+    @Test
+    public void itemsInfo() {
     }
 
-    public void testToSimpleString() {
-        System.out.println(addSale().toSimpleString());
+    @Test
+    public void testToString() {
+    }
+
+    @Test
+    public void toSimpleString() {
     }
 }

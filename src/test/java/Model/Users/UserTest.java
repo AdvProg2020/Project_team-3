@@ -1,51 +1,68 @@
 package Model.Users;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class UserTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testDoesPasswordMatch() {
+public class UserTest {
+
+    @Test
+    public void doesPasswordMatch() {
     }
 
-    public void testGetType() {
+    @Test
+    public void getType() {
     }
 
-    public void testGetUsername() {
+    @Test
+    public void getUsername() {
     }
 
-    public void testTestGetName() {
+    @Test
+    public void getName() {
     }
 
-    public void testGetEmail() {
+    @Test
+    public void getEmail() {
     }
 
-    public void testGetLastName() {
+    @Test
+    public void getLastName() {
     }
 
-    public void testGetNumber() {
+    @Test
+    public void getNumber() {
     }
 
-    public void testGetPassword() {
+    @Test
+    public void getPassword() {
     }
 
-    public void testTestSetName() {
+    @Test
+    public void setName() {
     }
 
-    public void testSetEmail() {
+    @Test
+    public void setEmail() {
     }
 
-    public void testSetLastName() {
+    @Test
+    public void setLastName() {
     }
 
-    public void testSetNumber() {
+    @Test
+    public void setNumber() {
     }
 
-    public void testSetPassword() {
+    @Test
+    public void setPassword() {
     }
 
-    public void testSetUsername() {
+    @Test
+    public void setUsername() {
     }
 
-    public void testGetPersonalInfo() {
+    @Test
+    public void getPersonalInfo() {
     }
 }

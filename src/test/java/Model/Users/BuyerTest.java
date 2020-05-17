@@ -1,30 +1,40 @@
 package Model.Users;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class BuyerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    public void testGetPersonalInfo() {
+public class BuyerTest {
+
+    @Test
+    public void getPersonalInfo() {
     }
 
-    public void testGetBuyLogsString() {
+    @Test
+    public void getBuyLogsString() {
     }
 
-    public void testGetBuyLogSize() {
+    @Test
+    public void getBuyLogSize() {
     }
 
-    public void testAddBuyLog() {
+    @Test
+    public void addBuyLog() {
     }
 
-    public void testGetMoney() {
+    @Test
+    public void getMoney() {
     }
 
-    public void testSetMoney() {
+    @Test
+    public void setMoney() {
     }
 
-    public void testGetDiscountCodes() {
+    @Test
+    public void getDiscountCodes() {
     }
 
-    public void testGetBuyLogByID() {
+    @Test
+    public void getBuyLogByID() {
     }
 }
