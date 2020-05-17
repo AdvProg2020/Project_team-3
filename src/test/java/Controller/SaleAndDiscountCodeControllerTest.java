@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.DoubleAccumulator;
 
+import static org.junit.Assert.assertNotNull;
+
 public class SaleAndDiscountCodeControllerTest {
 
 
@@ -31,11 +33,11 @@ public class SaleAndDiscountCodeControllerTest {
     }
 
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+        UserController.getInstance().registerSeller(500,"AliTestSale","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        User seller =UserController.getInstance().getUserByUsername("AliTestSale");
+        System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String> attributes=new HashMap<>();
         attributes.put("price","cheap");
@@ -97,6 +99,8 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void getInstance() {
+        SaleAndDiscountCodeController saleAndDiscountCodeController=SaleAndDiscountCodeController.getInstance();
+        assertNotNull(saleAndDiscountCodeController);
     }
 
     @Test

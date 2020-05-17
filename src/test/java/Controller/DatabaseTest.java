@@ -30,6 +30,12 @@ public class DatabaseTest {
     }
 
     @Test
+    public void getInstance() {
+        Database database=Database.getInstance();
+        assertNotNull(database);
+    }
+
+    @Test
     public void initiate() {
         Database.getInstance().initiate();
     }

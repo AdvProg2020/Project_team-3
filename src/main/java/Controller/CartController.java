@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class CartController {
     Controller controller = Controller.getInstance();
     private static CartController cartController;
-
     private CartController() {
     }
 
