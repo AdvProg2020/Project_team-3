@@ -105,7 +105,7 @@ public class RequestControllerTest {
 
     @Test
     public void getRequestDetail() {
-        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+        UserController.getInstance().registerSeller(500,"AliTestRequest","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         Request request=allRequests.get(0);

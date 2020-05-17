@@ -21,7 +21,7 @@ public class CartControllerTest {
     public void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
-            RequestController.getInstance().acceptRequest(request.getRequestId());
+           System.out.println(RequestController.getInstance().acceptRequest(request.getRequestId()));
         }
     }
 
@@ -50,11 +50,11 @@ public class CartControllerTest {
 
 
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+        UserController.getInstance().registerSeller(500,"Ali2","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        User seller =UserController.getInstance().getUserByUsername("Ali2");
+        System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String> attributes=new HashMap<>();
         attributes.put("price","cheap");
@@ -63,12 +63,12 @@ public class CartControllerTest {
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
-                ,"this is vaccum",500,12,"Vacuum",
+                ,"this is vaccum",500,12,"Main",
                 attributes);
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
-                ,"this is oven",5000,12,"Oven",attributes1);
-        ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
-                "this is microWave",600,12,"microwave",attributes2);
+                ,"this is oven",5000,12,"Main",attributes1);
+        System.out.println(ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
+                "this is microWave",600,12,"Main",attributes2));
         UserController.getInstance().logout();
         ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
@@ -107,13 +107,11 @@ public class CartControllerTest {
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems) System.out.println(CartController.getInstance().addItemToCart(item.getId()));
         for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),2));
-        System.out.println(CartController.getInstance().showCart());
         for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().showCart());
         for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-6));
         System.out.println(CartController.getInstance().showCart());
-        System.out.println(CartController.getInstance().cartIncreaseDecrease(allItems.get(0).getId(),1));
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
         for(Item item:allItems)Database.getInstance().deleteItem(item);

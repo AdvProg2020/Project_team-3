@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -180,11 +181,11 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+        UserController.getInstance().registerSeller(500,"Ali3","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        User seller =UserController.getInstance().getUserByUsername("Ali3");
+        System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
         attributes.put("price","cheap");
@@ -298,11 +299,11 @@ public class ItemAndCategoryControllerTest {
     @Test
     public void getInSaleItems() {
         addItem();
-        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+        UserController.getInstance().registerSeller(500,"Ali4","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User user=UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login("Ali",user.getPassword());
+        User user=UserController.getInstance().getUserByUsername("Ali4");
+        UserController.getInstance().login("Ali4",user.getPassword());
         String startTime="20-04-2003 21:30";
         String endTime="05-02-2005 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -311,7 +312,11 @@ public class ItemAndCategoryControllerTest {
         ArrayList<String>saleItems=new ArrayList<>();
         SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
         acceptRequests();
+        addItem();
         ArrayList<Item>allItems= ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        saleItems.add(allItems.get(0).getId());
+        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        acceptRequests();
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Sale sale=allSales.get(0);
         for(Item item:allItems){

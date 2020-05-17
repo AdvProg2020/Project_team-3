@@ -88,13 +88,16 @@ public class SaleAndDiscountCodeController {
             return "Error: ending time is after the starting time!";
         }
         Seller seller = (Seller) UserController.getInstance().getCurrentOnlineUser();
+        if(seller==null){
+            return "Error: ";
+        }
         if(saleItems.isEmpty()){
             return "Error: no items are on sale!";
         }
         for (String item : saleItems) {
             if (!seller.hasItem(item)) {
                 return "Error: you do not have " + item + " in stock.";
-            }
+           }
             if (ItemAndCategoryController.getInstance().getItemById(item).isInSale()) {
                 return "Error: " + item + " is already in a sale.";
             }
