@@ -91,7 +91,7 @@ public class BuyLog {
     public double totalPrice(){
         double ans = 0;
         for(String id:allItemsID){
-            ans += itemsPrice.get(id);
+            ans += itemsPrice.get(id)*itemsCount.get(id);
         }
         return ans;
     }

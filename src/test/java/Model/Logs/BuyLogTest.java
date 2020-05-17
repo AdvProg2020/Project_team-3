@@ -1,5 +1,6 @@
 package Model.Logs;
 
+import Controller.CartController;
 import Controller.ItemAndCategoryController;
 import Controller.RequestController;
 import Controller.UserController;
@@ -58,7 +59,7 @@ public class BuyLogTest {
     }
 
     @Test
-    public void addItem() {
+    public void addItemAndGetPrice() {
         addItems();
         String Time="05-02-2005 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -66,6 +67,9 @@ public class BuyLogTest {
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         buyLog.addItem(500,10,allItems.get(0).getId(),"testLog");
         assertTrue(buyLog.hasItemID(allItems.get(0).getId()));
+        assertEquals(buyLog.totalPrice(),5000,0);
+        buyLog.addItem(100,10,allItems.get(1).getId(),"testLog");
+        assertEquals(buyLog.totalPrice(),6000,0);
         deleteJunk();
     }
 
@@ -99,6 +103,7 @@ public class BuyLogTest {
 
     @Test
     public void totalPrice() {
+
     }
 
     @Test
