@@ -213,7 +213,7 @@ public class SortAndFilterControllerTest {
     @Test
     public void showActiveSort() {
         SortAndFilterController.getInstance().activateSort("jidjdiejdowj");
-        assertEquals(SortAndFilterController.getInstance().showActiveSort(),"you have no active sort , the items will be sorted by view count");
+        assertEquals(SortAndFilterController.getInstance().showActiveSort(),"You have no active sort , the items will be sorted by view count.");
         SortAndFilterController.getInstance().activateSort("sort by price low to high");
         assertEquals(SortAndFilterController.getInstance().showActiveSort(),"sort by price low to high");
         SortAndFilterController.getInstance().activateSort("sort by price high to low");
@@ -223,7 +223,7 @@ public class SortAndFilterControllerTest {
         SortAndFilterController.getInstance().activateSort("sort by comment count");
         assertEquals(SortAndFilterController.getInstance().showActiveSort(), "sort by comment count");
         SortAndFilterController.getInstance().reset();
-        assertEquals(SortAndFilterController.getInstance().showActiveSort(),"you have no active sort , the items will be sorted by view count");
+        assertEquals(SortAndFilterController.getInstance().showActiveSort(),"You have no active sort , the items will be sorted by view count.");
     }
 
     @Test

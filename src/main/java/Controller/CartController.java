@@ -4,6 +4,7 @@ import Model.Cart;
 import Model.DiscountCode;
 import Model.Item;
 import Model.Users.Buyer;
+import View.Menus.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,17 +38,17 @@ public class CartController {
 
     public String addItemToCart(String itemId) {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemId)) {
-            return "Error: invalid id";
+            return View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET;
         }
         return getCurrentShoppingCart().add(itemId);
     }
 
     public String cartIncreaseDecrease(String itemid, int count) { //for decrease count needs to be negative
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemid)) {
-            return "Error: invalid id";
+            return View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET;
         }
-        if(getCurrentShoppingCart().includesItem(itemid)==false){
-            return "Error: you must first add this item to your cart";
+        if(!getCurrentShoppingCart().includesItem(itemid)){
+            return View.ANSI_RED+"Error: you must first add this item to your cart"+View.ANSI_RESET;
         }
         count += getCurrentShoppingCart().getItemCount(itemid);
         return getCurrentShoppingCart().changeCountBy(itemid, count);
@@ -68,23 +69,26 @@ public class CartController {
 
     public String buy(String address) {
         if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
-            return "Error: must be a buyer to buy items";
+            return View.ANSI_RED+"Error: must be a buyer to buy items"+View.ANSI_RESET;
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
         double price = cart.getCartPriceWithoutDiscountCode();
         if (price > buyer.getMoney()) {
-            return "Error: not enough money";
+            return View.ANSI_RED+ "Error: insufficient money."+View.ANSI_RESET;
+        }
+        if(price > 1000000){
+            SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
         }
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
             Database.getInstance().saveUser(buyer);
         cart.buy(buyer.getUsername(), address);
-        return "Successful:";
+        return View.ANSI_GREEN+"Successful: Shopping complete."+View.ANSI_RESET;
     }
 
     public String buy(String address,String discountID) {
         if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
-            return "Error: must be a buyer to buy items";
+            return View.ANSI_RED+"Error: must be a buyer to buy items"+View.ANSI_RESET;
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
@@ -93,7 +97,7 @@ public class CartController {
         double price = cart.getCartPriceWithDiscountCode();
         cart.setDiscountCode(discountCode);
         if (price > buyer.getMoney()) {
-            return "Error: not enough money";
+            return View.ANSI_RED+ "Error: insufficient money."+View.ANSI_RESET;
         }
         if(price > 1000000){
             SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
@@ -103,6 +107,6 @@ public class CartController {
             Database.getInstance().saveUser(buyer);
             Database.getInstance().saveDiscountCode(discountCode);
         cart.buy(buyer.getUsername(), address);
-        return "Successful:";
+        return View.ANSI_GREEN+"Successful: Shopping complete."+View.ANSI_RESET;
     }
 }

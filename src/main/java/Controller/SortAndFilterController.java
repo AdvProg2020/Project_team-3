@@ -212,7 +212,7 @@ public class SortAndFilterController {
          ans +="\nfilter by availability";
       }
       if (ans.isBlank()) {
-         ans = "you have No active filter";
+         ans = "You have no active filter(s)";
       }
       return ans;
    }
@@ -229,7 +229,7 @@ public class SortAndFilterController {
       }else if (activeSort == 5){
          return "sort by date";
       }
-      return "you have no active sort , the items will be sorted by view count";
+      return "You have no active sort , the items will be sorted by view count.";
    }
 
    public String showAllAvailableFilters() {
