@@ -42,6 +42,7 @@ public class ItemAndCategoryControllerTest {
         Item item=allItem.get(0);
         ItemAndCategoryController.getInstance().deleteItem(item.getId());
         for(Item item1:allItem) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -53,6 +54,7 @@ public class ItemAndCategoryControllerTest {
         }
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereItemWithId("Behaeen"));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -62,6 +64,7 @@ public class ItemAndCategoryControllerTest {
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Behaeen"));
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -72,6 +75,7 @@ public class ItemAndCategoryControllerTest {
             System.out.println(ItemAndCategoryController.getInstance().getItemById(item.getId()).getId());
         }
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -83,6 +87,7 @@ public class ItemAndCategoryControllerTest {
         Assert.assertNull(category1);
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -93,6 +98,7 @@ public class ItemAndCategoryControllerTest {
         Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
         Assert.assertTrue(ItemAndCategoryController.getInstance().searchItemInCategory(category.getName(),item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -103,6 +109,7 @@ public class ItemAndCategoryControllerTest {
         String string=ItemAndCategoryController.getInstance().compare(allItems.get(0).getId(),allItems.get(1).getId());
         System.out.println(string);
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -115,15 +122,16 @@ public class ItemAndCategoryControllerTest {
             System.out.println(string);
         }
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
     public void comment() {
         addItem();
-        UserController.getInstance().registerBuyer(500,"Arman","Hitler",
+        UserController.getInstance().registerBuyer(500,"TestComment","Hitler",
                 "Arman","S","arman@gmail.com","33151603");
-        User user=UserController.getInstance().getUserByUsername("Arman");
-        UserController.getInstance().login("Arman",user.getPassword());
+        User user=UserController.getInstance().getUserByUsername("TestComment");
+        UserController.getInstance().login("TestComment",user.getPassword());
         String text="that was very nice!";
         ArrayList<Item>allItems= ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         if(allItems.isEmpty()) return;
@@ -132,7 +140,9 @@ public class ItemAndCategoryControllerTest {
         acceptRequests();
         System.out.println(ItemAndCategoryController.getInstance().showItemComments(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
-        Database.getInstance().deleteUser(user);
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("TestComment");
     }
 
     @Test
@@ -147,6 +157,7 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         System.out.println(ItemAndCategoryController.getInstance().digest(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -156,6 +167,7 @@ public class ItemAndCategoryControllerTest {
         String attributes=ItemAndCategoryController.getInstance().showAttributes(allItems.get(0).getId());
         System.out.println(attributes);
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -185,10 +197,10 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"Ali3","alireza79",
+        UserController.getInstance().registerSeller(500,"TestCategory","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("Ali3");
+        User seller =UserController.getInstance().getUserByUsername("TestCategory");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
@@ -211,6 +223,12 @@ public class ItemAndCategoryControllerTest {
         }
     }
 
+    public void deleteJunk(){
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("TestCategory");
+    }
+
     @Test
     public void getCurrentCategory() {
         addItem();
@@ -218,6 +236,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().openCategory("lavazem manzel");
         System.out.println(ItemAndCategoryController.getInstance().getCurrentCategory().getName());
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -242,6 +261,7 @@ public class ItemAndCategoryControllerTest {
         addItem();
         ArrayList<Item>allItems1=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems1) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -254,6 +274,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         System.out.println(ItemAndCategoryController.getInstance().getBaseCategory().getName());
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -263,6 +284,7 @@ public class ItemAndCategoryControllerTest {
         System.out.println(ItemAndCategoryController.getInstance().previousCategory("Vacuum"));
         System.out.println(ItemAndCategoryController.getInstance().previousCategory("Main"));
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -272,6 +294,7 @@ public class ItemAndCategoryControllerTest {
         System.out.println(ItemAndCategoryController.getInstance().openCategory("Vacuum"));
         System.out.println(ItemAndCategoryController.getInstance().openCategory("sdfsdf"));
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -286,18 +309,21 @@ public class ItemAndCategoryControllerTest {
             System.out.println(item.getId());
         }
         for(Item item:allItems) Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
     public void editCategoryName() {
         addItem();
         ItemAndCategoryController.getInstance().renameCategory("lavazem manzel","Home appliance");
+        deleteJunk();
     }
 
     @Test
     public void removeCategory() {
         addItem();
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        deleteJunk();
     }
 
   /*  @Test
@@ -346,6 +372,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().editItem("inStock","600",item.getId());
         acceptRequests();
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
     @Test
     public void viewItem(){
@@ -356,6 +383,7 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         System.out.println(ItemAndCategoryController.getInstance().viewItem(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -366,6 +394,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().addView(item1.getId());
         ItemAndCategoryController.getInstance().addView("sdfsdfsdfsdfsdf");
         for(Item item:allItems)Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -385,6 +414,7 @@ public class ItemAndCategoryControllerTest {
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         System.out.println(item.getAttributes().get("price"));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -395,7 +425,7 @@ public class ItemAndCategoryControllerTest {
     @Test
     public void doesSellerHadItem(){
         addItem();
-        Seller user=(Seller) UserController.getInstance().getUserByUsername("Ali");
+        Seller user=(Seller) UserController.getInstance().getUserByUsername("TestCategory");
         System.out.println(user.getUsername());
         UserController.getInstance().login(user.getUsername(),user.getPassword());
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
@@ -403,18 +433,20 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         System.out.println(UserController.getInstance().doesSellerHaveItem(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
     public void sellerItems(){
         addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        Seller seller= (Seller) UserController.getInstance().getUserByUsername("Ali");
+        Seller seller= (Seller) UserController.getInstance().getUserByUsername("TestCategory");
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
         System.out.println(UserController.getInstance().getSellerItems());
         UserController.getInstance().logout();
         System.out.println(UserController.getInstance().getSellerItems());
         for(Item item:allItems)Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
 

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class SortAndFilterControllerTest {
 
-    public void addItem() {
+    public static void addItem() {
         UserController.getInstance().registerSeller(500,"testShop","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
@@ -38,14 +38,14 @@ public class SortAndFilterControllerTest {
         acceptRequests();
     }
 
-    public void acceptRequests(){
+    public static void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
     }
 
-    public void deleteJunk(){
+    public static void deleteJunk(){
         UserController.getInstance().login("admin","12345");
         System.out.println(UserController.getInstance().deleteUser("testShop"));
         ItemAndCategoryController.getInstance().removeCategory("testSort");
