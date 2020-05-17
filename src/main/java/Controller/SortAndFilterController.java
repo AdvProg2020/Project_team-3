@@ -150,7 +150,7 @@ public class SortAndFilterController {
       if (item == null) {
          return false;
       }
-      int instock = item.getInStock();
+      int inStock = item.getInStock();
       String itemName = item.getName();
       if (item == null) {
          return false;
@@ -168,7 +168,7 @@ public class SortAndFilterController {
       if ((filterName == true) && (itemName.contains(name) == false)) {
          return false;
       }
-      if ((filterAvailability == true) && (instock == 0)) {
+      if ((filterAvailability == true) && (inStock == 0)) {
          return false;
       }
       if ((filterAttribute == true) && (item.getAttributes().containsKey(attributeKey))&&(!item.getAttributes().get(attributeKey).equals(attributeValue))) {

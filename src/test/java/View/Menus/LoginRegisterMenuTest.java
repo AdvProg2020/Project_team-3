@@ -20,6 +20,7 @@ public class LoginRegisterMenuTest {
    public void removeTestAccount(){
    UserController.getInstance().deleteUser("loginmenutest");
    }
+
    @Test
    public void getInstance() {
       LoginRegisterMenu loginRegisterMenu=LoginRegisterMenu.getInstance();

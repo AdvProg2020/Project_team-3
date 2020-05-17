@@ -324,7 +324,7 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Sale sale=allSales.get(0);
         for(Item item:allItems){
-           SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
+            SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
         }
         System.out.println(ItemAndCategoryController.getInstance().getInSaleItems());
     }
@@ -384,7 +384,7 @@ public class ItemAndCategoryControllerTest {
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         System.out.println(item.getAttributes().get("price"));
-       for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
     }
 
     @Test
