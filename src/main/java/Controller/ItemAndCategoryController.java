@@ -265,6 +265,9 @@ public class ItemAndCategoryController {
 
     public ArrayList<String> getCategoryItems(String categoryName) { //<== in miad itemaye bache hasham mide, test konid!
         Category category = getCategoryByName(categoryName);
+        if(category==null){
+            return new ArrayList<String>();
+        }
         if (category.getSubCategories().isEmpty()) return category.getAllItemsID();
 
         ArrayList<String> allItems = new ArrayList<>();
