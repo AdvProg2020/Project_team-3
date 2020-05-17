@@ -8,6 +8,8 @@ public class SortAndFilterControllerTest {
 
     @Test
     public void getInstance() {
+        SortAndFilterController sortAndFilterController=SortAndFilterController.getInstance();
+        assertNotNull(sortAndFilterController);
     }
 
     @Test

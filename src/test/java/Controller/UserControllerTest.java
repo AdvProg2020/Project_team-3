@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertNotNull;
+
 public class UserControllerTest {
 
     public void registration(){
@@ -20,6 +22,8 @@ public class UserControllerTest {
 
     @Test
     public void getInstance() {
+        UserController userController=UserController.getInstance();
+        assertNotNull(userController);
     }
 
     @Test

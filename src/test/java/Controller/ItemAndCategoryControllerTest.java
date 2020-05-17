@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ItemAndCategoryControllerTest {
 
     public void acceptRequests(){
@@ -29,6 +31,8 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getInstance() {
+        ItemAndCategoryController itemAndCategoryController=ItemAndCategoryController.getInstance();
+        assertNotNull(itemAndCategoryController);
     }
 
     @Test

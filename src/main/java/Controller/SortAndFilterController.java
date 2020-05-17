@@ -198,7 +198,7 @@ public class SortAndFilterController {
          ans += "\nfilter by name: " + name;
       }
       if (filterAttribute == true) {
-         ans += "\nfilter by attribute attributeKey: " + attributeKey+" attributeValue: "+attributeValue;
+         ans += "\nfilter by attribute attribute Key: " + attributeKey+" attribute Value: "+attributeValue;
       }
       if (filterSellerName == true) {
          ans += "\nfilter by seller: " + sellerName;

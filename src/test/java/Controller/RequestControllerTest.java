@@ -6,10 +6,14 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertNotNull;
+
 public class RequestControllerTest {
 
     @Test
     public void getInstance() {
+        RequestController requestController=RequestController.getInstance();
+        assertNotNull(requestController);
     }
 
     @Test

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.DoubleAccumulator;
 
+import static org.junit.Assert.assertNotNull;
+
 public class SaleAndDiscountCodeControllerTest {
 
     @Test
@@ -66,6 +68,8 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void getInstance() {
+        SaleAndDiscountCodeController saleAndDiscountCodeController=SaleAndDiscountCodeController.getInstance();
+        assertNotNull(saleAndDiscountCodeController);
     }
 
     @Test

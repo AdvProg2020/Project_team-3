@@ -6,6 +6,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ControllerTest {
+
+    @Test
+    public void getInstance() {
+       Controller controller=Controller.getInstance();
+       assertNotNull(controller);
+    }
     @Test
     public void getCurrentShoppingCart() {
         Assert.assertNotNull(Controller.getInstance().getCurrentShoppingCart());

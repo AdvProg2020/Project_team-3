@@ -80,6 +80,8 @@ public class CartControllerTest {
 
     @Test
     public void getInstance() {
+        CartController cartController=CartController.getInstance();
+        assertNotNull(cartController);
     }
 
     @Test
