@@ -30,6 +30,8 @@ public class Item {
     private ArrayList<Rating>allRatings;
     private ArrayList<Comment>allComments;
     private String saleId;
+
+    private String addedTime;
     //constructor
     public Item(String name , String brand , String description , String state, double price , String sellerName , String categoryName , HashMap<String,String> attributes,int inStock){
         this.name=name;
@@ -283,5 +285,11 @@ public class Item {
         this.timesBought += count;
     }
 
+    public String getAddedTime() {
+        return addedTime;
+    }
 
+    public void setAddedTime(LocalDateTime addedTime) {
+        this.addedTime = addedTime.toString();
+    }
 }

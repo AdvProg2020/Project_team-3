@@ -3,6 +3,7 @@ package View.Menus.SellerMenu;
 import Controller.*;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
+import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
@@ -63,11 +64,17 @@ public class SellerManageProductsMenu extends UserMenu {
             return;
         }
         if(command.equals("back")){
+            SortAndFilterController.getInstance().reset();
             View.setCurrentMenu(SellerMenu.getInstance());
             return;
         }
         if(command.equals("help")){
             help();
+            return;
+        }
+        if(command.equals("sorting") || command.equals("filtering")){
+            SortAndFilterMenu.getInstance().setPreviousMenu(SellerManageProductsMenu.getInstance());
+            View.setCurrentMenu(SellerManageProductsMenu.getInstance());
             return;
         }
         if(command.equals("logout")){
@@ -86,10 +93,12 @@ public class SellerManageProductsMenu extends UserMenu {
         System.out.println("view buyers [productId]");
         System.out.println("edit product [productId]");
         System.out.println("remove product [productId]");
+        System.out.println("sorting");
+        System.out.println("filtering");
     }
 
     public void manageProducts(){
-        System.out.println(UserController.getInstance().getSellerItems());
+        System.out.println(SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems()));
     }
 
     public void viewBuyers(String ID){

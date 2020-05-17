@@ -1,9 +1,6 @@
 package View.Menus.AdminMenu;
 
-import Controller.Database;
-import Controller.ItemAndCategoryController;
-import Controller.SaleAndDiscountCodeController;
-import Controller.UserController;
+import Controller.*;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.DiscountsMenu;
@@ -59,8 +56,10 @@ public class AdminMenu extends UserMenu {
         } else if (command.equals("view personal info")) {
             viewPersonalInfo();
             return;
-        } else if (command.equals("manage all products")) {
-            showAllProducts();
+        } else if (command.equals("manage products")) {
+            AdminManageProductsMenu.getInstance().showAllProducts();
+            AdminManageProductsMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
+            View.setCurrentMenu(AdminMenu.getInstance());
             return;
         } else if (command.equals("manage categories")) {
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());
@@ -101,21 +100,12 @@ public class AdminMenu extends UserMenu {
         System.out.println("edit [field]");
         System.out.println("manage users");
         System.out.println("change type [username] [role]");
-        System.out.println("manage all products");
-        System.out.println("remove [product id]");
+        System.out.println("manage products");
         System.out.println("create discount code");
         System.out.println("manage discount codes");
         System.out.println("manage requests");
         System.out.println("manage categories");
         System.out.println("logout");
-    }
-
-    private void AddAdminAccount() {
-        LoginRegisterMenu.getInstance().registerAdmin();
-    }
-
-    private void showAllSales() {
-        printList(SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBaseToString());
     }
 
 
@@ -124,18 +114,9 @@ public class AdminMenu extends UserMenu {
     }
 
 
-    private void deleteSale(String id) {
-        System.out.println(SaleAndDiscountCodeController.getInstance().deleteSale(id));
-    }
-
     private void printUsers() {
         ArrayList<String> allUserNames = Database.getInstance().printFolderContent("Users");
         printList(allUserNames);
-    }
-
-    private void showAllProducts() {
-        ArrayList<String> allItems = Database.getInstance().printFolderContent("Items");
-        printList(allItems);
     }
 
     private void showAllRequests() {

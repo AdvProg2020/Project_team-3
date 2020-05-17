@@ -51,7 +51,7 @@ public class SellerMenu extends UserMenu {
             return;
         }
         if(command.equals("manage products")){
-            manageProducts();
+            SellerManageProductsMenu.getInstance().manageProducts();
             View.setCurrentMenu(SellerManageProductsMenu.getInstance());
             return;
         }
@@ -119,10 +119,6 @@ public class SellerMenu extends UserMenu {
 
     public void viewSalesHistory(){
         System.out.println(UserController.getInstance().getSaleHistory());
-    }
-
-    public void manageProducts(){
-        System.out.println(UserController.getInstance().getSellerItems());
     }
 
     public void addItem(){

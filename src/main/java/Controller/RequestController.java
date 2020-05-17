@@ -133,6 +133,7 @@ public class RequestController {
 
         } else if (accepted instanceof ItemRequest) {
                 Item item = ((ItemRequest) accepted).getNewItem();
+                item.setAddedTime(LocalDateTime.now());
                 Database.getInstance().saveItem(item);
                 ItemAndCategoryController.getInstance().addItemToCategory(item.getId(), item.getCategoryName());
         } else if (accepted instanceof ItemEdit) {
