@@ -52,6 +52,8 @@ public class SortAndFilterController {
          filteredItems = SortComparators.getInstance().sortByRating(filteredItems);
       } else if (activeSort == 4) {
          filteredItems = SortComparators.getInstance().SortByCommentCount(filteredItems);
+      } else if (activeSort == 5) {
+         filteredItems = SortComparators.getInstance().SortByDate(filteredItems);
       }
       ArrayList<String> itemIdWithName = new ArrayList<>();
       for (String filteredItem : filteredItems) {
@@ -72,6 +74,9 @@ public class SortAndFilterController {
          return "Successful";
       } else if (sortName.equals("sort by comment count")) {
          activeSort = 4;
+         return "Successful";
+      } else if (sortName.equals("sort by date")) {
+         activeSort = 5;
          return "Successful";
       }
       return "Error: invalid sort";
@@ -221,6 +226,8 @@ public class SortAndFilterController {
          return "sort by rating";
       } else if (activeSort == 4) {
          return "sort by comment count";
+      }else if (activeSort == 5){
+         return "sort by date";
       }
       return "you have no active sort , the items will be sorted by view count";
    }
@@ -240,7 +247,8 @@ public class SortAndFilterController {
       return "sort by price low to high" +     //sort number 1
               "\nsort by price high to low" +  //sort number 2
               "\nsort by rating" +             //sort number 3
-              "\nsort by comment count";       //sort number 4
+              "\nsort by comment count"+       //sort number 4
+              "\nsort by date";                //sort number 5
    }
 
    public void reset() {
@@ -249,6 +257,7 @@ public class SortAndFilterController {
       filterPriceRange = false;
       filterName = false;
       filterAttribute = false;
+      filterAvailability = false;
       activeSort = 0;
       filterAvailability = false;
    }

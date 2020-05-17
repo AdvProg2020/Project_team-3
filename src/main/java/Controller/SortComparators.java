@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Item;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,15 +43,21 @@ public class SortComparators {
     }
 
     protected ArrayList<String> sortByPriceHighToLow(ArrayList<String> allItemsId) {
-        ArrayList<Item> allItems = getAllItem(allItemsId);
-        Collections.sort(allItems, new priceHighToLowComparator());
-        return getAllId(allItems);
+        ArrayList<String> allItems = sortByPriceLowToHigh(allItemsId);
+        Collections.reverse(allItems);
+        return allItems;
     }
 
     protected ArrayList<String> SortByCommentCount(ArrayList<String> allItemsId) {
         ArrayList<Item> allItems = getAllItem(allItemsId);
         Collections.sort(allItems, new commentCountComparator());
         Collections.reverse(allItems);
+        return getAllId(allItems);
+    }
+
+    protected ArrayList<String> SortByDate(ArrayList<String> allItemsId) {
+        ArrayList<Item> allItems = getAllItem(allItemsId);
+        Collections.sort(allItems, new dateComparator());
         return getAllId(allItems);
     }
 
@@ -100,22 +108,24 @@ public class SortComparators {
         }
     }
 
-    class priceHighToLowComparator implements Comparator<Item> {
-        @Override
-        public int compare(Item item1, Item item2) {
-            double priceDifference = item1.getPrice() - item2.getPrice();
-            if (priceDifference > 0) return -1;
-            else if (priceDifference < 0) return +1;
-            else return 0;
-        }
-    }
-
     class commentCountComparator implements Comparator<Item> {
         @Override
         public int compare(Item item1, Item item2) {
             double priceDifference = item1.getAllComments().size() - item2.getAllComments().size();
             if (priceDifference > 0) return 1;
             else if (priceDifference < 0) return -1;
+            else return 0;
+        }
+    }
+
+    class dateComparator implements Comparator<Item> {
+        @Override
+        public int compare(Item item1, Item item2) {
+            LocalDateTime startItem1=LocalDateTime.parse(item1.getAddedTime());
+            LocalDateTime startItem2=LocalDateTime.parse(item2.getAddedTime());
+            double priceDifference = item1.getAllComments().size() - item2.getAllComments().size();
+            if(startItem1.isAfter(startItem2))  return 1;
+            if(startItem2.isAfter(startItem1))  return -1;
             else return 0;
         }
     }

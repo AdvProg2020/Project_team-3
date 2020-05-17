@@ -11,9 +11,9 @@ public class Main {
 }
 
 //edit category : add attribute [attribute e space dar]
-
 //dar akhar: bayad enumerate beshe status ha
 //status haye enumerate shode bayad ezafe shan be classa
-
-
+//sort bar asas zaman
+//time bought item hichja estefade nemishe
 //matcher attribute
+//pole seller bedun discount (dar dakhel buylog)

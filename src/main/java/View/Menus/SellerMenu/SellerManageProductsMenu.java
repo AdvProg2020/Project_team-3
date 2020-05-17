@@ -1,6 +1,7 @@
 package View.Menus.SellerMenu;
 
 import Controller.*;
+import Model.Users.User;
 import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;

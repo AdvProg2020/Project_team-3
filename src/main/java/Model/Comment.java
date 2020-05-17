@@ -1,15 +1,15 @@
 package Model;
 
 public class Comment {
-    String username;
-    String itemId;
-    String text;
+    private String username;
+    private String itemId;
+    private String text;
 
     private enum Status {accepted, inProcess}
 
     ;
-    Boolean hasBought;
-    Status status;
+    private Boolean hasBought;
+    private Status status;
 
     public Comment(String username, String itemId, String text, Boolean hasBought) {
         this.username = username;
