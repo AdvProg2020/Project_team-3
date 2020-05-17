@@ -300,7 +300,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
     }
 
-    @Test
+  /*  @Test
     public void getInSaleItems() {
         addItem();
         UserController.getInstance().registerSeller(500,"Ali4","alireza79",
@@ -327,7 +327,7 @@ public class ItemAndCategoryControllerTest {
             SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
         }
         System.out.println(ItemAndCategoryController.getInstance().getInSaleItems());
-    }
+    } */
 
     @Test
     public void editItem(){

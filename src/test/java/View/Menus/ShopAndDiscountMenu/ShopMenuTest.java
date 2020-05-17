@@ -89,6 +89,13 @@ public class ShopMenuTest {
       SortAndFilterController.getInstance().activateFilterBrandName("Benz");
       SortAndFilterController.getInstance().activateFilterAttribute("price","cheap");
       ShopMenu.getInstance().setCurrentCategory("Main");
+      SortAndFilterController.getInstance().activateSort("sort by price high to low");
+      ShopMenu.getInstance().showAllItems();
+      SortAndFilterController.getInstance().activateSort("sort by price low to high");
+      ShopMenu.getInstance().showAllItems();
+      SortAndFilterController.getInstance().activateSort("sort by rating");
+      ShopMenu.getInstance().showAllItems();
+      SortAndFilterController.getInstance().activateSort("sort by comment count");
       ShopMenu.getInstance().showAllItems();
       deleteJunk();
    }
