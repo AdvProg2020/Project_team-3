@@ -353,13 +353,16 @@ public class ItemAndCategoryController {
         if(isThereCategoryWithName(name)==false) return "Error: invalid category name!";
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());
+        if(parent!=null){
         parent.getSubCategories().remove(category.getName());
+        }
         ArrayList<Category>removedCategories=new ArrayList<>();
         DFSCategory(name,removedCategories);
         for(Category category1:removedCategories){
             Database.getInstance().deleteCategory(category1);
         }
-        Database.getInstance().saveCategory(parent);
+        if(parent!=null){
+        Database.getInstance().saveCategory(parent); }
         Database.getInstance().deleteCategory(category);
         return "successful:";
     }

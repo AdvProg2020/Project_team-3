@@ -281,7 +281,6 @@ public class SaleAndDiscountCodeControllerTest {
     public void getSellerSale(){
         addSale();
         System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSales("alima"));
-        Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("alima"));
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
         deleteJunk();

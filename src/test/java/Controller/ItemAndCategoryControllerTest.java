@@ -302,34 +302,33 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-  /*  @Test
+    @Test
     public void getInSaleItems() {
         addItem();
-        UserController.getInstance().registerSeller(500,"Ali4","alireza79",
-                "reza","pishro","alireza@gmail.com","33824264","benz");
-        acceptRequests();
         User user=UserController.getInstance().getUserByUsername("Ali4");
-        UserController.getInstance().login("Ali4",user.getPassword());
+        UserController.getInstance().login("TestCategory","alireza79");
         String startTime="20-04-2003 21:30";
         String endTime="05-02-2005 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime, formatter);
         ArrayList<String>saleItems=new ArrayList<>();
-        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        System.out.println(SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems));
         acceptRequests();
-        addItem();
         ArrayList<Item>allItems= ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         saleItems.add(allItems.get(0).getId());
-        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        System.out.println(SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems));
         acceptRequests();
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Sale sale=allSales.get(0);
         for(Item item:allItems){
-            SaleAndDiscountCodeController.getInstance().addItemToSale(item.getId(),sale.getId());
+            sale.addItemToSale(item.getId());
         }
-        System.out.println(ItemAndCategoryController.getInstance().getInSaleItems());
-    } */
+        for (Item item : ItemAndCategoryController.getInstance().getInSaleItems()) {
+            System.out.println(item.toString());
+        }
+        deleteJunk();
+    }
 
     @Test
     public void editItem(){

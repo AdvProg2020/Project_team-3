@@ -49,6 +49,8 @@ public class SortAndFilterControllerTest {
         UserController.getInstance().login("admin","12345");
         System.out.println(UserController.getInstance().deleteUser("testShop"));
         ItemAndCategoryController.getInstance().removeCategory("testSort");
+        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        UserController.getInstance().logout();
     }
     @Test
     public void getInstance() {

@@ -52,6 +52,9 @@ public class CartControllerTest {
         UserController.getInstance().logout();
         UserController.getInstance().login("admin","12345");
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        ItemAndCategoryController.getInstance().removeCategory("microwave");
+        ItemAndCategoryController.getInstance().removeCategory("Oven");
+        ItemAndCategoryController.getInstance().removeCategory("Vacuum");
         UserController.getInstance().deleteUser("testCart");
         UserController.getInstance().logout();
     }
