@@ -1,5 +1,7 @@
 package View.Menus;
 import Controller.UserController;
+import View.Menus.ShopAndDiscountMenu.ShopMenu;
+import View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,6 +22,8 @@ public class LoginRegisterMenuTest {
    }
    @Test
    public void getInstance() {
+      LoginRegisterMenu loginRegisterMenu=LoginRegisterMenu.getInstance();
+      assertNotNull(loginRegisterMenu);
    }
 
    @Test
@@ -61,5 +65,6 @@ public class LoginRegisterMenuTest {
 
    @Test
    public void setIntendedMenu() {
+      LoginRegisterMenu.getInstance().setIntendedMenu("UserMenu");
    }
 }

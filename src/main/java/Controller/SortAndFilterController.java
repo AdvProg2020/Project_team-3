@@ -203,6 +203,9 @@ public class SortAndFilterController {
       if (filterSellerName == true) {
          ans += "\nfilter by seller: " + sellerName;
       }
+      if(filterAvailability == true){
+         ans +="\nfilter by availability";
+      }
       if (ans.isBlank()) {
          ans = "you have No active filter";
       }
