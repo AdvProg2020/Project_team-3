@@ -328,12 +328,12 @@ public class UserController {
         return getUserType(getCurrentOnlineUser().getUsername());
     }
 
-    public String getSellerItems()  {
+    public ArrayList<String> getSellerItems()  {
         if((getCurrentOnlineUser()!=null)&&(getCurrentOnlineUser() instanceof Seller)){
             Seller seller=(Seller) getCurrentOnlineUser();
-            return seller.getAllItemsString();
+            return seller.getAllItemsId();
         }
-        return "Error: ";
+        return null;
     }
 
     public String getSellerCompany() {

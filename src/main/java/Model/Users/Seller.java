@@ -125,4 +125,8 @@ public class Seller extends User {
         }
         return ans;
     }
+
+    public ArrayList<String> getAllItemsId() {
+        return allItemsId;
+    }
 }

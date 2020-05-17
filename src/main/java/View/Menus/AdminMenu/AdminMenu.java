@@ -59,7 +59,7 @@ public class AdminMenu extends UserMenu {
         } else if (command.equals("manage products")) {
             AdminManageProductsMenu.getInstance().showAllProducts();
             AdminManageProductsMenu.getInstance().setPreviousMenu(AdminMenu.getInstance());
-            View.setCurrentMenu(AdminMenu.getInstance());
+            View.setCurrentMenu(AdminManageProductsMenu.getInstance());
             return;
         } else if (command.equals("manage categories")) {
             View.setCurrentMenu(AdminManageCategoriesMenu.getInstance());

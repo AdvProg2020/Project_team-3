@@ -56,7 +56,7 @@ public class AdminManageProductsMenu extends Menu {
         }
         if(command.equals("sorting") || command.equals("filtering")){
             SortAndFilterMenu.getInstance().setPreviousMenu(AdminManageProductsMenu.getInstance());
-            View.setCurrentMenu(AdminManageProductsMenu.getInstance());
+            View.setCurrentMenu(SortAndFilterMenu.getInstance());
             return;
         }
         matcher = View.getMatcher("view (\\S+)", command);

@@ -1,6 +1,7 @@
 package View.Menus.ShopAndDiscountMenu;
 
 import Controller.SortAndFilterController;
+import View.Menus.MainMenu;
 import View.Menus.Menu;
 import View.Menus.View;
 
@@ -53,7 +54,10 @@ public class SortAndFilterMenu extends Menu {
          return;
       }
       if (command.equals("back")) {
-         View.setCurrentMenu(ShopMenu.getInstance());
+         if(getPreviousMenu()!=null)
+            View.setCurrentMenu(getPreviousMenu());
+         else
+            View.setCurrentMenu(MainMenu.getInstance());
          return;
       }
       if (command.equals("disable filter by availability")) {
