@@ -143,12 +143,10 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().logout();
         UserController.getInstance().login("admin","12345");
         UserController.getInstance().deleteUser("TestComment");
+        deleteJunk();
     }
 
-    @Test
-    public void rate() {
 
-    }
 
     @Test
     public void digest() {
@@ -170,7 +168,7 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
+
     public void addCategory() {
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
@@ -183,23 +181,14 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().addCategory("microwave",attributes3,"lavazem manzel");
     }
 
-    @Test
-    public void testAddCategory() {
-    }
 
-    @Test
-    public void sortBy() {
-    }
-
-    @Test
-    public void filterBy() {
-    }
 
     @Test
     public void addItem() {
         UserController.getInstance().registerSeller(500,"TestCategory","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
+        //addCategory();
         User seller =UserController.getInstance().getUserByUsername("TestCategory");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
@@ -209,9 +198,9 @@ public class ItemAndCategoryControllerTest {
         attributes1.put("price","expensive");
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
-        ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
+        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
                 ,"this is vaccum",500,10,"Vacuum",
-                attributes);
+                attributes));
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
                 ,"this is oven",5000,10,"Oven",attributes1);
         ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
@@ -227,6 +216,8 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().logout();
         UserController.getInstance().login("admin","12345");
         UserController.getInstance().deleteUser("TestCategory");
+        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        UserController.getInstance().logout();
     }
 
     @Test
@@ -239,17 +230,7 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
-    public void getCurrentViewableItems() {
-    }
 
-    @Test
-    public void getCurrentViewableItemsString() {
-    }
-
-    @Test
-    public void setViewableToCategory() {
-    }
 
     @Test
     public void getCategoryItems() {
@@ -264,9 +245,6 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
-    public void getCategoryItemsString() {
-    }
 
     @Test
     public void getBaseCategory() {
@@ -297,9 +275,7 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
-    public void currentViewableItemsContainsItem() {
-    }
+
 
     @Test
     public void getAllItemFromDataBase() {
@@ -397,14 +373,7 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
-    public void getScoreTest(){
-        /*
-        addItem();
-        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        Item item=allItems.get(0);
-        */
-    }
+
     @Test
     public void ItemHasAttribute(){
         addItem();
@@ -417,10 +386,7 @@ public class ItemAndCategoryControllerTest {
         deleteJunk();
     }
 
-    @Test
-    public void getItemBuyer(){
 
-    }
 
     @Test
     public void doesSellerHadItem(){

@@ -20,6 +20,15 @@ public class UserControllerTest {
         registerSeller();
     }
 
+    public void deleteJunk(){
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("Arman");
+        UserController.getInstance().deleteUser("Alireza");
+        UserController.getInstance().deleteUser("Ho3ein");
+        UserController.getInstance().logout();
+    }
+
     @Test
     public void getInstance() {
         UserController userController=UserController.getInstance();
@@ -38,6 +47,7 @@ public class UserControllerTest {
         Assert.assertTrue(user instanceof Buyer);
         Assert.assertTrue(user1 instanceof Seller);
         Assert.assertTrue(user2 instanceof Admin);
+        deleteJunk();
     }
 
     @Test
@@ -45,6 +55,7 @@ public class UserControllerTest {
         registration();
         UserController.getInstance().login("Arman","Hitler");
         Assert.assertNotNull(UserController.getInstance().getCurrentOnlineUser());
+        deleteJunk();
     }
 
     @Test
@@ -58,6 +69,7 @@ public class UserControllerTest {
         UserController.getInstance().login("Arman","Hitler");
         Assert.assertEquals(UserController.getInstance().currentOnlineUserBalance(), ((Buyer) user1).getMoney(),3);
         UserController.getInstance().logout();
+        deleteJunk();
     }
 
     @Test
@@ -67,6 +79,7 @@ public class UserControllerTest {
         Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Arman"));
         Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Ho3ein"));
         Assert.assertFalse(UserController.getInstance().isThereUserWithUsername("Reza Pishro"));
+        deleteJunk();
     }
 
     @Test
@@ -101,6 +114,7 @@ public class UserControllerTest {
         System.out.println(UserController.getInstance().logout());
         System.out.println(UserController.getInstance().login("mamad","Yad"));
         Assert.assertNull(UserController.getInstance().getCurrentOnlineUser());
+        deleteJunk();
     }
 
     @Test
@@ -134,6 +148,7 @@ public class UserControllerTest {
         Assert.assertEquals(UserController.getInstance().returnUserType("Alireza"),"Seller");
         Assert.assertEquals(UserController.getInstance().returnUserType("Arman"),"Buyer");
         Assert.assertEquals(UserController.getInstance().returnUserType("Ho3ein"),"Admin");
+        deleteJunk();
     }
 
     @Test
@@ -145,6 +160,7 @@ public class UserControllerTest {
         UserController.getInstance().login("Akira","Bondage");
         Assert.assertNull(UserController.getInstance().getCurrentOnlineUser());
         UserController.getInstance().logout();
+        deleteJunk();
     }
 
     @Test
@@ -161,6 +177,7 @@ public class UserControllerTest {
         UserController.getInstance().logout();
         UserController.getInstance().deleteUser("Alireza");
         Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Alireza"));
+        deleteJunk();
     }
 
     @Test
@@ -179,6 +196,7 @@ public class UserControllerTest {
         Assert.assertEquals(seller.getCompanyName(),"Kaqaz");
         Assert.assertEquals(seller.getEmail(),"alirezaeiji@gmail.com");
         Assert.assertEquals(seller.getPassword(),"Behaeen");
+        deleteJunk();
 
     }
 
@@ -186,6 +204,7 @@ public class UserControllerTest {
     public void viewPersonalInfo() {
         registration();
         System.out.println(UserController.getInstance().viewPersonalInfo("Alireza"));
+        deleteJunk();
     }
 
     @Test
@@ -193,6 +212,7 @@ public class UserControllerTest {
         registration();
         ArrayList<User> allUsers=UserController.getInstance().getAllUserFromDataBase();
         for(User user:allUsers) System.out.println(UserController.getInstance().viewPersonalInfo(user.getUsername()));
+        deleteJunk();
     }
 
 
@@ -212,6 +232,7 @@ public class UserControllerTest {
         registration();
         ArrayList<Buyer>allBuyers=UserController.getInstance().getAllBuyers();
         System.out.println(allBuyers);
+        deleteJunk();
     }
     @Test
     public void getSellerCompany(){
@@ -221,6 +242,7 @@ public class UserControllerTest {
         System.out.println(UserController.getInstance().getSellerCompany());
         UserController.getInstance().logout();
         System.out.println(UserController.getInstance().getSellerCompany());
+        deleteJunk();
     }
     @Test
     public void getUserType(){
@@ -231,6 +253,7 @@ public class UserControllerTest {
         UserController.getInstance().logout();
         System.out.println(UserController.getInstance().getUserType());
         System.out.println(UserController.getInstance().getUserType("Alireza"));
+        deleteJunk();
     }
 
     @Test
@@ -241,6 +264,7 @@ public class UserControllerTest {
         System.out.println(Controller.getInstance().isLogin());
         UserController.getInstance().logout();
         System.out.println(Controller.getInstance().isLogin());
+        deleteJunk();
     }
 
 

@@ -48,12 +48,19 @@ public class CartControllerTest {
         ItemAndCategoryController.getInstance().addCategory("microwave",attributes3,"lavazem manzel");
     }
 
+    public void deleteJunk(){
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        UserController.getInstance().deleteUser("testCart");
+        UserController.getInstance().logout();
+    }
 
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"Ali2","alireza79",
+        UserController.getInstance().registerSeller(500,"testCart","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("Ali2");
+        User seller =UserController.getInstance().getUserByUsername("testCart");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String> attributes=new HashMap<>();
@@ -71,9 +78,7 @@ public class CartControllerTest {
                 "this is microWave",600,12,"Main",attributes2));
         UserController.getInstance().logout();
         ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
-        for(Request request:allRequests){
-            RequestController.getInstance().acceptRequest(request.getRequestId());
-        }
+        acceptRequests();
     }
 
 
@@ -101,6 +106,7 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().addItemToCart("sdfsdf"));
         System.out.println(CartController.getInstance().showCart());
         for(Item item1:allItems)Database.getInstance().deleteItem(item1);
+        deleteJunk();
     }
 
     @Test
@@ -117,6 +123,7 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
         for(Item item:allItems)Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -130,6 +137,7 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
         for(Item item:allItems)Database.getInstance().deleteItem(item);
+        deleteJunk();
     }
 
     @Test
@@ -148,6 +156,7 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().getCartPriceWithDiscountCode(discountCode.getDiscountId()));
         for(Item item:allItems)Database.getInstance().deleteItem(item);
         for(DiscountCode discountCode1:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode1);
+        deleteJunk();
     }
 
     @Test

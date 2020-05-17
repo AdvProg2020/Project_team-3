@@ -16,6 +16,14 @@ public class RequestControllerTest {
         assertNotNull(requestController);
     }
 
+    public void deleteJunk(){
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("Arman");
+        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        UserController.getInstance().logout();
+    }
+
     @Test
     public void isThereRequestWithId() {
         UserController.getInstance().registerSeller(500,"Ali","alireza79",

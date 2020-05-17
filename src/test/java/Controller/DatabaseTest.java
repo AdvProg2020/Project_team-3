@@ -27,6 +27,9 @@ public class DatabaseTest {
     public void addRequest(){
         UserController.getInstance().registerSeller(500,"Ali","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("Ali");
     }
 
     @Test

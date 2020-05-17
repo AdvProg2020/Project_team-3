@@ -33,10 +33,10 @@ public class SaleAndDiscountCodeControllerTest {
     }
 
     public void addItem() {
-        UserController.getInstance().registerSeller(500,"AliTestSale","alireza79",
+        UserController.getInstance().registerSeller(500,"TestSale","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         acceptRequests();
-        User seller =UserController.getInstance().getUserByUsername("AliTestSale");
+        User seller =UserController.getInstance().getUserByUsername("TestSale");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String> attributes=new HashMap<>();
@@ -64,8 +64,8 @@ public class SaleAndDiscountCodeControllerTest {
         addItem();
         acceptRequests();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        User user=UserController.getInstance().getUserByUsername("Ali");
-        UserController.getInstance().login("Ali",user.getPassword());
+        User user=UserController.getInstance().getUserByUsername("TestSale");
+        UserController.getInstance().login("TestSale",user.getPassword());
         String startTime="20-02-2005 21:30";
         String endTime="12-02-2007 22:30";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -75,6 +75,7 @@ public class SaleAndDiscountCodeControllerTest {
         saleItems.add(allItems.get(0).getId());
         SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
         acceptRequests();
+        deleteJunk();
     }
 
     @Test
@@ -89,6 +90,14 @@ public class SaleAndDiscountCodeControllerTest {
                 ,6,50);
     }
 
+    public void deleteJunk(){
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("TestSale");
+        UserController.getInstance().deleteUser("Arman");
+        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        UserController.getInstance().logout();
+    }
 
     public void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
@@ -125,6 +134,7 @@ public class SaleAndDiscountCodeControllerTest {
         }
         Assert.assertNull(SaleAndDiscountCodeController.getInstance().getSaleById("Behaeen"));
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
+        deleteJunk();
     }
 
     @Test
@@ -137,6 +147,7 @@ public class SaleAndDiscountCodeControllerTest {
         }
         Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereSaleWithId("Behaeen"));
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
+        deleteJunk();
     }
 
     @Test
@@ -149,6 +160,7 @@ public class SaleAndDiscountCodeControllerTest {
         }
         SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId("Behaeen");
         for(DiscountCode discountCode:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode);
+        deleteJunk();
     }
 
 
@@ -161,6 +173,7 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().deleteSale(allSales.get(0).getId());
         Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(allSales.get(0).getId()));
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
+        deleteJunk();
     }
 
     @Test
@@ -171,6 +184,7 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().deleteDiscountCode(allDiscountCodes.get(0).getDiscountId());
         // Assert.assertFalse(SaleAndDiscountCodeController.getInstance().isThereDiscountCodeWithId(allDiscountCodes.get(0).getDiscountId()));
        for(DiscountCode discountCode:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode);
+       deleteJunk();
     }
 
 
@@ -183,6 +197,7 @@ public class SaleAndDiscountCodeControllerTest {
         }
         for(DiscountCode discountCode:discountCodes) Database.getInstance().deleteDiscountCode(discountCode);
         for(DiscountCode discountCode:discountCodes) Database.getInstance().deleteDiscountCode(discountCode);
+        deleteJunk();
     }
 
     @Test
@@ -193,6 +208,7 @@ public class SaleAndDiscountCodeControllerTest {
             System.out.println(sale.getId());
         }
         for(Sale sale:allSales) Database.getInstance().deleteSale(sale);
+        deleteJunk();
     }
 
     @Test
@@ -206,6 +222,7 @@ public class SaleAndDiscountCodeControllerTest {
         DiscountCode discountCode=discountCodes.get(0);
         SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountCode.getDiscountId(),50);
         Database.getInstance().deleteDiscountCode(discountCode);
+        deleteJunk();
     }
 
     @Test
@@ -219,7 +236,8 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountCode.getDiscountId()
                 ,dateTime1);
         System.out.println(discountCode.getEndTime().toString());
-       // Database.getInstance().deleteDiscountCode(discountCode);
+        deleteJunk();
+        Database.getInstance().deleteDiscountCode(discountCode);
     }
     @Test
     public void editDiscountCodeUsage(){
@@ -229,6 +247,7 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountCode.getDiscountId(),
                 10);
        Database.getInstance().deleteDiscountCode(discountCode);
+       deleteJunk();
     }
 
 
@@ -239,6 +258,7 @@ public class SaleAndDiscountCodeControllerTest {
         DiscountCode discountCode=allDiscounts.get(0);
         SaleAndDiscountCodeController.getInstance().printDiscount(discountCode.getDiscountId());
         for(DiscountCode discountCode1:allDiscounts) Database.getInstance().deleteDiscountCode(discountCode1);
+        deleteJunk();
     }
 
     @Test
@@ -264,6 +284,7 @@ public class SaleAndDiscountCodeControllerTest {
         Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("alima"));
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
+        deleteJunk();
     }
 
     @Test
@@ -273,6 +294,11 @@ public class SaleAndDiscountCodeControllerTest {
         SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode("Arman");
         ArrayList<DiscountCode>allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
         for(DiscountCode discountCode:allDiscounts)Database.getInstance().deleteDiscountCode(discountCode);
+        UserController.getInstance().logout();
+        UserController.getInstance().login("admin","12345");
+        UserController.getInstance().deleteUser("Ali");
+        UserController.getInstance().logout();
+        deleteJunk();
     }
 
 }
