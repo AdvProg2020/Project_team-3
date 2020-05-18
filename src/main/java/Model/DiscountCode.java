@@ -107,4 +107,7 @@ public class DiscountCode {
 
       return (usageCount.get(username) > 0);
    }
+   public int getUsageCountInt() {
+      return usageCountInt;
+   }
 }

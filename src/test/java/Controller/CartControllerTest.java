@@ -6,6 +6,7 @@ import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.Request;
 import Model.Users.User;
+import View.Menus.View;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -102,12 +103,13 @@ public class CartControllerTest {
     public void addItemToCart() {
         addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        for(Item item:allItems) System.out.println(CartController.getInstance().addItemToCart(item.getId()));
-        for(Item item:allItems) System.out.println(item.getId());
+        for(Item item:allItems) Assert.assertEquals(CartController.getInstance().addItemToCart(item.getId()),"Successful");
         Item item=allItems.get(0);
-        System.out.println(CartController.getInstance().addItemToCart(item.getId()));
-        System.out.println(CartController.getInstance().addItemToCart("sdfsdf"));
-        System.out.println(CartController.getInstance().showCart());
+        Assert.assertNotNull(item);
+        Assert.assertEquals(CartController.getInstance().addItemToCart(item.getId()),"Error: item is already in the cart");
+        Assert.assertEquals(CartController.getInstance().addItemToCart("sdfsdf"), View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET);
+        Assert.assertNotNull(CartController.getInstance().showCart());
+        Assert.assertFalse(Controller.getInstance().getCurrentShoppingCart().isEmpty());
         for(Item item1:allItems)Database.getInstance().deleteItem(item1);
         deleteJunk();
     }
@@ -117,14 +119,15 @@ public class CartControllerTest {
         addItem();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item:allItems) System.out.println(CartController.getInstance().addItemToCart(item.getId()));
-        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),2));
-        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
+        for(Item item:allItems) Assert.assertEquals("Successful",CartController.getInstance().cartIncreaseDecrease(item.getId(),2));
+        for(Item item:allItems) Assert.assertEquals("Successful",CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
+        Assert.assertNotNull(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().showCart());
-        for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-6));
+        for(Item item:allItems) Assert.assertEquals("Successful",CartController.getInstance().cartIncreaseDecrease(item.getId(),-6));
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().showCart());
-        System.out.println(CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
+        Assert.assertEquals(View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET,CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
         for(Item item:allItems)Database.getInstance().deleteItem(item);
         deleteJunk();
     }
@@ -138,7 +141,7 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().showCart());
         for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
         System.out.println(CartController.getInstance().showCart());
-        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
+        Assert.assertTrue(CartController.getInstance().getCartPriceWithoutDiscountCode()>0);
         for(Item item:allItems)Database.getInstance().deleteItem(item);
         deleteJunk();
     }
@@ -155,18 +158,10 @@ public class CartControllerTest {
         System.out.println(CartController.getInstance().showCart());
         for(Item item:allItems) System.out.println(CartController.getInstance().cartIncreaseDecrease(item.getId(),-1));
         System.out.println(CartController.getInstance().showCart());
-        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
-        System.out.println(CartController.getInstance().getCartPriceWithDiscountCode(discountCode.getDiscountId()));
+        Assert.assertTrue(CartController.getInstance().getCartPriceWithoutDiscountCode()>0);
+        Assert.assertTrue(CartController.getInstance().getCartPriceWithDiscountCode(discountCode.getDiscountId())>0);
         for(Item item:allItems)Database.getInstance().deleteItem(item);
         for(DiscountCode discountCode1:allDiscountCodes) Database.getInstance().deleteDiscountCode(discountCode1);
         deleteJunk();
-    }
-
-    @Test
-    public void buy() {
-    }
-
-    @Test
-    public void testBuy() {
     }
 }

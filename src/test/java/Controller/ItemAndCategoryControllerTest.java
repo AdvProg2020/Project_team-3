@@ -322,6 +322,9 @@ public class ItemAndCategoryControllerTest {
     public void removeCategory() {
         addItem();
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Vacuum"));
         deleteJunk();
     }
 
@@ -369,6 +372,11 @@ public class ItemAndCategoryControllerTest {
         acceptRequests();
         ItemAndCategoryController.getInstance().editItem("inStock","600",item.getId());
         acceptRequests();
+        Assert.assertEquals(item.getPrice(),5000,3);
+        Assert.assertEquals(item.getName(),"ACC");
+        Assert.assertEquals(item.getBrand(),"Khazar");
+        Assert.assertEquals(item.getDescription(),"this is a xamp");
+        Assert.assertEquals(item.getInStock(),600,3);
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();
     }
@@ -378,8 +386,10 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         if(allItems.isEmpty()) return;
         System.out.println(ItemAndCategoryController.getInstance().viewItem("sdfsdfsdfsdf"));
+        //Assert.assertEquals("Error: Invalid ID",ItemAndCategoryController.getInstance().viewItem("sdfsdfsdfsdf"));
         Item item=allItems.get(0);
         System.out.println(ItemAndCategoryController.getInstance().viewItem(item.getId()));
+        Assert.assertEquals(ItemAndCategoryController.getInstance().viewItem(item.getId()),"");
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();
     }
@@ -389,9 +399,15 @@ public class ItemAndCategoryControllerTest {
         addItem();
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         Item item1=allItems.get(0);
-        ItemAndCategoryController.getInstance().addView(item1.getId());
+        ItemAndCategoryController.getInstance().addView(allItems.get(0).getId());
+        Assert.assertTrue(ItemAndCategoryController.getInstance().isThereItemWithId(allItems.get(0).getId()));
+        allItems.clear();
+        allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Assert.assertTrue(allItems.get(0).getViewCount()==1);
         ItemAndCategoryController.getInstance().addView("sdfsdfsdfsdfsdf");
-        for(Item item:allItems)Database.getInstance().deleteItem(item);
+        for(Item item:allItems){
+            Database.getInstance().deleteItem(item);
+        }
         deleteJunk();
     }
 
@@ -403,6 +419,9 @@ public class ItemAndCategoryControllerTest {
         Item item=allItems.get(0);
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
+        Assert.assertTrue(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
+        Assert.assertNotNull(item);
+        Assert.assertEquals(item.getAttributes().get("price"),"cheap");
         System.out.println(item.getAttributes().get("price"));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();
@@ -418,7 +437,9 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().login(user.getUsername(),user.getPassword());
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         System.out.println(UserController.getInstance().doesSellerHaveItem("sdf"));
+        Assert.assertFalse(UserController.getInstance().doesSellerHaveItem("sdf"));
         Item item=allItems.get(0);
+        Assert.assertTrue(UserController.getInstance().doesSellerHaveItem(item.getId()));
         System.out.println(UserController.getInstance().doesSellerHaveItem(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();

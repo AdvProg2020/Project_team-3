@@ -3,6 +3,7 @@ package Controller;
 import Model.DiscountCode;
 import Model.DiscountCodeTest;
 import Model.Requests.Request;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -45,14 +46,16 @@ public class DatabaseTest {
 
     @Test
     public void printFolderContent() {
+        initiate();
         addDiscountCode();
         addRequest();
         Database.getInstance().printFolderContent("Requests");
         Database.getInstance().printFolderContent("DiscountCodes");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         ArrayList<DiscountCode> allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        Assert.assertNotNull(allDiscounts);
+        Assert.assertNotNull(allRequests);
         for(DiscountCode discountCode:allDiscounts) Database.getInstance().deleteDiscountCode(discountCode);
         for(Request request:allRequests)Database.getInstance().deleteRequest(request);
-
     }
 }

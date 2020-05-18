@@ -45,53 +45,21 @@ public class RequestControllerTest {
         if(allRequests.isEmpty()) return;
         for(Request request:allRequests){
             System.out.println(RequestController.getInstance().getRequestById(request.getRequestId()));
+            Assert.assertTrue(RequestController.getInstance().isThereRequestWithId(request.getRequestId()));
         }
         declineRequest();
     }
 
     @Test
-    public void giveDiscountCodeToUser() {
-    }
-
-    @Test
-    public void addUserRequest() {
-    }
-
-    @Test
-    public void addSaleRequest() {
-    }
-
-    @Test
-    public void addItemRequest() {
-    }
-
-    @Test
-    public void addCommentRequest() {
-    }
-
-    @Test
-    public void editSaleRequest() {
-    }
-
-    @Test
-    public void editItemRequest() {
-
-    }
-
-    @Test
     public void acceptRequest() {
+        UserController.getInstance().registerSeller(500,"Ali","alireza79",
+                "reza","pishro","alireza@gmail.com","33824264","benz");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        Assert.assertTrue(!allRequests.isEmpty());
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
-    }
-
-    @Test
-    public void saleEditing() {
-    }
-
-    @Test
-    public void itemEditing() {
+        Database.getInstance().deleteUser(UserController.getInstance().getUserByUsername("Ali"));
     }
 
     @Test
@@ -99,9 +67,7 @@ public class RequestControllerTest {
         UserController.getInstance().registerSeller(500,"Ali","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
-        for(Request request:allRequests){
-            RequestController.getInstance().declineRequest(request.getRequestId());
-        }
+        Assert.assertTrue(!allRequests.isEmpty());
         for(Request request:allRequests){
             RequestController.getInstance().declineRequest(request.getRequestId());
         }
@@ -111,6 +77,7 @@ public class RequestControllerTest {
     public void getAllRequestFromDataBase() {
         ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
+            Assert.assertTrue(RequestController.getInstance().isThereRequestWithId(request.getRequestId()));
             System.out.println(request.getType());
         }
     }
@@ -120,7 +87,9 @@ public class RequestControllerTest {
         UserController.getInstance().registerSeller(500,"AliTestRequest","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
+        Assert.assertTrue(!allRequests.isEmpty());
         Request request=allRequests.get(0);
+        Assert.assertNotNull(request);
         System.out.println(RequestController.getInstance().getRequestDetail(request.getRequestId()));
         declineRequest();
     }

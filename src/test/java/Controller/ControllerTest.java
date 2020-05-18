@@ -21,8 +21,4 @@ public class ControllerTest {
     public void getAlphaNumericString() {
         System.out.println(Controller.getInstance().getAlphaNumericString(4,"Requests"));
     }
-
-    @Test
-    public void updateDateAndTime() {
-    }
 }
