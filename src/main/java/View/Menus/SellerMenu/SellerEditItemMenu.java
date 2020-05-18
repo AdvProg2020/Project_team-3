@@ -72,7 +72,7 @@ public class SellerEditItemMenu extends UserMenu {
         if(key.equalsIgnoreCase("name")||key.equalsIgnoreCase("brand")
         || key.equalsIgnoreCase("price") || key.equalsIgnoreCase("stock")
         || key.equalsIgnoreCase("description") || key.equalsIgnoreCase("category name")) return true;
-        if(ItemAndCategoryController.getInstance().canEditAttribute(itemID,key)) return true;
+        if(ItemAndCategoryController.getInstance().doesItemHaveAttribute(itemID,key)) return true;
         return false;
     }
 }

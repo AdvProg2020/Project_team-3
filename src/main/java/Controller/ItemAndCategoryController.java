@@ -412,16 +412,14 @@ public class ItemAndCategoryController {
             return View.ANSI_RED+"Error: category already has this attribute"+View.ANSI_RESET;
         }
         category.addAttribute(attribute);
+        for (String itemId : category.getAllItemsID()) {
+            Item item=getItemById(itemId);
+            if(item==null) continue;
+            item.setAttribute(attribute,"");
+            Database.getInstance().saveItem(item);
+        }
         Database.getInstance().saveCategory(category);
            return "Successful: attribute added.";
     }
-
-    public Boolean canEditAttribute(String itemId,String attribute){
-        Item item=getItemById(itemId);
-        if(item==null) return false;
-        Category category=getCategoryByName(item.getCategoryName());
-        if(category==null) return false;
-        if(category.getAttributes().contains(attribute)) return true;
-        return false;
-    }
+    
 }
