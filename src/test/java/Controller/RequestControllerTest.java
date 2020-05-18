@@ -12,6 +12,7 @@ public class RequestControllerTest {
 
     @Test
     public void getInstance() {
+        Database.getInstance().initiate();
         RequestController requestController=RequestController.getInstance();
         assertNotNull(requestController);
     }

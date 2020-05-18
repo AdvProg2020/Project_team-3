@@ -19,6 +19,8 @@ import static org.junit.Assert.assertNotNull;
 
 public class SaleAndDiscountCodeControllerTest {
 
+    @Test
+    public void runTest(){Database.getInstance().initiate();}
 
     public void addCategory() {
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");

@@ -9,6 +9,7 @@ public class ControllerTest {
 
     @Test
     public void getInstance() {
+        Database.getInstance().initiate();
        Controller controller=Controller.getInstance();
        assertNotNull(controller);
     }

@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.DiscountCode;
-import Model.DiscountCodeTest;
 import Model.Requests.Request;
 import org.junit.Assert;
 import org.junit.Test;

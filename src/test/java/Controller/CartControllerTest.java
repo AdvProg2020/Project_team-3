@@ -89,6 +89,7 @@ public class CartControllerTest {
 
     @Test
     public void getInstance() {
+        Database.getInstance().initiate();
         CartController cartController=CartController.getInstance();
         assertNotNull(cartController);
     }

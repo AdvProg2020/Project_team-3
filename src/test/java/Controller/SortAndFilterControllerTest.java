@@ -60,6 +60,7 @@ public class SortAndFilterControllerTest {
 
     @Test
     public void show() {
+        Database.getInstance().initiate();
         addItem();
         SortAndFilterController.getInstance().activateFilterPriceRange(0,6000);
         SortAndFilterController.getInstance().activateFilterCategoryName("testSort");

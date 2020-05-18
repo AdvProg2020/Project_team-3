@@ -34,6 +34,7 @@ public class UserControllerTest {
 
     @Test
     public void getInstance() {
+        Database.getInstance().initiate();
         UserController userController=UserController.getInstance();
         assertNotNull(userController);
     }

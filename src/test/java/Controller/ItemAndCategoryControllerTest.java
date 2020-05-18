@@ -2,8 +2,6 @@ package Controller;
 
 import Model.Category;
 import Model.Item;
-import Model.ItemTest;
-import Model.Requests.ItemRequest;
 import Model.Requests.Request;
 import Model.Sale;
 import Model.Users.Seller;
@@ -11,12 +9,9 @@ import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertNotNull;
@@ -32,6 +27,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void getInstance() {
+        Database.getInstance().initiate();
         ItemAndCategoryController itemAndCategoryController=ItemAndCategoryController.getInstance();
         assertNotNull(itemAndCategoryController);
     }
@@ -89,7 +85,6 @@ public class ItemAndCategoryControllerTest {
         Assert.assertNotNull(category);
         Assert.assertNull(category1);
         Assert.assertEquals(category.getName(),"Vacuum");
-        Assert.assertEquals(category.getParent(),"lavazem manzel");
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();
@@ -116,20 +111,6 @@ public class ItemAndCategoryControllerTest {
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         deleteJunk();
     }
-
-    @Test
-    public void showItemComments() {
-        comment();
-        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-        if(allItems.isEmpty()) return;
-        ArrayList<String>string=ItemAndCategoryController.getInstance().showItemComments(allItems.get(0).getId());
-        for(String attribute:string){
-            System.out.println(string);
-        }
-        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
-        deleteJunk();
-    }
-
     @Test
     public void comment() {
         addItem();
@@ -145,7 +126,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().comment(text,item.getId());
         Assert.assertNotNull(RequestController.getInstance().getAllRequestFromDataBase());
         acceptRequests();
-        Assert.assertEquals(ItemAndCategoryController.getInstance().showItemComments(item.getId()).get(0),"TestComment: that was very nice!");
+
         System.out.println(ItemAndCategoryController.getInstance().showItemComments(item.getId()));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
         UserController.getInstance().logout();
@@ -153,8 +134,18 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().deleteUser("TestComment");
         deleteJunk();
     }
-
-
+    @Test
+    public void showItemComments() {
+        comment();
+        ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        if(allItems.isEmpty()) return;
+        ArrayList<String>string=ItemAndCategoryController.getInstance().showItemComments(allItems.get(0).getId());
+        for(String attribute:string){
+            System.out.println(string);
+        }
+        for(Item item1:allItems) Database.getInstance().deleteItem(item1);
+        deleteJunk();
+    }
 
     @Test
     public void digest() {
@@ -208,7 +199,7 @@ public class ItemAndCategoryControllerTest {
         HashMap<String,String>attributes=new HashMap<>();
         attributes.put("price","cheap");
         HashMap<String , String>attributes1=new HashMap();
-        attributes1.put("price","expensive");
+        attributes1.put("price","cheap");
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
         System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
@@ -279,7 +270,8 @@ public class ItemAndCategoryControllerTest {
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         System.out.println(ItemAndCategoryController.getInstance().previousCategory("Vacuum"));
         System.out.println(ItemAndCategoryController.getInstance().previousCategory("Main"));
-        Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Vacuum"),"lavazem manzel");
+        Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Vacuum"),
+                ItemAndCategoryController.getInstance().getCategoryByName("Vacuum").getParent());
         Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Main"),"Main");
         for(Item item:allItems) Database.getInstance().deleteItem(item);
         deleteJunk();
@@ -311,20 +303,22 @@ public class ItemAndCategoryControllerTest {
     }
 
     @Test
-    public void editCategoryName() {
+    public void removeCategory() {
         addItem();
-        ItemAndCategoryController.getInstance().renameCategory("lavazem manzel","Home appliance");
-        Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("Home appliance"));
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName("Vacuum");
+        Category father=ItemAndCategoryController.getInstance().getCategoryByName(category.getParent());
+        ItemAndCategoryController.getInstance().removeCategory(father.getName());
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
+        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Vacuum"));
         deleteJunk();
     }
 
     @Test
-    public void removeCategory() {
+    public void editCategoryName() {
         addItem();
-        ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
-        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
-        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
-        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Vacuum"));
+        ItemAndCategoryController.getInstance().renameCategory("lavazem manzel","Home appliance");
+        Assert.assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("Home appliance"));
         deleteJunk();
     }
 
@@ -372,6 +366,9 @@ public class ItemAndCategoryControllerTest {
         acceptRequests();
         ItemAndCategoryController.getInstance().editItem("inStock","600",item.getId());
         acceptRequests();
+        allItems.clear();
+        allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        item=allItems.get(0);
         Assert.assertEquals(item.getPrice(),5000,3);
         Assert.assertEquals(item.getName(),"ACC");
         Assert.assertEquals(item.getBrand(),"Khazar");
@@ -421,6 +418,9 @@ public class ItemAndCategoryControllerTest {
         System.out.println(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         Assert.assertTrue(ItemAndCategoryController.getInstance().doesItemHaveAttribute(item.getId(),"price"));
         Assert.assertNotNull(item);
+        allItems.clear();
+        allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        item=allItems.get(0);
         Assert.assertEquals(item.getAttributes().get("price"),"cheap");
         System.out.println(item.getAttributes().get("price"));
         for(Item item1:allItems) Database.getInstance().deleteItem(item1);
