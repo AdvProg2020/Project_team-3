@@ -428,5 +428,5 @@ public class ItemAndCategoryController {
         Database.getInstance().saveCategory(category);
            return "Successful: attribute added.";
     }
-    
+
 }
