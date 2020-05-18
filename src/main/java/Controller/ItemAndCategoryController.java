@@ -41,16 +41,16 @@ public class ItemAndCategoryController {
         User user=UserController.getInstance().getCurrentOnlineUser();
         Item item = getItemById(id);
         if (item == null) {
-            return "Error: item doesn't exist";
+            return View.ANSI_RED+"Error: item doesn't exist."+View.ANSI_RESET;
         }
         if(user instanceof Seller){
             Seller seller=(Seller) user;
             if(!seller.hasItem(id)){
-                return "Error: you can only delete your own items!";
+                return "Error: You can only delete your own items!";
             }
         }
         if(user instanceof Buyer){
-            return "Error: ";
+            return "Error: Internal Error.";
         }
         UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
         Database.getInstance().deleteItem(item);
@@ -97,7 +97,7 @@ public class ItemAndCategoryController {
 
     public String viewItem(String id) {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
-            return (View.ANSI_RED + "Error: invalid id\n" + View.ANSI_RESET);
+            return (View.ANSI_RED + "Error: Invalid ID\n" + View.ANSI_RESET);
         }
         Item item = getItemById(id);
         item.addViewsBy(1);
@@ -135,7 +135,7 @@ public class ItemAndCategoryController {
         Item item1 = getItemById(itemId1);
         Item item2 = getItemById(itemId2);
         if ((item1 == null) || (item2 == null)) {
-            return "Error: invalid id";
+            return "Error: Invalid ID";
         }
         String string;
         ArrayList<String> attributesKey = ItemAndCategoryController.getInstance().getCategoryByName(item1.getCategoryName()).getAttributes();
@@ -158,14 +158,14 @@ public class ItemAndCategoryController {
 
     public String comment(String text, String itemId) {
         if (!isThereItemWithId(itemId)) {
-            return "Error: invalid id";
+            return "Error: Invalid ID";
         }
         Item item = getItemById(itemId);
         if (controller.currentOnlineUser == null) {
-            return "Error: please sign in to comment";
+            return "Error: Please sign in to comment";
         }
         if(controller.currentOnlineUser instanceof Buyer==false){
-            return "Error: you must be a buyer to post a comment.";
+            return "Error: Only customers can post comments.";
         }
         if (item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())) {
             Comment comment = new Comment(controller.currentOnlineUser.getUsername(), itemId, text, true);
@@ -176,29 +176,29 @@ public class ItemAndCategoryController {
             String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
             RequestController.getInstance().addCommentRequest(requestID, comment);
         }
-        return "Successful: your comment has been added";
+        return "Successful: Your comment has been submitted.";
     }
 
     public String rate(int score, String itemId) {
         if (!isThereItemWithId(itemId)) {
-            return "Error: invalid id";
+            return "Error: invalid ID.";
         }
         User user = controller.currentOnlineUser;
         if (!(user instanceof Buyer)) {
-            return "Error: you cant rate an item";
+            return "Error: Only customers can rate items.";
         }
         Buyer buyer = (Buyer) user;
         Item item = getItemById(itemId);
         if (!item.isBuyerWithUserName(buyer.getUsername())) {
-            return "Error: you must first buy this item";
+            return "Error: You must first buy this item.";
         }
         if (item.hasUserRated(buyer.getUsername())) {
-            return "Error: you have already rated this item";
+            return "Error: You have already rated this item.";
         }
         Rating rating = new Rating(score, buyer.getUsername(), itemId);
         item.addRating(rating);
         Database.getInstance().saveItem(item);
-        return "Successful: your have rated the item";
+        return "Successful: Submitted Rating.";
     }
 
     public String digest(String itemId) {
@@ -211,43 +211,29 @@ public class ItemAndCategoryController {
 
     public String addCategory(String name, ArrayList<String> attributes, String fatherName) {
         if (isThereCategoryWithName(name)) {
-            return "Error: category with this name already exist";
+            return View.ANSI_RED+"Error: Category with this name already exists"+View.ANSI_RESET;
         }
         if (!isThereCategoryWithName(fatherName)) {
-            return "Error: father category doesnt exist";
+            return View.ANSI_RED+"Error: Father category is nonexistent."+View.ANSI_RESET;
         }
         Category category = new Category(name, attributes, fatherName);
             Database.getInstance().saveCategory(category);
         Category father = getCategoryByName(fatherName);
         father.addSubCategory(name);
             Database.getInstance().saveCategory(father);
-        return "Successful";
+        return "Successful: Created Category.";
     }
-
-    /*public String addCategory(String name, ArrayList<String> attributes) {
-        if (isThereCategoryWithName(name)) {
-            return "Error: category with this name already exist";
-        }
-        Category category = new Category(name, attributes);
-        try {
-            Database.getInstance().saveCategory(category);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "Successful";
-    }*/
-
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
         if (!isThereCategoryWithName(categoryName)) {
-            return "Error: invalid category name";
+            return View.ANSI_RED+"Error: Invalid category name."+View.ANSI_RESET;
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null)
-            return"Error: ";
+            return View.ANSI_RED+"Error: No user is logged in!"+View.ANSI_RESET;
         Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
-        return "Successful: your request to add the item was sent to the admins.";
+        return "Successful: Admins have been notified of your request to add this item.";
     }
 
     public void addItemToCategory(String itemid, String categoryName) {
@@ -278,10 +264,6 @@ public class ItemAndCategoryController {
         return allItems;
     }
 
-    public String getCategoryItemsString(String categoryName) {
-        return "paniz";
-    }
-
     public Category getBaseCategory() {
         return getCategoryByName("Main");
     }
@@ -305,11 +287,6 @@ public class ItemAndCategoryController {
         return "Successful:";
     }
 
-    public boolean currentViewableItemsContainsItem(String itemID) {
-        return currentViewableItems.contains(getItemById(itemID));
-    }
-
-
     public ArrayList<Item> getAllItemFromDataBase() {
         String path = "Resource" + File.separator + "Items";
         File file = new File(path);
@@ -331,10 +308,10 @@ public class ItemAndCategoryController {
     public String renameCategory(String oldName,String newName){
         Category category=getCategoryByName(oldName);
         if(category==null){
-            return "Error: invalid category name";
+            return View.ANSI_RED+"Error: Invalid category name"+View.ANSI_RESET;
         }
         if(isThereCategoryWithName(newName)){
-            return "Error: category with this name already exists";
+            return View.ANSI_RED+"Error: Category with this name already exists"+View.ANSI_RESET;
         }
         category.rename(newName);  //this will also change parent and father and item category name
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
@@ -346,11 +323,11 @@ public class ItemAndCategoryController {
         }
         Database.getInstance().saveCategory(category);
         Database.getInstance().deleteCategory(getCategoryByName(oldName));
-        return "Successful: ";
+        return "Successful: Renamed Category.";
     }
 
     public String removeCategory(String name) {
-        if(isThereCategoryWithName(name)==false) return "Error: invalid category name!";
+        if(!isThereCategoryWithName(name)) return View.ANSI_RED+"Error: Invalid category name!"+View.ANSI_RESET;
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());
         if(parent!=null){
@@ -364,7 +341,7 @@ public class ItemAndCategoryController {
         if(parent!=null){
         Database.getInstance().saveCategory(parent); }
         Database.getInstance().deleteCategory(category);
-        return "successful:";
+        return "Successful: Deleted Category.";
     }
 
     private void DFSCategory(String categoryName,ArrayList<Category>removed){
@@ -429,14 +406,14 @@ public class ItemAndCategoryController {
     public String addAttributeToCategory(String categoryName,String attribute){
         Category category=getCategoryByName(categoryName);
         if(category==null){
-            return "Error: invalid category name";
+            return View.ANSI_RED+"Error: invalid category name"+View.ANSI_RESET;
         }
         if(category.getAttributes().contains(attribute)){
-            return "Error: category already has this attribute";
+            return View.ANSI_RED+"Error: category already has this attribute"+View.ANSI_RESET;
         }
         category.addAttribute(attribute);
         Database.getInstance().saveCategory(category);
-           return "Successful: attribute added";
+           return "Successful: attribute added.";
     }
 
     public Boolean canEditAttribute(String itemId,String attribute){

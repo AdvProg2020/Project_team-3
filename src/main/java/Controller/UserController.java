@@ -299,17 +299,17 @@ public class UserController {
         Buyer buyer=(Buyer) getCurrentOnlineUser();
         try{
             if(index>buyer.getBuyLogSize()-1){
-                return "Error: invalid buyLog";
+                return "Error: Invalid buyLog";
             }
                 return buyer.getBuyLogByID(index).toString();
         } catch (Exception e){
-            return "Error: invalid id";
+            return "Error: Invalid ID";
         }
     }
 
     public String getAllBuyLogs(){
         if((getCurrentOnlineUser()==null)||(getCurrentOnlineUser() instanceof Buyer==false)){
-            return "Error:";  //this wont happen because we call this function in the buyer menu
+            return "Error: Internal Error";  //this wont happen because we call this function in the buyer menu
         }
         Buyer buyer=(Buyer) getCurrentOnlineUser();
         return buyer.getBuyLogsString();
@@ -318,13 +318,13 @@ public class UserController {
     public String getUserType(String username){
         User user = getUserByUsername(username);
         if(user==null){
-            return "Error:";
+            return "Error: User doesn't exist.";
         }
         return user.getType();
     }
     public String getUserType(){
         if(getCurrentOnlineUser()==null)
-            return "Error";
+            return "Error: User isn't online.";
         return getUserType(getCurrentOnlineUser().getUsername());
     }
 
@@ -341,7 +341,7 @@ public class UserController {
             Seller seller=(Seller) getCurrentOnlineUser();
             return seller.getCompanyName();
         }
-        return "Error: ";
+        return "Error: Seller doesn't exist.";
     }
 
     public Boolean doesSellerHaveItem(String itemId){

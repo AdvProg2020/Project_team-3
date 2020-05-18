@@ -6,6 +6,7 @@ import Model.Sale;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
+import View.Menus.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -85,18 +86,18 @@ public class SaleAndDiscountCodeController {
 
     public String addSale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage, ArrayList<String> saleItems) {
         if (!endTime.isAfter(startTime)) {
-            return "Error: ending time is after the starting time!";
+            return "Error: Ending time is after the starting time!";
         }
         Seller seller = (Seller) UserController.getInstance().getCurrentOnlineUser();
         if(seller==null){
-            return "Error: ";
+            return "Error: Internal Error.";
         }
         if(saleItems.isEmpty()){
-            return "Error: no items are on sale!";
+            return "Error: No items are on sale!";
         }
         for (String item : saleItems) {
             if (!seller.hasItem(item)) {
-                return "Error: you do not have " + item + " in stock.";
+                return "Error: You do not have " + item + " in stock.";
            }
             if (ItemAndCategoryController.getInstance().getItemById(item).isInSale()) {
                 return "Error: " + item + " is already in a sale.";
@@ -105,7 +106,7 @@ public class SaleAndDiscountCodeController {
         Sale sale = new Sale(startTime, endTime, offPercentage, UserController.getInstance().getCurrentOnlineUser().getUsername(), saleItems);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addSaleRequest(requestID, sale);
-        return "Successful: your request to add the sale was sent to the admins.";
+        return "Successful: Your request to add the sale has been sent to the admins.";
     }
 
     public ArrayList<Sale> getSellerSales(String username) {
@@ -124,19 +125,19 @@ public class SaleAndDiscountCodeController {
     public String deleteSale(String id) {
         Sale sale = getSaleById(id);
         if (id == null) {
-            return "Error: sale doesnt exist";
+            return View.ANSI_RED+"Error: Sale doesn't exist."+View.ANSI_RESET;
         }
         Database.getInstance().deleteSale(sale);
-        return "Successful";
+        return "Successful: Deleted sale.";
     }
 
     public String deleteDiscountCode(String id) {
         DiscountCode code = getDiscountCodeById(id);
         if ((id == null) || (code == null)) {
-            return "Error: discount code doesnt exist";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         Database.getInstance().deleteDiscountCode(code);
-        return "Successful";
+        return "Successful: Deleted discount code.";
     }
 
     public void giveRandomDiscountCode() {
@@ -206,15 +207,6 @@ public class SaleAndDiscountCodeController {
         return allSale;
     }
 
-    public ArrayList<String> getAllSaleFromDataBaseToString() {
-        ArrayList<Sale> allSale = getAllSaleFromDataBase();
-        ArrayList<String> allSaleToString = new ArrayList<>();
-        for (Sale sale : allSale) {
-            allSaleToString.add(sale.toString());
-        }
-        return allSaleToString;
-    }
-
     public ArrayList<String> getAllItemsIDWithSale() {
         ArrayList<Item> allItems = ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         ArrayList<String> itemsID = new ArrayList<>();
@@ -231,45 +223,45 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodePercentage(String discountID, int percentage) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: invalid ID for discount code.";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         discountCode.setDiscountPercentage(percentage);
         Database.getInstance().saveDiscountCode(discountCode);
-        return "Successful:";
+        return "Successful: Edited discount code.";
     }
 
     public String editDiscountCodeMaxDiscount(String discountID, double amount) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: invalid ID for discount code.";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         discountCode.setMaxDiscount(amount);
         Database.getInstance().saveDiscountCode(discountCode);
-        return "Successful:";
+        return "Successful: Edited discount code.";
     }
 
     public String editDiscountCodeEndTime(String discountID, LocalDateTime endTime) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: invalid ID for discount code.";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         if (!endTime.isAfter(discountCode.getStartTime())) {
-            return "Error: ending time is after the starting time!";
+            return "Error: Ending time is after the starting time!";
         }
         discountCode.setEndTime(endTime);
         Database.getInstance().saveDiscountCode(discountCode);
-        return "Successful";
+        return "Successful: Edited discount code.";
     }
 
     public String editDiscountCodeUsageCount(String discountID, int newUsage) {
-        if (newUsage <= 0) return "Error: usage count has to be positive.";
+        if (newUsage <= 0) return "Error: Usage count can't be negative.";
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return "Error: invalid ID for discount code.";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         discountCode.changeUsageCount(newUsage);
         Database.getInstance().saveDiscountCode(discountCode);
-        return "Successful";
+        return "Successful: Edited discount code.";
     }
 
     public String addDiscountCode(int percentage, LocalDateTime endTime, LocalDateTime startTime, ArrayList<String> validUsers, int usageCount, double maxDiscount) {
@@ -278,13 +270,13 @@ public class SaleAndDiscountCodeController {
         }
         DiscountCode discountCode = new DiscountCode(percentage, startTime, endTime, validUsers, usageCount, maxDiscount);
         Database.getInstance().saveDiscountCode(discountCode);
-        return "Successful: discount code created";
+        return "Successful: Discount code created";
     }
 
     public String printDiscount(String id) {
         DiscountCode discountCode = getDiscountCodeById(id);
         if (discountCode == null) {
-            return "Error: discount code doesnt exist";
+            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
         }
         return discountCode.toString();
     }
@@ -298,7 +290,7 @@ public class SaleAndDiscountCodeController {
         if (!isThereSaleWithId(saleID)) return "Error: invalid ID";
         String requestID = Controller.getInstance().getAlphaNumericString(5, "Sales");
         RequestController.getInstance().editSaleRequest(requestID, saleID, changedField, newFieldValue);
-        return "Success:";
+        return "Success: Edited sale.";
     }
 
     public boolean canAddItemToSale(String itemID) {

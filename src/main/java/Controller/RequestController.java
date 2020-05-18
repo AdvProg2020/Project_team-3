@@ -5,6 +5,7 @@ import Model.Requests.*;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
+import View.Menus.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -114,7 +115,7 @@ public class RequestController {
     public String acceptRequest(String requestID) {
         Request accepted = getRequestById(requestID);
         if (accepted == null) {
-            return "Error: request doesnt exist";
+            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
         }
         if (accepted instanceof AccountRequest) {
             User user = UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
@@ -148,7 +149,7 @@ public class RequestController {
                 Database.getInstance().saveItem(item);
         }
         Database.getInstance().deleteRequest(accepted);
-        return "Successful: request accepted";
+        return "Successful: Request accepted";
     }
 
     ///after accepting requests
@@ -199,10 +200,10 @@ public class RequestController {
             Database.getInstance().deleteUser(((AccountRequest) declined).getUser());
         }
         if (declined == null) {
-            return "Error: request doesnt exist";
+            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
         }
         Database.getInstance().deleteRequest(declined);
-        return "Successful: request declined";
+        return "Successful: Request declined";
     }
 
     public ArrayList<Request> getAllRequestFromDataBase() {
@@ -244,7 +245,7 @@ public class RequestController {
     public String getRequestDetail(String id) {
         Request request = getRequestById(id);
         if (request == null) {
-            return "Error: request doesnt exist";
+            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
         }
         return request.getMessage();
     }
