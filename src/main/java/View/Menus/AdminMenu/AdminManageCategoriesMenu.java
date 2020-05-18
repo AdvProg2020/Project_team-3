@@ -87,6 +87,10 @@ public class AdminManageCategoriesMenu extends UserMenu {
             if (attribute.equals("next")) {
                 break;
             }
+            if(attribute.contains(" ") || attributes.contains(attribute)){
+                System.out.println(View.ANSI_RED+"Attribute cannot contain whitespace and you cannot have duplicate Attributes"+View.ANSI_RESET);
+                continue;
+            }
             attributes.add(attribute);
         }
         System.out.println("Enter father category name. [press enter if you want to make a main category]");
