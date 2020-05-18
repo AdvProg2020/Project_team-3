@@ -35,17 +35,5 @@ public class Admin extends User {
         UserController.getInstance().deleteUser(username);
     }
 
-    //public String showCategory(String categoryName) {
-    //    return "salam";
-    //}
-
-    //public void addCategory(String name) {
-    //
-    //}
-
-    //public void changeIsAccepted() {
-        //dar inja modir request ha ra accept ya decline mikonad! ArrayList <>allRequest <= nagaiidam
-    //}
-
 
 }

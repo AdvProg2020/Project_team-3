@@ -111,6 +111,7 @@ public class Cart {
         BuyLog buyLog = new BuyLog(buyerName, address, getCartPriceWithoutDiscountCode() - getCartPriceWithDiscountCode(), LocalDateTime.now());
         int count = 0;
         for (String itemID : allItemId) {
+            count = allItemCount.get(itemID);
             double price = ItemAndCategoryController.getInstance().getItemById(itemID).getPrice();
             String sellerName = ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName();
             buyLog.addItem(price, allItemCount.get(itemID), itemID, sellerName);

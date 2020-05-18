@@ -82,23 +82,11 @@ public class Sale {
     public void removeItemFromSale(String id){
         itemId.remove(id);
     }
-    public boolean saleHasItemWithID(String id) {
-        return false;
-    }
 
     public String getSellerUsername() {
         return sellerUsername;
     }
 
-    public String itemsInfo(){
-    String string="";
-    Item item;
-        for (String id : itemId) {
-            item= ItemAndCategoryController.getInstance().getItemById(id);
-            string+="item id: "+id+"price before sale: "+item.getPrice()+"  price after sale: "+item.getPriceWithSale()+"\n";
-        }
-        return string;
-    }
 
     @Override
     public String toString() {

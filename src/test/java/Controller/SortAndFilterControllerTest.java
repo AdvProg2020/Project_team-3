@@ -199,7 +199,7 @@ public class SortAndFilterControllerTest {
     @Test
     public void showActiveFilters() {
         SortAndFilterController.getInstance().reset();
-        assertEquals(SortAndFilterController.getInstance().showActiveFilters(),"you have No active filter");
+        assertEquals(SortAndFilterController.getInstance().showActiveFilters(),"You have no active filter(s)");
         SortAndFilterController.getInstance().activateFilterAttribute("test","test");
         SortAndFilterController.getInstance().activateFilterBrandName("test");
         SortAndFilterController.getInstance().activateFilterCategoryName("test");
@@ -235,7 +235,7 @@ public class SortAndFilterControllerTest {
     @Test
     public void showAllAvailableSorts() {
         String ans=SortAndFilterController.getInstance().showAllAvailableSorts();
-        assertEquals(ans,"sort by price low to high\nsort by price high to low\nsort by rating\nsort by comment count");
+        assertEquals(ans,"sort by price low to high\nsort by price high to low\nsort by rating\nsort by comment count\nsort by date");
     }
 
     @Test

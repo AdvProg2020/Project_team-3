@@ -7,7 +7,6 @@ public class Comment {
 
     private enum Status {accepted, inProcess}
 
-    ;
     private Boolean hasBought;
     private Status status;
 
@@ -39,7 +38,7 @@ public class Comment {
     }
 
 
-    public Boolean getHasBought() {
+    public Boolean hasBought() {
         return hasBought;
     }
 }

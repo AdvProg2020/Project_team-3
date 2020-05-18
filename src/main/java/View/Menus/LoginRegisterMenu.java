@@ -79,7 +79,7 @@ public class LoginRegisterMenu extends Menu {
             }
         }*/
 
-        if (ans.startsWith("Success")) {
+        if (ans.contains("Success")) {
             goToIntendedMenu();
         } else {
             View.setCurrentMenu(loginRegisterMenu);
@@ -98,7 +98,7 @@ public class LoginRegisterMenu extends Menu {
         String number = enterNumber();
         String ans = UserController.getInstance().registerAdmin(username, password, firstName, lastName, email, number);
         System.out.println(ans);
-        return ans.startsWith("Success");
+        return ans.contains("Success");
     }
 
     public boolean register(String command) {
@@ -130,17 +130,17 @@ public class LoginRegisterMenu extends Menu {
         if (key.equals("buyer")) {
             ans = UserController.getInstance().registerBuyer(money, username, password, firstName, lastName, email, number);
             System.out.println(ans);
-            return ans.startsWith("Success");
+            return ans.contains("Success");
         } else if (key.equals("seller")) {
             System.out.print("Enter your company name:");
             String companyName = View.read.nextLine();
             ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
             System.out.println(ans);
-            return ans.startsWith("Success");
+            return ans.contains("Success");
         } else {
             ans = UserController.getInstance().registerFirstAdmin(username, password, firstName, lastName, email, number);
             System.out.println(ans);
-            return ans.startsWith("Succ");
+            return ans.contains("Succ");
             /*System.out.println("You cant make an admin account.");
             return false;*/
         }
@@ -181,6 +181,12 @@ public class LoginRegisterMenu extends Menu {
         else if(intendedMenu.equals("ShopMenu")){
             ShopMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             View.setCurrentMenu(ShopMenu.getInstance());
+        }
+        else if(intendedMenu.equals("ItemMenu")){
+            View.setCurrentMenu(ItemMenu.getInstance());
+        }
+        else if(intendedMenu.equals("CartMenu")){
+            View.setCurrentMenu(CartMenu.getInstance());
         }
 
     }

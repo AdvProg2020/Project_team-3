@@ -99,7 +99,6 @@ public class AdminMenu extends UserMenu {
         System.out.println("view personal info");
         System.out.println("edit [field]");
         System.out.println("manage users");
-        System.out.println("change type [username] [role]");
         System.out.println("manage products");
         System.out.println("create discount code");
         System.out.println("manage discount codes");

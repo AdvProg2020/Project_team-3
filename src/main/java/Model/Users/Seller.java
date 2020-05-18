@@ -102,7 +102,7 @@ public class Seller extends User {
     }
 
     public String getSaleLogsString(){
-        String ans="ID          buyer name        count         price\n";
+        String ans="ID     buyer name     count     price\n";
         int count=1;
         for(SaleLog saleLog:sellLogs){
             ans +=count+"-";
@@ -113,18 +113,6 @@ public class Seller extends User {
         return ans;
     }
 
-    public String getAllItemsString(){
-        String ans="ID         name        price\n";
-        for(String id:allItemsId){
-            Item item=ItemAndCategoryController.getInstance().getItemById(id);
-            if(item==null){
-                return "Error:";
-            }
-            ans+= item.toSimpleString();
-            ans+="\n";
-        }
-        return ans;
-    }
 
     public ArrayList<String> getAllItemsId() {
         return allItemsId;

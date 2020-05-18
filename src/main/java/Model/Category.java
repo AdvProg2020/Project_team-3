@@ -103,16 +103,8 @@ public class Category {
         this.parent = parent;
     }
 
-    public void setAllItemsID(ArrayList<String> allItemsID) {
-        this.allItemsID = allItemsID;
-    }
-
     public ArrayList<String> getSubCategories() {
         return subCategories;
-    }
-
-    public void setSubCategories(ArrayList<String> subCategories) {
-        this.subCategories = subCategories;
     }
 
     public void removeSubCategory(String category) {

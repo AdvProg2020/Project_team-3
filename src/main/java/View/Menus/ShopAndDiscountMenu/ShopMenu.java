@@ -114,7 +114,7 @@ public class ShopMenu extends Menu {
    private void openCategory(String name) {
       String ans = ItemAndCategoryController.getInstance().openCategory(name);
       System.out.println(ans);
-      if (ans.startsWith("Successful")) {
+      if (ans.contains("Success")) {
          categoryName = name;
       }
    }

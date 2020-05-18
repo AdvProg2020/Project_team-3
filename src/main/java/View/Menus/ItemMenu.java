@@ -61,11 +61,13 @@ public class ItemMenu extends Menu {
             return;
         }
         else if(command.equals("login")){
+            LoginRegisterMenu.getInstance().setIntendedMenu("ItemMenu");
             LoginRegisterMenu.getInstance().setPreviousMenu(ItemMenu.getInstance());
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
             return;
         }
         else if(command.equals("register")){
+            LoginRegisterMenu.getInstance().setIntendedMenu("ItemMenu");
             LoginRegisterMenu.getInstance().setPreviousMenu(ItemMenu.getInstance());
             View.setCurrentMenu(LoginRegisterMenu.getInstance());
             return;
@@ -75,6 +77,7 @@ public class ItemMenu extends Menu {
             LoginRegisterMenu.getInstance().logout();
             return;
         }
+
         else if(command.equals("show score")){
             showScore();
             return;

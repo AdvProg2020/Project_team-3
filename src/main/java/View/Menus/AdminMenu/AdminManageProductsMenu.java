@@ -2,6 +2,7 @@ package View.Menus.AdminMenu;
 
 import Controller.Database;
 import Controller.SortAndFilterController;
+import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.Menu;
 import View.Menus.SellerMenu.SellerManageProductsMenu;
@@ -62,6 +63,11 @@ public class AdminManageProductsMenu extends Menu {
         matcher = View.getMatcher("view (\\S+)", command);
         if (matcher.matches()) {
             viewItem(matcher.group(1));
+            return;
+        }
+        if (command.equals("logout")) {
+            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().logout();
             return;
         }
         System.out.println(View.ANSI_RED+"Invalid command."+View.ANSI_RESET);

@@ -45,8 +45,15 @@ public class CartMenu extends Menu {
             return;
         }
         else if(command.equals("logout")){
-            LoginRegisterMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+            LoginRegisterMenu.getInstance().setIntendedMenu("CartMenu");
+            LoginRegisterMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
             LoginRegisterMenu.getInstance().logout();
+            return;
+        }
+        else if(command.equals("login") || command.equals("register")){
+            LoginRegisterMenu.getInstance().setIntendedMenu("CartMenu");
+            View.setCurrentMenu(LoginRegisterMenu.getInstance());
+            LoginRegisterMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
             return;
         }
         if(command.equals("back")){
@@ -106,7 +113,7 @@ public class CartMenu extends Menu {
        if(!Controller.getInstance().isLogin()){
            System.out.println(View.ANSI_RED+"Error: You must be logged in."+View.ANSI_RESET);
            LoginRegisterMenu.getInstance().setPreviousMenu(CartMenu.getInstance());
-           LoginRegisterMenu.getInstance().setIntendedMenu("PurchaseMenu");
+           LoginRegisterMenu.getInstance().setIntendedMenu("CartMenu");
            View.setCurrentMenu(LoginRegisterMenu.getInstance());
            return;
        }
