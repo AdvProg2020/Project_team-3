@@ -321,6 +321,7 @@ public class ItemAndCategoryController {
                     Database.getInstance().saveRequest(request);
             }
         }
+        category.setName(newName);
         Database.getInstance().saveCategory(category);
         Database.getInstance().deleteCategory(getCategoryByName(oldName));
         return "Successful: Renamed Category.";

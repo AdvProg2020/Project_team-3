@@ -61,7 +61,6 @@ public class Category {
     }
 
     public void rename(String name) {
-
         for (String id : allItemsID) {
             Item item= ItemAndCategoryController.getInstance().getItemById(id);
             if(item==null) continue;
@@ -70,8 +69,8 @@ public class Category {
         }
         Category father=ItemAndCategoryController.getInstance().getCategoryByName(parent);
         if(father!=null){
-            father.removeSubCategory(this.name);
-            father.addSubCategory(name);
+            father.getSubCategories().remove(this.name);
+            father.getSubCategories().add(name);
             Database.getInstance().saveCategory(father);
         }
         for (String subCategory : subCategories) {
@@ -120,4 +119,8 @@ public class Category {
         if (!this.hasSubCategoryWithName(category)) return;
         this.subCategories.remove(category);
     }
+    public void setName(String newName){
+        this.name=newName;
+    }
+
 }

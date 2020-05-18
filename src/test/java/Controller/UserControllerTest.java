@@ -26,6 +26,9 @@ public class UserControllerTest {
         UserController.getInstance().deleteUser("Arman");
         UserController.getInstance().deleteUser("Alireza");
         UserController.getInstance().deleteUser("Ho3ein");
+        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername("Alireza"));
+        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername("Arman"));
+        Assert.assertFalse(UserController.getInstance().isThereUserWithUsername("Ho3ein"));
         UserController.getInstance().logout();
     }
 
@@ -86,6 +89,7 @@ public class UserControllerTest {
     public  void registerBuyer() {
         UserController.getInstance().registerBuyer(500,"Arman","Hitler",
                 "Arman","S","arman@gmail.com","33151603");
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Arman"));
     }
 
     @Test
@@ -96,12 +100,14 @@ public class UserControllerTest {
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Alireza"));
     }
 
     @Test
     public  void registerAdmin() {
         UserController.getInstance().registerAdmin("Ho3ein","Yad","Ho3ein","Rahmati"
                 ,"h.rah@gmail.com","33142220");
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Ho3ein"));
     }
 
     @Test
@@ -160,6 +166,7 @@ public class UserControllerTest {
         UserController.getInstance().login("Akira","Bondage");
         Assert.assertNull(UserController.getInstance().getCurrentOnlineUser());
         UserController.getInstance().logout();
+        Assert.assertNull(Controller.getInstance().currentOnlineUser);
         deleteJunk();
     }
 
@@ -204,6 +211,15 @@ public class UserControllerTest {
     public void viewPersonalInfo() {
         registration();
         System.out.println(UserController.getInstance().viewPersonalInfo("Alireza"));
+        Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Alireza"));
+        User user=UserController.getInstance().getUserByUsername("Alireza");
+        Assert.assertEquals(user.getName(),"reza");
+        Assert.assertEquals(user.getLastName(),"pishro");
+        Assert.assertEquals(user.getType(),"Seller");
+        Assert.assertEquals(user.getEmail(),"alireza@gmail.com");
+        Assert.assertEquals(user.getNumber(),"33824264");
+        Seller seller=(Seller)user;
+        Assert.assertEquals(seller.getCompanyName(),"benz");
         deleteJunk();
     }
 
@@ -212,26 +228,16 @@ public class UserControllerTest {
         registration();
         ArrayList<User> allUsers=UserController.getInstance().getAllUserFromDataBase();
         for(User user:allUsers) System.out.println(UserController.getInstance().viewPersonalInfo(user.getUsername()));
+        Assert.assertNotNull(allUsers);
+        Assert.assertTrue(allUsers.size()>0);
         deleteJunk();
     }
 
-
-    @Test
-    public void assignBuyLog() {
-    }
-
-    @Test
-    public void assignSaleLog() {
-    }
-
-    @Test
-    public void buy() {
-    }
     @Test
     public void getAllBuyers(){
         registration();
         ArrayList<Buyer>allBuyers=UserController.getInstance().getAllBuyers();
-        System.out.println(allBuyers);
+        for(User user:allBuyers) Assert.assertEquals(user.getType(),"Buyer");
         deleteJunk();
     }
     @Test
@@ -239,9 +245,12 @@ public class UserControllerTest {
         registration();
         Seller seller=(Seller)UserController.getInstance().getUserByUsername("Alireza");
         UserController.getInstance().login(seller.getUsername(),seller.getPassword());
+        Assert.assertEquals(seller.getCompanyName(),"benz");
         System.out.println(UserController.getInstance().getSellerCompany());
         UserController.getInstance().logout();
+        Assert.assertNull(Controller.getInstance().currentOnlineUser);
         System.out.println(UserController.getInstance().getSellerCompany());
+        Assert.assertEquals(UserController.getInstance().getSellerCompany(),"Error: Seller doesn't exist.");
         deleteJunk();
     }
     @Test
@@ -250,9 +259,11 @@ public class UserControllerTest {
         User user=UserController.getInstance().getUserByUsername("Alireza");
         UserController.getInstance().login(user.getUsername(),user.getPassword());
         System.out.println(UserController.getInstance().getUserType());
+        Assert.assertEquals(user.getType(),"Seller");
         UserController.getInstance().logout();
         System.out.println(UserController.getInstance().getUserType());
         System.out.println(UserController.getInstance().getUserType("Alireza"));
+        Assert.assertEquals(UserController.getInstance().getUserType("Alireza"),"Seller");
         deleteJunk();
     }
 
@@ -261,8 +272,10 @@ public class UserControllerTest {
         registration();
         User user=UserController.getInstance().getUserByUsername("Alireza");
         UserController.getInstance().login(user.getUsername(),user.getPassword());
+        Assert.assertTrue(Controller.getInstance().isLogin());
         System.out.println(Controller.getInstance().isLogin());
         UserController.getInstance().logout();
+        Assert.assertFalse(Controller.getInstance().isLogin());
         System.out.println(Controller.getInstance().isLogin());
         deleteJunk();
     }
