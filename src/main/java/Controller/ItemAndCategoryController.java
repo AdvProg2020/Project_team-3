@@ -438,4 +438,13 @@ public class ItemAndCategoryController {
         Database.getInstance().saveCategory(category);
            return "Successful: attribute added";
     }
+
+    public Boolean canEditAttribute(String itemId,String attribute){
+        Item item=getItemById(itemId);
+        if(item==null) return false;
+        Category category=getCategoryByName(item.getCategoryName());
+        if(category==null) return false;
+        if(category.getAttributes().contains(attribute)) return true;
+        return false;
+    }
 }

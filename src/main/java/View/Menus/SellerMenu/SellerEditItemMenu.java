@@ -47,7 +47,6 @@ public class SellerEditItemMenu extends UserMenu {
         System.out.println(View.ANSI_WHITE+"Enter the field you wish to edit or type back to go to the product management menu."+View.ANSI_RESET);
         System.out.println("fields can be one of the following:");
         System.out.println("name,brand,price,description,stock,category name");
-        System.out.println("or a custom attribute.");
         System.out.println("You can also type a command in one of these formats:");
         System.out.println("back");
         System.out.println("back to SellerMenu");
@@ -73,9 +72,7 @@ public class SellerEditItemMenu extends UserMenu {
         if(key.equalsIgnoreCase("name")||key.equalsIgnoreCase("brand")
         || key.equalsIgnoreCase("price") || key.equalsIgnoreCase("stock")
         || key.equalsIgnoreCase("description") || key.equalsIgnoreCase("category name")) return true;
-
-        if(ItemAndCategoryController.getInstance().doesItemHaveAttribute(itemID,key)) return true;
-
+        if(ItemAndCategoryController.getInstance().canEditAttribute(itemID,key)) return true;
         return false;
     }
 }
