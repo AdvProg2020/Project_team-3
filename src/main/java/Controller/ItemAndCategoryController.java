@@ -148,10 +148,17 @@ public class ItemAndCategoryController {
         return string;
     }
 
-    public ArrayList<String> showItemComments(String itemid) {
+    public ArrayList<String> showItemComments(String itemID) {
         ArrayList<String> allComments = new ArrayList<>();
-        for (Comment comment : getItemById(itemid).getAllComments()) {
-            allComments.add(comment.getUsername() + ": " + comment.getText());
+        String status;
+        for (Comment comment : getItemById(itemID).getAllComments()) {
+            if(comment.hasBought()){
+                status = "\u2713";
+            }
+            else{
+                status = "";
+            }
+            allComments.add(comment.getUsername()+"("+status+")" + ": " + comment.getText());
         }
         return allComments;
     }
@@ -415,7 +422,7 @@ public class ItemAndCategoryController {
         for (String itemId : category.getAllItemsID()) {
             Item item=getItemById(itemId);
             if(item==null) continue;
-            item.setAttribute(attribute,"");
+            item.addAttribute(attribute,"");
             Database.getInstance().saveItem(item);
         }
         Database.getInstance().saveCategory(category);

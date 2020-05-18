@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 public class DiscountCode {
 
-   //private HashMap<String,Integer>allUsers;
    private String discountId;
    private int discountPercentage;
    private double maxDiscount;
@@ -32,13 +31,6 @@ public class DiscountCode {
       //this.allUsers=new HashMap<>();
    }
 
-   public int getUsageCountInt() {
-      return usageCountInt;
-   }
-
-   public void setUsageCountInt(int usageCountInt) {
-      this.usageCountInt = usageCountInt;
-   }
 
    @Override
    public String toString() {
@@ -84,10 +76,6 @@ public class DiscountCode {
       return usageCount.containsKey(userID);
    }
 
-   public int getUsageCountForUser(String username) {
-      return usageCount.get(username);
-   }
-
    public void changeUsageCount(int newCount) {
       int previousCount = usageCountInt;
       usageCountInt = newCount;
@@ -116,6 +104,7 @@ public class DiscountCode {
    }
 
    public boolean userCanUse(String username) {
+
       return (usageCount.get(username) > 0);
    }
 }

@@ -48,28 +48,6 @@ public class Buyer extends User {
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
-    /*public void addDiscount(DiscountCode discountCode){
-        this.discountCodes.add(discountCode);
-    }
-
-    public void removeDiscount(String discountID){
-        DiscountCode toBeRemoved = getDiscountById(discountID);
-        discountCodes.remove(toBeRemoved);
-    }
-
-    public boolean hasDiscountID(String ID){
-        for(DiscountCode discountCode: discountCodes){
-            if(discountCode.getDiscountId().equals(ID)) return true;
-        }
-        return false;
-    }
-
-    public DiscountCode getDiscountById(String ID){
-        for(DiscountCode discountCode:discountCodes){
-            if(discountCode.getDiscountId().equals(ID)) return discountCode;
-        }
-        return null;
-    }*/
 
     public double getMoney() {
         return money;

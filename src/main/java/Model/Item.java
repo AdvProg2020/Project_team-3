@@ -194,6 +194,10 @@ public class Item {
         return attributes;
     }
 
+    public void addAttribute(String key,String value){
+        attributes.put(key,value);
+    }
+
     public ArrayList<Comment> getAllComments() {
         return allComments;
     }
@@ -260,7 +264,7 @@ public class Item {
         String string = name + "\nID: " + id + "\nSeller:" + sellerName + "\nStock:" + inStock + "\nPrice:" + price;
         if (isInSale()) {
             Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
-            string += "\nprice after sale: " + price * sale.getOffPercentage() / 100;
+            string += "\nprice after sale: " + price * (100-sale.getOffPercentage()) / 100;
         }
         string += "\nRating= " + getRating();
         return string;

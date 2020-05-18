@@ -1,6 +1,7 @@
 package View.Menus.ShopAndDiscountMenu;
 
 import Controller.SortAndFilterController;
+import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.Menu;
 import View.Menus.View;
@@ -21,7 +22,7 @@ public class SortAndFilterMenu extends Menu {
 
    @Override
    public void run() {
-      help();
+      System.out.println(View.ANSI_BLACK + "You are in the sorting/filtering submenu." + View.ANSI_RESET);
       String command = View.getRead().nextLine();
       execute(command);
    }
@@ -29,6 +30,10 @@ public class SortAndFilterMenu extends Menu {
    @Override
    public void execute(String command) {
       Matcher matcher;
+      if(command.equals("help")){
+         help();
+         return;
+      }
       if (command.equals("show available filters")) {
          showAvailableFilters();
          return;
@@ -43,6 +48,11 @@ public class SortAndFilterMenu extends Menu {
       }
       if (command.equals("disable sort")) {
          disableSort();
+         return;
+      }
+      if (command.equals("logout")) {
+         LoginRegisterMenu.getInstance().setPreviousMenu(SortAndFilterMenu.getInstance());
+         LoginRegisterMenu.getInstance().logout();
          return;
       }
       if (command.equals("current filters")) {

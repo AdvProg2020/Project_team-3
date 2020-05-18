@@ -124,7 +124,7 @@ public abstract class Menu {
 
     protected void viewItem(String id) {
         String ans = ItemAndCategoryController.getInstance().viewItem(id);
-        if (ans.startsWith("Error")) {
+        if (ans.contains("Error")) {
             System.out.println(ans);
             return;
         }

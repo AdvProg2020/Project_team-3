@@ -18,7 +18,6 @@ public class BuyLog {
     private HashMap<String,String> itemsSeller;
     private HashMap<String,Integer> itemsCount;
     private HashMap<String,Double> itemsPrice;
-    private String deliveryState;
     private String buyerName;
     private String address;
     private Double discountGrandTotal;
@@ -52,7 +51,7 @@ public class BuyLog {
         String ans ="Total sum:"+totalPrice()+"   "+time.toString();
         ans += "\nDiscount:" + discountGrandTotal;
         ans += "\nAddress:" + address;
-        ans += "\nitem ID        price       seller          count\n";
+        ans += "\nitem ID      price     seller      count\n";
 
         for (String id : allItemsID) {
             ans +=  id + "     " +itemsPrice.get(id)+"       "+itemsSeller.get(id) + "    " + itemsCount.get(id) + "\n";
@@ -62,10 +61,6 @@ public class BuyLog {
 
     public String toSimpleString(){
         return time+"   "+totalPrice();
-    }
-
-    public ArrayList<String> getAllItemsID() {
-        return allItemsID;
     }
 
     public boolean hasItemID(String id) {
@@ -80,14 +75,6 @@ public class BuyLog {
         return null;
     }
 
-    public String getDeliveryState() {
-        return deliveryState;
-    }
-
-    public void setDeliveryState(String newState) {
-        this.deliveryState = newState;
-    }
-
     public double totalPrice(){
         double ans = 0;
         for(String id:allItemsID){
@@ -100,7 +87,4 @@ public class BuyLog {
         this.time = time.toString();
     }
 
-    public void setDiscountGrandTotal(Double discountGrandTotal) {
-        this.discountGrandTotal = discountGrandTotal;
-    }
 }

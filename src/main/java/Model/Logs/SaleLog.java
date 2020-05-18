@@ -30,7 +30,7 @@ public class SaleLog {
     }
 
     public String toSimpleString() {
-        return buyerName + "     " + count + "     " + price;
+        return "   "+ buyerName + "            " + count + "     " + price;
     }
 }
 
