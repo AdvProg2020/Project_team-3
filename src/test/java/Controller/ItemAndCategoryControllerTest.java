@@ -308,7 +308,6 @@ public class ItemAndCategoryControllerTest {
         Category category=ItemAndCategoryController.getInstance().getCategoryByName("Vacuum");
         Category father=ItemAndCategoryController.getInstance().getCategoryByName(category.getParent());
         ItemAndCategoryController.getInstance().removeCategory(father.getName());
-        Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("lavazem manzel"));
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Oven"));
         Assert.assertFalse(ItemAndCategoryController.getInstance().isThereCategoryWithName("Vacuum"));
         deleteJunk();
