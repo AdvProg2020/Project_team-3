@@ -142,6 +142,7 @@ public class SaleAndDiscountCodeController {
 
     public void giveRandomDiscountCode() {
         ArrayList<Buyer> allBuyers = UserController.getInstance().getAllBuyers();
+        if(allBuyers.isEmpty()) return;
         Random random = new Random();
         int randomIndex;
         Buyer buyer;
