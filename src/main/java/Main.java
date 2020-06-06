@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -30,8 +33,16 @@ public class Main extends Application {
     public void initializeScreens() throws IOException {
         //screen haro az fxml mikhone pass mide SceneSwitcher
         Parent parent;
+        FXMLLoader loader = new FXMLLoader();
+        loader.getCharset();
+        //FXMLLoader.load(getClass().getResource("fxml/asd.fxml"));
         //parent = FXMLLoader.load(getClass().getResource("main/java/View/Menus/Markups/FelanMenu.fxml"));
-        parent = FXMLLoader.load(getClass().getResource("fxml/asd.fxml")); //<= kar nemikone kiri!
+        URL url = new File("src/main/resources/fxml/asd.fxml").toURI().toURL();
+        parent = FXMLLoader.load(url);
+
+
+        getClass().getResource("fxml/asd.fxml");
+        //parent = loader.load(getClass().getResource("View/Menus/Markups/FelanMenu.fxml")); //<= kar nemikone kiri!
         SceneSwitcher.getInstance().addScene("FelanMenu",new Scene(parent,400,600));
     }
 

@@ -21,5 +21,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-archetype-fxml:0.0.3" level="project" />
   </component>
 </module>
