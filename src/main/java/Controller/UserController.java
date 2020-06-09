@@ -79,6 +79,22 @@ public class UserController {
         return true;
     }
 
+    public String userImagePath(String username){
+        if(isThereUserWithUsername(username)==false){
+            return "Erorr: no user exist with this username!";
+        }
+        String jpgFullPath="src/main/resources/Images/"+username+".jpg";
+        String pngFullPath="src/main/resources/Images/"+username+".png";
+        File jpgFile=new File(jpgFullPath);
+        File pngFile=new File(pngFullPath);
+        if(jpgFile.exists()){
+            return jpgFullPath;
+        }else if(pngFile.exists()){
+            return pngFullPath;
+        }
+        return "src/main/resources/Images/default.jpg";
+    }
+
     public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";

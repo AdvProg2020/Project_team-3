@@ -17,7 +17,7 @@ import java.nio.file.*;
 
 public class BuyerRegisterController {
     public ComboBox roleChooser;
-    public PasswordField passwordTextField;
+    public PasswordField passwordField;
     public TextField surnameTextField;
     public TextField moneyTextField;
     public TextField emailTextField;
@@ -33,11 +33,15 @@ public class BuyerRegisterController {
     public Label emailLabel;
     public Label surnameLabel;
     public TextField firstNameTextField;
+    public TextField passwordTextField;
 
 
     public void initialize(){
-
-
+        passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
+        passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
+        passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
+        passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
+        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
     }
 
 
@@ -207,6 +211,7 @@ public class BuyerRegisterController {
         usernameTextField.setText("");
         usernameLabel.setText("");
         passwordTextField.setText("");
+        passwordField.setText("");
         passwordLabel.setText("");
         firstNameTextField.setText("");
         surnameTextField.setText("");
@@ -217,6 +222,5 @@ public class BuyerRegisterController {
         moneyTextField.setText("");
         moneyLabel.setText("");
     }
-
 
 }

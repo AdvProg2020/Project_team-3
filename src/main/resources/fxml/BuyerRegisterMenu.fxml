@@ -13,7 +13,7 @@
       <Label layoutX="46.0" layoutY="173.0" prefHeight="17.0" prefWidth="53.0" text="Password" />
       <Label layoutX="45.0" layoutY="232.0" text="First name" />
       <TextField fx:id="firstNameTextField" layoutX="118.0" layoutY="228.0" prefWidth="150.0" />
-      <PasswordField fx:id="passwordTextField" layoutX="118.0" layoutY="169.0" prefWidth="150.0" />
+      <PasswordField fx:id="passwordField" layoutX="118.0" layoutY="169.0" prefWidth="150.0" />
       <TextField fx:id="surnameTextField" layoutX="119.0" layoutY="288.0" />
       <Label layoutX="53.0" layoutY="292.0" prefHeight="17.0" prefWidth="53.0" text="surname" />
       <Label layoutX="58.0" layoutY="353.0" prefHeight="17.0" prefWidth="44.0" text="Money" />
@@ -22,7 +22,7 @@
       <TextField fx:id="emailTextField" layoutX="119.0" layoutY="416.0" />
       <Label layoutX="19.0" layoutY="495.0" prefHeight="17.0" prefWidth="84.0" text="phoen number" />
       <TextField fx:id="numberTextField" layoutX="119.0" layoutY="491.0" />
-      <CheckBox fx:id="passwordCheckBox" layoutX="277.0" layoutY="173.0" mnemonicParsing="false" text="Show password?" />
+      <CheckBox fx:id="passwordCheckBox" layoutX="277.0" layoutY="173.0" mnemonicParsing="false"  text="Show password?" />
       <Button layoutX="277.0" layoutY="557.0" mnemonicParsing="false" onAction="#fileChooserOpen" text="....." />
       <Label layoutX="45.0" layoutY="561.0" text="Image" />
       <Button layoutX="118.0" layoutY="599.0" mnemonicParsing="false" onAction="#register" prefHeight="45.0" prefWidth="150.0" text="Register" />
@@ -34,5 +34,6 @@
       <Label fx:id="moneyLabel" layoutX="118.0" layoutY="374.0" prefHeight="17.0" prefWidth="150.0" />
       <Label fx:id="emailLabel" layoutX="118.0" layoutY="441.0" prefHeight="17.0" prefWidth="150.0" />
       <Label fx:id="phoneNumberLabel" layoutX="119.0" layoutY="516.0" prefHeight="17.0" prefWidth="149.0" />
+      <TextField fx:id="passwordTextField" layoutX="119.0" layoutY="169.0" />
    </children>
 </Pane>
