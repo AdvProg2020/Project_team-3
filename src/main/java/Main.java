@@ -26,24 +26,27 @@ public class Main extends Application {
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("paniz");
         initializeScreens();
-        SceneSwitcher.getInstance().setSceneTo("FelanMenu");
+        SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
+        stage.setMaximized(true);
         stage.show();
     }
 
     public void initializeScreens() throws IOException {
-        //screen haro az fxml mikhone pass mide SceneSwitcher
         Parent parent;
-        FXMLLoader loader = new FXMLLoader();
-        loader.getCharset();
-        //FXMLLoader.load(getClass().getResource("fxml/asd.fxml"));
-        //parent = FXMLLoader.load(getClass().getResource("main/java/View/Menus/Markups/FelanMenu.fxml"));
-        URL url = new File("src/main/resources/fxml/asd.fxml").toURI().toURL();
-        parent = FXMLLoader.load(url);
+        URL [] urls=new URL[5];
+        urls[0] = new File("src/main/resources/fxml/MainMenu.fxml").toURI().toURL();
+        parent = FXMLLoader.load(urls[0]);
+        SceneSwitcher.getInstance().addScene("MainMenu",new Scene(parent,1280,600));
+        urls[1]=new File("src/main/resources/fxml/SellerRegisterMenu.fxml").toURI().toURL();
+        parent=FXMLLoader.load(urls[1]);
+        SceneSwitcher.getInstance().addScene("SellerRegister",new Scene(parent,1280,600));
+        urls[2]=new File("src/main/resources/fxml/AdminRegisterMenu.fxml").toURI().toURL();
+        parent=FXMLLoader.load(urls[2]);
+        SceneSwitcher.getInstance().addScene("AdminRegister",new Scene(parent,1280,600));
+        urls[3]=new File("src/main/resources/fxml/BuyerRegisterMenu.fxml").toURI().toURL();
+        parent=FXMLLoader.load(urls[3]);
+        SceneSwitcher.getInstance().addScene("BuyerRegister",new Scene(parent,1280,600));
 
-
-        getClass().getResource("fxml/asd.fxml");
-        //parent = loader.load(getClass().getResource("View/Menus/Markups/FelanMenu.fxml")); //<= kar nemikone kiri!
-        SceneSwitcher.getInstance().addScene("FelanMenu",new Scene(parent,400,600));
     }
 
 }

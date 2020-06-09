@@ -35,5 +35,6 @@ public class SceneSwitcher {
         stage.setScene(allScenes.get(name));
     }
 
+    public  Stage getStage(){return stage;}
 
 }

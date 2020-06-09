@@ -100,7 +100,7 @@ public class AdminManageCategoriesMenu extends UserMenu {
         if (command.equals("no")) {
             return;
         }
-        if (fatherCategory.isBlank()) {
+        if (fatherCategory.isEmpty()) {
             System.out.println(ItemAndCategoryController.getInstance().addCategory(name, attributes,"Main"));
         } else {
             System.out.println((ItemAndCategoryController.getInstance().addCategory(name, attributes, fatherCategory)));

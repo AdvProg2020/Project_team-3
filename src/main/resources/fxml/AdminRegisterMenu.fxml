@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController.LoginRegisterController.AdminRegisterController">
+   <children>
+      <ComboBox fx:id="roleChooser" layoutX="125.0" layoutY="40.0" prefWidth="150.0" onMouseClicked="#comboBoxPressed"/>
+      <Label layoutX="72.0" layoutY="44.0" text="job-Admin" />
+      <TextField fx:id="usernameTextField" layoutX="126.0" layoutY="107.0" />
+      <TextField fx:id="firstNameTextField" layoutX="125.0" layoutY="234.0" />
+      <TextField fx:id="surnameTextField" layoutX="125.0" layoutY="300.0" />
+      <TextField fx:id="emailTextField" layoutX="125.0" layoutY="374.0" />
+      <TextField fx:id="phoneNumberTextFiled" layoutX="125.0" layoutY="442.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="126.0" layoutY="181.0" />
+      <Label layoutX="57.0" layoutY="111.0" prefHeight="17.0" prefWidth="57.0" text="username" />
+      <Label layoutX="52.0" layoutY="185.0" prefHeight="17.0" prefWidth="57.0" text="password" />
+      <Label layoutX="63.0" layoutY="378.0" prefHeight="17.0" prefWidth="33.0" text="Email" />
+      <Label layoutX="56.0" layoutY="238.0" text="firstname" />
+      <Label layoutX="57.0" layoutY="304.0" text="surname" />
+      <Label layoutX="23.0" layoutY="446.0" prefHeight="17.0" prefWidth="81.0" text="phoneNumber" />
+      <Button layoutX="147.0" layoutY="561.0" mnemonicParsing="false" text="Register" />
+      <TextField fx:id="imageDirectory" layoutX="125.0" layoutY="497.0" />
+      <Label layoutX="56.0" layoutY="501.0" text="image" />
+      <Button layoutX="275.0" layoutY="497.0" mnemonicParsing="false" text="..." />
+      <CheckBox layoutX="274.0" layoutY="185.0" mnemonicParsing="false" text="show Password?" />
+   </children>
+</Pane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController.LoginRegisterController.SellerRegisterController">
+   <children>
+      <ComboBox fx:id="roleChooser" layoutX="125.0" layoutY="35.0" prefWidth="150.0" onMouseClicked="#comboBoxPressed"/>
+      <Label layoutX="77.0" layoutY="39.0" text="Job-Seller" />
+      <TextField fx:id="usernameTextField" layoutX="125.0" layoutY="95.0" />
+      <TextField fx:id="moneyTextField" layoutX="125.0" layoutY="455.0" />
+      <TextField fx:id="firstNameTextField" layoutX="125.0" layoutY="195.0" />
+      <TextField fx:id="surnameTextField" layoutX="125.0" layoutY="248.0" />
+      <TextField fx:id="emailTextField" layoutX="125.0" layoutY="300.0" />
+      <TextField fx:id="phoneNumberTextField" layoutX="125.0" layoutY="351.0" />
+      <TextField fx:id="companyTextField" layoutX="125.0" layoutY="399.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="125.0" layoutY="145.0" />
+      <Label layoutX="58.0" layoutY="99.0" prefHeight="17.0" prefWidth="57.0" text="username" />
+      <Label layoutX="56.0" layoutY="149.0" prefHeight="17.0" prefWidth="57.0" text="password" />
+      <Label layoutX="50.0" layoutY="199.0" prefHeight="17.0" prefWidth="57.0" text="firstName" />
+      <Label layoutX="56.0" layoutY="252.0" prefHeight="17.0" prefWidth="57.0" text="surname" />
+      <Label layoutX="62.0" layoutY="304.0" prefHeight="17.0" prefWidth="33.0" text="Email" />
+      <Label layoutX="28.0" layoutY="355.0" prefHeight="17.0" prefWidth="80.0" text="phoneNumber" />
+      <Label layoutX="36.0" layoutY="403.0" text="Company" />
+      <Label layoutX="48.0" layoutY="459.0" text="Money" />
+      <Button layoutX="274.0" layoutY="506.0" mnemonicParsing="false" text="....." />
+      <Label layoutX="52.0" layoutY="518.0" text="image" />
+      <Button layoutX="112.0" layoutY="548.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Register" />
+      <CheckBox layoutX="289.0" layoutY="149.0" mnemonicParsing="false" text="show Password?" />
+      <TextField fx:id="imageDirectory" layoutX="125.0" layoutY="506.0" />
+   </children>
+</Pane>

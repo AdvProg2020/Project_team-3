@@ -211,7 +211,7 @@ public class SortAndFilterController {
       if(filterAvailability == true){
          ans +="\nfilter by availability";
       }
-      if (ans.isBlank()) {
+      if (ans.isEmpty()) {
          ans = "You have no active filter(s)";
       }
       return ans;
