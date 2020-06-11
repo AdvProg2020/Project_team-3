@@ -219,7 +219,7 @@ public class BuyerRegisterController {
     }
 
     public void back(ActionEvent actionEvent) {
-       SceneSwitcher.getInstance().back();
+
     }
 
     public void mainMenu(ActionEvent actionEvent) {

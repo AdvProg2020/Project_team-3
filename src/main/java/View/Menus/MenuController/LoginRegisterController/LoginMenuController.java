@@ -44,7 +44,7 @@ public class LoginMenuController {
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         emptyStage();
-        SceneSwitcher.getInstance().back();
+
     }
 
 
