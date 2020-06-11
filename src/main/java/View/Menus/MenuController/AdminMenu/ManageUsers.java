@@ -65,7 +65,7 @@ public class ManageUsers {
       String username=listView.getItems().get(index).toString();
       System.out.println(username);
       ManageUserIn.setUsername(username);
-      SceneSwitcher.getInstance().setSceneTo("ManageUserIn");
+      SceneSwitcher.getInstance().setSceneTo("ManageUserIn",348,88);
       listView.getSelectionModel().clearSelection();
    }
 }

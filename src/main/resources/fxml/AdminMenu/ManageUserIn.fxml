@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="199.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageUserIn">
-            <Button layoutX="177.0" layoutY="73.0" prefHeight="27.0" prefWidth="113.0" text="delete user" onMouseClicked="#deleteUser" />
-            <Button layoutX="51.0" layoutY="73.0" prefHeight="27.0" prefWidth="113.0" text="exit" onMouseClicked="#back"/>
+<AnchorPane prefHeight="88.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageUserIn">
+            <Button layoutX="179.0" layoutY="37.0" onMouseClicked="#deleteUser" prefHeight="27.0" prefWidth="113.0" text="delete user" />
+            <Button layoutX="36.0" layoutY="37.0" onMouseClicked="#back" prefHeight="27.0" prefWidth="113.0" text="exit" />
 </AnchorPane>
