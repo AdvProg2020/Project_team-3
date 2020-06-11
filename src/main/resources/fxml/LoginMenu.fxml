@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController" fx:id="pane">
+<Pane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="612.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Login or Register" fx:id="menu">
+          <Menu mnemonicParsing="false" text="Login or Register">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Main" />
                   <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Buyer Register" />

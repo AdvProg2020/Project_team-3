@@ -51,9 +51,7 @@ public class LoginMenuController {
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         emptyStage();
-        addFeatureAfterLogin();
         SceneSwitcher.getInstance().back();
-
     }
 
     private boolean validUsername(String username){
@@ -116,10 +114,6 @@ public class LoginMenuController {
         errorLabel.setText("");
     }
 
-    private void addFeatureAfterLogin()  {
-
-
-    }
 
     public void back(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().back();
