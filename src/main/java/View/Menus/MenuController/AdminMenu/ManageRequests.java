@@ -25,6 +25,17 @@ public class ManageRequests {
          listView.getItems().add("there are no request right now");
    }
 
+   public void requestSelect(MouseEvent mouseEvent) {
+      int index=listView.getSelectionModel().getSelectedIndex();
+      System.out.println(index);
+      if(index==-1)
+         return;
+      String requestId=listView.getItems().get(index).toString().substring(4,9);
+      listView.getSelectionModel().clearSelection();
+      ManageRequestIn.setRequestId(requestId);
+      SceneSwitcher.getInstance().setSceneTo("ManageRequestIn",173,392);
+   }
+
    public void back(MouseEvent mouseEvent) {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }

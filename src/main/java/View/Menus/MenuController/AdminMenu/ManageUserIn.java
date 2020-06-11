@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.SceneSwitcher;
 import Controller.UserController;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
 public class ManageUserIn {
@@ -13,10 +14,29 @@ public class ManageUserIn {
 
    public void deleteUser(MouseEvent mouseEvent) {
       String message=UserController.getInstance().deleteUser(username);
-      System.out.println(message);
+      System.out.println(message+"salam");
+      if(message.startsWith("Error")) {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setContentText(message);
+         alert.showAndWait();
+         return;
+      }
+      if(message.startsWith("Successful")){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setContentText(message);
+         alert.showAndWait();
+         back();
+      }
+
    }
 
    public void back(){
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
+   }
+
+   public void viewUser(MouseEvent mouseEvent) {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setContentText(UserController.getInstance().viewPersonalInfo(username));
+      alert.show();
    }
 }

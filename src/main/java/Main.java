@@ -26,9 +26,9 @@ public class Main extends Application{
         stage.setTitle("MVC Shop team 3");
         initializeScreens();                                       //                                                 ______
         SceneSwitcher.getInstance().setSceneTo("MainMenu");       //   /\                                             \    /
-        stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
+        //stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
         stage.setMaxWidth(1280);                                  // /____\                                             \/
-        stage.setMinHeight(720);
+        //stage.setMinHeight(720);
         stage.setMaxHeight(720);
         stage.setResizable(false);
         stage.show();
@@ -44,7 +44,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageRequests","src/main/resources/fxml/AdminMenu/ManageRequests.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageProducts","src/main/resources/fxml/AdminMenu/ManageProducts.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageUserIn","src/main/resources/fxml/AdminMenu/ManageUserIn.fxml");
-        SceneSwitcher.getInstance().addSceneFXML("Login","src/main/resources/fxml/LoginMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageRequestIn","src/main/resources/fxml/AdminMenu/ManageRequestIn.fxml");
     }
 
 }

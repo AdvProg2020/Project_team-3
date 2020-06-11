@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="173.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageRequestIn">
+    <Button layoutX="249.0" layoutY="118.0" onMouseClicked="#accept" prefHeight="27.0" prefWidth="113.0" text="accept" />
+    <Button layoutX="28.0" layoutY="118.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" text="decline" />
+    <TextField  editable="false"  fx:id="detail" layoutX="31.0" layoutY="39.0" prefHeight="73.0" prefWidth="333.0" />
+    <Button layoutX="3.0" layoutY="1.0" onMouseClicked="#exit" prefHeight="27.0" prefWidth="51.0" text="exit" />
+</AnchorPane>
