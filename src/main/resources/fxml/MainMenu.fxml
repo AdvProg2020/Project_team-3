@@ -7,7 +7,7 @@
    <children>
      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
        <menus>
-         <Menu mnemonicParsing="false" text="Log in or Register">
+         <Menu mnemonicParsing="false" text="Log in or Register" fx:id="menuBar">
            <items>
              <MenuItem mnemonicParsing="false" onAction="#login" text="Log In" />
              <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Register Buyer" />

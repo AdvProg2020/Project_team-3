@@ -6,24 +6,46 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
    <children>
-      <ComboBox fx:id="roleChooser" layoutX="125.0" layoutY="40.0" prefWidth="150.0" onMouseClicked="#comboBoxPressed"/>
-      <Label layoutX="72.0" layoutY="44.0" text="job-Admin" />
-      <TextField fx:id="usernameTextField" layoutX="126.0" layoutY="107.0" />
-      <TextField fx:id="firstNameTextField" layoutX="125.0" layoutY="234.0" />
-      <TextField fx:id="surnameTextField" layoutX="125.0" layoutY="300.0" />
-      <TextField fx:id="emailTextField" layoutX="125.0" layoutY="374.0" />
+      <TextField fx:id="usernameTextField" layoutX="125.0" layoutY="87.0" />
+      <TextField fx:id="firstNameTextField" layoutX="125.0" layoutY="215.0" />
+      <TextField fx:id="surnameTextField" layoutX="125.0" layoutY="292.0" />
+      <TextField fx:id="emailTextField" layoutX="126.0" layoutY="370.0" />
       <TextField fx:id="phoneNumberTextFiled" layoutX="125.0" layoutY="442.0" />
-      <PasswordField fx:id="passwordTextField" layoutX="126.0" layoutY="181.0" />
-      <Label layoutX="57.0" layoutY="111.0" prefHeight="17.0" prefWidth="57.0" text="username" />
-      <Label layoutX="52.0" layoutY="185.0" prefHeight="17.0" prefWidth="57.0" text="password" />
-      <Label layoutX="63.0" layoutY="378.0" prefHeight="17.0" prefWidth="33.0" text="Email" />
-      <Label layoutX="56.0" layoutY="238.0" text="firstname" />
-      <Label layoutX="57.0" layoutY="304.0" text="surname" />
-      <Label layoutX="23.0" layoutY="446.0" prefHeight="17.0" prefWidth="81.0" text="phoneNumber" />
-      <Button layoutX="147.0" layoutY="561.0" mnemonicParsing="false" text="Register" />
-      <TextField fx:id="imageDirectory" layoutX="125.0" layoutY="497.0" />
-      <Label layoutX="56.0" layoutY="501.0" text="image" />
-      <Button layoutX="275.0" layoutY="497.0" mnemonicParsing="false" text="..." />
-      <CheckBox layoutX="274.0" layoutY="185.0" mnemonicParsing="false" text="show Password?" />
+      <PasswordField fx:id="passwordField" layoutX="125.0" layoutY="149.0" />
+      <Label layoutX="60.0" layoutY="91.0" prefHeight="17.0" prefWidth="57.0" text="username" />
+      <Label layoutX="60.0" layoutY="153.0" prefHeight="17.0" prefWidth="57.0" text="password" />
+      <Label layoutX="63.0" layoutY="374.0" prefHeight="17.0" prefWidth="33.0" text="Email" />
+      <Label layoutX="64.0" layoutY="219.0" text="firstname" />
+      <Label layoutX="57.0" layoutY="296.0" text="surname" />
+      <Label layoutX="39.0" layoutY="446.0" prefHeight="17.0" prefWidth="81.0" text="phoneNumber" />
+      <Button layoutX="131.0" layoutY="595.0" mnemonicParsing="false" onAction="#register" prefHeight="53.0" prefWidth="137.0" text="Register" />
+      <TextField fx:id="imageDirectory" layoutX="125.0" layoutY="518.0" />
+      <Label layoutX="57.0" layoutY="522.0" text="image" />
+      <Button layoutX="275.0" layoutY="518.0" mnemonicParsing="false" onAction="#fileChooserOpen" text="..." />
+      <CheckBox fx:id="passwordCheckBox" layoutX="275.0" layoutY="153.0" mnemonicParsing="false" text="show Password?" />
+      <TextField fx:id="passwordTextField" layoutX="126.0" layoutY="149.0" />
+      <Label fx:id="usernameLabel" layoutX="125.0" layoutY="112.0" prefHeight="17.0" prefWidth="191.0" />
+      <Label fx:id="passwordLabel" layoutX="125.0" layoutY="173.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="firstnameLabel" layoutX="125.0" layoutY="240.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="surnameLabel" layoutX="125.0" layoutY="317.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="emailLabel" layoutX="125.0" layoutY="395.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="phoneNumberLabel" layoutX="126.0" layoutY="467.0" prefHeight="17.0" prefWidth="149.0" />
+      <MenuBar prefHeight="25.0" prefWidth="434.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Login or Register">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#MainMenu" text="Main" />
+                  <MenuItem mnemonicParsing="false" onAction="#Login" text="Login" />
+              <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="74.0" text="Back" />
    </children>
 </Pane>

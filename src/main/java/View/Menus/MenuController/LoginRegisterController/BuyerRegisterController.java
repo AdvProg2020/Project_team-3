@@ -3,6 +3,7 @@ package View.Menus.MenuController.LoginRegisterController;
 import Controller.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -11,10 +12,10 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Optional;
 
 
 public class BuyerRegisterController {
-    public ComboBox roleChooser;
     public PasswordField passwordField;
     public TextField surnameTextField;
     public TextField moneyTextField;
@@ -33,7 +34,6 @@ public class BuyerRegisterController {
     public TextField firstNameTextField;
     public TextField passwordTextField;
 
-
     public void initialize(){
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
@@ -42,12 +42,6 @@ public class BuyerRegisterController {
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
     }
 
-
-    public void comboBoxPressed(MouseEvent mouseEvent) {
-        roleChooser.getSelectionModel().select("Buyer");
-    }
-
-
     public void fileChooserOpen(ActionEvent actionEvent) {
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
@@ -55,9 +49,11 @@ public class BuyerRegisterController {
                 new FileChooser.ExtensionFilter("image","*.jpg")
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
-        imageDirectory.setText(selected.getPath());
+        if(selected==null) return;
         Path source= Paths.get(selected.getPath());
         String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
+        if(validUsername(usernameTextField.getText())==false) return;
+        imageDirectory.setText(selected.getPath());
         String fullPath="src/main/resources/Images/"+usernameTextField.getText()+ext;
         Path des=Paths.get(fullPath);
         try {
@@ -116,7 +112,7 @@ public class BuyerRegisterController {
     private boolean validPassword(String password){
         if(password.equals("")){
             passwordLabel.setText("you must fill the blank!");
-            firstnameLabel.setTextFill(Color.rgb(255,0,0));
+            passwordLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
         return true;
@@ -219,6 +215,27 @@ public class BuyerRegisterController {
         emailLabel.setText("");
         moneyTextField.setText("");
         moneyLabel.setText("");
+        imageDirectory.setText("");
+    }
+
+    public void back(ActionEvent actionEvent) {
+
+    }
+
+    public void mainMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("MainMenu");
+    }
+
+    public void login(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("Login");
+    }
+
+    public void registerSeller(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("SellerRegister");
+    }
+
+    public void Exit(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeWindow();
     }
 
 }
