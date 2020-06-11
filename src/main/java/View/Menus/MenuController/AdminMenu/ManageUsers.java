@@ -57,7 +57,7 @@ public class ManageUsers {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
-   public void test(MouseEvent mouseEvent) {
+   public void userSelect(MouseEvent mouseEvent) {
       int index=listView.getSelectionModel().getSelectedIndex();
       System.out.println(index);
       if(index==-1)

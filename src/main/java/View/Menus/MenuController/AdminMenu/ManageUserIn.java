@@ -18,13 +18,13 @@ public class ManageUserIn {
       if(message.startsWith("Error")) {
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
-         alert.show();
+         alert.showAndWait();
          return;
       }
       if(message.startsWith("Successful")){
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
-         alert.show();
+         alert.showAndWait();
          back();
       }
 
@@ -32,5 +32,11 @@ public class ManageUserIn {
 
    public void back(){
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
+   }
+
+   public void viewUser(MouseEvent mouseEvent) {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setContentText(UserController.getInstance().viewPersonalInfo(username));
+      alert.show();
    }
 }

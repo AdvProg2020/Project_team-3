@@ -44,6 +44,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageRequests","src/main/resources/fxml/AdminMenu/ManageRequests.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageProducts","src/main/resources/fxml/AdminMenu/ManageProducts.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageUserIn","src/main/resources/fxml/AdminMenu/ManageUserIn.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageRequestIn","src/main/resources/fxml/AdminMenu/ManageRequestIn.fxml");
     }
 
 }
