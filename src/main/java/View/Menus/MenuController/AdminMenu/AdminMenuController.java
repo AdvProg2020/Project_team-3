@@ -19,7 +19,7 @@ public class AdminMenuController {
    }
 
    public void manageProducts(MouseEvent mouseEvent) {
-
+     SceneSwitcher.getInstance().setSceneTo("ManageProducts");
    }
 
    public void manageCategories(MouseEvent mouseEvent) {

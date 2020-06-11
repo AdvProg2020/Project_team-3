@@ -35,19 +35,15 @@ public class Main extends Application{
     }
 
     public void initializeScreens() throws IOException {
-        addScene("src/main/resources/fxml/MainMenu.fxml","MainMenu");
-        addScene("src/main/resources/fxml/SellerRegisterMenu.fxml","SellerRegister");
-        addScene("src/main/resources/fxml/AdminRegisterMenu.fxml","AdminRegister");
-        addScene("src/main/resources/fxml/BuyerRegisterMenu.fxml","BuyerRegister");
-        addScene("src/main/resources/fxml/AdminMenu.fxml","AdminMenu");
-        addScene("src/main/resources/fxml/ManageUsers.fxml","ManageUsers");
-
-    }
-
-    private void addScene(String path,String sceneName) throws IOException{
-        URL urls=new File(path).toURI().toURL();
-        Parent parent=FXMLLoader.load(urls);
-        SceneSwitcher.getInstance().addScene(sceneName,new Scene(parent,1280,720));
+        SceneSwitcher.getInstance().addSceneFXML("MainMenu","src/main/resources/fxml/MainMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("SellerRegister","src/main/resources/fxml/SellerRegisterMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AdminRegister","src/main/resources/fxml/AdminRegisterMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("BuyerRegister","src/main/resources/fxml/BuyerRegisterMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AdminMenu","src/main/resources/fxml/AdminMenu/AdminMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageUsers","src/main/resources/fxml/AdminMenu/ManageUsers.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageRequests","src/main/resources/fxml/AdminMenu/ManageRequests.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageProducts","src/main/resources/fxml/AdminMenu/ManageProducts.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageUserIn","src/main/resources/fxml/AdminMenu/ManageUserIn.fxml");
     }
 
 }
