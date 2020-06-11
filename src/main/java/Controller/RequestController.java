@@ -196,7 +196,12 @@ public class RequestController {
     public String declineRequest(String requestID) {
         Request declined = getRequestById(requestID);
         if (declined instanceof AccountRequest) {
+            String username=((AccountRequest) declined).getUser().getUsername();
+            String imagePath=UserController.getInstance().userImagePath(username);
+            File file=new File(imagePath);
+            if(!imagePath.equals("src/main/resources/Images/default.jpg")) file.delete();
             Database.getInstance().deleteUser(((AccountRequest) declined).getUser());
+
         }
         if (declined == null) {
             return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;

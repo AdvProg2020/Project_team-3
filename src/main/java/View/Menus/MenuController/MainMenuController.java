@@ -4,9 +4,12 @@ import Controller.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Menu;
 
 public class MainMenuController {
 
+
+    public Menu menuBar;
 
     public void registerBuyer(){
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
@@ -21,7 +24,7 @@ public class MainMenuController {
     }
 
     public void login(){
-        //scene ro bebare rooye login menu
+        SceneSwitcher.getInstance().setSceneTo("Login");
     }
 
     public void userzone(ActionEvent actionEvent) {

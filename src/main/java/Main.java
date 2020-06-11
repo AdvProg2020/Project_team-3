@@ -41,7 +41,7 @@ public class Main extends Application{
         addScene("src/main/resources/fxml/BuyerRegisterMenu.fxml","BuyerRegister");
         addScene("src/main/resources/fxml/AdminMenu.fxml","AdminMenu");
         addScene("src/main/resources/fxml/ManageUsers.fxml","ManageUsers");
-
+        addScene("src/main/resources/fxml/LoginMenu.fxml","Login");
     }
 
     private void addScene(String path,String sceneName) throws IOException{
