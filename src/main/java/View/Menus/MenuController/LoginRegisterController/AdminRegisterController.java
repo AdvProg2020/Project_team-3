@@ -1,18 +1,12 @@
-package Controller.MenuController.LoginRegisterController;
+package View.Menus.MenuController.LoginRegisterController;
 
 import Controller.SceneSwitcher;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
-import javax.print.DocFlavor;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class AdminRegisterController {
     public ComboBox roleChooser;

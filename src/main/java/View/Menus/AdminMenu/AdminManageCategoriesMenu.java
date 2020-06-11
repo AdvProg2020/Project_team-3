@@ -6,6 +6,7 @@ import View.Menus.LoginRegisterMenu;
 import View.Menus.MainMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
+import javafx.scene.Scene;
 
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;

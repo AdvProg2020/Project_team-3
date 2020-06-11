@@ -1,9 +1,7 @@
-package Controller.MenuController.LoginRegisterController;
+package View.Menus.MenuController.LoginRegisterController;
 
 import Controller.SceneSwitcher;
 import Controller.UserController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;

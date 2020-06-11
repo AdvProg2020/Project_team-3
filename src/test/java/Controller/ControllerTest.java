@@ -20,6 +20,7 @@ public class ControllerTest {
 
     @Test
     public void getAlphaNumericString() {
-        System.out.println(Controller.getInstance().getAlphaNumericString(4,"Requests"));
+        String ans=Controller.getInstance().getAlphaNumericString(4,"Requests");
+        assertEquals(ans.length(),4);
     }
 }

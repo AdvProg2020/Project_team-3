@@ -1,4 +1,4 @@
-package Controller.MenuController;
+package View.Menus.MenuController;
 
 public class SalesMenuController {
 }

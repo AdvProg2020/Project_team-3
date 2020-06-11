@@ -41,6 +41,8 @@ public class DatabaseTest {
     @Test
     public void initiate() {
         Database.getInstance().initiate();
+        assertTrue(UserController.getInstance().isThereUserWithUsername("admin"));
+        assertTrue(ItemAndCategoryController.getInstance().isThereCategoryWithName("Main"));
     }
 
     @Test

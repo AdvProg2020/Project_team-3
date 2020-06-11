@@ -1,12 +1,9 @@
-package Controller.MenuController.LoginRegisterController;
+package View.Menus.MenuController.LoginRegisterController;
 
 import Controller.SceneSwitcher;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
