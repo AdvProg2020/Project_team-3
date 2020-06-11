@@ -1,17 +1,11 @@
 import Controller.Database;
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
 
 public class Main extends Application{
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package View.Menus.MenuController.AdminMenu;
 
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;

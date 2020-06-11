@@ -1,7 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;

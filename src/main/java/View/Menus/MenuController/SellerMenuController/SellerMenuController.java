@@ -1,6 +1,6 @@
 package View.Menus.MenuController.SellerMenuController;
 
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.fxml.FXML;
 

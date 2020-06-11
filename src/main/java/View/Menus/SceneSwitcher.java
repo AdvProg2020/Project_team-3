@@ -1,4 +1,4 @@
-package Controller;
+package View.Menus;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

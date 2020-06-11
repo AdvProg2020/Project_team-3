@@ -1,18 +1,15 @@
 package View.Menus.MenuController.LoginRegisterController;
 
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Optional;
 
 
 public class BuyerRegisterController {

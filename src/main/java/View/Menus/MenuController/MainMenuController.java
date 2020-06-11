@@ -1,9 +1,8 @@
 package View.Menus.MenuController;
 
 import Controller.Controller;
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import Controller.UserController;
-import Model.Users.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;

@@ -1,22 +1,12 @@
 package View.Menus.MenuController.LoginRegisterController;
 
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
-import View.Menus.MainMenu;
-import View.Menus.MenuController.MainMenuController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class LoginMenuController {
 

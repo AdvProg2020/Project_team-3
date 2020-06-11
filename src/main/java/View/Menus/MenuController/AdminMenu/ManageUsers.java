@@ -1,21 +1,11 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
-import Controller.SceneSwitcher;
-import javafx.event.ActionEvent;
+import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Popup;
-
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class ManageUsers {
    @FXML

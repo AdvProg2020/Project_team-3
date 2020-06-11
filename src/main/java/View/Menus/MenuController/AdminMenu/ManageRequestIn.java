@@ -1,10 +1,9 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.RequestController;
-import Controller.SceneSwitcher;
+import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
