@@ -268,6 +268,16 @@ public class Database<Public> {
       }
       return fileNames;
    }
+
+   public ArrayList<String> getAllUsername(String type){
+      ArrayList<String> allUser=printFolderContent("Users");
+      ArrayList<String> specificUser=new ArrayList<>();
+      for (String user : allUser) {
+         if(UserController.getInstance().getUserType(user).equals(type))
+            specificUser.add(user);
+      }
+      return specificUser;
+   }
 }
 
 

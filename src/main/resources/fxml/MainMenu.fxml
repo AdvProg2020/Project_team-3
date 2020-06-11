@@ -17,5 +17,7 @@
          </Menu>
        </menus>
      </MenuBar>
+     <Button layoutX="80.0" layoutY="133.0" mnemonicParsing="false" onAction="#userzone" text="user zone" />
    </children>
+
 </Pane>
