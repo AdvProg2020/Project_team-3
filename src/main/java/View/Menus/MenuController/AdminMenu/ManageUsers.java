@@ -4,12 +4,17 @@ import Controller.Database;
 import Controller.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ManageUsers {
@@ -29,26 +34,22 @@ public class ManageUsers {
 
    public void update(MouseEvent mouseEvent) {
       listView.getItems().clear();
-      int counter=0;
      if(adminCheck.isSelected()){
         for (Object admin : Database.getInstance().getAllUsername("Admin")) {
            listView.getItems().add(admin);
-           counter++;
         }
      }
       if(buyerCheck.isSelected()){
          for (Object buyer : Database.getInstance().getAllUsername("Buyer")) {
             listView.getItems().add(buyer);
-            counter++;
          }
       }
       if(sellerCheck.isSelected()){
          for (Object seller : Database.getInstance().getAllUsername("Seller")) {
             listView.getItems().add(seller);
-            counter++;
          }
       }
-      if(counter==0)
+      if(listView.getItems().isEmpty())
          listView.getItems().add("no user");
    }
 
@@ -63,6 +64,8 @@ public class ManageUsers {
          return;
       String username=listView.getItems().get(index).toString();
       System.out.println(username);
+      ManageUserIn.setUsername(username);
+      SceneSwitcher.getInstance().setSceneTo("ManageUserIn");
       listView.getSelectionModel().clearSelection();
    }
 }
