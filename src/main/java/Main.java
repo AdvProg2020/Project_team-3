@@ -13,15 +13,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class Main extends Application {
+public class Main /*extends Application*/ {
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
         Database.getInstance().initiate();
         View.run();
 
     }
 
-    @Override
+   /* @Override
     public void start(Stage stage) throws Exception {
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
@@ -51,7 +51,7 @@ public class Main extends Application {
         parent=FXMLLoader.load(urls[3]);
         SceneSwitcher.getInstance().addScene("BuyerRegister",new Scene(parent,1280,720));
 
-    }
+    }*/
 
 }
 // hamme scene ha 1280 (tool) dar 720 (ertefa) bashan ke 16:9 bashe va ziadi ham bozorg nabashe
