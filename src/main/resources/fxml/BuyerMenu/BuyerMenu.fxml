@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="View.Menus.MenuController.BuyerMenu.BuyerMenuController"
+            prefHeight="720.0" prefWidth="1280.0">
+
+    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="option">
+                <MenuItem mnemonicParsing="false" text="View Cart" onAction="#viewCart" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="Shop" onAction="#viewShop" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="Discounts" onAction="#viewDiscounts" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="View Discount Codes" onAction="#viewDiscountCodes" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="View Orders" onAction="#viewOrders" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="back" onAction="#back" ></MenuItem>
+                <MenuItem mnemonicParsing="false" text="logout" onAction="#logout"></MenuItem>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+</AnchorPane>
