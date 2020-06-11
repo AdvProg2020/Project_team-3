@@ -213,7 +213,7 @@ public class AdminRegisterController {
     }
 
     public void back(ActionEvent actionEvent) {
-
+        SceneSwitcher.getInstance().back();
     }
 
 

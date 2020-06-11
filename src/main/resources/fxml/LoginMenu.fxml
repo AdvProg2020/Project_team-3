@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController">
+<Pane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController" fx:id="pane">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="612.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Login or Register">
+          <Menu mnemonicParsing="false" text="Login or Register" fx:id="menu">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Main" />
                   <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Buyer Register" />
@@ -33,5 +33,6 @@
       <Button layoutX="211.0" layoutY="348.0" mnemonicParsing="false" onAction="#login" prefHeight="51.0" prefWidth="141.0" text="Login" />
       <PasswordField fx:id="passwordField" layoutX="205.0" layoutY="261.0" />
       <Label fx:id="errorLabel" layoutX="206.0" layoutY="309.0" prefHeight="17.0" prefWidth="149.0" />
+      <Button layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Back" onAction="#back" />
    </children>
 </Pane>

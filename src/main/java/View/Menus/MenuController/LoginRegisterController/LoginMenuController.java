@@ -3,12 +3,18 @@ package View.Menus.MenuController.LoginRegisterController;
 import Controller.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
+import View.Menus.MainMenu;
 import View.Menus.MenuController.MainMenuController;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -20,6 +26,8 @@ public class LoginMenuController {
     public CheckBox passwordCheckBox;
     public PasswordField passwordField;
     public Label errorLabel;
+    public Menu menu;
+    public Pane pane;
 
 
     public void initialize(){
@@ -29,7 +37,6 @@ public class LoginMenuController {
         passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
     }
-
 
     public void login(ActionEvent actionEvent) {
         boolean isValidUsername=validUsername(usernameTextField.getText());
@@ -44,9 +51,10 @@ public class LoginMenuController {
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         emptyStage();
+        addFeatureAfterLogin();
+        SceneSwitcher.getInstance().back();
 
     }
-
 
     private boolean validUsername(String username){
         if(username.equals("")){
@@ -108,8 +116,12 @@ public class LoginMenuController {
         errorLabel.setText("");
     }
 
-    private void addFeatureAfterLogin(){
+    private void addFeatureAfterLogin()  {
+
 
     }
 
+    public void back(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().back();
+    }
 }
