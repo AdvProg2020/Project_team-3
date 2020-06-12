@@ -13,8 +13,8 @@
           <Menu mnemonicParsing="false" text="Login or Register">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Main" />
-                  <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Buyer Register" />
-                  <MenuItem mnemonicParsing="false" onAction="#registerSeller" text="Seller Register" />
+                  <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Register Buyer" />
+                  <MenuItem mnemonicParsing="false" onAction="#registerSeller" text="Register Seller" />
               <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
             </items>
           </Menu>

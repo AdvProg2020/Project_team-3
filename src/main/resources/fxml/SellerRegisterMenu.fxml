@@ -43,7 +43,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Main" />
                   <MenuItem mnemonicParsing="false" onAction="#login" text="Login" />
-                  <MenuItem mnemonicParsing="false" onAction="#buyerRegister" text="Buyer Register" />
+                  <MenuItem mnemonicParsing="false" onAction="#buyerRegister" text="Register Buyer" />
               <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
             </items>
           </Menu>

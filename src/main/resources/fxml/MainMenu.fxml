@@ -12,7 +12,6 @@
              <MenuItem mnemonicParsing="false" onAction="#login" text="Log In" />
              <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Register Buyer" />
              <MenuItem mnemonicParsing="false" onAction="#registerSeller" text="Register Seller" />
-             <MenuItem mnemonicParsing="false" onAction="#registerAdmin" text="Register Admin" />
            </items>
          </Menu>
        </menus>

@@ -1,6 +1,7 @@
 package View.Menus.MenuController;
 
 import Controller.Controller;
+import Model.Users.Admin;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -15,31 +16,15 @@ public class MainMenuController {
     public Menu menu;
 
     public void initialize(){
-        if(Controller.getInstance().isLogin()==true){
-            MenuItem menuItem=new MenuItem("Logout");
-            menu.getItems().add(menuItem);
-            menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    UserController.getInstance().logout();
-                    menu.getItems().remove(menuItem);
-                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("logout Successful!");
-                    alert.show();
-                }
-            });
-        }
+        loginHandler();
     }
+
     public void registerBuyer(){
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(){
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
-    }
-
-    public void registerAdmin(){
-        SceneSwitcher.getInstance().setSceneTo("AdminRegister");
     }
 
     public void login(){
@@ -52,4 +37,64 @@ public class MainMenuController {
         UserController.getInstance().login("admin","12345");
         SceneSwitcher.getInstance().setSceneTo("AdminMenu");
     }
+
+    private void loginHandler(){
+        if(Controller.getInstance().isLogin()==true){
+            menu.getItems().remove(getMenuItemByName("Log In"));
+            if(Controller.getInstance().getCurrentOnlineUser() instanceof Admin) addAdminRegisterMenuItem();
+            addLogoutMenuItem();
+        }
+    }
+
+    private void addAdminRegisterMenuItem(){
+        MenuItem adminRegister=new MenuItem("Register Admin");
+        menu.getItems().add(0,adminRegister);
+        adminRegister.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneSwitcher.getInstance().setSceneTo("AdminRegister");
+            }
+        });
+    }
+
+    private void addLoginMenuItem(){
+        MenuItem login=new MenuItem("Log In");
+        menu.getItems().add(0,login);
+        login.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneSwitcher.getInstance().setSceneTo("Login");
+            }
+        });
+    }
+
+    private void addLogoutMenuItem(){
+        MenuItem logout=new MenuItem("Logout");
+        menu.getItems().add(logout);
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                menu.getItems().remove(getMenuItemByName("Logout"));
+                if(Controller.getInstance().getCurrentOnlineUser() instanceof Admin) menu.getItems().remove(getMenuItemByName("RegisterAdmin"));
+                addLoginMenuItem();
+                showLogoutAlertBox();
+            }
+        });
+    }
+
+
+    private MenuItem getMenuItemByName(String menuItemName){
+        for(MenuItem menuItem:menu.getItems()){
+            if(menuItem.getText().equals(menuItemName)) return menuItem;
+        }
+        return null;
+    }
+
+    private void showLogoutAlertBox(){
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("logout successful!");
+        alert.show();
+    }
+
+
 }
