@@ -16,7 +16,6 @@ public class ManageUserIn {
 
    public void deleteUser(MouseEvent mouseEvent) {
       String message=UserController.getInstance().deleteUser(username);
-      System.out.println(message+"salam");
       if(message.startsWith("Error")) {
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);

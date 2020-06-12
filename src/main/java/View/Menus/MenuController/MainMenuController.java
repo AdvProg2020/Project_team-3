@@ -32,7 +32,6 @@ public class MainMenuController {
     }
 
     public void userzone(ActionEvent actionEvent) {
-        System.out.println("owowkspwkps");
         UserController.getInstance().logout();
         UserController.getInstance().login("admin","12345");
         SceneSwitcher.getInstance().setSceneTo("AdminMenu");
