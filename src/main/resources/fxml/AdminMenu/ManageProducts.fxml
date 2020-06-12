@@ -10,6 +10,10 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts"
             prefHeight="400.0" prefWidth="600.0">
-    <Button text="back" onMouseClicked="#back"></Button>
+    <MenuBar >
+        <Menu text="options">
+            <MenuItem text="back" onAction="#back"></MenuItem>
+        </Menu>
+    </MenuBar>
     <ListView layoutY="36.0" prefHeight="283.0" prefWidth="502.0" fx:id="listView"/>
 </AnchorPane>

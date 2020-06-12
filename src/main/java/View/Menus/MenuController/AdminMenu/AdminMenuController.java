@@ -27,7 +27,7 @@ public class AdminMenuController {
    }
 
    public void manageCategories(MouseEvent mouseEvent) {
-
+    SceneSwitcher.getInstance().setSceneTo("ManageCategories");
    }
 
    public void back(ActionEvent actionEvent) {
@@ -37,5 +37,9 @@ public class AdminMenuController {
    public void logout(ActionEvent actionEvent) {
       UserController.getInstance().logout();
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
+   }
+
+   public void addCategory(MouseEvent mouseEvent) {
+    SceneSwitcher.getInstance().setSceneTo("AddCategory");
    }
 }

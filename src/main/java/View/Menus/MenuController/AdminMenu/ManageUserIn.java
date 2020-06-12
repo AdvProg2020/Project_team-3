@@ -5,6 +5,8 @@ import Controller.UserController;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.event.ActionEvent;
+
 public class ManageUserIn {
    private static String username;
 
@@ -25,12 +27,12 @@ public class ManageUserIn {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         back();
+         back(null);
       }
 
    }
 
-   public void back(){
+   public void back(MouseEvent mouseEvent){
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
 

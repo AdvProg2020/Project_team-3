@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="88.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageUserIn">
             <Button layoutX="179.0" layoutY="37.0" onMouseClicked="#deleteUser" prefHeight="27.0" prefWidth="113.0" text="delete user" />
-            <Button layoutX="36.0" layoutY="37.0" onMouseClicked="#back" prefHeight="27.0" prefWidth="52.0" text="exit" />
+             <Button text="exit" onMouseClicked="#back"></Button>
             <Button layoutX="100.0" layoutY="37.0" text="view user" onMouseClicked="#viewUser" />
 </AnchorPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.AddCategory">
+    <Label layoutX="14.0" layoutY="61.0" text="category name:" />
+    <TextField fx:id="categoryName" layoutX="121.0" layoutY="56.0"> </TextField>
+    <MenuBar>
+        <Menu text="options">
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+</AnchorPane>

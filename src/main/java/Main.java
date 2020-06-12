@@ -43,6 +43,8 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("EditDiscountCode","src/main/resources/fxml/AdminMenu/EditDiscountCode.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AddDiscountCode","src/main/resources/fxml/AdminMenu/AddDiscountCode.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageDiscountCodes","src/main/resources/fxml/AdminMenu/ManageDiscountCodes.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageCategories","src/main/resources/fxml/AdminMenu/ManageCategories.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AddCategory","src/main/resources/fxml/AdminMenu/AddCategory.fxml");
     }
 
 }

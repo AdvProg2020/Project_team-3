@@ -4,6 +4,7 @@ import Controller.Database;
 import Controller.SaleAndDiscountCodeController;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -60,7 +61,7 @@ public class AddDiscountCode {
     }
    }
 
-   public void back(MouseEvent mouseEvent) {
+   public void back(ActionEvent actionEvent)  {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 

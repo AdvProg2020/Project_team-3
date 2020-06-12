@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
 import View.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -43,7 +44,7 @@ public class ManageUsers {
          listView.getItems().add("no user");
    }
 
-   public void back(MouseEvent mouseEvent) {
+   public void back(ActionEvent actionEvent)  {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 

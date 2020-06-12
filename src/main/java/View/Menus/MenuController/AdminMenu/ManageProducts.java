@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
 import View.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +25,7 @@ public class ManageProducts {
          listView.getItems().add("there are no products right now");
    }
 
-   public void back(MouseEvent mouseEvent) {
+   public void back(ActionEvent actionEvent)  {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 }
