@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageDiscountCodes">
+          <ListView layoutX="7.0" layoutY="36.0" prefHeight="346.0" prefWidth="255.0" onMouseClicked="#discountCodeSelect" fx:id="listView"> </ListView>
+          <Button layoutX="17.0" layoutY="1.0" prefHeight="27.0" prefWidth="49.0" text="exit"  onMouseClicked="#back"  />
+</AnchorPane>

@@ -40,6 +40,9 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageUserIn","src/main/resources/fxml/AdminMenu/ManageUserIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageRequestIn","src/main/resources/fxml/AdminMenu/ManageRequestIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("Login","src/main/resources/fxml/LoginMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("EditDiscountCode","src/main/resources/fxml/AdminMenu/EditDiscountCode.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AddDiscountCode","src/main/resources/fxml/AdminMenu/AddDiscountCode.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageDiscountCodes","src/main/resources/fxml/AdminMenu/ManageDiscountCodes.fxml");
     }
 
 }

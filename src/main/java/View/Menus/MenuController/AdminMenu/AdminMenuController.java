@@ -11,7 +11,7 @@ public class AdminMenuController {
    }
 
    public void manageDiscountCodes(MouseEvent mouseEvent) {
-
+    SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes");
    }
 
    public void manageRequests(MouseEvent mouseEvent) {
@@ -20,6 +20,10 @@ public class AdminMenuController {
 
    public void manageProducts(MouseEvent mouseEvent) {
      SceneSwitcher.getInstance().setSceneTo("ManageProducts");
+   }
+
+   public void addDiscountCode(MouseEvent mouseEvent){
+    SceneSwitcher.getInstance().setSceneTo("AddDiscountCode");
    }
 
    public void manageCategories(MouseEvent mouseEvent) {

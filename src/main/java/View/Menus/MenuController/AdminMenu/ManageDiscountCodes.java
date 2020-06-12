@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
-public class ManageRequests {
+public class ManageDiscountCodes {
    @FXML
    private ListView listView;
 
@@ -17,25 +17,26 @@ public class ManageRequests {
 
    public void update() {
       listView.getItems().clear();
-      for (Object requests : Database.getInstance().printFolderContent("Requests")) {
+      for (Object requests : Database.getInstance().printFolderContent("DiscountCodes")) {
          listView.getItems().add(requests);
       }
       if(listView.getItems().isEmpty())
-         listView.getItems().add("there are no request right now");
-   }
-
-   public void requestSelect(MouseEvent mouseEvent) {
-      int index=listView.getSelectionModel().getSelectedIndex();
-      System.out.println(index);
-      if(index==-1)
-         return;
-      String requestId=listView.getItems().get(index).toString().substring(4,9);
-      listView.getSelectionModel().clearSelection();
-      ManageRequestIn.setRequestId(requestId);
-      SceneSwitcher.getInstance().setSceneTo("ManageRequestIn",392,173);
+         listView.getItems().add("there are no discount codes right now");
    }
 
    public void back(MouseEvent mouseEvent) {
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
+
+   public void discountCodeSelect(MouseEvent mouseEvent) {
+      int index=listView.getSelectionModel().getSelectedIndex();
+      System.out.println(index);
+      if(index==-1)
+         return;
+      String discountId=listView.getItems().get(index).toString().substring(4,9);
+      listView.getSelectionModel().clearSelection();
+      EditDiscountCode.setDiscountId(discountId);
+      SceneSwitcher.getInstance().setSceneTo("EditDiscountCode",600,600);
+   }
+
 }
