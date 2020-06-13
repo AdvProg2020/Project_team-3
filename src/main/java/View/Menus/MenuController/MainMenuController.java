@@ -37,8 +37,6 @@ public class MainMenuController {
         //UserController.getInstance().logout();
         //UserController.getInstance().login("admin","12345");
         //SceneSwitcher.getInstance().setSceneTo("AdminMenu");
-
-
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             System.out.println(View.ANSI_RED+"You must be logged in to do this action."+View.ANSI_RESET);
             return;

@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.BuyerMenu.BuyerMenuController"
-            prefHeight="720.0" prefWidth="1280.0">
-
-    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
-        <menus>
-            <Menu mnemonicParsing="false" text="option">
-                <MenuItem mnemonicParsing="false" text="View Cart" onAction="#viewCart" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="Shop" onAction="#viewShop" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="Discounts" onAction="#viewDiscounts" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="View Discount Codes" onAction="#viewDiscountCodes" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="View Orders" onAction="#viewOrders" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="back" onAction="#back" ></MenuItem>
-                <MenuItem mnemonicParsing="false" text="logout" onAction="#logout"></MenuItem>
-            </Menu>
-        </menus>
-    </MenuBar>
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.BuyerMenuController">
+   <children>
+   
+       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+           <menus>
+               <Menu mnemonicParsing="false" text="option">
+                  <items>
+                      <MenuItem mnemonicParsing="false" onAction="#viewCart" text="View Cart" />
+                      <MenuItem mnemonicParsing="false" onAction="#viewShop" text="Shop" />
+                      <MenuItem mnemonicParsing="false" onAction="#viewDiscounts" text="Discounts" />
+                      <MenuItem mnemonicParsing="false" onAction="#viewDiscountCodes" text="View Discount Codes" />
+                      <MenuItem mnemonicParsing="false" onAction="#viewOrders" text="View Orders" />
+                      <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                      <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
+                  </items>
+               </Menu>
+           </menus>
+       </MenuBar>
+      <ImageView fitHeight="150.0" fitWidth="183.0" layoutX="14.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" fx:id="userImage" />
+   </children>
 
 </AnchorPane>
