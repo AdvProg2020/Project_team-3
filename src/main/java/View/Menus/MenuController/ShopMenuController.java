@@ -10,8 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -44,7 +46,11 @@ public class ShopMenuController {
 
 
     @FXML
-    GridPane gridPane;
+    private ScrollPane scrollPane;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private void initialize(){
@@ -53,6 +59,7 @@ public class ShopMenuController {
         sortChoiceBox.setValue("sort by view");
         filters.setText(SortAndFilterController.getInstance().showActiveFilters());
         initLists();
+        gridPane.setMaxHeight(50000);
         //bayad item haye shop ro bedast biarim va chizayi mesle filter sort va category ke mitonan
         //arrayliste item haro dastkari konan ro poshesh bedim , inja miaim item haro bargozari mikonim
         //har item mishe 1 Vbox 3 ghesmate , 1 aks + 1 gheymat (agge off bashe strikethrough + gheymat jadid) + 1 esm
@@ -66,14 +73,14 @@ public class ShopMenuController {
         for(String string : itemsToString){
             itemsID.add(string.substring(4,9));
         }
-        int column=0,row=0;
+        int row=0,column=0;
         for(String itemID : itemsID){
             gridPane.add(createAndAddItem(itemID),column,row);
-            if(column==2){
-                column = 0;
+            column++;
+            if(column==3){
+                column=0;
                 row++;
             }
-            column++;
         }
 
     }

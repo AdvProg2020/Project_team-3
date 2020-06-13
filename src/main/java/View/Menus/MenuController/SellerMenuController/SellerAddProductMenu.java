@@ -169,12 +169,12 @@ public class SellerAddProductMenu {
         if(hasChosenImage){
             image = imageName;
         }else {
-            image = "default";
+            image = "default.png";
         }
         if(hasChosenVideo){
             video = videoName;
         }else {
-            video = "default";
+            video = "default.mp4";
         }
 
         HashMap<String,String> attributeValue=new HashMap<>();
