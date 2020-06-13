@@ -6,8 +6,10 @@ import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 public class SellerManageProductsMenu {
 
@@ -42,11 +44,17 @@ public class SellerManageProductsMenu {
     @FXML
     private TextField itemTextField;
     @FXML
+    private Label manageError;
+    @FXML
     private void manageProduct(){
+        manageError.setText("");
         String itemID = itemTextField.getText();
         if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)) {
             SellerEditItemMenu.setItemID(itemID);
             SceneSwitcher.getInstance().setSceneTo("SellerEditItemMenu", 1280, 720);
+        }else{
+            manageError.setText("Invalid Item ID.");
+            manageError.setTextFill(Color.rgb(255,0,0));
         }
 
     }
