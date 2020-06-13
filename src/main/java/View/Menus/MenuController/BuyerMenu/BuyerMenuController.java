@@ -66,4 +66,8 @@ public class BuyerMenuController {
     private void viewCart(){
         SceneSwitcher.getInstance().setSceneTo("CartMenu");
     }
+
+    public void viewEditPersonalInfo(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
+    }
 }

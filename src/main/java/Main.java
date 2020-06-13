@@ -46,11 +46,19 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageCategories","src/main/resources/fxml/AdminMenu/ManageCategories.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AddCategory","src/main/resources/fxml/AdminMenu/AddCategory.fxml");
         SceneSwitcher.getInstance().addSceneFXML("EditCategory","src/main/resources/fxml/AdminMenu/EditCategory.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AdminEditPersonalInfo","src/main/resources/fxml/AdminMenu/AdminEditPersonalInfo.fxml");
         SceneSwitcher.getInstance().addSceneFXML("BuyerMenu","src/main/resources/fxml/BuyerMenu/BuyerMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerMenu","src/main/resources/fxml/SellerMenu/SellerMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerEditItemMenu","src/main/resources/fxml/SellerMenu/SellerEditItemMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerManageProductsMenu","src/main/resources/fxml/SellerMenu/SellerManageProductsMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerAddProductMenu","src/main/resources/fxml/SellerMenu/SellerAddProductMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("BuyerDiscountCodes","src/main/resources/fxml/BuyerMenu/BuyerDiscountCodes.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("BuyerOrders","src/main/resources/fxml/BuyerMenu/BuyerOrders.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("CartMenu","src/main/resources/fxml/CartMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ShopMenu","src/main/resources/fxml/ShopMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("DiscountsMenu","src/main/resources/fxml/DiscountsMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("EditPersonalInfo","src/main/resources/fxml/BuyerMenu/EditPersonalInfoMenu.fxml");
+
     }
 
 }

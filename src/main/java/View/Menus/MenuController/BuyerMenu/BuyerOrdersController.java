@@ -44,4 +44,8 @@ public class BuyerOrdersController {
     public void Exit(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeWindow();
     }
+
+    public void viewEditPersonalInfo(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
+    }
 }

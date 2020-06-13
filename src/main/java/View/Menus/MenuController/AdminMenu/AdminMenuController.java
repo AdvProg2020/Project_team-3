@@ -7,6 +7,9 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,7 +18,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 public class AdminMenuController {
-   public ImageView adminImage;
+    public ImageView adminImage;
+   @FXML private ListView personalInfo;
 
 
    public void initialize(){
@@ -29,8 +33,13 @@ public class AdminMenuController {
             e.printStackTrace();
          }
       }
+      personalInfoUpdate();
    }
 
+   public void personalInfoUpdate(){
+      String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
+      personalInfo.getItems().addAll(message);
+   }
    public void manageUsers(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
@@ -73,6 +82,6 @@ public class AdminMenuController {
    }
 
    public void editPersonalInfo(MouseEvent mouseEvent) {
-
+   SceneSwitcher.getInstance().setSceneTo("AdminEditPersonalInfo");
    }
 }

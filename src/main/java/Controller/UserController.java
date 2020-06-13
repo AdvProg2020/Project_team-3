@@ -59,6 +59,11 @@ public class UserController {
         return getUserByUsername(Controller.getInstance().currentOnlineUser.getUsername());
     }
 
+    public String getCurrentOnlineUserUsername() {
+        if(Controller.getInstance().currentOnlineUser == null) return null;
+        return Controller.getInstance().currentOnlineUser.getUsername();
+    }
+
     public double currentOnlineUserBalance() {
         if (getCurrentOnlineUser() instanceof Buyer) {
             return ((Buyer) getCurrentOnlineUser()).getMoney();
