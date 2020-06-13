@@ -14,11 +14,9 @@
             </Menu>
         </menus>
     </MenuBar>
-    <ListView fx:id="listView" layoutX="389.0" layoutY="131.0" onMouseClicked="#requestSelect" prefHeight="459.0" prefWidth="502.0" />
-   <Button layoutX="925.0" layoutY="131.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="101.0" text="Add Product" />
-   <Label layoutX="389.0" layoutY="84.0" prefHeight="33.0" prefWidth="101.0" text="Your Items:" />
-   <TextField fx:id="itemTextField" layoutX="389.0" layoutY="615.0" prefHeight="25.0" prefWidth="169.0" promptText="Enter an Item ID" />
-   <Button layoutX="569.0" layoutY="615.0" mnemonicParsing="false" onAction="#manageProduct" text="Manage" />
-   <Label fx:id="manageError" layoutX="640.0" layoutY="619.0" prefHeight="17.0" prefWidth="253.0" />
+   <Button layoutX="564.0" layoutY="36.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="101.0" text="Add Product" />
+    <ListView fx:id="listView" layoutY="36.0" onMouseClicked="#itemSelect" prefHeight="283.0" prefWidth="502.0" />
+    <ChoiceBox fx:id="sortChoiceBox" layoutX="564.0" layoutY="83.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+    <Label layoutX="520.0" layoutY="88.0" text="sort:" />
 
 </AnchorPane>

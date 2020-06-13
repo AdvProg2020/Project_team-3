@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts"
-            prefHeight="400.0" prefWidth="600.0">
-    <MenuBar >
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts">
+    <MenuBar>
         <Menu text="options">
-            <MenuItem text="back" onAction="#back"></MenuItem>
+            <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-    <ListView layoutY="36.0" prefHeight="283.0" prefWidth="502.0" fx:id="listView"/>
+    <ListView fx:id="listView" layoutY="36.0" prefHeight="283.0" prefWidth="277.0" />
+   <ChoiceBox fx:id="sortChoiceBox" layoutX="387.0" layoutY="36.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+    <Label layoutX="350.0" layoutY="41.0" text="sort:" />
 </AnchorPane>

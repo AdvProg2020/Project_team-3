@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="118.0" prefWidth="259.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProductsIn">
+            <Button layoutX="144.0" layoutY="46.0" prefHeight="27.0" prefWidth="97.0" text="delete" />
+            <Button layoutX="21.0" layoutY="46.0" prefHeight="27.0" prefWidth="97.0" text="exit" onMouseClicked="#exit" />
+</AnchorPane>
