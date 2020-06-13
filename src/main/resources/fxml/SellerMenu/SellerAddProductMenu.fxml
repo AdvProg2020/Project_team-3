@@ -27,9 +27,9 @@
    <Label layoutX="276.0" layoutY="543.0" text="Category" />
    <Button layoutX="387.0" layoutY="644.0" mnemonicParsing="false" onAction="#createItem" text="Create" />
    <Label layoutX="796.0" layoutY="56.0" text="Image" />
-   <Label layoutX="797.0" layoutY="110.0" text="Video" />
+   <Label layoutX="797.0" layoutY="135.0" text="Video" />
    <Button layoutX="839.0" layoutY="52.0" mnemonicParsing="false" onAction="#imageChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
-   <Button layoutX="839.0" layoutY="106.0" mnemonicParsing="false" onAction="#videoChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
+   <Button layoutX="839.0" layoutY="131.0" mnemonicParsing="false" onAction="#videoChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
    <Label fx:id="itemNameError" layoutX="501.0" layoutY="56.0" prefHeight="17.0" prefWidth="165.0" />
    <Separator layoutX="683.0" layoutY="29.0" orientation="VERTICAL" prefHeight="663.0" prefWidth="18.0" />
    <Label fx:id="brandNameError" layoutX="501.0" layoutY="110.0" prefHeight="17.0" prefWidth="165.0" />
@@ -37,7 +37,7 @@
    <Label fx:id="countError" layoutX="501.0" layoutY="484.0" prefHeight="17.0" prefWidth="165.0" />
    <Label fx:id="categoryError" layoutX="501.0" layoutY="543.0" prefHeight="17.0" prefWidth="165.0" />
    <TextField fx:id="category" layoutX="338.0" layoutY="539.0" />
-   <Label fx:id="imageAddress" layoutX="941.0" layoutY="56.0" prefHeight="17.0" prefWidth="200.0" />
-   <Label fx:id="videoAddress" layoutX="941.0" layoutY="110.0" prefHeight="17.0" prefWidth="200.0" />
+   <Label fx:id="imageAddress" layoutX="941.0" layoutY="56.0" prefHeight="61.0" prefWidth="200.0" />
+   <Label fx:id="videoAddress" layoutX="941.0" layoutY="135.0" prefHeight="61.0" prefWidth="200.0" />
 
 </AnchorPane>

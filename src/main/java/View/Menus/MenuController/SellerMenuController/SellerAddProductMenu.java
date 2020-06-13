@@ -48,7 +48,7 @@ public class SellerAddProductMenu {
         Path source= Paths.get(selected.getPath());
 
         String fullPath="src/main/resources/Images/ItemImages/"+selected.getName();
-
+        imageAddress.setText(source.toString());
         Path des=Paths.get(fullPath);
         try {
             Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
@@ -71,7 +71,7 @@ public class SellerAddProductMenu {
         Path source= Paths.get(selected.getPath());
 
         String fullPath="src/main/resources/Images/ItemImages/"+selected.getName();
-
+        videoAddress.setText(source.toString());
         Path des=Paths.get(fullPath);
         try {
             Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
@@ -110,6 +110,11 @@ public class SellerAddProductMenu {
     Label countError;
     @FXML
     Label categoryError;
+
+    @FXML
+    Label imageAddress;
+    @FXML
+    Label videoAddress;
 
     private TextInputDialog dialog = new TextInputDialog("");
 
@@ -184,7 +189,7 @@ public class SellerAddProductMenu {
             }
         }
 
-        ItemAndCategoryController.getInstance().addItem(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeValue);
+        ItemAndCategoryController.getInstance().addItem(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeValue,image,video);
         hasChosenVideo = false;
         hasChosenImage = false;
         clearFields();
@@ -221,6 +226,8 @@ public class SellerAddProductMenu {
         priceError.setText("");
         count.setText("");
         categoryError.setText("");
+        imageAddress.setText("");
+        videoAddress.setText("");
     }
 
 

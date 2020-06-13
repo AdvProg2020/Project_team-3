@@ -243,6 +243,18 @@ public class ItemAndCategoryController {
         return "Successful: Admins have been notified of your request to add this item.";
     }
 
+    public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute,String image,String video) {
+        if (!isThereCategoryWithName(categoryName)) {
+            return View.ANSI_RED+"Error: Invalid category name."+View.ANSI_RESET;
+        }
+        if(UserController.getInstance().getCurrentOnlineUser()==null)
+            return View.ANSI_RED+"Error: No user is logged in!"+View.ANSI_RESET;
+        Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, instock,image,video);
+        String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
+        RequestController.getInstance().addItemRequest(requestID, item);
+        return "Successful: Admins have been notified of your request to add this item.";
+    }
+
     public void addItemToCategory(String itemid, String categoryName) {
         Category category = getCategoryByName(categoryName);
         if (category == null) {
