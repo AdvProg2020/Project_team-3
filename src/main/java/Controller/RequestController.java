@@ -115,7 +115,7 @@ public class RequestController {
     public String acceptRequest(String requestID) {
         Request accepted = getRequestById(requestID);
         if (accepted == null) {
-            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
+            return "Error: Request doesn't exist";
         }
         if (accepted instanceof AccountRequest) {
             User user = UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
@@ -204,7 +204,7 @@ public class RequestController {
 
         }
         if (declined == null) {
-            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
+            return "Error: Request doesn't exist";
         }
         Database.getInstance().deleteRequest(declined);
         return "Successful: Request declined";
@@ -249,7 +249,7 @@ public class RequestController {
     public String getRequestDetail(String id) {
         Request request = getRequestById(id);
         if (request == null) {
-            return View.ANSI_RED+"Error: Request doesn't exist"+View.ANSI_RESET;
+            return "Error: Request doesn't exist";
         }
         return request.getMessage();
     }

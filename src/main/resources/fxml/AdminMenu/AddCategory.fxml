@@ -4,11 +4,19 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.AddCategory">
-    <Label layoutX="14.0" layoutY="61.0" text="category name:" />
-    <TextField fx:id="categoryName" layoutX="121.0" layoutY="56.0"> </TextField>
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
+    <Label layoutX="14.0" layoutY="61.0" text="category name:" />
+    <TextField fx:id="categoryName" layoutX="105.0" layoutY="56.0" onKeyReleased="#updateCategoryName"> </TextField>
+    <TextField fx:id="attribute" layoutX="105.0" layoutY="100.0"> </TextField>
+    <ListView fx:id="attributeList" layoutX="300.0" layoutY="55.0" prefHeight="209.0" prefWidth="248.0" onMouseClicked="#remove" />
+    <Button layoutX="266.0" layoutY="100.0" text="+" onMouseClicked="#add" />
+    <Label layoutX="46.0" layoutY="105.0" text="attribute:" />
+    <Label layoutX="13.0" layoutY="158.0" text="father category:" />
+    <Button layoutX="213.0" layoutY="237.0" text="create" onMouseClicked="#create"/>
+    <Button layoutX="105.0" layoutY="237.0" text="reset" onMouseClicked="#reset" />
+   <ChoiceBox fx:id="fatherCategoryChoice" layoutX="105.0" layoutY="153.0" prefWidth="150.0" />
 </AnchorPane>

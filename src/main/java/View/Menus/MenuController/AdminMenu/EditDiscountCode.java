@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -16,11 +17,21 @@ import java.time.format.DateTimeFormatter;
 
 public class EditDiscountCode {
    private static String discountId;
-   @FXML
-   private TextField percent;
+   @FXML private TextField percent;
    @FXML private TextField usage;
    @FXML private TextField maxDiscount;
    @FXML private DatePicker end;
+   @FXML private ListView info;
+
+   @FXML public void initialize() {
+      update();
+   }
+
+   public void update(){
+      info.getItems().clear();
+      String message=SaleAndDiscountCodeController.getInstance().printDiscount(discountId);
+      info.getItems().addAll(message.split("   "));
+   }
    public static void setDiscountId(String discountId) {
       EditDiscountCode.discountId = discountId;
    }
@@ -33,6 +44,7 @@ public class EditDiscountCode {
       if(percent.getStyle().toString().contains("green")){
          int percentInt=Integer.parseInt(percent.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountId,percentInt),"INFORMATION");
+         update();
          return;
       }
       showAlertBox("incorrect percent value","ERROR");
@@ -42,6 +54,7 @@ public class EditDiscountCode {
       if(maxDiscount.getStyle().toString().contains("green")){
          int maxDiscountInt=Integer.parseInt(maxDiscount.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(discountId,maxDiscountInt),"INFORMATION");
+         update();
          return;
       }
       showAlertBox("incorrect max discount value","ERROR");
@@ -51,6 +64,7 @@ public class EditDiscountCode {
       if(usage.getStyle().toString().contains("green")){
          int usageInt=Integer.parseInt(usage.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountId,usageInt),"INFORMATION");
+         update();
          return;
       }
       showAlertBox("incorrect usage value","ERROR");
@@ -61,13 +75,13 @@ public class EditDiscountCode {
       try{
          String date=end.getValue().toString();
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountId,getDate(date)),"INFORMATION");
+         update();
       }catch (Exception e){
          showAlertBox("error date field is empty","ERROR");
       }
    }
 
    public void delete(MouseEvent mouseEvent) {
-      System.out.println("hah");
       System.out.println(discountId);
     String message= SaleAndDiscountCodeController.getInstance().deleteDiscountCode(discountId);
     if(message.startsWith("Error")) {

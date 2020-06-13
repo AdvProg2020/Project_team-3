@@ -32,4 +32,5 @@
 
     <Button layoutX="330.0" layoutY="153.0" onMouseClicked="#changeEndDate" text="change" />
     <Button layoutX="334.0" layoutY="200.0" onMouseClicked="#delete" text="delete" />
+    <ListView fx:id="info" layoutX="111.0" layoutY="200.0" prefHeight="157.0" prefWidth="160.0" />
 </AnchorPane>

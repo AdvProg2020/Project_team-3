@@ -218,10 +218,10 @@ public class ItemAndCategoryController {
 
     public String addCategory(String name, ArrayList<String> attributes, String fatherName) {
         if (isThereCategoryWithName(name)) {
-            return View.ANSI_RED+"Error: Category with this name already exists"+View.ANSI_RESET;
+            return "Error: Category with this name already exists";
         }
         if (!isThereCategoryWithName(fatherName)) {
-            return View.ANSI_RED+"Error: Father category is nonexistent."+View.ANSI_RESET;
+            return "Error: Father category is nonexistent.";
         }
         Category category = new Category(name, attributes, fatherName);
             Database.getInstance().saveCategory(category);
@@ -233,10 +233,10 @@ public class ItemAndCategoryController {
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
         if (!isThereCategoryWithName(categoryName)) {
-            return View.ANSI_RED+"Error: Invalid category name."+View.ANSI_RESET;
+            return "Error: Invalid category name.";
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null)
-            return View.ANSI_RED+"Error: No user is logged in!"+View.ANSI_RESET;
+            return "Error: No user is logged in!";
         Item item = new Item(Name, companyName, description, "", price, controller.currentOnlineUser.getUsername(), categoryName, attribute, instock);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
