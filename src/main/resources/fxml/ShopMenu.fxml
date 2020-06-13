@@ -21,7 +21,10 @@
             </GridPane>
          </content>
       </ScrollPane>
-
+       <ChoiceBox fx:id="sortChoiceBox" layoutX="58.0" layoutY="58.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+       <Label layoutX="17.0" layoutY="63.0" text="sort:" />
+       <Label fx:id="filters" layoutX="17.0" layoutY="158.0" prefHeight="223.0" prefWidth="217.0" />
+       <Button layoutX="58.0" layoutY="95.0" onAction="#filterMenu" prefHeight="27.0" prefWidth="206.0" text="filtering" />
    </children>
 
 </AnchorPane>

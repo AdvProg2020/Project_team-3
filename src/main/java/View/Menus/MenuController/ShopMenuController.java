@@ -8,6 +8,7 @@ import View.Menus.ItemMenu;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +25,8 @@ public class ShopMenuController {
     private ArrayList<String> itemsToString = new ArrayList<>();
     private ArrayList<String> itemsID = new ArrayList<>();
     private ArrayList<VBox> itemsVBox = new ArrayList<>();
+    @FXML private ChoiceBox sortChoiceBox;
+    @FXML private Label filters;
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
@@ -45,14 +48,16 @@ public class ShopMenuController {
 
     @FXML
     private void initialize(){
+        sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
+        sortChoiceBox.getItems().add("sort by view");
+        sortChoiceBox.setValue("sort by view");
+        filters.setText(SortAndFilterController.getInstance().showActiveFilters());
         initLists();
         //bayad item haye shop ro bedast biarim va chizayi mesle filter sort va category ke mitonan
         //arrayliste item haro dastkari konan ro poshesh bedim , inja miaim item haro bargozari mikonim
         //har item mishe 1 Vbox 3 ghesmate , 1 aks + 1 gheymat (agge off bashe strikethrough + gheymat jadid) + 1 esm
         //click rooye vbox mibare maro be itemMenu on item
         //catgory o filter o sort o in kosshera ro badan mizanim
-
-
     }
 
     private void initLists(){
@@ -97,5 +102,16 @@ public class ShopMenuController {
     }
 
 
+    public void filterMenu(ActionEvent actionEvent) {
+        Filter.setSceneName("ShopMenu");
+        SceneSwitcher.getInstance().setSceneTo("Filters",323,444);
+    }
 
+    public void sort(ActionEvent actionEvent) {
+        String sort=sortChoiceBox.getValue().toString();
+        if(sort.equals("sort by view")){
+            SortAndFilterController.getInstance().disableSort();
+        }else {
+            SortAndFilterController.getInstance().activateSort(sort); }
+    }
 }
