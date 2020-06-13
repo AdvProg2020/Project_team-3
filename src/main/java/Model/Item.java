@@ -31,6 +31,9 @@ public class Item {
     private ArrayList<Comment> allComments;
     private String saleId;
 
+    private String imageName;
+    private String videoName;
+
     private String addedTime;
 
     //constructor
@@ -51,6 +54,28 @@ public class Item {
         allRatings = new ArrayList<>();
         allComments = new ArrayList<>();
         buyerUserName = new ArrayList<>();
+    }
+
+    public Item(String name, String brand, String description, String state, double price, String sellerName, String categoryName, HashMap<String, String> attributes, int inStock, String imageName , String videoName) {
+        this.name = name;
+        this.brand = brand;
+        this.description = description;
+        this.state = state;
+        this.price = price;
+        this.timesBought = 0;
+        this.sellerName = sellerName;
+        this.categoryName = categoryName;
+        this.attributes = attributes;
+        this.inStock = inStock;
+        saleId = "";
+        this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
+        timesBought = 0;
+        allRatings = new ArrayList<>();
+        allComments = new ArrayList<>();
+        buyerUserName = new ArrayList<>();
+
+        this.imageName = imageName;
+        this.videoName = videoName;
     }
 
     public Item(Item item) {
@@ -117,6 +142,14 @@ public class Item {
 
     public String getId() {
         return id;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public String getVideoName() {
+        return videoName;
     }
 
     public String getDescription() {

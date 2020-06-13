@@ -4,14 +4,14 @@ import Controller.UserController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 
-public class SellerManageProductsMenu {
+public class SellerEditItemMenu {
 
-
-
-
-    // didane hamme product ha + emkane delete ya edit
-
-
+    //
+    //
+    // bayad in controller ye fielde static dashte bashe , itemi ke gharare edit beshe , chizmiz haro tu initialize bar
+    // asase inke on iteme attribute hash chie neshon bedim
+    //
+    //
     @FXML
     private void back(){
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");

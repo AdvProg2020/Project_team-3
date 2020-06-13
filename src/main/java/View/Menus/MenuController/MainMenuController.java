@@ -2,8 +2,10 @@ package View.Menus.MenuController;
 
 import Controller.Controller;
 import Model.Users.Admin;
-import View.Menus.SceneSwitcher;
+import View.Menus.*;
+import View.Menus.AdminMenu.AdminMenu;
 import Controller.UserController;
+import View.Menus.SellerMenu.SellerMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -32,9 +34,22 @@ public class MainMenuController {
     }
 
     public void userzone(ActionEvent actionEvent) {
-        UserController.getInstance().logout();
-        UserController.getInstance().login("admin","12345");
-        SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+        //UserController.getInstance().logout();
+        //UserController.getInstance().login("admin","12345");
+        //SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+
+
+        if(UserController.getInstance().getCurrentOnlineUser() == null){
+            System.out.println(View.ANSI_RED+"You must be logged in to do this action."+View.ANSI_RESET);
+            return;
+        }
+        if(    UserController.getInstance().getUserType().equals("Admin")){
+            SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+        }else if(    UserController.getInstance().getUserType().equals("Seller")){
+            SceneSwitcher.getInstance().setSceneTo("SellerMenu");
+        }else{
+            SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+        }
     }
 
     private void loginHandler(){
