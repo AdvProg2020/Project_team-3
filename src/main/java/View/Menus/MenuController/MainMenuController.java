@@ -8,6 +8,7 @@ import Controller.UserController;
 import View.Menus.SellerMenu.SellerMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -108,5 +109,10 @@ public class MainMenuController {
         alert.show();
     }
 
+
+    @FXML
+    private void shop(){
+        SceneSwitcher.getInstance().setSceneTo("ShopMenu");
+    }
 
 }
