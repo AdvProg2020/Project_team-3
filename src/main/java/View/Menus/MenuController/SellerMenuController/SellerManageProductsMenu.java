@@ -7,6 +7,7 @@ import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 public class SellerManageProductsMenu {
 
@@ -38,8 +39,17 @@ public class SellerManageProductsMenu {
             SceneSwitcher.getInstance().setSceneTo("ItemMenu", 1280, 720);
         }
     }
+    @FXML
+    private TextField itemTextField;
+    @FXML
+    private void manageProduct(){
+        String itemID = itemTextField.getText();
+        if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)) {
+            SellerEditItemMenu.setItemID(itemID);
+            SceneSwitcher.getInstance().setSceneTo("SellerEditItemMenu", 1280, 720);
+        }
 
-
+    }
 
     @FXML
     private void addProduct(){
