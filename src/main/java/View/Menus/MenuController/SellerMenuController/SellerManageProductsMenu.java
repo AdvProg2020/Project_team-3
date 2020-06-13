@@ -3,6 +3,7 @@ package View.Menus.MenuController.SellerMenuController;
 import Controller.*;
 import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
+import View.Menus.MenuController.Filter;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
@@ -17,18 +18,19 @@ import javafx.scene.paint.Color;
 public class SellerManageProductsMenu {
     @FXML private ListView listView;
     @FXML private ChoiceBox sortChoiceBox;
+    @FXML private Label filters;
 
     @FXML public void initialize() {
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
         update();
+        filters.setText(SortAndFilterController.getInstance().showActiveFilters());
     }
 
     public void update() {
         listView.getItems().clear();
-        listView.getItems().addAll(SortAndFilterController.getInstance().show("Main"));
-
+        listView.getItems().addAll(SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems()));
         if(listView.getItems().isEmpty()) {
             listView.getItems().add("there are no products right now");
             return;
@@ -100,4 +102,9 @@ public class SellerManageProductsMenu {
             SortAndFilterController.getInstance().activateSort(sort); }
         update();
     }
+
+   public void filterMenu(ActionEvent actionEvent) {
+       Filter.setSceneName("SellerManageProductsMenu");
+       SceneSwitcher.getInstance().setSceneTo("Filters",323,444);
+   }
 }

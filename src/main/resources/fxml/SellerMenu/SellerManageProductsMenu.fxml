@@ -15,8 +15,9 @@
         </menus>
     </MenuBar>
    <Button layoutX="564.0" layoutY="36.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="101.0" text="Add Product" />
-    <ListView fx:id="listView" layoutY="36.0" onMouseClicked="#itemSelect" prefHeight="283.0" prefWidth="502.0" />
+    <ListView fx:id="listView" layoutY="36.0" onMouseClicked="#itemSelect" prefHeight="375.0" prefWidth="502.0" />
     <ChoiceBox fx:id="sortChoiceBox" layoutX="564.0" layoutY="83.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
     <Label layoutX="520.0" layoutY="88.0" text="sort:" />
-
+    <Label fx:id="filters" layoutX="522.0" layoutY="184.0" prefHeight="223.0" prefWidth="286.0" />
+    <Button layoutX="564.0" layoutY="120.0" onAction="#filterMenu" prefHeight="27.0" prefWidth="206.0" text="filtering" />
 </AnchorPane>
