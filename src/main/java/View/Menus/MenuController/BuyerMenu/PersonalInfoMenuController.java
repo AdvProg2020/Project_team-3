@@ -6,10 +6,7 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -49,7 +46,7 @@ public class PersonalInfoMenuController {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        firstnameTextField.setText(user.getUsername());
+        firstnameTextField.setText(user.getName());
         passwordTextField.setText(user.getPassword());
         surnameTextField.setText(user.getLastName());
         emailTextField.setText(user.getEmail());
@@ -91,23 +88,75 @@ public class PersonalInfoMenuController {
         if(firstnameTextField.getText().equals("")){
             firstnameLabel.setText("you must fill the blank!");
             firstnameLabel.setTextFill(Color.rgb(255,0,0));
+            return;
         }
-
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().editPersonalInfo(user.getUsername(),"Name",firstnameTextField.getText());
+        showAlertBox();
     }
 
     public void changeSurname(ActionEvent actionEvent) {
+        if(firstnameTextField.getText().equals("")){
+            surnameLabel.setText("you must fill the blank!");
+            surnameLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().editPersonalInfo(user.getUsername(),"Surname",surnameTextField.getText());
+        showAlertBox();
     }
 
     public void changePhoneNumber(ActionEvent actionEvent) {
+        if(numberTextField.getText().equals("")){
+            numberLabel.setText("you must fill the blank!");
+            numberLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        if(UserController.getInstance().isValidPhoneNumber(numberTextField.getText())==false){
+            numberLabel.setText("invalid input!");
+            numberLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().editPersonalInfo(user.getUsername(),"Number",numberTextField.getText());
+        showAlertBox();
     }
 
     public void changeEmail(ActionEvent actionEvent) {
+        if(emailTextField.getText().equals("")){
+            emailLabel.setText("you must fill the blank!");
+            emailLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        if(UserController.getInstance().isValidEmail(emailTextField.getText())==false){
+            emailLabel.setText("invalid input!");
+            emailLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().editPersonalInfo(user.getUsername(),"Email",emailTextField.getText());
+        showAlertBox();
     }
 
     public void changePassword(ActionEvent actionEvent) {
+        if(passwordTextField.getText().equals("")){
+            passwordLabel.setText("you must fill the blank!");
+            passwordLabel.setTextFill(Color.rgb(255,0,0));
+            return;
+        }
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().editPersonalInfo(user.getUsername(),"Password",passwordTextField.getText());
+        showAlertBox();
     }
 
     public void changeImage(ActionEvent actionEvent) {
+
+    }
+
+    public void showAlertBox(){
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("the field changed successfully!");
+        alert.show();
     }
 
 }

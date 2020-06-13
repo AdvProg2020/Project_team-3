@@ -15,6 +15,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:14" level="project" />
+    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.8" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:14" level="project" />
