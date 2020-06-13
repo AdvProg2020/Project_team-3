@@ -108,4 +108,12 @@ public class LoginMenuController {
     public void back(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().back();
     }
+
+    public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
+    }
+
+    public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("SellerRegister");
+    }
 }

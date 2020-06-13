@@ -34,5 +34,8 @@
       <PasswordField fx:id="passwordField" layoutX="570.0" layoutY="261.0" />
       <Label fx:id="errorLabel" layoutX="570.0" layoutY="320.0" prefHeight="17.0" prefWidth="149.0" />
       <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="68.0" text="Back" />
+      <Label layoutX="574.0" layoutY="474.0" prefHeight="17.0" prefWidth="81.0" text="didn't sign up?" />
+      <Hyperlink layoutX="655.0" layoutY="471.0" text="Buyer" onAction="#goToBuyerRegisterMenu" />
+      <Hyperlink layoutX="701.0" layoutY="471.0" text="Seller" onAction="#goToSellerRegisterMenu" />
    </children>
 </Pane>

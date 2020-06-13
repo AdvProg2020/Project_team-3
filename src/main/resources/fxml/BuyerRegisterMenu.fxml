@@ -12,7 +12,7 @@
       <Label layoutX="506.0" layoutY="146.0" prefHeight="17.0" prefWidth="53.0" text="Password" />
       <Label layoutX="505.0" layoutY="203.0" text="First name" />
        <PasswordField fx:id="passwordField" layoutX="566.0" layoutY="142.0" prefWidth="150.0" />
-      <TextField fx:id="firstNameTextField" layoutX="565.0" layoutY="199.0" prefWidth="150.0" />
+      <TextField fx:id="firstNameTextField" layoutX="575.0" layoutY="199.0" prefWidth="150.0" />
       <TextField fx:id="surnameTextField" layoutX="570.0" layoutY="267.0" />
       <Label layoutX="506.0" layoutY="271.0" prefHeight="17.0" prefWidth="53.0" text="surname" />
       <Label layoutX="505.0" layoutY="332.0" prefHeight="17.0" prefWidth="44.0" text="Money" />
@@ -52,5 +52,6 @@
         </menus>
       </MenuBar>
       <Button layoutX="720.0" layoutY="523.0" mnemonicParsing="false" onAction="#fileChooserOpen" text="..." />
+      <Hyperlink layoutX="595.0" layoutY="647.0" prefHeight="23.0" prefWidth="109.0" text="sign up as a seller" onAction="#goToSellerRegisterMenu"/>
    </children>
 </Pane>

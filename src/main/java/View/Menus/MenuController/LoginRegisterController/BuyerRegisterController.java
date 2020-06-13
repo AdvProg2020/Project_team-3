@@ -235,4 +235,7 @@ public class BuyerRegisterController {
         SceneSwitcher.getInstance().closeWindow();
     }
 
+    public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("SellerRegister");
+    }
 }

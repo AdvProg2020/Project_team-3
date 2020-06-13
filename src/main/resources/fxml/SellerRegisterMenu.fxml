@@ -54,6 +54,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Hyperlink layoutX="592.0" layoutY="653.0" prefHeight="23.0" prefWidth="107.0" text="Register as buyer"  onAction="#goToBuyerRegisterMenu"/>
       
 
    </children>
