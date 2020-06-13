@@ -90,6 +90,8 @@ public class Item {
         this.attributes = item.attributes;
         this.inStock = item.inStock;
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
+        this.imageName = item.imageName;
+        this.videoName = item.videoName;
         timesBought = 0;
         saleId = "";
         allRatings = new ArrayList<>();

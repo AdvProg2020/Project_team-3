@@ -31,7 +31,7 @@
    <Button layoutX="839.0" layoutY="52.0" mnemonicParsing="false" onAction="#imageChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
    <Button layoutX="839.0" layoutY="131.0" mnemonicParsing="false" onAction="#videoChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
    <Label fx:id="itemNameError" layoutX="501.0" layoutY="56.0" prefHeight="17.0" prefWidth="165.0" />
-   <Separator layoutX="683.0" layoutY="29.0" orientation="VERTICAL" prefHeight="663.0" prefWidth="18.0" />
+   <Separator layoutX="683.0" layoutY="44.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="18.0" />
    <Label fx:id="brandNameError" layoutX="501.0" layoutY="110.0" prefHeight="17.0" prefWidth="165.0" />
    <Label fx:id="priceError" layoutX="501.0" layoutY="428.0" prefHeight="17.0" prefWidth="165.0" />
    <Label fx:id="countError" layoutX="501.0" layoutY="484.0" prefHeight="17.0" prefWidth="165.0" />
