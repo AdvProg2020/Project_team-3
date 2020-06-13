@@ -120,5 +120,6 @@ public class ShopMenuController {
             SortAndFilterController.getInstance().disableSort();
         }else {
             SortAndFilterController.getInstance().activateSort(sort); }
+        initLists();
     }
 }

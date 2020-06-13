@@ -12,6 +12,6 @@
     <ListView fx:id="listView" layoutY="36.0" prefHeight="283.0" prefWidth="277.0" />
    <ChoiceBox fx:id="sortChoiceBox" layoutX="387.0" layoutY="36.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
     <Label layoutX="350.0" layoutY="41.0" text="sort:" />
-    <Label fx:id="filters" layoutX="387.0" layoutY="133.0" prefHeight="223.0" prefWidth="286.0" />
+    <ListView fx:id="filters" layoutX="387.0" layoutY="133.0" prefHeight="223.0" prefWidth="286.0" />
     <Button layoutX="387.0" layoutY="86.0" onAction="#filterMenu" prefHeight="27.0" prefWidth="206.0" text="filtering" />
 </AnchorPane>
