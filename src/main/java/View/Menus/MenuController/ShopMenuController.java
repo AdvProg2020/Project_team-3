@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,7 +29,7 @@ public class ShopMenuController {
     private ArrayList<String> itemsID = new ArrayList<>();
     private ArrayList<VBox> itemsVBox = new ArrayList<>();
     @FXML private ChoiceBox sortChoiceBox;
-    @FXML private Label filters;
+    @FXML private ListView filters;
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
@@ -57,7 +58,7 @@ public class ShopMenuController {
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
-        filters.setText(SortAndFilterController.getInstance().showActiveFilters());
+        filters.getItems().addAll(SortAndFilterController.getInstance().showActiveFilters());
         initLists();
         gridPane.setMaxHeight(50000);
         //bayad item haye shop ro bedast biarim va chizayi mesle filter sort va category ke mitonan

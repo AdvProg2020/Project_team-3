@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="369.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts">
+<AnchorPane prefHeight="348.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts">
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
@@ -12,6 +12,6 @@
     <ListView fx:id="listView" layoutY="36.0" prefHeight="283.0" prefWidth="277.0" />
    <ChoiceBox fx:id="sortChoiceBox" layoutX="387.0" layoutY="36.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
     <Label layoutX="350.0" layoutY="41.0" text="sort:" />
-    <ListView fx:id="filters" layoutX="387.0" layoutY="133.0" prefHeight="223.0" prefWidth="286.0" />
+    <ListView fx:id="filters" layoutX="387.0" layoutY="133.0" prefHeight="186.0" prefWidth="206.0" />
     <Button layoutX="387.0" layoutY="86.0" onAction="#filterMenu" prefHeight="27.0" prefWidth="206.0" text="filtering" />
 </AnchorPane>

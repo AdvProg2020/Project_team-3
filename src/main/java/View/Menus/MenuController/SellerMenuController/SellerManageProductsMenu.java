@@ -18,14 +18,14 @@ import javafx.scene.paint.Color;
 public class SellerManageProductsMenu {
     @FXML private ListView listView;
     @FXML private ChoiceBox sortChoiceBox;
-    @FXML private Label filters;
+    @FXML private ListView filters;
 
     @FXML public void initialize() {
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
         update();
-        filters.setText(SortAndFilterController.getInstance().showActiveFilters());
+        filters.getItems().addAll(SortAndFilterController.getInstance().showActiveFilters());
     }
 
     public void update() {
