@@ -8,13 +8,12 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -32,8 +31,17 @@ public class AdminEditPersonalInfo {
    @FXML private TextField email;
    @FXML private TextField number;
    @FXML private ListView personalInfo;
+   @FXML private TextField passwordTextField;
    @FXML private ImageView imageView;
+   @FXML private PasswordField passwordField;
+   @FXML private CheckBox passwordCheckBox;
+
    @FXML public void initialize() {
+      passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
+      passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
+      passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
+      passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
+      passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
       update();
    }
 
@@ -186,6 +194,17 @@ public class AdminEditPersonalInfo {
       } catch (MalformedURLException e) {
          e.printStackTrace();
       }
+      update();
+   }
+
+   public void changePassword(MouseEvent mouseEvent) {
+      if(passwordTextField.getText().equals("")){
+         showAlertBox("incorrect password field value","ERROR");
+         return;
+      }
+      UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Password",passwordTextField.getText());
+      showAlertBox("Successful","INFORMATION");
+      passwordTextField.clear();
       update();
    }
 }

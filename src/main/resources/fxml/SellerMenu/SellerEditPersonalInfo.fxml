@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditPersonalInfo"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="433.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditPersonalInfo">
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
@@ -20,16 +14,21 @@
     <Label layoutX="14.0" layoutY="62.0" text="Surname:" />
     <Label layoutX="27.0" layoutY="102.0" text="Email:" />
     <Label layoutX="19.0" layoutY="143.0" text="Number:" />
+    <Label layoutX="10.0" layoutY="188.0" text="password:"> </Label>
+    <PasswordField fx:id="passwordField" layoutX="68.0" layoutY="183.0" />
+    <TextField fx:id="passwordTextField" layoutX="68.0" layoutY="183.0" />
+    <CheckBox fx:id="passwordCheckBox" layoutX="243.0" layoutY="216.0" mnemonicParsing="false" text="show password?" />
+    <Button layoutX="243.0" layoutY="183.0" onMouseClicked="#changePassword" prefHeight="27.0" prefWidth="72.0" text="change" />
     <TextField fx:id="name" layoutX="68.0" layoutY="15.0" onKeyReleased="#updateName" />
     <TextField fx:id="surname" layoutX="68.0" layoutY="57.0" onKeyReleased="#updateName" />
     <TextField fx:id="email" layoutX="68.0" layoutY="97.0" onKeyReleased="#updateEmail" />
     <TextField fx:id="number" layoutX="68.0" layoutY="138.0" onKeyReleased="#updateNumber" />
-    <ListView fx:id="personalInfo" layoutX="14.0" layoutY="188.0" prefHeight="198.0" prefWidth="217.0" />
+    <ListView fx:id="personalInfo" layoutX="14.0" layoutY="215.0" prefHeight="198.0" prefWidth="217.0" />
     <ImageView fx:id="imageView" fitHeight="148.0" fitWidth="244.0" layoutX="321.0" layoutY="10.0" />
     <Button layoutX="243.0" layoutY="15.0" onMouseClicked="#changeName" prefHeight="27.0" prefWidth="72.0" text="change" />
     <Button layoutX="243.0" layoutY="55.0" onMouseClicked="#changeSurname" prefHeight="27.0" prefWidth="72.0" text="change" />
     <Button layoutX="243.0" layoutY="95.0" onMouseClicked="#changeEmail" prefHeight="27.0" prefWidth="72.0" text="change" />
     <Button layoutX="243.0" layoutY="135.0" onMouseClicked="#changeNumber" prefHeight="27.0" prefWidth="72.0" text="change" />
-    <Button layoutX="321.0" layoutY="188.0" mnemonicParsing="false" onAction="#removeImage" text="remove image" />
-    <Button layoutX="443.0" layoutY="188.0" mnemonicParsing="false" onAction="#changeImage" text="change image" />
+    <Button layoutX="321.0" layoutY="183.0" mnemonicParsing="false" onAction="#removeImage" text="remove image" />
+    <Button layoutX="443.0" layoutY="183.0" mnemonicParsing="false" onAction="#changeImage" text="change image" />
 </AnchorPane>

@@ -68,6 +68,8 @@ public class BuyerMenuController {
     }
 
     public void viewEditPersonalInfo(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
+        SceneSwitcher.getInstance().setSceneTo("BuyerEditPersonalInfo");
     }
 }
+
+
