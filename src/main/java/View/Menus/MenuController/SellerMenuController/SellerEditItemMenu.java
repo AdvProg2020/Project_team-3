@@ -8,7 +8,10 @@ import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import sun.util.resources.cldr.ar.CalendarData_ar_YE;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -27,18 +30,18 @@ public class SellerEditItemMenu {
     @FXML
     private Button removeItem;
     @FXML
-    private Button viewBuyers;
+    private ListView buyersListView;
 
     private TextInputDialog dialog = new TextInputDialog("");
 
     @FXML
     private void initialize(){
         label.setText("You are editing "+itemID);
-        updateList();
-
+        updateAttributes();
+        updateBuyers();
     }
 
-    private void updateList(){
+    private void updateAttributes(){
         Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
         listView.getItems().clear();
         listView.getItems().add("Name:" +  item.getName());
@@ -49,6 +52,17 @@ public class SellerEditItemMenu {
         HashMap<String, String> attributes = item.getAttributes();
         for(String key:attributes.keySet()){
             listView.getItems().add(key+":"+attributes.get(key));
+        }
+    }
+
+    private void updateBuyers(){
+        buyersListView.getItems().clear();
+        ArrayList<String> buyers = ItemAndCategoryController.getInstance().getItemBuyer(itemID);
+        for(String buyer:buyers){
+            buyersListView.getItems().add(buyer);
+        }
+        if(buyersListView.getItems().isEmpty()){
+            buyersListView.getItems().add("This item has never been bought.");
         }
     }
 
@@ -64,8 +78,13 @@ public class SellerEditItemMenu {
         // alert dialog miad value migire
         setDialogText("Enter a new value for "+key);
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(s -> ItemAndCategoryController.getInstance().editItem(key,s,itemID));
+        result.ifPresent(s -> sendEditRequest(key,s));
 
+
+    }
+
+    private void sendEditRequest(String key,String value){
+        ItemAndCategoryController.getInstance().editItem(key,value,itemID);
         sendAlert("Editing request has been sent.","SellerEditItemMenu");
     }
 
@@ -91,10 +110,6 @@ public class SellerEditItemMenu {
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
-    @FXML
-    private void viewBuyers(){
-
-    }
 
     @FXML
     private void removeItem(){
