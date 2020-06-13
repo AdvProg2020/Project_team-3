@@ -1,23 +1,25 @@
 package View.Menus.MenuController.AdminMenu;
 
-import Controller.Database;
 import Controller.SortAndFilterController;
+import View.Menus.MenuController.Filter;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 
 public class ManageProducts {
    @FXML private ListView listView;
    @FXML private ChoiceBox sortChoiceBox;
+   @FXML private Label filters;
 
    @FXML public void initialize() {
       sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
       sortChoiceBox.getItems().add("sort by view");
       sortChoiceBox.setValue("sort by view");
       update();
+      filters.setText(SortAndFilterController.getInstance().showActiveFilters());
    }
 
    public void update() {
@@ -42,6 +44,11 @@ public class ManageProducts {
       }else {
          SortAndFilterController.getInstance().activateSort(sort); }
       update();
+   }
+
+   public void filterMenu(ActionEvent actionEvent) {
+      Filter.setSceneName("ManageProducts");
+      SceneSwitcher.getInstance().setSceneTo("Filters",323,444);
    }
 }
 

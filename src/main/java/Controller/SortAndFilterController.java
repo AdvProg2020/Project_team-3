@@ -86,7 +86,7 @@ public class SortAndFilterController {
       activeSort = 0;
    }
 
-   public void activateFilterPriceRange(int minPrice, int maxPrice) {
+   public void activateFilterPriceRange(double minPrice, double maxPrice) {
       filterPriceRange = true;
       this.minPrice = minPrice;
       this.maxPrice = maxPrice;
@@ -260,6 +260,52 @@ public class SortAndFilterController {
       filterAvailability = false;
       activeSort = 0;
       filterAvailability = false;
+   }
+
+   public Boolean getFilterAttribute() {
+      return filterAttribute;
+   }
+   public Boolean getFilterBrand() {
+      return filterBrand;
+   }
+   public Boolean getFilterCategoryName() {
+      return filterCategoryName;
+   }
+   public Boolean getFilterAvailability() {
+      return filterAvailability;
+   }
+   public Boolean getFilterName() {
+      return filterName;
+   }
+   public Boolean getFilterPriceRange() {
+      return filterPriceRange;
+   }
+   public Boolean getFilterSellerName() {
+      return filterSellerName;
+   }
+   public String getMinPrice() {
+      return Double.toString(minPrice);
+   }
+   public String getMaxPrice() {
+      return  Double.toString(maxPrice);
+   }
+   public String getCategoryName() {
+      return categoryName;
+   }
+   public String getBrandName() {
+      return brandName;
+   }
+   public String getName() {
+      return name;
+   }
+   public String getAttributeKey() {
+      return attributeKey;
+   }
+   public String getAttributeValue() {
+      return attributeValue;
+   }
+   public String getSellerName() {
+      return sellerName;
    }
 }
 
