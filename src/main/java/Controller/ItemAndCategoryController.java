@@ -327,10 +327,10 @@ public class ItemAndCategoryController {
     public String renameCategory(String oldName,String newName){
         Category category=getCategoryByName(oldName);
         if(category==null){
-            return View.ANSI_RED+"Error: Invalid category name"+View.ANSI_RESET;
+            return  "Error: Invalid category name";
         }
         if(isThereCategoryWithName(newName)){
-            return View.ANSI_RED+"Error: Category with this name already exists"+View.ANSI_RESET;
+            return "Error: Category with this name already exists";
         }
         category.rename(newName);  //this will also change parent and father and item category name
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
@@ -347,7 +347,7 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
-        if(!isThereCategoryWithName(name)) return View.ANSI_RED+"Error: Invalid category name!"+View.ANSI_RESET;
+        if(!isThereCategoryWithName(name)) return "Error: Invalid category name!";
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());
         if(parent!=null){
@@ -422,14 +422,18 @@ public class ItemAndCategoryController {
         if(item==null) return false;
         return item.hasAttribute(key);
     }
-
+    public String getCategoryInfo(String categoryName){
+        Category category=getCategoryByName(categoryName);
+        if(category==null) return "Error: category doesnt exist";
+        return category.toString();
+    }
     public String addAttributeToCategory(String categoryName,String attribute){
         Category category=getCategoryByName(categoryName);
         if(category==null){
-            return View.ANSI_RED+"Error: invalid category name"+View.ANSI_RESET;
+            return "Error: invalid category name";
         }
         if(category.getAttributes().contains(attribute)){
-            return View.ANSI_RED+"Error: category already has this attribute"+View.ANSI_RESET;
+            return "Error: category already has this attribute";
         }
         category.addAttribute(attribute);
         for (String itemId : category.getAllItemsID()) {

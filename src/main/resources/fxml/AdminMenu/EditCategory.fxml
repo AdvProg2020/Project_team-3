@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="427.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditCategory">
+    <MenuBar>
+        <Menu text="options">
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+    <Button layoutX="260.0" layoutY="40.0" onMouseClicked="#changeName" text="change" />
+        <Label layoutX="27.0" layoutY="45.0" text="name:" />
+       <TextField fx:id="categoryNameField" layoutX="86.0" layoutY="40.0" onKeyReleased="#updateCategoryName" />
+
+       <Button layoutX="260.0" layoutY="98.0" onMouseClicked="#addAttribute" prefHeight="27.0" prefWidth="59.0" text="+" />
+       <Label layoutX="13.0" layoutY="103.0" text="attribute:" />
+       <TextField fx:id="attributeField" layoutX="86.0" layoutY="98.0" />
+
+      <ListView fx:id="info" layoutX="16.0" layoutY="166.0" prefHeight="228.0" prefWidth="300.0" />
+    <Button layoutX="264.0" layoutY="139.0" text="delete" onMouseClicked="#delete" />
+</AnchorPane>
