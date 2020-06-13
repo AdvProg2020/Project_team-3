@@ -1,11 +1,36 @@
 package View.Menus.MenuController.AdminMenu;
 
+import Controller.Controller;
+import Model.Users.Admin;
+import Model.Users.Buyer;
+import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 public class AdminMenuController {
+   public ImageView adminImage;
+
+
+   public void initialize(){
+      if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Admin){
+         User onlineUser=Controller.getInstance().getCurrentOnlineUser();
+         String path=UserController.getInstance().userImagePath(onlineUser.getUsername());
+         File file=new File(path);
+         try {
+            adminImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+         } catch (MalformedURLException e) {
+            e.printStackTrace();
+         }
+      }
+   }
+
    public void manageUsers(MouseEvent mouseEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
