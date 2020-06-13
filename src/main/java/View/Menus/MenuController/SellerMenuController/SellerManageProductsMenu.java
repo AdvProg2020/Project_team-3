@@ -5,28 +5,34 @@ import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class SellerManageProductsMenu {
+    @FXML private ListView listView;
+    @FXML private ChoiceBox sortChoiceBox;
 
+    @FXML public void initialize() {
+        sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
+        sortChoiceBox.getItems().add("sort by view");
+        sortChoiceBox.setValue("sort by view");
+        update();
+    }
 
-
-
-    // didane hamme product ha + emkane delete ya edit
-    @FXML
-    private ListView listView;
-    @FXML
-    private void initialize(){
+    public void update() {
         listView.getItems().clear();
-        for (Object item: SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems())){
-            listView.getItems().add(item);
+        listView.getItems().addAll(SortAndFilterController.getInstance().show("Main"));
+
+        if(listView.getItems().isEmpty()) {
+            listView.getItems().add("there are no products right now");
+            return;
         }
-        if(listView.getItems().isEmpty())
-            listView.getItems().add("You have no items");
     }
 
     @FXML
@@ -71,5 +77,27 @@ public class SellerManageProductsMenu {
     private void logout(){
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
+    }
+
+    public void itemSelect(MouseEvent mouseEvent) {
+            int index=listView.getSelectionModel().getSelectedIndex();
+            System.out.println(index);
+            if(index==-1)
+                return;
+            String itemId=listView.getItems().get(index).toString().substring(4,9);
+            listView.getSelectionModel().clearSelection();
+            if(ItemAndCategoryController.getInstance().isThereItemWithId(itemId)) {
+                SellerEditItemMenu.setItemID(itemId);
+                SceneSwitcher.getInstance().setSceneTo("SellerEditItemMenu", 1280, 720);
+             }
+    }
+
+    public void sort(ActionEvent actionEvent) {
+        String sort=sortChoiceBox.getValue().toString();
+        if(sort.equals("sort by view")){
+            SortAndFilterController.getInstance().disableSort();
+        }else {
+            SortAndFilterController.getInstance().activateSort(sort); }
+        update();
     }
 }
