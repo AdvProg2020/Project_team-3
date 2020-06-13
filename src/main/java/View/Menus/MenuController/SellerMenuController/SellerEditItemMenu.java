@@ -7,11 +7,10 @@ import Model.Users.Seller;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class SellerEditItemMenu {
     private static String itemID;
@@ -29,6 +28,8 @@ public class SellerEditItemMenu {
     private Button removeItem;
     @FXML
     private Button viewBuyers;
+
+    private TextInputDialog dialog = new TextInputDialog("");
 
     @FXML
     private void initialize(){
@@ -57,13 +58,28 @@ public class SellerEditItemMenu {
         if(index==-1)
             return;
         String string=listView.getItems().get(index).toString();
+        int ind = string.indexOf(":");
+        string = string.substring(0,ind);
+        final String key = string.toLowerCase();
+        // alert dialog miad value migire
+        setDialogText("Enter a new value for "+key);
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(s -> ItemAndCategoryController.getInstance().editItem(key,s,itemID));
 
-        listView.getSelectionModel().clearSelection();
-        if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)) {
-            ItemMenuController.setItemID(itemID);
-            SceneSwitcher.getInstance().setSceneTo("ItemMenu", 1280, 720);
-        }
+        sendAlert("Editing request has been sent.","SellerEditItemMenu");
     }
+
+    private void sendAlert(String text,String nextScene){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.setGraphic(null);
+        alert.show();
+        alert.setHeight(127);
+        alert.setOnHidden(evt -> SceneSwitcher.getInstance().setSceneTo(nextScene));
+    }
+
 
     @FXML
     private void back(){
@@ -82,7 +98,7 @@ public class SellerEditItemMenu {
 
     @FXML
     private void removeItem(){
-
+        sendAlert(ItemAndCategoryController.getInstance().deleteItem(itemID),"SellerManageProductsMenu");
     }
 
     public static String getItemID() {
@@ -91,6 +107,13 @@ public class SellerEditItemMenu {
 
     public static void setItemID(String itemID) {
         SellerEditItemMenu.itemID = itemID;
+    }
+
+    private void setDialogText(String attributeKey){
+        dialog.setTitle("Enter Attribute Value");
+        dialog.setHeaderText(attributeKey);
+        dialog.setContentText("Please enter a value:");
+        dialog.setGraphic(null);
     }
 
 
