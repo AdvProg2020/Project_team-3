@@ -14,7 +14,7 @@ public class SellerEditItemMenu {
     //
     @FXML
     private void back(){
-        SceneSwitcher.getInstance().setSceneTo("SellerMenu");
+        SceneSwitcher.getInstance().setSceneTo("SellerManageProductsMenu");
     }
     @FXML
     private void logout(){
