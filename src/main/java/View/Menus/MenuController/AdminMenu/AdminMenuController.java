@@ -31,27 +31,27 @@ public class AdminMenuController {
       }
    }
 
-   public void manageUsers(MouseEvent mouseEvent) {
+   public void manageUsers(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
 
-   public void manageDiscountCodes(MouseEvent mouseEvent) {
+   public void manageDiscountCodes(ActionEvent actionEvent) {
     SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes");
    }
 
-   public void manageRequests(MouseEvent mouseEvent) {
+   public void manageRequests(ActionEvent actionEvent) {
      SceneSwitcher.getInstance().setSceneTo("ManageRequests");
    }
 
-   public void manageProducts(MouseEvent mouseEvent) {
+   public void manageProducts(ActionEvent actionEvent) {
      SceneSwitcher.getInstance().setSceneTo("ManageProducts");
    }
 
-   public void addDiscountCode(MouseEvent mouseEvent){
+   public void addDiscountCode(ActionEvent actionEvent){
     SceneSwitcher.getInstance().setSceneTo("AddDiscountCode");
    }
 
-   public void manageCategories(MouseEvent mouseEvent) {
+   public void manageCategories(ActionEvent actionEvent) {
     SceneSwitcher.getInstance().setSceneTo("ManageCategories");
    }
 
@@ -64,11 +64,15 @@ public class AdminMenuController {
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
 
-   public void addCategory(MouseEvent mouseEvent) {
+   public void addCategory(ActionEvent actionEvent) {
     SceneSwitcher.getInstance().setSceneTo("AddCategory");
    }
 
-   public void createAdminProfile(MouseEvent mouseEvent) {
+   public void createAdminProfile(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("AdminRegister");
+   }
+
+   public void editPersonalInfo(MouseEvent mouseEvent) {
+
    }
 }

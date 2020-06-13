@@ -24,7 +24,7 @@ public class EditCategory {
    public void update(){
       info.getItems().clear();
       String message=ItemAndCategoryController.getInstance().getCategoryInfo(categoryName);
-      info.getItems().addAll(message);
+      info.getItems().addAll(message.split(","));
    }
 
    public static void setCategoryName(String name) {

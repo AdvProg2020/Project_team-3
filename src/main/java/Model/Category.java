@@ -115,4 +115,14 @@ public class Category {
         this.name=newName;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", parent='" + parent + '\'' +
+                ", allItemsID=" + allItemsID +
+                ", attributes=" + attributes +
+                ", subCategories=" + subCategories +
+                '}';
+    }
 }
