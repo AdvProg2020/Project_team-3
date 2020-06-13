@@ -291,6 +291,7 @@ public class Item {
     }
 
     public void setAttribute(String attributeName, String value) {
+        if(!attributes.containsKey(attributeName)) return;
         attributes.replace(attributeName, value);
     }
 
