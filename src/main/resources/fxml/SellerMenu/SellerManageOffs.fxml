@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerManageOffs">
+
+    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="option">
+                <MenuItem mnemonicParsing="false" onAction="#startSale" text="Start Sale" />
+                <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
+            </Menu>
+        </menus>
+    </MenuBar>
+   <ListView fx:id="listView" layoutX="431.0" layoutY="102.0" prefHeight="543.0" prefWidth="397.0" />
+   <Label layoutX="431.0" layoutY="59.0" prefHeight="32.0" prefWidth="102.0" text="Your Sales:" />
+   <Button layoutX="881.0" layoutY="102.0" mnemonicParsing="false" onAction="#startSale" prefHeight="25.0" prefWidth="85.0" text="Start Sale" />
+
+</AnchorPane>
