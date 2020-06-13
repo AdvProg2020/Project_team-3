@@ -1,8 +1,9 @@
 package View.Menus.MenuController.SellerMenuController;
 
-import Controller.Database;
-import Controller.SortAndFilterController;
-import Controller.UserController;
+import Controller.*;
+import View.Menus.ItemMenu;
+import View.Menus.MenuController.AdminMenu.ManageRequestIn;
+import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -27,7 +28,15 @@ public class SellerManageProductsMenu {
 
     @FXML
     private void requestSelect(){
-
+        int index=listView.getSelectionModel().getSelectedIndex();
+        if(index==-1)
+            return;
+        String itemID=listView.getItems().get(index).toString().substring(4,9);
+        listView.getSelectionModel().clearSelection();
+        if(ItemAndCategoryController.getInstance().isThereItemWithId(itemID)) {
+            ItemMenuController.setItemID(itemID);
+            SceneSwitcher.getInstance().setSceneTo("ItemMenu", 1280, 720);
+        }
     }
 
 
