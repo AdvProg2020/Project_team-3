@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="125.0" layoutY="87.0" />
       <TextField fx:id="firstNameTextField" layoutX="125.0" layoutY="215.0" />
@@ -22,7 +21,7 @@
       <TextField fx:id="imageDirectory" layoutX="125.0" layoutY="518.0" />
       <Label layoutX="57.0" layoutY="522.0" text="image" />
       <Button layoutX="275.0" layoutY="518.0" mnemonicParsing="false" onAction="#fileChooserOpen" text="..." />
-      <CheckBox fx:id="passwordCheckBox" layoutX="275.0" layoutY="153.0" mnemonicParsing="false" text="show Password?" />
+      <CheckBox fx:id="passwordCheckBox" layoutX="316.0" layoutY="153.0" mnemonicParsing="false" text="show Password?" />
       <TextField fx:id="passwordTextField" layoutX="126.0" layoutY="149.0" />
       <Label fx:id="usernameLabel" layoutX="125.0" layoutY="112.0" prefHeight="17.0" prefWidth="191.0" />
       <Label fx:id="passwordLabel" layoutX="125.0" layoutY="173.0" prefHeight="17.0" prefWidth="149.0" />

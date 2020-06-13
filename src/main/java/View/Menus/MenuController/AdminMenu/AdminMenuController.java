@@ -42,4 +42,8 @@ public class AdminMenuController {
    public void addCategory(MouseEvent mouseEvent) {
     SceneSwitcher.getInstance().setSceneTo("AddCategory");
    }
+
+   public void createAdminProfile(MouseEvent mouseEvent) {
+      SceneSwitcher.getInstance().setSceneTo("AdminRegister");
+   }
 }

@@ -21,6 +21,6 @@
     <Button layoutX="21.0" layoutY="200.0" prefHeight="27.0" prefWidth="148.0" text="view personal info"> </Button>
     <Button layoutX="217.0" layoutY="253.0" onMouseClicked="#addDiscountCode" prefHeight="27.0" prefWidth="169.0" text="add discount code" />
     <Button layoutX="21.0" layoutY="298.0" prefHeight="27.0" prefWidth="148.0" text="add category" onMouseClicked="#addCategory" />
-    <Button layoutX="21.0" layoutY="253.0" prefHeight="27.0" prefWidth="148.0" text="create admin profile" />
+    <Button layoutX="21.0" layoutY="253.0" prefHeight="27.0" prefWidth="148.0" text="create admin profile" onMouseClicked="#createAdminProfile" />
    <ImageView fitHeight="146.0" fitWidth="200.0" layoutX="427.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>
