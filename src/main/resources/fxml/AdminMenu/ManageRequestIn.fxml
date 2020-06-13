@@ -9,7 +9,7 @@
     <TextField  editable="false"  fx:id="detail" layoutX="31.0" layoutY="39.0" prefHeight="73.0" prefWidth="333.0" />
     <MenuBar >
         <Menu text="options">
-            <MenuItem text="back" onAction="#exit"></MenuItem>
+            <MenuItem text="back" onAction="#back"></MenuItem>
         </Menu>
     </MenuBar>
 </AnchorPane>

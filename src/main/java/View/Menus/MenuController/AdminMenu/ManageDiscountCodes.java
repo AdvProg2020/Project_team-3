@@ -34,7 +34,7 @@ public class ManageDiscountCodes {
       System.out.println(index);
       if(index==-1)
          return;
-      String discountId=listView.getItems().get(index).toString().substring(4,9);
+      String discountId=listView.getItems().get(index).toString().substring(16,21);
       listView.getSelectionModel().clearSelection();
       EditDiscountCode.setDiscountId(discountId);
       SceneSwitcher.getInstance().setSceneTo("EditDiscountCode",600,600);

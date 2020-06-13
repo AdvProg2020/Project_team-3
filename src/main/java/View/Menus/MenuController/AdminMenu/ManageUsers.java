@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
+import Controller.UserController;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,8 +56,10 @@ public class ManageUsers {
          return;
       String username=listView.getItems().get(index).toString();
       System.out.println(username);
-      ManageUserIn.setUsername(username);
-      SceneSwitcher.getInstance().setSceneTo("ManageUserIn",348,88);
+      if(UserController.getInstance().isThereUserWithUsername(username)) {
+         ManageUserIn.setUsername(username);
+         SceneSwitcher.getInstance().setSceneTo("ManageUserIn", 348, 88);
+      }
       listView.getSelectionModel().clearSelection();
    }
 }

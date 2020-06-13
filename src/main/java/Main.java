@@ -18,8 +18,8 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
-        initializeScreens();                                       //                                                 ______
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");       //   /\                                             \    /
+        initializeScreens();                                          //                                                 ______
+        SceneSwitcher.getInstance().setSceneTo("MainMenu");          //   /\                                             \    /
         //stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
         stage.setMaxWidth(1280);                                  // /____\                                             \/
         //stage.setMinHeight(720);

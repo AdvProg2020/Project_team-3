@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
+import Controller.RequestController;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +33,10 @@ public class ManageRequests {
          return;
       String requestId=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
-      ManageRequestIn.setRequestId(requestId);
-      SceneSwitcher.getInstance().setSceneTo("ManageRequestIn",392,173);
+      if(RequestController.getInstance().isThereRequestWithId(requestId)) {
+         ManageRequestIn.setRequestId(requestId);
+         SceneSwitcher.getInstance().setSceneTo("ManageRequestIn", 392, 173);
+      }
    }
 
    public void back(ActionEvent actionEvent)  {

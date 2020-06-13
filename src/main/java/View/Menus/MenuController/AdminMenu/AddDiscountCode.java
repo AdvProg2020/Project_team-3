@@ -21,6 +21,7 @@ public class AddDiscountCode {
    @FXML private DatePicker start;
    @FXML private DatePicker end;
    @FXML private ListView userList;
+   @FXML private ListView selectedUserList;
    private ArrayList<String> allUserName=new ArrayList<>();
 
    @FXML
@@ -37,7 +38,21 @@ public class AddDiscountCode {
          userList.getItems().add("no user");
    }
 
+   public Boolean valid(){
+      if(percent.getStyle().toString().contains("red"))
+         return false;
+      if(usage.getStyle().toString().contains("red"))
+         return false;
+      if(maxDiscount.getStyle().toString().contains("red"))
+         return false;
+      return true;
+   }
+
    public void create(MouseEvent mouseEvent) {
+      if(valid()==false){
+         showAlertBox("please fill all the fields correctly","WARNING");
+         return;
+      }
     try{
        int percentInt=Integer.parseInt(percent.getText());
        int usageInt=Integer.parseInt(usage.getText());
@@ -45,9 +60,7 @@ public class AddDiscountCode {
        String startDate=start.getValue().toString();
        String endDate=end.getValue().toString();
        String message=SaleAndDiscountCodeController.getInstance().addDiscountCode(percentInt,getDate(endDate),getDate(startDate),allUserName,usageInt,maxDiscountInt);
-       Alert alert = new Alert(Alert.AlertType.WARNING);
-       alert.setContentText(message);
-       alert.showAndWait();
+       showAlertBox(message,"INFORMATION");
        if(message.startsWith("Successful:")) {
           back(null);
        }else{
@@ -55,9 +68,7 @@ public class AddDiscountCode {
        }
     }catch (Exception e){
        e.printStackTrace();
-       Alert alert = new Alert(Alert.AlertType.WARNING);
-       alert.setContentText("please fill all the fields correctly");
-       alert.showAndWait();
+       showAlertBox("please fill all the fields correctly","WARNING");
     }
    }
 
@@ -69,6 +80,8 @@ public class AddDiscountCode {
     percent.clear();
     usage.clear();
     maxDiscount.clear();
+    selectedUserList.getItems().clear();
+    update();
    }
 
 
@@ -92,6 +105,10 @@ public class AddDiscountCode {
       if(text.isEmpty() ) return;
       try {
          int number = Integer.parseInt(text);
+         if(number<0){
+            usage.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+            return;
+         }
          usage.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
       }catch (Exception e){
          usage.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
@@ -103,6 +120,10 @@ public class AddDiscountCode {
       if(text.isEmpty() ) return;
       try {
          int number = Integer.parseInt(text);
+         if(number<0){
+            maxDiscount.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+            return;
+         }
          maxDiscount.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
       }catch (Exception e){
          maxDiscount.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
@@ -118,8 +139,10 @@ public class AddDiscountCode {
       System.out.println(username);
       if(allUserName.contains(username)){
          allUserName.remove(username);
+         selectedUserList.getItems().remove(username);
       }else {
          allUserName.add(username);
+         selectedUserList.getItems().add(username);
       }
       userList.getSelectionModel().clearSelection();
    }
@@ -137,5 +160,10 @@ public class AddDiscountCode {
       }
    }
 
+   private void showAlertBox(String message,String type){
+      Alert alert = new Alert(Alert.AlertType.valueOf(type));
+      alert.setContentText(message);
+      alert.showAndWait();
+   }
 
 }

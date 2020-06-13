@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.AdminMenu.EditDiscountCode"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditDiscountCode">
+    <MenuBar>
+        <Menu text="options">
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+    <Label layoutX="55.0" layoutY="31.0" prefHeight="17.0" prefWidth="48.0" text="percent:" />
+    <TextField fx:id="percent" layoutX="111.0" layoutY="26.0" onKeyReleased="#updatePercent" />
 
+    <Label layoutX="27.0" layoutY="73.0" text="max discount:" />
+    <TextField fx:id="maxDiscount" layoutX="111.0" layoutY="68.0" onKeyReleased="#updateMaxDiscount" />
+
+    <Label layoutX="65.0" layoutY="113.0" text="usage:" />
+    <TextField fx:id="usage" layoutX="111.0" layoutY="108.0" onKeyReleased="#updateUsage" />
+
+   
+
+    <Label layoutX="71.0" layoutY="158.0" text="end:" />
+
+
+
+    <DatePicker fx:id="end" layoutX="111.0" layoutY="153.0" />
+
+    <Button layoutX="330.0" layoutY="26.0" onMouseClicked="#changePercent" text="change" />
+    <Button layoutX="330.0" layoutY="68.0" onMouseClicked="#changeMaxDiscount" text="change" />
+    <Button layoutX="330.0" layoutY="108.0" onMouseClicked="#changeUsage" text="change" />
+
+    <Button layoutX="330.0" layoutY="153.0" onMouseClicked="#changeEndDate" text="change" />
+    <Button layoutX="334.0" layoutY="200.0" onMouseClicked="#delete" text="delete" />
 </AnchorPane>

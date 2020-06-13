@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.RequestController;
 import View.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -27,13 +28,13 @@ public class ManageRequestIn {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         exit(null);
+         back(null);
       }
       if(message.startsWith("Error")){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
          alert.showAndWait();
-         exit(null);
+         back(null);
       }
    }
 
@@ -43,17 +44,17 @@ public class ManageRequestIn {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         exit(null);
+         back(null);
       }
       if(message.startsWith("Error")){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
          alert.showAndWait();
-         exit(null);
+         back(null);
       }
    }
 
-   public void exit(MouseEvent mouseEvent) {
+   public void back(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageRequests");
    }
 }
