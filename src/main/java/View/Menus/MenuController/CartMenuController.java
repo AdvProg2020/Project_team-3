@@ -44,4 +44,7 @@ public class CartMenuController {
     }
 
 
+    public void viewEditPersonalInfo(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
+    }
 }

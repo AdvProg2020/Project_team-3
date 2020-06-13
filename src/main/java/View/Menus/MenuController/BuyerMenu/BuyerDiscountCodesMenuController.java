@@ -11,8 +11,6 @@ public class BuyerDiscountCodesMenuController {
 
 
 
-
-
     public void goToUserZone(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
@@ -47,4 +45,7 @@ public class BuyerDiscountCodesMenuController {
     }
 
 
+    public void ViewEditPersonalInfo(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
+    }
 }
