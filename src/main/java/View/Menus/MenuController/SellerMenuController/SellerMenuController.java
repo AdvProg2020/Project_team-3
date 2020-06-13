@@ -6,6 +6,7 @@ import Model.Users.Seller;
 import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,4 +61,7 @@ public class SellerMenuController {
     private void viewDiscounts(){
         SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
     }
+
+   public void editPersonalInfo(ActionEvent actionEvent) {SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo");
+   }
 }

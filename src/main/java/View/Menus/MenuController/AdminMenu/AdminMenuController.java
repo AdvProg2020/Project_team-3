@@ -1,9 +1,6 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Controller;
-import Model.Users.Admin;
-import Model.Users.Buyer;
-import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -23,16 +20,13 @@ public class AdminMenuController {
 
 
    public void initialize(){
-      if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Admin){
-         User onlineUser=Controller.getInstance().getCurrentOnlineUser();
-         String path=UserController.getInstance().userImagePath(onlineUser.getUsername());
+         String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
          File file=new File(path);
          try {
             adminImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
          } catch (MalformedURLException e) {
             e.printStackTrace();
          }
-      }
       personalInfoUpdate();
    }
 
