@@ -41,13 +41,14 @@
       <Button layoutX="721.0" layoutY="336.0" mnemonicParsing="false" onAction="#changeEmail" text="change" />
       <Button layoutX="720.0" layoutY="427.0" mnemonicParsing="false" onAction="#changePassword" text="change" />
       <ImageView fx:id="userImage" fitHeight="114.0" fitWidth="149.0" layoutX="185.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="232.0" layoutY="238.0" mnemonicParsing="false" onAction="#changeImage" text="change" />
+      <Button layoutX="279.0" layoutY="238.0" mnemonicParsing="false" onAction="#changeImage" text="change" />
       <Label fx:id="numberLabel" layoutX="570.0" layoutY="284.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="emailLabel" layoutX="570.0" layoutY="361.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="passwordLabel" layoutX="570.0" layoutY="452.0" prefHeight="17.0" prefWidth="143.0" />
       <Label fx:id="surnameLabel" layoutX="570.0" layoutY="201.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="firstnameLabel" layoutX="570.0" layoutY="124.0" prefHeight="17.0" prefWidth="149.0" />
       <CheckBox fx:id="passwordCheckBox" layoutX="776.0" layoutY="431.0" mnemonicParsing="false" text="show password?" />
+      <Button layoutX="208.0" layoutY="238.0" mnemonicParsing="false" onAction="#removeImage" text="remove" />
    </children>
 
 

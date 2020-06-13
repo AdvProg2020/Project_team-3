@@ -10,9 +10,15 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class PersonalInfoMenuController {
 
@@ -150,7 +156,32 @@ public class PersonalInfoMenuController {
     }
 
     public void changeImage(ActionEvent actionEvent) {
-
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("image","*.png"),
+                new FileChooser.ExtensionFilter("image","*.jpg")
+        );
+        File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+        if(selected==null) return;
+        File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
+        if(!removed.getPath().equals("src/main/resources/Images/default.jpg")) removed.delete();
+        Path source= Paths.get(selected.getPath());
+        String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
+        String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
+        Path des=Paths.get(fullPath);
+        try {
+            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String path=UserController.getInstance().userImagePath(user.getUsername());
+        File file=new File(path);
+        try {
+            userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showAlertBox(){
@@ -159,4 +190,17 @@ public class PersonalInfoMenuController {
         alert.show();
     }
 
+
+    public void removeImage(ActionEvent actionEvent) {
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        String path=UserController.getInstance().userImagePath(user.getUsername());
+        File file=new File(path);
+        file.delete();
+        File defaultImage=new File("src/main/resources/Images/default.jpg");
+        try {
+            userImage.setImage(new Image(String.valueOf(defaultImage.toURI().toURL())));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 }
