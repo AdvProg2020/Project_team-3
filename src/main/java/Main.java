@@ -48,6 +48,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("EditCategory","src/main/resources/fxml/AdminMenu/EditCategory.fxml");
         SceneSwitcher.getInstance().addSceneFXML("BuyerMenu","src/main/resources/fxml/BuyerMenu/BuyerMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerMenu","src/main/resources/fxml/SellerMenu/SellerMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("SellerManageProductsMenu","src/main/resources/fxml/SellerMenu/SellerManageProductsMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerAddProductMenu","src/main/resources/fxml/SellerMenu/SellerAddProductMenu.fxml");
     }
 
