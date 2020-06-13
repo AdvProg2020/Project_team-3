@@ -52,24 +52,26 @@ public class ShopMenuController {
     private AnchorPane anchorPane;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private Label categoryLabel;
 
     @FXML
     private void initialize(){
+        categoryName = "Main";
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
         filters.getItems().addAll(SortAndFilterController.getInstance().showActiveFilters());
         initLists();
-        gridPane.setMaxHeight(50000);
+        gridPane.setMaxHeight(500000);
+
         //bayad item haye shop ro bedast biarim va chizayi mesle filter sort va category ke mitonan
         //arrayliste item haro dastkari konan ro poshesh bedim , inja miaim item haro bargozari mikonim
-        //har item mishe 1 Vbox 3 ghesmate , 1 aks + 1 gheymat (agge off bashe strikethrough + gheymat jadid) + 1 esm
-        //click rooye vbox mibare maro be itemMenu on item
         //catgory o filter o sort o in kosshera ro badan mizanim
     }
 
     private void initLists(){
-        categoryName = "Main";
+        categoryLabel.setText("Currently Browsing "+categoryName);
         itemsToString = SortAndFilterController.getInstance().show(categoryName);
         for(String string : itemsToString){
             itemsID.add(string.substring(4,9));
