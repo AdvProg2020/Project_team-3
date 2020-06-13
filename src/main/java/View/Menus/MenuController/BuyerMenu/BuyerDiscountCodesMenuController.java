@@ -1,10 +1,13 @@
-package View.Menus.MenuController;
+package View.Menus.MenuController.BuyerMenu;
 
 import Controller.UserController;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 
-public class CartMenuController {
+public class BuyerDiscountCodesMenuController {
+
+
+
 
 
 
@@ -14,8 +17,8 @@ public class CartMenuController {
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
 
-    public void goToDiscountCodes(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("BuyerDiscountCodes");
+    public void goToCart(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().setSceneTo("CartMenu");
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {
