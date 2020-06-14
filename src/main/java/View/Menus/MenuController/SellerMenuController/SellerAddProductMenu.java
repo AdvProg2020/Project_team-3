@@ -235,7 +235,7 @@ public class SellerAddProductMenu {
 
 
 
-    private boolean isAPositiveInteger(String string){
+    protected static boolean isAPositiveInteger(String string){
         int anInt=-1;
         try{
             anInt = Integer.parseInt(string);
@@ -245,7 +245,7 @@ public class SellerAddProductMenu {
         return anInt>=0;
     }
 
-    private boolean isAPositiveDouble(String string){
+    protected static boolean isAPositiveDouble(String string){
         double aDouble=-1;
         try{
             aDouble = Double.parseDouble(string);
