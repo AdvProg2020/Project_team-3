@@ -5,7 +5,7 @@ import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 
 public class SellerEditOff {
-    private String offID;
+    private static String offID;
 
     @FXML
     private void back(){
@@ -17,11 +17,11 @@ public class SellerEditOff {
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
-    public void setOffID(String offID) {
-        this.offID = offID;
+    public static void setOffID(String newID) {
+        offID = newID;
     }
 
-    public String getOffID() {
+    public static String getOffID() {
         return offID;
     }
 }

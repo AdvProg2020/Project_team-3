@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerManageOffs">
 
@@ -14,8 +15,11 @@
             </Menu>
         </menus>
     </MenuBar>
-   <ListView fx:id="listView" layoutX="431.0" layoutY="102.0" prefHeight="543.0" prefWidth="397.0" />
-   <Label layoutX="431.0" layoutY="59.0" prefHeight="32.0" prefWidth="102.0" text="Your Sales:" />
+   <ListView fx:id="listView" layoutX="334.0" layoutY="102.0" prefHeight="543.0" onMouseClicked="#saleSelect" prefWidth="523.0" />
+   <Label layoutX="126.0" layoutY="71.0" prefHeight="32.0" prefWidth="102.0" text="Your Sales:" />
    <Button layoutX="881.0" layoutY="102.0" mnemonicParsing="false" onAction="#startSale" prefHeight="25.0" prefWidth="85.0" text="Start Sale" />
+   <Text layoutX="334.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="58.13671875" />
+   <Text layoutX="494.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Off Percentage" wrappingWidth="84.99998092651367" />
+   <Text layoutX="699.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ends in" />
 
 </AnchorPane>
