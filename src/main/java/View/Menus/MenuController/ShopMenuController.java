@@ -56,7 +56,7 @@ public class ShopMenuController {
 
 
     public void back(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+        SceneSwitcher.getInstance().back();
     }
 
 
@@ -139,7 +139,7 @@ public class ShopMenuController {
 
         itemBox.setOnMouseClicked(event -> {
             ItemMenuController.setItemID(itemID);
-            SceneSwitcher.getInstance().setSceneTo("ItemMenu");
+            SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
         });
         itemBox.setPrefSize(230,345);
 
@@ -157,9 +157,7 @@ public class ShopMenuController {
     }
 
 
-    public void filterMenu(ActionEvent actionEvent) {
 
-    }
 
     public void sort(ActionEvent actionEvent) {
         String sort=sortChoiceBox.getValue().toString();
