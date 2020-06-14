@@ -13,13 +13,12 @@
             </Menu>
         </menus>
     </MenuBar>
-   <TextField fx:id="offPercentage" layoutX="160.0" layoutY="116.0" prefHeight="25.0" prefWidth="157.0" promptText="Enter an Integer" />
+   <TextField fx:id="offPercentage" layoutX="160.0" layoutY="116.0" onKeyReleased="#updatePercent" prefHeight="25.0" prefWidth="157.0" promptText="Enter an Integer" />
    <Label layoutX="64.0" layoutY="120.0" prefHeight="17.0" prefWidth="81.0" text="Off Percentage" />
    <DatePicker fx:id="startDate" layoutX="160.0" layoutY="176.0" prefHeight="25.0" prefWidth="157.0" />
    <Label layoutX="93.0" layoutY="180.0" prefHeight="17.0" prefWidth="52.0" text="Starts at" />
    <DatePicker fx:id="endDate" layoutX="160.0" layoutY="238.0" prefHeight="25.0" prefWidth="157.0" />
    <Label layoutX="91.0" layoutY="242.0" prefHeight="17.0" prefWidth="52.0" text="Ends at" />
-   <Label text="Label" />
    <Label layoutX="160.0" layoutY="42.0" prefHeight="43.0" prefWidth="157.0" text="Enter Sale Details" />
    <Separator layoutX="383.0" layoutY="35.0" orientation="VERTICAL" prefHeight="406.0" prefWidth="8.0" />
    <ListView fx:id="allItems" layoutX="463.0" layoutY="88.0" prefHeight="350.0" prefWidth="250.0" />

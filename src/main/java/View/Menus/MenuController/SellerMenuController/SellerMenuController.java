@@ -46,6 +46,10 @@ public class SellerMenuController {
         SceneSwitcher.getInstance().setSceneTo("SellerManageProductsMenu");
     }
     @FXML
+    private void manageSales(){
+        SceneSwitcher.getInstance().setSceneTo("SellerManageOffs");
+    }
+    @FXML
     private void addProduct(){
         SceneSwitcher.getInstance().setSceneTo("SellerAddProductMenu");
     }

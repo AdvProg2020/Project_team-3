@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class SellerAddOff {
 
@@ -26,7 +27,20 @@ public class SellerAddOff {
     @FXML private ListView allItems;
     @FXML private ListView saleItems;
 
-
+    public void updatePercent(KeyEvent keyEvent) {
+        String text=offPercentage.getText();
+        if(text.isEmpty())  return;
+        try {
+            int per = Integer.parseInt(text);
+            if ((per > 100) || (per <= 0)) {
+                offPercentage.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            } else{
+                offPercentage.setStyle("-fx-text-fill: green; -fx-font-size: 12px;");
+            }
+        }catch (Exception e){
+            offPercentage.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+        }
+    }
 
 
     @FXML
