@@ -80,8 +80,8 @@ public class MainMenuController {
         logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                UserController.getInstance().logout();
                 menu.getItems().remove(getMenuItemByName("Logout"));
-                if(Controller.getInstance().getCurrentOnlineUser() instanceof Admin) menu.getItems().remove(getMenuItemByName("RegisterAdmin"));
                 addLoginMenuItem();
                 showLogoutAlertBox();
             }

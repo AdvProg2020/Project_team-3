@@ -59,10 +59,12 @@ public class ItemMenuController {
     public AnchorPane anchorPane;
     public MediaView mediaView;
     private final ObservableList<Comment> comments= FXCollections.observableArrayList();
+    public ListView attributeListView;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
     public void initialize(){
+        playPause.setText("play");
         ItemAndCategoryController.getInstance().addView(itemID);
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
         item.addViewsBy(1);
@@ -82,7 +84,7 @@ public class ItemMenuController {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        addAttributeGridPane();
+        addAttributeListView();
         commentListViewInitialize();
         commentListView.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
             @Override
@@ -138,21 +140,14 @@ public class ItemMenuController {
         alert.showAndWait();
     }
 
-    public  void addAttributeGridPane(){
-        GridPane gridPane=new GridPane();
-        anchorPane.getChildren().add(gridPane);
-        gridPane.setLayoutX(386);
-        gridPane.setLayoutY(356);
-        gridPane.setPrefWidth(386);
+    public  void addAttributeListView(){
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         HashMap<String , String> attributes=item.getAttributes();
-        int i=0;
-        for(String key: attributes.keySet()){
-            gridPane.add(new Label(key),0,i);
-            gridPane.add(new Label(attributes.get(key)),1,i);
-            i++;
+        String print=null;
+        for(String key:attributes.keySet()){
+            print=key+"                   "+attributes.get(key);
+            attributeListView.getItems().add(print);
         }
-
     }
 
     public void back(ActionEvent actionEvent) {

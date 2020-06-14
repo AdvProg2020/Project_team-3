@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
     <children>
 
         <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
@@ -52,20 +53,25 @@
         <Button layoutX="19.0" layoutY="679.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="131.0" text="Add to Cart" />
         <Label layoutX="32.0" layoutY="559.0" prefHeight="17.0" prefWidth="35.0" text="View:" />
         <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
-        <ListView fx:id="commentListView" layoutX="836.0" layoutY="278.0" prefHeight="324.0" prefWidth="410.0" />
+        <ListView fx:id="commentListView" layoutX="836.0" layoutY="310.0" prefHeight="324.0" prefWidth="410.0" />
         <Button layoutX="170.0" layoutY="679.0" mnemonicParsing="false" onAction="#rate" prefHeight="30.0" prefWidth="165.0" text="Rate Item" />
         <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="410.0" layoutX="836.0" layoutY="30.0" />
         <ToolBar layoutX="836.0" layoutY="233.0" prefHeight="40.0" prefWidth="410.0">
             <items>
-                <Button fx:id="playPause" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" />
+                <Button fx:id="playPause" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
             </items>
         </ToolBar>
-        <Button layoutX="1060.0" layoutY="614.0" mnemonicParsing="false" onAction="#comment" prefHeight="72.0" prefWidth="183.0" text="add Comment" />
+        <Button layoutX="1063.0" layoutY="647.0" mnemonicParsing="false" onAction="#comment" prefHeight="48.0" prefWidth="183.0" text="add Comment" />
 
-        <Polygon fx:id="star1" onMouseClicked="#star1Update" fill="#AAAAAA" layoutX="25.0" layoutY="635.0" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-        <Polygon fx:id="star2" onMouseClicked="#star2Update" layoutX="60" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-        <Polygon fx:id="star3" onMouseClicked="#star3Update" layoutX="95" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-        <Polygon fx:id="star4" onMouseClicked="#star4Update" layoutX="130" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-        <Polygon fx:id="star5" onMouseClicked="#star5Update" layoutX="165" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star1" fill="#AAAAAA" layoutX="25.0" layoutY="635.0" onMouseClicked="#star1Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star2" fill="#AAAAAA" layoutX="60" layoutY="635" onMouseClicked="#star2Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star3" fill="#AAAAAA" layoutX="95" layoutY="635" onMouseClicked="#star3Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+      <ListView fx:id="attributeListView" layoutX="392.0" layoutY="359.0" prefHeight="279.0" prefWidth="387.0" />
+      <Label layoutX="836.0" layoutY="286.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
+      <Separator layoutX="362.0" layoutY="22.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
+      <Separator layoutX="792.0" layoutY="22.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
+      <Separator layoutX="818.0" layoutY="277.0" prefHeight="3.0" prefWidth="433.0" />
     </children>
 </AnchorPane>
