@@ -37,7 +37,7 @@ public class BuyerEditPersonalInfo {
     public Label firstnameLabel;
     public CheckBox passwordCheckBox;
 
-
+    @FXML
     public void initialize()  {
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());

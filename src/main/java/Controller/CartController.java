@@ -15,8 +15,6 @@ public class CartController {
     private CartController() {
     }
 
-    ArrayList<Item> currentViewableItems = new ArrayList<>();
-
     public static CartController getInstance() {
         if (cartController == null)
             cartController = new CartController();
@@ -109,4 +107,6 @@ public class CartController {
         cart.buy(buyer.getUsername(), address);
         return View.ANSI_GREEN+"Successful: Shopping complete."+View.ANSI_RESET;
     }
+
+
 }
