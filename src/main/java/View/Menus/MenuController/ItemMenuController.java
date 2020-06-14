@@ -56,7 +56,6 @@ public class ItemMenuController {
     public ListView<Comment> commentListView;
     public ImageView itemImage;
     public Button playPause;
-    public ProgressBar progressBarVideo;
     public AnchorPane anchorPane;
     public MediaView mediaView;
     private final ObservableList<Comment> comments= FXCollections.observableArrayList();
@@ -91,7 +90,7 @@ public class ItemMenuController {
                 return  new imageCommentTextCell();
             }
         });
-       // initializeMediaPlayer();
+        initializeMediaPlayer();
 
     }
 
@@ -241,6 +240,7 @@ public class ItemMenuController {
 
     public void initializeMediaPlayer(){
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        if(item.getVideoName().equals("")) return;
         String fullPath="src/main/resources/Images/ItemImages/"+item.getVideoName();
         System.out.println(fullPath +" hello");
         File file=new File(fullPath);
