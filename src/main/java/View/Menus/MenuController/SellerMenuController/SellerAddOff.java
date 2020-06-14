@@ -55,14 +55,13 @@ public class SellerAddOff {
         allItems.getItems().clear();
         ArrayList<String> availableItems = SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems());
         ArrayList<String> toBeRemoved = new ArrayList<>();
-        for(String id:availableItems){
-            id = id.substring(4,9);
+        for(String item:availableItems){
+            String id = item.substring(4,9);
             if(ItemAndCategoryController.getInstance().getItemById(id).isInSale()){
-                toBeRemoved.add(id);
+                toBeRemoved.add(item);
             }
         }
         availableItems.removeAll(toBeRemoved);
-
 
         for (Object item : availableItems) {
             allItems.getItems().add(item);
