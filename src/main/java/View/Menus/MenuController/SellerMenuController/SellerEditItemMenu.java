@@ -84,8 +84,24 @@ public class SellerEditItemMenu {
     }
 
     private void sendEditRequest(String key,String value){
-        ItemAndCategoryController.getInstance().editItem(key,value,itemID);
-        sendAlert("Editing request has been sent.","SellerEditItemMenu");
+        if(isAValidValue(key,value)) {
+            ItemAndCategoryController.getInstance().editItem(key, value, itemID);
+            sendAlert("Editing request has been sent.", "SellerEditItemMenu");
+        }
+        else {
+            sendAlert("Error: New value is invalid.", "SellerEditItemMenu");
+        }
+    }
+
+    private boolean isAValidValue(String key,String value){
+        if(value.isEmpty()) return false;
+        if(key.equalsIgnoreCase("price")){
+            return SellerAddProductMenu.isAPositiveDouble(value);
+        }
+        if(key.equalsIgnoreCase("inStock")){
+            return SellerAddProductMenu.isAPositiveInteger(value);
+        }
+        return true;
     }
 
     private void sendAlert(String text,String nextScene){
