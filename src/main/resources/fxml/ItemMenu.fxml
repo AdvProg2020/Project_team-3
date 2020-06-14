@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.media.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
     <children>
 
         <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
@@ -20,7 +18,7 @@
                     </items></Menu>
             </menus>
         </MenuBar>
-        <ImageView fx:id="itemImage" fitHeight="339.0" fitWidth="340.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="itemImage" fitHeight="339.0" fitWidth="340.0" layoutX="11.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
         <Label layoutX="28.0" layoutY="392.0" prefHeight="17.0" prefWidth="36.0" text="name:" />
         <Label fx:id="itemNameLabel" layoutX="72.0" layoutY="392.0" prefHeight="17.0" prefWidth="261.0" />
         <Label fx:id="itemNameLabelBigFont" layoutX="371.0" layoutY="43.0" prefHeight="39.0" prefWidth="396.0">
@@ -51,11 +49,11 @@
             </font>
         </Label>
         <Separator layoutX="365.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="4.0" />
-        <Button layoutX="19.0" layoutY="630.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="59.0" prefWidth="183.0" text="Add to Cart" />
+        <Button layoutX="19.0" layoutY="679.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="131.0" text="Add to Cart" />
         <Label layoutX="32.0" layoutY="559.0" prefHeight="17.0" prefWidth="35.0" text="View:" />
         <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
         <ListView fx:id="commentListView" layoutX="836.0" layoutY="278.0" prefHeight="324.0" prefWidth="410.0" />
-        <Button layoutX="836.0" layoutY="617.0" mnemonicParsing="false" onAction="#rate" prefHeight="72.0" prefWidth="165.0" text="Rate Item" />
+        <Button layoutX="170.0" layoutY="679.0" mnemonicParsing="false" onAction="#rate" prefHeight="30.0" prefWidth="165.0" text="Rate Item" />
         <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="410.0" layoutX="836.0" layoutY="30.0" />
         <ToolBar layoutX="836.0" layoutY="233.0" prefHeight="40.0" prefWidth="410.0">
             <items>
@@ -63,6 +61,11 @@
             </items>
         </ToolBar>
         <Button layoutX="1060.0" layoutY="614.0" mnemonicParsing="false" onAction="#comment" prefHeight="72.0" prefWidth="183.0" text="add Comment" />
-    </children>
 
+        <Polygon fx:id="star1" onMouseClicked="#star1Update" fill="#AAAAAA" layoutX="25.0" layoutY="635.0" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star2" onMouseClicked="#star2Update" layoutX="60" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star3" onMouseClicked="#star3Update" layoutX="95" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star4" onMouseClicked="#star4Update" layoutX="130" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star5" onMouseClicked="#star5Update" layoutX="165" layoutY="635" fill="#AAAAAA" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+    </children>
 </AnchorPane>
