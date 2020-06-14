@@ -100,6 +100,7 @@ public class CartMenuController {
             return;
         }
         ItemMenuController.setItemID(selected.getId());
+        SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ItemMenu");
     }
 
@@ -126,6 +127,7 @@ public class CartMenuController {
             alert.showAndWait();
             return;
         }
+        SceneSwitcher.getInstance().setSceneTo("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("PurchaseMenu");
     }
 

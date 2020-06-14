@@ -51,7 +51,7 @@ public class LoginMenuController {
             return false;
         }
         if(UserController.getInstance().isThereUserWithUsername(username)==false){
-            errorLabel.setText("no user exist with this username");
+            errorLabel.setText("invalid username or password");
             errorLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
@@ -94,7 +94,7 @@ public class LoginMenuController {
         passwordField.setText("");
         Alert alert=new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error!");
-        alert.setContentText("incorrect username or password");
+        alert.setContentText("invalid username or password");
         alert.show();
     }
 

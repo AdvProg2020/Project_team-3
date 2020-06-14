@@ -83,7 +83,7 @@ public class SellerRegisterController {
         if(canRegister==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in Register process!");
-            alert.setContentText("you must correct your mistakes for successful register!");
+            alert.setContentText("please fill all the fields correctly");
             alert.show();
             validateTextFieldsAfterError(validation);
             return;
@@ -93,7 +93,7 @@ public class SellerRegisterController {
         emptyAllText();
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("successful!");
-        alert.setContentText("your request for registering is sent to our admins!");
+        alert.setContentText("your request has been sent to the admin");
         alert.show();
     }
 
@@ -104,7 +104,7 @@ public class SellerRegisterController {
             return false;
         }
         if(UserController.getInstance().isThereUserWithUsername(username)==true){
-            usernameLabel.setText("there is a user exist with this username!");
+            usernameLabel.setText("a username already exist with this username");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }

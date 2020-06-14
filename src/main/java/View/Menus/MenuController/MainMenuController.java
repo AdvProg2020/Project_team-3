@@ -133,11 +133,12 @@ public class MainMenuController {
         if(loginLogout.getText().equals("Logout")){
             UserController.getInstance().logout();
             loginLogout.setText("Login");
+            loginHandler();
             return;
         }
         if(loginLogout.getText().equals("Login")){
             SceneSwitcher.getInstance().saveScene("MainMenu");
-            SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
+            SceneSwitcher.getInstance().setSceneTo("Login");
         }
     }
 }

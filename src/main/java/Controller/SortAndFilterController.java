@@ -13,6 +13,7 @@ public class SortAndFilterController {
    Boolean filterAvailability = false;
    Boolean filterAttribute = false;
    Boolean filterSellerName = false;
+   Boolean filterSale = false;
    double minPrice;
    double maxPrice;
    String categoryName;
@@ -86,6 +87,10 @@ public class SortAndFilterController {
       activeSort = 0;
    }
 
+   public void activateFilterSale(){
+      filterSale=true;
+   }
+
    public void activateFilterPriceRange(double minPrice, double maxPrice) {
       filterPriceRange = true;
       this.minPrice = minPrice;
@@ -120,6 +125,10 @@ public class SortAndFilterController {
    public void activateFilterSellerName(String sellerName) {
       filterSellerName = true;
       this.sellerName = sellerName;
+   }
+
+   public void disableFilterSale(){
+      filterSale=false;
    }
 
    public void disableFilterPriceRange() {
@@ -185,6 +194,9 @@ public class SortAndFilterController {
       if ((filterSellerName == true) && (!item.getSellerName().equals(sellerName))) {
          return false;
       }
+      if((filterSale)&&(item.isInSale()==false)){
+         return false;
+      }
       return true;
    }
 
@@ -239,7 +251,8 @@ public class SortAndFilterController {
               "\nfilter by name [name]" +
               "\nfilter by availability" +
               "\nfilter by attribute [key] [value]" +
-              "\nfilter by seller [seller name]";
+              "\nfilter by seller [seller name]"+
+              "\nfilter sale";
    }
 
    public String showAllAvailableSorts() {

@@ -64,7 +64,7 @@ public class PurchaseMenu {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText(message);
       alert.showAndWait();
-      if(message.startsWith("Successful")) return;
+      if(message.startsWith("Successful")) SceneSwitcher.getInstance().back();
    }
 
    private Boolean validateAddress(){

@@ -22,6 +22,7 @@ public class SellerManageProductsMenu {
     @FXML CheckBox priceCheckBox;
     @FXML CheckBox attributeCheckBox;
     @FXML CheckBox sellerNameCheckBox;
+    @FXML CheckBox filterSaleCheckBox;
 
     @FXML TextField attributeKey;
     @FXML TextField attributeValue;
@@ -267,6 +268,16 @@ public class SellerManageProductsMenu {
         }
         SortAndFilterController.getInstance().disableFilterPriceRange();
         priceCheckBox.setSelected(false);
+        update();
+    }
+
+    public void saleFilter(MouseEvent mouseEvent) {
+        if(filterSaleCheckBox.isSelected()){
+            SortAndFilterController.getInstance().activateFilterSale();
+            update();
+            return;
+        }
+        SortAndFilterController.getInstance().disableFilterSale();
         update();
     }
 }
