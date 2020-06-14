@@ -90,7 +90,7 @@ public class ItemMenuController {
                 return  new imageCommentTextCell();
             }
         });
-        initializeMediaPlayer();
+       // initializeMediaPlayer();
 
     }
 

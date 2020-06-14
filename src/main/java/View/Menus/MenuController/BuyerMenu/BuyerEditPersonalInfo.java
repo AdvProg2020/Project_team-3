@@ -6,15 +6,20 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,7 +91,21 @@ public class BuyerEditPersonalInfo {
     }
     @FXML
     private void viewCart(){
-        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
+        Stage stage=new Stage();
+        stage.setHeight(427);
+        stage.setWidth(620);
+        URL urls = null;
+        try {
+            urls = new File(path).toURI().toURL();
+            Parent parent = FXMLLoader.load(urls);
+            stage.setScene(new Scene(parent));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
     }
 
 
@@ -156,35 +175,34 @@ public class BuyerEditPersonalInfo {
     }
 
     public void changeImage(ActionEvent actionEvent) {
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        FileChooser fileChooser=new FileChooser();
+        User user = Controller.getInstance().getCurrentOnlineUser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("image","*.png"),
-                new FileChooser.ExtensionFilter("image","*.jpg")
+                new FileChooser.ExtensionFilter("image", "*.png"),
+                new FileChooser.ExtensionFilter("image", "*.jpg")
         );
-        File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
-        if(selected==null) return;
-        File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
-        if(removed.getName().equals("default.jpg")) {}
-        else removed.delete();
-        Path source= Paths.get(selected.getPath());
-        String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
-        String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
-        Path des=Paths.get(fullPath);
+        File selected = fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+        if (selected == null) return;
+        File removed = new File(UserController.getInstance().userImagePath(user.getUsername()));
+        if (removed.getName().equals("default.jpg")) {
+        } else removed.delete();
+        Path source = Paths.get(selected.getPath());
+        String ext = selected.getName().substring(selected.getName().lastIndexOf("."));
+        String fullPath = "src/main/resources/Images/" + user.getUsername() + ext;
+        Path des = Paths.get(fullPath);
         try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(source, des, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String path=UserController.getInstance().userImagePath(user.getUsername());
-        File file=new File(path);
+        String path = UserController.getInstance().userImagePath(user.getUsername());
+        File file = new File(path);
         try {
             userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
-
     public void showAlertBox(){
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("the field changed successfully!");

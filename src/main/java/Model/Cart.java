@@ -19,6 +19,10 @@ public class Cart {
         allItemId = new ArrayList<>();
     }
 
+    public ArrayList<String> getAllItemId() {
+        return allItemId;
+    }
+
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }

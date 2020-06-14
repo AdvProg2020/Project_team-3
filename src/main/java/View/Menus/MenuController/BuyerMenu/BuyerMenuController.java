@@ -7,11 +7,17 @@ import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.FileHandler;
 
 public class BuyerMenuController {
@@ -64,7 +70,21 @@ public class BuyerMenuController {
     }
     @FXML
     private void viewCart(){
-        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
+        Stage stage=new Stage();
+        stage.setHeight(427);
+        stage.setWidth(620);
+        URL urls = null;
+        try {
+            urls = new File(path).toURI().toURL();
+            Parent parent = FXMLLoader.load(urls);
+            stage.setScene(new Scene(parent));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
     }
 
     public void viewEditPersonalInfo(ActionEvent actionEvent) {

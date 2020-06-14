@@ -57,22 +57,10 @@ public class MainMenuController {
     private void loginHandler(){
         if(Controller.getInstance().isLogin()==true){
             menu.getItems().remove(getMenuItemByName("Log In"));
-            if(Controller.getInstance().getCurrentOnlineUser() instanceof Admin) addAdminRegisterMenuItem();
             addLogoutMenuItem();
         }
     }
 
-    private void addAdminRegisterMenuItem(){
-        MenuItem adminRegister=new MenuItem("Register Admin");
-        menu.getItems().add(0,adminRegister);
-        adminRegister.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                SceneSwitcher.getInstance().saveScene("MainMenu");
-                SceneSwitcher.getInstance().setSceneTo("AdminRegister");
-            }
-        });
-    }
 
     private void addLoginMenuItem(){
         MenuItem login=new MenuItem("Log In");
