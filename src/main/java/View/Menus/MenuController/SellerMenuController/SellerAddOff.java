@@ -28,4 +28,10 @@ public class SellerAddOff {
 
 
 
+
+    @FXML
+    private void createSale(){
+
+    }
+
 }
