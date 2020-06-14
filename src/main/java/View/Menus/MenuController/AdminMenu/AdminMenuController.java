@@ -59,7 +59,7 @@ public class AdminMenuController {
    }
 
    public void back(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("MainMenu");
+      SceneSwitcher.getInstance().back();
    }
 
    public void logout(ActionEvent actionEvent) {

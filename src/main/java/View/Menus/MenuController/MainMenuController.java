@@ -33,15 +33,11 @@ public class MainMenuController {
     }
 
     public void login(){
-        SceneSwitcher.getInstance().saveScene("MainMenu");
-        System.out.println("salam");
+        SceneSwitcher.getInstance().saveScene("MainMenu");;
         SceneSwitcher.getInstance().setSceneTo("Login");
     }
 
     public void userzone(ActionEvent actionEvent) {
-        //UserController.getInstance().logout();
-        //UserController.getInstance().login("admin","12345");
-        //SceneSwitcher.getInstance().setSceneTo("AdminMenu");
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             System.out.println(View.ANSI_RED+"You must be logged in to do this action."+View.ANSI_RESET);
             return;
