@@ -103,7 +103,7 @@ public class Sale {
     }
 
     public String toSimpleString(){
-        return id + "           " + offPercentage + "      " + endTime;
+        return id + "                                              " + offPercentage + "                                          " + endTime;
     }
 
 
