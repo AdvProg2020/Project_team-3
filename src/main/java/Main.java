@@ -20,7 +20,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
         initializeScreens();                                          //                                                 ______
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");          //   /\                                             \    /
+        SceneSwitcher.getInstance().setSceneTo("MainMenu",356,408);          //   /\                                             \    /
         //stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
        // stage.setMaxWidth(1280);                                  // /____\                                             \/
         //stage.setMinHeight(720);
@@ -66,7 +66,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageProductsIn","fxml/AdminMenu/ManageProductsIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ItemMenu","src/main/resources/fxml/ItemMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("CommentMenu","src/main/resources/fxml/CommentMenu.fxml");
-        SceneSwitcher.getInstance().addSceneFXML("PurchaseMenu","fxml/BuyerMenu/PurchaseMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("PurchaseMenu","src/main/resources/fxml/BuyerMenu/PurchaseMenu.fxml");
     }
 
 }

@@ -26,6 +26,7 @@ public class PurchaseMenu {
       discounts.getItems().addAll(UserController.getInstance().getBuyerDiscountCode());
       discounts.getItems().add("NONE");
       discounts.setValue("NONE");
+      priceLabel.setText("price="+String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
       itemListView.getItems().addAll(CartController.getInstance().showCart());
       update();
    }
@@ -56,7 +57,7 @@ public class PurchaseMenu {
       }
       String message="";
       if(discountIsValid) {
-         message = CartController.getInstance().buy(address.getText(), discounts.getValue().toString());
+         message = CartController.getInstance().buy(address.getText(), getDiscountCode());
       }else {
          message=CartController.getInstance().buy(address.getText());
       }
@@ -76,5 +77,8 @@ public class PurchaseMenu {
       }
    }
 
+   public String getDiscountCode(){
+      return discounts.getValue().toString().substring(16,21);
+   }
 
 }

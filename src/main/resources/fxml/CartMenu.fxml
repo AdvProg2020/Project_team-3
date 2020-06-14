@@ -23,7 +23,7 @@
       </Button>
       <Button layoutX="531.0" layoutY="54.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="71.0" text="show Item" onAction="#showItem" />
       <Button layoutX="534.0" layoutY="217.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="79.0" text="clear Cart"  onAction="#clearCartPressed"/>
-      <Label alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="17.0" prefWidth="325.0" text="Cart Menu">
+      <Label alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="17.0" prefWidth="325.0" text="Cart Menu" fx:id="totalPrice">
          <font>
             <Font size="20.0" />
          </font>

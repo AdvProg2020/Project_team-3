@@ -178,7 +178,7 @@ public class ItemMenuController {
         User user=Controller.getInstance().getCurrentOnlineUser();
         if( user!=null &&(user instanceof Buyer)==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Error in buying!");
+            alert.setHeaderText("ERROR");
             alert.setContentText("you are not a buyer");
             alert.show();
             return;
@@ -186,12 +186,13 @@ public class ItemMenuController {
         Cart cart=Controller.getInstance().getCurrentShoppingCart();
         if(cart.includesItem(itemID)){
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("adding item to cart!");
+            alert.setTitle("ERROR");
             alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
             alert.show();
             return;
         }
         CartController.getInstance().addItemToCart(itemID);
+        System.out.println(itemID);
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();

@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
    <children>
-     <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+     <MenuBar layoutY="1.0" prefHeight="29.0" prefWidth="356.0">
        <menus>
          <Menu fx:id="menu" mnemonicParsing="false" text="Log in or Register">
            <items>
@@ -14,11 +14,18 @@
              <MenuItem mnemonicParsing="false" onAction="#registerSeller" text="Register Seller" />
            </items>
          </Menu>
-         <Menu text="user zone" />
+         <Menu text="Menus" >
+           <MenuItem text="shop" onAction="#shop"></MenuItem>
+           <MenuItem text="cart" onAction="#cartMenu"></MenuItem>
+           <MenuItem text="user zone" onAction="#userzone"></MenuItem>
+         </Menu>
        </menus>
      </MenuBar>
-     <Button layoutX="80.0" layoutY="133.0" mnemonicParsing="false" onAction="#userzone" text="user zone" />
-      <Button layoutX="458.0" layoutY="133.0" mnemonicParsing="false" onAction="#shop" text="Shop" />
+     <Button layoutX="112.0" layoutY="106.0" mnemonicParsing="false" onAction="#userzone" text="User Zone"  />
+      <Button layoutX="112.0" layoutY="157.0" mnemonicParsing="false" onAction="#shop" prefHeight="27.0" prefWidth="75.0" text="Shop"  />
+     <Button layoutX="111.0" layoutY="216.0" text="Cart Menu" onAction="#cartMenu" />
+     <Button layoutX="112.0" layoutY="266.0" prefHeight="27.0" prefWidth="75.0" text="exit" onAction="#exit" />
+     <Button layoutX="112.0" layoutY="65.0" prefHeight="27.0" prefWidth="75.0" text="login" fx:id="loginLogout" onMouseClicked="#loginLogout" />
    </children>
 
 </Pane>
