@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="323.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.PurchaseMenu">
+            <TextField fx:id="address" layoutX="97.0" layoutY="104.0" prefHeight="105.0" prefWidth="161.0" />
+            <Label layoutX="14.0" layoutY="109.0" text="address:"> </Label>
+             <Label layoutX="8.0" layoutY="228.0" text="discount code:" />
+            <ChoiceBox fx:id="discounts" layoutX="97.0" layoutY="223.0" onAction="#discountChange" prefHeight="27.0" prefWidth="161.0" />
+            <Label fx:id="priceLabel" layoutX="106.0" layoutY="16.0" prefHeight="74.0" prefWidth="197.0" text="total price=" />
+            <Button layoutX="102.0" layoutY="271.0" onMouseClicked="#buy" prefHeight="27.0" prefWidth="161.0" text="buy" />
+           <ListView fx:id="itemListView" layoutX="338.0" layoutY="12.0" prefHeight="288.0" prefWidth="248.0" />
+    <Button onMouseClicked="#back" text="back" />
+</AnchorPane>
