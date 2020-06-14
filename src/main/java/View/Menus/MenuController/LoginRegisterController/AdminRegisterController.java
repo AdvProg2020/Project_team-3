@@ -197,10 +197,12 @@ public class AdminRegisterController {
     }
 
     public void MainMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("AdminRegister");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void Login(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("AdminRegister");
         SceneSwitcher.getInstance().setSceneTo("Login");
     }
 

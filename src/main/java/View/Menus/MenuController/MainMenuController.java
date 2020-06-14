@@ -23,14 +23,18 @@ public class MainMenuController {
     }
 
     public void registerBuyer(){
+        SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(){
+        SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 
     public void login(){
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        System.out.println("salam");
         SceneSwitcher.getInstance().setSceneTo("Login");
     }
 
@@ -43,10 +47,13 @@ public class MainMenuController {
             return;
         }
         if(    UserController.getInstance().getUserType().equals("Admin")){
+            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
         }else if(    UserController.getInstance().getUserType().equals("Seller")){
+            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("SellerMenu");
         }else{
+            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
         }
     }
@@ -65,6 +72,7 @@ public class MainMenuController {
         adminRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                SceneSwitcher.getInstance().saveScene("MainMenu");
                 SceneSwitcher.getInstance().setSceneTo("AdminRegister");
             }
         });
@@ -76,6 +84,7 @@ public class MainMenuController {
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                SceneSwitcher.getInstance().saveScene("MainMenu");
                 SceneSwitcher.getInstance().setSceneTo("Login");
             }
         });
@@ -112,6 +121,7 @@ public class MainMenuController {
 
     @FXML
     private void shop(){
+        SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 

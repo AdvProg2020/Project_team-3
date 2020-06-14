@@ -94,7 +94,7 @@ public class LoginMenuController {
         passwordField.setText("");
         Alert alert=new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error!");
-        alert.setContentText("correct your mistake for login!");
+        alert.setContentText("incorrect username or password");
         alert.show();
     }
 

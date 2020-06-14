@@ -41,7 +41,6 @@ public class SceneSwitcher {
 
     public void setSceneTo(String sceneName)  {
         try {
-            recentScene.add(sceneName);
             String path = allScenesFXML.get(sceneName);
             URL urls = new File(path).toURI().toURL();
             Parent parent = FXMLLoader.load(urls);
@@ -53,7 +52,6 @@ public class SceneSwitcher {
 
     public void setSceneTo(String sceneName,int width,int height)  {
         try {
-            recentScene.add(sceneName);
             String path = allScenesFXML.get(sceneName);
             URL urls = new File(path).toURI().toURL();
             Parent parent = FXMLLoader.load(urls);
@@ -63,11 +61,14 @@ public class SceneSwitcher {
         }
     }
 
+    public void saveScene(String sceneName){
+        recentScene.add(sceneName);
+    }
+
     public  Stage getStage(){return stage;}
 
     public void back(){
-        String name=recentScene.get(recentScene.size()-2);
-        recentScene.remove(recentScene.size()-1);
+        String name=recentScene.get(recentScene.size()-1);
         recentScene.remove(recentScene.size()-1);
         setSceneTo(name);
     }

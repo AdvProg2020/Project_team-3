@@ -220,14 +220,17 @@ public class BuyerRegisterController {
     }
 
     public void mainMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void login(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("Login");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 
@@ -236,6 +239,7 @@ public class BuyerRegisterController {
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 }
