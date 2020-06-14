@@ -73,4 +73,7 @@ public class SceneSwitcher {
         setSceneTo(name);
     }
 
+    public String getFXMLPath(String fxmlName){
+        return allScenesFXML.get(fxmlName);
+    }
 }
