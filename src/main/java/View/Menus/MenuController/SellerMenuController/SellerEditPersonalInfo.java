@@ -148,7 +148,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void back(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+      SceneSwitcher.getInstance().setSceneTo("SellerMenu");
    }
 
    public void removeImage(ActionEvent actionEvent) {
