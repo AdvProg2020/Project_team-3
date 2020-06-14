@@ -12,14 +12,12 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,7 +35,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
-import javax.print.DocFlavor;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -66,7 +64,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
-        
+        ItemAndCategoryController.getInstance().addView(itemID);
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
         item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
@@ -128,24 +126,17 @@ public class ItemMenuController {
 
 
     public void rate(ActionEvent actionEvent) {
-        User user=UserController.getInstance().getCurrentOnlineUser();
-        if(user==null){
+        int rating=getRating();
+        if(rating==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("you must login in our system for rating!");
+            alert.setContentText("please choose a rating first.");
+            alert.showAndWait();
             return;
         }
-        if((user instanceof Buyer)==false) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("only buyer Users can rate!");
-            return;
-        }
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        if(item.getBuyerUserName().contains(user.getUsername())==false){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("you haven't bought that Item!");
-            return;
-        }
-
+        String message=ItemAndCategoryController.getInstance().rate(rating,itemID);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public  void addAttributeGridPane(){
@@ -273,10 +264,7 @@ public class ItemMenuController {
 
     }
 
-    public void addRateDialogBox(){
-        Stage stage =new Stage();
-        stage.show();
-    }
+
 
     public void addCommentDialogBox(){
         Stage stage=new Stage();
@@ -338,6 +326,16 @@ public class ItemMenuController {
         star3.setFill(Color.GOLD);
         star4.setFill(Color.GOLD);
         star5.setFill(Color.GOLD);
+    }
+
+    private int getRating(){
+        System.out.println(star5.getFill());
+        if(star5.getFill().equals(Color.GOLD)) return 5;
+        if(star4.getFill().equals(Color.GOLD)) return 4;
+        if(star3.getFill().equals(Color.GOLD)) return 3;
+        if(star2.getFill().equals(Color.GOLD)) return 2;
+        if(star1.getFill().equals(Color.GOLD)) return 1;
+        return 0;
     }
 
 }

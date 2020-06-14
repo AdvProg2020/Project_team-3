@@ -66,6 +66,5 @@ public class SellerMenuController {
         SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
     }
 
-   public void editPersonalInfo(ActionEvent actionEvent) {SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo");
-   }
+   public void editPersonalInfo(ActionEvent actionEvent) {SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
 }

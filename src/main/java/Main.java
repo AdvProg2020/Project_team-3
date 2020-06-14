@@ -22,9 +22,9 @@ public class Main extends Application{
         initializeScreens();                                          //                                                 ______
         SceneSwitcher.getInstance().setSceneTo("MainMenu");          //   /\                                             \    /
         //stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
-        stage.setMaxWidth(1280);                                  // /____\                                             \/
+       // stage.setMaxWidth(1280);                                  // /____\                                             \/
         //stage.setMinHeight(720);
-        stage.setMaxHeight(720);
+        //stage.setMaxHeight(720);
         stage.setResizable(false);
         stage.show();
     }
