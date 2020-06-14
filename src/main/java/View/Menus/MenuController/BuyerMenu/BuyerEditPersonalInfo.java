@@ -165,7 +165,8 @@ public class BuyerEditPersonalInfo {
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
         File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
-        if(!removed.getPath().equals("src/main/resources/Images/default.jpg")) removed.delete();
+        if(removed.getName().equals("default.jpg")) {}
+        else removed.delete();
         Path source= Paths.get(selected.getPath());
         String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
         String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
@@ -192,7 +193,9 @@ public class BuyerEditPersonalInfo {
 
 
     public void removeImage(ActionEvent actionEvent) {
+
         User user=Controller.getInstance().getCurrentOnlineUser();
+        if(UserController.getInstance().userImagePath(user.getUsername()).equals("src/main/resources/Images/default.jpg")) return;
         String path=UserController.getInstance().userImagePath(user.getUsername());
         File file=new File(path);
         file.delete();
