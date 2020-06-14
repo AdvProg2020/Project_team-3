@@ -22,12 +22,15 @@
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    <Text fx:id="currentStartDate" layoutX="508.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.13671660423279" />
    <Text fx:id="currentEndDate" layoutX="508.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.136714220047" />
-   <TextField fx:id="newOffPercent" layoutX="668.0" layoutY="129.0" />
+   <TextField fx:id="newOffPercent" layoutX="668.0" layoutY="129.0" onKeyReleased="#updatePercent" />
    <DatePicker fx:id="newStartDate" layoutX="668.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0" />
    <DatePicker fx:id="newEndDate" layoutX="668.0" layoutY="300.0" prefHeight="25.0" prefWidth="149.0" />
    <Button layoutX="846.0" layoutY="129.0" mnemonicParsing="false" onAction="#editOffPercent" text="Edit" />
    <Button layoutX="846.0" layoutY="208.0" mnemonicParsing="false" onAction="#editStartDate" text="Edit" />
    <Button layoutX="846.0" layoutY="300.0" mnemonicParsing="false" onAction="#editEndDate" text="Edit" />
    <Button layoutX="614.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   <Text fx:id="errorLabel" fill="RED" layoutX="898.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.13671875" />
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   <Text layoutX="41.0" layoutY="671.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: an admin must approve your request to edit this sale - until then, current values remain true." wrappingWidth="561.13671875" />
 
 </AnchorPane>

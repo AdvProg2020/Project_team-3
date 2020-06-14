@@ -113,21 +113,22 @@ public class SellerAddOff {
         }
     }
 
-    public void reset() {
+    @FXML
+    private void reset() {
         offPercentage.clear();
         saleItems.getItems().clear();
         selectedItemsID.clear();
         initialize();
     }
 
-    private void showAlertBox(String message,String type){
+    protected static void showAlertBox(String message,String type){
         Alert alert = new Alert(Alert.AlertType.valueOf(type));
         alert.setContentText(message);
         alert.showAndWait();
     }
 
 
-    private LocalDateTime getDate(String dateString){
+    protected static LocalDateTime getDate(String dateString){
         LocalDateTime date;
         dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
