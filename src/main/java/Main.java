@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Main extends Application{
     public static void main(String[] args) {
+        System.out.println(View.ANSI_RED+"☆"+View.ANSI_RED);
         Database.getInstance().initiate();
         launch(args);
         View.run();

@@ -14,19 +14,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -61,6 +66,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
+        
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
         item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
@@ -188,7 +194,7 @@ public class ItemMenuController {
         if( user!=null &&(user instanceof Buyer)==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error in buying!");
-            alert.setContentText("you are not buyer thus you can not buy things!");
+            alert.setContentText("you are not a buyer");
             alert.show();
             return;
         }
@@ -196,16 +202,15 @@ public class ItemMenuController {
         if(cart.includesItem(itemID)){
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("adding item to cart!");
-            alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu!");
+            alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
             alert.show();
             return;
         }
         CartController.getInstance().addItemToCart(itemID);
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("the item added to your cart!");
+        alert.setContentText("item has been added to cart.");
         alert.show();
     }
-
 
     class imageCommentTextCell extends ListCell<Comment>{
         private VBox vBox=new VBox(5);
@@ -287,6 +292,52 @@ public class ItemMenuController {
             e.printStackTrace();
         }
         stage.show();
+    }
+
+
+    @FXML Polygon star1;
+    @FXML Polygon star2;
+    @FXML Polygon star3;
+    @FXML Polygon star4;
+    @FXML Polygon star5;
+    public void star1Update(MouseEvent mouseEvent) {
+     star1.setFill(Color.GOLD);
+     star2.setFill(Color.WHITE);
+     star3.setFill(Color.WHITE);
+     star4.setFill(Color.WHITE);
+     star5.setFill(Color.WHITE);
+    }
+
+    public void star2Update(MouseEvent mouseEvent) {
+        star1.setFill(Color.GOLD);
+        star2.setFill(Color.GOLD);
+        star3.setFill(Color.WHITE);
+        star4.setFill(Color.WHITE);
+        star5.setFill(Color.WHITE);
+    }
+
+    public void star3Update(MouseEvent mouseEvent) {
+        star1.setFill(Color.GOLD);
+        star2.setFill(Color.GOLD);
+        star3.setFill(Color.GOLD);
+        star4.setFill(Color.WHITE);
+        star5.setFill(Color.WHITE);
+    }
+
+    public void star4Update(MouseEvent mouseEvent) {
+        star1.setFill(Color.GOLD);
+        star2.setFill(Color.GOLD);
+        star3.setFill(Color.GOLD);
+        star4.setFill(Color.GOLD);
+        star5.setFill(Color.WHITE);
+    }
+
+    public void star5Update(MouseEvent mouseEvent) {
+        star1.setFill(Color.GOLD);
+        star2.setFill(Color.GOLD);
+        star3.setFill(Color.GOLD);
+        star4.setFill(Color.GOLD);
+        star5.setFill(Color.GOLD);
     }
 
 }
