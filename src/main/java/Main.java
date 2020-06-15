@@ -27,7 +27,8 @@ public class Main extends Application{
         //stage.setMaxHeight(720);
         stage.setResizable(false);
         stage.show();
-    }
+    }                                    //// ====>  setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14)); <=====
+                                                //   moragheb bashid javafx FONT ro import kone na java awt ro (awt "loadfont" nadare)
 
     public void initializeScreens() throws IOException {
         SceneSwitcher.getInstance().addSceneFXML("MainMenu","src/main/resources/fxml/MainMenu.fxml");

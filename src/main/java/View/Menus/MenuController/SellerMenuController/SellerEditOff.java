@@ -10,6 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.awt.*;
@@ -36,6 +37,13 @@ public class SellerEditOff {
         currentOffPercent.setText(Integer.toString(sale.getOffPercentage()));
         currentStartDate.setText(sale.getStartTime().toString());
         currentEndDate.setText(sale.getEndTime().toString());
+
+        currentOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
+        currentStartDate.setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+        currentEndDate.setFont(Font.loadFont("file:src/main/resources/fonts/C.otf", 14));
+
+        errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
+        newOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
     }
 
     @FXML private Text currentOffPercent;
@@ -49,6 +57,7 @@ public class SellerEditOff {
     @FXML private TextField newOffPercent;
     @FXML private DatePicker newStartDate;
     @FXML private DatePicker newEndDate;
+
 
     @FXML
     private void editOffPercent(){

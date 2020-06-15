@@ -15,9 +15,18 @@
             </Menu>
         </menus>
     </MenuBar>
-   <Text layoutX="365.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Off Percentage:" wrappingWidth="143.13671875" />
-   <Text layoutX="365.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Starting Date:" wrappingWidth="130.13671875" />
-   <Text layoutX="365.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Ending Date:" wrappingWidth="143.13672065734863" />
+   <Text layoutX="365.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Off Percentage:" wrappingWidth="143.13671875">
+      <font>
+         <Font name="Roboto Light" size="12.0" />
+      </font></Text>
+   <Text layoutX="365.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Starting Date:" wrappingWidth="130.13671875">
+      <font>
+         <Font name="Calibri Light" size="14.0" />
+      </font></Text>
+   <Text layoutX="365.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Ending Date:" wrappingWidth="143.13672065734863">
+      <font>
+         <Font name="DejaVu Sans ExtraLight" size="12.0" />
+      </font></Text>
    <Text fx:id="currentOffPercent" layoutX="508.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.13671875" />
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    <Text fx:id="currentStartDate" layoutX="508.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.13671660423279" />
