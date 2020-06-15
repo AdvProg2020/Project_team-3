@@ -77,8 +77,8 @@ public class BuyerRegisterController {
         }
         if(canRegister==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in Register process!");
-            alert.setContentText("you must correct your mistakes for successful register!");
+            alert.setTitle("ERROR");
+            alert.setContentText("please fill all the fields correctly");
             alert.show();
             validateTextFieldsAfterError(validation);
             return;
@@ -87,8 +87,8 @@ public class BuyerRegisterController {
         UserController.getInstance().registerBuyer(money,usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),numberTextField.getText());
         emptyAllText();
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("successful register!");
-        alert.setContentText("your account is ready for use!");
+        alert.setTitle("INFORMATION");
+        alert.setContentText("your account has been registered");
         alert.show();
     }
 
@@ -99,7 +99,7 @@ public class BuyerRegisterController {
             return false;
         }
         if(UserController.getInstance().isThereUserWithUsername(username)==true){
-            usernameLabel.setText("there is a user exist with this username!");
+            usernameLabel.setText("a username exists with this username");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
@@ -139,7 +139,7 @@ public class BuyerRegisterController {
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
         }
         if(UserController.getInstance().isValidPhoneNumber(phoneNumber)==false){
-            phoneNumberLabel.setText("invalid phone number!");
+            phoneNumberLabel.setText("invalid phone number");
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
@@ -153,7 +153,7 @@ public class BuyerRegisterController {
             return false;
         }
         if(UserController.getInstance().isValidEmail(email)==false){
-            emailLabel.setText("invalid email!");
+            emailLabel.setText("invalid email");
             emailLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }

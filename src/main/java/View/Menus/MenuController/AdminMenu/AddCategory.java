@@ -35,8 +35,7 @@ public class AddCategory {
       }
    }
 
-   public void back(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+   public void back(ActionEvent actionEvent) { SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
    public void add(MouseEvent mouseEvent) {

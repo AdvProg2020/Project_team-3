@@ -9,6 +9,7 @@ import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -33,8 +34,8 @@ public class CartMenuController {
 
     public ListView <Item> itemListView;
     private final ObservableList<Item> allItems= FXCollections.observableArrayList();
-    public Label totalPrice;
-    public Button buyButton;
+    @FXML public Label totalPrice;
+
 
     public void initialize(){
         updateItemAgain();
@@ -99,6 +100,7 @@ public class CartMenuController {
             return;
         }
         ItemMenuController.setItemID(selected.getId());
+        SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ItemMenu");
     }
 
@@ -109,12 +111,23 @@ public class CartMenuController {
     public void buy(ActionEvent actionEvent) {
         if(itemListView.getItems().size()==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("you must add item to your cart for purchasing process!");
+            alert.setContentText("cart is empry");
+            alert.showAndWait();
             return;
         }
-        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
-        Stage stage=(Stage) buyButton.getScene().getWindow();
-        stage.close();
+        if(UserController.getInstance().getCurrentOnlineUser()==null){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("please login to buy items");
+            alert.showAndWait();
+            return;
+        }
+        if(UserController.getInstance().getUserType().equals("Buyer")==false){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("you must be a buyer to buy items");
+            alert.showAndWait();
+            return;
+        }
+        SceneSwitcher.getInstance().setSceneTo("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("PurchaseMenu");
     }
 

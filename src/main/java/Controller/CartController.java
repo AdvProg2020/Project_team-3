@@ -67,13 +67,13 @@ public class CartController {
 
     public String buy(String address) {
         if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
-            return View.ANSI_RED+"Error: must be a buyer to buy items"+View.ANSI_RESET;
+            return "Error: must be a buyer to buy items";
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
         double price = cart.getCartPriceWithoutDiscountCode();
         if (price > buyer.getMoney()) {
-            return View.ANSI_RED+ "Error: insufficient money."+View.ANSI_RESET;
+            return  "Error: insufficient money.";
         }
         if(price > 1000000){
             SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
@@ -81,12 +81,12 @@ public class CartController {
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
             Database.getInstance().saveUser(buyer);
         cart.buy(buyer.getUsername(), address);
-        return View.ANSI_GREEN+"Successful: Shopping complete."+View.ANSI_RESET;
+        return "Successful: Shopping complete.";
     }
 
     public String buy(String address,String discountID) {
         if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
-            return View.ANSI_RED+"Error: must be a buyer to buy items"+View.ANSI_RESET;
+            return "Error: must be a buyer to buy items";
         }
         Buyer buyer = (Buyer) UserController.getInstance().getCurrentOnlineUser();
         Cart cart = Controller.getInstance().getCurrentShoppingCart();
@@ -95,7 +95,7 @@ public class CartController {
         double price = cart.getCartPriceWithDiscountCode();
         cart.setDiscountCode(discountCode);
         if (price > buyer.getMoney()) {
-            return View.ANSI_RED+ "Error: insufficient money."+View.ANSI_RESET;
+            return  "Error: insufficient money.";
         }
         if(price > 1000000){
             SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
@@ -105,7 +105,7 @@ public class CartController {
             Database.getInstance().saveUser(buyer);
             Database.getInstance().saveDiscountCode(discountCode);
         cart.buy(buyer.getUsername(), address);
-        return View.ANSI_GREEN+"Successful: Shopping complete."+View.ANSI_RESET;
+        return "Successful: Shopping complete.";
     }
 
 

@@ -10,15 +10,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 
 public class MainMenuController {
 
 
     public Menu menu;
-
+    @FXML Button loginLogout;
     public void initialize(){
+        loginLogout.setText("Login");
         loginHandler();
     }
 
@@ -39,7 +42,9 @@ public class MainMenuController {
 
     public void userzone(ActionEvent actionEvent) {
         if(UserController.getInstance().getCurrentOnlineUser() == null){
-            System.out.println(View.ANSI_RED+"You must be logged in to do this action."+View.ANSI_RESET);
+            Alert a=new Alert(Alert.AlertType.ERROR);
+            a.setContentText("please login first");
+            a.showAndWait();
             return;
         }
         if(    UserController.getInstance().getUserType().equals("Admin")){
@@ -57,6 +62,7 @@ public class MainMenuController {
     private void loginHandler(){
         if(Controller.getInstance().isLogin()==true){
             menu.getItems().remove(getMenuItemByName("Log In"));
+            loginLogout.setText("Logout");
             addLogoutMenuItem();
         }
     }
@@ -109,4 +115,30 @@ public class MainMenuController {
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
+    public void exit(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeWindow();
+    }
+
+    public void cartMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+    }
+
+    public void ShopMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("ShopMenu");
+    }
+
+    public void loginLogout(MouseEvent mouseEvent) {
+        if(loginLogout.getText().equals("Logout")){
+            UserController.getInstance().logout();
+            loginLogout.setText("Login");
+            loginHandler();
+            return;
+        }
+        if(loginLogout.getText().equals("Login")){
+            SceneSwitcher.getInstance().saveScene("MainMenu");
+            SceneSwitcher.getInstance().setSceneTo("Login");
+        }
+    }
 }

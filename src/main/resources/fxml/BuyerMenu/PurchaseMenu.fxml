@@ -11,5 +11,5 @@
             <Label fx:id="priceLabel" layoutX="106.0" layoutY="16.0" prefHeight="74.0" prefWidth="197.0" text="total price=" />
             <Button layoutX="102.0" layoutY="271.0" onMouseClicked="#buy" prefHeight="27.0" prefWidth="161.0" text="buy" />
            <ListView fx:id="itemListView" layoutX="338.0" layoutY="12.0" prefHeight="288.0" prefWidth="248.0" />
-    <Button onMouseClicked="#back" text="back" />
+           <Button onMouseClicked="#back" text="back" />
 </AnchorPane>
