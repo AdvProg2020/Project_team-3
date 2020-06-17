@@ -117,6 +117,10 @@ public class ShopMenuController {
         }
     }
     private void initLists(){
+        gridPane.getChildren().removeAll(itemsVBox);
+        itemsVBox.clear();
+        itemsID.clear();
+        itemsToString.clear();
         categoryLabel.setText("Currently Browsing "+categoryName);
         itemsToString = SortAndFilterController.getInstance().show(categoryName);
         for(String string : itemsToString){
@@ -213,7 +217,7 @@ public class ShopMenuController {
         brandName.clear();
         categoryNameFilter.clear();
         sellerName.clear();
-
+        gridPane.getChildren().removeAll(itemsVBox);
     }
 
     public void filterAvailibility(MouseEvent mouseEvent) {
