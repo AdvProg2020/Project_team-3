@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -60,10 +61,13 @@ public class ItemMenuController {
     public MediaView mediaView;
     private final ObservableList<Comment> comments= FXCollections.observableArrayList();
     public ListView attributeListView;
+    public ImageView ivTarget;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
     public void initialize(){
+        ivTarget.setSmooth(true);
+        ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         ItemAndCategoryController.getInstance().addView(itemID);
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
@@ -81,6 +85,8 @@ public class ItemMenuController {
         File file=new File(path);
         try {
             itemImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+            itemImage.setFitHeight(200);
+            itemImage.setFitWidth(200);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -196,6 +202,21 @@ public class ItemMenuController {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();
+    }
+
+    public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
+        int x=(int)mouseEvent.getX();
+        int y=(int)mouseEvent.getY();
+        if(x<0 || y<0)return;
+        if(x>150 || x<50) return;
+        if(y>140 || y< 50)return;
+        Image image=itemImage.getImage();
+        Image newFrame=new WritableImage(image.getPixelReader(),x-50,y-50,50,50);
+        ivTarget.setImage(newFrame);
+    }
+
+    public void removeImage(MouseEvent mouseEvent) {
+        ivTarget.setImage(null);
     }
 
     class imageCommentTextCell extends ListCell<Comment>{
