@@ -149,8 +149,8 @@ public class CartMenuController {
         }
         @Override
         protected void updateItem(Item item, boolean empty) {
-            Cart cart= Controller.getInstance().getCurrentShoppingCart();
             super.updateItem(item, empty);
+            Cart cart= Controller.getInstance().getCurrentShoppingCart();
             if(empty || item==null) {
                 setGraphic(null);
             }

@@ -5,6 +5,7 @@ import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Controller.CartController;
 import Model.Cart;
+import Model.Category;
 import Model.Comment;
 import Model.Item;
 import Model.Users.Buyer;
@@ -25,6 +26,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -41,6 +43,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemMenuController {
@@ -60,9 +63,11 @@ public class ItemMenuController {
     public AnchorPane anchorPane;
     public MediaView mediaView;
     private final ObservableList<Comment> comments= FXCollections.observableArrayList();
+    private final ObservableList<Item> allSimpleItems=FXCollections.observableArrayList();
     public ListView attributeListView;
     public ImageView ivTarget;
     public ImageView messageImageView;
+    public ListView<Item> familyItemListView;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
@@ -111,8 +116,8 @@ public class ItemMenuController {
                 return  new imageCommentTextCell();
             }
         });
+        updateSimpleItem();
        // initializeMediaPlayer();
-
     }
 
 
@@ -231,6 +236,8 @@ public class ItemMenuController {
     public void removeImage(MouseEvent mouseEvent) {
         ivTarget.setImage(null);
     }
+
+
 
     class imageCommentTextCell extends ListCell<Comment>{
         private VBox vBox=new VBox(5);
@@ -368,4 +375,67 @@ public class ItemMenuController {
         return 0;
     }
 
+    class simpleItemImageTextCell extends ListCell<Item> {
+        private HBox vBox=new HBox(5);
+        private ImageView imageView=new ImageView();
+        private Label label=new Label();
+        public simpleItemImageTextCell() {
+            vBox.setAlignment(Pos.CENTER);
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(100);
+            vBox.getChildren().add(imageView);
+            label.setWrapText(true);
+            label.setTextAlignment(TextAlignment.CENTER);
+            vBox.getChildren().add(label);
+            setPrefWidth(USE_COMPUTED_SIZE);
+        }
+        @Override
+        protected void updateItem(Item item, boolean empty) {
+            super.updateItem(item, empty);
+            if(empty || item==null) {
+                setGraphic(null);
+            }
+            else {
+                String path="src/main/resources/Images/ItemImages/"+item.getImageName();
+                File file=new File(path);
+                try {
+                    imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                String printItem=item.toString();
+                label.setText(printItem);
+                setGraphic(vBox);
+            }
+        }
+    }
+
+    public void updateSimpleItem(){
+        ArrayList<Item> allItems=new ArrayList<>();
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
+        for(String id:category.getAllItemsID()){
+            if(id.equals(item.getId())) continue;
+            allItems.add(ItemAndCategoryController.getInstance().getItemById(id));
+        }
+        allSimpleItems.setAll(allItems);
+        familyItemListView.setItems(allSimpleItems);
+        familyItemListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+            @Override
+            public ListCell<Item> call(ListView<Item> param) {
+                return  new simpleItemImageTextCell();
+            }
+        });
+    }
+    public void showItem(MouseEvent mouseEvent) {
+        Item selected=familyItemListView.getSelectionModel().getSelectedItem();
+        if(selected!=null) {
+            ItemMenuController.setItemID(selected.getId());
+            SceneSwitcher.getInstance().setSceneTo("ItemMenu");
+        }
+    }
+
+
+
 }
+

@@ -9,11 +9,20 @@ import View.Menus.SellerMenu.SellerMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainMenuController {
 
@@ -122,8 +131,21 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().saveScene("MainMenu");
-        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
+        URL urls = null;
+        Scene cartScene;
+        try {
+            urls = new File(path).toURI().toURL();
+            Parent parent = FXMLLoader.load(urls);
+            cartScene=new Scene(parent);
+            Stage cartStage=new Stage();
+            cartStage.setScene(cartScene);
+            cartStage.show();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void ShopMenu(ActionEvent actionEvent) {
