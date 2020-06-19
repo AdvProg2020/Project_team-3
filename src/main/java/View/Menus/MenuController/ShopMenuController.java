@@ -50,6 +50,9 @@ public class ShopMenuController {
 
     @FXML private ListView allCat;
     @FXML private ListView subCat;
+    @FXML private Label pageNum;
+    @FXML private Button pageNumAdd;
+    @FXML private Button pageNumReduce;
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
