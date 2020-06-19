@@ -27,19 +27,19 @@
                 <Font size="27.0" />
             </font>
         </Label>
-        <Label layoutX="383.0" layoutY="113.0" prefHeight="17.0" prefWidth="56.0" text="Category:" />
+        <Label layoutX="343.0" layoutY="113.0" prefHeight="17.0" prefWidth="56.0" text="Category:" />
         <Label fx:id="categoryLabel" layoutX="439.0" layoutY="113.0" prefHeight="17.0" prefWidth="252.0" />
-        <Label layoutX="389.0" layoutY="161.0" prefHeight="17.0" prefWidth="36.0" text="Brand:" />
+        <Label layoutX="353.0" layoutY="161.0" prefHeight="17.0" prefWidth="36.0" text="Brand:" />
         <Label fx:id="brandLabel" layoutX="425.0" layoutY="161.0" prefHeight="17.0" prefWidth="333.0" />
-        <Label layoutX="386.0" layoutY="212.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
+        <Label layoutX="350.0" layoutY="212.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
         <Label fx:id="sellerLabel" layoutX="430.0" layoutY="212.0" prefHeight="17.0" prefWidth="340.0" />
-        <Separator layoutX="382.0" layoutY="131.0" prefHeight="17.0" prefWidth="387.0" />
-        <Separator layoutX="385.0" layoutY="187.0" prefHeight="10.0" prefWidth="387.0" />
-        <Separator layoutX="380.0" layoutY="92.0" prefHeight="10.0" prefWidth="387.0" />
-        <Separator layoutX="385.0" layoutY="236.0" prefHeight="17.0" prefWidth="387.0" />
-        <Label layoutX="385.0" layoutY="261.0" prefHeight="17.0" prefWidth="36.0" text="Stock:" />
+        <Separator layoutX="349.0" layoutY="136.0" prefHeight="17.0" prefWidth="387.0" />
+        <Separator layoutX="350.0" layoutY="185.0" prefHeight="10.0" prefWidth="387.0" />
+        <Separator layoutX="349.0" layoutY="85.0" prefHeight="10.0" prefWidth="387.0" />
+        <Separator layoutX="350.0" layoutY="241.0" prefHeight="17.0" prefWidth="387.0" />
+        <Label layoutX="353.0" layoutY="261.0" prefHeight="17.0" prefWidth="36.0" text="Stock:" />
         <Label fx:id="stockLabel" layoutX="422.0" layoutY="261.0" prefHeight="17.0" prefWidth="340.0" />
-        <Separator layoutX="389.0" layoutY="294.0" prefHeight="0.0" prefWidth="387.0" />
+        <Separator layoutX="350.0" layoutY="293.0" prefHeight="0.0" prefWidth="387.0" />
         <Label layoutX="28.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="price:" />
         <Label fx:id="priceLabel" layoutX="58.0" layoutY="442.0" prefHeight="17.0" prefWidth="245.0" />
         <Label layoutX="28.0" layoutY="501.0" text="Grade:" />
@@ -49,14 +49,14 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <Separator layoutX="365.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="4.0" />
+        <Separator layoutX="334.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="4.0" />
         <Button layoutX="19.0" layoutY="679.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="131.0" text="Add to Cart" />
         <Label layoutX="32.0" layoutY="559.0" prefHeight="17.0" prefWidth="35.0" text="View:" />
         <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
         <ListView fx:id="commentListView" layoutX="752.0" layoutY="315.0" prefHeight="324.0" prefWidth="320.0" />
         <Button layoutX="170.0" layoutY="679.0" mnemonicParsing="false" onAction="#rate" prefHeight="30.0" prefWidth="165.0" text="Rate Item" />
         <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="772.0" layoutY="30.0" />
-        <ToolBar layoutX="767.0" layoutY="233.0" prefHeight="40.0" prefWidth="320.0">
+        <ToolBar layoutX="752.0" layoutY="230.0" prefHeight="40.0" prefWidth="320.0">
             <items>
                 <Button fx:id="playPause" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
             </items>
@@ -69,12 +69,12 @@
         <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
       <ListView fx:id="attributeListView" layoutX="349.0" layoutY="362.0" prefHeight="279.0" prefWidth="387.0" />
-      <Label layoutX="798.0" layoutY="286.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
-      <Separator layoutX="362.0" layoutY="22.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
-      <Separator layoutX="792.0" layoutY="22.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
-      <Separator layoutX="767.0" layoutY="277.0" prefHeight="3.0" prefWidth="320.0" />
-      <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="349.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="167.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" prefHeight="698.0" prefWidth="207.0" onMouseClicked="#showItem" />
+      <Label layoutX="752.0" layoutY="288.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
+      <Separator layoutX="335.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
+      <Separator layoutX="738.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
+      <Separator layoutX="752.0" layoutY="277.0" prefHeight="3.0" prefWidth="320.0" />
+      <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="350.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" onMouseClicked="#showItem" prefHeight="698.0" prefWidth="207.0" />
     </children>
 </AnchorPane>
