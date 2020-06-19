@@ -24,7 +24,7 @@
          </content></ScrollPane>
        <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
        <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
-       <ListView fx:id="allCat" layoutX="1027.0" layoutY="73.0" prefHeight="334.0" prefWidth="200.0" />
+       <ListView fx:id="allCat" layoutX="1027.0" layoutY="73.0" onMouseClicked="#categorySelectFromAll" prefHeight="334.0" prefWidth="200.0" />
        <Label layoutX="1027.0" layoutY="51.0" prefHeight="17.0" prefWidth="116.0" text="All Categories" />
        <Separator layoutX="227.0" layoutY="28.0" orientation="VERTICAL" prefHeight="664.0" prefWidth="23.0" />
        <Separator layoutX="1004.0" layoutY="25.0" orientation="VERTICAL" prefHeight="664.0" prefWidth="3.0" />
@@ -74,7 +74,7 @@
            <Label layoutX="175.0" layoutY="14.0" text="filter sale" />
        </Pane>
       <Label layoutX="1027.0" layoutY="436.0" prefHeight="17.0" prefWidth="116.0" text="Subcategories" />
-      <ListView fx:id="subCat" layoutX="1027.0" layoutY="453.0" prefHeight="241.0" prefWidth="200.0" />
+      <ListView fx:id="subCat" layoutX="1027.0" layoutY="453.0" onMouseClicked="#categorySelectFromSubs" prefHeight="241.0" prefWidth="200.0" />
        
    </children>
 

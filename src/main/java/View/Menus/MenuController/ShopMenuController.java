@@ -1,11 +1,9 @@
 package View.Menus.MenuController;
 
-import Controller.Database;
-import Controller.ItemAndCategoryController;
-import Controller.SortAndFilterController;
-import Controller.UserController;
+import Controller.*;
 import Model.Item;
 import View.Menus.ItemMenu;
+import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,7 +77,7 @@ public class ShopMenuController {
 
     @FXML
     private void initialize(){
-        categoryName = "Main";
+        //categoryName = "Main";
         allCategories = Database.getInstance().printFolderContent("Categories");
         updateAllCats();
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
@@ -246,13 +244,29 @@ public class ShopMenuController {
     }
 
 
-    @FXML
-    private void changeCategory(String name){
-        categoryName = name;
-        //bayad listview e subcategories update beshe
-        initLists();
+    public void categorySelectFromAll() {
+        int index=allCat.getSelectionModel().getSelectedIndex();
+        if(index==-1)
+            return;
+        String category=allCat.getItems().get(index).toString();
+        allCat.getSelectionModel().clearSelection();
+        if(ItemAndCategoryController.getInstance().isThereCategoryWithName(category)) {
+            categoryName = category;
+            initLists();
+        }
     }
 
+    public void categorySelectFromSubs() {
+        int index=subCat.getSelectionModel().getSelectedIndex();
+        if(index==-1)
+            return;
+        String category=subCat.getItems().get(index).toString();
+        subCat.getSelectionModel().clearSelection();
+        if(ItemAndCategoryController.getInstance().isThereCategoryWithName(category)) {
+            categoryName = category;
+            initLists();
+        }
+    }
     public void filterAvailibility(MouseEvent mouseEvent) {
         if(availableCheckBox.isSelected()){
             SortAndFilterController.getInstance().activateFilterAvailability();
