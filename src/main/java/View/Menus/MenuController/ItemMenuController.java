@@ -62,6 +62,7 @@ public class ItemMenuController {
     private final ObservableList<Comment> comments= FXCollections.observableArrayList();
     public ListView attributeListView;
     public ImageView ivTarget;
+    public ImageView messageImageView;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
@@ -82,11 +83,23 @@ public class ItemMenuController {
         priceLabel.setText(String.valueOf(item.getPrice()));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
+        String messagePath="src/main/resources/Images/ItemImages/";
+        String messageImageName=null;
         File file=new File(path);
         try {
             itemImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
             itemImage.setFitHeight(200);
             itemImage.setFitWidth(200);
+            if(item.getInStock()==0){
+                messageImageName=messagePath+"soldOut.png";
+            }
+            if(item.isInSale()==true) {
+                messageImageName=messagePath+"sale.png";
+            }
+            if(messageImageName!=null){
+                File message=new File(messageImageName);
+                messageImageView.setImage(new Image(String.valueOf(message.toURI().toURL())));
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

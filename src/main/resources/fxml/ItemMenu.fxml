@@ -74,5 +74,6 @@
       <Separator layoutX="792.0" layoutY="22.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
       <Separator layoutX="818.0" layoutY="277.0" prefHeight="3.0" prefWidth="433.0" />
       <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="396.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="167.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>
