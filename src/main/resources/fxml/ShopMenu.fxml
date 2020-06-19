@@ -12,9 +12,9 @@
                </Menu>
            </menus>
        </MenuBar>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="263.0" layoutY="83.0" prefHeight="612.0" prefWidth="737.0" vbarPolicy="ALWAYS">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="263.0" layoutY="83.0" prefHeight="569.0" prefWidth="737.0">
          <content>
-            <GridPane fx:id="gridPane" prefHeight="1336.0" prefWidth="723.0">
+            <GridPane fx:id="gridPane" prefHeight="492.0" prefWidth="723.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,13 +22,13 @@
               </columnConstraints>
             </GridPane>
          </content></ScrollPane>
-       <ChoiceBox fx:id="sortChoiceBox" layoutX="14.0" layoutY="59.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
-       <Label layoutX="29.0" layoutY="32.0" text="sort:" />
-       <ListView layoutX="1027.0" layoutY="104.0" prefHeight="498.0" prefWidth="200.0" />
-       <Label layoutX="1027.0" layoutY="72.0" prefHeight="17.0" prefWidth="116.0" text="Available Categories" />
+       <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+       <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
+       <ListView fx:id="allCat" layoutX="1027.0" layoutY="73.0" prefHeight="334.0" prefWidth="200.0" />
+       <Label layoutX="1027.0" layoutY="51.0" prefHeight="17.0" prefWidth="116.0" text="All Categories" />
        <Separator layoutX="227.0" layoutY="28.0" orientation="VERTICAL" prefHeight="664.0" prefWidth="23.0" />
        <Separator layoutX="1004.0" layoutY="25.0" orientation="VERTICAL" prefHeight="664.0" prefWidth="3.0" />
-       <Label fx:id="categoryLabel" layoutX="425.0" layoutY="46.0" prefHeight="27.0" prefWidth="431.0" text="Label" />
+       <Label fx:id="categoryLabel" layoutX="263.0" layoutY="46.0" prefHeight="27.0" prefWidth="431.0" text="Label" />
 
        <Pane layoutX="6.0" layoutY="110.0" prefHeight="343.0" prefWidth="323.0">
            <CheckBox fx:id="availableCheckBox" layoutX="14.0" layoutY="14.0" onMouseClicked="#filterAvailibility" />
@@ -71,8 +71,10 @@
            <TextField fx:id="sellerName" layoutX="132.0" layoutY="304.0" />
 
            <CheckBox fx:id="filterSale" layoutX="138.0" layoutY="14.0" onMouseClicked="#saleFilter" />
-           <Label layoutX="175.0" layoutY="14.0" text="filter sale"  />
+           <Label layoutX="175.0" layoutY="14.0" text="filter sale" />
        </Pane>
+      <Label layoutX="1027.0" layoutY="436.0" prefHeight="17.0" prefWidth="116.0" text="Subcategories" />
+      <ListView fx:id="subCat" layoutX="1027.0" layoutY="453.0" prefHeight="241.0" prefWidth="200.0" />
        
    </children>
 

@@ -100,10 +100,12 @@ public class AddCategory {
          }
          if(message.startsWith("Successful:")){
             showAlertBox(message,"INFORMATION");
+            reset(null);
             return;
          }
       }catch (Exception e){
          showAlertBox("please enter all fields", "ERROR");
       }
+
    }
 }

@@ -46,8 +46,8 @@ public class SellerRegisterController {
     public void openFileChooser(ActionEvent actionEvent) {
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("image","*.png"),
-                new FileChooser.ExtensionFilter("image","*.jpg")
+                new FileChooser.ExtensionFilter("PNG","*.png"),
+                new FileChooser.ExtensionFilter("JPG","*.jpg")
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;

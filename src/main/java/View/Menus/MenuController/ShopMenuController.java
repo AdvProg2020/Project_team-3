@@ -1,5 +1,6 @@
 package View.Menus.MenuController;
 
+import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SortAndFilterController;
 import Controller.UserController;
@@ -27,6 +28,9 @@ public class ShopMenuController {
     private ArrayList<String> itemsToString = new ArrayList<>();
     private ArrayList<String> itemsID = new ArrayList<>();
     private ArrayList<VBox> itemsVBox = new ArrayList<>();
+    private ArrayList<String> allCategories = new ArrayList<>();
+    private ArrayList<String> subCategories = new ArrayList<>();
+
     @FXML private ChoiceBox sortChoiceBox;
     @FXML CheckBox availableCheckBox;
     @FXML CheckBox categoryNameCheckBox;
@@ -45,6 +49,9 @@ public class ShopMenuController {
     @FXML TextField brandName;
     @FXML TextField categoryNameFilter;
     @FXML TextField sellerName;
+
+    @FXML private ListView allCat;
+    @FXML private ListView subCat;
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
@@ -73,6 +80,8 @@ public class ShopMenuController {
     @FXML
     private void initialize(){
         categoryName = "Main";
+        allCategories = Database.getInstance().printFolderContent("Categories");
+        updateAllCats();
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
@@ -122,6 +131,8 @@ public class ShopMenuController {
         itemsID.clear();
         itemsToString.clear();
         categoryLabel.setText("Currently Browsing "+categoryName);
+        subCategories = ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getSubCategories();
+        updateSubCats();
         itemsToString = SortAndFilterController.getInstance().show(categoryName);
         for(String string : itemsToString){
             itemsID.add(string.substring(4,9));
@@ -194,6 +205,20 @@ public class ShopMenuController {
         }
     }
 
+    private void updateAllCats(){
+        allCat.getItems().clear();
+        for(Object string:allCategories){
+            allCat.getItems().add(string);
+        }
+    }
+
+    private void updateSubCats(){
+        subCat.getItems().clear();
+        for (Object string:subCategories){
+            subCat.getItems().add(string);
+        }
+    }
+
     public void reset(ActionEvent actionEvent) {
         SortAndFilterController.getInstance().disableFilterAttribute();
         SortAndFilterController.getInstance().disableFilterAvailability();
@@ -218,6 +243,14 @@ public class ShopMenuController {
         categoryNameFilter.clear();
         sellerName.clear();
         gridPane.getChildren().removeAll(itemsVBox);
+    }
+
+
+    @FXML
+    private void changeCategory(String name){
+        categoryName = name;
+        //bayad listview e subcategories update beshe
+        initLists();
     }
 
     public void filterAvailibility(MouseEvent mouseEvent) {

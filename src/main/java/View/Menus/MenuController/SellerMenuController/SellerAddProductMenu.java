@@ -40,8 +40,8 @@ public class SellerAddProductMenu {
     private void imageChooserOpen(ActionEvent actionEvent) {
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("image","*.png"),
-                new FileChooser.ExtensionFilter("image","*.jpg")
+                new FileChooser.ExtensionFilter("PNG","*.png"),
+                new FileChooser.ExtensionFilter("JPG","*.jpg")
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
@@ -63,8 +63,8 @@ public class SellerAddProductMenu {
     private void videoChooserOpen(ActionEvent actionEvent) {
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("video","*.mp4"),
-                new FileChooser.ExtensionFilter("video","*.mkv")
+                new FileChooser.ExtensionFilter("MP4","*.mp4"),
+                new FileChooser.ExtensionFilter("Matroska","*.mkv")
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
