@@ -145,7 +145,7 @@ public class ShopMenuController {
                 row++;
             }
         }
-
+        pageNum.setText(pageNumber+"/"+(SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
     }
 
     private VBox createAndAddItem(String itemID){
@@ -373,7 +373,7 @@ public class ShopMenuController {
     @FXML
     private void increasePage(){
         if(isAValidPage(pageNumber+1)){
-            pageNum.setText(Integer.toString(pageNumber+1));
+            //pageNum.setText((pageNumber + 1) +"/"+ (SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
             pageNumber++;
             initLists();
         }
@@ -383,7 +383,7 @@ public class ShopMenuController {
     @FXML
     private void decreasePage(){
         if(isAValidPage(pageNumber-1)){
-            pageNum.setText(Integer.toString(pageNumber-1));
+            //pageNum.setText((pageNumber - 1) +"/"+ (SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
             pageNumber--;
             initLists();
         }
