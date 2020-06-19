@@ -42,10 +42,12 @@ public class MainMenuController {
 
     public void userzone(ActionEvent actionEvent) {
         if(UserController.getInstance().getCurrentOnlineUser() == null){
-            Alert a=new Alert(Alert.AlertType.ERROR);
-            a.setContentText("please login first");
-            a.showAndWait();
+            SceneSwitcher.getInstance().setSceneTo("Login");
             return;
+           // Alert a=new Alert(Alert.AlertType.ERROR);
+           // a.setContentText("please login first");
+           // a.showAndWait();
+            //return;
         }
         if(    UserController.getInstance().getUserType().equals("Admin")){
             SceneSwitcher.getInstance().saveScene("MainMenu");
