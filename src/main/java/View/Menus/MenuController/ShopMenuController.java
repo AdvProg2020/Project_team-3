@@ -28,6 +28,7 @@ public class ShopMenuController {
     private ArrayList<VBox> itemsVBox = new ArrayList<>();
     private ArrayList<String> allCategories = new ArrayList<>();
     private ArrayList<String> subCategories = new ArrayList<>();
+    private int pageNumber=1;
 
     @FXML private ChoiceBox sortChoiceBox;
     @FXML CheckBox availableCheckBox;
@@ -51,8 +52,7 @@ public class ShopMenuController {
     @FXML private ListView allCat;
     @FXML private ListView subCat;
     @FXML private Label pageNum;
-    @FXML private Button pageNumAdd;
-    @FXML private Button pageNumReduce;
+
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
@@ -68,11 +68,6 @@ public class ShopMenuController {
         SceneSwitcher.getInstance().back();
     }
 
-
-    @FXML
-    private ScrollPane scrollPane;
-    @FXML
-    private AnchorPane anchorPane;
     @FXML
     private GridPane gridPane;
     @FXML
@@ -82,6 +77,7 @@ public class ShopMenuController {
     private void initialize(){
         //categoryName = "Main";
         allCategories = Database.getInstance().printFolderContent("Categories");
+        pageNumber = 1;
         updateAllCats();
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
@@ -135,6 +131,8 @@ public class ShopMenuController {
         subCategories = ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getSubCategories();
         updateSubCats();
         itemsToString = SortAndFilterController.getInstance().show(categoryName);
+        if(!isAValidPage(pageNumber)) pageNumber=1;
+        itemsToString = getItemsInPage(itemsToString,pageNumber);
         for(String string : itemsToString){
             itemsID.add(string.substring(4,9));
         }
@@ -354,5 +352,41 @@ public class ShopMenuController {
         }
         SortAndFilterController.getInstance().disableFilterSale();
         initLists();
+    }
+
+    private ArrayList<String> getItemsInPage(ArrayList<String> allItems, int page){
+        ArrayList<String> ans = new ArrayList<>();
+        if(page<1 || page > allItems.size()/24 + 1) return ans;
+        for(int i = 24 * (page - 1);i<=24*page-1;i++){
+            if(i>= allItems.size()){
+                break;
+            }
+            ans.add(allItems.get(i));
+        }
+        return ans;
+    }
+
+    private boolean isAValidPage(int num){
+        return (num>0 && num<=(SortAndFilterController.getInstance().show(categoryName).size()/24 +1));
+    }
+
+    @FXML
+    private void increasePage(){
+        if(isAValidPage(pageNumber+1)){
+            pageNum.setText(Integer.toString(pageNumber+1));
+            pageNumber++;
+            initLists();
+        }
+
+    }
+
+    @FXML
+    private void decreasePage(){
+        if(isAValidPage(pageNumber-1)){
+            pageNum.setText(Integer.toString(pageNumber-1));
+            pageNumber--;
+            initLists();
+        }
+
     }
 }

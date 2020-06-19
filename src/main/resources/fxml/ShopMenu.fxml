@@ -77,8 +77,8 @@
       <Label layoutX="1027.0" layoutY="436.0" prefHeight="17.0" prefWidth="116.0" text="Subcategories" />
       <ListView fx:id="subCat" layoutX="1027.0" layoutY="453.0" onMouseClicked="#categorySelectFromSubs" prefHeight="241.0" prefWidth="200.0" />
       <Label fx:id="pageNum" layoutX="618.0" layoutY="672.0" prefHeight="27.0" prefWidth="30.0" text="1" textAlignment="CENTER" />
-      <Button fx:id="pageNumReduce" layoutX="569.0" layoutY="672.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="-" />
-      <Button fx:id="pageNumAdd" layoutX="668.0" layoutY="673.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="+" />
+      <Button fx:id="pageNumReduce" layoutX="569.0" layoutY="672.0" mnemonicParsing="false" onAction="#decreasePage" prefHeight="25.0" prefWidth="30.0" text="-" />
+      <Button fx:id="pageNumAdd" layoutX="668.0" layoutY="673.0" mnemonicParsing="false" onAction="#increasePage" prefHeight="25.0" prefWidth="29.0" text="+" />
        
    </children>
 
