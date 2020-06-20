@@ -1,9 +1,12 @@
 package View.Menus.MenuController;
 
-import Controller.Controller;
+import Controller.CommercialController;
+import Controller.ItemAndCategoryController;
+import Model.Item;
 import Model.Users.Admin;
 import View.Menus.*;
 import View.Menus.AdminMenu.AdminMenu;
+import Controller.Controller;
 import Controller.UserController;
 import View.Menus.SellerMenu.SellerMenu;
 import javafx.event.ActionEvent;
@@ -12,11 +15,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -29,7 +33,25 @@ public class MainMenuController {
 
     public Menu menu;
     @FXML Button loginLogout;
+    @FXML VBox commercial;
     public void initialize(){
+        String commercialItemId= CommercialController.getInstance().getRandomItemId();
+        if(commercialItemId.isEmpty()==false){
+            Item item = ItemAndCategoryController.getInstance().getItemById(commercialItemId);
+            commercial.setOnMouseClicked(event -> {
+                ItemMenuController.setItemID(commercialItemId);
+                SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
+            });
+            commercial.setPrefSize(230,345);
+            ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+            Label name = new Label(item.getName());
+            Label price = new Label(Double.toString(item.getPrice()));
+            commercial.getChildren().add(imageView);
+            commercial.getChildren().add(name);
+            commercial.getChildren().add(price);
+        }else{
+            commercial.setVisible(false);
+        }
         loginLogout.setText("Login");
         loginHandler();
     }

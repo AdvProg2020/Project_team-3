@@ -51,6 +51,7 @@ public class CommercialController {
    }
 
    public String getRandomItemId(){
+      if(acceptedItemId.size()==0) return "";
     return acceptedItemId.get((int)Math.random()*acceptedItemId.size());
    }
 

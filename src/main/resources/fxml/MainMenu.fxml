@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
    <children>
      <MenuBar layoutY="1.0" prefHeight="29.0" prefWidth="503.0">
        <menus>
@@ -24,11 +23,12 @@
          </Menu>
        </menus>
      </MenuBar>
-     <Button layoutX="112.0" layoutY="106.0" mnemonicParsing="false" onAction="#userzone" text="User Zone" />
-      <Button layoutX="112.0" layoutY="157.0" mnemonicParsing="false" onAction="#shop" prefHeight="27.0" prefWidth="75.0" text="Shop" />
-     <Button layoutX="111.0" layoutY="216.0" onAction="#cartMenu" text="Cart Menu" />
-     <Button layoutX="112.0" layoutY="266.0" onAction="#exit" prefHeight="27.0" prefWidth="75.0" text="exit" />
-     <Button fx:id="loginLogout" layoutX="112.0" layoutY="65.0" onMouseClicked="#loginLogout" prefHeight="27.0" prefWidth="75.0" text="login" />
+     <Button layoutX="14.0" layoutY="106.0" mnemonicParsing="false" onAction="#userzone" text="User Zone" />
+      <Button layoutX="14.0" layoutY="158.0" mnemonicParsing="false" onAction="#shop" prefHeight="27.0" prefWidth="75.0" text="Shop" />
+     <Button layoutX="13.0" layoutY="218.0" onAction="#cartMenu" text="Cart Menu" />
+     <Button layoutX="14.0" layoutY="268.0" onAction="#exit" prefHeight="27.0" prefWidth="75.0" text="exit" />
+     <Button fx:id="loginLogout" layoutX="14.0" layoutY="64.0" onMouseClicked="#loginLogout" prefHeight="27.0" prefWidth="75.0" text="login" />
+       <VBox fx:id="commercial" layoutX="108.0" layoutY="65.0" prefHeight="241.0" prefWidth="211.0" />
    </children>
 
 </Pane>

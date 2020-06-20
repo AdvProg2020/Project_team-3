@@ -171,9 +171,6 @@ public class ShopMenuController {
         return itemBox;
     }
 
-
-
-
     public void sort(ActionEvent actionEvent) {
         String sort=sortChoiceBox.getValue().toString();
         if(sort.equals("sort by view")){
