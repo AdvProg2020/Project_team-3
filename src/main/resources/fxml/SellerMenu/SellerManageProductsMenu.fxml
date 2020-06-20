@@ -59,7 +59,9 @@
         <Label layoutX="54.0" layoutY="309.0" text="seller name:" />
         <TextField fx:id="sellerName" layoutX="132.0" layoutY="304.0" />
 
-        <CheckBox fx:id="filterSaleCheckBox" layoutX="138.0" layoutY="14.0" onMouseClicked="#saleFilter"/>
-        <Label layoutX="175.0" layoutY="14.0" text="filter sale"  />
+        <CheckBox fx:id="filterSaleCheckBox" layoutX="138.0" layoutY="14.0" onMouseClicked="#saleFilter" />
+        <Label layoutX="175.0" layoutY="14.0" text="filter sale" />
     </Pane>
+
+     <Button layoutX="14.0" layoutY="421.0" text="add Commercial" />
 </AnchorPane>

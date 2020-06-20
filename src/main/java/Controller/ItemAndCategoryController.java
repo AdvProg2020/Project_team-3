@@ -25,7 +25,6 @@ import java.util.Iterator;
 public class ItemAndCategoryController {
     Controller controller = Controller.getInstance();
     private static ItemAndCategoryController itemAndCategoryController;
-
     private ItemAndCategoryController() {
     }
 
@@ -445,5 +444,8 @@ public class ItemAndCategoryController {
         Database.getInstance().saveCategory(category);
            return "Successful: attribute added.";
     }
+
+
+
 
 }
