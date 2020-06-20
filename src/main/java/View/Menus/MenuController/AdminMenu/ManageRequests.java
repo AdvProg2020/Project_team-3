@@ -1,5 +1,6 @@
 package View.Menus.MenuController.AdminMenu;
 
+import Controller.CommercialController;
 import Controller.Database;
 import Controller.RequestController;
 import View.Menus.SceneSwitcher;
@@ -9,11 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
 public class ManageRequests {
-   @FXML
-   private ListView listView;
+   @FXML private ListView listView;
 
-   @FXML
-   public void initialize() {
+   @FXML public void initialize() {
       update();
    }
 
@@ -22,15 +21,25 @@ public class ManageRequests {
       for (Object requests : Database.getInstance().printFolderContent("Requests")) {
          listView.getItems().add(requests);
       }
+      for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
+         listView.getItems().add("commercial request for item "+id);
+      }
       if(listView.getItems().isEmpty())
          listView.getItems().add("there are no request right now");
+
    }
 
    public void requestSelect(MouseEvent mouseEvent) {
       int index=listView.getSelectionModel().getSelectedIndex();
-      System.out.println(index);
       if(index==-1)
          return;
+
+      if(listView.getItems().get(index).toString().contains("commercial request for item")){
+         String itemId=listView.getItems().get(index).toString().substring(28,33);
+         ManageCommercialIn.setRequestId(itemId);
+         SceneSwitcher.getInstance().setSceneTo("ManageCommercialIn",392,173);
+      }
+
       String requestId=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
       if(RequestController.getInstance().isThereRequestWithId(requestId)) {

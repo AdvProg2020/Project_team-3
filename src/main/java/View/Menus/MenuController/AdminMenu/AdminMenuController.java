@@ -78,4 +78,8 @@ public class AdminMenuController {
    public void editPersonalInfo(MouseEvent mouseEvent) {
    SceneSwitcher.getInstance().setSceneTo("AdminEditPersonalInfo");
    }
+
+   public void manageCommercials(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageCommercials");
+   }
 }

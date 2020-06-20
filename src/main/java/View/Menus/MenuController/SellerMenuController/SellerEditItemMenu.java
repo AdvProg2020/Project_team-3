@@ -1,5 +1,6 @@
 package View.Menus.MenuController.SellerMenuController;
 
+import Controller.CommercialController;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Item;
@@ -8,6 +9,7 @@ import View.Menus.MenuController.ItemMenuController;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import sun.util.resources.cldr.ar.CalendarData_ar_YE;
 
 import java.lang.reflect.Array;
@@ -147,5 +149,12 @@ public class SellerEditItemMenu {
         dialog.setGraphic(null);
     }
 
+
+    public void commercial(MouseEvent mouseEvent) {
+        String message=CommercialController.getInstance().addCommercialRequest(itemID);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }

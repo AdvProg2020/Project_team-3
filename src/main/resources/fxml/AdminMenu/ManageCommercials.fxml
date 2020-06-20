@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercials"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="483.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercials">
+    <ListView fx:id="commercials" onMouseClicked="#removeCommercial" layoutX="55.0" layoutY="31.0" />
+    <Label layoutX="321.0" layoutY="31.0" text="these items will be shown in the commercial panel" />
+    <Label layoutX="314.0" layoutY="94.0" text="click on any item you wish to remove from the commercial panel." />
+    <MenuBar >
+        <Menu text="options">
+            <MenuItem text="back" onAction="#back"></MenuItem>
+        </Menu>
+    </MenuBar>
 </AnchorPane>
