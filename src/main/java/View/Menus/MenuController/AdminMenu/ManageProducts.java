@@ -5,6 +5,7 @@ import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.util.regex.Pattern;
@@ -228,6 +229,30 @@ public class ManageProducts {
       }
       SortAndFilterController.getInstance().disableFilterSale();
       update();
+   }
+
+   public void filterCategoryTextChange(KeyEvent keyEvent) {
+      if(categoryNameCheckBox.isSelected()) filterCategoryName(null);
+   }
+
+   public void filterBrandNameTextChange(KeyEvent keyEvent) {
+      if(brandNameCheckBox.isSelected()) filterBrandName(null);
+   }
+
+   public void filterSearchTextChange(KeyEvent keyEvent) {
+      if(searchCheckBox.isSelected())  filterSearch(null);
+   }
+
+   public void filterPriceTextChange(KeyEvent keyEvent) {
+      if(priceCheckBox.isSelected()) priceFilter(null);
+   }
+
+   public void filterAttributeTextChange(KeyEvent keyEvent) {
+      if(attributeCheckBox.isSelected()) attributeFilter(null);
+   }
+
+   public void filterSellerTextChange(KeyEvent keyEvent) {
+      if(sellerNameCheckBox.isSelected()) sellerFilter(null);
    }
 }
 

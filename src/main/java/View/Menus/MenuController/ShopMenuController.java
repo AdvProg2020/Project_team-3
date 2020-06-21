@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -350,6 +351,30 @@ public class ShopMenuController {
         }
         SortAndFilterController.getInstance().disableFilterSale();
         initLists();
+    }
+
+    public void filterCategoryTextChange(KeyEvent keyEvent) {
+        if(categoryNameCheckBox.isSelected()) filterCategoryName(null);
+    }
+
+    public void filterBrandNameTextChange(KeyEvent keyEvent) {
+        if(brandNameCheckBox.isSelected()) filterBrandName(null);
+    }
+
+    public void filterSearchTextChange(KeyEvent keyEvent) {
+        if(searchCheckBox.isSelected())  filterSearch(null);
+    }
+
+    public void filterPriceTextChange(KeyEvent keyEvent) {
+        if(priceCheckBox.isSelected()) priceFilter(null);
+    }
+
+    public void filterAttributeTextChange(KeyEvent keyEvent) {
+        if(attributeCheckBox.isSelected()) attributeFilter(null);
+    }
+
+    public void filterSellerTextChange(KeyEvent keyEvent) {
+        if(sellerNameCheckBox.isSelected()) sellerFilter(null);
     }
 
     private ArrayList<String> getItemsInPage(ArrayList<String> allItems, int page){
