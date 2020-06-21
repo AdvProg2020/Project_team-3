@@ -3,6 +3,7 @@ package View.Menus;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -17,6 +18,7 @@ public class SceneSwitcher {
     private HashMap<String, String> allScenesFXML = new HashMap<>();
     private ArrayList<String> recentScene=new ArrayList<>();
     private Stage stage;
+    private Stage popupStage;
     private SceneSwitcher(){
 
     }
@@ -50,6 +52,20 @@ public class SceneSwitcher {
         }
     }
 
+    public void setSceneAndWait(String sceneName,int width,int height) {
+            try {
+                String path = allScenesFXML.get(sceneName);
+                URL urls = new File(path).toURI().toURL();
+                Parent parent = FXMLLoader.load(urls);
+                popupStage = new Stage();
+                popupStage.setScene(new Scene(parent, width, height));
+                popupStage.initModality(Modality.APPLICATION_MODAL);
+                popupStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
+
     public void setSceneTo(String sceneName,int width,int height)  {
         try {
             String path = allScenesFXML.get(sceneName);
@@ -76,4 +92,9 @@ public class SceneSwitcher {
     public String getFXMLPath(String fxmlName){
         return allScenesFXML.get(fxmlName);
     }
+
+    public void closeSecondStage(){
+        popupStage.close();
+    }
+
 }

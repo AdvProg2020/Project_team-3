@@ -37,14 +37,14 @@ public class ManageRequests {
       if(listView.getItems().get(index).toString().contains("commercial request for item")){
          String itemId=listView.getItems().get(index).toString().substring(28,33);
          ManageCommercialIn.setRequestId(itemId);
-         SceneSwitcher.getInstance().setSceneTo("ManageCommercialIn",392,173);
+         SceneSwitcher.getInstance().setSceneAndWait("ManageCommercialIn",392,173);
       }
 
       String requestId=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
       if(RequestController.getInstance().isThereRequestWithId(requestId)) {
          ManageRequestIn.setRequestId(requestId);
-         SceneSwitcher.getInstance().setSceneTo("ManageRequestIn", 392, 173);
+         SceneSwitcher.getInstance().setSceneAndWait("ManageRequestIn", 392, 173);
       }
    }
 

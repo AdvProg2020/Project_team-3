@@ -28,13 +28,13 @@ public class ManageRequestIn {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         back(null);
+         back();
       }
       if(message.startsWith("Error")){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
          alert.showAndWait();
-         back(null);
+         back();
       }
    }
 
@@ -44,17 +44,18 @@ public class ManageRequestIn {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         back(null);
+         back();
       }
       if(message.startsWith("Error")){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
          alert.showAndWait();
-         back(null);
+         back();
       }
    }
 
-   public void back(ActionEvent actionEvent) {
+   public void back() {
       SceneSwitcher.getInstance().setSceneTo("ManageRequests");
+      SceneSwitcher.getInstance().closeSecondStage();
    }
 }

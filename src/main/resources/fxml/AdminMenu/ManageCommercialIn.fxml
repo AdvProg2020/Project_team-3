@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercialIn"
-            prefHeight="400.0" prefWidth="600.0">
-    <Button layoutX="249.0" layoutY="118.0" onMouseClicked="#accept" prefHeight="27.0" prefWidth="113.0" text="accept" />
-    <Button layoutX="28.0" layoutY="118.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" text="decline" />
-
-    <MenuBar >
-        <Menu text="options">
-            <MenuItem text="back" onAction="#back"></MenuItem>
-        </Menu>
-    </MenuBar>
+<AnchorPane prefHeight="132.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercialIn">
+    <Button layoutX="177.0" layoutY="46.0" onMouseClicked="#accept" prefHeight="27.0" prefWidth="113.0" text="accept" />
+    <Button layoutX="28.0" layoutY="46.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" text="decline" />
 </AnchorPane>
