@@ -346,6 +346,7 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
+        if(name.equals("Main")) return "Error: you cant delete Main";
         if(!isThereCategoryWithName(name)) return "Error: Invalid category name!";
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());

@@ -60,10 +60,10 @@ public class AddCategory {
    public void updateCategoryName(KeyEvent keyEvent) {
       String text=categoryName.getText();
       if(text.contains(" ")){
-         categoryName.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+         categoryName.setStyle("-fx-text-fill: red;");
          return;
       }
-      categoryName.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+      categoryName.setStyle("-fx-text-fill: green;");
    }
 
    public void reset(MouseEvent mouseEvent) {

@@ -8,6 +8,7 @@ import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,8 +17,8 @@ import java.net.MalformedURLException;
 
 public class SellerMenuController {
 
-    public ImageView sellerImage;
-
+    @FXML public ImageView sellerImage;
+    @FXML private Label personalInfo;
 
     public void initialize(){
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Seller){
@@ -29,7 +30,13 @@ public class SellerMenuController {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            personalInfoUpdate();
         }
+    }
+
+    public void personalInfoUpdate(){
+        String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
+        personalInfo.setText(message);
     }
 
     @FXML

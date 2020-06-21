@@ -6,6 +6,7 @@ import Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +17,7 @@ import java.net.MalformedURLException;
 
 public class AdminMenuController {
     public ImageView adminImage;
-   @FXML private ListView personalInfo;
+   @FXML private Label personalInfo;
 
 
    public void initialize(){
@@ -32,7 +33,7 @@ public class AdminMenuController {
 
    public void personalInfoUpdate(){
       String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
-      personalInfo.getItems().addAll(message);
+      personalInfo.setText(message);
    }
    public void manageUsers(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageUsers");

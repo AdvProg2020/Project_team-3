@@ -31,6 +31,6 @@
        </MenuBar>
        <Button layoutX="26.0" layoutY="227.0" prefHeight="27.0" prefWidth="190.0" text="edit personal info" onMouseClicked="#editPersonalInfo"> </Button>
       <ImageView fx:id="adminImage" fitHeight="161.0" fitWidth="200.0" layoutX="315.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView layoutX="26.0" layoutY="39.0" prefHeight="161.0" prefWidth="190.0" fx:id="personalInfo" />
+      <Label layoutX="26.0" layoutY="39.0" prefHeight="161.0" prefWidth="190.0" fx:id="personalInfo" />
    </children>
 </AnchorPane>

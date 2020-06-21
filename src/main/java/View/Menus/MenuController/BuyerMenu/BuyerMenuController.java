@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -23,7 +24,8 @@ import java.util.logging.FileHandler;
 public class BuyerMenuController {
 
 
-    public ImageView userImage;
+    @FXML public ImageView userImage;
+    @FXML private Label personalInfo;
 
     public void initialize(){
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
@@ -36,9 +38,13 @@ public class BuyerMenuController {
                 e.printStackTrace();
             }
         }
-
+        personalInfoUpdate();
     }
 
+    public void personalInfoUpdate(){
+        String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
+        personalInfo.setText(message);
+    }
 
     @FXML
     private void back(ActionEvent actionEvent) {
@@ -57,17 +63,14 @@ public class BuyerMenuController {
 
     @FXML
     private void viewDiscountCodes(){
-        SceneSwitcher.getInstance().setSceneTo("BuyerDiscountCodes");
+        SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
     }
 
     @FXML
     private void viewShop(){
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
-    @FXML
-    private void viewDiscounts(){
-        SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
-    }
+
     @FXML
     private void viewCart(){
         String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");

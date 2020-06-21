@@ -109,24 +109,24 @@ public class AdminEditPersonalInfo {
     String textName=name.getText();
     String textSurName=surname.getText();
     if(isAlphabetic(textName)==false){
-       name.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+       name.setStyle("-fx-text-fill: red;");
     }else{
-       name.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+       name.setStyle("-fx-text-fill: green;");
     }
     if(isAlphabetic(textSurName)==false){
-       surname.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+       surname.setStyle("-fx-text-fill: red;");
     }else {
-       surname.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+       surname.setStyle("-fx-text-fill: green;");
     }
    }
 
    public void updateEmail(KeyEvent keyEvent) {
       String text=email.getText();
       if(UserController.getInstance().isValidEmail(text)){
-         email.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+         email.setStyle("-fx-text-fill: green;");
          return;
       }
-      email.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+      email.setStyle("-fx-text-fill: red;");
    }
 
    public void updateNumber(KeyEvent keyEvent) {

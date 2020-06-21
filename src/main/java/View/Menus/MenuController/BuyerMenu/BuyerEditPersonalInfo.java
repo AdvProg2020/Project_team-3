@@ -6,222 +6,203 @@ import Model.Users.User;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Pattern;
 
 public class BuyerEditPersonalInfo {
+    @FXML private TextField name;
+    @FXML private TextField surname;
+    @FXML private TextField email;
+    @FXML private TextField number;
+    @FXML private ListView personalInfo;
+    @FXML private TextField passwordTextField;
+    @FXML private ImageView imageView;
+    @FXML private PasswordField passwordField;
+    @FXML private CheckBox passwordCheckBox;
 
 
-    public TextField firstnameTextField;
-    public TextField surnameTextField;
-    public TextField numberTextField;
-    public TextField emailTextField;
-    public TextField passwordTextField;
-    public PasswordField passwordField;
-    public ImageView userImage;
-    public Label numberLabel;
-    public Label emailLabel;
-    public Label passwordLabel;
-    public Label surnameLabel;
-    public Label firstnameLabel;
-    public CheckBox passwordCheckBox;
-
-    @FXML
-    public void initialize()  {
+    @FXML public void initialize() {
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        String path=UserController.getInstance().userImagePath(user.getUsername());
+        update();
+    }
+
+    public void update(){
+        personalInfo.getItems().clear();
+        personalInfo.getItems().addAll(UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername()));
+        name.clear();
+        surname.clear();
+        email.clear();
+        number.clear();
+        String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
         File file=new File(path);
         try {
-            userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        firstnameTextField.setText(user.getName());
-        passwordTextField.setText(user.getPassword());
-        surnameTextField.setText(user.getLastName());
-        emailTextField.setText(user.getEmail());
-        numberTextField.setText(user.getNumber());
     }
 
-    @FXML
-    private void back(ActionEvent actionEvent) {
+    public void changeName(MouseEvent mouseEvent) {
+        if(name.getText().isEmpty()) return;
+        if(name.getStyle().toString().contains("red")){
+            showAlertBox("incorrect name field value","ERROR");
+            return;
+        }
+        UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Name",name.getText());
+        showAlertBox("Successful","INFORMATION");
+        update();
+    }
+
+    public void changeSurname(MouseEvent mouseEvent) {
+        if(surname.getText().isEmpty()) return;
+        if(surname.getStyle().toString().contains("red")){
+            showAlertBox("incorrect surname field value","ERROR");
+            return;
+        }
+        UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Surname",surname.getText());
+        showAlertBox("Successful","INFORMATION");
+        update();
+    }
+
+    public void changeEmail(MouseEvent mouseEvent) {
+        if(email.getText().isEmpty()) return;
+        if(email.getStyle().toString().contains("red")){
+            showAlertBox("incorrect email field value","ERROR");
+            return;
+        }
+        UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Email",email.getText());
+        showAlertBox("Successful","INFORMATION");
+        update();
+    }
+
+    public void changeNumber(MouseEvent mouseEvent) {
+        if(number.getText().isEmpty()) return;
+        if(number.getStyle().toString().contains("red")){
+            showAlertBox("incorrect Number field value","ERROR");
+            return;
+        }
+        UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Number",number.getText());
+        showAlertBox("Successful","INFORMATION");
+        update();
+    }
+
+    public void updateName(KeyEvent keyEvent) {
+        String textName=name.getText();
+        String textSurName=surname.getText();
+        if(isAlphabetic(textName)==false){
+            name.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+        }else{
+            name.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+        }
+        if(isAlphabetic(textSurName)==false){
+            surname.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+        }else {
+            surname.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+        }
+    }
+
+    public void updateEmail(KeyEvent keyEvent) {
+        String text=email.getText();
+        if(UserController.getInstance().isValidEmail(text)){
+            email.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+            return;
+        }
+        email.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+    }
+
+    public void updateNumber(KeyEvent keyEvent) {
+        String text=number.getText();
+        if(UserController.getInstance().isValidPhoneNumber(text)){
+            number.setStyle("-fx-text-fill: green;");
+            return;
+        }
+        number.setStyle("-fx-text-fill: red;");
+    }
+
+    public Boolean isAlphabetic(String text){
+        Pattern p = Pattern.compile("[^a-zA-Z]");
+        return !p.matcher(text).find();
+    }
+
+    private void showAlertBox(String message,String type){
+        Alert alert = new Alert(Alert.AlertType.valueOf(type));
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void back(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
-    @FXML
-    private void logout(ActionEvent actionEvent) {
-        UserController.getInstance().logout();
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");
-    }
-    @FXML
-    private void viewOrders(){
-        SceneSwitcher.getInstance().setSceneTo("BuyerOrders");
-    }
-    @FXML
-    private void viewDiscountCodes(){
-        SceneSwitcher.getInstance().setSceneTo("BuyerDiscountCodes");
-    }
-    @FXML
-    private void viewShop(){
-        SceneSwitcher.getInstance().setSceneTo("ShopMenu");
-    }
-    @FXML
-    private void viewDiscounts(){
-        SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
-    }
-    @FXML
-    private void viewCart(){
-        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
-        Stage stage=new Stage();
-        stage.setHeight(427);
-        stage.setWidth(620);
-        URL urls = null;
-        try {
-            urls = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(urls);
-            stage.setScene(new Scene(parent));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.show();
-    }
-
-
-    public void changeFirstName(ActionEvent actionEvent) {
-        if(firstnameTextField.getText().equals("")){
-            firstnameLabel.setText("you must fill the blank!");
-            firstnameLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().editPersonalInfo(user.getUsername(),"Name",firstnameTextField.getText());
-        showAlertBox();
-    }
-
-    public void changeSurname(ActionEvent actionEvent) {
-        if(firstnameTextField.getText().equals("")){
-            surnameLabel.setText("you must fill the blank!");
-            surnameLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().editPersonalInfo(user.getUsername(),"Surname",surnameTextField.getText());
-        showAlertBox();
-    }
-
-    public void changePhoneNumber(ActionEvent actionEvent) {
-        if(numberTextField.getText().equals("")){
-            numberLabel.setText("you must fill the blank!");
-            numberLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        if(UserController.getInstance().isValidPhoneNumber(numberTextField.getText())==false){
-            numberLabel.setText("invalid input!");
-            numberLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().editPersonalInfo(user.getUsername(),"Number",numberTextField.getText());
-        showAlertBox();
-    }
-
-    public void changeEmail(ActionEvent actionEvent) {
-        if(emailTextField.getText().equals("")){
-            emailLabel.setText("you must fill the blank!");
-            emailLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        if(UserController.getInstance().isValidEmail(emailTextField.getText())==false){
-            emailLabel.setText("invalid input!");
-            emailLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().editPersonalInfo(user.getUsername(),"Email",emailTextField.getText());
-        showAlertBox();
-    }
-
-    public void changePassword(ActionEvent actionEvent) {
-        if(passwordTextField.getText().equals("")){
-            passwordLabel.setText("you must fill the blank!");
-            passwordLabel.setTextFill(Color.rgb(255,0,0));
-            return;
-        }
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().editPersonalInfo(user.getUsername(),"Password",passwordTextField.getText());
-        showAlertBox();
-    }
-
-    public void changeImage(ActionEvent actionEvent) {
-        User user = Controller.getInstance().getCurrentOnlineUser();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("image", "*.png"),
-                new FileChooser.ExtensionFilter("image", "*.jpg")
-        );
-        File selected = fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
-        if (selected == null) return;
-        File removed = new File(UserController.getInstance().userImagePath(user.getUsername()));
-        if (removed.getName().equals("default.jpg")) {
-        } else removed.delete();
-        Path source = Paths.get(selected.getPath());
-        String ext = selected.getName().substring(selected.getName().lastIndexOf("."));
-        String fullPath = "src/main/resources/Images/" + user.getUsername() + ext;
-        Path des = Paths.get(fullPath);
-        try {
-            Files.copy(source, des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String path = UserController.getInstance().userImagePath(user.getUsername());
-        File file = new File(path);
-        try {
-            userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-    public void showAlertBox(){
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("the field changed successfully!");
-        alert.show();
-    }
-
 
     public void removeImage(ActionEvent actionEvent) {
-
         User user=Controller.getInstance().getCurrentOnlineUser();
-        if(UserController.getInstance().userImagePath(user.getUsername()).equals("src/main/resources/Images/default.jpg")) return;
         String path=UserController.getInstance().userImagePath(user.getUsername());
         File file=new File(path);
         file.delete();
         File defaultImage=new File("src/main/resources/Images/default.jpg");
         try {
-            userImage.setImage(new Image(String.valueOf(defaultImage.toURI().toURL())));
+            imageView.setImage(new Image(String.valueOf(defaultImage.toURI().toURL())));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        update();
+    }
+
+    public void changeImage(ActionEvent actionEvent) {
+        User user=Controller.getInstance().getCurrentOnlineUser();
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("image","*.png"),
+                new FileChooser.ExtensionFilter("image","*.jpg")
+        );
+        File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+        if(selected==null) return;
+        File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
+        if(!removed.getPath().equals("src/main/resources/Images/default.jpg")) removed.delete();
+        Path source= Paths.get(selected.getPath());
+        String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
+        String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
+        Path des=Paths.get(fullPath);
+        try {
+            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String path=UserController.getInstance().userImagePath(user.getUsername());
+        File file=new File(path);
+        try {
+            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        update();
+    }
+
+    public void changePassword(MouseEvent mouseEvent) {
+        if(passwordTextField.getText().equals("")){
+            showAlertBox("incorrect password field value","ERROR");
+            return;
+        }
+        UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Password",passwordTextField.getText());
+        showAlertBox("Successful","INFORMATION");
+        passwordTextField.clear();
+        update();
     }
 }

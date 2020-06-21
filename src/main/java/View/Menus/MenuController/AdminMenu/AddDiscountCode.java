@@ -91,12 +91,12 @@ public class AddDiscountCode {
       try {
          int per = Integer.parseInt(text);
          if ((per > 100) || (per <= 0)) {
-            percent.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            percent.setStyle("-fx-text-fill: red;");
          } else{
-            percent.setStyle("-fx-text-fill: green; -fx-font-size: 12px;");
+            percent.setStyle("-fx-text-fill: green;");
          }
       }catch (Exception e){
-         percent.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+         percent.setStyle("-fx-text-fill: red;");
       }
    }
 
@@ -106,12 +106,12 @@ public class AddDiscountCode {
       try {
          int number = Integer.parseInt(text);
          if(number<0){
-            usage.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            usage.setStyle("-fx-text-fill: red;");
             return;
          }
-         usage.setStyle("-fx-text-fill: green; -fx-font-size: 12px;");
+         usage.setStyle("-fx-text-fill: green;");
       }catch (Exception e){
-         usage.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+         usage.setStyle("-fx-text-fill: red;");
       }
    }
 
@@ -121,12 +121,12 @@ public class AddDiscountCode {
       try {
          int number = Integer.parseInt(text);
          if(number<0){
-            maxDiscount.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+            maxDiscount.setStyle("-fx-text-fill: red;");
             return;
          }
-         maxDiscount.setStyle("-fx-text-fill: green; -fx-font-size: 12px;");
+         maxDiscount.setStyle("-fx-text-fill: green;");
       }catch (Exception e){
-         maxDiscount.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
+         maxDiscount.setStyle("-fx-text-fill: red;");
       }
    }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="430.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.DiscountsMenu">
+             <ListView fx:id="discountList" layoutX="14.0" layoutY="36.0" prefHeight="373.0" prefWidth="589.0" />
+             <Label layoutX="236.0" layoutY="6.0" text="discount codes list" />
+    <MenuBar>
+        <Menu text="options">
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+</AnchorPane>

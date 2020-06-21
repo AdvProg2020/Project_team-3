@@ -79,10 +79,10 @@ public class EditCategory {
    public void updateCategoryName(KeyEvent keyEvent) {
       String text=categoryNameField.getText();
       if(text.contains(" ")){
-         categoryNameField.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+         categoryNameField.setStyle("-fx-text-fill: red;");
          return;
       }
-      categoryNameField.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+      categoryNameField.setStyle("-fx-text-fill: green;");
    }
 
    public void delete(MouseEvent mouseEvent) {
