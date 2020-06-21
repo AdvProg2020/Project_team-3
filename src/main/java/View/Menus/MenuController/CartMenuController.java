@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -131,8 +132,12 @@ public class CartMenuController {
         SceneSwitcher.getInstance().setSceneTo("PurchaseMenu");
     }
 
+    public void back(MouseEvent mouseEvent) {
+        SceneSwitcher.getInstance().back();
+    }
 
-    class ItemTextCell extends ListCell<Item> {
+
+   class ItemTextCell extends ListCell<Item> {
         private HBox vBox=new HBox(5);
         private ImageView imageView=new ImageView();
         private Label label=new Label();

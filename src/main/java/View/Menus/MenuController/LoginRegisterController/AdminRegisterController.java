@@ -202,8 +202,7 @@ public class AdminRegisterController {
     }
 
     public void Login(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().saveScene("AdminRegister");
-        SceneSwitcher.getInstance().setSceneTo("Login");
+        SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void Exit(ActionEvent actionEvent) {

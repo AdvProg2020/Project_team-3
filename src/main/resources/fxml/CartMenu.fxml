@@ -28,6 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button text="back" onMouseClicked="#back"></Button>
    </children>
 
 

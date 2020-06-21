@@ -19,12 +19,8 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
-        initializeScreens();                                          //     356                                            ______
-        SceneSwitcher.getInstance().setSceneTo("MainMenu",356,408);          //   /\                                             \    /
-        //stage.setMinWidth(1280);                                  //  /  \    note haye tahe main ro hamishe bekhonid  \  /
-       // stage.setMaxWidth(1280);                                  // /____\                                             \/
-        //stage.setMinHeight(720);
-        //stage.setMaxHeight(720);
+        initializeScreens();
+        SceneSwitcher.getInstance().setSceneTo("MainMenu",356,408);
         stage.setResizable(false);
         stage.show();
     }                                    //// ====>  setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14)); <=====
@@ -70,6 +66,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("PurchaseMenu","src/main/resources/fxml/BuyerMenu/PurchaseMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageCommercials","src/main/resources/fxml/AdminMenu/ManageCommercials.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageCommercialIn","src/main/resources/fxml/AdminMenu/ManageCommercialIn.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("CartMenu","src/main/resources/fxml/CartMenu.fxml");
     }
 
 }

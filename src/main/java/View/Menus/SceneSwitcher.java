@@ -66,6 +66,20 @@ public class SceneSwitcher {
             }
     }
 
+    public void setSceneAndWait(String sceneName) {
+        try {
+            String path = allScenesFXML.get(sceneName);
+            URL urls = new File(path).toURI().toURL();
+            Parent parent = FXMLLoader.load(urls);
+            popupStage = new Stage();
+            popupStage.setScene(new Scene(parent, 1280,720));
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setSceneTo(String sceneName,int width,int height)  {
         try {
             String path = allScenesFXML.get(sceneName);

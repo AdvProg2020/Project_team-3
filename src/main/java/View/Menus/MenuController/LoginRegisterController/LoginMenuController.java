@@ -41,7 +41,7 @@ public class LoginMenuController {
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         emptyStage();
-        SceneSwitcher.getInstance().back();
+        back();
     }
 
     private boolean validUsername(String username){
@@ -73,21 +73,23 @@ public class LoginMenuController {
         return true;
     }
 
-    public void mainMenu(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");
-    }
+   // public void mainMenu(ActionEvent actionEvent) {
+   //     SceneSwitcher.getInstance().setSceneTo("MainMenu");
+   // }
 
     public void registerBuyer(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 
-    public void Exit(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().closeWindow();
-    }
+    //public void Exit(ActionEvent actionEvent) {
+      //  SceneSwitcher.getInstance().closeWindow();
+   // }
 
     private void errorAfterMistake(){
         usernameTextField.setText("");
@@ -105,15 +107,17 @@ public class LoginMenuController {
     }
 
 
-    public void back(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().back();
+    public void back() {
+        SceneSwitcher.getInstance().closeSecondStage();
     }
 
     public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 }

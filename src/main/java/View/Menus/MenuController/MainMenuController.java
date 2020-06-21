@@ -67,18 +67,13 @@ public class MainMenuController {
     }
 
     public void login(){
-        SceneSwitcher.getInstance().saveScene("MainMenu");;
-        SceneSwitcher.getInstance().setSceneTo("Login");
+        SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void userzone(ActionEvent actionEvent) {
         if(UserController.getInstance().getCurrentOnlineUser() == null){
-            SceneSwitcher.getInstance().setSceneTo("Login");
+            SceneSwitcher.getInstance().setSceneAndWait("Login");
             return;
-           // Alert a=new Alert(Alert.AlertType.ERROR);
-           // a.setContentText("please login first");
-           // a.showAndWait();
-            //return;
         }
         if(    UserController.getInstance().getUserType().equals("Admin")){
             SceneSwitcher.getInstance().saveScene("MainMenu");
@@ -107,8 +102,7 @@ public class MainMenuController {
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SceneSwitcher.getInstance().saveScene("MainMenu");
-                SceneSwitcher.getInstance().setSceneTo("Login");
+                SceneSwitcher.getInstance().setSceneAndWait("Login");
             }
         });
     }
@@ -153,21 +147,7 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
-        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
-        URL urls = null;
-        Scene cartScene;
-        try {
-            urls = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(urls);
-            cartScene=new Scene(parent);
-            Stage cartStage=new Stage();
-            cartStage.setScene(cartScene);
-            cartStage.show();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
     public void ShopMenu(ActionEvent actionEvent) {
@@ -183,8 +163,7 @@ public class MainMenuController {
             return;
         }
         if(loginLogout.getText().equals("Login")){
-            SceneSwitcher.getInstance().saveScene("MainMenu");
-            SceneSwitcher.getInstance().setSceneTo("Login");
+            SceneSwitcher.getInstance().setSceneAndWait("Login");
         }
     }
 }

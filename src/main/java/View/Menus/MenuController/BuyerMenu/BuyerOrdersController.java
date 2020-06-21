@@ -26,21 +26,7 @@ public class BuyerOrdersController {
     }
 
     public void goToCart(ActionEvent actionEvent) {
-        String path=SceneSwitcher.getInstance().getFXMLPath("CartMenu");
-        Stage stage=new Stage();
-        stage.setHeight(427);
-        stage.setWidth(620);
-        URL urls = null;
-        try {
-            urls = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(urls);
-            stage.setScene(new Scene(parent));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.show();
+        SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {

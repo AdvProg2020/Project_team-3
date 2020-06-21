@@ -243,7 +243,7 @@ public class SellerRegisterController {
     }
 
     public void login(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("Login");
+        SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void buyerRegister(ActionEvent actionEvent) {

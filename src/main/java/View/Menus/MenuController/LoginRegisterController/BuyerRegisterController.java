@@ -225,8 +225,7 @@ public class BuyerRegisterController {
     }
 
     public void login(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().saveScene("BuyerRegister");
-        SceneSwitcher.getInstance().setSceneTo("Login");
+        SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
