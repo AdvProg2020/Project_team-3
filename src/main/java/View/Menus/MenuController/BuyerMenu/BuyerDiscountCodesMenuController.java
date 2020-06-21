@@ -17,11 +17,8 @@ public class BuyerDiscountCodesMenuController {
 
 
 
-    public void goToUserZone(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
-    }
-
     public void goToCart(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
@@ -39,6 +36,7 @@ public class BuyerDiscountCodesMenuController {
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 

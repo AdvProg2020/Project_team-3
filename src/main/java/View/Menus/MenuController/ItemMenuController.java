@@ -175,7 +175,7 @@ public class ItemMenuController {
     }
 
     public void back(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("ShopMenu");
+        SceneSwitcher.getInstance().back();
     }
 
     public void commentListViewInitialize(){

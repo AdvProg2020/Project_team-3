@@ -14,22 +14,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BuyerOrdersController {
-
-
-
-
-
-
-
     public void goToUserZone(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerOrders");
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
 
     public void goToCart(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerOrders");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerOrders");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
@@ -43,6 +39,7 @@ public class BuyerOrdersController {
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 

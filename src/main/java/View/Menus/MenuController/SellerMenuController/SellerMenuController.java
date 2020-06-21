@@ -46,6 +46,7 @@ public class SellerMenuController {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
     @FXML
@@ -66,6 +67,7 @@ public class SellerMenuController {
     }
     @FXML
     private void viewShop(){
+        SceneSwitcher.getInstance().saveScene("SellerMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
     @FXML

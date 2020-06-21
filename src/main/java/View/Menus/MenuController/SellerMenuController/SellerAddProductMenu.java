@@ -33,6 +33,7 @@ public class SellerAddProductMenu {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
@@ -87,34 +88,21 @@ public class SellerAddProductMenu {
     private boolean hasChosenImage = false;
     private boolean hasChosenVideo = false;
 
-    @FXML
-    TextField itemName;
-    @FXML
-    TextField brandName;
-    @FXML
-    TextArea descriptionText;
-    @FXML
-    TextField price;
-    @FXML
-    TextField count;
-    @FXML
-    TextField category;
+    @FXML TextField itemName;
+    @FXML TextField brandName;
+    @FXML TextArea descriptionText;
+    @FXML TextField price;
+    @FXML TextField count;
+    @FXML TextField category;
 
-    @FXML
-    Label itemNameError;
-    @FXML
-    Label brandNameError;
-    @FXML
-    Label priceError;
-    @FXML
-    Label countError;
-    @FXML
-    Label categoryError;
+    @FXML Label itemNameError;
+    @FXML Label brandNameError;
+    @FXML Label priceError;
+    @FXML Label countError;
+    @FXML Label categoryError;
 
-    @FXML
-    Label imageAddress;
-    @FXML
-    Label videoAddress;
+    @FXML Label imageAddress;
+    @FXML Label videoAddress;
 
     private TextInputDialog dialog = new TextInputDialog("");
 

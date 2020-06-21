@@ -35,6 +35,7 @@ public class SellerManageOffs {
 
     @FXML
     private void startSale(){
+        SceneSwitcher.getInstance().saveScene("SellerManageOffs");
         SceneSwitcher.getInstance().setSceneTo("SellerAddOff");
     }
 
@@ -47,6 +48,7 @@ public class SellerManageOffs {
         listView.getSelectionModel().clearSelection();
         if(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(saleID)) {
             SellerEditOff.setOffID(saleID);
+            SceneSwitcher.getInstance().saveScene("SellerManageOffs");
             SceneSwitcher.getInstance().setSceneTo("SellerEditOff", 1280, 720);
         }
     }
@@ -58,6 +60,7 @@ public class SellerManageOffs {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 }

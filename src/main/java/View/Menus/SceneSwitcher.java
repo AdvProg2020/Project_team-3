@@ -95,6 +95,8 @@ public class SceneSwitcher {
         recentScene.add(sceneName);
     }
 
+
+
     public  Stage getStage(){return stage;}
 
     public void back(){
@@ -111,4 +113,7 @@ public class SceneSwitcher {
         popupStage.close();
     }
 
+    public void clearRecentScene(){
+        recentScene.clear();
+    }
 }

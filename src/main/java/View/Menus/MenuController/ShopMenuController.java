@@ -56,7 +56,8 @@ public class ShopMenuController {
 
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");
+        SceneSwitcher.getInstance().clearRecentScene();
+       // SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void Exit(ActionEvent actionEvent) {

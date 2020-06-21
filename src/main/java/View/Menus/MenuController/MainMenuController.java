@@ -75,14 +75,12 @@ public class MainMenuController {
             SceneSwitcher.getInstance().setSceneAndWait("Login");
             return;
         }
+        SceneSwitcher.getInstance().saveScene("MainMenu");
         if(    UserController.getInstance().getUserType().equals("Admin")){
-            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
         }else if(    UserController.getInstance().getUserType().equals("Seller")){
-            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("SellerMenu");
         }else{
-            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
         }
     }
@@ -147,6 +145,7 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
@@ -158,6 +157,7 @@ public class MainMenuController {
     public void loginLogout(MouseEvent mouseEvent) {
         if(loginLogout.getText().equals("Logout")){
             UserController.getInstance().logout();
+            SceneSwitcher.getInstance().clearRecentScene();
             loginLogout.setText("Login");
             loginHandler();
             return;

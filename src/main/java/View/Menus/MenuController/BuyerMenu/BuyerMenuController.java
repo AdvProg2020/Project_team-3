@@ -48,11 +48,12 @@ public class BuyerMenuController {
 
     @FXML
     private void back(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("MainMenu");
+        SceneSwitcher.getInstance().back();
     }
     @FXML
     private void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
@@ -68,11 +69,13 @@ public class BuyerMenuController {
 
     @FXML
     private void viewShop(){
+        SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
     @FXML
     private void viewCart(){
+        SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 

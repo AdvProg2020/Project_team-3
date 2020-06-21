@@ -27,6 +27,7 @@ public class SellerEditOff {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 

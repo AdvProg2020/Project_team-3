@@ -112,7 +112,7 @@ public class CartMenuController {
     public void buy(ActionEvent actionEvent) {
         if(itemListView.getItems().size()==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("cart is empry");
+            alert.setContentText("cart is empty");
             alert.showAndWait();
             return;
         }
@@ -128,7 +128,7 @@ public class CartMenuController {
             alert.showAndWait();
             return;
         }
-        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+        SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("PurchaseMenu");
     }
 

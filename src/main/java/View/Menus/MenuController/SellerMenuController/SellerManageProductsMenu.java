@@ -113,6 +113,7 @@ public class SellerManageProductsMenu {
 
     @FXML
     private void addProduct(){
+        SceneSwitcher.getInstance().saveScene("SellerManageProductsMenu");
         SceneSwitcher.getInstance().setSceneTo("SellerAddProductMenu");
     }
     @FXML
@@ -122,6 +123,7 @@ public class SellerManageProductsMenu {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 

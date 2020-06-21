@@ -19,20 +19,11 @@ import java.util.Optional;
 
 public class SellerEditItemMenu {
     private static String itemID;
-    //
-    //
-    // bayad in controller ye fielde static dashte bashe , itemi ke gharare edit beshe , chizmiz haro tu initialize bar
-    // asase inke on iteme attribute hash chie neshon bedim
-    //
-    //
-    @FXML
-    private ListView listView;
-    @FXML
-    private Label label;
-    @FXML
-    private Button removeItem;
-    @FXML
-    private ListView buyersListView;
+
+    @FXML private ListView listView;
+    @FXML private Label label;
+    @FXML private Button removeItem;
+    @FXML private ListView buyersListView;
 
     private TextInputDialog dialog = new TextInputDialog("");
 
@@ -125,6 +116,7 @@ public class SellerEditItemMenu {
     @FXML
     private void logout(){
         UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
