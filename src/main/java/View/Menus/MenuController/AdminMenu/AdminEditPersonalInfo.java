@@ -157,7 +157,8 @@ public class AdminEditPersonalInfo {
       User user=Controller.getInstance().getCurrentOnlineUser();
       String path=UserController.getInstance().userImagePath(user.getUsername());
       File file=new File(path);
-      file.delete();
+      if(!file.getName().equals("default.jpg"))file.delete();
+      else return;
       File defaultImage=new File("src/main/resources/Images/default.jpg");
       try {
          imageView.setImage(new Image(String.valueOf(defaultImage.toURI().toURL())));
@@ -177,7 +178,8 @@ public class AdminEditPersonalInfo {
       File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
       if(selected==null) return;
       File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
-      if(!removed.getPath().equals("src/main/resources/Images/default.jpg")) removed.delete();
+      if(removed.getName().equals("default.jpg")){}
+      else removed.delete();
       Path source= Paths.get(selected.getPath());
       String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
       String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
