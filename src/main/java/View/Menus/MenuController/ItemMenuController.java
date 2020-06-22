@@ -98,7 +98,7 @@ public class ItemMenuController {
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
-            if(item.isInSale()==true) {
+            if(item.isInSale()==true && item.getInStock()!=0) {
                 messageImageName=messagePath+"sale.png";
             }
             if(messageImageName!=null){
