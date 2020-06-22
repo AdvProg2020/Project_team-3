@@ -128,7 +128,7 @@ public class Cart {
         UserController.getInstance().assignBuyLog(buyerName, buyLog);
     }
 
-    private void empty() {
+    public void empty() {
         allItemId.clear();
         allItemCount.clear();
         discountCode = null;

@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class CartMenuController {
 
 
-    public ListView <Item> itemListView;
+    public  ListView <Item> itemListView;
     private final ObservableList<Item> allItems= FXCollections.observableArrayList();
     @FXML public Label totalPrice;
 

@@ -1,5 +1,7 @@
 package View.Menus.MenuController.LoginRegisterController;
 
+import Controller.*;
+import Model.Users.Buyer;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
@@ -41,7 +43,11 @@ public class LoginMenuController {
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
-            SceneSwitcher.getInstance().setSceneTo("CartMenu");
+            if(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)SceneSwitcher.getInstance().setSceneTo("CartMenu");
+            else{
+                SceneSwitcher.getInstance().setSceneTo("MainMenu");
+                CartController.getInstance().getCurrentShoppingCart().empty();
+            }
             return;
         }
         emptyStage();
