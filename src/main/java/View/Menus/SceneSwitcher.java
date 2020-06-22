@@ -117,6 +117,9 @@ public class SceneSwitcher {
         recentScene.clear();
     }
 
-    public String getLastRecentScene(){return recentScene.get(recentScene.size()-1);}
+    public String getLastRecentScene(){
+        if(recentScene.size()==0)return "MainMenu";
+        return recentScene.get(recentScene.size()-1);
+    }
 
 }

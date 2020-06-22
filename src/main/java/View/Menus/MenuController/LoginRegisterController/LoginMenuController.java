@@ -42,7 +42,15 @@ public class LoginMenuController {
             return;
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
-
+        if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
+            if(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
+                SceneSwitcher.getInstance().setSceneTo("CartMenu");
+            }
+            else {
+                SceneSwitcher.getInstance().setSceneTo("MainMenu");
+                CartController.getInstance().getCurrentShoppingCart().empty();
+            }
+        }
         emptyStage();
         back();
     }
