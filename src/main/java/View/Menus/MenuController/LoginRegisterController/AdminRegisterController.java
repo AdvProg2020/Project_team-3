@@ -63,6 +63,11 @@ public class AdminRegisterController {
     }
 
     private boolean validUsername(String username){
+        if(username.contains(" ")){
+            usernameLabel.setText("invalid username!");
+            usernameLabel.setTextFill(Color.rgb(255,0,0));
+            return false;
+        }
         if(username.equals("")){
             usernameLabel.setText("you must fill the blank!");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
@@ -150,6 +155,7 @@ public class AdminRegisterController {
             alert.setContentText("you must correct your mistakes for successful register!");
             alert.show();
             validateTextFieldsAfterError(validation);
+            validateLabelsAfterError(validation);
             return;
         }
         UserController.getInstance().registerAdmin(usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
@@ -213,5 +219,25 @@ public class AdminRegisterController {
         SceneSwitcher.getInstance().back();
     }
 
+    private void validateLabelsAfterError(Boolean [] validations){
+        if(validations[0]==true){
+            usernameLabel.setText("");
+        }
+        if(validations[1]==true){
+            passwordLabel.setText("");
+        }
+        if(validations[2]==true){
+            firstnameLabel.setText("");
+        }
+        if(validations[3]==true){
+            surnameLabel.setText("");
+        }
+        if(validations[4]==true){
+            emailLabel.setText("");
+        }
+        if(validations[5]==true){
+            phoneNumberLabel.setText("");
+        }
+    }
 
 }

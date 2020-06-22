@@ -81,6 +81,7 @@ public class BuyerRegisterController {
             alert.setContentText("please fill all the fields correctly");
             alert.show();
             validateTextFieldsAfterError(validation);
+            validateLabelsAfterError(validation);
             return;
         }
         double money=UserController.getInstance().validateMoney(moneyTextField.getText());
@@ -93,6 +94,11 @@ public class BuyerRegisterController {
     }
 
     private boolean validUsername(String username){
+        if(username.contains(" ")){
+            usernameLabel.setText("invalid username!");
+            usernameLabel.setTextFill(Color.rgb(255,0,0));
+            return false;
+        }
         if(username.equals("")){
             usernameLabel.setText("you must fill the blank!");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
@@ -241,4 +247,30 @@ public class BuyerRegisterController {
         SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
+
+    public void validateLabelsAfterError(Boolean[] validations){
+        if(validations[0]==true){
+            usernameLabel.setText("");
+        }
+        if(validations[1]==true){
+            passwordLabel.setText("");
+        }
+        if(validations[2]==true){
+            firstnameLabel.setText("");
+        }
+        if(validations[3]==true){
+            surnameLabel.setText("");
+        }
+        if(validations[4]==true){
+            emailLabel.setText("");
+        }
+        if(validations[5]==true){
+            phoneNumberLabel.setText("");
+        }
+        if(validations[6]==true){
+            moneyLabel.setText("");
+        }
+    }
+
+
 }
