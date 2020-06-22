@@ -51,9 +51,11 @@ public class ItemAndCategoryController {
         if(user instanceof Buyer){
             return "Error: Internal Error.";
         }
-        UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
-        Database.getInstance().deleteItem(item);
-        return "Successful:";
+        String requestId=Controller.getInstance().getAlphaNumericString(5,"Requests");
+        RequestController.getInstance().deleteItemRequest(requestId,id);
+        //UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
+        //Database.getInstance().deleteItem(item);
+        return "the request for deleting item has been sent to the admin!";
     }
 
     public boolean isThereItemWithId(String id) {

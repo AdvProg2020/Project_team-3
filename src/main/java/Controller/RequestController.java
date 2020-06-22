@@ -69,6 +69,9 @@ public class RequestController {
             if (content.contains("\"type\": \"SaleRequest\"")) {
                 return gson.fromJson(content, SaleRequest.class);
             }
+            if(content.contains("\"type\": \"ItemDelete\"")){
+                return gson.fromJson(content,ItemDelete.class);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,6 +114,11 @@ public class RequestController {
         Database.getInstance().saveRequest(newRequest);
     }
 
+    public void deleteItemRequest(String requestId,String itemId){
+        ItemDelete newRequest=new ItemDelete(requestId,itemId);
+        Database.getInstance().saveRequest(newRequest);
+    }
+
     ///after accept or decline
     public String acceptRequest(String requestID) {
         Request accepted = getRequestById(requestID);
@@ -147,6 +155,11 @@ public class RequestController {
             Item item = ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
             item.addComment(comment);
                 Database.getInstance().saveItem(item);
+        }  else if(accepted instanceof  ItemDelete){
+            String id=((ItemDelete) accepted).getItemId();
+            Item removed=ItemAndCategoryController.getInstance().getItemById(id);
+            UserController.getInstance().deleteItemFromSeller(id,removed.getSellerName());
+            Database.getInstance().deleteItem(removed);
         }
         Database.getInstance().deleteRequest(accepted);
         return "Successful: Request accepted";
@@ -201,7 +214,6 @@ public class RequestController {
             File file=new File(imagePath);
             if(!imagePath.equals("src/main/resources/Images/default.jpg")) file.delete();
             Database.getInstance().deleteUser(((AccountRequest) declined).getUser());
-
         }
         if (declined == null) {
             return "Error: Request doesn't exist";
@@ -241,6 +253,9 @@ public class RequestController {
             }
             if (fileContent.contains("\"type\": \"ItemRequest\"")) {
                 allRequests.add(gson.fromJson(fileContent, SaleRequest.class));
+            }
+            if(fileContent.contains("\"type\": \"ItemDelete\"")){
+                allRequests.add(gson.fromJson(fileContent,ItemDelete.class));
             }
         }
         return allRequests;
