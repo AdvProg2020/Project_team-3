@@ -117,7 +117,7 @@ public class ItemMenuController {
             }
         });
         updateSimpleItem();
-       // initializeMediaPlayer();
+        initializeMediaPlayer();
     }
 
 
@@ -187,6 +187,13 @@ public class ItemMenuController {
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        if(item.getVideoName().equals("")){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("this item doesn't contain any video!");
+            alert.showAndWait();
+            return;
+        }
         playing=!playing;
         if(playing){
             playPause.setText("Pause");
