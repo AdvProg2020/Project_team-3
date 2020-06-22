@@ -48,6 +48,9 @@ public class Buyer extends User {
 
     public void addBuyLog(BuyLog buyLog){buyLogs.add(buyLog);}
 
+    public ArrayList<BuyLog> getBuyLogs() {
+        return buyLogs;
+    }
 
     public double getMoney() {
         return money;

@@ -87,4 +87,24 @@ public class BuyLog {
         this.time = time.toString();
     }
 
+    public String getTime(){return time;}
+
+    public ArrayList<String> getAllItemsID() {
+        return allItemsID;
+    }
+    public HashMap<String, Integer> getItemsCount() {
+        return itemsCount;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Double getDiscountGrandTotal() {
+        return discountGrandTotal;
+    }
 }

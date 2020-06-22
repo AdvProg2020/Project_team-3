@@ -136,8 +136,13 @@ public class CartMenuController {
         SceneSwitcher.getInstance().back();
     }
 
+    public void goToShopMenu(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("CartMenu");
+        SceneSwitcher.getInstance().setSceneTo("ShopMenu");
+    }
 
-   class ItemTextCell extends ListCell<Item> {
+
+    class ItemTextCell extends ListCell<Item> {
         private HBox vBox=new HBox(5);
         private ImageView imageView=new ImageView();
         private Label label=new Label();

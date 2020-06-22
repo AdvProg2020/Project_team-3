@@ -59,7 +59,7 @@ public class BuyerMenuController {
 
     @FXML
     private void viewOrders(){
-        SceneSwitcher.getInstance().setSceneTo("BuyerOrders");
+        SceneSwitcher.getInstance().setSceneTo("BuyLog");
     }
 
     @FXML

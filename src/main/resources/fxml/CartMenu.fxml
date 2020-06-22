@@ -7,28 +7,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="420.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
+<AnchorPane prefHeight="498.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
    <children>
-      <ListView layoutX="96.0" layoutY="52.0" prefHeight="262.0" prefWidth="429.0" fx:id="itemListView"/>
-      <Button layoutX="200.0" layoutY="346.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="220.0" text="Buy" onAction="#buy" />
-      <Button layoutX="23.0" layoutY="54.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="53.0" text="+" onAction="#increaseItem">
+      <ListView fx:id="itemListView" layoutX="96.0" layoutY="79.0" prefHeight="262.0" prefWidth="429.0" />
+      <Button layoutX="201.0" layoutY="341.0" mnemonicParsing="false" onAction="#buy" prefHeight="60.0" prefWidth="220.0" text="Buy" />
+      <Button layoutX="30.0" layoutY="103.0" mnemonicParsing="false" onAction="#increaseItem" prefHeight="36.0" prefWidth="53.0" text="+">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button layoutX="30.0" layoutY="218.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="53.0" text="-" onAction="#decreaseItem">
+      <Button layoutX="30.0" layoutY="256.0" mnemonicParsing="false" onAction="#decreaseItem" prefHeight="48.0" prefWidth="53.0" text="-">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button layoutX="531.0" layoutY="54.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="71.0" text="show Item" onAction="#showItem" />
-      <Button layoutX="534.0" layoutY="217.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="79.0" text="clear Cart"  onAction="#clearCartPressed"/>
-      <Label alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="17.0" prefWidth="325.0" text="Cart Menu" fx:id="totalPrice">
+      <Button layoutX="535.0" layoutY="102.0" mnemonicParsing="false" onAction="#showItem" prefHeight="50.0" prefWidth="71.0" text="show Item" />
+      <Button layoutX="531.0" layoutY="255.0" mnemonicParsing="false" onAction="#clearCartPressed" prefHeight="50.0" prefWidth="79.0" text="clear Cart" />
+      <Label fx:id="totalPrice" alignment="CENTER" layoutX="148.0" layoutY="49.0" prefHeight="17.0" prefWidth="325.0" text="Cart Menu">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button text="back" onMouseClicked="#back"></Button>
+      <Button layoutY="30.0" onMouseClicked="#back" text="back" />
+      <MenuBar prefHeight="30.0" prefWidth="620.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="ShopMenu" onAction="#goToShopMenu" />
+              <MenuItem mnemonicParsing="false" text="Exit" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 
 
