@@ -34,6 +34,7 @@
             <Font name="System Italic" size="15.0" />
          </font>
       </Label>
+      <Label fx:id="SaleLogLabel" layoutX="172.0" layoutY="118.0" prefHeight="17.0" prefWidth="349.0" />
    </children>
 
 </AnchorPane>

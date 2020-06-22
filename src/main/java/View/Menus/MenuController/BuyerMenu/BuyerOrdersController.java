@@ -162,6 +162,7 @@ public class BuyerOrdersController {
                 if(index==-1) return;
                 BuyLog buyLog=buyLogListView.getItems().get(index);
                 if(buyLog.equals(selected))return;
+                if(!buyLog.equals(selected)) detailsListView.getItems().clear();
                 selected=buyLog;
                 buyLogListView.getSelectionModel().clearSelection();
                 ArrayList<String> itemIds=buyLog.getAllItemsID();
