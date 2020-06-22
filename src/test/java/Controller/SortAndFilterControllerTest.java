@@ -230,7 +230,7 @@ public class SortAndFilterControllerTest {
     @Test
     public void showAllAvailableFilters() {
         String ans=SortAndFilterController.getInstance().showAllAvailableFilters();
-        assertEquals(ans,"filter by price [min] to [max]\nfilter by category [name]\nfilter by brand [name]\nfilter by name [name]\nfilter by availability\nfilter by attribute [key] [value]\nfilter by seller [seller name]");
+        assertEquals(ans,"filter by price [min] to [max]\nfilter by category [name]\nfilter by brand [name]\nfilter by name [name]\nfilter by availability\nfilter by attribute [key] [value]\nfilter by seller [seller name]\nfilter sale");
     }
 
     @Test
