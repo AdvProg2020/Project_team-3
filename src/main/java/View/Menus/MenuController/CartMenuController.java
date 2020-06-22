@@ -117,9 +117,11 @@ public class CartMenuController {
             return;
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("please login to buy items");
             alert.showAndWait();
+            SceneSwitcher.getInstance().saveScene("CartMenu");
+            SceneSwitcher.getInstance().setSceneTo("Login");
             return;
         }
         if(UserController.getInstance().getUserType().equals("Buyer")==false){

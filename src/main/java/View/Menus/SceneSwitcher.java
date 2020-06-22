@@ -116,4 +116,7 @@ public class SceneSwitcher {
     public void clearRecentScene(){
         recentScene.clear();
     }
+
+    public String getLastRecentScene(){return recentScene.get(recentScene.size()-1);}
+
 }

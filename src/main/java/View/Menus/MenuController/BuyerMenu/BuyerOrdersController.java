@@ -180,8 +180,6 @@ public class BuyerOrdersController {
 
     }
 
-
-
     public void goToUserZone(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
@@ -221,10 +219,5 @@ public class BuyerOrdersController {
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
     }
-
-
-
-
-
 
 }

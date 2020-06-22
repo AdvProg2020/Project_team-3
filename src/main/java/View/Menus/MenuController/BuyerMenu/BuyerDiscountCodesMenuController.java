@@ -31,7 +31,7 @@ public class BuyerDiscountCodesMenuController {
     }
 
     public void goToBuyerOrders(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().setSceneTo("BuyerOrders");
+        SceneSwitcher.getInstance().setSceneTo("BuyLog");
     }
 
     public void logout(ActionEvent actionEvent) {

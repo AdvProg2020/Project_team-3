@@ -40,6 +40,10 @@ public class LoginMenuController {
             return;
         }
         UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
+        if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
+            SceneSwitcher.getInstance().setSceneTo("CartMenu");
+            return;
+        }
         emptyStage();
         back();
     }
