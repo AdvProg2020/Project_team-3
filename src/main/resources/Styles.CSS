@@ -53,3 +53,8 @@
       -fx-background-color: transparent;
       -fx-prompt-text-fill: black;
     }
+
+    .myMenuBar{
+        -fx-background-color: #dedcde;
+        -fx-border-color: #bababa;
+    }
