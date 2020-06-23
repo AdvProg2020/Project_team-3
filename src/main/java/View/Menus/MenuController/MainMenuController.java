@@ -34,6 +34,7 @@ public class MainMenuController {
     public Menu menu;
     @FXML Button loginLogout;
     @FXML VBox commercial;
+
     public void initialize(){
         String commercialItemId= CommercialController.getInstance().getRandomItemId();
         if(commercialItemId.isEmpty()==false){
@@ -68,11 +69,13 @@ public class MainMenuController {
 
     public void login(){
         SceneSwitcher.getInstance().setSceneAndWait("Login");
+        loginHandler();
     }
 
     public void userzone(ActionEvent actionEvent) {
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             SceneSwitcher.getInstance().setSceneAndWait("Login");
+            loginHandler();
             return;
         }
         SceneSwitcher.getInstance().saveScene("MainMenu");
@@ -90,6 +93,8 @@ public class MainMenuController {
             menu.getItems().remove(getMenuItemByName("Log In"));
             loginLogout.setText("Logout");
             addLogoutMenuItem();
+        }else{
+            loginLogout.setText("Login");
         }
     }
 
@@ -101,6 +106,7 @@ public class MainMenuController {
             @Override
             public void handle(ActionEvent event) {
                 SceneSwitcher.getInstance().setSceneAndWait("Login");
+                loginHandler();
             }
         });
     }
@@ -114,6 +120,7 @@ public class MainMenuController {
                 UserController.getInstance().logout();
                 menu.getItems().remove(getMenuItemByName("Logout"));
                 addLoginMenuItem();
+                loginHandler();
                 showLogoutAlertBox();
             }
         });
@@ -164,6 +171,7 @@ public class MainMenuController {
         }
         if(loginLogout.getText().equals("Login")){
             SceneSwitcher.getInstance().setSceneAndWait("Login");
+            loginHandler();
         }
     }
 }

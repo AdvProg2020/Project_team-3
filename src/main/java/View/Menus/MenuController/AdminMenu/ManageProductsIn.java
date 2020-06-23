@@ -13,6 +13,7 @@ public class ManageProductsIn {
    }
 
    public void close(MouseEvent mouseEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageProductsIn");
       SceneSwitcher.getInstance().closeSecondStage();
    }
 

@@ -85,9 +85,7 @@ public class LoginMenuController {
         return true;
     }
 
-   // public void mainMenu(ActionEvent actionEvent) {
-   //     SceneSwitcher.getInstance().setSceneTo("MainMenu");
-   // }
+
 
     public void registerBuyer(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeSecondStage();
@@ -99,9 +97,6 @@ public class LoginMenuController {
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 
-    //public void Exit(ActionEvent actionEvent) {
-      //  SceneSwitcher.getInstance().closeWindow();
-   // }
 
     private void errorAfterMistake(){
         usernameTextField.setText("");

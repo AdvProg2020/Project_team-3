@@ -19,6 +19,7 @@ public class SceneSwitcher {
     private ArrayList<String> recentScene=new ArrayList<>();
     private Stage stage;
     private Stage popupStage;
+    private String mainSceneName;
     private SceneSwitcher(){
 
     }
@@ -43,6 +44,7 @@ public class SceneSwitcher {
 
     public void setSceneTo(String sceneName)  {
         try {
+            mainSceneName=sceneName;
             String path = allScenesFXML.get(sceneName);
             URL urls = new File(path).toURI().toURL();
             Parent parent = FXMLLoader.load(urls);
@@ -60,7 +62,7 @@ public class SceneSwitcher {
                 popupStage = new Stage();
                 popupStage.setScene(new Scene(parent, width, height));
                 popupStage.initModality(Modality.APPLICATION_MODAL);
-                popupStage.show();
+                popupStage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,7 +76,7 @@ public class SceneSwitcher {
             popupStage = new Stage();
             popupStage.setScene(new Scene(parent, 1280,720));
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.show();
+            popupStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,6 +84,7 @@ public class SceneSwitcher {
 
     public void setSceneTo(String sceneName,int width,int height)  {
         try {
+            mainSceneName=sceneName;
             String path = allScenesFXML.get(sceneName);
             URL urls = new File(path).toURI().toURL();
             Parent parent = FXMLLoader.load(urls);
@@ -95,7 +98,9 @@ public class SceneSwitcher {
         recentScene.add(sceneName);
     }
 
-
+    public String getMainSceneName() {
+        return mainSceneName;
+    }
 
     public  Stage getStage(){return stage;}
 
