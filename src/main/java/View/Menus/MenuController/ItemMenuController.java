@@ -237,6 +237,18 @@ public class ItemMenuController {
     }
 
     public void compare(ActionEvent actionEvent) {
+        String selectedItem=(String) itemComoBox.getSelectionModel().getSelectedItem();
+        if(selectedItem==null){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("you must select an item first!");
+            alert.showAndWait();
+            return;
+        }
+        String [] token=selectedItem.split(" ");
+        String secondItemId=token[1].substring(3);
+        compareMenuController.setFirstItemID(itemID);
+        compareMenuController.setSecondItemID(secondItemId);
+        SceneSwitcher.getInstance().setSceneAndWait("CompareMenu",600,469);
     }
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
@@ -244,6 +256,7 @@ public class ItemMenuController {
         Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
         for(String id:category.getAllItemsID()){
+            if(id.equals(itemID)) continue;
             allItems.add(ItemAndCategoryController.getInstance().getItemById(id).getName()+" id:"+id);
         }
         itemComoBox.setItems(allItems);

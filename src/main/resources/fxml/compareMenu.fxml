@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="469.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.compareMenuController">
+   <children>
+      <ImageView fx:id="firstItemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="secondItemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="372.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="firstItemListView" layoutX="25.0" layoutY="211.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="secondItemListView" layoutX="372.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
