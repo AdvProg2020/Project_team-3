@@ -44,13 +44,16 @@ public class BuyerOrdersController {
     private BuyLog selected;
 
     public void initialize(){
+        Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
+        UserController.getInstance().logout();
+        UserController.getInstance().login(buyer.getUsername(),buyer.getPassword());
         initializeBuyLogListView();
         updateBuyLogDetail();
     }
 
 
 
-    private void initializeBuyLogListView(){
+    public void initializeBuyLogListView(){
         Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
         ArrayList<BuyLog> allLogs=buyer.getBuyLogs();
         if(allLogs.size()==0){
@@ -154,7 +157,7 @@ public class BuyerOrdersController {
     }
 
 
-    private void updateBuyLogDetail(){
+    public void updateBuyLogDetail(){
         buyLogListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
