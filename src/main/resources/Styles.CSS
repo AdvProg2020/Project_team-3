@@ -32,15 +32,19 @@
     }
 
     .registerSellerMenu {
-            -fx-background-image: url("design/newRegisterSeller.png");
+        -fx-background-image: url("design/newRegisterSeller.png");
     }
 
     .registerAdminMenu {
-            -fx-background-image: url("design/newRegisterAdmin.png");
+        -fx-background-image: url("design/newRegisterAdmin.png");
     }
 
     .loginMenu {
-            -fx-background-image: url("design/login.png");
+        -fx-background-image: url("design/login.png");
+    }
+
+    .userBackground {
+        -fx-background-image: url("design/casBack.png");
     }
 
     .myTextField{
