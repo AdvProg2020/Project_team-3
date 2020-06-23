@@ -34,6 +34,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -69,6 +70,7 @@ public class ItemMenuController {
     public ImageView ivTarget;
     public ImageView messageImageView;
     public ListView<Item> familyItemListView;
+    @FXML public ImageView rating;
     public Label videoLabel;
     public Label priceAfterSaleLabel;
     public ComboBox itemComoBox;
@@ -121,6 +123,12 @@ public class ItemMenuController {
                 return  new imageCommentTextCell();
             }
         });
+        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
+        rating.setImage(ratingImage);
+        double frameWidth = (item.getRating() / 5)*200;
+        Rectangle mask = new Rectangle(frameWidth, 28);
+        rating.setClip(mask);
+        System.out.println("salam");
         updateSimpleItem();
         initializeMediaPlayer();
     }

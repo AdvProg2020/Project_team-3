@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -8,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
     <children>
 
         <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
@@ -20,6 +19,7 @@
             </menus>
         </MenuBar>
         <ImageView fx:id="itemImage" fitHeight="200.0" fitWidth="200.0" layoutX="60.0" layoutY="90.0" onMouseExited="#removeImage" onMouseMoved="#zoom" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="rating" fitHeight="28.0" fitWidth="200.0" layoutX="60.0" layoutY="325" />
         <Label layoutX="28.0" layoutY="392.0" prefHeight="17.0" prefWidth="36.0" text="name:" />
         <Label fx:id="itemNameLabel" layoutX="72.0" layoutY="392.0" prefHeight="17.0" prefWidth="261.0" />
         <Label fx:id="itemNameLabelBigFont" layoutX="371.0" layoutY="43.0" prefHeight="39.0" prefWidth="396.0">
