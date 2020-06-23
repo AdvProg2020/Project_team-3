@@ -2,6 +2,7 @@ package View.Menus.MenuController;
 
 import Controller.*;
 import Model.Users.User;
+import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -47,6 +48,7 @@ public class commentMenuController {
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText("your comment was sent to our admin!");
       alert.show();
+      SceneSwitcher.getInstance().closeSecondStage();
    }
 
 

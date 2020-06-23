@@ -334,7 +334,7 @@ public class ItemMenuController {
     }
 
     public void addCommentDialogBox(){
-        Stage stage=new Stage();
+       /* Stage stage=new Stage();
         String path=SceneSwitcher.getInstance().getFXMLPath("CommentMenu");
         URL urls = null;
         try {
@@ -346,7 +346,8 @@ public class ItemMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.show();
+        stage.show(); */
+       SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
     }
 
 

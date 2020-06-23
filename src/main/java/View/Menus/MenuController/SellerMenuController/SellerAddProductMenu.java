@@ -230,7 +230,7 @@ public class SellerAddProductMenu {
         }catch (Exception e){
             return false;
         }
-        return anInt>=0;
+        return anInt>0;
     }
 
     protected static boolean isAPositiveDouble(String string){
@@ -240,6 +240,6 @@ public class SellerAddProductMenu {
         }catch (Exception e){
             return false;
         }
-        return aDouble>=0;
+        return aDouble>0;
     }
 }

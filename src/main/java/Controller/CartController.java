@@ -36,17 +36,20 @@ public class CartController {
 
     public String addItemToCart(String itemId) {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemId)) {
-            return View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET;
+            return "Error: invalid id";
+        }
+        if(ItemAndCategoryController.getInstance().getItemById(itemId).getInStock()==0){
+            return "Error: item is sold out";
         }
         return getCurrentShoppingCart().add(itemId);
     }
 
     public String cartIncreaseDecrease(String itemid, int count) { //for decrease count needs to be negative
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(itemid)) {
-            return View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET;
+            return "Error: invalid id";
         }
         if(!getCurrentShoppingCart().includesItem(itemid)){
-            return View.ANSI_RED+"Error: you must first add this item to your cart"+View.ANSI_RESET;
+            return "Error: you must first add this item to your cart";
         }
         count += getCurrentShoppingCart().getItemCount(itemid);
         return getCurrentShoppingCart().changeCountBy(itemid, count);

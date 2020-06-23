@@ -37,6 +37,7 @@ public class Seller extends User {
         response += "Surname: " + getLastName() + "\n";
         response += "Email: " + getEmail() + "\n";
         response += "Number: " + getNumber() + "\n";
+        response += "money: " + getMoney() + "\n";
         response += "Company: " + companyName + "\n";
         return response;
     }
