@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -97,8 +98,8 @@ public class ItemMenuController {
         File file=new File(path);
         try {
             itemImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-            itemImage.setFitHeight(200);
-            itemImage.setFitWidth(200);
+            itemImage.setFitHeight(235);
+            itemImage.setFitWidth(215);
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
@@ -224,12 +225,10 @@ public class ItemMenuController {
     public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
         int x=(int)mouseEvent.getX();
         int y=(int)mouseEvent.getY();
-        if(x<0 || y<0)return;
-        if(x>150 || x<50) return;
-        if(y>140 || y< 50)return;
         Image image=itemImage.getImage();
-        Image newFrame=new WritableImage(image.getPixelReader(),x-50,y-50,50,50);
-        ivTarget.setImage(newFrame);
+        ivTarget.setImage(image);
+        Rectangle2D viewPort=new Rectangle2D(x,y,50,50);
+        ivTarget.setViewport(viewPort);
     }
 
     public void removeImage(MouseEvent mouseEvent) {

@@ -73,7 +73,7 @@
       <Separator layoutX="335.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
       <Separator layoutX="738.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
       <Separator layoutX="752.0" layoutY="277.0" prefHeight="3.0" prefWidth="320.0" />
-      <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="362.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="346.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" onMouseClicked="#showItem" prefHeight="698.0" prefWidth="207.0" />
       <Label fx:id="videoLabel" alignment="CENTER" layoutX="779.0" layoutY="131.0" prefHeight="27.0" prefWidth="267.0">
