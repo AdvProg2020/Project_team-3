@@ -189,6 +189,7 @@ public class ItemMenuController {
 
     public void addToCart(ActionEvent actionEvent) {
         User user=Controller.getInstance().getCurrentOnlineUser();
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("ERROR");
@@ -204,8 +205,14 @@ public class ItemMenuController {
             alert.show();
             return;
         }
+        if(item.getInStock()==0){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("sold out Item!");
+            alert.showAndWait();
+            return;
+        }
         CartController.getInstance().addItemToCart(itemID);
-        System.out.println(itemID);
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();
