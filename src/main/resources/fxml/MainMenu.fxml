@@ -9,7 +9,6 @@
        <menus>
          <Menu fx:id="menu" mnemonicParsing="false" text="Log in or Register">
            <items>
-             <MenuItem mnemonicParsing="false" onAction="#login" text="Log In" />
              <MenuItem mnemonicParsing="false" onAction="#registerBuyer" text="Register Buyer" />
              <MenuItem mnemonicParsing="false" onAction="#registerSeller" text="Register Seller" />
            </items>

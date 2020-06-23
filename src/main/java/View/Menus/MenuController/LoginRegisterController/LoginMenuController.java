@@ -50,6 +50,7 @@ public class LoginMenuController {
                 SceneSwitcher.getInstance().setSceneTo("MainMenu");
                 CartController.getInstance().getCurrentShoppingCart().empty();
             }
+            return;
         }
         emptyStage();
         back();

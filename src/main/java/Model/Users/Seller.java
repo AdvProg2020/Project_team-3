@@ -113,6 +113,9 @@ public class Seller extends User {
         return ans;
     }
 
+    public ArrayList<SaleLog> getSellLogs() {
+        return sellLogs;
+    }
 
     public ArrayList<String> getAllItemsId() {
         return allItemsId;
