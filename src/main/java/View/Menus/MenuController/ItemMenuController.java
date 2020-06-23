@@ -99,7 +99,7 @@ public class ItemMenuController {
         try {
             itemImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
             itemImage.setFitHeight(235);
-            itemImage.setFitWidth(215);
+            itemImage.setFitWidth(235);
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
@@ -225,9 +225,21 @@ public class ItemMenuController {
     public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
         int x=(int)mouseEvent.getX();
         int y=(int)mouseEvent.getY();
+        if(x < itemImage.getTranslateX() + 25){
+            x = (int)itemImage.getTranslateX() + 25;
+        }
+        if(x > itemImage.getTranslateX() + 210){
+            x = (int)itemImage.getTranslateX() + 210;
+        }
+        if(y <  itemImage.getTranslateY() + 25){
+            y = (int)itemImage.getTranslateY() + 25;
+        }
+        if(y > itemImage.getTranslateX() + 210){
+            y = (int)itemImage.getTranslateY() + 210;
+        }
         Image image=itemImage.getImage();
         ivTarget.setImage(image);
-        Rectangle2D viewPort=new Rectangle2D(x,y,50,50);
+        Rectangle2D viewPort=new Rectangle2D(x-25,y-25,50,50);
         ivTarget.setViewport(viewPort);
     }
 
