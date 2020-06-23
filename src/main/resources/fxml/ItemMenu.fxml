@@ -55,7 +55,7 @@
         <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
         <ListView fx:id="commentListView" layoutX="752.0" layoutY="315.0" prefHeight="324.0" prefWidth="320.0" />
         <Button layoutX="170.0" layoutY="679.0" mnemonicParsing="false" onAction="#rate" prefHeight="30.0" prefWidth="165.0" text="Rate Item" />
-        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="772.0" layoutY="30.0" />
+        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="752.0" layoutY="30.0" />
         <ToolBar layoutX="752.0" layoutY="230.0" prefHeight="40.0" prefWidth="320.0">
             <items>
                 <Button fx:id="playPause" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
@@ -76,5 +76,10 @@
       <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="350.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" onMouseClicked="#showItem" prefHeight="698.0" prefWidth="207.0" />
+      <Label fx:id="videoLabel" alignment="CENTER" layoutX="779.0" layoutY="131.0" prefHeight="27.0" prefWidth="267.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

@@ -68,6 +68,7 @@ public class ItemMenuController {
     public ImageView ivTarget;
     public ImageView messageImageView;
     public ListView<Item> familyItemListView;
+    public Label videoLabel;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
@@ -186,25 +187,6 @@ public class ItemMenuController {
         commentListView.setItems(comments);
     }
 
-    public void playPauseButtonPressed(ActionEvent actionEvent) {
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        if(item.getVideoName().equals("")){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("this item doesn't contain any video!");
-            alert.showAndWait();
-            return;
-        }
-        playing=!playing;
-        if(playing){
-            playPause.setText("Pause");
-            mediaPlayer.play();
-        }else{
-            playPause.setText("Play");
-            mediaPlayer.pause();
-        }
-
-    }
-
     public void addToCart(ActionEvent actionEvent) {
         User user=Controller.getInstance().getCurrentOnlineUser();
         if( user!=null &&(user instanceof Buyer)==false){
@@ -244,8 +226,6 @@ public class ItemMenuController {
         ivTarget.setImage(null);
     }
 
-
-
     class imageCommentTextCell extends ListCell<Comment>{
         private VBox vBox=new VBox(5);
         private ImageView imageView=new ImageView();
@@ -284,9 +264,11 @@ public class ItemMenuController {
 
     public void initializeMediaPlayer(){
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        if(item.getVideoName().equals("")) return;
+        if(item.getVideoName().equals("")){
+            videoLabel.setText("no video for playing!");
+            return;
+        }
         String fullPath="src/main/resources/Images/ItemImages/"+item.getVideoName();
-        System.out.println(fullPath +" hello");
         File file=new File(fullPath);
         Media media = null;
         try {
@@ -308,7 +290,24 @@ public class ItemMenuController {
 
     }
 
+    public void playPauseButtonPressed(ActionEvent actionEvent) {
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        if(item.getVideoName().equals("")){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("this item doesn't contain any video!");
+            alert.showAndWait();
+            return;
+        }
+        playing=!playing;
+        if(playing){
+            playPause.setText("Pause");
+            mediaPlayer.play();
+        }else{
+            playPause.setText("Play");
+            mediaPlayer.pause();
+        }
 
+    }
 
     public void addCommentDialogBox(){
         Stage stage=new Stage();
