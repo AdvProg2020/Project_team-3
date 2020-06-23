@@ -9,6 +9,8 @@ import View.Menus.AdminMenu.AdminMenu;
 import Controller.Controller;
 import Controller.UserController;
 import View.Menus.SellerMenu.SellerMenu;
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,11 +24,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainMenuController {
 
@@ -34,27 +38,76 @@ public class MainMenuController {
     public Menu menu;
     @FXML Button loginLogout;
     @FXML VBox commercial;
-
+    @FXML Label slideCount;
+    @FXML Button nextButton;
+    @FXML Button previousButton;
     public void initialize(){
-        String commercialItemId= CommercialController.getInstance().getRandomItemId();
-        if(commercialItemId.isEmpty()==false){
-            Item item = ItemAndCategoryController.getInstance().getItemById(commercialItemId);
-            commercial.setOnMouseClicked(event -> {
-                ItemMenuController.setItemID(commercialItemId);
-                SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
-            });
-            commercial.setPrefSize(230,345);
-            ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
-            Label name = new Label(item.getName());
-            Label price = new Label(Double.toString(item.getPrice()));
-            commercial.getChildren().add(imageView);
-            commercial.getChildren().add(name);
-            commercial.getChildren().add(price);
+        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+        if(allCommercials.isEmpty()==false){
+            showCommercial(0);
         }else{
             commercial.setVisible(false);
+            slideCount.setVisible(false);
+            nextButton.setVisible(false);
+            previousButton.setVisible(false);
         }
         loginLogout.setText("Login");
         loginHandler();
+    }
+
+
+    public void nextCommercial(MouseEvent mouseEvent) {
+        if(slideCount.isVisible()) {
+        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+            int index = Integer.parseInt(slideCount.getText().split("/")[0])-1;
+            if(index+1<allCommercials.size()){
+                showCommercial(index+1);
+            }else{
+                showCommercial(0);
+            }
+        }
+    }
+
+    public void previousCommercial(MouseEvent mouseEvent) {
+        if(slideCount.isVisible()) {
+        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+            int index = Integer.parseInt(slideCount.getText().split("/")[0])-1;
+            if(index-1>-1){
+                showCommercial(index-1);
+            }else{
+                showCommercial(allCommercials.size()-1);
+            }
+        }
+    }
+
+    private void fadeCommercial(){
+        FadeTransition ft = new FadeTransition(Duration.millis(2000), commercial);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(true);
+        ft.play();
+    }
+    private void showCommercial(int index){
+        commercial.getChildren().clear();
+        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+        String commercialItemId=allCommercials.get(index);
+        Item item = ItemAndCategoryController.getInstance().getItemById(commercialItemId);
+        commercial.setOnMouseClicked(event -> {
+            ItemMenuController.setItemID(commercialItemId);
+            SceneSwitcher.getInstance().saveScene("MainMenu");
+            SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
+        });
+        commercial.setPrefSize(230,345);
+        ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+        Label name = new Label(item.getName());
+        Label price = new Label(Double.toString(item.getPrice()));
+        commercial.getChildren().add(imageView);
+        commercial.getChildren().add(name);
+        commercial.getChildren().add(price);
+        index++;
+        slideCount.setText(index+"/"+allCommercials.size());
+        fadeCommercial();
     }
 
     public void registerBuyer(){

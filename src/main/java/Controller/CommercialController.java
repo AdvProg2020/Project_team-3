@@ -25,9 +25,9 @@ public class CommercialController implements Serializable{
             }
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
             commercialController=(CommercialController) stream.readObject();
-         }catch (IOException | ClassNotFoundException e){
+         }catch (IOException | ClassNotFoundException  e){
             commercialController=new CommercialController();
-            e.printStackTrace();
+          //  e.printStackTrace();
          }
       }
       return commercialController;
@@ -71,6 +71,7 @@ public class CommercialController implements Serializable{
       if(acceptedItemId.size()==0) return "";
     return acceptedItemId.get((int)Math.random()*acceptedItemId.size());
    }
+
 
    public ArrayList<String> getAcceptedItemId() {
       return acceptedItemId;
