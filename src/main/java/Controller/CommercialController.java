@@ -20,6 +20,9 @@ public class CommercialController implements Serializable{
       if (commercialController == null){
          try {
             File file = new File("Resource/Commercials/commercial.txt");
+            if(file.exists()==false) {
+               return new CommercialController();
+            }
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
             commercialController=(CommercialController) stream.readObject();
          }catch (IOException | ClassNotFoundException e){
