@@ -4,6 +4,7 @@ import Controller.CommercialController;
 import Controller.ItemAndCategoryController;
 import Model.Item;
 import Model.Users.Admin;
+import Model.Users.Seller;
 import View.Menus.*;
 import View.Menus.AdminMenu.AdminMenu;
 import Controller.Controller;
@@ -206,8 +207,15 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
+        if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("only buyers can view Cart Menu!");
+            alert.showAndWait();
+            return;
+        }
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
+
     }
 
     public void ShopMenu(ActionEvent actionEvent) {

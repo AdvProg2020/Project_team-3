@@ -69,6 +69,8 @@ public class ItemMenuController {
     public ImageView messageImageView;
     public ListView<Item> familyItemListView;
     public Label videoLabel;
+    public Label priceAfterSaleLabel;
+    public ComboBox itemComoBox;
     private MediaPlayer mediaPlayer;
     private boolean playing=false;
 
@@ -87,6 +89,7 @@ public class ItemMenuController {
         stockLabel.setText(String.valueOf(item.getInStock()));
         gradeLabel.setText(String.valueOf(item.getRating()));
         priceLabel.setText(String.valueOf(item.getPrice()));
+        priceAfterSaleLabel.setText(String.valueOf(item.getPriceWithSale()));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
         String messagePath="src/main/resources/Images/ItemImages/";
@@ -189,6 +192,7 @@ public class ItemMenuController {
 
     public void addToCart(ActionEvent actionEvent) {
         User user=Controller.getInstance().getCurrentOnlineUser();
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("ERROR");
@@ -204,8 +208,14 @@ public class ItemMenuController {
             alert.show();
             return;
         }
+        if(item.getInStock()==0){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("sold out Item!");
+            alert.showAndWait();
+            return;
+        }
         CartController.getInstance().addItemToCart(itemID);
-        System.out.println(itemID);
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();
@@ -225,6 +235,20 @@ public class ItemMenuController {
     public void removeImage(MouseEvent mouseEvent) {
         ivTarget.setImage(null);
     }
+
+    public void compare(ActionEvent actionEvent) {
+    }
+
+    public void updateItemComoBox(MouseEvent mouseEvent) {
+        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
+        ObservableList<String>allItems=FXCollections.observableArrayList();
+        for(String id:category.getAllItemsID()){
+            allItems.add(ItemAndCategoryController.getInstance().getItemById(id).getName()+" id:"+id);
+        }
+        itemComoBox.setItems(allItems);
+    }
+
 
     class imageCommentTextCell extends ListCell<Comment>{
         private VBox vBox=new VBox(5);
@@ -310,7 +334,7 @@ public class ItemMenuController {
     }
 
     public void addCommentDialogBox(){
-        Stage stage=new Stage();
+       /* Stage stage=new Stage();
         String path=SceneSwitcher.getInstance().getFXMLPath("CommentMenu");
         URL urls = null;
         try {
@@ -322,7 +346,8 @@ public class ItemMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.show();
+        stage.show(); */
+       SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
     }
 
 

@@ -65,7 +65,6 @@ public class CartMenuController {
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
         totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
     }
 
@@ -88,7 +87,6 @@ public class CartMenuController {
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        System.out.println(CartController.getInstance().getCartPriceWithoutDiscountCode());
         totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
     }
 
@@ -106,6 +104,7 @@ public class CartMenuController {
     }
 
     public void clearCartPressed(ActionEvent actionEvent) {
+        CartController.getInstance().getCurrentShoppingCart().empty();
         itemListView.getItems().clear();
     }
 
@@ -174,7 +173,7 @@ public class CartMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String printItem=item.toString() +"\nitem Count: "+cart.getItemCount(item.getId());
+                String printItem=item.toString() +"\nitem Count: "+cart.getItemCount(item.getId())+"\ntotal Price:"+item.getPrice()*cart.getItemCount(item.getId());
                 label.setText(printItem);
                 setGraphic(vBox);
             }
