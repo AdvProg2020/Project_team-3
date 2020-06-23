@@ -39,6 +39,10 @@
             -fx-background-image: url("design/newRegisterAdmin.png");
     }
 
+    .loginMenu {
+            -fx-background-image: url("design/login.png");
+    }
+
     .myTextField{
       -fx-border-color: transparent;
       -fx-border-width: 0 0 0 0;

@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController">
+<Pane prefHeight="720.0" prefWidth="1280.0" styleClass="loginMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.LoginMenuController">
    <children>
 
-      <TextField fx:id="usernameTextField" layoutX="570.0" layoutY="127.0" />
-      <TextField fx:id="passwordTextField" layoutX="570.0" layoutY="261.0" />
-      <CheckBox fx:id="passwordCheckBox" layoutX="769.0" layoutY="265.0" mnemonicParsing="false" text="Show Password?" />
-      <Label layoutX="503.0" layoutY="131.0" text="username" />
-      <Label layoutX="503.0" layoutY="265.0" text="password" />
-      <Button layoutX="574.0" layoutY="378.0" mnemonicParsing="false" onAction="#login" prefHeight="51.0" prefWidth="141.0" text="Login" />
-      <PasswordField fx:id="passwordField" layoutX="570.0" layoutY="261.0" />
-      <Label fx:id="errorLabel" layoutX="570.0" layoutY="320.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label layoutX="574.0" layoutY="474.0" prefHeight="17.0" prefWidth="81.0" text="didn't sign up?" />
-      <Hyperlink layoutX="655.0" layoutY="471.0" onAction="#goToBuyerRegisterMenu" text="Buyer" />
-      <Hyperlink layoutX="701.0" layoutY="471.0" onAction="#goToSellerRegisterMenu" text="Seller" />
+      <TextField fx:id="usernameTextField" layoutX="756.0" layoutY="227.0" prefHeight="25.0" prefWidth="241.0" promptText="Username" styleClass="myTextField" />
+      <TextField fx:id="passwordTextField" layoutX="760.0" layoutY="336.0" prefHeight="25.0" prefWidth="241.0" promptText="Password" styleClass="myTextField" />
+      <CheckBox fx:id="passwordCheckBox" layoutX="892.0" layoutY="377.0" mnemonicParsing="false" text="Show Password?" />
+      <Button layoutX="796.0" layoutY="493.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="141.0" text="Login" />
+      <PasswordField fx:id="passwordField" layoutX="760.0" layoutY="336.0" prefHeight="25.0" prefWidth="241.0" promptText="Password" styleClass="myTextField" />
+      <Label fx:id="errorLabel" layoutX="776.0" layoutY="545.0" prefHeight="17.0" prefWidth="181.0" />
+      <Hyperlink layoutX="346.0" layoutY="539.0" onAction="#goToBuyerRegisterMenu" text="Customer">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="23.97" radius="13.7075" spread="0.21" width="32.86">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect></Hyperlink>
+      <Hyperlink layoutX="487.0" layoutY="539.0" onAction="#goToSellerRegisterMenu" text="Vendor">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="26.93" radius="16.6725" spread="0.29" width="41.76">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect></Hyperlink>
    </children>
 </Pane>
