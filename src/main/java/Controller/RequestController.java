@@ -125,6 +125,7 @@ public class RequestController {
         if (accepted == null) {
             return "Error: Request doesn't exist";
         }
+        accepted.accept();
         if (accepted instanceof AccountRequest) {
             User user = UserController.getInstance().getUserByUsername(((AccountRequest) accepted).getUser().getUsername());
             if (user instanceof Seller) ((Seller) user).validate();
@@ -219,6 +220,7 @@ public class RequestController {
             return "Error: Request doesn't exist";
         }
         Database.getInstance().deleteRequest(declined);
+        declined.decline();
         return "Successful: Request declined";
     }
 

@@ -22,4 +22,23 @@ public class AccountRequest extends Request {
         return "id: " + getRequestId() + "   " + "type: " + getType();
     }
 
+    @Override
+    public String getAcceptedMessage() {
+        return "id: "+getRequestId()+" state:accepted "+" info:your request to register your account has been confirmed by the admin";
+    }
+
+    @Override
+    public String getDeclineMessage() {
+        return null; //seller account wont exist to have any message
+    }
+
+    @Override
+    public void accept() {
+      seller.addRequest(getRequestId(),getAcceptedMessage());
+    }
+
+    @Override
+    public void decline() {
+    }
+
 }

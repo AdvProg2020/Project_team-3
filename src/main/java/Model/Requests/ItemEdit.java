@@ -1,5 +1,8 @@
 package Model.Requests;
 
+import Controller.ItemAndCategoryController;
+import Controller.UserController;
+
 public class ItemEdit extends Request {
     private String itemID;
     private String changedField;
@@ -14,6 +17,7 @@ public class ItemEdit extends Request {
         this.changedField = changedField;
         this.newFieldValue = newFieldValue;
         setType("ItemEdit");
+        UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName()).addRequest(getRequestId(),getPendingMessage());
     }
 
     public String getItemID() {
@@ -34,4 +38,23 @@ public class ItemEdit extends Request {
     }
 
 
+    @Override
+    public String getAcceptedMessage() {
+        return "id: "+getRequestId()+" state:accepted "+" info:your request to edit field "+changedField+" to "+newFieldValue+" has been accepted";
+    }
+
+    @Override
+    public String getDeclineMessage() {
+        return "id: "+getRequestId()+" state:declined "+" info:your request to edit field "+changedField+" to "+newFieldValue+" has been declined";
+    }
+
+    @Override
+    public void accept() {
+        UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName()).addRequest(getRequestId(),getAcceptedMessage());
+    }
+
+    @Override
+    public void decline() {
+        UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(itemID).getSellerName()).addRequest(getRequestId(),getDeclineMessage());
+    }
 }

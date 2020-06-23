@@ -19,6 +19,7 @@
                       <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
                       <MenuItem onAction="#editPersonalInfo" text="edit personal info" />
                       <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
+                      <MenuItem text="viewRequests"     onAction="#viewRequests" ></MenuItem>
                   </items>
                </Menu>
            </menus>

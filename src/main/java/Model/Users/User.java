@@ -1,5 +1,9 @@
 package Model.Users;
 
+import Controller.Database;
+
+import java.util.HashMap;
+
 public abstract class User {
 
     private String username;
@@ -9,6 +13,7 @@ public abstract class User {
     private String email;
     private String number;
     private String type;
+    private HashMap<String,String> allRequests=new HashMap<>();
 
     public boolean doesPasswordMatch(String password) {
         return this.password.equals(password);
@@ -78,5 +83,16 @@ public abstract class User {
 
     public abstract String getPersonalInfo();
 
+    public void addRequest(String requestId,String message){
+        if(allRequests.containsKey(requestId)) {
+            allRequests.replace(requestId,message);
+            return;
+        }
+        allRequests.put(requestId,message);
+        Database.getInstance().saveUser(this);
+    }
 
+    public HashMap<String, String> getAllRequests() {
+        return allRequests;
+    }
 }

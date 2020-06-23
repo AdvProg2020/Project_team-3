@@ -21,6 +21,7 @@
                    <MenuItem mnemonicParsing="false" onAction="#viewCart" text="View Cart" />
                    <MenuItem mnemonicParsing="false" onAction="#viewDiscountCodes" text="View Discount Codes" />
                    <MenuItem mnemonicParsing="false" onAction="#viewOrders" text="View Orders" />
+                   <MenuItem text="viewRequests"     onAction="#viewRequests" ></MenuItem>
                </Menu>
            </menus>
        </MenuBar>

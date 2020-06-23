@@ -4,6 +4,7 @@ import Controller.Controller;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
+import View.Menus.MenuController.ViewRequestUser;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -76,4 +77,10 @@ public class SellerMenuController {
     }
 
    public void editPersonalInfo(ActionEvent actionEvent) {SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
+
+    public void viewRequests(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("SellerMenu");
+        ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
+        SceneSwitcher.getInstance().setSceneTo("ViewRequests");
+    }
 }

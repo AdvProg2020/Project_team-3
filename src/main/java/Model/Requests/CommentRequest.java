@@ -1,5 +1,6 @@
 package Model.Requests;
 
+import Controller.UserController;
 import Model.Comment;
 
 public class CommentRequest extends Request {
@@ -10,6 +11,7 @@ public class CommentRequest extends Request {
         this.newComment = newComment;
         this.setMessage("User "+newComment.getUsername()+" wants to write \""+newComment.getText() +"\" on "+ newComment.getItemId());
         setType("CommentRequest");
+        UserController.getInstance().getUserByUsername(newComment.getUsername()).addRequest(getRequestId(),getPendingMessage());
     }
 
     public Comment getNewComment() {
@@ -22,4 +24,23 @@ public class CommentRequest extends Request {
     }
 
 
+    @Override
+    public String getAcceptedMessage() {
+        return "id: "+getRequestId()+" state:accepted "+" info:your comment has been accepted by the admin";
+    }
+
+    @Override
+    public String getDeclineMessage() {
+        return "id: "+getRequestId()+" state:declined "+" info:your comment has been deleted by the admin";
+    }
+
+    @Override
+    public void accept() {
+        UserController.getInstance().getUserByUsername(newComment.getUsername()).addRequest(getRequestId(),getAcceptedMessage());
+    }
+
+    @Override
+    public void decline() {
+        UserController.getInstance().getUserByUsername(newComment.getUsername()).addRequest(getRequestId(),getDeclineMessage());
+    }
 }

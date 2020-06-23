@@ -3,6 +3,7 @@ package View.Menus.MenuController.BuyerMenu;
 import Controller.Controller;
 import Model.Users.Buyer;
 import Model.Users.User;
+import View.Menus.MenuController.ViewRequestUser;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -81,6 +82,12 @@ public class BuyerMenuController {
 
     public void viewEditPersonalInfo(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().setSceneTo("BuyerEditPersonalInfo");
+    }
+
+    public void viewRequests(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("BuyerMenu");
+        ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
+        SceneSwitcher.getInstance().setSceneTo("ViewRequests");
     }
 }
 

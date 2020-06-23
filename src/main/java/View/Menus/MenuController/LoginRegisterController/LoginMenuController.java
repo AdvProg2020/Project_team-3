@@ -41,7 +41,13 @@ public class LoginMenuController {
             errorAfterMistake();
             return;
         }
-        UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
+        String message=UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
+        if(message.startsWith("Error")){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(message);
+            alert.showAndWait();
+            return;
+        }
         if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
             if(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
                 SceneSwitcher.getInstance().setSceneTo("CartMenu");

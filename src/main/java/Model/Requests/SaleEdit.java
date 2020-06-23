@@ -1,10 +1,13 @@
 package Model.Requests;
 
+import Controller.SaleAndDiscountCodeController;
+import Controller.UserController;
+
 public class SaleEdit extends Request {
     private String saleID;
     private String changedField;
     private String newFieldValue;
-    /////overloaded Constructor
+
     public SaleEdit(String requestId, String saleID , String changedField , String newFieldValue) {
         super(requestId);
         this.saleID = saleID;
@@ -12,6 +15,7 @@ public class SaleEdit extends Request {
         this.setMessage("Request to change "+changedField+" to "+newFieldValue);
         this.newFieldValue=newFieldValue;
         setType("SaleEdit");
+        UserController.getInstance().getUserByUsername(SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername()).addRequest(getRequestId(),getPendingMessage());
     }
 
     public String getSaleID() {
@@ -29,5 +33,25 @@ public class SaleEdit extends Request {
     @Override
     public String toString(){
         return "id :"+getRequestId()+"   "+ "type: "+getType();
+    }
+
+    @Override
+    public String getAcceptedMessage() {
+        return "id: "+getRequestId()+" state:accepted "+" info:your request to edit field "+changedField+" to "+newFieldValue+" has been accepted";
+    }
+
+    @Override
+    public String getDeclineMessage() {
+        return "id: "+getRequestId()+" state:declined "+" info:your request to edit field "+changedField+" to "+newFieldValue+" has been declined";
+    }
+
+    @Override
+    public void accept() {
+        UserController.getInstance().getUserByUsername(SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername()).addRequest(getRequestId(),getAcceptedMessage());
+    }
+
+    @Override
+    public void decline() {
+        UserController.getInstance().getUserByUsername(SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername()).addRequest(getRequestId(),getDeclineMessage());
     }
 }

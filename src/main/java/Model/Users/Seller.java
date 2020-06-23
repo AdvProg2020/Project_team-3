@@ -7,6 +7,7 @@ import Model.Logs.SaleLog;
 import Model.Sale;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Seller extends User {
     private String companyName;
@@ -120,4 +121,6 @@ public class Seller extends User {
     public ArrayList<String> getAllItemsId() {
         return allItemsId;
     }
+
+
 }

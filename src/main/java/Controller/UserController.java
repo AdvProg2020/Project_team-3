@@ -378,4 +378,5 @@ public class UserController {
         Buyer buyer=(Buyer) getCurrentOnlineUser();
         return buyer.getDiscountCodes();
     }
+
 }
