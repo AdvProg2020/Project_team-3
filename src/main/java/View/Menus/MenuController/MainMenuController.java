@@ -9,6 +9,8 @@ import View.Menus.AdminMenu.AdminMenu;
 import Controller.Controller;
 import Controller.UserController;
 import View.Menus.SellerMenu.SellerMenu;
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +39,8 @@ public class MainMenuController {
     @FXML Button loginLogout;
     @FXML VBox commercial;
     @FXML Label slideCount;
-
+    @FXML Button nextButton;
+    @FXML Button previousButton;
     public void initialize(){
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
         if(allCommercials.isEmpty()==false){
@@ -44,6 +48,8 @@ public class MainMenuController {
         }else{
             commercial.setVisible(false);
             slideCount.setVisible(false);
+            nextButton.setVisible(false);
+            previousButton.setVisible(false);
         }
         loginLogout.setText("Login");
         loginHandler();
@@ -74,6 +80,14 @@ public class MainMenuController {
         }
     }
 
+    private void fadeCommercial(){
+        FadeTransition ft = new FadeTransition(Duration.millis(2000), commercial);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(true);
+        ft.play();
+    }
     private void showCommercial(int index){
         commercial.getChildren().clear();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
@@ -81,6 +95,7 @@ public class MainMenuController {
         Item item = ItemAndCategoryController.getInstance().getItemById(commercialItemId);
         commercial.setOnMouseClicked(event -> {
             ItemMenuController.setItemID(commercialItemId);
+            SceneSwitcher.getInstance().saveScene("MainMenu");
             SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
         });
         commercial.setPrefSize(230,345);
@@ -92,6 +107,7 @@ public class MainMenuController {
         commercial.getChildren().add(price);
         index++;
         slideCount.setText(index+"/"+allCommercials.size());
+        fadeCommercial();
     }
 
     public void registerBuyer(){
