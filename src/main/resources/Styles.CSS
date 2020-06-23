@@ -26,3 +26,15 @@
         -fx-fill: white;
         -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
     }
+
+    .registerBuyerMenu {
+        -fx-background-image: url("design/newRegister.png");
+    }
+
+    .myTextField{
+      -fx-border-color: transparent;
+      -fx-border width: 0 0 0 0; // top, right, bottom, left
+      -fx-background-color: #bfbfbf;
+      -fx-prompt-text-fill: #94a8b3;
+
+    }
