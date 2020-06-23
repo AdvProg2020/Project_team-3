@@ -136,7 +136,6 @@ public class Database<Public> {
       }
    }
 
-
    public void deleteUser(User user) {
       String Username = user.getUsername();
       String path = "Resource" + File.separator + "Users";
@@ -222,8 +221,10 @@ public class Database<Public> {
       if (!file.exists()) {
          file.mkdir();
       }
-
-
+      file = new File("Resource" + File.separator + "Commercials");
+      if (!file.exists()) {
+         file.mkdir();
+      }
       if (!UserController.getInstance().isThereUserWithUsername("admin")) {
          Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
       }

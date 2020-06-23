@@ -1,5 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
+import Controller.ItemAndCategoryController;
+import Controller.RequestController;
 import Controller.SortAndFilterController;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
@@ -253,6 +255,18 @@ public class ManageProducts {
 
    public void filterSellerTextChange(KeyEvent keyEvent) {
       if(sellerNameCheckBox.isSelected()) sellerFilter(null);
+   }
+
+   public void selectItem(MouseEvent mouseEvent) {
+      int index=listView.getSelectionModel().getSelectedIndex();
+      if(index==-1)
+         return;
+      String id=listView.getItems().get(index).toString().substring(4,9);
+      listView.getSelectionModel().clearSelection();
+      if(ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
+         ManageProductsIn.setItemId(id);
+         SceneSwitcher.getInstance().setSceneAndWait("ManageProductsIn", 392, 173);
+      }
    }
 }
 

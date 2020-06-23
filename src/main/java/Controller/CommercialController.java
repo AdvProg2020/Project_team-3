@@ -2,22 +2,31 @@ package Controller;
 
 import Model.Users.Seller;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class CommercialController {
+public class CommercialController implements Serializable{
    private ArrayList<String> commercialItemRequest;
    private ArrayList<String> acceptedItemId;
    private String itemCommercial;
    private static  CommercialController commercialController;
 
-   private CommercialController(){
+   public CommercialController(){
       commercialItemRequest=new ArrayList<>();
       acceptedItemId=new ArrayList<>();
    }
 
    public static CommercialController getInstance() {
-      if (commercialController == null)
-         commercialController = new CommercialController();
+      if (commercialController == null){
+         try {
+            File file = new File("Resource/Commercials/commercial.txt");
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
+            commercialController=(CommercialController) stream.readObject();
+         }catch (IOException | ClassNotFoundException e){
+            commercialController=new CommercialController();
+            e.printStackTrace();
+         }
+      }
       return commercialController;
    }
 
@@ -25,6 +34,7 @@ public class CommercialController {
       if(acceptedItemId.contains(id)) return "Error:Item is already in commercial";
       if(commercialItemRequest.contains(id)) return "Error:you have already requested commercial for this item";
       commercialItemRequest.add(id);
+      saveCommercials();
       return "Successful: your request has been sent to the admin";
    }
 
@@ -36,18 +46,22 @@ public class CommercialController {
         seller.setMoney(money-50);
         acceptedItemId.add(id);
         commercialItemRequest.remove(id);
+        saveCommercials();
         return "Successful:";
      }
      acceptedItemId.remove(id);
+     saveCommercials();
      return "Error: item's seller doesnt have sufficient money";
    }
 
    public void declineCommercial(String id){
       commercialItemRequest.remove(id);
+      saveCommercials();
    }
 
    public void removeCommercial(String id){
       acceptedItemId.remove(id);
+      saveCommercials();
    }
 
    public String getRandomItemId(){
@@ -61,5 +75,19 @@ public class CommercialController {
 
    public ArrayList<String> getCommercialItemRequest() {
       return commercialItemRequest;
+   }
+
+   private void saveCommercials(){
+      try {
+         File file=new File("Resource/Commercials/commercial.txt");
+         if(file.exists()==false) file.createNewFile();
+         ObjectOutputStream stream=new ObjectOutputStream(new FileOutputStream(file));
+        // stream.writeObject(acceptedItemId);
+        // stream.writeObject(commercialItemRequest);
+         stream.writeObject(getInstance());
+         stream.close();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
    }
 }

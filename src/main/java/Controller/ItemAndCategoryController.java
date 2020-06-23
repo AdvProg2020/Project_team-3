@@ -7,6 +7,7 @@ import Model.Rating;
 import Model.Requests.ItemEdit;
 import Model.Requests.ItemRequest;
 import Model.Requests.Request;
+import Model.Users.Admin;
 import Model.Users.Buyer;
 import Model.Users.Seller;
 import Model.Users.User;
@@ -53,8 +54,11 @@ public class ItemAndCategoryController {
         }
         String requestId=Controller.getInstance().getAlphaNumericString(5,"Requests");
         RequestController.getInstance().deleteItemRequest(requestId,id);
-        //UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
-        //Database.getInstance().deleteItem(item);
+        if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
+            Database.getInstance().deleteItem(item);
+            return "Successful: item deleted";
+        }
         return "the request for deleting item has been sent to the admin!";
     }
 

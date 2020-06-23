@@ -23,8 +23,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().setSceneTo("MainMenu",356,408);
         stage.setResizable(false);
         stage.show();
-    }                                    //// ====>  setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14)); <=====
-                                                //   moragheb bashid javafx FONT ro import kone na java awt ro (awt "loadfont" nadare)
+    }
 
     public void initializeScreens() throws IOException {
         SceneSwitcher.getInstance().addSceneFXML("MainMenu","src/main/resources/fxml/MainMenu.fxml");
@@ -60,7 +59,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("DiscountsMenu","src/main/resources/fxml/BuyerMenu/DiscountsMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("BuyerEditPersonalInfo","src/main/resources/fxml/BuyerMenu/BuyerEditPersonalInfo.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SellerEditPersonalInfo","src/main/resources/fxml/SellerMenu/SellerEditPersonalInfo.fxml");
-        SceneSwitcher.getInstance().addSceneFXML("ManageProductsIn","fxml/AdminMenu/ManageProductsIn.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageProductsIn","src/main/resources/fxml/AdminMenu/ManageProductsIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ItemMenu","src/main/resources/fxml/ItemMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("CommentMenu","src/main/resources/fxml/CommentMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("PurchaseMenu","src/main/resources/fxml/BuyerMenu/PurchaseMenu.fxml");
@@ -71,8 +70,3 @@ public class Main extends Application{
     }
 
 }
-// hamme scene ha 1280 (tool) dar 720 (ertefa) bashan ke 16:9 bashe va ziadi ham bozorg nabashe
-//set resizable ro false kardam ke be ham narize chizi !
-// login menu tush ye ghabeliat bashe ke ba hyperlink bere register (?)
-// in menu bar hammeja bashe
-//havaseton bashe HAMMEJA BAYAD EMKANE LOGIN , REGISTER , LOGOUT , BACK vojod dashte bashe !!
