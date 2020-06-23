@@ -151,6 +151,7 @@ public class BuyerEditPersonalInfo {
         SceneSwitcher.getInstance().back();
     }
 
+
     public void removeImage(ActionEvent actionEvent) {
         User user=Controller.getInstance().getCurrentOnlineUser();
         String path=UserController.getInstance().userImagePath(user.getUsername());

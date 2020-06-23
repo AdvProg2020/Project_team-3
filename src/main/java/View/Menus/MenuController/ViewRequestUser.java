@@ -15,8 +15,7 @@ public class ViewRequestUser {
    }
 
    public void initialize(){
-      String requestString=UserController.getInstance().getUserByUsername(username).getAllRequests().toString().replace(",","\n");
-      request.getItems().addAll(requestString);
+      request.getItems().addAll(UserController.getInstance().getUserByUsername(username).getAllRequests());
    }
 
    public void back(ActionEvent actionEvent) {

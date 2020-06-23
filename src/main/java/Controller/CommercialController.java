@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Users.Seller;
+import Model.Users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ public class CommercialController implements Serializable{
             commercialController=(CommercialController) stream.readObject();
          }catch (IOException | ClassNotFoundException  e){
             commercialController=new CommercialController();
-          //  e.printStackTrace();
          }
       }
       return commercialController;
@@ -38,6 +38,8 @@ public class CommercialController implements Serializable{
       if(commercialItemRequest.contains(id)) return "Error:you have already requested commercial for this item";
       commercialItemRequest.add(id);
       saveCommercials();
+      User seller=UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(id).getSellerName());
+      seller.addRequest(id,"id: "+id+" state:pending "+" info:item with id "+id+" commercial request has been sent to the admin");
       return "Successful: your request has been sent to the admin";
    }
 
@@ -50,26 +52,25 @@ public class CommercialController implements Serializable{
         acceptedItemId.add(id);
         commercialItemRequest.remove(id);
         saveCommercials();
+        seller.addRequest(id,"id: "+id+" state:accepted "+" info:item with id "+id+" will be shown in commercials");
         return "Successful:";
      }
      acceptedItemId.remove(id);
+      seller.addRequest(id,"id: "+id+" state:declined "+" info:item with id "+id+" cannot be shown in commercials because you dont have sufficient money");
      saveCommercials();
      return "Error: item's seller doesnt have sufficient money";
    }
 
    public void declineCommercial(String id){
       commercialItemRequest.remove(id);
+      User seller=UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(id).getSellerName());
+      seller.addRequest(id,"id: "+id+" state:declined "+" info:item with id "+id+" will not be shown in commercials");
       saveCommercials();
    }
 
    public void removeCommercial(String id){
       acceptedItemId.remove(id);
       saveCommercials();
-   }
-
-   public String getRandomItemId(){
-      if(acceptedItemId.size()==0) return "";
-    return acceptedItemId.get((int)Math.random()*acceptedItemId.size());
    }
 
 

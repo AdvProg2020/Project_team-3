@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="444.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditPersonalInfo">
+<AnchorPane prefHeight="444.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.BuyerEditPersonalInfo">
 <MenuBar>
     <Menu text="options">
         <MenuItem onAction="#back" text="back" />

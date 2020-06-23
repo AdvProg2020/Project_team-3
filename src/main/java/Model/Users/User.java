@@ -93,7 +93,7 @@ public abstract class User {
         Database.getInstance().saveUser(this);
     }
 
-    public HashMap<String, String> getAllRequests() {
-        return allRequests;
+    public String getAllRequests() {
+        return allRequests.toString().replace("{","").replace("}","").replace(",","\n");
     }
 }
