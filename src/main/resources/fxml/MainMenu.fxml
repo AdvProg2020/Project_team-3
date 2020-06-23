@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
+<Pane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.MainMenuController">
    <children>
-     <MenuBar layoutY="1.0" prefHeight="29.0" prefWidth="503.0">
+     <MenuBar layoutY="-1.0" prefHeight="29.0" prefWidth="1280.0" styleClass="myMenuBar">
        <menus>
          <Menu fx:id="menu" mnemonicParsing="false" text="Log in or Register">
            <items>
@@ -28,8 +28,8 @@
      <Button layoutX="14.0" layoutY="268.0" onAction="#exit" prefHeight="27.0" prefWidth="75.0" text="exit" />
      <Button fx:id="loginLogout" layoutX="14.0" layoutY="64.0" onMouseClicked="#loginLogout" prefHeight="27.0" prefWidth="75.0" text="login" />
        <VBox fx:id="commercial" layoutX="108.0" layoutY="65.0" prefHeight="241.0" prefWidth="211.0" />
-       <Button fx:id="nextButton" layoutX="172.0" layoutY="30.0" text="next" onMouseClicked="#nextCommercial" />
-       <Button fx:id="previousButton" layoutX="97.0" layoutY="30.0" text="previous" onMouseClicked="#previousCommercial" />
+       <Button fx:id="nextButton" layoutX="172.0" layoutY="30.0" onMouseClicked="#nextCommercial" text="next" />
+       <Button fx:id="previousButton" layoutX="97.0" layoutY="30.0" onMouseClicked="#previousCommercial" text="previous" />
        <Label fx:id="slideCount" layoutX="222.0" layoutY="35.0" prefHeight="17.0" prefWidth="90.0" />
    </children>
 

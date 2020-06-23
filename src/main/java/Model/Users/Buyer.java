@@ -27,6 +27,7 @@ public class Buyer extends User {
         response+="Surname: "+getLastName()+"\n";
         response+="Email: "+getEmail()+"\n";
         response+="Number: "+getNumber()+"\n";
+        response += "money: " + getMoney() + "\n";
         return response;
     }
 

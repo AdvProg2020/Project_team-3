@@ -32,15 +32,19 @@
     }
 
     .registerSellerMenu {
-            -fx-background-image: url("design/newRegisterSeller.png");
+        -fx-background-image: url("design/newRegisterSeller.png");
     }
 
     .registerAdminMenu {
-            -fx-background-image: url("design/newRegisterAdmin.png");
+        -fx-background-image: url("design/newRegisterAdmin.png");
     }
 
     .loginMenu {
-            -fx-background-image: url("design/login.png");
+        -fx-background-image: url("design/login.png");
+    }
+
+    .userBackground {
+        -fx-background-image: url("design/casBack.png");
     }
 
     .myTextField{
@@ -48,4 +52,9 @@
       -fx-border-width: 0 0 0 0;
       -fx-background-color: transparent;
       -fx-prompt-text-fill: black;
+    }
+
+    .myMenuBar{
+        -fx-background-color: #dedcde;
+        -fx-border-color: #bababa;
     }

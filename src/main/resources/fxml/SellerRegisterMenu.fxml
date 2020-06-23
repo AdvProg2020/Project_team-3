@@ -30,7 +30,7 @@
       <Label fx:id="companyNameLabel" layoutX="876.0" layoutY="481.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="moneyLabel" layoutX="687.0" layoutY="589.0" prefHeight="17.0" prefWidth="150.0" />
       <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="66.0" text="Back" />
-      <MenuBar prefHeight="25.0" prefWidth="1280.0">
+      <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
           <Menu mnemonicParsing="false" text="Login or Register">
             <items>
