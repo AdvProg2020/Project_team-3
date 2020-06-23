@@ -86,6 +86,7 @@ public abstract class User {
     public void addRequest(String requestId,String message){
         if(allRequests.containsKey(requestId)) {
             allRequests.replace(requestId,message);
+            Database.getInstance().saveUser(this);
             return;
         }
         allRequests.put(requestId,message);

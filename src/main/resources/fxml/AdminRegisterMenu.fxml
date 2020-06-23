@@ -6,7 +6,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="137.0" promptText="Username" styleClass="myTextField" />
-      <TextField layoutX="711.0" layoutY="240.0" prefHeight="25.0" prefWidth="137.0" promptText="First Name" styleClass="myTextField" />
+      <TextField fx:id="firstNameTextField" layoutX="711.0" layoutY="240.0" prefHeight="25.0" prefWidth="137.0" promptText="First Name" styleClass="myTextField" />
       <TextField fx:id="surnameTextField" layoutX="897.0" layoutY="238.0" prefHeight="25.0" prefWidth="128.0" promptText="Surname" styleClass="myTextField" />
       <TextField fx:id="emailTextField" layoutX="713.0" layoutY="348.0" prefHeight="25.0" prefWidth="137.0" promptText="Email" styleClass="myTextField" />
       <TextField fx:id="phoneNumberTextFiled" layoutX="890.0" layoutY="348.0" promptText="Phone" styleClass="myTextField" />

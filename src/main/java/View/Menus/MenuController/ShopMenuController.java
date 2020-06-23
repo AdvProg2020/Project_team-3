@@ -125,6 +125,7 @@ public class ShopMenuController {
         }
     }
     private void initLists(){
+        Controller.getInstance().updateDateAndTime();
         gridPane.getChildren().removeAll(itemsVBox);
         itemsVBox.clear();
         itemsID.clear();
@@ -156,6 +157,7 @@ public class ShopMenuController {
 
         itemBox.setOnMouseClicked(event -> {
             ItemMenuController.setItemID(itemID);
+            SceneSwitcher.getInstance().saveScene("ShopMenu");
             SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
         });
         itemBox.setPrefSize(230,345);

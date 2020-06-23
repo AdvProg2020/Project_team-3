@@ -42,6 +42,7 @@ public class MainMenuController {
     @FXML Button nextButton;
     @FXML Button previousButton;
     public void initialize(){
+        Controller.getInstance().updateDateAndTime();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
         if(allCommercials.isEmpty()==false){
             showCommercial(0);
