@@ -162,8 +162,7 @@ public class SellerAddProductMenu {
         if(hasChosenVideo){
             video = videoName;
         }else {
-            video=null;
-           // video = "default.mp4";
+            video="";
         }
 
         HashMap<String,String> attributeValue=new HashMap<>();

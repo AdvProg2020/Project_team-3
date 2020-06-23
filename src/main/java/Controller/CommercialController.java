@@ -85,12 +85,16 @@ public class CommercialController implements Serializable{
          File file=new File("Resource/Commercials/commercial.txt");
          if(file.exists()==false) file.createNewFile();
          ObjectOutputStream stream=new ObjectOutputStream(new FileOutputStream(file));
-        // stream.writeObject(acceptedItemId);
-        // stream.writeObject(commercialItemRequest);
          stream.writeObject(getInstance());
          stream.close();
       } catch (IOException e) {
          e.printStackTrace();
       }
+   }
+
+   public void deleteItem(String id){
+      acceptedItemId.remove(id);
+      commercialItemRequest.remove(id);
+      saveCommercials();
    }
 }

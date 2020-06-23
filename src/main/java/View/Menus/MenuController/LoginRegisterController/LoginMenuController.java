@@ -120,11 +120,13 @@ public class LoginMenuController {
 
     public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeSecondStage();
+        SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeSecondStage();
+        SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 }

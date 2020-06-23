@@ -54,6 +54,18 @@ public class SceneSwitcher {
         }
     }
 
+    public void setSceneTo(String sceneName,int width,int height)  {
+        try {
+            mainSceneName=sceneName;
+            String path = allScenesFXML.get(sceneName);
+            URL urls = new File(path).toURI().toURL();
+            Parent parent = FXMLLoader.load(urls);
+            stage.setScene(new Scene(parent, width, height));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void setSceneAndWait(String sceneName,int width,int height) {
             try {
                 String path = allScenesFXML.get(sceneName);
@@ -82,17 +94,6 @@ public class SceneSwitcher {
         }
     }
 
-    public void setSceneTo(String sceneName,int width,int height)  {
-        try {
-            mainSceneName=sceneName;
-            String path = allScenesFXML.get(sceneName);
-            URL urls = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(urls);
-            stage.setScene(new Scene(parent, width, height));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     public void saveScene(String sceneName){
         recentScene.add(sceneName);

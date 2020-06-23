@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.Controller;
+import Controller.CommercialController;
 import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
@@ -54,6 +55,7 @@ public class Item {
         allRatings = new ArrayList<>();
         allComments = new ArrayList<>();
         buyerUserName = new ArrayList<>();
+        videoName="";
     }
 
     public Item(String name, String brand, String description, String state, double price, String sellerName, String categoryName, HashMap<String, String> attributes, int inStock, String imageName , String videoName) {
@@ -114,6 +116,7 @@ public class Item {
         }
         Seller seller = (Seller) UserController.getInstance().getUserByUsername(this.getSellerName());
         seller.deleteItem(this.getId());
+        CommercialController.getInstance().deleteItem(id);
         Database.getInstance().saveUser(seller);
     }
 
