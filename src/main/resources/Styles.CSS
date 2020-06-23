@@ -33,8 +33,7 @@
 
     .myTextField{
       -fx-border-color: transparent;
-      -fx-border width: 0 0 0 0; // top, right, bottom, left
-      -fx-background-color: #bfbfbf;
+      -fx-border-width: 0 0 0 0;
+      -fx-background-color: transparent;
       -fx-prompt-text-fill: #94a8b3;
-
     }
