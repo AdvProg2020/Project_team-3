@@ -28,6 +28,9 @@
      <Button layoutX="14.0" layoutY="268.0" onAction="#exit" prefHeight="27.0" prefWidth="75.0" text="exit" />
      <Button fx:id="loginLogout" layoutX="14.0" layoutY="64.0" onMouseClicked="#loginLogout" prefHeight="27.0" prefWidth="75.0" text="login" />
        <VBox fx:id="commercial" layoutX="108.0" layoutY="65.0" prefHeight="241.0" prefWidth="211.0" />
+       <Button layoutX="172.0" layoutY="30.0" text="next" onMouseClicked="#nextCommercial" />
+       <Button layoutX="97.0" layoutY="30.0" text="previous" onMouseClicked="#previousCommercial" />
+       <Label fx:id="slideCount" layoutX="222.0" layoutY="35.0" prefHeight="17.0" prefWidth="90.0" />
    </children>
 
 </Pane>
