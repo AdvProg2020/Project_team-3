@@ -9,6 +9,7 @@
            <menus>
                <Menu mnemonicParsing="false" text="option">
                    <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                   <MenuItem text="cart" onAction="#cart"></MenuItem>
                </Menu>
            </menus>
        </MenuBar>

@@ -167,6 +167,7 @@ public class ItemMenuController {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
+        initialize();
     }
 
     public  void addAttributeListView(){
@@ -358,19 +359,6 @@ public class ItemMenuController {
     }
 
     public void addCommentDialogBox(){
-       /* Stage stage=new Stage();
-        String path=SceneSwitcher.getInstance().getFXMLPath("CommentMenu");
-        URL urls = null;
-        try {
-            urls = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(urls);
-            stage.setScene(new Scene(parent));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.show(); */
        SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
     }
 

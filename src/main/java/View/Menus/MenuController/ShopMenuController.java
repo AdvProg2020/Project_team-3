@@ -7,6 +7,7 @@ import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -167,9 +169,17 @@ public class ShopMenuController {
         Label name = new Label(item.getName());
         Label price = new Label(Double.toString(item.getPrice()));
 
+
+        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),230,20,false,false);
+        ImageView star=new ImageView(ratingImage);
+        double frameWidth = (item.getRating() / 5)*230;
+        Rectangle mask = new Rectangle(frameWidth, 20);
+        star.setClip(mask);
+        
         itemBox.getChildren().add(imageView);
         itemBox.getChildren().add(name);
         itemBox.getChildren().add(price);
+        itemBox.getChildren().add(star);
 
         itemsVBox.add(itemBox);
         return itemBox;
@@ -413,5 +423,10 @@ public class ShopMenuController {
             initLists();
         }
 
+    }
+
+    public void cart(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().saveScene("ShopMenu");
+        SceneSwitcher.getInstance().setSceneTo("CartMenu");
     }
 }
