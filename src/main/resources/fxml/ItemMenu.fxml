@@ -44,7 +44,7 @@
         <Label fx:id="priceLabel" layoutX="58.0" layoutY="442.0" prefHeight="17.0" prefWidth="245.0" />
         <Label layoutX="28.0" layoutY="501.0" text="Grade:" />
         <Label fx:id="gradeLabel" layoutX="64.0" layoutY="501.0" prefHeight="17.0" prefWidth="93.0" />
-        <Label alignment="CENTER" layoutX="345.0" layoutY="332.0" prefHeight="30.0" prefWidth="396.0" text="Attributes:">
+        <Label alignment="CENTER" layoutX="346.0" layoutY="290.0" prefHeight="30.0" prefWidth="396.0" text="Attributes:">
             <font>
                 <Font size="20.0" />
             </font>
@@ -68,12 +68,12 @@
         <Polygon fx:id="star3" fill="#AAAAAA" layoutX="95" layoutY="635" onMouseClicked="#star3Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-      <ListView fx:id="attributeListView" layoutX="349.0" layoutY="362.0" prefHeight="279.0" prefWidth="387.0" />
+      <ListView fx:id="attributeListView" layoutX="351.0" layoutY="320.0" prefHeight="279.0" prefWidth="387.0" />
       <Label layoutX="752.0" layoutY="288.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
       <Separator layoutX="335.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
       <Separator layoutX="738.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
       <Separator layoutX="752.0" layoutY="277.0" prefHeight="3.0" prefWidth="320.0" />
-      <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="350.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ivTarget" fitHeight="473.0" fitWidth="365.0" layoutX="362.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" onMouseClicked="#showItem" prefHeight="698.0" prefWidth="207.0" />
       <Label fx:id="videoLabel" alignment="CENTER" layoutX="779.0" layoutY="131.0" prefHeight="27.0" prefWidth="267.0">
@@ -81,5 +81,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="9.0" layoutY="610.0" text="price after Sale:" />
+      <Label fx:id="priceAfterSaleLabel" layoutX="106.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
+      <ComboBox fx:id="itemComoBox" layoutX="468.0" layoutY="606.0" onMouseClicked="#updateItemComoBox" prefWidth="150.0" />
+      <Button layoutX="473.0" layoutY="652.0" mnemonicParsing="false" onAction="#compare" prefHeight="39.0" prefWidth="139.0" text="Compare" />
+      <Label layoutX="430.0" layoutY="610.0" prefHeight="17.0" prefWidth="36.0" text="ITems:" />
     </children>
 </AnchorPane>
