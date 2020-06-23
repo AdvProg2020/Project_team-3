@@ -47,6 +47,10 @@
         -fx-background-image: url("design/casBack.png");
     }
 
+    .jedBackground {
+        -fx-background-image: url("design/selBack.png");
+    }
+
     .myTextField{
       -fx-border-color: transparent;
       -fx-border-width: 0 0 0 0;

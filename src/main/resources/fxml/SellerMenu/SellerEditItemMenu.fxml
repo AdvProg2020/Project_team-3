@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditItemMenu">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="jedBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditItemMenu">
 
     <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
         <menus>
@@ -19,5 +19,5 @@
    <Label fx:id="label" layoutX="308.0" layoutY="48.0" prefHeight="17.0" prefWidth="116.0" text="Label" />
    <ListView fx:id="buyersListView" layoutX="796.0" layoutY="187.0" prefHeight="417.0" prefWidth="200.0" />
    <Label layoutX="796.0" layoutY="150.0" prefHeight="25.0" prefWidth="44.0" text="Buyers" />
-    <Button layoutX="796.0" layoutY="85.0" text="add Commercial" onMouseClicked="#commercial" />
+    <Button layoutX="796.0" layoutY="85.0" onMouseClicked="#commercial" text="add Commercial" />
 </AnchorPane>
