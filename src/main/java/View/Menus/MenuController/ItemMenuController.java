@@ -312,7 +312,7 @@ public class ItemMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String textToShow=comment.getUsername()+" : "+comment.getText();
+                String textToShow=comment.getUsername()+" : "+comment.getText()+"\nhas Bought?:"+comment.hasBought();
                 label.setText(textToShow);
                 setGraphic(vBox);
             }
