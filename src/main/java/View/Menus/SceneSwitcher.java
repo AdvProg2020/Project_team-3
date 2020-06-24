@@ -81,12 +81,17 @@ public class SceneSwitcher {
     }
 
     public void setSceneAndWait(String sceneName) {
+        int w = 1280,h=720;
+        if(sceneName.equals("Login")){
+            w = 847;
+            h = 615;
+        }
         try {
             String path = allScenesFXML.get(sceneName);
             URL urls = new File(path).toURI().toURL();
             Parent parent = FXMLLoader.load(urls);
             popupStage = new Stage();
-            popupStage.setScene(new Scene(parent, 1280,720));
+            popupStage.setScene(new Scene(parent, w,h));
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.showAndWait();
         } catch (IOException e) {

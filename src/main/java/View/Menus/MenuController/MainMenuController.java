@@ -10,6 +10,7 @@ import View.Menus.AdminMenu.AdminMenu;
 import Controller.Controller;
 import Controller.UserController;
 import View.Menus.SellerMenu.SellerMenu;
+import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -42,6 +43,10 @@ public class MainMenuController {
     @FXML Label slideCount;
     @FXML Button nextButton;
     @FXML Button previousButton;
+
+    private double timeSinceLastTransition = 0;
+    private AnimationTimer animationTimer;
+
     public void initialize(){
         Controller.getInstance().updateDateAndTime();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
@@ -55,6 +60,20 @@ public class MainMenuController {
         }
         loginLogout.setText("Login");
         loginHandler();
+        animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                timeSinceLastTransition += 0.016;//16 milisanie
+                updateTime();
+            }
+        };
+    }
+
+    private void updateTime(){
+        if(timeSinceLastTransition >= 2){
+            nextCommercial(null);
+            timeSinceLastTransition = 0;
+        }
     }
 
 

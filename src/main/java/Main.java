@@ -20,7 +20,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
         initializeScreens();
-        SceneSwitcher.getInstance().setSceneTo("MainMenu",356,408);
+        SceneSwitcher.getInstance().setSceneTo("MainMenu",1280,720);
         stage.setResizable(false);
         stage.show();
     }
