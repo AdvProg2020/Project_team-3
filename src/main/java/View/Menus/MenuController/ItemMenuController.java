@@ -288,8 +288,9 @@ public class ItemMenuController {
     class imageCommentTextCell extends ListCell<Comment>{
         private VBox vBox=new VBox(5);
         private ImageView imageView=new ImageView();
-        private Label label=new Label();
+        private TextArea textArea=new TextArea();
         private Label status=new Label();
+        private Label username=new Label();
         private Button reply=new Button("reply");
         public imageCommentTextCell(){
             vBox.setAlignment(Pos.CENTER_LEFT);
@@ -316,15 +317,15 @@ public class ItemMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String textToShow=comment.getUsername()+" : "+comment.getText();
-                label.setText(textToShow);
-                label.setStyle("-fx-font-size: 15");
-                HBox hBox=new HBox(imageView,label);
-                vBox.getChildren().add(hBox);
                 status.setText("has Bought?:"+comment.hasBought());
                 status.setTextFill(Color.rgb(0,0,255));
-                vBox.getChildren().add(status);
-                HBox hBox1=new HBox(reply);
+                textArea.setText(comment.getText());
+                textArea.setStyle("-fx-font-size: 15");
+                username.setText(comment.getUsername());
+                HBox hBox=new HBox(imageView,username,reply);
+                vBox.getChildren().add(hBox);
+                vBox.getChildren().add(textArea);
+                HBox hBox1=new HBox(status);
                 if(comment.getAllReplies().size()!=0){
                     Hyperlink hyperlink=new Hyperlink("view Replies");
                     hBox1.getChildren().add(hyperlink);
@@ -347,6 +348,7 @@ public class ItemMenuController {
                 }
                 allReps.setItems(commentObservableList);
                 VBox viewReps=new VBox();
+                viewReps.setAlignment(Pos.CENTER_RIGHT);
                 viewReps.getChildren().add(allReps);
                 father.getChildren().add(viewReps);
                 allReps.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
