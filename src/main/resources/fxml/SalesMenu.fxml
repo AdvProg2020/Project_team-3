@@ -4,7 +4,14 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="userBackground" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SalesMenuController">
-    <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="58.0" text="Back" />
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
+        <menus>
+            <Menu mnemonicParsing="false" text="option">
+                <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                <MenuItem onAction="#cart" text="cart" />
+            </Menu>
+        </menus>
+    </MenuBar>
 
     <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="263.0" layoutY="83.0" prefHeight="569.0" prefWidth="737.0">
         <content>
@@ -20,6 +27,50 @@
     <Label fx:id="pageNum" layoutX="618.0" layoutY="672.0" prefHeight="27.0" prefWidth="30.0" text="1" textAlignment="CENTER" />
     <Button fx:id="pageNumReduce" layoutX="569.0" layoutY="672.0" mnemonicParsing="false" onAction="#decreasePage" prefHeight="25.0" prefWidth="30.0" text="-" />
     <Button fx:id="pageNumAdd" layoutX="668.0" layoutY="673.0" mnemonicParsing="false" onAction="#increasePage" prefHeight="25.0" prefWidth="29.0" text="+" />
+    <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+    <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
+    <Pane layoutX="14.0" layoutY="83.0" prefHeight="453.0" prefWidth="225.0">
+        <CheckBox fx:id="availableCheckBox" layoutX="22.0" layoutY="68.0" onMouseClicked="#filterAvailibility" />
+        <Label layoutX="38.0" layoutY="68.0" text="filter availaibility" />
 
+
+        <CheckBox fx:id="categoryNameCheckBox" layoutX="22.0" layoutY="287.0" onMouseClicked="#filterCategoryName" />
+        <Label layoutX="40.0" layoutY="287.0" text="category name:" />
+        <TextField fx:id="categoryNameFilter" layoutX="20.0" layoutY="310.0" onKeyReleased="#filterCategoryTextChange" />
+
+
+        <CheckBox fx:id="brandNameCheckBox" layoutX="22.0" layoutY="342.0" onMouseClicked="#filterBrandName" />
+        <Label layoutX="40.0" layoutY="342.0" text="brandName:" />
+        <TextField fx:id="brandName" layoutX="20.0" layoutY="359.0" onKeyReleased="#filterBrandNameTextChange" />
+
+
+        <CheckBox fx:id="searchCheckBox" layoutX="22.0" layoutY="6.0" onMouseClicked="#filterSearch" />
+        <Label layoutX="41.0" layoutY="6.0" text="search:" />
+        <TextField fx:id="search" layoutX="19.0" layoutY="29.0" onKeyReleased="#filterSearchTextChange" />
+
+
+        <CheckBox fx:id="priceCheckBox" layoutX="22.0" layoutY="98.0" onMouseClicked="#priceFilter" />
+        <Label layoutX="44.0" layoutY="98.0" text="price:" />
+        <Label layoutX="15.0" layoutY="125.0" prefHeight="17.0" prefWidth="30.0" text="min" />
+        <Label layoutX="119.0" layoutY="125.0" text="max" />
+        <TextField fx:id="maxPrice" layoutX="146.0" layoutY="115.0" onKeyReleased="#filterPriceTextChange" prefHeight="27.0" prefWidth="63.0" />
+        <TextField fx:id="minPrice" layoutX="41.0" layoutY="116.0" onKeyReleased="#filterPriceTextChange" prefHeight="25.0" prefWidth="63.0" />
+
+
+
+        <CheckBox fx:id="attributeCheckBox" layoutX="22.0" layoutY="151.0" onMouseClicked="#attributeFilter" />
+        <Label layoutX="19.0" layoutY="228.0" text="attribute value:" />
+        <Label layoutX="24.0" layoutY="174.0" text="attribute key:" />
+        <TextField fx:id="attributeKey" layoutX="20.0" layoutY="191.0" onKeyReleased="#filterAttributeTextChange" />
+        <TextField fx:id="attributeValue" layoutX="19.0" layoutY="245.0" onKeyReleased="#filterAttributeTextChange" />
+
+
+        <CheckBox fx:id="sellerNameCheckBox" layoutX="22.0" layoutY="397.0" onMouseClicked="#sellerFilter" />
+        <Label layoutX="41.0" layoutY="397.0" text="seller name:" />
+        <TextField fx:id="sellerName" layoutX="19.0" layoutY="414.0" onKeyReleased="#filterSellerTextChange" />
+
+
+        <Label layoutX="45.0" layoutY="151.0" prefHeight="17.0" prefWidth="65.0" text="attributes:" />
+    </Pane>
 
 </AnchorPane>

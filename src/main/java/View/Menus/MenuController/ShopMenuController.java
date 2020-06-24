@@ -94,10 +94,6 @@ public class ShopMenuController {
         updateFilter();
         initLists();
         gridPane.setMaxHeight(500000);
-
-        //bayad item haye shop ro bedast biarim va chizayi mesle filter sort va category ke mitonan
-        //arrayliste item haro dastkari konan ro poshesh bedim , inja miaim item haro bargozari mikonim
-        //catgory o filter o sort o in kosshera ro badan mizanim
     }
     public void updateFilter(){
         SortAndFilterController control=SortAndFilterController.getInstance();
@@ -173,15 +169,22 @@ public class ShopMenuController {
         itemBox.setPrefSize(230,345);
 
         final StackPane container = new StackPane();
+<<<<<<< Updated upstream
         container.setAlignment(Pos.BOTTOM_RIGHT);
 
+=======
+>>>>>>> Stashed changes
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
         if(item.getInStock()==0){
             Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),50,50,false,false);
             ImageView soldOut=new ImageView(inStock);
             container.getChildren().addAll(imageView, soldOut);
         }else if(item.isInSale()){
+<<<<<<< Updated upstream
             Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),75,41,false,false);
+=======
+            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),120,140,false,false);
+>>>>>>> Stashed changes
             ImageView inSale=new ImageView(sale);
             container.getChildren().addAll(imageView, inSale);
         }else{

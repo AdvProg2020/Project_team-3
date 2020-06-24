@@ -255,4 +255,9 @@ public class MainMenuController {
             loginHandler();
         }
     }
+
+    public void saleShop(MouseEvent mouseEvent) {
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("SalesMenu");
+    }
 }
