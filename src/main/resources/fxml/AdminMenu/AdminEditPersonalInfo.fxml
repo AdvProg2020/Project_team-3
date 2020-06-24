@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="433.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.AdminEditPersonalInfo">
+<AnchorPane prefHeight="433.0" prefWidth="601.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.AdminEditPersonalInfo">
  <MenuBar>
   <Menu text="options">
    <MenuItem onAction="#back" text="back" />

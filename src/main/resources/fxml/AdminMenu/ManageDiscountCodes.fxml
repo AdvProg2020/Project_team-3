@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageDiscountCodes">
-          <ListView layoutX="7.0" layoutY="36.0" prefHeight="346.0" prefWidth="255.0" onMouseClicked="#discountCodeSelect" fx:id="listView"> </ListView>
+<AnchorPane prefHeight="400.0" prefWidth="263.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageDiscountCodes">
+          <ListView fx:id="listView" layoutX="7.0" layoutY="36.0" onMouseClicked="#discountCodeSelect" prefHeight="346.0" prefWidth="255.0"> </ListView>
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />

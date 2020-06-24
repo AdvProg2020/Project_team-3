@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="498.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
+<AnchorPane prefHeight="498.0" prefWidth="620.0" style="-fx-background-color: #94a8b3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
    <children>
       <ListView fx:id="itemListView" layoutX="96.0" layoutY="79.0" prefHeight="262.0" prefWidth="429.0" />
       <Button layoutX="201.0" layoutY="341.0" mnemonicParsing="false" onAction="#buy" prefHeight="60.0" prefWidth="220.0" text="Buy" />
@@ -33,7 +30,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>
-                  <MenuItem mnemonicParsing="false" text="ShopMenu" onAction="#goToShopMenu" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToShopMenu" text="ShopMenu" />
               <MenuItem mnemonicParsing="false" text="Exit" />
             </items>
           </Menu>
