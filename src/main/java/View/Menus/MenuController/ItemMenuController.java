@@ -328,11 +328,51 @@ public class ItemMenuController {
                 if(comment.getAllReplies().size()!=0){
                     Hyperlink hyperlink=new Hyperlink("view Replies");
                     hBox1.getChildren().add(hyperlink);
+                    viewReplyAction(vBox,hyperlink,comment);
                 }
                 vBox.getChildren().add(hBox1);
                 setGraphic(vBox);
             }
         }
+    }
+
+    public void viewReplyAction(VBox father,Hyperlink hyperlink, Comment main){
+        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ObservableList<Comment> commentObservableList=FXCollections.observableArrayList();
+                ListView<Comment> allReps=new ListView<>();
+                for(Comment comment:main.getAllReplies()){
+                    commentObservableList.add(comment);
+                }
+                allReps.setItems(commentObservableList);
+                VBox viewReps=new VBox();
+                viewReps.getChildren().add(allReps);
+                father.getChildren().add(viewReps);
+                allReps.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
+                    @Override
+                    public ListCell<Comment> call(ListView<Comment> param) {
+                        return new imageCommentTextCell();
+                    }
+                });
+                hyperlink.setText("hide Replies!");
+                hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        hyperlink.setText("view Replies");
+                        father.getChildren().remove(viewReps);
+                        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                hyperlink.setText("view Replies");
+                                viewReplyAction(father,hyperlink,main);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
     }
 
     public void addReplyAction(Button button,Comment comment){
