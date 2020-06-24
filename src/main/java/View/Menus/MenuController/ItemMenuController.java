@@ -286,19 +286,19 @@ public class ItemMenuController {
 
 
     class imageCommentTextCell extends ListCell<Comment>{
-        private HBox vBox=new HBox(5);
+        private VBox vBox=new VBox(5);
         private ImageView imageView=new ImageView();
         private Label label=new Label();
+        private Label status=new Label();
         private Button reply=new Button("reply");
         public imageCommentTextCell(){
-            vBox.setAlignment(Pos.CENTER);
+            vBox.setAlignment(Pos.CENTER_LEFT);
             imageView.setPreserveRatio(true);
-            imageView.setFitHeight(50);
-            vBox.getChildren().add(imageView);
-            label.setWrapText(true);
-            label.setTextAlignment(TextAlignment.CENTER);
-            vBox.getChildren().add(label);
-            vBox.getChildren().add(reply);
+            imageView.setFitHeight(30);
+           // hBox.getChildren().add(imageView);
+           // label.setWrapText(true);
+           // label.setTextAlignment(TextAlignment.CENTER);
+           // hBox.getChildren().add(label);
             setPrefWidth(USE_PREF_SIZE);
         }
         @Override
@@ -316,8 +316,20 @@ public class ItemMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String textToShow=comment.getUsername()+" : "+comment.getText()+"\nhas Bought?:"+comment.hasBought();
+                String textToShow=comment.getUsername()+" : "+comment.getText();
                 label.setText(textToShow);
+                label.setStyle("-fx-font-size: 15");
+                HBox hBox=new HBox(imageView,label);
+                vBox.getChildren().add(hBox);
+                status.setText("has Bought?:"+comment.hasBought());
+                status.setTextFill(Color.rgb(0,0,255));
+                vBox.getChildren().add(status);
+                HBox hBox1=new HBox(reply);
+                if(comment.getAllReplies().size()!=0){
+                    Hyperlink hyperlink=new Hyperlink("view Replies");
+                    hBox1.getChildren().add(hyperlink);
+                }
+                vBox.getChildren().add(hBox1);
                 setGraphic(vBox);
             }
         }
@@ -327,6 +339,18 @@ public class ItemMenuController {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                if(Controller.getInstance().getCurrentOnlineUser()==null){
+                    Alert alert=new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("you must login first!");
+                    alert.showAndWait();
+                    return;
+                }
+                if(!(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+                    Alert alert=new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("only Buyers can leave comment here!");
+                    alert.showAndWait();
+                    return;
+                }
                 commentMenuController.setItemID(itemID);
                 commentMenuController.setFatherCommentId(comment.getCommentId());
                 addCommentDialogBox();

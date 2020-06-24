@@ -64,4 +64,6 @@ public class Comment {
 
     public String getCommentId(){return this.commentId;}
 
+    public ArrayList<Comment> getAllReplies(){return allReplies;}
+
 }
