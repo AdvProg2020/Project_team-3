@@ -14,6 +14,7 @@ import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -159,6 +160,7 @@ public class ItemMenuController {
             return;
         }
         commentMenuController.setItemID(itemID);
+        commentMenuController.setFatherCommentId(null);
         addCommentDialogBox();
     }
 
@@ -284,18 +286,19 @@ public class ItemMenuController {
 
 
     class imageCommentTextCell extends ListCell<Comment>{
-        private VBox vBox=new VBox(5);
+        private HBox vBox=new HBox(5);
         private ImageView imageView=new ImageView();
         private Label label=new Label();
-
+        private Button reply=new Button("reply");
         public imageCommentTextCell(){
             vBox.setAlignment(Pos.CENTER);
             imageView.setPreserveRatio(true);
-            imageView.setFitHeight(100);
+            imageView.setFitHeight(50);
             vBox.getChildren().add(imageView);
             label.setWrapText(true);
             label.setTextAlignment(TextAlignment.CENTER);
             vBox.getChildren().add(label);
+            vBox.getChildren().add(reply);
             setPrefWidth(USE_PREF_SIZE);
         }
         @Override
@@ -305,6 +308,7 @@ public class ItemMenuController {
                 setGraphic(null);
             }
             else {
+                addReplyAction(reply,comment);
                 String path= UserController.getInstance().userImagePath(comment.getUsername());
                 File file=new File(path);
                 try {
@@ -317,6 +321,18 @@ public class ItemMenuController {
                 setGraphic(vBox);
             }
         }
+    }
+
+    public void addReplyAction(Button button,Comment comment){
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                commentMenuController.setItemID(itemID);
+                commentMenuController.setFatherCommentId(comment.getCommentId());
+                addCommentDialogBox();
+            }
+        });
+
     }
 
     public void initializeMediaPlayer(){

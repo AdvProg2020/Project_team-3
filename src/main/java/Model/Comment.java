@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Comment {
     private String username;
     private String itemId;
@@ -9,6 +11,9 @@ public class Comment {
 
     private Boolean hasBought;
     private Status status;
+    private String fatherCommentId;
+    private String commentId;
+    private ArrayList<Comment> allReplies=new ArrayList<>();
 
     public Comment(String username, String itemId, String text, Boolean hasBought) {
         this.username = username;
@@ -37,8 +42,26 @@ public class Comment {
        return text;
     }
 
+    public String getFatherCommentId() {
+        return fatherCommentId;
+    }
+
+    public void setFatherCommentId(String fatherCommentId) {
+        this.fatherCommentId = fatherCommentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
 
     public Boolean hasBought() {
         return hasBought;
     }
+
+    public void addReply(Comment comment){
+        allReplies.add(comment);
+    }
+
+    public String getCommentId(){return this.commentId;}
+
 }

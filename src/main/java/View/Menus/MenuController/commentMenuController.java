@@ -19,10 +19,12 @@ public class commentMenuController {
    public TextArea commentTextArea;
    public ImageView userImage;
    private static String itemID;
+   private static String fatherCommentId=null;
 
    public static void setItemID(String id){
       itemID=id;
    }
+   public static void setFatherCommentId(String id){fatherCommentId=id;}
 
    public void initialize(){
       User user= Controller.getInstance().getCurrentOnlineUser();
@@ -44,7 +46,7 @@ public class commentMenuController {
          alert.show();
          return;
       }
-      ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID);
+      ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID,fatherCommentId);
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText("your comment was sent to our admin!");
       alert.show();
