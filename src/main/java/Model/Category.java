@@ -107,10 +107,10 @@ public class Category {
         return subCategories;
     }
 
-    public void removeSubCategory(String category) {
+    /*public void removeSubCategory(String category) {
         if (!this.hasSubCategoryWithName(category)) return;
         this.subCategories.remove(category);
-    }
+    }*/
     public void setName(String newName){
         this.name=newName;
     }

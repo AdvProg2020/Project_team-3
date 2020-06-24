@@ -9,7 +9,7 @@ public class SaleLog {
     private String itemId;
     private String buyerName;
     private int count;
-    private String deliveryState;
+    //private String deliveryState;
 
 
     public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count) {

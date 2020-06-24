@@ -20,7 +20,7 @@ public class Item {
     private String description;
     private String name;
     private String brand;
-    private int timesBought;
+    private int timesBought; // <= (4Tir) ino dast nazanid shayad badan bekhaim !
     private double price;
     private int inStock;
     private int viewCount;
@@ -338,5 +338,9 @@ public class Item {
 
     public void setAddedTime(LocalDateTime addedTime) {
         this.addedTime = addedTime.toString();
+    }
+
+    public String getSaleId() {
+        return saleId;
     }
 }

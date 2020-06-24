@@ -73,7 +73,7 @@ public class SellerMenuController {
     }
     @FXML
     private void viewDiscounts(){
-        SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
+        SceneSwitcher.getInstance().setSceneTo("SalesMenu");
     }
 
    public void editPersonalInfo(ActionEvent actionEvent) {SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }

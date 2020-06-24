@@ -166,20 +166,19 @@ public class ShopMenuController {
 
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
 
-        Label name = new Label(item.getName());
-        Label price = new Label(Double.toString(item.getPrice()));
+        Label nameAndPrice = new Label(item.getName() + "           " + (item.getPriceWithSale()));
 
-
-        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),230,20,false,false);
+        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),108,20,false,false);
         ImageView star=new ImageView(ratingImage);
-        double frameWidth = (item.getRating() / 5)*230;
+        double frameWidth = (item.getRating() / 5)*108;
         Rectangle mask = new Rectangle(frameWidth, 20);
         star.setClip(mask);
-        
+
+        itemBox.getChildren().add(new Label(" "));
         itemBox.getChildren().add(imageView);
-        itemBox.getChildren().add(name);
-        itemBox.getChildren().add(price);
         itemBox.getChildren().add(star);
+        itemBox.getChildren().add(nameAndPrice);
+
 
         itemsVBox.add(itemBox);
         return itemBox;
