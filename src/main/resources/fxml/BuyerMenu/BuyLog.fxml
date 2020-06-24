@@ -17,7 +17,6 @@
                        <MenuItem mnemonicParsing="false" onAction="#goToDiscounts" text="Discounts" />
                   <MenuItem mnemonicParsing="false" onAction="#viewEditPersonalInfo" text="Edit" />
                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
-                       <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
                    </items>
                </Menu>
                <Menu mnemonicParsing="false" text="Help">
