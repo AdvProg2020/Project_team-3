@@ -245,7 +245,13 @@ public class Item {
     }
 
     public void addComment(Comment newComment) {
-        this.allComments.add(newComment);
+       if(newComment.getFatherCommentId()==null) this.allComments.add(newComment);
+       else if(newComment.getFatherCommentId()!=null){
+           Comment fatherComment=getCommentById(newComment.getFatherCommentId());
+           allComments.remove(fatherComment);
+           fatherComment.addReply(newComment);
+           this.allComments.add(fatherComment);
+       }
         Database.getInstance().saveItem(this);
     }
 
@@ -342,5 +348,12 @@ public class Item {
 
     public String getSaleId() {
         return saleId;
+    }
+
+    public Comment getCommentById(String id){
+        for(Comment comment:allComments){
+            if(comment.getCommentId().equals(id)) return comment;
+        }
+        return null;
     }
 }
