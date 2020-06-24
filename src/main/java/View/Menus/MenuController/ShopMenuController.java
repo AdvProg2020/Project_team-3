@@ -1,6 +1,7 @@
 package View.Menus.MenuController;
 
 import Controller.*;
+import Model.Category;
 import Model.Item;
 import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
@@ -56,6 +57,7 @@ public class ShopMenuController {
 
     @FXML private ListView allCat;
     @FXML private ListView subCat;
+    @FXML private ListView attributeList;
     @FXML private Label pageNum;
 
 
@@ -129,6 +131,7 @@ public class ShopMenuController {
         }
     }
     private void initLists(){
+
         Controller.getInstance().updateDateAndTime();
         gridPane.getChildren().removeAll(itemsVBox);
         itemsVBox.clear();
@@ -153,6 +156,8 @@ public class ShopMenuController {
             }
         }
         pageNum.setText(pageNumber+"/"+(SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
+        attributeList.getItems().clear();
+        setAttributes();
     }
 
     private VBox createAndAddItem(String itemID){
@@ -196,6 +201,16 @@ public class ShopMenuController {
 
         itemsVBox.add(itemBox);
         return itemBox;
+    }
+
+    private void setAttributes(){
+        Category category = ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
+        ArrayList<String> attributes = category.getAttributes();
+        if(attributes==null) return;
+        if(attributes.isEmpty()) return;
+        for(Object attribute : attributes){
+            attributeList.getItems().add(attribute);
+        }
     }
 
     public void sort(ActionEvent actionEvent) {
