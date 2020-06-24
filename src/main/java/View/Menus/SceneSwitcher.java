@@ -83,8 +83,8 @@ public class SceneSwitcher {
     public void setSceneAndWait(String sceneName) {
         int w = 1280,h=720;
         if(sceneName.equals("Login")){
-            w = 847;
-            h = 615;
+            w = 837;
+            h = 605;
         }
         try {
             String path = allScenesFXML.get(sceneName);
@@ -93,6 +93,7 @@ public class SceneSwitcher {
             popupStage = new Stage();
             popupStage.setScene(new Scene(parent, w,h));
             popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
             popupStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
