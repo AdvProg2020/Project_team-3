@@ -20,7 +20,6 @@
        </MenuBar>
       <ListView fx:id="saleLog" layoutX="172.0" layoutY="118.0" prefHeight="470.0" prefWidth="349.0" />
       <ListView fx:id="itemListView" layoutX="691.0" layoutY="118.0" prefHeight="470.0" prefWidth="309.0" />
-      <Button layoutX="810.0" layoutY="604.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="91.0" text="show Item" />
       <Label alignment="CENTER" layoutX="168.0" layoutY="85.0" prefHeight="17.0" prefWidth="349.0" text="Sale Log">
          <font>
             <Font name="System Bold Italic" size="19.0" />

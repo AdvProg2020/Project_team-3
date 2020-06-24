@@ -9,6 +9,7 @@ import Model.Users.Seller;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -49,6 +50,7 @@ public class SellerSalesHistory {
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
+
 
     class SaleLogImageText extends ListCell<SaleLog> {
         private HBox hBox = new HBox(5);
