@@ -8,6 +8,7 @@ import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -172,14 +173,15 @@ public class ShopMenuController {
         itemBox.setPrefSize(230,345);
 
         final StackPane container = new StackPane();
+        container.setAlignment(Pos.BOTTOM_RIGHT);
 
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
         if(item.getInStock()==0){
-            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),230,230,false,false);
+            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),50,50,false,false);
             ImageView soldOut=new ImageView(inStock);
             container.getChildren().addAll(imageView, soldOut);
         }else if(item.isInSale()){
-            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),230,230,false,false);
+            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),75,41,false,false);
             ImageView inSale=new ImageView(sale);
             container.getChildren().addAll(imageView, inSale);
         }else{
