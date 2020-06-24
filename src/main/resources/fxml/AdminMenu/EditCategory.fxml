@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="427.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditCategory">
+<AnchorPane prefHeight="427.0" prefWidth="353.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditCategory">
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
@@ -18,5 +18,5 @@
        <TextField fx:id="attributeField" layoutX="86.0" layoutY="98.0" />
 
       <ListView fx:id="info" layoutX="16.0" layoutY="166.0" prefHeight="228.0" prefWidth="300.0" />
-    <Button layoutX="264.0" layoutY="139.0" text="delete" onMouseClicked="#delete" />
+    <Button layoutX="264.0" layoutY="139.0" onMouseClicked="#delete" text="delete" />
 </AnchorPane>

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="469.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.compareMenuController">
+<AnchorPane prefHeight="469.0" prefWidth="600.0" style="-fx-background-color: #94a8b3;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.compareMenuController">
    <children>
       <ImageView fx:id="firstItemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="secondItemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="372.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />

@@ -3,60 +3,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="537.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts">
+<AnchorPane prefHeight="537.0" prefWidth="737.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProducts">
     <MenuBar>
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-    <ListView fx:id="listView" onMouseClicked="#selectItem" layoutY="47.0" prefHeight="283.0" prefWidth="277.0" />
+    <ListView fx:id="listView" layoutY="47.0" onMouseClicked="#selectItem" prefHeight="283.0" prefWidth="277.0" />
    <ChoiceBox fx:id="sortChoiceBox" layoutX="387.0" layoutY="9.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
     <Label layoutX="356.0" layoutY="14.0" text="sort:" />
 
 
 
     <Pane layoutX="356.0" layoutY="57.0" prefHeight="343.0" prefWidth="323.0">
-        <CheckBox fx:id="availableCheckBox" onMouseClicked="#filterAvailibility" layoutX="14.0" layoutY="14.0" />
+        <CheckBox fx:id="availableCheckBox" layoutX="14.0" layoutY="14.0" onMouseClicked="#filterAvailibility" />
         <Label layoutX="39.0" layoutY="14.0" text="filter availaibility" />
 
 
-        <CheckBox fx:id="categoryNameCheckBox" onMouseClicked="#filterCategoryName" layoutX="14.0" layoutY="44.0" />
+        <CheckBox fx:id="categoryNameCheckBox" layoutX="14.0" layoutY="44.0" onMouseClicked="#filterCategoryName" />
         <Label layoutX="40.0" layoutY="44.0" text="category name:" />
-        <TextField fx:id="categoryName" onKeyReleased="#filterCategoryTextChange"  layoutX="132.0" layoutY="39.0" />
+        <TextField fx:id="categoryName" layoutX="132.0" layoutY="39.0" onKeyReleased="#filterCategoryTextChange" />
 
 
-        <CheckBox fx:id="brandNameCheckBox" onMouseClicked="#filterBrandName" layoutX="14.0" layoutY="85.0" />
+        <CheckBox fx:id="brandNameCheckBox" layoutX="14.0" layoutY="85.0" onMouseClicked="#filterBrandName" />
         <Label layoutX="55.0" layoutY="85.0" text="brandName:" />
-        <TextField fx:id="brandName" onKeyReleased="#filterBrandNameTextChange" layoutX="132.0" layoutY="80.0" />
+        <TextField fx:id="brandName" layoutX="132.0" layoutY="80.0" onKeyReleased="#filterBrandNameTextChange" />
 
 
-        <CheckBox fx:id="searchCheckBox" onMouseClicked="#filterSearch" layoutX="14.0" layoutY="130.0" />
+        <CheckBox fx:id="searchCheckBox" layoutX="14.0" layoutY="130.0" onMouseClicked="#filterSearch" />
         <Label layoutX="82.0" layoutY="130.0" text="search:" />
-        <TextField fx:id="search" onKeyReleased="#filterSearchTextChange" layoutX="132.0" layoutY="125.0" />
+        <TextField fx:id="search" layoutX="132.0" layoutY="125.0" onKeyReleased="#filterSearchTextChange" />
 
 
-        <CheckBox fx:id="priceCheckBox" onMouseClicked="#priceFilter" layoutX="14.0" layoutY="176.0" />
+        <CheckBox fx:id="priceCheckBox" layoutX="14.0" layoutY="176.0" onMouseClicked="#priceFilter" />
         <Label layoutX="87.0" layoutY="176.0" text="price:" />
         <Label layoutX="132.0" layoutY="176.0" prefHeight="17.0" prefWidth="30.0" text="min" />
         <Label layoutX="212.0" layoutY="176.0" text="max" />
-        <TextField fx:id="maxPrice" onKeyReleased="#filterPriceTextChange" layoutX="252.0" layoutY="171.0" prefHeight="27.0" prefWidth="40.0" />
-        <TextField fx:id="minPrice" onKeyReleased="#filterPriceTextChange" layoutX="162.0" layoutY="171.0" prefHeight="27.0" prefWidth="40.0" />
+        <TextField fx:id="maxPrice" layoutX="252.0" layoutY="171.0" onKeyReleased="#filterPriceTextChange" prefHeight="27.0" prefWidth="40.0" />
+        <TextField fx:id="minPrice" layoutX="162.0" layoutY="171.0" onKeyReleased="#filterPriceTextChange" prefHeight="27.0" prefWidth="40.0" />
 
 
 
-        <CheckBox fx:id="attributeCheckBox" onMouseClicked="#attributeFilter" layoutX="14.0" layoutY="237.0" />
+        <CheckBox fx:id="attributeCheckBox" layoutX="14.0" layoutY="237.0" onMouseClicked="#attributeFilter" />
         <Label layoutX="41.0" layoutY="255.0" text="attribute value:" />
         <Label layoutX="47.0" layoutY="214.0" text="attribute key:" />
-        <TextField fx:id="attributeKey" onKeyReleased="#filterAttributeTextChange" layoutX="132.0" layoutY="209.0" />
-        <TextField fx:id="attributeValue" onKeyReleased="#filterAttributeTextChange" layoutX="132.0" layoutY="250.0" />
+        <TextField fx:id="attributeKey" layoutX="132.0" layoutY="209.0" onKeyReleased="#filterAttributeTextChange" />
+        <TextField fx:id="attributeValue" layoutX="132.0" layoutY="250.0" onKeyReleased="#filterAttributeTextChange" />
 
 
-        <CheckBox fx:id="sellerNameCheckBox" onMouseClicked="#sellerFilter" layoutX="14.0" layoutY="309.0" />
+        <CheckBox fx:id="sellerNameCheckBox" layoutX="14.0" layoutY="309.0" onMouseClicked="#sellerFilter" />
         <Label layoutX="54.0" layoutY="309.0" text="seller name:" />
-        <TextField fx:id="sellerName" onKeyReleased="#filterSellerTextChange" layoutX="132.0" layoutY="304.0" />
+        <TextField fx:id="sellerName" layoutX="132.0" layoutY="304.0" onKeyReleased="#filterSellerTextChange" />
 
         <CheckBox fx:id="filterSaleCheckBox" layoutX="138.0" layoutY="14.0" onMouseClicked="#saleFilter" />
-        <Label layoutX="175.0" layoutY="14.0" text="filter sale"  />
+        <Label layoutX="175.0" layoutY="14.0" text="filter sale" />
     </Pane>
 
 </AnchorPane>
