@@ -208,4 +208,10 @@ public class BuyerEditPersonalInfo {
         passwordTextField.clear();
         update();
     }
+
+    public void logout(ActionEvent actionEvent) {
+        UserController.getInstance().logout();
+        SceneSwitcher.getInstance().clearRecentScene();
+        SceneSwitcher.getInstance().setSceneTo("MainMenu");
+    }
 }

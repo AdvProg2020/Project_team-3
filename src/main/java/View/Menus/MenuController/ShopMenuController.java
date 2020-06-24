@@ -8,6 +8,7 @@ import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
@@ -164,7 +166,20 @@ public class ShopMenuController {
         });
         itemBox.setPrefSize(230,345);
 
+        final StackPane container = new StackPane();
+
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+        if(item.getInStock()==0){
+            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),230,230,false,false);
+            ImageView soldOut=new ImageView(inStock);
+            container.getChildren().addAll(imageView, soldOut);
+        }else if(item.isInSale()){
+            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),230,230,false,false);
+            ImageView inSale=new ImageView(sale);
+            container.getChildren().addAll(imageView, inSale);
+        }else{
+            container.getChildren().add(imageView);
+        }
 
         Label nameAndPrice = new Label(item.getName() + "           " + (item.getPriceWithSale()));
 
@@ -175,10 +190,9 @@ public class ShopMenuController {
         star.setClip(mask);
 
         itemBox.getChildren().add(new Label(" "));
-        itemBox.getChildren().add(imageView);
+        itemBox.getChildren().add(container);
         itemBox.getChildren().add(star);
         itemBox.getChildren().add(nameAndPrice);
-
 
         itemsVBox.add(itemBox);
         return itemBox;

@@ -26,4 +26,10 @@ public class DiscountsMenu {
    public void back(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
    }
+
+   public void logout(ActionEvent actionEvent) {
+      UserController.getInstance().logout();
+      SceneSwitcher.getInstance().clearRecentScene();
+      SceneSwitcher.getInstance().setSceneTo("MainMenu");
+   }
 }
