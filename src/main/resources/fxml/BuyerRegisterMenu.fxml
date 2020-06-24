@@ -15,13 +15,14 @@
             <String fx:value="myTextField" />
          </styleClass></TextField>
        <PasswordField fx:id="passwordField" layoutX="891.0" layoutY="125.0" prefHeight="25.0" prefWidth="128.0" promptText="Password" styleClass="myTextField" />
+       <TextField fx:id="passwordTextField" layoutX="891.0" layoutY="124.0" prefHeight="27.0" prefWidth="128.0" promptText="Password" styleClass="myTextField" />
       <TextField fx:id="firstNameTextField" layoutX="709.0" layoutY="240.0" prefHeight="25.0" prefWidth="128.0" promptText="First Name" styleClass="myTextField" />
       <TextField fx:id="surnameTextField" layoutX="898.0" layoutY="240.0" prefHeight="25.0" prefWidth="128.0" promptText="Surname" styleClass="myTextField" />
-      <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="565.0" prefHeight="25.0" prefWidth="128.0" promptText="Balance" styleClass="myTextField" />
       <TextField fx:id="emailTextField" layoutX="716.0" layoutY="347.0" prefHeight="25.0" prefWidth="128.0" promptText="Email" styleClass="myTextField" />
       <TextField fx:id="numberTextField" layoutX="891.0" layoutY="346.0" prefHeight="25.0" prefWidth="128.0" promptText="Phone" styleClass="myTextField" />
-      <CheckBox fx:id="passwordCheckBox" layoutX="908.0" layoutY="169.0" mnemonicParsing="false" text="Show password?" />
-      <Button layoutX="879.0" layoutY="560.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="159.0" text="Register" />
+       <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="565.0" prefHeight="25.0" prefWidth="128.0" promptText="Balance" styleClass="myTextField" />
+       <Button layoutX="879.0" layoutY="560.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="159.0" text="Register" />
+       <CheckBox fx:id="passwordCheckBox" layoutX="908.0" layoutY="169.0" mnemonicParsing="false" text="Show password?" />
       <TextField fx:id="imageDirectory" layoutX="716.0" layoutY="455.0" prefHeight="25.0" prefWidth="128.0" promptText="Image" styleClass="myTextField" />
       <Label fx:id="usernameLabel" layoutX="676.0" layoutY="152.0" prefHeight="17.0" prefWidth="209.0" />
       <Label fx:id="passwordLabel" layoutX="875.0" layoutY="152.0" prefHeight="17.0" prefWidth="150.0" />
@@ -30,7 +31,7 @@
       <Label fx:id="moneyLabel" layoutX="689.0" layoutY="590.0" prefHeight="17.0" prefWidth="150.0" />
       <Label fx:id="emailLabel" layoutX="689.0" layoutY="372.0" prefHeight="17.0" prefWidth="150.0" />
       <Label fx:id="phoneNumberLabel" layoutX="876.0" layoutY="372.0" prefHeight="17.0" prefWidth="149.0" />
-      <TextField fx:id="passwordTextField" layoutX="891.0" layoutY="124.0" prefHeight="27.0" prefWidth="128.0" promptText="Password" styleClass="myTextField" />
+
       <Button layoutY="27.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="102.0" text="Back" />
       <MenuBar layoutY="-1.0" prefHeight="27.0" prefWidth="1281.0" styleClass="myMenuBar">
         <menus>
