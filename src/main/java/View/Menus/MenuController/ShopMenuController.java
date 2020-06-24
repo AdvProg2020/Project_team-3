@@ -65,7 +65,7 @@ public class ShopMenuController {
     public void logout(ActionEvent actionEvent) {
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().clearRecentScene();
-       // SceneSwitcher.getInstance().setSceneTo("MainMenu");
+        // SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void Exit(ActionEvent actionEvent) {
@@ -169,22 +169,14 @@ public class ShopMenuController {
         itemBox.setPrefSize(230,345);
 
         final StackPane container = new StackPane();
-<<<<<<< Updated upstream
         container.setAlignment(Pos.BOTTOM_RIGHT);
-
-=======
->>>>>>> Stashed changes
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
         if(item.getInStock()==0){
             Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),50,50,false,false);
             ImageView soldOut=new ImageView(inStock);
             container.getChildren().addAll(imageView, soldOut);
         }else if(item.isInSale()){
-<<<<<<< Updated upstream
             Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),75,41,false,false);
-=======
-            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),120,140,false,false);
->>>>>>> Stashed changes
             ImageView inSale=new ImageView(sale);
             container.getChildren().addAll(imageView, inSale);
         }else{
