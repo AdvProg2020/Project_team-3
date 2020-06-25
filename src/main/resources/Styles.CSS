@@ -64,7 +64,7 @@
     }
 
     .userZoneBackground{
-        -fx-background-image: url("design/userZone");
+        -fx-background-image: url("design/userZone.png");
     }
 
     .myTextField{
