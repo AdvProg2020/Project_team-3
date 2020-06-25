@@ -94,6 +94,10 @@ public class SellerMenuController {
        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
 
+    public void editPersonalInfoButton() {
+        MusicManager.getInstance().playSound("Button");
+        SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
+
     public void viewRequests(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("SellerMenu");
