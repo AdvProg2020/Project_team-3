@@ -9,20 +9,27 @@ import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class ItemAndCategoryControllerTest {
 
     public void acceptRequests(){
+        ArrayList<Request>allRequess=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequess){
+           System.out.println(request.toString());
+        }
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
+
     }
 
     @Test
@@ -191,9 +198,10 @@ public class ItemAndCategoryControllerTest {
     public void addItem() {
         UserController.getInstance().registerSeller(500,"TestCategory","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
+
         acceptRequests();
         //addCategory();
-        User seller =UserController.getInstance().getUserByUsername("TestCategory");
+       User seller =UserController.getInstance().getUserByUsername("TestCategory");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         addCategory();
         HashMap<String,String>attributes=new HashMap<>();
@@ -223,6 +231,15 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().login("admin","12345");
         UserController.getInstance().deleteUser("TestCategory");
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        ItemAndCategoryController.getInstance().removeCategory("testAddAttribute");
+        ItemAndCategoryController.getInstance().removeCategory("microwave");
+        ItemAndCategoryController.getInstance().removeCategory("Oven");
+        ItemAndCategoryController.getInstance().removeCategory("Vacuum");
+        ItemAndCategoryController.getInstance().removeCategory("Home appliance");
+
+        for (Sale sale : SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase()) {
+            SaleAndDiscountCodeController.getInstance().deleteSale(sale.getId());
+        }
         UserController.getInstance().logout();
     }
 
@@ -454,6 +471,18 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().logout();
         System.out.println(UserController.getInstance().getSellerItems());
         for(Item item:allItems)Database.getInstance().deleteItem(item);
+        deleteJunk();
+    }
+
+    @Test
+    public void addAttributeToCategory(){
+        ArrayList<String> allAttribute=new ArrayList<>();
+        allAttribute.add("sorat");
+        allAttribute.add("godrat");
+        ItemAndCategoryController.getInstance().addCategory("testAddAttribute",allAttribute,"Main");
+        assertEquals(ItemAndCategoryController.getInstance().addAttributeToCategory("testAddAttribute","sorat"),"Error: category already has this attribute");
+        assertEquals(ItemAndCategoryController.getInstance().addAttributeToCategory("testAddAttribute","vazn"),"Successful: attribute added");
+        assertEquals(ItemAndCategoryController.getInstance().getCategoryInfo("testAddAttribute"),"Category{name='testAddAttribute', parent='Main', allItemsID=[], attributes=[sorat, godrat, vazn], subCategories=[]}");
         deleteJunk();
     }
 
