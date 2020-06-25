@@ -125,19 +125,6 @@ public class UserController {
         return Admin.addAdminAccount(username, password, name, lastName, email, number);
     }
 
-    public String registerFirstAdmin(String username, String password, String name, String lastName, String email, String number){
-        ArrayList<User> allUsers = getAllUserFromDataBase();
-        for(User user:allUsers){
-            if(user instanceof Admin) return "Error : only admins can register admins.";
-        }
-        if (isThereUserWithUsername(username)) {
-            return "Error : User exist with this username!";
-        }
-        Admin admin = new Admin(username,password,name,lastName,email,number);
-        Database.getInstance().saveUser(admin);
-        return "Success: You own this shop.";
-
-    }
 
     public String login(String username, String password) {
         if (!isThereUserWithUsername(username)) {

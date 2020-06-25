@@ -108,7 +108,7 @@ public class CartControllerTest {
         Item item=allItems.get(0);
         Assert.assertNotNull(item);
         Assert.assertEquals(CartController.getInstance().addItemToCart(item.getId()),"Error: item is already in the cart");
-        Assert.assertEquals(CartController.getInstance().addItemToCart("sdfsdf"), View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET);
+        Assert.assertEquals(CartController.getInstance().addItemToCart("sdfsdf"), "Error: invalid id");
         Assert.assertNotNull(CartController.getInstance().showCart());
         Assert.assertFalse(Controller.getInstance().getCurrentShoppingCart().isEmpty());
         for(Item item1:allItems)Database.getInstance().deleteItem(item1);
@@ -128,7 +128,7 @@ public class CartControllerTest {
         for(Item item:allItems) Assert.assertEquals("Successful",CartController.getInstance().cartIncreaseDecrease(item.getId(),-6));
         System.out.println(CartController.getInstance().showCart());
         System.out.println(CartController.getInstance().showCart());
-        Assert.assertEquals(View.ANSI_RED+"Error: invalid id"+View.ANSI_RESET,CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
+        Assert.assertEquals("Error: invalid id",CartController.getInstance().cartIncreaseDecrease("sdfsdf",4));
         for(Item item:allItems)Database.getInstance().deleteItem(item);
         deleteJunk();
     }

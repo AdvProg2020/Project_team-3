@@ -63,6 +63,10 @@
         -fx-background-color: #dedcde;
     }
 
+    .userZoneBackground{
+        -fx-background-image: url("design/userZone.png");
+    }
+
     .myTextField{
       -fx-border-color: transparent;
       -fx-border-width: 0 0 0 0;

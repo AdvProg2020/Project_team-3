@@ -15,6 +15,7 @@ public class SaleEdit extends Request {
         this.setMessage("Request to change "+changedField+" to "+newFieldValue);
         this.newFieldValue=newFieldValue;
         setType("SaleEdit");
+        if( UserController.getInstance().getUserByUsername(SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername())==null) System.out.println("salamkkkk");
         UserController.getInstance().getUserByUsername(SaleAndDiscountCodeController.getInstance().getSaleById(saleID).getSellerUsername()).addRequest(getRequestId(),getPendingMessage());
     }
 
