@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.SaleAndDiscountCodeController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ public class EditDiscountCode {
    @FXML private ListView info;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 
@@ -37,10 +39,12 @@ public class EditDiscountCode {
    }
 
    public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes");
    }
 
    public void changePercent(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(percent.getStyle().toString().contains("green")){
          int percentInt=Integer.parseInt(percent.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountId,percentInt),"INFORMATION");
@@ -51,6 +55,7 @@ public class EditDiscountCode {
    }
 
    public void changeMaxDiscount(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(maxDiscount.getStyle().toString().contains("green")){
          int maxDiscountInt=Integer.parseInt(maxDiscount.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(discountId,maxDiscountInt),"INFORMATION");
@@ -61,6 +66,7 @@ public class EditDiscountCode {
    }
 
    public void changeUsage(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(usage.getStyle().toString().contains("green")){
          int usageInt=Integer.parseInt(usage.getText());
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountId,usageInt),"INFORMATION");
@@ -73,6 +79,7 @@ public class EditDiscountCode {
 
    public void changeEndDate(MouseEvent mouseEvent) {
       try{
+         MusicManager.getInstance().playSound("Button");
          String date=end.getValue().toString();
          showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountId,getDate(date)),"INFORMATION");
          update();
@@ -82,6 +89,7 @@ public class EditDiscountCode {
    }
 
    public void delete(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       System.out.println(discountId);
     String message= SaleAndDiscountCodeController.getInstance().deleteDiscountCode(discountId);
     if(message.startsWith("Error")) {
@@ -94,6 +102,11 @@ public class EditDiscountCode {
    }
 
    private void showAlertBox(String message,String type){
+      if(type.equalsIgnoreCase("Error")){
+         MusicManager.getInstance().playSound("error");
+      }else {
+         MusicManager.getInstance().playSound("notify");
+      }
       Alert alert = new Alert(Alert.AlertType.valueOf(type));
       alert.setContentText(message);
       alert.showAndWait();

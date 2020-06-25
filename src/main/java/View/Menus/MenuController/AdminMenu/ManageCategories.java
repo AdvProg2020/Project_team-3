@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ public class ManageCategories {
    @FXML ListView categoryList;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 
@@ -25,6 +27,7 @@ public class ManageCategories {
    }
 
    public void categorySelect(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       int index=categoryList.getSelectionModel().getSelectedIndex();
       System.out.println(index);
       if(index==-1)

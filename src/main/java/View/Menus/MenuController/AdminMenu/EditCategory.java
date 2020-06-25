@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.ItemAndCategoryController;
 
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ public class EditCategory {
    private static String categoryName;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 
@@ -32,6 +34,7 @@ public class EditCategory {
    }
 
    public void changeName(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
     if(categoryName.equals("Main")){
         showAlertBox("you cant edit Main","ERROR");
         return;
@@ -55,6 +58,7 @@ public class EditCategory {
    }
 
    public void addAttribute(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(categoryName.equals("Main")){
          showAlertBox("you cant edit Main","ERROR");
          return;
@@ -71,6 +75,11 @@ public class EditCategory {
    }
 
    private void showAlertBox(String message,String type){
+      if(type.equalsIgnoreCase("Error")){
+         MusicManager.getInstance().playSound("error");
+      }else {
+         MusicManager.getInstance().playSound("notify");
+      }
       Alert alert = new Alert(Alert.AlertType.valueOf(type));
       alert.setContentText(message);
       alert.showAndWait();
@@ -86,6 +95,7 @@ public class EditCategory {
    }
 
    public void delete(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       String message=ItemAndCategoryController.getInstance().removeCategory(categoryName);
       if(message.startsWith("Successful")){
          showAlertBox(message,"INFORMATION");
@@ -96,6 +106,7 @@ public class EditCategory {
    }
 
    public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("ManageCategories");
    }
 }

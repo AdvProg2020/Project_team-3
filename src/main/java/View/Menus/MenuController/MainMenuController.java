@@ -48,6 +48,7 @@ public class MainMenuController {
     private AnimationTimer animationTimer;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         Controller.getInstance().updateDateAndTime();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
         if(allCommercials.isEmpty()==false){
@@ -150,6 +151,7 @@ public class MainMenuController {
     }
 
     public void userzone(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(UserController.getInstance().getCurrentOnlineUser() == null){
             SceneSwitcher.getInstance().setSceneAndWait("Login");
             loginHandler();
@@ -183,6 +185,7 @@ public class MainMenuController {
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                MusicManager.getInstance().playSound("Button");
                 SceneSwitcher.getInstance().setSceneAndWait("Login");
                 loginHandler();
             }
@@ -195,6 +198,7 @@ public class MainMenuController {
         logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                MusicManager.getInstance().playSound("Button");
                 UserController.getInstance().logout();
                 menu.getItems().remove(getMenuItemByName("Logout"));
                 addLoginMenuItem();
@@ -213,6 +217,7 @@ public class MainMenuController {
     }
 
     private void showLogoutAlertBox(){
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("logout successful!");
         alert.show();
@@ -231,8 +236,10 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         animationTimer.stop();
         if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyers can view Cart Menu!");
             alert.showAndWait();
@@ -244,12 +251,14 @@ public class MainMenuController {
     }
 
     public void ShopMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
     public void loginLogout(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(loginLogout.getText().equals("Logout")){
             UserController.getInstance().logout();
             SceneSwitcher.getInstance().clearRecentScene();
@@ -264,6 +273,7 @@ public class MainMenuController {
     }
 
     public void saleShop(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SalesMenu");

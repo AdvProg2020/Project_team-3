@@ -1,5 +1,6 @@
 package View.Menus.MenuController.LoginRegisterController;
 
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ public class AdminRegisterController {
 
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
@@ -42,6 +44,7 @@ public class AdminRegisterController {
     }
 
     public void fileChooserOpen(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -136,6 +139,7 @@ public class AdminRegisterController {
     }
 
     public void register(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Boolean [] validation=new Boolean[6];
         Boolean canRegister=true;
         validation[0]=validUsername(usernameTextField.getText());
@@ -150,6 +154,7 @@ public class AdminRegisterController {
             }
         }
         if(canRegister==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in Register process!");
             alert.setContentText("you must correct your mistakes for successful register!");
@@ -160,6 +165,7 @@ public class AdminRegisterController {
         }
         UserController.getInstance().registerAdmin(usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
         emptyAllText();
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("successful register!");
         alert.setContentText("new Admin successfully added to your system!");
@@ -203,19 +209,25 @@ public class AdminRegisterController {
     }
 
     public void MainMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("AdminRegister");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
-    public void Login(ActionEvent actionEvent) {
+    public void Login(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void Exit(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeWindow();
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void back(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 

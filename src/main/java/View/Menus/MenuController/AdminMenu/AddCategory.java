@@ -3,6 +3,7 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.Database;
 import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +24,9 @@ public class AddCategory {
    @FXML private  ListView attributeList;
    private ArrayList<String> allAttribute=new ArrayList<>();
 
-   @FXML public void initialize() {
+   @FXML public void initialize()
+   {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 
@@ -35,10 +38,13 @@ public class AddCategory {
       }
    }
 
-   public void back(ActionEvent actionEvent) { SceneSwitcher.getInstance().setSceneTo("AdminMenu");
+   public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
+      SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
    public void add(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
      String text=attribute.getText();
      if((text.isEmpty())||(allAttribute.contains(text))) return;
      allAttribute.add(text);
@@ -47,6 +53,7 @@ public class AddCategory {
    }
 
    public void remove(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       int index=attributeList.getSelectionModel().getSelectedIndex();
       System.out.println(index);
       if(index==-1)
@@ -67,6 +74,7 @@ public class AddCategory {
    }
 
    public void reset(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       categoryName.clear();
       attribute.clear();
       fatherCategoryChoice.getItems().clear();
@@ -76,12 +84,18 @@ public class AddCategory {
    }
 
    private void showAlertBox(String message,String type){
+      if(type.equalsIgnoreCase("error")){
+         MusicManager.getInstance().playSound("error");
+      }else {
+         MusicManager.getInstance().playSound("notify");
+      }
       Alert alert = new Alert(Alert.AlertType.valueOf(type));
       alert.setContentText(message);
       alert.showAndWait();
    }
 
    public void create(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(categoryName.getStyle().contains("red")){
          showAlertBox("category name should not have white space","ERROR");
          return;

@@ -1,6 +1,7 @@
 package View.Menus.MenuController.SellerMenuController;
 
 import Controller.*;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.fxml.FXML;
@@ -17,7 +18,9 @@ public class SellerAddOff {
 
 
     @FXML
-    private void back(){
+    private void back()
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
     @FXML
@@ -52,6 +55,7 @@ public class SellerAddOff {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         errorLabel.setText("");
         allItems.getItems().clear();
         ArrayList<String> availableItems = SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems());
@@ -123,6 +127,11 @@ public class SellerAddOff {
     }
 
     protected static void showAlertBox(String message,String type){
+        if(type.equalsIgnoreCase("Error")){
+            MusicManager.getInstance().playSound("error");
+        }else {
+            MusicManager.getInstance().playSound("notify");
+        }
         Alert alert = new Alert(Alert.AlertType.valueOf(type));
         alert.setContentText(message);
         alert.showAndWait();

@@ -2,6 +2,7 @@ package View.Menus.MenuController.LoginRegisterController;
 
 import Controller.*;
 import Model.Users.Buyer;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
@@ -23,6 +24,7 @@ public class LoginMenuController {
 
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
@@ -31,6 +33,7 @@ public class LoginMenuController {
     }
 
     public void login(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         boolean isValidUsername=validUsername(usernameTextField.getText());
         if(isValidUsername==false) {
             errorAfterMistake();
@@ -43,6 +46,7 @@ public class LoginMenuController {
         }
         String message=UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         if(message.startsWith("Error")){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText(message);
             alert.showAndWait();
@@ -94,11 +98,13 @@ public class LoginMenuController {
 
 
     public void registerBuyer(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
@@ -107,6 +113,7 @@ public class LoginMenuController {
     private void errorAfterMistake(){
         usernameTextField.setText("");
         passwordField.setText("");
+        MusicManager.getInstance().playSound("error");
         Alert alert=new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error!");
         alert.setContentText("invalid username or password");
@@ -121,16 +128,19 @@ public class LoginMenuController {
 
 
     public void back() {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
     }
 
     public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");

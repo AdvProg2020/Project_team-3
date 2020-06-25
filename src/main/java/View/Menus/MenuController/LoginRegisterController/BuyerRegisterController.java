@@ -1,5 +1,6 @@
 package View.Menus.MenuController.LoginRegisterController;
 
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ public class BuyerRegisterController {
     public TextField passwordTextField;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
@@ -40,6 +42,7 @@ public class BuyerRegisterController {
     }
 
     public void fileChooserOpen(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -61,6 +64,7 @@ public class BuyerRegisterController {
     }
 
     public void register(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Boolean [] validation=new Boolean[7];
         Boolean canRegister=true;
         validation[0]=validUsername(usernameTextField.getText());
@@ -76,6 +80,7 @@ public class BuyerRegisterController {
             }
         }
         if(canRegister==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("please fill all the fields correctly");
@@ -87,6 +92,7 @@ public class BuyerRegisterController {
         double money=UserController.getInstance().validateMoney(moneyTextField.getText());
         UserController.getInstance().registerBuyer(money,usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),numberTextField.getText());
         emptyAllText();
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("INFORMATION");
         alert.setContentText("your account has been registered");
@@ -222,28 +228,35 @@ public class BuyerRegisterController {
     }
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
     public void mainMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void login(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
 
-    public void Exit(ActionEvent actionEvent) {
+    public void Exit(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeWindow();
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerRegister");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }

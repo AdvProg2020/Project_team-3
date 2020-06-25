@@ -6,6 +6,7 @@ import Model.Logs.BuyLog;
 import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.MenuController.ItemMenuController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +45,7 @@ public class BuyerOrdersController {
     private BuyLog selected;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
         UserController.getInstance().logout();
         UserController.getInstance().login(buyer.getUsername(),buyer.getPassword());
@@ -144,7 +146,9 @@ public class BuyerOrdersController {
     }
 
     public void showItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(detailsListView.getSelectionModel().getSelectedItem()==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you did not choose any item!");
             alert.showAndWait();
@@ -185,41 +189,49 @@ public class BuyerOrdersController {
     }
 
     public void goToUserZone(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
 
     public void goToCart(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
     public void goToDiscounts(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
     }
 
 
     public void logout(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
     }
 
     public void Exit(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeWindow();
     }
 
     public void viewEditPersonalInfo(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyLog");
         SceneSwitcher.getInstance().setSceneTo("EditPersonalInfo");
     }

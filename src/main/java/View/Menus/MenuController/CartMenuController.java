@@ -5,6 +5,7 @@ import Controller.UserController;
 import Model.Cart;
 import Model.Item;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,7 @@ public class CartMenuController {
 
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");
         else totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
@@ -47,7 +49,9 @@ public class CartMenuController {
 
 
     public void increaseItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you have not added any item!");
             alert.show();
@@ -55,6 +59,7 @@ public class CartMenuController {
         }
         Item selected=itemListView.getSelectionModel().getSelectedItem();
         if(selected==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("please select an item in the cart!");
             alert.show();
@@ -69,7 +74,9 @@ public class CartMenuController {
     }
 
     public void decreaseItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you have not added any item!");
             alert.show();
@@ -77,6 +84,7 @@ public class CartMenuController {
         }
         Item selected=itemListView.getSelectionModel().getSelectedItem();
         if(selected==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("please select an item in the cart!");
             alert.show();
@@ -91,8 +99,10 @@ public class CartMenuController {
     }
 
     public void showItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item selected=itemListView.getSelectionModel().getSelectedItem();
         if(selected==null) {
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you have not added any item!");
             alert.show();
@@ -104,18 +114,22 @@ public class CartMenuController {
     }
 
     public void clearCartPressed(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         CartController.getInstance().getCurrentShoppingCart().empty();
         itemListView.getItems().clear();
     }
 
     public void buy(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("cart is empty");
             alert.showAndWait();
             return;
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null){
+            MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("please login to buy items");
             alert.showAndWait();
@@ -124,6 +138,7 @@ public class CartMenuController {
             return;
         }
         if(UserController.getInstance().getUserType().equals("Buyer")==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must be a buyer to buy items");
             alert.showAndWait();
@@ -134,10 +149,12 @@ public class CartMenuController {
     }
 
     public void back(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }

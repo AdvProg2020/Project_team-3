@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Controller;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ public class AdminMenuController {
 
 
    public void initialize(){
+         MusicManager.getInstance().setSongName("first.wav");
          String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
          File file=new File(path);
          try {
@@ -36,7 +38,8 @@ public class AdminMenuController {
       personalInfo.setText(message);
    }
    public void manageUsers(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("ManageUsers");
+
+       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
 
    public void manageDiscountCodes(ActionEvent actionEvent) {

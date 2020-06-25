@@ -3,6 +3,7 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.CommercialController;
 import Controller.Database;
 import Controller.RequestController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ public class ManageRequests {
    @FXML private ListView listView;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 
@@ -30,6 +32,7 @@ public class ManageRequests {
    }
 
    public void requestSelect(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       int index=listView.getSelectionModel().getSelectedIndex();
       if(index==-1)
          return;
@@ -49,6 +52,7 @@ public class ManageRequests {
    }
 
    public void back(ActionEvent actionEvent)  {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 }

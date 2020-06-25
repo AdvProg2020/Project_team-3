@@ -2,6 +2,7 @@ package View.Menus.MenuController.SellerMenuController;
 
 import Controller.*;
 import View.Menus.MenuController.ItemMenuController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ public class SellerManageProductsMenu {
     @FXML TextField sellerName;
 
     @FXML public void initialize() {
+        MusicManager.getInstance().setSongName("first.wav");
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
@@ -119,10 +121,12 @@ public class SellerManageProductsMenu {
     }
     @FXML
     private void back(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
     @FXML
     private void logout(){
+        MusicManager.getInstance().playSound("Button");
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
@@ -142,6 +146,7 @@ public class SellerManageProductsMenu {
     }
 
     public void sort(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         String sort=sortChoiceBox.getValue().toString();
         if(sort.equals("sort by view")){
             SortAndFilterController.getInstance().disableSort();
@@ -173,6 +178,7 @@ public class SellerManageProductsMenu {
     }
 
     public void reset(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SortAndFilterController.getInstance().disableFilterAttribute();
         SortAndFilterController.getInstance().disableFilterAvailability();
         SortAndFilterController.getInstance().disableFilterBrandName();
@@ -199,6 +205,7 @@ public class SellerManageProductsMenu {
     }
 
     public void filterAvailibility(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(availableCheckBox.isSelected()){
             SortAndFilterController.getInstance().activateFilterAvailability();
             update();
@@ -209,6 +216,7 @@ public class SellerManageProductsMenu {
     }
 
     public void filterCategoryName(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((categoryNameCheckBox.isSelected())&&(isValidAlphabeticTextField(categoryName))){
             SortAndFilterController.getInstance().activateFilterCategoryName(categoryName.getText());
             update();
@@ -220,6 +228,7 @@ public class SellerManageProductsMenu {
     }
 
     public void filterBrandName(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((brandNameCheckBox.isSelected())&&(isValidAlphabeticTextField(brandName))){
             SortAndFilterController.getInstance().activateFilterBrandName(brandName.getText());
             update();
@@ -231,6 +240,7 @@ public class SellerManageProductsMenu {
     }
 
     public void filterSearch(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((searchCheckBox.isSelected())&&(isValidAlphabeticTextField(search))){
             SortAndFilterController.getInstance().activateFilterName(search.getText());
             update();
@@ -242,6 +252,7 @@ public class SellerManageProductsMenu {
     }
 
     public void sellerFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((sellerNameCheckBox.isSelected())&&(isValidAlphabeticTextField(sellerName))){
             SortAndFilterController.getInstance().activateFilterSellerName(sellerName.getText());
             update();
@@ -253,6 +264,7 @@ public class SellerManageProductsMenu {
     }
 
     public void attributeFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))&&(isValidAlphabeticTextField(attributeValue))){
             SortAndFilterController.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
             update();
@@ -264,6 +276,7 @@ public class SellerManageProductsMenu {
     }
 
     public void priceFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((priceCheckBox.isSelected())&&(isValidPositiveDoubleTextField(minPrice))&&(isValidPositiveDoubleTextField(maxPrice))){
             SortAndFilterController.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
             update();
@@ -275,6 +288,7 @@ public class SellerManageProductsMenu {
     }
 
     public void saleFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(filterSaleCheckBox.isSelected()){
             SortAndFilterController.getInstance().activateFilterSale();
             update();

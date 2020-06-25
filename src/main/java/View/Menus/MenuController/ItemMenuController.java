@@ -10,6 +10,7 @@ import Model.Comment;
 import Model.Item;
 import Model.Users.Buyer;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +81,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         attributeListView.getItems().clear();
         familyItemListView.getItems().clear();
         ivTarget.setSmooth(true);
@@ -133,7 +135,6 @@ public class ItemMenuController {
         double frameWidth = (item.getRating() / 5)*200;
         Rectangle mask = new Rectangle(frameWidth, 28);
         rating.setClip(mask);
-        System.out.println("salam");
         updateSimpleItem();
         initializeMediaPlayer();
     }
@@ -150,14 +151,17 @@ public class ItemMenuController {
 
 
     public void comment(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         User user=UserController.getInstance().getCurrentOnlineUser();
         if(user==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must login in our system for adding comment!");
             alert.show();
             return;
         }
         if((user instanceof Buyer)==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyer Users can leave comment!");
             alert.show();
@@ -170,18 +174,21 @@ public class ItemMenuController {
 
 
     public void rate(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         int rating=getRating();
         if(rating==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("please choose a rating first.");
             alert.showAndWait();
             return;
         }
         String message=ItemAndCategoryController.getInstance().rate(rating,itemID);
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
-       /// initialize();
+        initialize();
     }
 
     public  void addAttributeListView(){
@@ -195,6 +202,7 @@ public class ItemMenuController {
     }
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
@@ -207,9 +215,11 @@ public class ItemMenuController {
     }
 
     public void addToCart(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         User user=Controller.getInstance().getCurrentOnlineUser();
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("ERROR");
             alert.setContentText("you are not a buyer");
@@ -218,6 +228,7 @@ public class ItemMenuController {
         }
         Cart cart=Controller.getInstance().getCurrentShoppingCart();
         if(cart.includesItem(itemID)){
+            MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
             alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
@@ -225,6 +236,7 @@ public class ItemMenuController {
             return;
         }
         if(item.getInStock()==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("sold out Item!");
@@ -232,6 +244,7 @@ public class ItemMenuController {
             return;
         }
         CartController.getInstance().addItemToCart(itemID);
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();
@@ -263,8 +276,10 @@ public class ItemMenuController {
     }
 
     public void compare(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         String selectedItem=(String) itemComoBox.getSelectionModel().getSelectedItem();
         if(selectedItem==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must select an item first!");
             alert.showAndWait();
@@ -387,12 +402,14 @@ public class ItemMenuController {
             @Override
             public void handle(ActionEvent event) {
                 if(Controller.getInstance().getCurrentOnlineUser()==null){
+                    MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("you must login first!");
                     alert.showAndWait();
                     return;
                 }
                 if(!(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+                    MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("only Buyers can leave comment here!");
                     alert.showAndWait();
@@ -435,8 +452,10 @@ public class ItemMenuController {
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if(item.getVideoName().equals("")){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("this item doesn't contain any video!");
             alert.showAndWait();
@@ -450,11 +469,10 @@ public class ItemMenuController {
             playPause.setText("Play");
             mediaPlayer.pause();
         }
-
     }
 
     public void addCommentDialogBox(){
-       SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
+        SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
     }
 
 
@@ -566,6 +584,7 @@ public class ItemMenuController {
         });
     }
     public void showItem(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item selected=familyItemListView.getSelectionModel().getSelectedItem();
         if(selected!=null) {
             ItemMenuController.setItemID(selected.getId());

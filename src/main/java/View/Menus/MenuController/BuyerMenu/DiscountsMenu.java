@@ -2,6 +2,7 @@ package View.Menus.MenuController.BuyerMenu;
 
 
 import Controller.UserController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ public class DiscountsMenu {
 
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

@@ -4,6 +4,7 @@ import Controller.SaleAndDiscountCodeController;
 import Controller.UserController;
 import Model.Sale;
 import Model.Users.Seller;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -26,6 +27,7 @@ public class SellerEditOff {
     }
     @FXML
     private void logout(){
+        MusicManager.getInstance().playSound("Button");
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
@@ -33,6 +35,7 @@ public class SellerEditOff {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         reset();
         Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(offID);
         currentOffPercent.setText(Integer.toString(sale.getOffPercentage()));

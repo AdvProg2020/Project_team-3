@@ -5,6 +5,7 @@ import Controller.ItemAndCategoryController;
 import Controller.UserController;
 import Model.Users.Admin;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +38,7 @@ public class AdminEditPersonalInfo {
    @FXML private CheckBox passwordCheckBox;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
       passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
       passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
@@ -62,6 +64,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changeName(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(name.getText().isEmpty()) return;
       if(name.getStyle().toString().contains("red")){
          showAlertBox("incorrect name field value","ERROR");
@@ -73,6 +76,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changeSurname(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(surname.getText().isEmpty()) return;
       if(surname.getStyle().toString().contains("red")){
          showAlertBox("incorrect surname field value","ERROR");
@@ -84,6 +88,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changeEmail(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(email.getText().isEmpty()) return;
       if(email.getStyle().toString().contains("red")){
          showAlertBox("incorrect email field value","ERROR");
@@ -95,6 +100,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changeNumber(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(number.getText().isEmpty()) return;
     if(number.getStyle().toString().contains("red")){
        showAlertBox("incorrect Number field value","ERROR");
@@ -144,16 +150,23 @@ public class AdminEditPersonalInfo {
    }
 
    private void showAlertBox(String message,String type){
+      if(type.equalsIgnoreCase("Error")){
+         MusicManager.getInstance().playSound("error");
+      }else {
+         MusicManager.getInstance().playSound("notify");
+      }
       Alert alert = new Alert(Alert.AlertType.valueOf(type));
       alert.setContentText(message);
       alert.showAndWait();
    }
 
    public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
    public void removeImage(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       User user=Controller.getInstance().getCurrentOnlineUser();
       String path=UserController.getInstance().userImagePath(user.getUsername());
       File file=new File(path);
@@ -169,6 +182,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changeImage(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       User user=Controller.getInstance().getCurrentOnlineUser();
       FileChooser fileChooser=new FileChooser();
       fileChooser.getExtensionFilters().addAll(
@@ -200,6 +214,7 @@ public class AdminEditPersonalInfo {
    }
 
    public void changePassword(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(passwordTextField.getText().equals("")){
          showAlertBox("incorrect password field value","ERROR");
          return;

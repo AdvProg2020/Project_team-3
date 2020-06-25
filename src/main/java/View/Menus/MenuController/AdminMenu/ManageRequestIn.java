@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.RequestController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ public class ManageRequestIn {
 
    @FXML
    public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       detail.setText(RequestController.getInstance().getRequestDetail(requestId));
    }
 
@@ -23,6 +25,7 @@ public class ManageRequestIn {
    }
 
    public void decline(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       String message= RequestController.getInstance().declineRequest(requestId);
       if(message.startsWith("Successful")){
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -39,6 +42,7 @@ public class ManageRequestIn {
    }
 
    public void accept(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       String message= RequestController.getInstance().acceptRequest(requestId);
       if(message.startsWith("Successful")){
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -55,6 +59,7 @@ public class ManageRequestIn {
    }
 
    public void back() {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("ManageRequests");
       SceneSwitcher.getInstance().closeSecondStage();
    }
