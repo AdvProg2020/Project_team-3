@@ -34,7 +34,6 @@ public class LoginMenuController {
 
         usernameTextField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
         passwordTextField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
-        passwordField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
         errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
