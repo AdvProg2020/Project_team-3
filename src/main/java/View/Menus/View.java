@@ -62,13 +62,13 @@ public class View {
     public static void setFonts(AnchorPane pane){
         for (Node child : pane.getChildren()) {
             if(child instanceof Label)
-                ((Label) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+                ((Label) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
             if(child instanceof TextField)
-                ((TextField) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+                ((TextField) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
             if(child instanceof TextArea)
-                ((TextArea) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+                ((TextArea) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
             if(child instanceof Text)
-                ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+                ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
         }
     }
 

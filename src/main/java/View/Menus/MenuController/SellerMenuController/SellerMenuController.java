@@ -93,6 +93,11 @@ public class SellerMenuController {
 
    public void editPersonalInfo(ActionEvent actionEvent) {
        MusicManager.getInstance().playSound("Button");
+       SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo");
+   }
+
+    public void editPersonalInfoButton() {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
 
     public void viewRequests(ActionEvent actionEvent) {
@@ -100,5 +105,5 @@ public class SellerMenuController {
         SceneSwitcher.getInstance().saveScene("SellerMenu");
         ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
-    }
+   }
 }
