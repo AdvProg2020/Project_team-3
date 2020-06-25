@@ -67,10 +67,11 @@ public class MainMenuController {
                 updateTime();
             }
         };
+        animationTimer.start();
     }
 
     private void updateTime(){
-        if(timeSinceLastTransition >= 2){
+        if(timeSinceLastTransition >= 4){
             nextCommercial(null);
             timeSinceLastTransition = 0;
         }
@@ -132,11 +133,13 @@ public class MainMenuController {
     }
 
     public void registerBuyer(){
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(){
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
@@ -152,6 +155,7 @@ public class MainMenuController {
             loginHandler();
             return;
         }
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         if(    UserController.getInstance().getUserType().equals("Admin")){
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
@@ -217,6 +221,7 @@ public class MainMenuController {
 
     @FXML
     private void shop(){
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
@@ -226,6 +231,7 @@ public class MainMenuController {
     }
 
     public void cartMenu(ActionEvent actionEvent) {
+        animationTimer.stop();
         if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyers can view Cart Menu!");
@@ -238,6 +244,7 @@ public class MainMenuController {
     }
 
     public void ShopMenu(ActionEvent actionEvent) {
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
@@ -257,6 +264,7 @@ public class MainMenuController {
     }
 
     public void saleShop(MouseEvent mouseEvent) {
+        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SalesMenu");
     }

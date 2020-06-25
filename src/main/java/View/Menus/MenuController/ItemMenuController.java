@@ -76,14 +76,18 @@ public class ItemMenuController {
     public Label priceAfterSaleLabel;
     public ComboBox itemComoBox;
     private MediaPlayer mediaPlayer;
+    @FXML private TextArea itemDetails;
     private boolean playing=false;
 
     public void initialize(){
+        attributeListView.getItems().clear();
+        familyItemListView.getItems().clear();
         ivTarget.setSmooth(true);
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         ItemAndCategoryController.getInstance().addView(itemID);
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
+        itemDetails.setText("Description:\n"+item.getDescription());
         item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
         itemNameLabelBigFont.setText(item.getName());
