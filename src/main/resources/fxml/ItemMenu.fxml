@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #edebed;" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #edebed;" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.ItemMenuController">
     <children>
 
         <MenuBar layoutX="0.0" layoutY="0.0" prefHeight="25.0" prefWidth="1292.0" styleClass="myMenuBar">
@@ -51,7 +60,7 @@
         <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
       <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="387.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="241.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="26.0" layoutY="610.0" text="price after Sale:" />
       <Label fx:id="priceAfterSaleLabel" layoutX="119.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
       <TabPane layoutX="787.0" layoutY="-2.0" prefHeight="729.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE">

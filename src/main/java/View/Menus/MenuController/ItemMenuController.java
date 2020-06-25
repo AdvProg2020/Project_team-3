@@ -177,7 +177,7 @@ public class ItemMenuController {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
-        initialize();
+       /// initialize();
     }
 
     public  void addAttributeListView(){
@@ -321,6 +321,7 @@ public class ItemMenuController {
                 status.setTextFill(Color.rgb(0,0,255));
                 textArea.setText(comment.getText());
                 textArea.setStyle("-fx-font-size: 15");
+                textArea.setEditable(false);
                 username.setText(comment.getUsername());
                 HBox hBox=new HBox(imageView,username,reply);
                 vBox.getChildren().add(hBox);
