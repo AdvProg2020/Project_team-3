@@ -159,8 +159,10 @@ public class RequestController {
         }  else if(accepted instanceof  ItemDelete){
             String id=((ItemDelete) accepted).getItemId();
             Item removed=ItemAndCategoryController.getInstance().getItemById(id);
-            UserController.getInstance().deleteItemFromSeller(id,removed.getSellerName());
-            Database.getInstance().deleteItem(removed);
+            if(removed!=null) {
+                UserController.getInstance().deleteItemFromSeller(id, removed.getSellerName());
+                Database.getInstance().deleteItem(removed);
+            }
         }
         Database.getInstance().deleteRequest(accepted);
         return "Successful: Request accepted";

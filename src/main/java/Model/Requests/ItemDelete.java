@@ -34,6 +34,7 @@ public class ItemDelete extends Request {
 
     @Override
     public void accept() {
+        if(ItemAndCategoryController.getInstance().getItemById(itemId)==null) return;
      UserController.getInstance().getUserByUsername(ItemAndCategoryController.getInstance().getItemById(itemId).getSellerName()).addRequest(getRequestId(),getAcceptedMessage());
     }
 

@@ -455,7 +455,7 @@ public class ItemAndCategoryController {
             Database.getInstance().saveItem(item);
         }
         Database.getInstance().saveCategory(category);
-           return "Successful: attribute added.";
+           return "Successful: attribute added";
     }
 
 

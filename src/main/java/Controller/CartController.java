@@ -69,6 +69,7 @@ public class CartController {
     }
 
     public String buy(String address) {
+        if(showCart().equals("Cart is empty")) return "Error: cart is empty";
         if (!(UserController.getInstance().getCurrentOnlineUser() instanceof Buyer)) {
             return "Error: must be a buyer to buy items";
         }

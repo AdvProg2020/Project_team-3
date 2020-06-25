@@ -9,6 +9,7 @@ import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -74,10 +75,10 @@ public class SaleAndDiscountCodeControllerTest {
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime);
         ArrayList<String>saleItems=new ArrayList<>();
         saleItems.add(allItems.get(0).getId());
-        SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems);
+        System.out.println(SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems));
         acceptRequests();
         Assert.assertTrue(!SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase().isEmpty());
-        deleteJunk();
+        //deleteJunk();
     }
 
     @Test
@@ -98,6 +99,9 @@ public class SaleAndDiscountCodeControllerTest {
         UserController.getInstance().deleteUser("TestSale");
         UserController.getInstance().deleteUser("Arman");
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
+        File file=new File("Resource");
+        file.delete();
+        Database.getInstance().initiate();
         UserController.getInstance().logout();
     }
 
@@ -275,11 +279,10 @@ public class SaleAndDiscountCodeControllerTest {
     @Test
     public void editSale() {
         addSale();
-        System.out.println("Reza");
         ArrayList<Sale> allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
-        if(allSales.isEmpty()) return;
         String startTime="2006-02-25T22:30";
         String endTime="2007-02-11T22:30";
+        if(allSales.size()==0) System.out.println("ssss");
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"off Percentage","90");
         acceptRequests();
         SaleAndDiscountCodeController.getInstance().editSale(allSales.get(0).getId(),"start Time",startTime);
@@ -301,7 +304,7 @@ public class SaleAndDiscountCodeControllerTest {
     public void getSellerSale(){
         addSale();
         System.out.println(SaleAndDiscountCodeController.getInstance().getSellerSales("TestSale"));
-        Assert.assertNull(SaleAndDiscountCodeController.getInstance().getSellerSales("TestSale"));
+        Assert.assertNotNull(SaleAndDiscountCodeController.getInstance().getSellerSales("TestSale"));
         ArrayList<Sale>allSales=SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase();
         Assert.assertNotNull(allSales);
         for(Sale sale:allSales)Database.getInstance().deleteSale(sale);
