@@ -107,7 +107,11 @@ public class LoginRegisterMenu extends Menu {
             return false;
         }
         String key = command.split(" ")[2];
-        if (!key.equals("buyer") && !key.equals("seller") && !key.equals("admin")) {
+        if(key.equals("admin")){
+            System.out.println(View.ANSI_RED + "you cant make admin account." + View.ANSI_RESET);
+            return false;
+        }
+        if (!key.equals("buyer") && !key.equals("seller") ) {
             System.out.println(View.ANSI_RED + "Invalid account type." + View.ANSI_RESET);
             return false;
         }
@@ -137,15 +141,8 @@ public class LoginRegisterMenu extends Menu {
             ans = UserController.getInstance().registerSeller(money, username, password, firstName, lastName, email, number, companyName);
             System.out.println(ans);
             return ans.contains("Success");
-        } else {
-            ans = UserController.getInstance().registerFirstAdmin(username, password, firstName, lastName, email, number);
-            System.out.println(ans);
-            return ans.contains("Succ");
-            /*System.out.println("You cant make an admin account.");
-            return false;*/
         }
-
-
+        return false;
     }
 
     public void logout() {

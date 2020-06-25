@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.Request;
 import Model.Users.Admin;
@@ -9,6 +10,8 @@ import Model.Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 import Model.Requests.*;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -329,6 +332,70 @@ public class UserControllerTest {
         }
         deleteUser();
 
+    }
+
+    @Test
+    public void PurchaseWithDiscountCode(){
+        addDiscountCode();
+        registerBuyer();  //username Arman
+        registerSeller(); //username Alireza
+        HashMap<String,String> attributes=new HashMap<>();
+        attributes.put("price","cheap");
+        HashMap<String , String>attributes1=new HashMap();
+        attributes1.put("price","cheap");
+        HashMap<String,String> attributes2=new HashMap<>();
+        attributes2.put("price","cheap");
+        UserController.getInstance().login("Alireza","alireza79");
+        for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
+            ItemAndCategoryController.getInstance().deleteItem(item.getId());
+        }
+        ArrayList<Request>allRequest=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequest){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Main", attributes));
+        ArrayList<Request>allRequess=RequestController.getInstance().getAllRequestFromDataBase();
+        System.out.println(allRequess.size());
+        for(Request request:allRequess){
+            System.out.println(request.toString());
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+        UserController.getInstance().logout();
+        assertEquals("Error: cart is empty",CartController.getInstance().buy("sssss"));
+        UserController.getInstance().login("Arman","Hitler");
+        System.out.println(CartController.getInstance().showCart());
+        assertEquals(CartController.getInstance().showCart(),"Cart is empty");
+        assertEquals("Error: cart is empty",CartController.getInstance().buy("sssss"));
+        CartController.getInstance().addItemToCart(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
+        Buyer buyer=(Buyer)UserController.getInstance().getUserByUsername("Arman");
+        assertEquals("Successful: Shopping complete.",CartController.getInstance().buy("sssss",SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase().get(0).getDiscountId()));
+        System.out.println(UserController.getInstance().getBuyLog(0));
+
+        ItemAndCategoryController.getInstance().rate(2,ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
+        assertEquals((int)ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getRating(),2);
+        for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
+            ItemAndCategoryController.getInstance().deleteItem(item.getId());
+        }
+        allRequest=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequest){
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+        for (DiscountCode discountCode : SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase()) {
+            SaleAndDiscountCodeController.getInstance().deleteDiscountCode(discountCode.getDiscountId());
+        }
+        deleteUser();
+    }
+
+    @Test
+    public void addDiscountCode() {
+        ArrayList<String>validUsers=new ArrayList<>();
+        validUsers.add("Arman");
+        String startTime="2014-02-25T22:30";
+        String endTime="2020-02-27T22:30";
+        LocalDateTime dateTime = LocalDateTime.parse(startTime);
+        LocalDateTime dateTime1 = LocalDateTime.parse(endTime);
+        SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
+                ,6,50);
     }
 
 

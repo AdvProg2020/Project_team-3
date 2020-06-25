@@ -77,6 +77,8 @@ public class SortAndFilterControllerTest {
         ans.addAll(SortAndFilterController.getInstance().show("testSort"));
         SortAndFilterController.getInstance().activateSort("sort by comment count");
         ans.addAll(SortAndFilterController.getInstance().show("testSort"));
+        SortAndFilterController.getInstance().activateSort("sort by date");
+        ans.addAll(SortAndFilterController.getInstance().show("testSort"));
         Matcher matcher= View.getMatcher("[id: (\\S+) name: Vacuum345search price=500.0, id: (\\S+) name: microwave67search price=600.0, id: (\\S+) name: microwave67search price=600.0, id: (\\S+) name: Vacuum345search price=500.0, id: (\\S+) name: microwave67search price=600.0, id: (\\S+) name: Vacuum345search price=500.0, id: (\\S+) name: microwave67search price=600.0, id: (\\S+) name: Vacuum345search price=500.0]",ans.toString());
         System.out.println(ans.toString());
         assertTrue(matcher.find());
@@ -102,6 +104,9 @@ public class SortAndFilterControllerTest {
         SortAndFilterController.getInstance().activateSort("sort by comment count");
         ans=SortAndFilterController.getInstance().activeSort;
         assertEquals(ans,4);
+        SortAndFilterController.getInstance().activateSort("sort by date");
+        ans=SortAndFilterController.getInstance().activeSort;
+        assertEquals(ans,5);
         SortAndFilterController.getInstance().reset();
         ans=SortAndFilterController.getInstance().activeSort;
         assertEquals(ans,0);

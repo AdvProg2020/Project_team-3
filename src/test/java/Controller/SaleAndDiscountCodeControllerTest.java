@@ -64,6 +64,7 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void addSale() {
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedSales(LocalDateTime.now());
         addItem();
         acceptRequests();
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
@@ -83,6 +84,7 @@ public class SaleAndDiscountCodeControllerTest {
 
     @Test
     public void addDiscountCode() {
+        SaleAndDiscountCodeController.getInstance().deleteDeprecatedDiscountCodes(LocalDateTime.now());
         ArrayList<String>validUsers=new ArrayList<>();
         String startTime="2014-02-25T22:30";
         String endTime="2020-02-27T22:30";
