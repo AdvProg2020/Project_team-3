@@ -70,6 +70,13 @@
       -fx-prompt-text-fill: black;
     }
 
+    .underlinedTextField{
+        -fx-border-color: #94a8b3;
+        -fx-border-width: 0 0 2 0;
+        -fx-background-color: transparent;
+        -fx-prompt-text-fill: #5f7782;
+    }
+
     .myMenuBar{
         -fx-background-color: #dedcde;
         -fx-border-color: #bababa;
