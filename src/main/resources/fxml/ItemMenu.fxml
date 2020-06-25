@@ -27,64 +27,80 @@
                 <Font size="27.0" />
             </font>
         </Label>
-        <Label layoutX="343.0" layoutY="113.0" prefHeight="17.0" prefWidth="56.0" text="Category:" />
-        <Label fx:id="categoryLabel" layoutX="439.0" layoutY="113.0" prefHeight="17.0" prefWidth="252.0" />
-        <Label layoutX="353.0" layoutY="161.0" prefHeight="17.0" prefWidth="36.0" text="Brand:" />
-        <Label fx:id="brandLabel" layoutX="425.0" layoutY="161.0" prefHeight="17.0" prefWidth="333.0" />
-        <Label layoutX="350.0" layoutY="212.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
-        <Label fx:id="sellerLabel" layoutX="430.0" layoutY="212.0" prefHeight="17.0" prefWidth="340.0" />
-        <Separator layoutX="349.0" layoutY="136.0" prefHeight="17.0" prefWidth="387.0" />
-        <Separator layoutX="350.0" layoutY="185.0" prefHeight="10.0" prefWidth="387.0" />
-        <Separator layoutX="349.0" layoutY="85.0" prefHeight="10.0" prefWidth="387.0" />
-        <Separator layoutX="350.0" layoutY="241.0" prefHeight="17.0" prefWidth="387.0" />
-        <Label layoutX="353.0" layoutY="261.0" prefHeight="17.0" prefWidth="36.0" text="Stock:" />
-        <Label fx:id="stockLabel" layoutX="422.0" layoutY="261.0" prefHeight="17.0" prefWidth="340.0" />
-        <Separator layoutX="350.0" layoutY="293.0" prefHeight="0.0" prefWidth="387.0" />
+        <Label layoutX="380.0" layoutY="392.0" prefHeight="17.0" prefWidth="56.0" text="Category:" />
+        <Label fx:id="categoryLabel" layoutX="443.0" layoutY="392.0" prefHeight="17.0" prefWidth="252.0" />
+        <Label layoutX="380.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="Brand:" />
+        <Label fx:id="brandLabel" layoutX="434.0" layoutY="442.0" prefHeight="17.0" prefWidth="333.0" />
+        <Label layoutX="377.0" layoutY="501.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
+        <Label fx:id="sellerLabel" layoutX="443.0" layoutY="501.0" prefHeight="17.0" prefWidth="340.0" />
+        <Label layoutX="381.0" layoutY="559.0" prefHeight="17.0" prefWidth="36.0" text="Stock:" />
+        <Label fx:id="stockLabel" layoutX="447.0" layoutY="559.0" prefHeight="17.0" prefWidth="340.0" />
         <Label layoutX="28.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="price:" />
         <Label fx:id="priceLabel" layoutX="58.0" layoutY="442.0" prefHeight="17.0" prefWidth="245.0" />
         <Label layoutX="28.0" layoutY="501.0" text="Grade:" />
         <Label fx:id="gradeLabel" layoutX="64.0" layoutY="501.0" prefHeight="17.0" prefWidth="93.0" />
-        <Label alignment="CENTER" layoutX="346.0" layoutY="290.0" prefHeight="30.0" prefWidth="396.0" text="Attributes:">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
         <Separator layoutX="334.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="4.0" />
-        <Button layoutX="19.0" layoutY="679.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="131.0" text="Add to Cart" />
+        <Button layoutX="504.0" layoutY="175.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="131.0" text="Add to Cart" />
         <Label layoutX="32.0" layoutY="559.0" prefHeight="17.0" prefWidth="35.0" text="View:" />
         <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
-        <ListView fx:id="commentListView" layoutX="752.0" layoutY="315.0" prefHeight="324.0" prefWidth="320.0" />
-        <Button layoutX="170.0" layoutY="679.0" mnemonicParsing="false" onAction="#rate" prefHeight="30.0" prefWidth="165.0" text="Rate Item" />
-        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="752.0" layoutY="30.0" />
-        <ToolBar layoutX="752.0" layoutY="230.0" prefHeight="40.0" prefWidth="320.0">
-            <items>
-                <Button fx:id="playPause" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
-            </items>
-        </ToolBar>
-        <Button layoutX="810.0" layoutY="647.0" mnemonicParsing="false" onAction="#comment" prefHeight="48.0" prefWidth="183.0" text="add Comment" />
+        <Button layoutX="228.0" layoutY="641.0" mnemonicParsing="false" onAction="#rate" prefHeight="27.0" prefWidth="93.0" text="Rate Item" />
 
         <Polygon fx:id="star1" fill="#AAAAAA" layoutX="25.0" layoutY="635.0" onMouseClicked="#star1Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star2" fill="#AAAAAA" layoutX="60" layoutY="635" onMouseClicked="#star2Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star3" fill="#AAAAAA" layoutX="95" layoutY="635" onMouseClicked="#star3Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
-      <ListView fx:id="attributeListView" layoutX="351.0" layoutY="320.0" prefHeight="279.0" prefWidth="387.0" />
-      <Label layoutX="752.0" layoutY="288.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
-      <Separator layoutX="335.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
-      <Separator layoutX="738.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="6.0" />
-      <Separator layoutX="752.0" layoutY="277.0" prefHeight="3.0" prefWidth="320.0" />
-      <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="346.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="387.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="181.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="familyItemListView" layoutX="1084.0" layoutY="25.0" onMouseClicked="#showItem" prefHeight="698.0" prefWidth="207.0" />
-      <Label fx:id="videoLabel" alignment="CENTER" layoutX="779.0" layoutY="131.0" prefHeight="27.0" prefWidth="267.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="9.0" layoutY="610.0" text="price after Sale:" />
-      <Label fx:id="priceAfterSaleLabel" layoutX="106.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
-      <ComboBox fx:id="itemComoBox" layoutX="468.0" layoutY="606.0" onMouseClicked="#updateItemComoBox" prefWidth="150.0" />
-      <Button layoutX="473.0" layoutY="652.0" mnemonicParsing="false" onAction="#compare" prefHeight="39.0" prefWidth="139.0" text="Compare" />
-      <Label layoutX="430.0" layoutY="610.0" prefHeight="17.0" prefWidth="36.0" text="ITems:" />
+      <Label layoutX="26.0" layoutY="610.0" text="price after Sale:" />
+      <Label fx:id="priceAfterSaleLabel" layoutX="119.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
+      <TabPane layoutX="787.0" layoutY="-2.0" prefHeight="729.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Details &amp; Comparison">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="attributeListView" layoutX="60.0" layoutY="71.0" prefHeight="407.0" prefWidth="387.0" />
+                        <Label layoutX="120.0" layoutY="524.0" prefHeight="17.0" prefWidth="104.0" text="Comparable Items:" />
+                        <ComboBox fx:id="itemComoBox" layoutX="268.0" layoutY="520.0" onMouseClicked="#updateItemComoBox" prefWidth="150.0" />
+                        <Button layoutX="272.0" layoutY="572.0" mnemonicParsing="false" onAction="#compare" prefHeight="39.0" prefWidth="147.0" text="Compare" />
+                     </children></AnchorPane>
+                </content>
+            </Tab>
+          <Tab text="Video">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="videoLabel" alignment="CENTER" layoutX="65.0" layoutY="271.0" prefHeight="27.0" prefWidth="267.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                          <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="93.0" layoutY="43.0" />
+                            <Button fx:id="playPause" layoutX="221.0" layoutY="272.0" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Comments">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                          <ListView fx:id="commentListView" layoutX="14.0" layoutY="37.0" prefHeight="591.0" prefWidth="445.0" />
+                          <Button layoutX="276.0" layoutY="638.0" mnemonicParsing="false" onAction="#comment" prefHeight="48.0" prefWidth="183.0" text="add Comment" />
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            
+            <Tab text="Similar Items">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="familyItemListView" layoutX="60.0" layoutY="14.0" onMouseClicked="#showItem" prefHeight="660.0" prefWidth="387.0" />
+                     </children></AnchorPane>
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </AnchorPane>
