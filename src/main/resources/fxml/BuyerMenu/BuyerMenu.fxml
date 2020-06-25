@@ -25,7 +25,7 @@
                </Menu>
            </menus>
        </MenuBar>
-       <Button layoutX="203.0" layoutY="321.0" onMouseClicked="#viewEditPersonalInfo" prefHeight="27.0" prefWidth="190.0" text="edit personal info"> </Button>
+       <Button layoutX="203.0" layoutY="321.0" onMouseClicked="#viewEditPersonalInfo" prefHeight="27.0" prefWidth="190.0" styleClass="greyButton" text="edit personal info"> </Button>
       <ImageView fx:id="userImage" fitHeight="170.0" fitWidth="201.0" layoutX="202.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
        <Label fx:id="personalInfo" layoutX="208.0" layoutY="390.0" prefHeight="300.0" prefWidth="482.0" />
    </children>

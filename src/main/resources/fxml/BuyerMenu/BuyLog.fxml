@@ -6,8 +6,8 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="userBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.BuyerOrdersController">
    <children>
-       <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="58.0" text="Back" />
-       <MenuBar prefHeight="25.0" prefWidth="1280.0">
+       <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="58.0" styleClass="greyButton" text="Back" />
+       <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
            <menus>
                <Menu mnemonicParsing="false" text="Options">
                    <items>
@@ -38,7 +38,7 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="700.0" layoutY="577.0" mnemonicParsing="false" onAction="#showItem" prefHeight="64.0" prefWidth="136.0" text="show Item" />
+      <Button layoutX="700.0" layoutY="577.0" mnemonicParsing="false" onAction="#showItem" prefHeight="64.0" prefWidth="136.0" styleClass="greyButton" text="show Item" />
       <Label fx:id="buyLogEmptyLabel" layoutX="149.0" layoutY="99.0" prefHeight="17.0" prefWidth="339.0" />
    </children>
 
