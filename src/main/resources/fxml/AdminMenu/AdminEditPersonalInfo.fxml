@@ -24,6 +24,6 @@
      <Button layoutX="243.0" layoutY="112.0" onMouseClicked="#changeSurname" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
      <Button layoutX="243.0" layoutY="149.0" onMouseClicked="#changeEmail" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
      <Button layoutX="243.0" layoutY="183.0" onMouseClicked="#changeNumber" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
- <Button layoutX="397.0" layoutY="184.0" mnemonicParsing="false" onAction="#removeImage" text="remove image" />
+ <Button layoutX="397.0" layoutY="184.0" mnemonicParsing="false" onAction="#removeImage" styleClass="redButton" text="remove image" />
  <Button layoutX="496.0" layoutY="183.0" mnemonicParsing="false" onAction="#changeImage" styleClass="myBlueButton" text="change image" />
 </AnchorPane>

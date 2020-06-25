@@ -5,5 +5,5 @@
 
 <AnchorPane prefHeight="132.0" prefWidth="349.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercialIn">
     <Button layoutX="177.0" layoutY="46.0" onMouseClicked="#accept" prefHeight="27.0" prefWidth="113.0" styleClass="myBlueButton" text="accept" />
-    <Button layoutX="28.0" layoutY="46.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" text="decline" />
+    <Button layoutX="28.0" layoutY="46.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" styleClass="redButton" text="decline" />
 </AnchorPane>

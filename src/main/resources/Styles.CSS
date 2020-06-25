@@ -53,12 +53,30 @@
             -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
             -fx-background-color:#bababa;
         }
-        .myButton:hover{
+        .greyButton:hover{
             -fx-background-color:
             #bababa,
             radial-gradient(center 50% 50%, radius 100%, #cddde6, #bababa);
         }
-        .myButton:pressed{
+        .greyButton:pressed{
+            -fx-padding: 2 3 3 3;
+            -fx-background-insets: 1 0 0 0,2 0 3 0, 2 0 3 0, 2 0 3 0;
+        }
+
+    .redButton {
+            -fx-padding: 2 3 3 3;
+            -fx-background-radius: 2;
+            -fx-background-insets: 0,0 0 2 0, 0 0 2 0, 0 0 3 0;
+            -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+            -fx-background-color:#bd3535;
+            -fx-text-fill: white;
+        }
+        .redButton:hover{
+            -fx-background-color:
+            #bd3535,
+            radial-gradient(center 50% 50%, radius 100%, #d66363, #bd3535);
+        }
+        .redButton:pressed{
             -fx-padding: 2 3 3 3;
             -fx-background-insets: 1 0 0 0,2 0 3 0, 2 0 3 0, 2 0 3 0;
         }

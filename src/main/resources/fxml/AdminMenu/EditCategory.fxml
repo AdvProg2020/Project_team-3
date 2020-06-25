@@ -12,10 +12,10 @@
     <Button layoutX="260.0" layoutY="40.0" onMouseClicked="#changeName" prefHeight="25.0" prefWidth="129.0" styleClass="myBlueButton" text="change name" />
        <TextField fx:id="categoryNameField" layoutX="86.0" layoutY="40.0" onKeyReleased="#updateCategoryName" promptText="Enter a new name" styleClass="underlinedTextField" />
 
-       <Button layoutX="330.0" layoutY="125.0" onMouseClicked="#addAttribute" prefHeight="27.0" prefWidth="59.0" text="+" />
+       <Button layoutX="330.0" layoutY="125.0" onMouseClicked="#addAttribute" prefHeight="27.0" prefWidth="59.0" styleClass="myBlueButton" text="+" />
        <Label layoutX="86.0" layoutY="103.0" prefHeight="17.0" prefWidth="92.0" text="Add Attributes" />
        <TextField fx:id="attributeField" layoutX="86.0" layoutY="125.0" promptText="Enter a new Attribute" styleClass="underlinedTextField" />
 
       <ListView fx:id="info" layoutX="75.0" layoutY="211.0" prefHeight="228.0" prefWidth="300.0" />
-    <Button layoutX="259.0" layoutY="445.0" onMouseClicked="#delete" prefHeight="25.0" prefWidth="116.0" text="delete category" />
+    <Button layoutX="259.0" layoutY="445.0" onMouseClicked="#delete" prefHeight="25.0" prefWidth="116.0" styleClass="redButton" text="delete category" />
 </AnchorPane>

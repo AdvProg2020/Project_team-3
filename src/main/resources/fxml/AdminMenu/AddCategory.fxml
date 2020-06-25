@@ -18,7 +18,7 @@
     <Label layoutX="18.0" layoutY="180.0" text="Add Attribute:" />
     <Label layoutX="13.0" layoutY="236.0" text="father category:" />
     <Button layoutX="131.0" layoutY="315.0" onMouseClicked="#create" prefHeight="25.0" prefWidth="149.0" styleClass="myBlueButton" text="create category" />
-    <Button layoutX="63.0" layoutY="315.0" onMouseClicked="#reset" text="reset" />
+    <Button layoutX="63.0" layoutY="315.0" onMouseClicked="#reset" styleClass="redButton" text="reset" />
    <ChoiceBox fx:id="fatherCategoryChoice" layoutX="105.0" layoutY="232.0" prefWidth="150.0" styleClass="myBlueButton" />
    <Text layoutX="403.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Attributes" />
 </AnchorPane>

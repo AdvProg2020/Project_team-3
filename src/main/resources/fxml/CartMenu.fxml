@@ -19,7 +19,7 @@
          </font>
       </Button>
       <Button layoutX="535.0" layoutY="102.0" mnemonicParsing="false" onAction="#showItem" prefHeight="50.0" prefWidth="71.0" styleClass="myBlueButton" text="show Item" />
-      <Button layoutX="531.0" layoutY="255.0" mnemonicParsing="false" onAction="#clearCartPressed" prefHeight="50.0" prefWidth="79.0" text="clear Cart" />
+      <Button layoutX="531.0" layoutY="255.0" mnemonicParsing="false" onAction="#clearCartPressed" prefHeight="50.0" prefWidth="79.0" styleClass="redButton" text="clear Cart" />
       <Label fx:id="totalPrice" alignment="CENTER" layoutX="148.0" layoutY="49.0" prefHeight="17.0" prefWidth="325.0" text="Cart Menu">
          <font>
             <Font size="20.0" />
