@@ -8,19 +8,18 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerSellerMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.SellerRegisterController">
    <children>
-      <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="122.0" prefHeight="25.0" prefWidth="126.0" promptText="Username" styleClass="myTextField" />
-       <PasswordField fx:id="passwordField" layoutX="891.0" layoutY="122.0" promptText="Password" styleClass="myTextField" />
-       <TextField fx:id="passwordTextField" layoutX="891.0" layoutY="122.0" promptText="Password" styleClass="myTextField" />
-      <TextField fx:id="firstNameTextField" layoutX="710.0" layoutY="240.0" promptText="First Name" styleClass="myTextField" />
-      <TextField fx:id="surnameTextField" layoutX="901.0" layoutY="240.0" promptText="Surname" styleClass="myTextField" />
-      <TextField fx:id="emailTextField" layoutX="719.0" layoutY="348.0" promptText="Email" styleClass="myTextField" />
-      <TextField fx:id="phoneNumberTextField" layoutX="891.0" layoutY="345.0" promptText="Phone" styleClass="myTextField" />
-      <TextField fx:id="companyTextField" layoutX="901.0" layoutY="454.0" promptText="Company" styleClass="myTextField" />
+       <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="122.0" prefHeight="25.0" prefWidth="126.0" promptText="Username" styleClass="myTextField" />
+       <PasswordField fx:id="passwordField" layoutX="891.0" layoutY="122.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" styleClass="myTextField" />
+       <TextField fx:id="passwordTextField" layoutX="891.0" layoutY="122.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" styleClass="myTextField" />
+       <TextField fx:id="firstNameTextField" layoutX="710.0" layoutY="240.0" prefHeight="25.0" prefWidth="128.0" promptText="First Name" styleClass="myTextField" />
+       <TextField fx:id="surnameTextField" layoutX="901.0" layoutY="240.0" prefHeight="25.0" prefWidth="128.0" promptText="Surname" styleClass="myTextField" />
+       <TextField fx:id="emailTextField" layoutX="719.0" layoutY="348.0" prefHeight="25.0" prefWidth="128.0" promptText="Email" styleClass="myTextField" />
+       <TextField fx:id="phoneNumberTextField" layoutX="891.0" layoutY="345.0" prefHeight="25.0" prefWidth="128.0" promptText="Phone" styleClass="myTextField" />
+       <TextField fx:id="companyTextField" layoutX="901.0" layoutY="454.0" prefHeight="25.0" prefWidth="128.0" promptText="Company" styleClass="myTextField" />
        <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="564.0" prefHeight="25.0" prefWidth="149.0" promptText="Balance" styleClass="myTextField" />
-       <Button layoutX="880.0" layoutY="562.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" stylesheets="@../Styles.CSS" text="Register" />
-       <Button layoutX="836.0" layoutY="454.0" mnemonicParsing="false" onAction="#openFileChooser" styleClass="myBlueButton" text="....." />
+       <Button layoutX="880.0" layoutY="562.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" text="Register" />
       <CheckBox fx:id="passwordCheckBox" layoutX="921.0" layoutY="164.0" mnemonicParsing="false" text="show Password?" />
-      <TextField fx:id="imageDirectory" layoutX="710.0" layoutY="454.0" prefHeight="25.0" prefWidth="117.0" promptText="Image" styleClass="myTextField" />
+      <TextField fx:id="imageDirectory" layoutX="710.0" layoutY="454.0" prefHeight="25.0" prefWidth="126.0" promptText="Image" styleClass="myTextField" />
 
       <Label fx:id="usernameLabel" layoutX="682.0" layoutY="155.0" prefHeight="17.0" prefWidth="213.0" />
       <Label fx:id="passwordLabel" layoutX="875.0" layoutY="149.0" prefHeight="17.0" prefWidth="150.0" />
@@ -48,7 +47,8 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Hyperlink layoutX="369.0" layoutY="561.0" onAction="#goToBuyerRegisterMenu" prefHeight="28.0" prefWidth="171.0" text="Sign Up as a Customer">
+       <Button layoutX="835.0" layoutY="454.0" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="25.0" prefWidth="21.0" styleClass="myBlueButton" text="....." />
+       <Hyperlink layoutX="369.0" layoutY="561.0" onAction="#goToBuyerRegisterMenu" prefHeight="28.0" prefWidth="171.0" text="Sign Up as a Customer">
          <font>
             <Font size="14.0" />
          </font>

@@ -42,11 +42,11 @@ public class SellerRegisterController {
     public void initialize(){
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
-        passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
+        /*passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
-        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
+        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());*/
     }
 
     public void openFileChooser(ActionEvent actionEvent) {
