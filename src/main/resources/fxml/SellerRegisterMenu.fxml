@@ -17,8 +17,8 @@
       <TextField fx:id="phoneNumberTextField" layoutX="891.0" layoutY="345.0" promptText="Phone" styleClass="myTextField" />
       <TextField fx:id="companyTextField" layoutX="901.0" layoutY="454.0" promptText="Company" styleClass="myTextField" />
        <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="564.0" prefHeight="25.0" prefWidth="149.0" promptText="Balance" styleClass="myTextField" />
-       <Button layoutX="880.0" layoutY="562.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="158.0" text="Register" />
-       <Button layoutX="836.0" layoutY="454.0" mnemonicParsing="false" onAction="#openFileChooser" text="....." />
+       <Button layoutX="880.0" layoutY="562.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" stylesheets="@../Styles.CSS" text="Register" />
+       <Button layoutX="836.0" layoutY="454.0" mnemonicParsing="false" onAction="#openFileChooser" styleClass="myBlueButton" text="....." />
       <CheckBox fx:id="passwordCheckBox" layoutX="921.0" layoutY="164.0" mnemonicParsing="false" text="show Password?" />
       <TextField fx:id="imageDirectory" layoutX="710.0" layoutY="454.0" prefHeight="25.0" prefWidth="117.0" promptText="Image" styleClass="myTextField" />
 
@@ -30,7 +30,7 @@
       <Label fx:id="phoneNumberLabel" layoutX="876.0" layoutY="376.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="companyNameLabel" layoutX="876.0" layoutY="481.0" prefHeight="17.0" prefWidth="149.0" />
       <Label fx:id="moneyLabel" layoutX="687.0" layoutY="589.0" prefHeight="17.0" prefWidth="150.0" />
-      <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="66.0" text="Back" />
+      <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="66.0" styleClass="myBlueButton" text="Back" />
       <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
           <Menu mnemonicParsing="false" text="Login or Register">

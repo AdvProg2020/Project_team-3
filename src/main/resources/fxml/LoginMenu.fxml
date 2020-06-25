@@ -12,7 +12,7 @@
       <TextField fx:id="usernameTextField" layoutX="535.0" layoutY="176.0" prefHeight="25.0" prefWidth="241.0" promptText="Username" styleClass="myTextField" />
       <TextField fx:id="passwordTextField" layoutX="526.0" layoutY="283.0" prefHeight="25.0" prefWidth="241.0" promptText="Password" styleClass="myTextField" />
       <PasswordField fx:id="passwordField" layoutX="526.0" layoutY="283.0" prefHeight="25.0" prefWidth="241.0" promptText="Password" styleClass="myTextField" />
-      <Button layoutX="561.0" layoutY="486.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="141.0" text="Login" />
+      <Button layoutX="561.0" layoutY="486.0" mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="141.0" styleClass="myBlueButton" stylesheets="@../Styles.CSS" text="Login" />
       <CheckBox fx:id="passwordCheckBox" layoutX="667.0" layoutY="341.0" mnemonicParsing="false" text="Show Password?" />
 
       <Label fx:id="errorLabel" layoutX="541.0" layoutY="450.0" prefHeight="17.0" prefWidth="181.0" />

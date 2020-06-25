@@ -12,9 +12,9 @@
       <TextField fx:id="surnameTextField" layoutX="897.0" layoutY="238.0" prefHeight="25.0" prefWidth="128.0" promptText="Surname" styleClass="myTextField" />
       <TextField fx:id="emailTextField" layoutX="713.0" layoutY="348.0" prefHeight="25.0" prefWidth="137.0" promptText="Email" styleClass="myTextField" />
       <TextField fx:id="phoneNumberTextFiled" layoutX="890.0" layoutY="348.0" promptText="Phone" styleClass="myTextField" />
-      <Button layoutX="879.0" layoutY="550.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="158.0" text="Register" />
+      <Button layoutX="879.0" layoutY="550.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" text="Register" />
       <TextField fx:id="imageDirectory" layoutX="715.0" layoutY="454.0" prefHeight="25.0" prefWidth="128.0" promptText="Image" styleClass="myTextField" />
-      <Button layoutX="850.0" layoutY="454.0" mnemonicParsing="false" onAction="#fileChooserOpen" text="..." />
+      <Button layoutX="850.0" layoutY="454.0" mnemonicParsing="false" onAction="#fileChooserOpen" styleClass="myBlueButton" text="..." />
       <CheckBox fx:id="passwordCheckBox" layoutX="921.0" layoutY="167.0" mnemonicParsing="false" text="show Password?" />
       <Label fx:id="usernameLabel" layoutX="688.0" layoutY="150.0" prefHeight="17.0" prefWidth="191.0" />
       <Label fx:id="passwordLabel" layoutX="880.0" layoutY="150.0" prefHeight="17.0" prefWidth="149.0" />
@@ -38,6 +38,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="74.0" text="Back" />
+      <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="74.0" styleClass="myBlueButton" text="Back" />
    </children>
 </Pane>
