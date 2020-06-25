@@ -4,6 +4,7 @@ import Controller.*;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 public class SellerManageProductsMenu {
     @FXML private ListView listView;
     @FXML private ChoiceBox sortChoiceBox;
-
+    @FXML private AnchorPane pane;
     @FXML CheckBox availableCheckBox;
     @FXML CheckBox categoryNameCheckBox;
     @FXML CheckBox brandNameCheckBox;
@@ -42,6 +43,7 @@ public class SellerManageProductsMenu {
     AnchorPane anchorPane;
 
     @FXML public void initialize() {
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");

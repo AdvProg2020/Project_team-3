@@ -5,14 +5,20 @@ import Controller.ItemAndCategoryController;
 import Controller.SaleAndDiscountCodeController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,11 +29,26 @@ public class AddCategory {
    @FXML private  ChoiceBox fatherCategoryChoice;
    @FXML private  ListView attributeList;
    private ArrayList<String> allAttribute=new ArrayList<>();
-
+   @FXML private AnchorPane pane;
    @FXML public void initialize()
    {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
+   }
+
+
+   private void setFonts(){
+      for (Node child : pane.getChildren()) {
+         if(child instanceof javafx.scene.control.Label)
+            ((javafx.scene.control.Label) child).setFont(javafx.scene.text.Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+         if(child instanceof TextField)
+            ((TextField) child).setFont(javafx.scene.text.Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+         if(child instanceof javafx.scene.control.TextArea)
+            ((TextArea) child).setFont(javafx.scene.text.Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+         if(child instanceof Text)
+            ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+      }
    }
 
    public void update(){

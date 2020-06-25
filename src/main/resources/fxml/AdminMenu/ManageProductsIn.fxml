@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="118.0" prefWidth="259.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProductsIn">
+<AnchorPane fx:id="pane" prefHeight="118.0" prefWidth="259.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageProductsIn">
            <Button layoutX="66.0" layoutY="59.0" onMouseClicked="#delete" styleClass="redButton" text="Yes" />
            <Button layoutX="177.0" layoutY="59.0" onMouseClicked="#close" styleClass="greyButton" text="No" />
            <Label layoutX="44.0" layoutY="20.0" text="do you want to delete this item?" />

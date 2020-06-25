@@ -7,6 +7,7 @@ import View.Menus.MenuController.ViewRequestUser;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,8 +30,9 @@ public class BuyerMenuController {
 
     @FXML public ImageView userImage;
     @FXML private Label personalInfo;
-
+    @FXML private AnchorPane pane;
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
             User onlineUser=Controller.getInstance().getCurrentOnlineUser();

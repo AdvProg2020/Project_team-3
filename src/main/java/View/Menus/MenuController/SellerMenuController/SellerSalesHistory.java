@@ -8,6 +8,7 @@ import Model.Logs.SaleLog;
 import Model.Users.Seller;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
@@ -35,8 +37,9 @@ public class SellerSalesHistory {
     private final ObservableList<SaleLog> saleLogs= FXCollections.observableArrayList();
     private final ObservableList<Item> allItems=FXCollections.observableArrayList();
     private SaleLog selected;
-
+    @FXML private AnchorPane pane;
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         updateSaleLogListView();
         updateSaleLogItem();

@@ -4,18 +4,15 @@ import Controller.*;
 import Model.Users.User;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -27,14 +24,15 @@ public class commentMenuController {
    public ImageView userImage;
    private static String itemID;
    private static String fatherCommentId=null;
-   @FXML private AnchorPane anchorPane;
-
+   @FXML
+   private AnchorPane pane;
    public static void setItemID(String id){
       itemID=id;
    }
    public static void setFatherCommentId(String id){fatherCommentId=id;}
 
    public void initialize(){
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("second.wav");
       User user= Controller.getInstance().getCurrentOnlineUser();
       String path=UserController.getInstance().userImagePath(user.getUsername());
@@ -46,24 +44,6 @@ public class commentMenuController {
       }
       usernameTexField.setText(user.getUsername());
       usernameTexField.setEditable(false);
-      setFont();
-   }
-
-   private void setFont(){
-      for(Node node:anchorPane.getChildren()){
-         if(node instanceof Label){
-            ((Label)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-         }
-         if(node instanceof Text){
-            ((Text)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-         }
-         if(node instanceof TextArea){
-            ((TextArea)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-         }
-         if(node instanceof TextField){
-            ((TextField)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-         }
-      }
    }
 
    public void sendComment(ActionEvent actionEvent) {

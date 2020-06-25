@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="137.0" promptText="Username" styleClass="myTextField" />
        <PasswordField fx:id="passwordField" layoutX="890.0" layoutY="125.0" promptText="Password" styleClass="myTextField" />
@@ -40,4 +40,4 @@
       </MenuBar>
       <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="74.0" styleClass="myBlueButton" text="Back" />
    </children>
-</Pane>
+</AnchorPane>

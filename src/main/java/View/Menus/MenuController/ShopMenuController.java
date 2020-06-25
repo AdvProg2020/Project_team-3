@@ -7,6 +7,7 @@ import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -81,26 +82,16 @@ public class ShopMenuController {
         SceneSwitcher.getInstance().back();
     }
 
-    private void setFonts(){
-        pageNum.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
-        attributeKey.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        attributeValue.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        minPrice.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        maxPrice.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        search.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        brandName.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        categoryNameFilter.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        sellerName.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-    }
 
     @FXML
     private GridPane gridPane;
     @FXML
     private Label categoryLabel;
 
-    @FXML
-    private void initialize(){
-        setFonts();
+    @FXML private AnchorPane pane;
+
+    @FXML private void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         //categoryName = "Main";
         allCategories = Database.getInstance().printFolderContent("Categories");

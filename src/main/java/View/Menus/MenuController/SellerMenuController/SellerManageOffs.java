@@ -9,26 +9,22 @@ import Model.Users.Seller;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
 public class SellerManageOffs {
-
+    @FXML private AnchorPane pane;
     @FXML
     ListView listView;
-    @FXML private AnchorPane anchorPane;
+
 
     @FXML
     private void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         listView.getItems().clear();
         //inja miam listview ro update mikonim
@@ -39,30 +35,13 @@ public class SellerManageOffs {
             allSalesString.add(sale.toSimpleString());
             listView.getItems().add(sale.toSimpleString());
         }
-        setFont();
+
     }
 
     @FXML
     private void startSale(){
         SceneSwitcher.getInstance().saveScene("SellerManageOffs");
         SceneSwitcher.getInstance().setSceneTo("SellerAddOff");
-    }
-
-    private void setFont(){
-        for(Node node:anchorPane.getChildren()){
-            if(node instanceof Label){
-                ((Label)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof Text){
-                ((Text)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof TextArea){
-                ((TextArea)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof TextField){
-                ((TextField)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-        }
     }
 
     @FXML

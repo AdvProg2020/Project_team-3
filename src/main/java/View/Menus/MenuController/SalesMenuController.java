@@ -8,6 +8,7 @@ import Model.Item;
 import Model.Sale;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -18,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -73,9 +75,10 @@ public class SalesMenuController {
         SceneSwitcher.getInstance().back();
     }
 
-
+    @FXML private AnchorPane pane;
     @FXML
     private void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         reset(null);
         allItemsBox = new ArrayList<>();

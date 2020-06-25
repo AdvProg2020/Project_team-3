@@ -5,15 +5,18 @@ import Controller.Database;
 import Controller.RequestController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class ManageRequests {
    @FXML private ListView listView;
-
+   @FXML private AnchorPane pane;
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }

@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,8 +24,9 @@ public class EditDiscountCode {
    @FXML private TextField maxDiscount;
    @FXML private DatePicker end;
    @FXML private ListView info;
-
+   @FXML private AnchorPane pane;
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }

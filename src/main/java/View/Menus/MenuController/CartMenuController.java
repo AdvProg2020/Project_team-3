@@ -7,6 +7,7 @@ import Model.Item;
 import Model.Users.User;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -37,9 +39,10 @@ public class CartMenuController {
     public  ListView <Item> itemListView;
     private final ObservableList<Item> allItems= FXCollections.observableArrayList();
     @FXML public Label totalPrice;
-
+    @FXML private AnchorPane pane;
 
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");

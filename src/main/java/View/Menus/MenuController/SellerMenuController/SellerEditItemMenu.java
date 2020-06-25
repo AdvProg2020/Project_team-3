@@ -8,9 +8,11 @@ import Model.Users.Seller;
 import View.Menus.MenuController.ItemMenuController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import sun.util.resources.cldr.ar.CalendarData_ar_YE;
 
 import java.lang.reflect.Array;
@@ -20,7 +22,7 @@ import java.util.Optional;
 
 public class SellerEditItemMenu {
     private static String itemID;
-
+    @FXML private AnchorPane pane;
     @FXML private ListView listView;
     @FXML private Label label;
     @FXML private Button removeItem;
@@ -30,6 +32,7 @@ public class SellerEditItemMenu {
 
     @FXML
     private void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         label.setText("You are editing "+itemID);
         updateAttributes();

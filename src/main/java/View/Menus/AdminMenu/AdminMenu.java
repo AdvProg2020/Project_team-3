@@ -8,6 +8,7 @@ import View.Menus.ShopAndDiscountMenu.ShopMenu;
 import View.Menus.UserMenu;
 import View.Menus.View;
 
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -23,6 +24,7 @@ public class AdminMenu extends UserMenu {
             adminMenu = new AdminMenu();
         return adminMenu;
     }
+
 
     @Override
     public void run() {

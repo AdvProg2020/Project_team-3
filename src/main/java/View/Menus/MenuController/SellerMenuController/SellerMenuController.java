@@ -8,12 +8,13 @@ import View.Menus.MenuController.ViewRequestUser;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -22,8 +23,9 @@ public class SellerMenuController {
 
     @FXML public ImageView sellerImage;
     @FXML private Label personalInfo;
-
+    @FXML private AnchorPane pane;
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Seller){
             User onlineUser=Controller.getInstance().getCurrentOnlineUser();
@@ -36,7 +38,6 @@ public class SellerMenuController {
             }
             personalInfoUpdate();
         }
-        personalInfo.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
     public void personalInfoUpdate(){
@@ -92,10 +93,6 @@ public class SellerMenuController {
 
    public void editPersonalInfo(ActionEvent actionEvent) {
        MusicManager.getInstance().playSound("Button");
-        SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
-
-    public void editPersonalInfoButton() {
-        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerEditPersonalInfo"); }
 
     public void viewRequests(ActionEvent actionEvent) {

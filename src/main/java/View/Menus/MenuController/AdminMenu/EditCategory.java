@@ -4,6 +4,7 @@ import Controller.ItemAndCategoryController;
 
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,14 +12,17 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class EditCategory {
    @FXML TextField categoryNameField;
    @FXML TextField attributeField;
    @FXML ListView info;
+   @FXML private AnchorPane pane;
    private static String categoryName;
 
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }

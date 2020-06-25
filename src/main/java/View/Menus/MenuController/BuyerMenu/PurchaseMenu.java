@@ -5,11 +5,13 @@ import Controller.UserController;
 import Model.Users.User;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 
 import java.io.File;
@@ -21,9 +23,10 @@ public class PurchaseMenu {
    @FXML ListView itemListView;
    @FXML ChoiceBox discounts;
    private Boolean discountIsValid=false;
-
+   @FXML private AnchorPane pane;
    @FXML
    public void initialize()  {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       discounts.getItems().addAll(UserController.getInstance().getBuyerDiscountCode());
       discounts.getItems().add("NONE");

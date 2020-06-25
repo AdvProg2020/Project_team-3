@@ -3,17 +3,22 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.ItemAndCategoryController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class ManageProductsIn {
    static String itemId;
-
+   @FXML private AnchorPane pane;
    public static void setItemId(String itemId) {
       ManageProductsIn.itemId = itemId;
    }
 
-   public void initialize(){MusicManager.getInstance().setSongName("first.wav");}
+   public void initialize(){
+      View.setFonts(pane);
+      MusicManager.getInstance().setSongName("first.wav");}
 
    public void close(MouseEvent mouseEvent) {
        MusicManager.getInstance().playSound("Button");

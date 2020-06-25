@@ -3,16 +3,19 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.Database;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 
 public class ManageCategories {
    @FXML ListView categoryList;
-
+   @FXML private AnchorPane pane;
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }

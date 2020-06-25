@@ -3,9 +3,12 @@ package View.Menus.MenuController;
 import Controller.ItemAndCategoryController;
 import Model.Item;
 import View.Menus.MusicManager;
+import View.Menus.View;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -19,7 +22,8 @@ public class compareMenuController {
 
     private static String firstItemID;
     private static String secondItemID;
-
+    @FXML
+    private AnchorPane pane;
     public static void setFirstItemID(String firstItemID) {
         compareMenuController.firstItemID = firstItemID;
     }
@@ -29,6 +33,7 @@ public class compareMenuController {
     }
 
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         Item first= ItemAndCategoryController.getInstance().getItemById(firstItemID);
         Item second=ItemAndCategoryController.getInstance().getItemById(secondItemID);

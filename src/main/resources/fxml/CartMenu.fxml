@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="498.0" prefWidth="620.0" style="-fx-background-color: #edebed;" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
+<AnchorPane fx:id="pane" prefHeight="498.0" prefWidth="620.0" style="-fx-background-color: #edebed;" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.CartMenuController">
    <children>
       <ListView fx:id="itemListView" layoutX="96.0" layoutY="79.0" prefHeight="262.0" prefWidth="429.0" />
       <Button layoutX="201.0" layoutY="341.0" mnemonicParsing="false" onAction="#buy" prefHeight="60.0" prefWidth="220.0" styleClass="myBlueButton" text="Buy" />

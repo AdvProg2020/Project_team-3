@@ -1,6 +1,14 @@
 package View.Menus;
 import Controller.Controller;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -48,6 +56,20 @@ public class View {
 
     public static Scanner getRead() {
         return read;
+    }
+
+
+    public static void setFonts(AnchorPane pane){
+        for (Node child : pane.getChildren()) {
+            if(child instanceof Label)
+                ((Label) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+            if(child instanceof TextField)
+                ((TextField) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+            if(child instanceof TextArea)
+                ((TextArea) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+            if(child instanceof Text)
+                ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
+        }
     }
 
 }

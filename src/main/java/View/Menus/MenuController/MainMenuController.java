@@ -24,6 +24,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -46,8 +47,9 @@ public class MainMenuController {
 
     private double timeSinceLastTransition = 0;
     private AnimationTimer animationTimer;
-
+    @FXML private AnchorPane pane;
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         Controller.getInstance().updateDateAndTime();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();

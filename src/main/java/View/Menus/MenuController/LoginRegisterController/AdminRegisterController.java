@@ -3,8 +3,11 @@ package View.Menus.MenuController.LoginRegisterController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
+import View.Menus.View;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
@@ -33,8 +36,9 @@ public class AdminRegisterController {
     public CheckBox passwordCheckBox;
     public TextField imageDirectory;
 
-
+    @FXML private AnchorPane pane;
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());

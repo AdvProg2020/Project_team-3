@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class SellerAddProductMenu {
-
+    @FXML private AnchorPane pane;
     @FXML
     private void back(){
         MusicManager.getInstance().playSound("Button");
@@ -226,6 +227,7 @@ public class SellerAddProductMenu {
 
 
     public void initialize(){
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         itemName.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
         itemNameError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));

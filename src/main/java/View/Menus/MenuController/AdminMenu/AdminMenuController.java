@@ -4,14 +4,20 @@ import Controller.Controller;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -19,9 +25,10 @@ import java.net.MalformedURLException;
 public class AdminMenuController {
     public ImageView adminImage;
    @FXML private Label personalInfo;
-
+   @FXML AnchorPane pane;
 
    public void initialize(){
+         View.setFonts(pane);
          MusicManager.getInstance().setSongName("first.wav");
          String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
          File file=new File(path);
@@ -32,6 +39,9 @@ public class AdminMenuController {
          }
       personalInfoUpdate();
    }
+
+
+
 
    public void personalInfoUpdate(){
       String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
@@ -87,4 +97,5 @@ public class AdminMenuController {
    public void manageCommercials(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageCommercials");
    }
+
 }

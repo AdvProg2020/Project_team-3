@@ -3,18 +3,23 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.CommercialController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class ManageCommercialIn {
 
    private static String requestId;
-
+   @FXML private AnchorPane pane;
    public static void setRequestId(String requestId) {
       ManageCommercialIn.requestId = requestId;
    }
 
-   public void initialize(){MusicManager.getInstance().setSongName("first.wav");}
+   public void initialize(){
+      View.setFonts(pane);
+      MusicManager.getInstance().setSongName("first.wav");}
 
    public void accept(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");

@@ -5,11 +5,13 @@ import Controller.RequestController;
 import Controller.SortAndFilterController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.regex.Pattern;
 
@@ -34,8 +36,9 @@ public class ManageProducts {
    @FXML TextField brandName;
    @FXML TextField categoryName;
    @FXML TextField sellerName;
-
+   @FXML private AnchorPane pane;
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
       sortChoiceBox.getItems().add("sort by view");

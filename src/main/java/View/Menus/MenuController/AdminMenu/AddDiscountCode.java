@@ -7,9 +7,14 @@ import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,13 +28,17 @@ public class AddDiscountCode {
    @FXML private DatePicker end;
    @FXML private ListView userList;
    @FXML private ListView selectedUserList;
+   @FXML private AnchorPane pane;
    private ArrayList<String> allUserName=new ArrayList<>();
 
    @FXML
    public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }
+
+
 
    public void update() {
       userList.getItems().clear();

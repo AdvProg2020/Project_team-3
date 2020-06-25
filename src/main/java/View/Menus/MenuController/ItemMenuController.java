@@ -12,6 +12,7 @@ import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,6 +82,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
+        View.setFonts(anchorPane);
         MusicManager.getInstance().setSongName("second.wav");
         attributeListView.getItems().clear();
         familyItemListView.getItems().clear();

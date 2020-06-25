@@ -4,17 +4,19 @@ package View.Menus.MenuController.BuyerMenu;
 import Controller.UserController;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
+import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-
+import javafx.scene.layout.AnchorPane;
 
 
 public class DiscountsMenu {
    @FXML ListView discountList;
-
+   @FXML private AnchorPane pane;
 
    @FXML public void initialize() {
+      View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
       update();
    }

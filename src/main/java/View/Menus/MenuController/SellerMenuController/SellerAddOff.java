@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SellerAddOff {
 
-
+    @FXML private AnchorPane pane;
     @FXML
     private void back()
     {
@@ -56,7 +56,7 @@ public class SellerAddOff {
 
     @FXML
     private void initialize(){
-        setFonts();
+        View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         errorLabel.setText("");
         allItems.getItems().clear();
@@ -75,16 +75,6 @@ public class SellerAddOff {
         }
         if(allItems.getItems().isEmpty())
             allItems.getItems().add("You don't have any item that isn't on sale.");
-    }
-    @FXML private Label offp;
-    @FXML private Label startsat;
-    @FXML private Label endsat;
-    private void setFonts(){
-        startsat.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        offp.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        endsat.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-        offPercentage.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
     public void selectItem() {
