@@ -29,8 +29,8 @@
         </Label>
         <Label layoutX="380.0" layoutY="392.0" prefHeight="17.0" prefWidth="56.0" text="Category:" />
         <Label fx:id="categoryLabel" layoutX="443.0" layoutY="392.0" prefHeight="17.0" prefWidth="252.0" />
-        <Label layoutX="380.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="Brand:" />
-        <Label fx:id="brandLabel" layoutX="434.0" layoutY="442.0" prefHeight="17.0" prefWidth="333.0" />
+        <Label layoutX="380.0" layoutY="442.0" prefHeight="17.0" prefWidth="65.0" text="Brand:" />
+        <Label fx:id="brandLabel" layoutX="448.0" layoutY="442.0" prefHeight="17.0" prefWidth="319.0" />
         <Label layoutX="377.0" layoutY="501.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
         <Label fx:id="sellerLabel" layoutX="443.0" layoutY="501.0" prefHeight="17.0" prefWidth="340.0" />
         <Label layoutX="381.0" layoutY="559.0" prefHeight="17.0" prefWidth="36.0" text="Stock:" />

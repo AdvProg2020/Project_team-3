@@ -120,8 +120,8 @@ public class ItemMenuController {
             if(messageImageName!=null){
                 File message=new File(messageImageName);
                 messageImageView.setImage(new Image(String.valueOf(message.toURI().toURL())));
-                messageImageView.setTranslateX(itemImage.getTranslateX()+itemImage.getFitWidth()-messageImageView.getFitWidth());
-                messageImageView.setTranslateY(itemImage.getTranslateY()+itemImage.getFitHeight()-messageImageView.getFitHeight());
+                messageImageView.setTranslateX(-10);
+                messageImageView.setTranslateY(230);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
