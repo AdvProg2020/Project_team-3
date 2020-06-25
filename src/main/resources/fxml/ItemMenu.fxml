@@ -71,13 +71,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="videoLabel" alignment="CENTER" layoutX="65.0" layoutY="271.0" prefHeight="27.0" prefWidth="267.0">
+                        <Label fx:id="videoLabel" alignment="CENTER" layoutX="120.0" layoutY="259.0" prefHeight="27.0" prefWidth="267.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                           <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="320.0" layoutX="93.0" layoutY="43.0" />
-                            <Button fx:id="playPause" layoutX="221.0" layoutY="272.0" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
+                            <Button fx:id="playPause" layoutX="221.0" layoutY="296.0" mnemonicParsing="false" onAction="#playPauseButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Play" />
                      </children></AnchorPane>
             </content>
           </Tab>
