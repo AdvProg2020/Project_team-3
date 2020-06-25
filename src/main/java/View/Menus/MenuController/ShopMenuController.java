@@ -172,11 +172,11 @@ public class ShopMenuController {
         container.setAlignment(Pos.BOTTOM_RIGHT);
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
         if(item.getInStock()==0){
-            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),50,50,false,false);
+            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),66,65,false,false);
             ImageView soldOut=new ImageView(inStock);
             container.getChildren().addAll(imageView, soldOut);
         }else if(item.isInSale()){
-            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),75,41,false,false);
+            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),70,64,false,false);
             ImageView inSale=new ImageView(sale);
             container.getChildren().addAll(imageView, inSale);
         }else{

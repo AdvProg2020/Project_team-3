@@ -74,3 +74,15 @@
         -fx-background-color: #dedcde;
         -fx-border-color: #bababa;
     }
+
+    .g1 {
+        -fx-background-image: url("design/1.png");
+    }
+
+    .g2 {
+        -fx-background-image: url("design/2.png");
+    }
+
+    .g3 {
+        -fx-background-image: url("design/3.png");
+    }
