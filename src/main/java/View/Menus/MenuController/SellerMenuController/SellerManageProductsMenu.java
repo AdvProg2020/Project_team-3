@@ -6,10 +6,14 @@ import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.util.regex.Pattern;
 
@@ -34,6 +38,8 @@ public class SellerManageProductsMenu {
     @FXML TextField brandName;
     @FXML TextField categoryName;
     @FXML TextField sellerName;
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML public void initialize() {
         MusicManager.getInstance().setSongName("first.wav");
@@ -42,6 +48,24 @@ public class SellerManageProductsMenu {
         sortChoiceBox.setValue("sort by view");
         update();
         updateFilter();
+        setFont();
+    }
+
+    private void setFont(){
+        for(Node node:anchorPane.getChildren()){
+            if(node instanceof Label){
+                ((Label)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+            }
+            if(node instanceof Text){
+                ((Text)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+            }
+            if(node instanceof TextArea){
+                ((TextArea)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+            }
+            if(node instanceof TextField){
+                ((TextField)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+            }
+        }
     }
 
     public void update() {

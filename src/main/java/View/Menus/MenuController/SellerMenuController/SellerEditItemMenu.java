@@ -36,6 +36,10 @@ public class SellerEditItemMenu {
         updateBuyers();
     }
 
+    private void setFont(){
+
+    }
+
     private void updateAttributes(){
         Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
         listView.getItems().clear();

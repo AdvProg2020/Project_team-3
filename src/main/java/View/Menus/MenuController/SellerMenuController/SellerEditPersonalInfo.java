@@ -7,11 +7,15 @@ import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -33,7 +37,7 @@ public class SellerEditPersonalInfo {
    @FXML private ImageView imageView;
    @FXML private PasswordField passwordField;
    @FXML private CheckBox passwordCheckBox;
-
+   @FXML private AnchorPane anchorPane;
 
    @FXML public void initialize() {
       MusicManager.getInstance().setSongName("first.wav");
@@ -43,6 +47,24 @@ public class SellerEditPersonalInfo {
       passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
       passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
       update();
+      setFont();
+   }
+
+   private void setFont(){
+      for(Node node:anchorPane.getChildren()){
+         if(node instanceof Label){
+            ((Label)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+         }
+         if(node instanceof Text){
+            ((Text)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+         }
+         if(node instanceof TextArea){
+            ((TextArea)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+         }
+         if(node instanceof TextField){
+            ((TextField)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+         }
+      }
    }
 
    public void update(){

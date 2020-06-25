@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class LoginMenuController {
 
@@ -30,6 +31,11 @@ public class LoginMenuController {
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordField.visibleProperty().bind(passwordCheckBox.selectedProperty().not());
         passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
+
+        usernameTextField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
+        passwordTextField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
+        passwordField.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 14));
+        errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
     public void login(ActionEvent actionEvent) {

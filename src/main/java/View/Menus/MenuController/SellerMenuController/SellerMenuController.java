@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -35,6 +36,7 @@ public class SellerMenuController {
             }
             personalInfoUpdate();
         }
+        personalInfo.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
     public void personalInfoUpdate(){

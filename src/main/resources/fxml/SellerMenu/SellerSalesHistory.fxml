@@ -20,12 +20,12 @@
        </MenuBar>
       <ListView fx:id="saleLog" layoutX="172.0" layoutY="118.0" prefHeight="470.0" prefWidth="349.0" />
       <ListView fx:id="itemListView" layoutX="691.0" layoutY="118.0" prefHeight="470.0" prefWidth="309.0" />
-      <Label alignment="CENTER" layoutX="168.0" layoutY="85.0" prefHeight="17.0" prefWidth="349.0" text="Sale Log">
+      <Label fx:id="label1" alignment="CENTER" layoutX="168.0" layoutY="85.0" prefHeight="17.0" prefWidth="349.0" text="Sale Log">
          <font>
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="691.0" layoutY="89.0" prefHeight="17.0" prefWidth="309.0" text="Items">
+      <Label fx:id="label2" alignment="CENTER" layoutX="691.0" layoutY="89.0" prefHeight="17.0" prefWidth="309.0" text="Items">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
