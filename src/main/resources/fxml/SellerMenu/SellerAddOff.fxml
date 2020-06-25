@@ -13,7 +13,7 @@
             </Menu>
         </menus>
     </MenuBar>
-   <TextField fx:id="offPercentage" layoutX="160.0" layoutY="116.0" onKeyReleased="#updatePercent" prefHeight="25.0" prefWidth="157.0" promptText="Enter an Integer" styleClass="underlinedTextField" />
+   <TextField fx:id="offPercentage" layoutX="160.0" layoutY="116.0" onKeyReleased="#updatePercent" prefHeight="27.0" prefWidth="157.0" promptText="Enter an Integer" styleClass="underlinedTextField" />
    <Label fx:id="offp" layoutX="64.0" layoutY="120.0" prefHeight="17.0" prefWidth="89.0" text="Off Percentage:" />
    <DatePicker fx:id="startDate" layoutX="160.0" layoutY="176.0" prefHeight="25.0" prefWidth="157.0" style="-fx-border-width: 2 2 2 2; -fx-color: #94a8b3;" styleClass="underlinedTextField" />
    <Label fx:id="startsat" layoutX="93.0" layoutY="180.0" prefHeight="17.0" prefWidth="52.0" text="Starts at" />

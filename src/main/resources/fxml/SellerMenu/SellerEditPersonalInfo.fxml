@@ -10,14 +10,14 @@
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-    <PasswordField fx:id="passwordField" layoutX="68.0" layoutY="193.0" styleClass="underlinedTextField" />
-    <TextField fx:id="passwordTextField" layoutX="68.0" layoutY="193.0" promptText="New Password" styleClass="underlinedTextField" />
+    <PasswordField fx:id="passwordField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" styleClass="underlinedTextField" />
+    <TextField fx:id="passwordTextField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" promptText="New Password" styleClass="underlinedTextField" />
     <CheckBox fx:id="passwordCheckBox" layoutX="109.0" layoutY="225.0" mnemonicParsing="false" text="show password?" />
     <Button layoutX="243.0" layoutY="192.0" onMouseClicked="#changePassword" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
-    <TextField fx:id="name" layoutX="68.0" layoutY="30.0" onKeyReleased="#updateName" promptText="New First Name" styleClass="underlinedTextField" />
-    <TextField fx:id="surname" layoutX="68.0" layoutY="67.0" onKeyReleased="#updateName" promptText="New Surname" styleClass="underlinedTextField" />
-    <TextField fx:id="email" layoutX="68.0" layoutY="107.0" onKeyReleased="#updateEmail" promptText="New Email" styleClass="underlinedTextField" />
-    <TextField fx:id="number" layoutX="68.0" layoutY="150.0" onKeyReleased="#updateNumber" promptText="New Number" styleClass="underlinedTextField" />
+    <TextField fx:id="name" layoutX="68.0" layoutY="30.0" onKeyReleased="#updateName" prefHeight="27.0" prefWidth="149.0" promptText="New First Name" styleClass="underlinedTextField" />
+    <TextField fx:id="surname" layoutX="68.0" layoutY="67.0" onKeyReleased="#updateName" prefHeight="27.0" prefWidth="149.0" promptText="New Surname" styleClass="underlinedTextField" />
+    <TextField fx:id="email" layoutX="68.0" layoutY="107.0" onKeyReleased="#updateEmail" prefHeight="27.0" prefWidth="149.0" promptText="New Email" styleClass="underlinedTextField" />
+    <TextField fx:id="number" layoutX="68.0" layoutY="150.0" onKeyReleased="#updateNumber" prefHeight="27.0" prefWidth="149.0" promptText="New Number" styleClass="underlinedTextField" />
     <ListView fx:id="personalInfo" layoutX="14.0" layoutY="249.0" prefHeight="174.0" prefWidth="217.0" />
     <ImageView fx:id="imageView" fitHeight="148.0" fitWidth="244.0" layoutX="321.0" layoutY="10.0" />
     <Button layoutX="243.0" layoutY="29.0" onMouseClicked="#changeName" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />

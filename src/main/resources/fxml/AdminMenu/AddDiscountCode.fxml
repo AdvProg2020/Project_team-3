@@ -9,9 +9,9 @@
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-            <TextField fx:id="percent" layoutX="72.0" layoutY="73.0" onKeyReleased="#updatePercent" promptText="Discount Percentage" styleClass="underlinedTextField" />
-            <TextField fx:id="maxDiscount" layoutX="72.0" layoutY="126.0" onKeyReleased="#updateMaxDiscount" promptText="Max. Discount Amount" styleClass="underlinedTextField" />
-            <TextField fx:id="usage" layoutX="72.0" layoutY="178.0" onKeyReleased="#updateUsage" promptText="Max. Usage Count" styleClass="underlinedTextField" />
+            <TextField fx:id="percent" layoutX="72.0" layoutY="73.0" onKeyReleased="#updatePercent" prefHeight="27.0" prefWidth="149.0" promptText="Discount Percentage" styleClass="underlinedTextField" />
+            <TextField fx:id="maxDiscount" layoutX="72.0" layoutY="126.0" onKeyReleased="#updateMaxDiscount" prefHeight="27.0" prefWidth="149.0" promptText="Max. Discount Amount" styleClass="underlinedTextField" />
+            <TextField fx:id="usage" layoutX="72.0" layoutY="178.0" onKeyReleased="#updateUsage" prefHeight="27.0" prefWidth="149.0" promptText="Max. Usage Count" styleClass="underlinedTextField" />
 
              <DatePicker fx:id="start" layoutX="72.0" layoutY="223.0" promptText="Starting Date" style="-fx-border-width: 2 2 2 2; -fx-color: #94a8b3;" styleClass="underlinedTextField"> </DatePicker>
 

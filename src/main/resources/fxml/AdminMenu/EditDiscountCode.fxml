@@ -10,13 +10,13 @@
         </Menu>
     </MenuBar>
     <Label layoutX="55.0" layoutY="31.0" prefHeight="17.0" prefWidth="48.0" text="percent:" />
-    <TextField fx:id="percent" layoutX="111.0" layoutY="26.0" onKeyReleased="#updatePercent" promptText="Enter a new percent" styleClass="underlinedTextField" />
+    <TextField fx:id="percent" layoutX="111.0" layoutY="26.0" onKeyReleased="#updatePercent" prefHeight="27.0" prefWidth="149.0" promptText="Enter a new percent" styleClass="underlinedTextField" />
 
     <Label layoutX="27.0" layoutY="73.0" text="max discount:" />
-    <TextField fx:id="maxDiscount" layoutX="111.0" layoutY="68.0" onKeyReleased="#updateMaxDiscount" promptText="Enter a new Max. discount" styleClass="underlinedTextField" />
+    <TextField fx:id="maxDiscount" layoutX="111.0" layoutY="68.0" onKeyReleased="#updateMaxDiscount" prefHeight="27.0" prefWidth="149.0" promptText="Enter a new Max. discount" styleClass="underlinedTextField" />
 
     <Label layoutX="65.0" layoutY="113.0" text="usage:" />
-    <TextField fx:id="usage" layoutX="111.0" layoutY="108.0" onKeyReleased="#updateUsage" promptText="Max. usage count" styleClass="underlinedTextField" />
+    <TextField fx:id="usage" layoutX="111.0" layoutY="108.0" onKeyReleased="#updateUsage" prefHeight="27.0" prefWidth="149.0" promptText="Max. usage count" styleClass="underlinedTextField" />
 
    
 

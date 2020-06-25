@@ -14,15 +14,15 @@
             </Menu>
         </menus>
     </MenuBar>
-   <TextField fx:id="itemName" layoutX="338.0" layoutY="52.0" promptText="Enter a name" styleClass="underlinedTextField" />
-   <TextField fx:id="brandName" layoutX="338.0" layoutY="106.0" promptText="Item's manufacturer" styleClass="underlinedTextField" />
+   <TextField fx:id="itemName" layoutX="338.0" layoutY="52.0" prefHeight="27.0" prefWidth="149.0" promptText="Enter a name" styleClass="underlinedTextField" />
+   <TextField fx:id="brandName" layoutX="338.0" layoutY="106.0" prefHeight="27.0" prefWidth="149.0" promptText="Item's manufacturer" styleClass="underlinedTextField" />
    <Label layoutX="264.0" layoutY="56.0" prefHeight="17.0" prefWidth="66.0" text="Item Name:" />
    <Label layoutX="265.0" layoutY="110.0" text="Brand Name:" />
    <Label layoutX="267.0" layoutY="160.0" text="Description:" />
    <Label layoutX="298.0" layoutY="428.0" prefHeight="17.0" prefWidth="32.0" text="Price:" />
-   <TextField fx:id="price" layoutX="338.0" layoutY="424.0" promptText="Enter a valid price" styleClass="underlinedTextField" />
+   <TextField fx:id="price" layoutX="338.0" layoutY="424.0" prefHeight="27.0" prefWidth="149.0" promptText="Enter a valid price" styleClass="underlinedTextField" />
    <TextArea fx:id="descriptionText" layoutX="338.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" />
-   <TextField fx:id="count" layoutX="338.0" layoutY="480.0" promptText="Number of items in stock" styleClass="underlinedTextField" />
+   <TextField fx:id="count" layoutX="338.0" layoutY="480.0" prefHeight="27.0" prefWidth="149.0" promptText="Number of items in stock" styleClass="underlinedTextField" />
    <Label layoutX="291.0" layoutY="484.0" text="Count:" />
    <Label layoutX="276.0" layoutY="543.0" text="Category:" />
    <Button layoutX="387.0" layoutY="644.0" mnemonicParsing="false" onAction="#createItem" styleClass="myBlueButton" text="Create" />
@@ -36,7 +36,7 @@
    <Label fx:id="priceError" layoutX="501.0" layoutY="428.0" prefHeight="17.0" prefWidth="165.0" />
    <Label fx:id="countError" layoutX="501.0" layoutY="484.0" prefHeight="17.0" prefWidth="165.0" />
    <Label fx:id="categoryError" layoutX="501.0" layoutY="543.0" prefHeight="17.0" prefWidth="165.0" />
-   <TextField fx:id="category" layoutX="338.0" layoutY="539.0" promptText="Type a valid Category" styleClass="underlinedTextField" />
+   <TextField fx:id="category" layoutX="338.0" layoutY="539.0" prefHeight="27.0" prefWidth="149.0" promptText="Type a valid Category" styleClass="underlinedTextField" />
    <Label fx:id="imageAddress" layoutX="941.0" layoutY="56.0" prefHeight="61.0" prefWidth="200.0" />
    <Label fx:id="videoAddress" layoutX="941.0" layoutY="135.0" prefHeight="61.0" prefWidth="200.0" />
 

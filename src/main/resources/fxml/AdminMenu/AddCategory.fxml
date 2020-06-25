@@ -11,8 +11,8 @@
         </Menu>
     </MenuBar>
     <Label layoutX="14.0" layoutY="81.0" text="category name:" />
-    <TextField fx:id="categoryName" layoutX="106.0" layoutY="77.0" onKeyReleased="#updateCategoryName" promptText="Enter a name" styleClass="underlinedTextField"> </TextField>
-    <TextField fx:id="attribute" layoutX="105.0" layoutY="175.0" promptText="Enter an Attribute" styleClass="underlinedTextField"> </TextField>
+    <TextField fx:id="categoryName" layoutX="106.0" layoutY="77.0" onKeyReleased="#updateCategoryName" prefHeight="27.0" prefWidth="150.0" promptText="Enter a name" styleClass="underlinedTextField"> </TextField>
+    <TextField fx:id="attribute" layoutX="105.0" layoutY="175.0" prefHeight="27.0" prefWidth="150.0" promptText="Enter an Attribute" styleClass="underlinedTextField"> </TextField>
     <ListView fx:id="attributeList" layoutX="327.0" layoutY="58.0" onMouseClicked="#remove" prefHeight="235.0" prefWidth="248.0" />
     <Button layoutX="261.0" layoutY="175.0" onMouseClicked="#add" styleClass="myBlueButton" text="+" />
     <Label layoutX="18.0" layoutY="180.0" text="Add Attribute:" />
