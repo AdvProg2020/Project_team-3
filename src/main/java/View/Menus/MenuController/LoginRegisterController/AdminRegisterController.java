@@ -153,6 +153,7 @@ public class AdminRegisterController {
             }
         }
         if(canRegister==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in Register process!");
             alert.setContentText("you must correct your mistakes for successful register!");
@@ -163,6 +164,7 @@ public class AdminRegisterController {
         }
         UserController.getInstance().registerAdmin(usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
         emptyAllText();
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("successful register!");
         alert.setContentText("new Admin successfully added to your system!");

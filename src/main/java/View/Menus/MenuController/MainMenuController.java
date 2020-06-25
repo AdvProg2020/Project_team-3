@@ -216,6 +216,7 @@ public class MainMenuController {
     }
 
     private void showLogoutAlertBox(){
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("logout successful!");
         alert.show();
@@ -237,6 +238,7 @@ public class MainMenuController {
         MusicManager.getInstance().playSound("Button");
         animationTimer.stop();
         if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyers can view Cart Menu!");
             alert.showAndWait();

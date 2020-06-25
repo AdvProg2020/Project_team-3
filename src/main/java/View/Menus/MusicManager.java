@@ -29,11 +29,25 @@ public class MusicManager extends Thread{
                 e.printStackTrace();
             }
         }
-
+        else if(action.equalsIgnoreCase("Error")){
+            File file=new File("src/main/resources/Sounds/error.mp3");
+            try {
+                sound=new Media(file.toURI().toURL().toExternalForm());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(action.equalsIgnoreCase("notify")){
+            File file=new File("src/main/resources/Sounds/notify.wav");
+            try {
+                sound=new Media(file.toURI().toURL().toExternalForm());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
         mediaPlayer=new MediaPlayer(sound);
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.play();
-
     }
 
 

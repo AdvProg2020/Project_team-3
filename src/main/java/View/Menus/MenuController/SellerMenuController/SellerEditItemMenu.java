@@ -99,6 +99,7 @@ public class SellerEditItemMenu {
     }
 
     private void sendAlert(String text,String nextScene){
+        MusicManager.getInstance().playSound("notify");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("");
         alert.setHeaderText(null);

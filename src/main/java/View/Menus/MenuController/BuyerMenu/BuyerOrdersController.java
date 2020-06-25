@@ -147,6 +147,7 @@ public class BuyerOrdersController {
     public void showItem(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         if(detailsListView.getSelectionModel().getSelectedItem()==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you did not choose any item!");
             alert.showAndWait();

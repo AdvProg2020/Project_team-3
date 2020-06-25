@@ -126,6 +126,11 @@ public class SellerAddOff {
     }
 
     protected static void showAlertBox(String message,String type){
+        if(type.equalsIgnoreCase("Error")){
+            MusicManager.getInstance().playSound("error");
+        }else {
+            MusicManager.getInstance().playSound("notify");
+        }
         Alert alert = new Alert(Alert.AlertType.valueOf(type));
         alert.setContentText(message);
         alert.showAndWait();

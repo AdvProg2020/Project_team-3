@@ -79,6 +79,7 @@ public class BuyerRegisterController {
             }
         }
         if(canRegister==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("please fill all the fields correctly");
@@ -90,6 +91,7 @@ public class BuyerRegisterController {
         double money=UserController.getInstance().validateMoney(moneyTextField.getText());
         UserController.getInstance().registerBuyer(money,usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),numberTextField.getText());
         emptyAllText();
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("INFORMATION");
         alert.setContentText("your account has been registered");

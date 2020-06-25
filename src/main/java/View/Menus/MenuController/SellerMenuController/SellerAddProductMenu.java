@@ -196,6 +196,7 @@ public class SellerAddProductMenu {
     }
 
     private void sendAlert(){
+        MusicManager.getInstance().playSound("notify");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(null);

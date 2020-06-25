@@ -43,12 +43,14 @@ public class commentMenuController {
    public void sendComment(ActionEvent actionEvent) {
       MusicManager.getInstance().playSound("Button");
       if(commentTextArea.getText().equals("")){
+         MusicManager.getInstance().playSound("error");
          Alert alert=new Alert(Alert.AlertType.ERROR);
          alert.setContentText("fill the comment Text area!");
          alert.show();
          return;
       }
       ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID,fatherCommentId);
+      MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText("your comment was sent to our admin!");
       alert.show();

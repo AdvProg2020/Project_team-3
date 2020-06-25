@@ -3,6 +3,7 @@ package View.Menus.MenuController.BuyerMenu;
 import Controller.CartController;
 import Controller.UserController;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +51,7 @@ public class PurchaseMenu {
 
    public void buy(MouseEvent mouseEvent){
       if(validateAddress()==false) {
+         MusicManager.getInstance().playSound("notify");
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText("enter a valid address");
          alert.showAndWait();
@@ -61,6 +63,7 @@ public class PurchaseMenu {
       }else {
          message=CartController.getInstance().buy(address.getText());
       }
+      MusicManager.getInstance().playSound("notify");
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText(message);
       alert.showAndWait();

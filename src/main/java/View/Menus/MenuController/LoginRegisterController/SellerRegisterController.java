@@ -84,6 +84,7 @@ public class SellerRegisterController {
             }
         }
         if(canRegister==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in Register process!");
             alert.setContentText("please fill all the fields correctly");
@@ -95,6 +96,7 @@ public class SellerRegisterController {
         double money=UserController.getInstance().validateMoney(moneyTextField.getText());
         UserController.getInstance().registerSeller(money,usernameTextField.getText(),passwordField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),phoneNumberTextField.getText(),companyTextField.getText());
         emptyAllText();
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("successful!");
         alert.setContentText("your request has been sent to the admin");

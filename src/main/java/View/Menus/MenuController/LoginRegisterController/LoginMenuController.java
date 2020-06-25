@@ -45,6 +45,7 @@ public class LoginMenuController {
         }
         String message=UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
         if(message.startsWith("Error")){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText(message);
             alert.showAndWait();
@@ -111,6 +112,7 @@ public class LoginMenuController {
     private void errorAfterMistake(){
         usernameTextField.setText("");
         passwordField.setText("");
+        MusicManager.getInstance().playSound("error");
         Alert alert=new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error!");
         alert.setContentText("invalid username or password");

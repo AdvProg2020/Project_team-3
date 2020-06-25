@@ -153,12 +153,14 @@ public class ItemMenuController {
         MusicManager.getInstance().playSound("Button");
         User user=UserController.getInstance().getCurrentOnlineUser();
         if(user==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must login in our system for adding comment!");
             alert.show();
             return;
         }
         if((user instanceof Buyer)==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyer Users can leave comment!");
             alert.show();
@@ -174,12 +176,14 @@ public class ItemMenuController {
         MusicManager.getInstance().playSound("Button");
         int rating=getRating();
         if(rating==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("please choose a rating first.");
             alert.showAndWait();
             return;
         }
         String message=ItemAndCategoryController.getInstance().rate(rating,itemID);
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
@@ -214,6 +218,7 @@ public class ItemMenuController {
         User user=Controller.getInstance().getCurrentOnlineUser();
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("ERROR");
             alert.setContentText("you are not a buyer");
@@ -222,6 +227,7 @@ public class ItemMenuController {
         }
         Cart cart=Controller.getInstance().getCurrentShoppingCart();
         if(cart.includesItem(itemID)){
+            MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
             alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
@@ -229,6 +235,7 @@ public class ItemMenuController {
             return;
         }
         if(item.getInStock()==0){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("sold out Item!");
@@ -236,6 +243,7 @@ public class ItemMenuController {
             return;
         }
         CartController.getInstance().addItemToCart(itemID);
+        MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
         alert.show();
@@ -270,6 +278,7 @@ public class ItemMenuController {
         MusicManager.getInstance().playSound("Button");
         String selectedItem=(String) itemComoBox.getSelectionModel().getSelectedItem();
         if(selectedItem==null){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must select an item first!");
             alert.showAndWait();
@@ -392,12 +401,14 @@ public class ItemMenuController {
             @Override
             public void handle(ActionEvent event) {
                 if(Controller.getInstance().getCurrentOnlineUser()==null){
+                    MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("you must login first!");
                     alert.showAndWait();
                     return;
                 }
                 if(!(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+                    MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("only Buyers can leave comment here!");
                     alert.showAndWait();
@@ -443,6 +454,7 @@ public class ItemMenuController {
         MusicManager.getInstance().playSound("Button");
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if(item.getVideoName().equals("")){
+            MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("this item doesn't contain any video!");
             alert.showAndWait();
