@@ -41,13 +41,16 @@ public class SellerEditOff {
         currentOffPercent.setText(Integer.toString(sale.getOffPercentage()));
         currentStartDate.setText(sale.getStartTime().toString());
         currentEndDate.setText(sale.getEndTime().toString());
+        setFonts();
+    }
 
-        currentOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
-        currentStartDate.setFont(Font.loadFont("file:src/main/resources/fonts/Q.otf", 14));
-        currentEndDate.setFont(Font.loadFont("file:src/main/resources/fonts/C.otf", 14));
+    private void setFonts(){
+        currentOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        currentStartDate.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        currentEndDate.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
 
-        errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
-        newOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/G.ttf", 14));
+        errorLabel.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        newOffPercent.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
     }
 
     @FXML private Text currentOffPercent;

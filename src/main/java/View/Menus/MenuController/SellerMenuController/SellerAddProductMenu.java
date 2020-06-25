@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -224,7 +225,22 @@ public class SellerAddProductMenu {
     }
 
 
-    public void initialize(){ MusicManager.getInstance().setSongName("first.wav");}
+    public void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
+        itemName.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        itemNameError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        brandNameError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        brandName.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        descriptionText.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        price.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        countError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        category.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        priceError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        count.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        categoryError.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        imageAddress.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+        videoAddress.setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
+    }
 
 
 
@@ -247,4 +263,5 @@ public class SellerAddProductMenu {
         }
         return aDouble>0;
     }
+
 }
