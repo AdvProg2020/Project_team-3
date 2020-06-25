@@ -6,6 +6,7 @@ import Controller.UserController;
 import Model.Item;
 import Model.Users.Seller;
 import View.Menus.MenuController.ItemMenuController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -143,6 +144,7 @@ public class SellerEditItemMenu {
 
 
     public void commercial(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         String message=CommercialController.getInstance().addCommercialRequest(itemID);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);

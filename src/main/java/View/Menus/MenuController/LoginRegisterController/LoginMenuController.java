@@ -2,6 +2,7 @@ package View.Menus.MenuController.LoginRegisterController;
 
 import Controller.*;
 import Model.Users.Buyer;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import Model.Users.User;
@@ -31,6 +32,7 @@ public class LoginMenuController {
     }
 
     public void login(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         boolean isValidUsername=validUsername(usernameTextField.getText());
         if(isValidUsername==false) {
             errorAfterMistake();
@@ -94,11 +96,13 @@ public class LoginMenuController {
 
 
     public void registerBuyer(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void registerSeller(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
@@ -121,16 +125,19 @@ public class LoginMenuController {
 
 
     public void back() {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
     }
 
     public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void goToSellerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().saveScene(SceneSwitcher.getInstance().getMainSceneName());
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");

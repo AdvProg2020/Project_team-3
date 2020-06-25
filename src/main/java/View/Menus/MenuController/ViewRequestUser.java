@@ -1,6 +1,7 @@
 package View.Menus.MenuController;
 
 import Controller.UserController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class ViewRequestUser {
    }
 
    public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().back();
    }
 }

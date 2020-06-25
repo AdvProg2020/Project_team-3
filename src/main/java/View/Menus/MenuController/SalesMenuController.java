@@ -6,6 +6,7 @@ import Controller.SortAndFilterController;
 import Controller.UserController;
 import Model.Item;
 import Model.Sale;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,6 +69,7 @@ public class SalesMenuController {
 
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 

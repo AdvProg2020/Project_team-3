@@ -7,6 +7,7 @@ import Model.Requests.SaleEdit;
 import Model.Sale;
 import Model.Users.Seller;
 import View.Menus.MenuController.ItemMenuController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -55,6 +56,7 @@ public class SellerManageOffs {
 
     @FXML
     private void back(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
     @FXML

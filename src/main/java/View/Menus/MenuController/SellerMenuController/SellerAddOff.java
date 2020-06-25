@@ -1,6 +1,7 @@
 package View.Menus.MenuController.SellerMenuController;
 
 import Controller.*;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.fxml.FXML;
@@ -17,7 +18,9 @@ public class SellerAddOff {
 
 
     @FXML
-    private void back(){
+    private void back()
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
     @FXML

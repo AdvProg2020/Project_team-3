@@ -10,6 +10,7 @@ import Model.Comment;
 import Model.Item;
 import Model.Users.Buyer;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,7 +134,6 @@ public class ItemMenuController {
         double frameWidth = (item.getRating() / 5)*200;
         Rectangle mask = new Rectangle(frameWidth, 28);
         rating.setClip(mask);
-        System.out.println("salam");
         updateSimpleItem();
         initializeMediaPlayer();
     }
@@ -150,6 +150,7 @@ public class ItemMenuController {
 
 
     public void comment(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         User user=UserController.getInstance().getCurrentOnlineUser();
         if(user==null){
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -170,6 +171,7 @@ public class ItemMenuController {
 
 
     public void rate(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         int rating=getRating();
         if(rating==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -195,6 +197,7 @@ public class ItemMenuController {
     }
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
@@ -207,6 +210,7 @@ public class ItemMenuController {
     }
 
     public void addToCart(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         User user=Controller.getInstance().getCurrentOnlineUser();
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
@@ -263,6 +267,7 @@ public class ItemMenuController {
     }
 
     public void compare(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         String selectedItem=(String) itemComoBox.getSelectionModel().getSelectedItem();
         if(selectedItem==null){
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -435,6 +440,7 @@ public class ItemMenuController {
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
         if(item.getVideoName().equals("")){
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -454,7 +460,7 @@ public class ItemMenuController {
     }
 
     public void addCommentDialogBox(){
-       SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
+        SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
     }
 
 
@@ -566,6 +572,7 @@ public class ItemMenuController {
         });
     }
     public void showItem(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item selected=familyItemListView.getSelectionModel().getSelectedItem();
         if(selected!=null) {
             ItemMenuController.setItemID(selected.getId());

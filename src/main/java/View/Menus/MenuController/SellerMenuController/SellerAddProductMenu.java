@@ -2,6 +2,7 @@ package View.Menus.MenuController.SellerMenuController;
 
 import Controller.ItemAndCategoryController;
 import Controller.UserController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ public class SellerAddProductMenu {
 
     @FXML
     private void back(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
     @FXML
@@ -39,6 +41,7 @@ public class SellerAddProductMenu {
 
     @FXML
     private void imageChooserOpen(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -62,6 +65,7 @@ public class SellerAddProductMenu {
 
     @FXML
     private void videoChooserOpen(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("MP4","*.mp4"),

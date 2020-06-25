@@ -2,6 +2,7 @@ package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
 import Controller.SaleAndDiscountCodeController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.event.ActionEvent;
@@ -49,6 +50,7 @@ public class AddDiscountCode {
    }
 
    public void create(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(valid()==false){
          showAlertBox("please fill all the fields correctly","WARNING");
          return;
@@ -73,10 +75,12 @@ public class AddDiscountCode {
    }
 
    public void back(ActionEvent actionEvent)  {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
    public void reset(MouseEvent mouseEvent) {
+    MusicManager.getInstance().playSound("Button");
     percent.clear();
     usage.clear();
     maxDiscount.clear();
@@ -131,6 +135,7 @@ public class AddDiscountCode {
    }
 
    public void selectUser(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       int index=userList.getSelectionModel().getSelectedIndex();
       System.out.println(index);
       if(index==-1)

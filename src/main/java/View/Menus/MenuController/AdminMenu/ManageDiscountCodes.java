@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.Database;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,10 +27,12 @@ public class ManageDiscountCodes {
    }
 
    public void back(ActionEvent actionEvent)  {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
 
    public void discountCodeSelect(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       int index=listView.getSelectionModel().getSelectedIndex();
       System.out.println(index);
       if(index==-1)

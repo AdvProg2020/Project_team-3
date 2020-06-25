@@ -1,5 +1,6 @@
 package View.Menus.MenuController.LoginRegisterController;
 
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -44,6 +45,7 @@ public class SellerRegisterController {
     }
 
     public void openFileChooser(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -65,6 +67,7 @@ public class SellerRegisterController {
     }
 
     public void Register(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Boolean [] validation=new Boolean[8];
         Boolean canRegister=true;
         validation[0]=validUsername(usernameTextField.getText());
@@ -241,27 +244,33 @@ public class SellerRegisterController {
     }
 
     public void back(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
     public void mainMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void login(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void buyerRegister(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("SellerRegister");
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }
 
     public void Exit(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeWindow();
     }
 
     public void goToBuyerRegisterMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("SellerRegister");
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }

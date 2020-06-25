@@ -5,6 +5,7 @@ import Controller.UserController;
 import Model.Cart;
 import Model.Item;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +48,7 @@ public class CartMenuController {
 
 
     public void increaseItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you have not added any item!");
@@ -69,6 +71,7 @@ public class CartMenuController {
     }
 
     public void decreaseItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you have not added any item!");
@@ -91,6 +94,7 @@ public class CartMenuController {
     }
 
     public void showItem(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Item selected=itemListView.getSelectionModel().getSelectedItem();
         if(selected==null) {
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -104,11 +108,13 @@ public class CartMenuController {
     }
 
     public void clearCartPressed(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         CartController.getInstance().getCurrentShoppingCart().empty();
         itemListView.getItems().clear();
     }
 
     public void buy(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(itemListView.getItems().size()==0){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("cart is empty");
@@ -134,10 +140,12 @@ public class CartMenuController {
     }
 
     public void back(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
     public void goToShopMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }

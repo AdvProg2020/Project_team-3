@@ -5,6 +5,7 @@ import Model.Category;
 import Model.Item;
 import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,7 +74,9 @@ public class ShopMenuController {
     }
 
 
-    public void back(ActionEvent actionEvent) {
+    public void back(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 
@@ -211,6 +214,7 @@ public class ShopMenuController {
     }
 
     public void sort(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         String sort=sortChoiceBox.getValue().toString();
         if(sort.equals("sort by view")){
             SortAndFilterController.getInstance().disableSort();
@@ -255,6 +259,7 @@ public class ShopMenuController {
     }
 
     public void reset(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SortAndFilterController.getInstance().disableFilterAttribute();
         SortAndFilterController.getInstance().disableFilterAvailability();
         SortAndFilterController.getInstance().disableFilterBrandName();
@@ -315,6 +320,7 @@ public class ShopMenuController {
     }
 
     public void filterCategoryName(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((categoryNameCheckBox.isSelected())&&(isValidAlphabeticTextField(categoryNameFilter))){
             SortAndFilterController.getInstance().activateFilterCategoryName(categoryNameFilter.getText());
             initLists();
@@ -326,6 +332,7 @@ public class ShopMenuController {
     }
 
     public void filterBrandName(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((brandNameCheckBox.isSelected())&&(isValidAlphabeticTextField(brandName))){
             SortAndFilterController.getInstance().activateFilterBrandName(brandName.getText());
             initLists();
@@ -337,6 +344,7 @@ public class ShopMenuController {
     }
 
     public void filterSearch(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((searchCheckBox.isSelected())&&(isValidAlphabeticTextField(search))){
             SortAndFilterController.getInstance().activateFilterName(search.getText());
             initLists();
@@ -348,6 +356,7 @@ public class ShopMenuController {
     }
 
     public void sellerFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((sellerNameCheckBox.isSelected())&&(isValidAlphabeticTextField(sellerName))){
             SortAndFilterController.getInstance().activateFilterSellerName(sellerName.getText());
             initLists();
@@ -359,6 +368,7 @@ public class ShopMenuController {
     }
 
     public void attributeFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))&&(isValidAlphabeticTextField(attributeValue))){
             SortAndFilterController.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
             initLists();
@@ -370,6 +380,7 @@ public class ShopMenuController {
     }
 
     public void priceFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if((priceCheckBox.isSelected())&&(isValidPositiveDoubleTextField(minPrice))&&(isValidPositiveDoubleTextField(maxPrice))){
             SortAndFilterController.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
             initLists();
@@ -381,6 +392,7 @@ public class ShopMenuController {
     }
 
     public void saleFilter(MouseEvent mouseEvent) {
+        MusicManager.getInstance().playSound("Button");
         if(filterSale.isSelected()){
             SortAndFilterController.getInstance().activateFilterSale();
             initLists();

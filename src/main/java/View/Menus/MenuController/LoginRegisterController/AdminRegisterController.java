@@ -1,5 +1,6 @@
 package View.Menus.MenuController.LoginRegisterController;
 
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -42,6 +43,7 @@ public class AdminRegisterController {
     }
 
     public void fileChooserOpen(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -136,6 +138,7 @@ public class AdminRegisterController {
     }
 
     public void register(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         Boolean [] validation=new Boolean[6];
         Boolean canRegister=true;
         validation[0]=validUsername(usernameTextField.getText());
@@ -203,19 +206,25 @@ public class AdminRegisterController {
     }
 
     public void MainMenu(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("AdminRegister");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
-    public void Login(ActionEvent actionEvent) {
+    public void Login(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneAndWait("Login");
     }
 
     public void Exit(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().closeWindow();
     }
 
-    public void back(ActionEvent actionEvent) {
+    public void back(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
 

@@ -1,6 +1,7 @@
 package View.Menus.MenuController.AdminMenu;
 
 import Controller.CommercialController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +16,7 @@ public class ManageCommercialIn {
 
 
    public void accept(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       String message = CommercialController.getInstance().acceptCommercial(requestId);
       showAlertBox(message);
       SceneSwitcher.getInstance().closeSecondStage();
@@ -23,6 +25,7 @@ public class ManageCommercialIn {
    }
 
    public void decline(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       CommercialController.getInstance().declineCommercial(requestId);
       showAlertBox("Successful: request declined");
       SceneSwitcher.getInstance().closeSecondStage();

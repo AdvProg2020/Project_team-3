@@ -36,7 +36,8 @@ public class AdminMenuController {
       personalInfo.setText(message);
    }
    public void manageUsers(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("ManageUsers");
+
+       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
    }
 
    public void manageDiscountCodes(ActionEvent actionEvent) {

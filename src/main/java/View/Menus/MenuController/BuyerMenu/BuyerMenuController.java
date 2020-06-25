@@ -4,6 +4,7 @@ import Controller.Controller;
 import Model.Users.Buyer;
 import Model.Users.User;
 import View.Menus.MenuController.ViewRequestUser;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import Controller.UserController;
 import javafx.event.ActionEvent;
@@ -48,44 +49,54 @@ public class BuyerMenuController {
     }
 
     @FXML
-    private void back(ActionEvent actionEvent) {
+    private void back(ActionEvent actionEvent)
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().back();
     }
     @FXML
     private void logout(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         UserController.getInstance().logout();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     @FXML
-    private void viewOrders(){
+    private void viewOrders()
+    {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("BuyLog");
     }
 
     @FXML
     private void viewDiscountCodes(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().setSceneTo("DiscountsMenu");
     }
 
     @FXML
     private void viewShop(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
     @FXML
     private void viewCart(){
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
     public void viewEditPersonalInfo(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("BuyerEditPersonalInfo");
     }
 
     public void viewRequests(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
         ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");

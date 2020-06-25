@@ -3,6 +3,7 @@ package View.Menus.MenuController.SellerMenuController;
 import Controller.Controller;
 import Controller.UserController;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,6 +61,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changeName(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(name.getText().isEmpty()) return;
       if(name.getStyle().toString().contains("red")){
          showAlertBox("incorrect name field value","ERROR");
@@ -71,6 +73,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changeSurname(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(surname.getText().isEmpty()) return;
       if(surname.getStyle().toString().contains("red")){
          showAlertBox("incorrect surname field value","ERROR");
@@ -82,6 +85,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changeEmail(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(email.getText().isEmpty()) return;
       if(email.getStyle().toString().contains("red")){
          showAlertBox("incorrect email field value","ERROR");
@@ -93,6 +97,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changeNumber(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(number.getText().isEmpty()) return;
       if(number.getStyle().toString().contains("red")){
          showAlertBox("incorrect Number field value","ERROR");
@@ -148,10 +153,12 @@ public class SellerEditPersonalInfo {
    }
 
    public void back(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("SellerMenu");
    }
 
    public void removeImage(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       User user=Controller.getInstance().getCurrentOnlineUser();
       String path=UserController.getInstance().userImagePath(user.getUsername());
       File file=new File(path);
@@ -167,6 +174,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changeImage(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       User user=Controller.getInstance().getCurrentOnlineUser();
       FileChooser fileChooser=new FileChooser();
       fileChooser.getExtensionFilters().addAll(
@@ -198,6 +206,7 @@ public class SellerEditPersonalInfo {
    }
 
    public void changePassword(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(passwordTextField.getText().equals("")){
          showAlertBox("incorrect password field value","ERROR");
          return;

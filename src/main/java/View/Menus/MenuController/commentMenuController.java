@@ -2,6 +2,7 @@ package View.Menus.MenuController;
 
 import Controller.*;
 import Model.Users.User;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -40,6 +41,7 @@ public class commentMenuController {
    }
 
    public void sendComment(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
       if(commentTextArea.getText().equals("")){
          Alert alert=new Alert(Alert.AlertType.ERROR);
          alert.setContentText("fill the comment Text area!");
