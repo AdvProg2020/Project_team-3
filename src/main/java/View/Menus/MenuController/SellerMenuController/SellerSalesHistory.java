@@ -6,6 +6,7 @@ import Model.Item;
 import Model.Logs.BuyLog;
 import Model.Logs.SaleLog;
 import Model.Users.Seller;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,7 @@ public class SellerSalesHistory {
     private SaleLog selected;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         updateSaleLogListView();
         updateSaleLogItem();
     }

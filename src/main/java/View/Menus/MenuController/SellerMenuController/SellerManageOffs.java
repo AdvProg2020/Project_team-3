@@ -22,6 +22,7 @@ public class SellerManageOffs {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         listView.getItems().clear();
         //inja miam listview ro update mikonim
         //click rooye yeki az ona mibare menuye edit sale

@@ -24,7 +24,9 @@ public class AddCategory {
    @FXML private  ListView attributeList;
    private ArrayList<String> allAttribute=new ArrayList<>();
 
-   @FXML public void initialize() {
+   @FXML public void initialize()
+   {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

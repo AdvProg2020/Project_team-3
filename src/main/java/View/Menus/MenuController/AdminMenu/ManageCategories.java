@@ -13,6 +13,7 @@ public class ManageCategories {
    @FXML ListView categoryList;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

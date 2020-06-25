@@ -23,6 +23,7 @@ public class SellerMenuController {
     @FXML private Label personalInfo;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Seller){
             User onlineUser=Controller.getInstance().getCurrentOnlineUser();
             String path=UserController.getInstance().userImagePath(onlineUser.getUsername());

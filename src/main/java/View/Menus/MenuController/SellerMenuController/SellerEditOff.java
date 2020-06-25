@@ -35,6 +35,7 @@ public class SellerEditOff {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         reset();
         Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(offID);
         currentOffPercent.setText(Integer.toString(sale.getOffPercentage()));

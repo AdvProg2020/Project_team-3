@@ -22,6 +22,7 @@ public class ManageUsers {
 
    @FXML
    public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
      update(null);
    }
 

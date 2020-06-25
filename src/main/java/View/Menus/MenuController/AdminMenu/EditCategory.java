@@ -19,6 +19,7 @@ public class EditCategory {
    private static String categoryName;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

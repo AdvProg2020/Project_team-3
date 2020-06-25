@@ -16,6 +16,7 @@ public class ManageRequestIn {
 
    @FXML
    public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       detail.setText(RequestController.getInstance().getRequestDetail(requestId));
    }
 

@@ -13,6 +13,8 @@ public class ManageProductsIn {
       ManageProductsIn.itemId = itemId;
    }
 
+   public void initialize(){MusicManager.getInstance().setSongName("first.wav");}
+
    public void close(MouseEvent mouseEvent) {
        MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("ManageProductsIn");

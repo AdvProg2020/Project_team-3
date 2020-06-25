@@ -2,6 +2,7 @@ package View.Menus.MenuController;
 
 import Controller.ItemAndCategoryController;
 import Model.Item;
+import View.Menus.MusicManager;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,7 @@ public class compareMenuController {
     }
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         Item first= ItemAndCategoryController.getInstance().getItemById(firstItemID);
         Item second=ItemAndCategoryController.getInstance().getItemById(secondItemID);
         String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();

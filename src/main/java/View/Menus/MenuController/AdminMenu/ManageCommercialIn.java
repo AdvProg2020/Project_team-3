@@ -14,6 +14,7 @@ public class ManageCommercialIn {
       ManageCommercialIn.requestId = requestId;
    }
 
+   public void initialize(){MusicManager.getInstance().setSongName("first.wav");}
 
    public void accept(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");

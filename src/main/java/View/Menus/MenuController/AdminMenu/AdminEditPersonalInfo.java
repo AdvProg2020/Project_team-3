@@ -38,6 +38,7 @@ public class AdminEditPersonalInfo {
    @FXML private CheckBox passwordCheckBox;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
       passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
       passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());

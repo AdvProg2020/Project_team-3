@@ -24,6 +24,7 @@ public class LoginMenuController {
 
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
         passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
         passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());

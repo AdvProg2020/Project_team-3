@@ -15,6 +15,8 @@ public class ManageUserIn {
       username = name;
    }
 
+   public void initialize(){MusicManager.getInstance().setSongName("first.wav");}
+
    public void deleteUser(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       String message=UserController.getInstance().deleteUser(username);

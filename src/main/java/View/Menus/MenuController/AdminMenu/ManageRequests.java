@@ -14,6 +14,7 @@ public class ManageRequests {
    @FXML private ListView listView;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

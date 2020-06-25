@@ -87,6 +87,7 @@ public class ShopMenuController {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         //categoryName = "Main";
         allCategories = Database.getInstance().printFolderContent("Categories");
         pageNumber = 1;

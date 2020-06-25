@@ -15,6 +15,7 @@ public class ManageCommercials {
    @FXML private ListView commercials;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

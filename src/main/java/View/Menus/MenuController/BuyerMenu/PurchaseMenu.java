@@ -24,6 +24,7 @@ public class PurchaseMenu {
 
    @FXML
    public void initialize()  {
+      MusicManager.getInstance().setSongName("first.wav");
       discounts.getItems().addAll(UserController.getInstance().getBuyerDiscountCode());
       discounts.getItems().add("NONE");
       discounts.setValue("NONE");

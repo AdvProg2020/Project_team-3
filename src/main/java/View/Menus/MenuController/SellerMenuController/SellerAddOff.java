@@ -55,6 +55,7 @@ public class SellerAddOff {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         errorLabel.setText("");
         allItems.getItems().clear();
         ArrayList<String> availableItems = SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems());

@@ -81,6 +81,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         attributeListView.getItems().clear();
         familyItemListView.getItems().clear();
         ivTarget.setSmooth(true);
@@ -187,7 +188,7 @@ public class ItemMenuController {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
-       /// initialize();
+        initialize();
     }
 
     public  void addAttributeListView(){
@@ -468,7 +469,6 @@ public class ItemMenuController {
             playPause.setText("Play");
             mediaPlayer.pause();
         }
-
     }
 
     public void addCommentDialogBox(){

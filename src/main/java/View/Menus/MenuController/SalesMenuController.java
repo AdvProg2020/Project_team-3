@@ -76,6 +76,7 @@ public class SalesMenuController {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         reset(null);
         allItemsBox = new ArrayList<>();
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));

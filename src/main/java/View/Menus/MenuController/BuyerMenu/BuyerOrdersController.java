@@ -45,6 +45,7 @@ public class BuyerOrdersController {
     private BuyLog selected;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
         UserController.getInstance().logout();
         UserController.getInstance().login(buyer.getUsername(),buyer.getPassword());

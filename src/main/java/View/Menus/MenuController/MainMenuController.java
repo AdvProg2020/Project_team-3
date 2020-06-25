@@ -48,6 +48,7 @@ public class MainMenuController {
     private AnimationTimer animationTimer;
 
     public void initialize(){
+        MusicManager.getInstance().setSongName("second.wav");
         Controller.getInstance().updateDateAndTime();
         ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
         if(allCommercials.isEmpty()==false){

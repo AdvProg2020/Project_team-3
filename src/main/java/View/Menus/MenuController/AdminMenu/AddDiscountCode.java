@@ -27,6 +27,7 @@ public class AddDiscountCode {
 
    @FXML
    public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       update();
    }
 

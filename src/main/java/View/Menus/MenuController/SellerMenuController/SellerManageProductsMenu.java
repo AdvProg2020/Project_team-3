@@ -36,6 +36,7 @@ public class SellerManageProductsMenu {
     @FXML TextField sellerName;
 
     @FXML public void initialize() {
+        MusicManager.getInstance().setSongName("first.wav");
         sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");

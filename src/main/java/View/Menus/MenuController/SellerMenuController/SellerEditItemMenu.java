@@ -30,6 +30,7 @@ public class SellerEditItemMenu {
 
     @FXML
     private void initialize(){
+        MusicManager.getInstance().setSongName("first.wav");
         label.setText("You are editing "+itemID);
         updateAttributes();
         updateBuyers();

@@ -3,6 +3,7 @@ package View.Menus.MenuController.AdminMenu;
 import Controller.ItemAndCategoryController;
 import Controller.RequestController;
 import Controller.SortAndFilterController;
+import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ public class ManageProducts {
    @FXML TextField sellerName;
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
       sortChoiceBox.getItems().add("sort by view");
       sortChoiceBox.setValue("sort by view");

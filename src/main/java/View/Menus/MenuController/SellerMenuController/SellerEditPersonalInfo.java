@@ -36,6 +36,7 @@ public class SellerEditPersonalInfo {
 
 
    @FXML public void initialize() {
+      MusicManager.getInstance().setSongName("first.wav");
       passwordTextField.managedProperty().bind(passwordCheckBox.selectedProperty());
       passwordTextField.visibleProperty().bind(passwordCheckBox.selectedProperty());
       passwordField.managedProperty().bind(passwordCheckBox.selectedProperty().not());

@@ -224,7 +224,7 @@ public class SellerAddProductMenu {
     }
 
 
-
+    public void initialize(){ MusicManager.getInstance().setSongName("first.wav");}
 
 
 

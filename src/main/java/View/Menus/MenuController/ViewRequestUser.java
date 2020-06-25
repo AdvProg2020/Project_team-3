@@ -16,6 +16,7 @@ public class ViewRequestUser {
    }
 
    public void initialize(){
+      MusicManager.getInstance().setSongName("second.wav");
       request.getItems().addAll(UserController.getInstance().getUserByUsername(username).getAllRequests());
    }
 

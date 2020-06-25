@@ -28,6 +28,7 @@ public class commentMenuController {
    public static void setFatherCommentId(String id){fatherCommentId=id;}
 
    public void initialize(){
+      MusicManager.getInstance().setSongName("second.wav");
       User user= Controller.getInstance().getCurrentOnlineUser();
       String path=UserController.getInstance().userImagePath(user.getUsername());
       File file=new File(path);
