@@ -14,11 +14,11 @@
     <TextField fx:id="categoryName" layoutX="106.0" layoutY="77.0" onKeyReleased="#updateCategoryName" promptText="Enter a name" styleClass="underlinedTextField"> </TextField>
     <TextField fx:id="attribute" layoutX="105.0" layoutY="175.0" promptText="Enter an Attribute" styleClass="underlinedTextField"> </TextField>
     <ListView fx:id="attributeList" layoutX="327.0" layoutY="58.0" onMouseClicked="#remove" prefHeight="235.0" prefWidth="248.0" />
-    <Button layoutX="261.0" layoutY="175.0" onMouseClicked="#add" text="+" />
+    <Button layoutX="261.0" layoutY="175.0" onMouseClicked="#add" styleClass="myBlueButton" text="+" />
     <Label layoutX="18.0" layoutY="180.0" text="Add Attribute:" />
     <Label layoutX="13.0" layoutY="236.0" text="father category:" />
-    <Button layoutX="131.0" layoutY="315.0" onMouseClicked="#create" prefHeight="25.0" prefWidth="149.0" text="create category" />
+    <Button layoutX="131.0" layoutY="315.0" onMouseClicked="#create" prefHeight="25.0" prefWidth="149.0" styleClass="myBlueButton" text="create category" />
     <Button layoutX="63.0" layoutY="315.0" onMouseClicked="#reset" text="reset" />
-   <ChoiceBox fx:id="fatherCategoryChoice" layoutX="105.0" layoutY="232.0" prefWidth="150.0" />
+   <ChoiceBox fx:id="fatherCategoryChoice" layoutX="105.0" layoutY="232.0" prefWidth="150.0" styleClass="myBlueButton" />
    <Text layoutX="403.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Attributes" />
 </AnchorPane>

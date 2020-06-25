@@ -10,7 +10,7 @@
         </Menu>
     </MenuBar>
     <ListView fx:id="listView" layoutX="229.0" layoutY="81.0" onMouseClicked="#selectItem" prefHeight="362.0" prefWidth="277.0" />
-   <ChoiceBox fx:id="sortChoiceBox" layoutX="300.0" layoutY="51.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+   <ChoiceBox fx:id="sortChoiceBox" layoutX="300.0" layoutY="51.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
     <Label layoutX="267.0" layoutY="56.0" text="sort:" />
 
     <ScrollPane layoutX="518.0" layoutY="81.0" prefHeight="249.0" prefWidth="254.0">

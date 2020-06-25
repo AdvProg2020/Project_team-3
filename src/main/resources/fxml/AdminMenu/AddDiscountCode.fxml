@@ -17,7 +17,7 @@
 
              <DatePicker fx:id="end" layoutX="72.0" layoutY="275.0" promptText="Ending Date" style="-fx-border-width: 2 2 2 2; -fx-color: #94a8b3;" styleClass="underlinedTextField" />
 
-             <Button layoutX="115.0" layoutY="352.0" onMouseClicked="#create" prefHeight="27.0" prefWidth="161.0" text="create code"> </Button>
+             <Button layoutX="115.0" layoutY="352.0" onMouseClicked="#create" prefHeight="27.0" prefWidth="161.0" styleClass="myBlueButton" text="create code"> </Button>
              <Button layoutX="46.0" layoutY="351.0" onMouseClicked="#reset" prefHeight="27.0" prefWidth="57.0" text="reset" />
              <ListView fx:id="userList" layoutX="317.0" layoutY="73.0" onMouseClicked="#selectUser" prefHeight="291.0" prefWidth="183.0" />
              <ListView fx:id="selectedUserList" layoutX="511.0" layoutY="73.0" prefHeight="291.0" prefWidth="183.0" />

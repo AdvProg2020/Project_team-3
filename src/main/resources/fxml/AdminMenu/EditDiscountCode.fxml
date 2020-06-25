@@ -3,20 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditDiscountCode">
-    <MenuBar>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.EditDiscountCode">
+    <MenuBar prefHeight="25.0" prefWidth="600.0" styleClass="myMenuBar">
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
     <Label layoutX="55.0" layoutY="31.0" prefHeight="17.0" prefWidth="48.0" text="percent:" />
-    <TextField fx:id="percent" layoutX="111.0" layoutY="26.0" onKeyReleased="#updatePercent" />
+    <TextField fx:id="percent" layoutX="111.0" layoutY="26.0" onKeyReleased="#updatePercent" promptText="Enter a new percent" styleClass="underlinedTextField" />
 
     <Label layoutX="27.0" layoutY="73.0" text="max discount:" />
-    <TextField fx:id="maxDiscount" layoutX="111.0" layoutY="68.0" onKeyReleased="#updateMaxDiscount" />
+    <TextField fx:id="maxDiscount" layoutX="111.0" layoutY="68.0" onKeyReleased="#updateMaxDiscount" promptText="Enter a new Max. discount" styleClass="underlinedTextField" />
 
     <Label layoutX="65.0" layoutY="113.0" text="usage:" />
-    <TextField fx:id="usage" layoutX="111.0" layoutY="108.0" onKeyReleased="#updateUsage" />
+    <TextField fx:id="usage" layoutX="111.0" layoutY="108.0" onKeyReleased="#updateUsage" promptText="Max. usage count" styleClass="underlinedTextField" />
 
    
 
@@ -24,13 +24,13 @@
 
 
 
-    <DatePicker fx:id="end" layoutX="111.0" layoutY="153.0" />
+    <DatePicker fx:id="end" layoutX="111.0" layoutY="153.0" style="-fx-border-width: 2 2 2 2; -fx-color: #94a8b3;" styleClass="underlinedTextField" />
 
-    <Button layoutX="330.0" layoutY="26.0" onMouseClicked="#changePercent" text="change" />
-    <Button layoutX="330.0" layoutY="68.0" onMouseClicked="#changeMaxDiscount" text="change" />
-    <Button layoutX="330.0" layoutY="108.0" onMouseClicked="#changeUsage" text="change" />
+    <Button layoutX="330.0" layoutY="26.0" onMouseClicked="#changePercent" styleClass="myBlueButton" text="change" />
+    <Button layoutX="330.0" layoutY="68.0" onMouseClicked="#changeMaxDiscount" styleClass="myBlueButton" text="change" />
+    <Button layoutX="330.0" layoutY="108.0" onMouseClicked="#changeUsage" styleClass="myBlueButton" text="change" />
 
-    <Button layoutX="330.0" layoutY="153.0" onMouseClicked="#changeEndDate" text="change" />
+    <Button layoutX="330.0" layoutY="153.0" onMouseClicked="#changeEndDate" styleClass="myBlueButton" text="change" />
     <Button layoutX="334.0" layoutY="200.0" onMouseClicked="#delete" text="delete" />
     <ListView fx:id="info" layoutX="111.0" layoutY="200.0" prefHeight="157.0" prefWidth="160.0" />
 </AnchorPane>

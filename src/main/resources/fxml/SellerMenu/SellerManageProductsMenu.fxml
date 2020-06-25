@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="jedBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerManageProductsMenu">
 
-    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
             <Menu mnemonicParsing="false" text="option">
                 <MenuItem mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
@@ -14,9 +14,9 @@
             </Menu>
         </menus>
     </MenuBar>
-   <Button layoutX="226.0" layoutY="148.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="137.0" text="Add Product" />
+   <Button layoutX="226.0" layoutY="148.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="137.0" styleClass="myBlueButton" text="Add Product" />
     <ListView fx:id="listView" layoutX="389.0" layoutY="148.0" onMouseClicked="#itemSelect" prefHeight="429.0" prefWidth="502.0" />
-    <ChoiceBox fx:id="sortChoiceBox" layoutX="685.0" layoutY="116.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+    <ChoiceBox fx:id="sortChoiceBox" layoutX="685.0" layoutY="116.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
     <Label layoutX="648.0" layoutY="121.0" text="sort:" />
 
     <ScrollPane layoutX="898.0" layoutY="148.0" prefHeight="249.0" prefWidth="254.0">

@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #edebed;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerAddProductMenu">
 
-    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
             <Menu mnemonicParsing="false" text="option">
 
@@ -25,11 +25,11 @@
    <TextField fx:id="count" layoutX="338.0" layoutY="480.0" promptText="Number of items in stock" styleClass="underlinedTextField" />
    <Label layoutX="291.0" layoutY="484.0" text="Count:" />
    <Label layoutX="276.0" layoutY="543.0" text="Category:" />
-   <Button layoutX="387.0" layoutY="644.0" mnemonicParsing="false" onAction="#createItem" text="Create" />
+   <Button layoutX="387.0" layoutY="644.0" mnemonicParsing="false" onAction="#createItem" styleClass="myBlueButton" text="Create" />
    <Label layoutX="796.0" layoutY="56.0" text="Image" />
    <Label layoutX="797.0" layoutY="135.0" text="Video" />
-   <Button layoutX="839.0" layoutY="52.0" mnemonicParsing="false" onAction="#imageChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
-   <Button layoutX="839.0" layoutY="131.0" mnemonicParsing="false" onAction="#videoChooserOpen" prefHeight="25.0" prefWidth="84.0" text="Browse" />
+   <Button layoutX="839.0" layoutY="52.0" mnemonicParsing="false" onAction="#imageChooserOpen" prefHeight="25.0" prefWidth="84.0" styleClass="myBlueButton" text="Browse" />
+   <Button layoutX="839.0" layoutY="131.0" mnemonicParsing="false" onAction="#videoChooserOpen" prefHeight="25.0" prefWidth="84.0" styleClass="myBlueButton" text="Browse" />
    <Label fx:id="itemNameError" layoutX="501.0" layoutY="56.0" prefHeight="17.0" prefWidth="165.0" />
    <Separator layoutX="683.0" layoutY="44.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="18.0" />
    <Label fx:id="brandNameError" layoutX="501.0" layoutY="110.0" prefHeight="17.0" prefWidth="165.0" />

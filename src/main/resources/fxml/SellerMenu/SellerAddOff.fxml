@@ -26,7 +26,7 @@
    <Separator layoutX="775.0" layoutY="35.0" orientation="VERTICAL" prefHeight="406.0" prefWidth="14.0" />
    <ListView fx:id="saleItems" layoutX="860.0" layoutY="89.0" prefHeight="350.0" prefWidth="243.0" />
    <Label layoutX="860.0" layoutY="55.0" prefHeight="17.0" prefWidth="140.0" text="Items that will be added:" />
-   <Button layoutX="337.0" layoutY="610.0" mnemonicParsing="false" onAction="#createSale" prefHeight="25.0" prefWidth="100.0" text="Create Sale" />
+   <Button layoutX="337.0" layoutY="610.0" mnemonicParsing="false" onAction="#createSale" prefHeight="25.0" prefWidth="100.0" styleClass="myBlueButton" text="Create Sale" />
    <Label fx:id="errorLabel" layoutX="91.0" layoutY="318.0" prefHeight="17.0" prefWidth="250.0" />
    <Button layoutX="161.0" layoutY="360.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="100.0" text="Clear All" />
 

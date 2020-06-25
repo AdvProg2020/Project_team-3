@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #edebed;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.SellerMenuController.SellerEditOff">
 
-    <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1280.0">
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
             <Menu mnemonicParsing="false" text="option">
 
@@ -34,10 +34,10 @@
    <TextField fx:id="newOffPercent" layoutX="668.0" layoutY="129.0" onKeyReleased="#updatePercent" promptText="Enter a new off percent" styleClass="underlinedTextField" />
    <DatePicker fx:id="newStartDate" layoutX="668.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0" style="-fx-color: #94a8b3; -fx-border-width: 2 2 2 2;" styleClass="underlinedTextField" />
    <DatePicker fx:id="newEndDate" layoutX="668.0" layoutY="300.0" prefHeight="25.0" prefWidth="149.0" style="-fx-color: #94a8b3; -fx-border-width: 2 2 2 2;" styleClass="underlinedTextField" />
-   <Button layoutX="846.0" layoutY="129.0" mnemonicParsing="false" onAction="#editOffPercent" text="Edit" />
-   <Button layoutX="846.0" layoutY="208.0" mnemonicParsing="false" onAction="#editStartDate" text="Edit" />
-   <Button layoutX="846.0" layoutY="300.0" mnemonicParsing="false" onAction="#editEndDate" text="Edit" />
-   <Button layoutX="614.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   <Button layoutX="846.0" layoutY="129.0" mnemonicParsing="false" onAction="#editOffPercent" styleClass="myBlueButton" text="Edit" />
+   <Button layoutX="846.0" layoutY="208.0" mnemonicParsing="false" onAction="#editStartDate" styleClass="myBlueButton" text="Edit" />
+   <Button layoutX="846.0" layoutY="300.0" mnemonicParsing="false" onAction="#editEndDate" styleClass="myBlueButton" text="Edit" />
+   <Button layoutX="614.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" styleClass="my" text="Back" />
    <Text fx:id="errorLabel" fill="RED" layoutX="898.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.13671875" />
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    <Text layoutX="41.0" layoutY="671.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: an admin must approve your request to edit this sale - until then, current values remain true." wrappingWidth="561.13671875" />

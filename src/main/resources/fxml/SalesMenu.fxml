@@ -23,11 +23,7 @@
                 </columnConstraints>
             </GridPane>
         </content></ScrollPane>
-
-    <Label fx:id="pageNum" layoutX="618.0" layoutY="672.0" prefHeight="27.0" prefWidth="30.0" text="1" textAlignment="CENTER" />
-    <Button fx:id="pageNumReduce" layoutX="569.0" layoutY="672.0" mnemonicParsing="false" onAction="#decreasePage" prefHeight="25.0" prefWidth="30.0" text="-" />
-    <Button fx:id="pageNumAdd" layoutX="668.0" layoutY="673.0" mnemonicParsing="false" onAction="#increasePage" prefHeight="25.0" prefWidth="29.0" text="+" />
-    <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" />
+    <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
     <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
    <ScrollPane layoutX="1012.0" layoutY="83.0" prefHeight="249.0" prefWidth="254.0">
       <content>

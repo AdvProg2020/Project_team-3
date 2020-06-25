@@ -14,17 +14,17 @@
 <PasswordField fx:id="passwordField" layoutX="68.0" layoutY="193.0" styleClass="underlinedTextField" />
 <TextField fx:id="passwordTextField" layoutX="68.0" layoutY="193.0" promptText="New Password" styleClass="underlinedTextField" />
 <CheckBox fx:id="passwordCheckBox" layoutX="109.0" layoutY="222.0" mnemonicParsing="false" text="show password?" />
-<Button layoutX="231.0" layoutY="193.0" onMouseClicked="#changePassword" prefHeight="27.0" prefWidth="72.0" text="change" />
+<Button layoutX="231.0" layoutY="193.0" onMouseClicked="#changePassword" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
 <TextField fx:id="name" layoutX="68.0" layoutY="47.0" onKeyReleased="#updateName" promptText="New First Name" styleClass="underlinedTextField" />
 <TextField fx:id="surname" layoutX="68.0" layoutY="84.0" onKeyReleased="#updateName" promptText="New Surname" styleClass="underlinedTextField" />
 <TextField fx:id="email" layoutX="68.0" layoutY="124.0" onKeyReleased="#updateEmail" promptText="New Email" styleClass="underlinedTextField" />
 <TextField fx:id="number" layoutX="68.0" layoutY="158.0" onKeyReleased="#updateNumber" promptText="New Number" styleClass="underlinedTextField" />
 <ListView fx:id="personalInfo" layoutX="14.0" layoutY="252.0" prefHeight="179.0" prefWidth="217.0" />
 <ImageView fx:id="imageView" fitHeight="148.0" fitWidth="244.0" layoutX="353.0" layoutY="25.0" />
-<Button layoutX="231.0" layoutY="46.0" onMouseClicked="#changeName" prefHeight="27.0" prefWidth="72.0" text="change" />
-<Button layoutX="231.0" layoutY="84.0" onMouseClicked="#changeSurname" prefHeight="27.0" prefWidth="72.0" text="change" />
-<Button layoutX="231.0" layoutY="124.0" onMouseClicked="#changeEmail" prefHeight="27.0" prefWidth="72.0" text="change" />
-<Button layoutX="231.0" layoutY="158.0" onMouseClicked="#changeNumber" prefHeight="27.0" prefWidth="72.0" text="change" />
+<Button layoutX="231.0" layoutY="46.0" onMouseClicked="#changeName" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
+<Button layoutX="231.0" layoutY="84.0" onMouseClicked="#changeSurname" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
+<Button layoutX="231.0" layoutY="124.0" onMouseClicked="#changeEmail" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
+<Button layoutX="231.0" layoutY="158.0" onMouseClicked="#changeNumber" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
 <Button layoutX="397.0" layoutY="184.0" mnemonicParsing="false" onAction="#removeImage" text="remove image" />
-<Button layoutX="506.0" layoutY="184.0" mnemonicParsing="false" onAction="#changeImage" text="change image" />
+<Button layoutX="506.0" layoutY="184.0" mnemonicParsing="false" onAction="#changeImage" styleClass="myBlueButton" text="change image" />
         </AnchorPane>

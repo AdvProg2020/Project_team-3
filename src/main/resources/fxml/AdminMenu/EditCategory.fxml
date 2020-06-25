@@ -9,7 +9,7 @@
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-    <Button layoutX="260.0" layoutY="40.0" onMouseClicked="#changeName" prefHeight="25.0" prefWidth="129.0" text="change name" />
+    <Button layoutX="260.0" layoutY="40.0" onMouseClicked="#changeName" prefHeight="25.0" prefWidth="129.0" styleClass="myBlueButton" text="change name" />
        <TextField fx:id="categoryNameField" layoutX="86.0" layoutY="40.0" onKeyReleased="#updateCategoryName" promptText="Enter a new name" styleClass="underlinedTextField" />
 
        <Button layoutX="330.0" layoutY="125.0" onMouseClicked="#addAttribute" prefHeight="27.0" prefWidth="59.0" text="+" />

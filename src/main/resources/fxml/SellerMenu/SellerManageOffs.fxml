@@ -17,7 +17,7 @@
     </MenuBar>
    <ListView fx:id="listView" layoutX="334.0" layoutY="102.0" onMouseClicked="#saleSelect" prefHeight="543.0" prefWidth="523.0" />
    <Label layoutX="126.0" layoutY="71.0" prefHeight="32.0" prefWidth="102.0" text="Your Sales:" />
-   <Button layoutX="881.0" layoutY="102.0" mnemonicParsing="false" onAction="#startSale" prefHeight="25.0" prefWidth="85.0" text="Start Sale" />
+   <Button layoutX="881.0" layoutY="102.0" mnemonicParsing="false" onAction="#startSale" prefHeight="25.0" prefWidth="85.0" styleClass="myBlueButton" text="Start Sale" />
    <Text layoutX="334.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="58.13671875" />
    <Text layoutX="494.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Off Percentage" wrappingWidth="84.99998092651367" />
    <Text layoutX="699.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ends in" />

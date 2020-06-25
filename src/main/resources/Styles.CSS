@@ -27,6 +27,23 @@
         -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
     }
 
+    .myBlueButton {
+            -fx-padding: 4 7 7 7;
+            -fx-background-radius: 2;
+            -fx-background-insets: 0,0 0 2 0, 0 0 2 0, 0 0 3 0;
+            -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+            -fx-background-color:#94a8b3;
+        }
+        .myBlueButton:hover{
+            -fx-background-color:
+            #94a8b3,
+            radial-gradient(center 50% 50%, radius 100%, #cddde6, #94a8b3);
+        }
+        .myBlueButton:pressed{
+            -fx-padding: 5 7 6 7;
+            -fx-background-insets: 1 0 0 0,2 0 3 0, 2 0 3 0, 2 0 3 0;
+        }
+
     .registerBuyerMenu {
         -fx-background-image: url("design/newRegister.png");
     }
