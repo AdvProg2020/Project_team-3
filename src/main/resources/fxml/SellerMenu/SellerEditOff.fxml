@@ -31,9 +31,9 @@
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    <Text fx:id="currentStartDate" layoutX="508.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.13671660423279" />
    <Text fx:id="currentEndDate" layoutX="508.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="121.136714220047" />
-   <TextField fx:id="newOffPercent" layoutX="668.0" layoutY="129.0" onKeyReleased="#updatePercent" />
-   <DatePicker fx:id="newStartDate" layoutX="668.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0" />
-   <DatePicker fx:id="newEndDate" layoutX="668.0" layoutY="300.0" prefHeight="25.0" prefWidth="149.0" />
+   <TextField fx:id="newOffPercent" layoutX="668.0" layoutY="129.0" onKeyReleased="#updatePercent" promptText="Enter a new off percent" styleClass="underlinedTextField" />
+   <DatePicker fx:id="newStartDate" layoutX="668.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0" style="-fx-color: #94a8b3; -fx-border-width: 2 2 2 2;" styleClass="underlinedTextField" />
+   <DatePicker fx:id="newEndDate" layoutX="668.0" layoutY="300.0" prefHeight="25.0" prefWidth="149.0" style="-fx-color: #94a8b3; -fx-border-width: 2 2 2 2;" styleClass="underlinedTextField" />
    <Button layoutX="846.0" layoutY="129.0" mnemonicParsing="false" onAction="#editOffPercent" text="Edit" />
    <Button layoutX="846.0" layoutY="208.0" mnemonicParsing="false" onAction="#editStartDate" text="Edit" />
    <Button layoutX="846.0" layoutY="300.0" mnemonicParsing="false" onAction="#editEndDate" text="Edit" />

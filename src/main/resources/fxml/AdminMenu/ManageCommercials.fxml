@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="483.0" prefWidth="705.0" style="-fx-background-color: #dedcde;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercials">
+<AnchorPane prefHeight="483.0" prefWidth="705.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageCommercials">
     <ListView fx:id="commercials" layoutX="55.0" layoutY="31.0" onMouseClicked="#removeCommercial" />
     <Label layoutX="321.0" layoutY="31.0" text="these items will be shown in the commercial panel" />
     <Label layoutX="314.0" layoutY="94.0" text="click on any item you wish to remove from the commercial panel." />
-    <MenuBar>
+    <MenuBar prefHeight="25.0" prefWidth="705.0" styleClass="myMenuBar">
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
         </Menu>
