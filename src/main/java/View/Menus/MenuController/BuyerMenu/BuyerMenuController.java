@@ -94,7 +94,7 @@ public class BuyerMenuController {
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 
-    public void viewEditPersonalInfo(ActionEvent actionEvent) {
+    public void viewEditPersonalInfo() {
         MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
         SceneSwitcher.getInstance().setSceneTo("BuyerEditPersonalInfo");

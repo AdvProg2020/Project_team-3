@@ -11,8 +11,8 @@
         <MenuItem onAction="#back" text="back" />
     </Menu>
 </MenuBar>
-<PasswordField fx:id="passwordField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" styleClass="underlinedTextField" />
-<TextField fx:id="passwordTextField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" promptText="New Password" styleClass="underlinedTextField" />
+<PasswordField fx:id="passwordField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" promptText="New Password" styleClass="underlinedTextField" />
+<TextField fx:id="passwordTextField" layoutX="68.0" layoutY="193.0" prefHeight="27.0" prefWidth="149.0" styleClass="underlinedTextField" />
 <CheckBox fx:id="passwordCheckBox" layoutX="109.0" layoutY="222.0" mnemonicParsing="false" text="show password?" />
 <Button layoutX="231.0" layoutY="193.0" onMouseClicked="#changePassword" prefHeight="27.0" prefWidth="72.0" styleClass="myBlueButton" text="change" />
 <TextField fx:id="name" layoutX="68.0" layoutY="47.0" onKeyReleased="#updateName" prefHeight="27.0" prefWidth="149.0" promptText="New First Name" styleClass="underlinedTextField" />
