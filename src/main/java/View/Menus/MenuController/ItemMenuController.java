@@ -347,7 +347,8 @@ public class ItemMenuController {
                 textArea.setStyle("-fx-font-size: 15");
                 textArea.setEditable(false);
                 username.setText(comment.getUsername());
-                HBox hBox=new HBox(imageView,username,reply);
+                HBox hBox=new HBox(imageView,username);
+                if(comment.getFatherCommentId()==null) hBox.getChildren().add(reply);
                 vBox.getChildren().add(hBox);
                 vBox.getChildren().add(textArea);
                 HBox hBox1=new HBox(status);

@@ -54,8 +54,6 @@ public class MusicManager extends Thread{
         mediaPlayer.seek(Duration.ZERO);
        // mediaPlayer.play();
     }
-
-
 //    @Override
 //    public void run() {
 //        String path="src/main/resources/Sounds/"+songName;
