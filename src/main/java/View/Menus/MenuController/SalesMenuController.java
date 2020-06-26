@@ -111,7 +111,7 @@ public class SalesMenuController {
         VBox itemBox = new VBox();
         itemBox.setOnMouseClicked(event -> {
             ItemMenuController.setItemID(itemID);
-            SceneSwitcher.getInstance().saveScene("DiscountsMenu");
+            SceneSwitcher.getInstance().saveScene("SalesMenu");
             SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,750);
         });
 

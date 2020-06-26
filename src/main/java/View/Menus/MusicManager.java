@@ -52,7 +52,7 @@ public class MusicManager extends Thread{
         }
         mediaPlayer=new MediaPlayer(sound);
         mediaPlayer.seek(Duration.ZERO);
-        mediaPlayer.play();
+       // mediaPlayer.play();
     }
 
 
@@ -81,10 +81,10 @@ public class MusicManager extends Thread{
             e.printStackTrace();
         }
         mPlayer=new MediaPlayer(music);
-        mPlayer.setAutoPlay(true);
+       // mPlayer.setAutoPlay(true);
         mPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mPlayer.setVolume(0.2);
-        mPlayer.play();
+       // mPlayer.play();
     }
 
 

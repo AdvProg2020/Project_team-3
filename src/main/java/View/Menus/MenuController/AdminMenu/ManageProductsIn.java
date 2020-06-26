@@ -22,7 +22,7 @@ public class ManageProductsIn {
 
    public void close(MouseEvent mouseEvent) {
        MusicManager.getInstance().playSound("Button");
-      SceneSwitcher.getInstance().setSceneTo("ManageProductsIn");
+      SceneSwitcher.getInstance().setSceneTo("ManageProducts");
       SceneSwitcher.getInstance().closeSecondStage();
    }
 

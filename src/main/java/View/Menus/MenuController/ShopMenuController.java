@@ -89,7 +89,7 @@ public class ShopMenuController {
     private Label categoryLabel;
 
     @FXML private AnchorPane pane;
-
+ 
     @FXML private void initialize(){
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
