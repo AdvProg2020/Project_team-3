@@ -103,7 +103,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <ChoiceBox fx:id="sellerChoiceBox" onAction="#setSeller" layoutX="633.0" layoutY="497.0" prefHeight="17.0" prefWidth="150.0" styleClass="myBlueButton" />
-      <Label layoutX="632.0" layoutY="473.0" prefHeight="17.0" prefWidth="144.0" text="Choose another seller" />
+      <ChoiceBox fx:id="sellerChoiceBox" layoutX="633.0" layoutY="497.0" onAction="#setSeller" prefHeight="17.0" prefWidth="150.0" styleClass="myBlueButton" />
+      <Label layoutX="632.0" layoutY="473.0" prefHeight="17.0" prefWidth="144.0" text="Choose seller" />
     </children>
 </AnchorPane>

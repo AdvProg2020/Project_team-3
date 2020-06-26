@@ -607,6 +607,10 @@ public class ItemMenuController {
         if(!item1.getName().equals(item2.getName())) return false;
         if(!item1.getBrand().equals(item2.getBrand())) return false;
         if(!item1.getCategoryName().equals(item2.getCategoryName())) return false;
+        for(String key:item1.getAttributes().keySet()){
+            if(!item2.getAttributes().containsKey(key)) return false;
+            if(!item1.getAttributes().get(key).equals(item2.getAttributes().get(key))) return false;
+        }
         return true;
     }
 
