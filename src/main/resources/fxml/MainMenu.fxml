@@ -31,7 +31,7 @@
        <VBox fx:id="commercial" layoutX="535.0" layoutY="91.0" prefHeight="241.0" prefWidth="211.0" />
        <Button fx:id="nextButton" layoutX="717.0" layoutY="366.0" onMouseClicked="#nextCommercial" styleClass="myBlueButton" text="next" />
        <Button fx:id="previousButton" layoutX="535.0" layoutY="366.0" onMouseClicked="#previousCommercial" styleClass="myBlueButton" text="previous" />
-       <Label fx:id="slideCount" layoutX="222.0" layoutY="35.0" prefHeight="17.0" prefWidth="90.0" />
+       <Label fx:id="slideCount" layoutX="609.0" layoutY="369.0" prefHeight="17.0" prefWidth="90.0" />
    </children>
 
 </AnchorPane>
