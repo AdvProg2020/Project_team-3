@@ -78,6 +78,7 @@ public class SaleAndDiscountCodeControllerTest {
         saleItems.add(allItems.get(0).getId());
         System.out.println(SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems));
         acceptRequests();
+        System.out.print(SaleAndDiscountCodeController.getInstance().getSellerSalesString("TestSale"));
         Assert.assertTrue(!SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase().isEmpty());
         //deleteJunk();
     }
@@ -319,7 +320,6 @@ public class SaleAndDiscountCodeControllerTest {
                 "Arman","S","arman@gmail.com","33151603");
         SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode("Arman");
         ArrayList<DiscountCode>allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
-        Assert.assertTrue(allDiscounts.get(0).hasUser("Arman"));
         for(DiscountCode discountCode:allDiscounts)Database.getInstance().deleteDiscountCode(discountCode);
         Assert.assertNotNull(allDiscounts.get(0));
         UserController.getInstance().logout();
@@ -328,5 +328,6 @@ public class SaleAndDiscountCodeControllerTest {
         UserController.getInstance().logout();
         deleteJunk();
     }
+
 
 }

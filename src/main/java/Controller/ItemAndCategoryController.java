@@ -395,9 +395,11 @@ public class ItemAndCategoryController {
 
     public ArrayList<Item> getInSaleItems() {
         ArrayList<Item> allItems = getInstance().getAllItemFromDataBase();
+        ArrayList<Item> toBeRemoved = new ArrayList<>();
         for (Item item : allItems) {
-            if (!item.isInSale()) allItems.remove(item);
+            if (!item.isInSale()) toBeRemoved.add(item);
         }
+        allItems.removeAll(toBeRemoved);
         return allItems;
     }
 

@@ -315,6 +315,7 @@ public class UserControllerTest {
         UserController.getInstance().login("Arman","Hitler");
         System.out.println(CartController.getInstance().showCart());
         assertEquals(CartController.getInstance().showCart(),"Cart is empty");
+        System.out.println(ItemAndCategoryController.getInstance().getItemBuyer(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId()));
         assertEquals("Error: cart is empty",CartController.getInstance().buy("sssss"));
         CartController.getInstance().addItemToCart(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
         assertEquals("Successful: Shopping complete.",CartController.getInstance().buy("sssss"));
@@ -346,6 +347,8 @@ public class UserControllerTest {
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
         UserController.getInstance().login("Alireza","alireza79");
+        UserController.getInstance().assignItemToSeller("randomItemID","Alireza");
+        UserController.getInstance().deleteItemFromSeller("randomItemID","Alireza");
         for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
             ItemAndCategoryController.getInstance().deleteItem(item.getId());
         }
@@ -360,12 +363,14 @@ public class UserControllerTest {
             System.out.println(request.toString());
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
+        System.out.println(UserController.getInstance().getSaleHistory());
         UserController.getInstance().logout();
         assertEquals("Error: cart is empty",CartController.getInstance().buy("sssss"));
         UserController.getInstance().login("Arman","Hitler");
         System.out.println(CartController.getInstance().showCart());
         assertEquals(CartController.getInstance().showCart(),"Cart is empty");
         assertEquals("Error: cart is empty",CartController.getInstance().buy("sssss"));
+        System.out.println(UserController.getInstance().getBuyerDiscountCode());
         CartController.getInstance().addItemToCart(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
         Buyer buyer=(Buyer)UserController.getInstance().getUserByUsername("Arman");
         assertEquals("Successful: Shopping complete.",CartController.getInstance().buy("sssss",SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase().get(0).getDiscountId()));
@@ -373,6 +378,7 @@ public class UserControllerTest {
 
         ItemAndCategoryController.getInstance().rate(2,ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
         assertEquals((int)ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getRating(),2);
+        System.out.println(UserController.getInstance().getAllBuyLogs());
         for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
             ItemAndCategoryController.getInstance().deleteItem(item.getId());
         }
