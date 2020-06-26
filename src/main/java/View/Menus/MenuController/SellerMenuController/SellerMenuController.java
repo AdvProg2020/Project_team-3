@@ -89,6 +89,7 @@ public class SellerMenuController {
     @FXML
     private void viewDiscounts(){
         MusicManager.getInstance().playSound("Button");
+        SceneSwitcher.getInstance().saveScene("SellerMenu");
         SceneSwitcher.getInstance().setSceneTo("SalesMenu");
     }
 
