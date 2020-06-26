@@ -215,14 +215,23 @@ public class ItemAndCategoryControllerTest {
                 attributes));
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
                 ,"this is oven",5000,10,"Oven",attributes1);
+        ItemAndCategoryController.getInstance().addItem("ImagedItem","Benz"
+                ,"this is oven",5000,10,"Oven",attributes1,"someImage.png","someVideo.png");
+        System.out.println(ItemAndCategoryController.getInstance().addItem("ImagedItem","Benz"
+                ,"this is oven",5000,10,"randomInvalidCategory",attributes1,"someImage.png","someVideo.png"));
+        System.out.println(ItemAndCategoryController.getInstance().addItem("ImagedItem","Benz"
+                ,"this is oven",5000,10,"randomInvalidCategory",attributes1));
         ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
                 "this is microWave",600,10,"microwave",attributes2);
         UserController.getInstance().logout();
+        Assert.assertEquals(0,ItemAndCategoryController.getInstance().getScore("thisIsAnInvalidItemID"),0);
+
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
         ArrayList<Item>allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
+        Assert.assertEquals(0,ItemAndCategoryController.getInstance().getScore(allItems.get(1).getId()),0);
         Assert.assertTrue(!allItems.isEmpty());
     }
 
