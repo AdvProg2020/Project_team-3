@@ -38,7 +38,7 @@ public class ManageCategories {
       String categoryName=categoryList.getItems().get(index).toString();
       categoryList.getSelectionModel().clearSelection();
       EditCategory.setCategoryName(categoryName);
-      SceneSwitcher.getInstance().setSceneTo("EditCategory",353,415);
+      SceneSwitcher.getInstance().setSceneTo("EditCategory");
    }
 
    public void back(ActionEvent actionEvent) {

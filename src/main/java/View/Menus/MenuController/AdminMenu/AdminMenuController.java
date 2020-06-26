@@ -50,27 +50,27 @@ public class AdminMenuController {
    }
    public void manageUsers(ActionEvent actionEvent) {
 
-       SceneSwitcher.getInstance().setSceneTo("ManageUsers");
+       SceneSwitcher.getInstance().setSceneTo("ManageUsers",600,400);
    }
 
    public void manageDiscountCodes(ActionEvent actionEvent) {
-    SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes");
+    SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes",592,400);
    }
 
    public void manageRequests(ActionEvent actionEvent) {
-     SceneSwitcher.getInstance().setSceneTo("ManageRequests");
+     SceneSwitcher.getInstance().setSceneTo("ManageRequests",600,400);
    }
 
    public void manageProducts(ActionEvent actionEvent) {
-     SceneSwitcher.getInstance().setSceneTo("ManageProducts");
+     SceneSwitcher.getInstance().setSceneTo("ManageProducts",898,537);
    }
 
    public void addDiscountCode(ActionEvent actionEvent){
-    SceneSwitcher.getInstance().setSceneTo("AddDiscountCode");
+    SceneSwitcher.getInstance().setSceneTo("AddDiscountCode",707,445);
    }
 
    public void manageCategories(ActionEvent actionEvent) {
-    SceneSwitcher.getInstance().setSceneTo("ManageCategories");
+    SceneSwitcher.getInstance().setSceneTo("ManageCategories",600,400);
    }
 
    public void back(ActionEvent actionEvent) {
@@ -84,11 +84,12 @@ public class AdminMenuController {
    }
 
    public void addCategory(ActionEvent actionEvent) {
-    SceneSwitcher.getInstance().setSceneTo("AddCategory");
+    SceneSwitcher.getInstance().setSceneTo("AddCategory",600,400);
    }
 
-   public void createAdminProfile(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("AdminRegister");
+   public void createAdminProfile(ActionEvent actionEvent){
+       SceneSwitcher.getInstance().saveScene("AdminMenu");
+       SceneSwitcher.getInstance().setSceneTo("AdminRegister");
    }
 
    public void editPersonalInfo(MouseEvent mouseEvent) {
@@ -96,7 +97,7 @@ public class AdminMenuController {
    }
 
    public void manageCommercials(ActionEvent actionEvent) {
-      SceneSwitcher.getInstance().setSceneTo("ManageCommercials");
+      SceneSwitcher.getInstance().setSceneTo("ManageCommercials",705,483);
    }
 
 }
