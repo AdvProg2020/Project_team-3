@@ -150,25 +150,6 @@ public class SalesMenuController {
     }
 
 
-    @FXML
-    private void increasePage(){
-        if(isAValidPage(pageNumber+1)){
-            //pageNum.setText((pageNumber + 1) +"/"+ (SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
-            pageNumber++;
-            initLists();
-        }
-
-    }
-
-    @FXML
-    private void decreasePage(){
-        if(isAValidPage(pageNumber-1)){
-            //pageNum.setText((pageNumber - 1) +"/"+ (SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
-            pageNumber--;
-            initLists();
-        }
-
-    }
 
     public void filterAvailibility(MouseEvent mouseEvent) {
         if(availableCheckBox.isSelected()){

@@ -10,6 +10,7 @@ import Model.Comment;
 import Model.Item;
 import Model.Users.Buyer;
 import Model.Users.User;
+import View.Menus.ItemMenu;
 import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
@@ -81,7 +82,10 @@ public class ItemMenuController {
     @FXML private TextArea itemDetails;
     private boolean playing=false;
 
+    private ArrayList<Item> alternativeOptions;
+
     public void initialize(){
+        alternativeOptions = new ArrayList<>();
         Controller.getInstance().updateDateAndTime();
         View.setFonts(anchorPane);
         MusicManager.getInstance().setSongName("second.wav");
@@ -104,6 +108,7 @@ public class ItemMenuController {
         priceLabel.setText(String.valueOf(item.getPrice()));
         priceAfterSaleLabel.setText(String.valueOf(item.getPriceWithSale()));
         viewLabel.setText(String.valueOf(item.getViewCount()));
+        updateAlternates();
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
         String messagePath="src/main/resources/Images/ItemImages/";
         String messageImageName=null;
@@ -598,7 +603,49 @@ public class ItemMenuController {
         }
     }
 
+    protected boolean itemsAreEqual(Item item1,Item item2){
+        if(!item1.getName().equals(item2.getName())) return false;
+        if(!item1.getBrand().equals(item2.getBrand())) return false;
+        if(!item1.getCategoryName().equals(item2.getCategoryName())) return false;
+        for(String key:item1.getAttributes().keySet()){
+            if(!item2.getAttributes().containsKey(key)) return false;
+            if(!item1.getAttributes().get(key).equals(item2.getAttributes().get(key))) return false;
+        }
+        return true;
+    }
 
+    private void updateAlternates(){
+        alternativeOptions.clear();
+        Item thisItem = ItemAndCategoryController.getInstance().getItemById(itemID);
+        for(Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()){
+            if(itemsAreEqual(thisItem,item)){
+                alternativeOptions.add(item);
+            }
+        }
+        updateChoiceBox();
+    }
+
+    @FXML private ChoiceBox sellerChoiceBox;
+    private void updateChoiceBox(){
+        sellerChoiceBox.getItems().clear();
+        ArrayList<String> sellers = new ArrayList<>();
+        for(Item item:alternativeOptions){
+            sellers.add(item.getSellerName());
+        }
+        sellerChoiceBox.getItems().addAll(sellers);
+    }
+
+    @FXML
+    private void setSeller(){
+        String sellerName = sellerChoiceBox.getValue().toString();
+        for(Item item:alternativeOptions){
+            if(item.getSellerName().equals(sellerName)){
+                ItemMenuController.setItemID(item.getId());
+                SceneSwitcher.getInstance().setSceneTo("ItemMenu",1280,720);
+                return;
+            }
+        }
+    }
 
 }
 
