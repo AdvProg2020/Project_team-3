@@ -1,3 +1,4 @@
+import Controller.Controller;
 import Controller.Database;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
@@ -10,8 +11,9 @@ import java.io.IOException;
 public class Main extends Application{
     public static void main(String[] args) {
         Database.getInstance().initiate();
+        Controller.getInstance().updateDateAndTime();
         launch(args);
-        View.run();
+        //View.run();
     }
 
     @Override
