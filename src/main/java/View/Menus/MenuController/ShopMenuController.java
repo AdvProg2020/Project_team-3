@@ -3,6 +3,8 @@ package View.Menus.MenuController;
 import Controller.*;
 import Model.Category;
 import Model.Item;
+import Model.Users.Admin;
+import Model.Users.Seller;
 import View.Menus.ItemMenu;
 import View.Menus.MenuController.AdminMenu.ManageRequestIn;
 import View.Menus.MusicManager;
@@ -526,8 +528,16 @@ public class ShopMenuController {
 
     }
 
-    public void cart(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().saveScene("ShopMenu");
-        SceneSwitcher.getInstance().setSceneTo("CartMenu");
+    public void cart( ) {
+        MusicManager.getInstance().playSound("Button");
+        if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            MusicManager.getInstance().playSound("error");
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("only buyers can view Cart Menu!");
+            alert.showAndWait();
+            return;
+        }
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 }

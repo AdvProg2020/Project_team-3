@@ -138,7 +138,7 @@ public class CartMenuController {
             alert.setContentText("please login to buy items");
             alert.showAndWait();
             SceneSwitcher.getInstance().saveScene("CartMenu");
-            SceneSwitcher.getInstance().setSceneTo("Login");
+            SceneSwitcher.getInstance().setSceneAndWait("Login");
             return;
         }
         if(UserController.getInstance().getUserType().equals("Buyer")==false){
@@ -159,7 +159,7 @@ public class CartMenuController {
 
     public void goToShopMenu(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        SceneSwitcher.getInstance().saveScene("CartMenu");
+        //SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
