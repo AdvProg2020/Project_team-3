@@ -8,6 +8,7 @@ import Model.Requests.Request;
 import Model.Users.User;
 import View.Menus.View;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,11 @@ import java.util.HashMap;
 import static org.junit.Assert.*;
 
 public class CartControllerTest {
+    @BeforeClass public static void initiate(){
+        Database.getInstance().initiate();
+    }
 
-    public void acceptRequests(){
+    public  void acceptRequests(){
         ArrayList<Request>allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequests){
            System.out.println(RequestController.getInstance().acceptRequest(request.getRequestId()));
