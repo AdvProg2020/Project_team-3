@@ -8,9 +8,9 @@
    <children>
        <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
            <menus>
-               <Menu mnemonicParsing="false" text="option">
-                   <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+               <Menu mnemonicParsing="false" text="option" fx:id="menu">
                    <MenuItem onAction="#cart" text="cart" />
+                   <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
                </Menu>
            </menus>
        </MenuBar>

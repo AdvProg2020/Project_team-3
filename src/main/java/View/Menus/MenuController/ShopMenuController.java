@@ -9,6 +9,7 @@ import View.Menus.MusicManager;
 import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -32,6 +33,7 @@ import java.util.regex.Pattern;
 
 public class ShopMenuController {
 
+    public Menu menu;
     private String categoryName = "Main";
     private ArrayList<String> itemsToString = new ArrayList<>();
     private ArrayList<String> itemsID = new ArrayList<>();
@@ -103,6 +105,7 @@ public class ShopMenuController {
         updateFilter();
         initLists();
         gridPane.setMaxHeight(500000);
+        loginHandler();
     }
     public void updateFilter(){
         SortAndFilterController control=SortAndFilterController.getInstance();
@@ -164,6 +167,60 @@ public class ShopMenuController {
         pageNum.setText(pageNumber+"/"+(SortAndFilterController.getInstance().show(categoryName).size() / 24 + 1));
         attributeList.getItems().clear();
         setAttributes();
+    }
+
+    private void loginHandler(){
+        if(Controller.getInstance().isLogin()==true){
+            addLogoutMenuItem();
+        }else{
+            addLoginMenuItem();
+        }
+    }
+
+
+    private void addLoginMenuItem(){
+        MenuItem login=new MenuItem("Log In");
+        menu.getItems().add(0,login);
+        login.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MusicManager.getInstance().playSound("Button");
+                SceneSwitcher.getInstance().setSceneAndWait("Login");
+                menu.getItems().remove(getMenuItemByName("Log In"));
+                loginHandler();
+            }
+        });
+    }
+
+    private void addLogoutMenuItem(){
+        MenuItem logout=new MenuItem("Logout");
+        menu.getItems().add(logout);
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MusicManager.getInstance().playSound("Button");
+                UserController.getInstance().logout();
+                menu.getItems().remove(getMenuItemByName("Logout"));
+                //addLoginMenuItem();
+                loginHandler();
+                showLogoutAlertBox();
+            }
+        });
+    }
+
+
+    private MenuItem getMenuItemByName(String menuItemName){
+        for(MenuItem menuItem:menu.getItems()){
+            if(menuItem.getText().equals(menuItemName)) return menuItem;
+        }
+        return null;
+    }
+
+    private void showLogoutAlertBox(){
+        MusicManager.getInstance().playSound("notify");
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("logout successful!");
+        alert.show();
     }
 
     private VBox createAndAddItem(String itemID){
