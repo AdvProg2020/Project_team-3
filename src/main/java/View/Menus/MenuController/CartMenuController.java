@@ -42,6 +42,7 @@ public class CartMenuController {
     @FXML private AnchorPane pane;
 
     public void initialize(){
+        Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();

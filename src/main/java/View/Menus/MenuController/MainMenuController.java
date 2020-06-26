@@ -49,6 +49,7 @@ public class MainMenuController {
     private AnimationTimer animationTimer;
     @FXML private AnchorPane pane;
     public void initialize(){
+        Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         Controller.getInstance().updateDateAndTime();

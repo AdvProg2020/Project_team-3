@@ -32,6 +32,7 @@ public class BuyerMenuController {
     @FXML private Label personalInfo;
     @FXML private AnchorPane pane;
     public void initialize(){
+        Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){

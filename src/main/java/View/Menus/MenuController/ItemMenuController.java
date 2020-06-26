@@ -82,6 +82,7 @@ public class ItemMenuController {
     private boolean playing=false;
 
     public void initialize(){
+        Controller.getInstance().updateDateAndTime();
         View.setFonts(anchorPane);
         MusicManager.getInstance().setSongName("second.wav");
         attributeListView.getItems().clear();

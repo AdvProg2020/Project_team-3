@@ -28,6 +28,7 @@ public class AdminMenuController {
    @FXML AnchorPane pane;
 
    public void initialize(){
+       Controller.getInstance().updateDateAndTime();
          View.setFonts(pane);
          MusicManager.getInstance().setSongName("first.wav");
          String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());

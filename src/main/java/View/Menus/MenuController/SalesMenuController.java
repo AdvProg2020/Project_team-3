@@ -1,9 +1,6 @@
 package View.Menus.MenuController;
 
-import Controller.ItemAndCategoryController;
-import Controller.SaleAndDiscountCodeController;
-import Controller.SortAndFilterController;
-import Controller.UserController;
+import Controller.*;
 import Model.Item;
 import Model.Sale;
 import View.Menus.MusicManager;
@@ -90,6 +87,7 @@ public class SalesMenuController {
     }
 
     private void initLists(){
+        Controller.getInstance().updateDateAndTime();
         allItemsID = SortAndFilterController.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale());
         gridPane.getChildren().removeAll(allItemsBox);
         allItemsBox.clear();
