@@ -64,11 +64,11 @@ public class View {
             if(child instanceof Label)
                 ((Label) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
             if(child instanceof TextField)
-                ((TextField) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
+                ((TextField) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
             if(child instanceof TextArea)
-                ((TextArea) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
+                ((TextArea) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
             if(child instanceof Text)
-                ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.otf", 12));
+                ((Text) child).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
         }
     }
 

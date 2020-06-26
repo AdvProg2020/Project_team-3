@@ -6,10 +6,10 @@
 
 <AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #94a8b3;" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.commentMenuController">
     <children>
-        <TextField fx:id="usernameTexField" layoutX="91.0" layoutY="80.0" prefHeight="29.0" prefWidth="156.0" style="-fx-border-width: 2 2 2 2; -fx-border-color: #bababa;" />
-        <Label layoutX="31.0" layoutY="84.0" prefHeight="17.0" prefWidth="60.0" text="username" />
-        <TextArea fx:id="commentTextArea" layoutX="91.0" layoutY="123.0" prefHeight="229.0" prefWidth="421.0" />
-        <Button layoutX="272.0" layoutY="364.0" mnemonicParsing="false" onAction="#sendComment" prefHeight="22.0" prefWidth="60.0" styleClass="greyButton" text="send" />
-        <ImageView fx:id="userImage" fitHeight="52.0" fitWidth="60.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+        <TextField fx:id="usernameTexField" layoutX="93.0" layoutY="70.0" prefHeight="29.0" prefWidth="156.0" style="-fx-border-width: 2 2 2 2; -fx-border-color: #bababa;" />
+        <Label layoutX="22.0" layoutY="76.0" prefHeight="11.0" prefWidth="67.0" text="username" />
+        <TextArea fx:id="commentTextArea" layoutX="93.0" layoutY="123.0" prefHeight="229.0" prefWidth="419.0" />
+        <Button layoutX="277.0" layoutY="364.0" mnemonicParsing="false" onAction="#sendComment" prefHeight="17.0" prefWidth="52.0" styleClass="greyButton" text="send" />
+        <ImageView fx:id="userImage" fitHeight="60.0" fitWidth="60.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>
