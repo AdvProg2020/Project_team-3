@@ -177,6 +177,7 @@ public class ItemAndCategoryControllerTest {
 
     @Test
     public void addCategory() {
+        Category category=new Category("test",null);
         Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
         ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
@@ -198,8 +199,7 @@ public class ItemAndCategoryControllerTest {
     public void addItem() {
         UserController.getInstance().registerSeller(500,"TestCategory","alireza79",
                 "reza","pishro","alireza@gmail.com","33824264","benz");
-
-        acceptRequests();
+       acceptRequests();
         //addCategory();
        User seller =UserController.getInstance().getUserByUsername("TestCategory");
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
@@ -212,7 +212,7 @@ public class ItemAndCategoryControllerTest {
         attributes2.put("price","cheap");
         System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
                 ,"this is vaccum",500,10,"Vacuum",
-                attributes));
+                attributes,null,null));
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
                 ,"this is oven",5000,10,"Oven",attributes1);
         ItemAndCategoryController.getInstance().addItem("ImagedItem","Benz"
@@ -242,6 +242,7 @@ public class ItemAndCategoryControllerTest {
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
         ItemAndCategoryController.getInstance().removeCategory("testAddAttribute");
         ItemAndCategoryController.getInstance().removeCategory("microwave");
+        ItemAndCategoryController.getInstance().removeCategory("test");
         ItemAndCategoryController.getInstance().removeCategory("Oven");
         ItemAndCategoryController.getInstance().removeCategory("Vacuum");
         ItemAndCategoryController.getInstance().removeCategory("Home appliance");

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Comment;
 import Model.DiscountCode;
 import Model.Item;
 import Model.Requests.Request;
@@ -94,7 +95,7 @@ public class UserControllerTest {
 
     @Test
     public  void registerBuyer() {
-        UserController.getInstance().registerBuyer(500,"Arman","Hitler",
+        UserController.getInstance().registerBuyer(50000,"Arman","Hitler",
                 "Arman","S","arman@gmail.com","33151603");
         Assert.assertTrue(UserController.getInstance().isThereUserWithUsername("Arman"));
     }
@@ -373,10 +374,35 @@ public class UserControllerTest {
         System.out.println(UserController.getInstance().getBuyerDiscountCode());
         CartController.getInstance().addItemToCart(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
         Buyer buyer=(Buyer)UserController.getInstance().getUserByUsername("Arman");
-        assertEquals("Successful: Shopping complete.",CartController.getInstance().buy("sssss",SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase().get(0).getDiscountId()));
-        System.out.println(UserController.getInstance().getBuyLog(0));
 
+        assertEquals("Successful: Shopping complete.",CartController.getInstance().buy("sssss",SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase().get(0).getDiscountId()));
+        assertNotNull(buyer.getBuyLogs());
+        assertNotNull(buyer.getBuyLogsString());
+        assertNotNull(buyer.getDiscountCodes());
+        System.out.println(ItemAndCategoryController.getInstance().comment("kheili alie",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId(),null));
+        allRequess=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequess){
+            System.out.println(request.toString());
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+        for (Comment comment : ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getAllComments()) {
+            System.out.println(comment.getText());
+            assertEquals(comment.getItemId(),ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
+            assertNotNull(comment.getCommentId());
+            assertNotNull(comment.getAllReplies());
+            ItemAndCategoryController.getInstance().comment("reply",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId(),comment.getFatherCommentId());
+        }
+        allRequess=RequestController.getInstance().getAllRequestFromDataBase();
+        for(Request request:allRequess){
+            System.out.println(request.toString());
+            RequestController.getInstance().acceptRequest(request.getRequestId());
+        }
+        System.out.println(UserController.getInstance().getBuyLog(0));
+        Seller seller=(Seller) UserController.getInstance().getUserByUsername("Alireza");
+        System.out.println(seller.getSaleLogsString());
+        assertEquals(seller.getSellLogs().size(),1);
         ItemAndCategoryController.getInstance().rate(2,ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
+        assertEquals((int)ItemAndCategoryController.getInstance().getScore(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId()),2);
         assertEquals((int)ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getRating(),2);
         System.out.println(UserController.getInstance().getAllBuyLogs());
         for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
@@ -394,6 +420,8 @@ public class UserControllerTest {
 
     @Test
     public void addDiscountCode() {
+        SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
+        SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode("Arman");
         ArrayList<String>validUsers=new ArrayList<>();
         validUsers.add("Arman");
         String startTime="2014-02-25T22:30";
@@ -402,7 +430,10 @@ public class UserControllerTest {
         LocalDateTime dateTime1 = LocalDateTime.parse(endTime);
         SaleAndDiscountCodeController.getInstance().addDiscountCode(20,dateTime1,dateTime,validUsers
                 ,6,50);
+        SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase().get(0).getDiscountId(),30);
     }
+
+
 
 
 }

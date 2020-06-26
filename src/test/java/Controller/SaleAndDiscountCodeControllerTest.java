@@ -78,8 +78,10 @@ public class SaleAndDiscountCodeControllerTest {
         saleItems.add(allItems.get(0).getId());
         System.out.println(SaleAndDiscountCodeController.getInstance().addSale(dateTime,dateTime1,20,saleItems));
         acceptRequests();
-        System.out.print(SaleAndDiscountCodeController.getInstance().getSellerSalesString("TestSale"));
+        assertNotNull(ItemAndCategoryController.getInstance().getItemById(saleItems.get(0)).showIdWithName());
         Assert.assertTrue(!SaleAndDiscountCodeController.getInstance().getAllSaleFromDataBase().isEmpty());
+        assertNotNull(SaleAndDiscountCodeController.getInstance().getSellerSalesString("TestSale"));
+        assertNotNull(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale());
         //deleteJunk();
     }
 
@@ -101,6 +103,8 @@ public class SaleAndDiscountCodeControllerTest {
         UserController.getInstance().login("admin","12345");
         UserController.getInstance().deleteUser("TestSale");
         UserController.getInstance().deleteUser("Arman");
+        if(ItemAndCategoryController.getInstance().getAllItemFromDataBase().size()!=0)
+        UserController.getInstance().deleteItemFromSeller(ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId(),"TestSale");
         ItemAndCategoryController.getInstance().removeCategory("lavazem manzel");
         File file=new File("Resource");
         file.delete();
@@ -320,6 +324,7 @@ public class SaleAndDiscountCodeControllerTest {
                 "Arman","S","arman@gmail.com","33151603");
         SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode("Arman");
         ArrayList<DiscountCode>allDiscounts=SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase();
+        Assert.assertTrue(allDiscounts.get(0).hasUser("Arman"));
         for(DiscountCode discountCode:allDiscounts)Database.getInstance().deleteDiscountCode(discountCode);
         Assert.assertNotNull(allDiscounts.get(0));
         UserController.getInstance().logout();
@@ -328,6 +333,5 @@ public class SaleAndDiscountCodeControllerTest {
         UserController.getInstance().logout();
         deleteJunk();
     }
-
 
 }
