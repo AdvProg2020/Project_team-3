@@ -266,7 +266,8 @@ public class Item {
 
     public boolean isInSale() {
         Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
-        return sale != null;
+        if(sale==null) return false;
+        return (sale.getEndTime().isAfter(LocalDateTime.now()) && sale.getStartTime().isBefore(LocalDateTime.now()));
     }
 
     public void addBuyerUserName(String userName) {

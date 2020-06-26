@@ -13,7 +13,7 @@
         </menus>
     </MenuBar>
 
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="263.0" layoutY="83.0" prefHeight="569.0" prefWidth="737.0">
+    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="263.0" layoutY="83.0" prefHeight="569.0" prefWidth="737.0" style="-fx-border-color: #94a8b3;">
         <content>
             <GridPane fx:id="gridPane" prefHeight="492.0" prefWidth="723.0">
                 <columnConstraints>
@@ -24,8 +24,8 @@
             </GridPane>
         </content></ScrollPane>
     <ChoiceBox fx:id="sortChoiceBox" layoutX="794.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
-    <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
-   <ScrollPane layoutX="1012.0" layoutY="83.0" prefHeight="249.0" prefWidth="254.0">
+    <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" style="-fx-text-fill: #5f7782;" text="Sort :" />
+   <ScrollPane layoutX="1012.0" layoutY="83.0" prefHeight="249.0" prefWidth="254.0" style="-fx-border-color: #94a8b3;">
       <content>
           <Pane prefHeight="453.0" prefWidth="225.0">
               <CheckBox fx:id="availableCheckBox" layoutX="22.0" layoutY="68.0" onMouseClicked="#filterAvailibility" />
@@ -69,5 +69,6 @@
           </Pane>
       </content>
    </ScrollPane>
+   <Label layoutX="1012.0" layoutY="60.0" style="-fx-text-fill: #5f7782;" text="Filtering" />
 
 </AnchorPane>

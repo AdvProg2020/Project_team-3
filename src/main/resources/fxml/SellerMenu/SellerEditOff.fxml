@@ -37,7 +37,7 @@
    <Button layoutX="846.0" layoutY="129.0" mnemonicParsing="false" onAction="#editOffPercent" styleClass="myBlueButton" text="Edit" />
    <Button layoutX="846.0" layoutY="208.0" mnemonicParsing="false" onAction="#editStartDate" styleClass="myBlueButton" text="Edit" />
    <Button layoutX="846.0" layoutY="300.0" mnemonicParsing="false" onAction="#editEndDate" styleClass="myBlueButton" text="Edit" />
-   <Button layoutX="614.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" styleClass="my" text="Back" />
+   <Button layoutX="614.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" styleClass="myBlueButton" text="Back" />
    <Text fx:id="errorLabel" fill="RED" layoutX="898.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.13671875" />
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    <Text layoutX="41.0" layoutY="671.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: an admin must approve your request to edit this sale - until then, current values remain true." wrappingWidth="561.13671875" />

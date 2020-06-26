@@ -14,7 +14,7 @@
                </Menu>
            </menus>
        </MenuBar>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="250.0" layoutY="86.0" prefHeight="569.0" prefWidth="737.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="250.0" layoutY="86.0" prefHeight="569.0" prefWidth="737.0" style="-fx-border-color: #94a8b3;">
          <content>
             <GridPane fx:id="gridPane" prefHeight="492.0" prefWidth="723.0">
               <columnConstraints>
@@ -25,12 +25,12 @@
             </GridPane>
          </content></ScrollPane>
        <ChoiceBox fx:id="sortChoiceBox" layoutX="781.0" layoutY="46.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
-       <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" text="sort :" />
+       <Label layoutX="746.0" layoutY="51.0" prefHeight="17.0" prefWidth="48.0" style="-fx-text-fill: #5f7782;" text="Sort :" />
        <Label fx:id="categoryLabel" layoutX="263.0" layoutY="46.0" prefHeight="27.0" prefWidth="431.0" text="Label" />
       <Label fx:id="pageNum" layoutX="618.0" layoutY="672.0" prefHeight="27.0" prefWidth="30.0" text="1" textAlignment="CENTER" />
       <Button fx:id="pageNumReduce" layoutX="569.0" layoutY="672.0" mnemonicParsing="false" onAction="#decreasePage" prefHeight="25.0" prefWidth="30.0" styleClass="myBlueButton" text="-" />
       <Button fx:id="pageNumAdd" layoutX="668.0" layoutY="673.0" mnemonicParsing="false" onAction="#increasePage" prefHeight="25.0" prefWidth="29.0" styleClass="myBlueButton" text="+" />
-      <ScrollPane layoutX="1000.0" layoutY="86.0" prefHeight="249.0" prefWidth="254.0">
+      <ScrollPane layoutX="1000.0" layoutY="86.0" prefHeight="249.0" prefWidth="254.0" style="-fx-border-color: #94a8b3;">
          <content>
       
              <Pane prefHeight="453.0" prefWidth="225.0">
@@ -74,7 +74,7 @@
                  <Label layoutX="45.0" layoutY="168.0" prefHeight="17.0" prefWidth="65.0" text="attributes:" />
              </Pane>
          </content></ScrollPane>
-      <TabPane layoutX="1004.0" layoutY="404.0" prefHeight="249.0" prefWidth="247.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="1004.0" layoutY="406.0" prefHeight="249.0" prefWidth="247.0" style="-fx-border-color: #94a8b3;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Category Attributes">
             <content>
@@ -105,6 +105,7 @@
             </Tab>
         </tabs>
       </TabPane>
+      <Label layoutX="1004.0" layoutY="60.0" style="-fx-text-fill: #5f7782;" text="Filtering" />
 
    </children>
 
