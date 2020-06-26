@@ -16,6 +16,7 @@ public class CommercialControllerTest {
 
 
    private  void registerSellerAndAddItem() {
+      deleteJunk();
       UserController.getInstance().registerSeller(500,"Alireza","alireza79",
               "reza","pishro","alireza@gmail.com","33824264","benz");
       ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
