@@ -9,11 +9,11 @@
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
-    <ListView fx:id="listView" layoutX="229.0" layoutY="81.0" onMouseClicked="#selectItem" prefHeight="362.0" prefWidth="277.0" />
+    <ListView fx:id="listView" layoutX="229.0" layoutY="81.0" onMouseClicked="#selectItem" prefHeight="362.0" prefWidth="277.0" style="-fx-border-color: #94a8b3;" />
    <ChoiceBox fx:id="sortChoiceBox" layoutX="300.0" layoutY="51.0" onAction="#sort" prefHeight="27.0" prefWidth="206.0" styleClass="myBlueButton" />
-    <Label layoutX="267.0" layoutY="56.0" text="sort:" />
+    <Label layoutX="267.0" layoutY="56.0" text="Sort:" />
 
-    <ScrollPane layoutX="518.0" layoutY="81.0" prefHeight="249.0" prefWidth="254.0">
+    <ScrollPane layoutX="518.0" layoutY="81.0" prefHeight="249.0" prefWidth="254.0" style="-fx-border-color: #94a8b3;">
         <content>
 
             <Pane prefHeight="453.0" prefWidth="225.0">
@@ -60,6 +60,7 @@
                 <Label layoutX="45.0" layoutY="168.0" prefHeight="17.0" prefWidth="65.0" text="attributes:" />
             </Pane>
         </content></ScrollPane>
+   <Label layoutX="518.0" layoutY="58.0" text="Filtering" />
 
 
 
