@@ -39,8 +39,7 @@ public class SellerManageProductsMenu {
     @FXML TextField brandName;
     @FXML TextField categoryName;
     @FXML TextField sellerName;
-    @FXML
-    AnchorPane anchorPane;
+
 
     @FXML public void initialize() {
         View.setFonts(pane);
@@ -50,24 +49,6 @@ public class SellerManageProductsMenu {
         sortChoiceBox.setValue("sort by view");
         update();
         updateFilter();
-        setFont();
-    }
-
-    private void setFont(){
-        for(Node node:anchorPane.getChildren()){
-            if(node instanceof Label){
-                ((Label)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof Text){
-                ((Text)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof TextArea){
-                ((TextArea)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-            if(node instanceof TextField){
-                ((TextField)node).setFont(Font.loadFont("file:src/main/resources/fonts/O.ttf", 12));
-            }
-        }
     }
 
     public void update() {
