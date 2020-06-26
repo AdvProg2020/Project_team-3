@@ -236,6 +236,7 @@ public class ShopMenuController {
 
         final StackPane container = new StackPane();
         container.setAlignment(Pos.BOTTOM_RIGHT);
+        itemBox.setAlignment(Pos.CENTER);
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
         if(item.getInStock()==0){
             Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),66,65,false,false);

@@ -8,6 +8,7 @@ import View.Menus.SceneSwitcher;
 import View.Menus.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -104,11 +105,13 @@ public class SalesMenuController {
 
     private VBox createItem(String itemID){
         Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+
         if(item==null){
             System.out.println(itemID);
             return null;
         }
         VBox itemBox = new VBox();
+        itemBox.setAlignment(Pos.CENTER);
         itemBox.setOnMouseClicked(event -> {
             ItemMenuController.setItemID(itemID);
             SceneSwitcher.getInstance().saveScene("SalesMenu");
