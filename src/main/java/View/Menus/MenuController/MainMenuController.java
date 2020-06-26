@@ -76,6 +76,7 @@ public class MainMenuController {
 
     private void updateTime(){
         if(timeSinceLastTransition >= 4){
+            if(CommercialController.getInstance().getAcceptedItemId().size()>1)
             nextCommercial(null);
             timeSinceLastTransition = 0;
         }
