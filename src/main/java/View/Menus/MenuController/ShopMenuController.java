@@ -435,7 +435,7 @@ public class ShopMenuController {
 
     public void attributeFilter(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
-        if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))&&(isValidAlphabeticTextField(attributeValue))){
+        if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))){
             SortAndFilterController.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
             initLists();
             return;
