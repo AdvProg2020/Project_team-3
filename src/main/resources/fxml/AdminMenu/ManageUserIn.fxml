@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" prefHeight="88.0" prefWidth="340.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.AdminMenu.ManageUserIn">
+<AnchorPane fx:id="pane" prefHeight="88.0" prefWidth="340.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.AdminMenu.ManageUserIn">
             <Button layoutX="179.0" layoutY="37.0" onMouseClicked="#deleteUser" prefHeight="27.0" prefWidth="113.0" styleClass="redButton" text="delete user" />
              <Button onMouseClicked="#back" styleClass="myBlueButton" text="exit" />
             <Button layoutX="100.0" layoutY="37.0" onMouseClicked="#viewUser" styleClass="myBlueButton" text="view user" />

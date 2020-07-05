@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.LoginRegisterController.AdminRegisterController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="137.0" promptText="Username" styleClass="myTextField" />
        <PasswordField fx:id="passwordField" layoutX="890.0" layoutY="125.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" styleClass="myTextField" />
@@ -26,7 +26,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Login or Register">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#MainMenu" text="Main" />
+                  <MenuItem mnemonicParsing="false" onAction="#MainMenu" text="Project.Main" />
                   <MenuItem mnemonicParsing="false" onAction="#Login" text="Login" />
               <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
             </items>

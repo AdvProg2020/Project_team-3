@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" styleClass="userBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.BuyerOrdersController">
+<AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" styleClass="userBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.BuyerMenu.BuyerOrdersController">
    <children>
        <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="58.0" styleClass="greyButton" text="Back" />
        <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">

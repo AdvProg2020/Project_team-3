@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" prefHeight="323.0" prefWidth="600.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.MenuController.BuyerMenu.PurchaseMenu">
+<AnchorPane fx:id="pane" prefHeight="323.0" prefWidth="600.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.BuyerMenu.PurchaseMenu">
             <TextField fx:id="address" layoutX="97.0" layoutY="104.0" prefHeight="105.0" prefWidth="161.0" />
             <Label layoutX="14.0" layoutY="109.0" text="address:"> </Label>
              <Label layoutX="8.0" layoutY="228.0" text="discount code:" />
