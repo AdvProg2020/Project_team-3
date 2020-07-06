@@ -9,15 +9,17 @@ public class SaleLog {
     private String itemId;
     private String buyerName;
     private int count;
+    private String sellerUsername;
     //private String deliveryState;
 
 
-    public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count) {
+    public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count , String sellerUsername) {
         this.time = time.toString();
         this.price = price;
         this.itemId = itemId;
         this.buyerName = buyerName;
         this.count = count;
+        this.sellerUsername = sellerUsername;
     }
 
     public double getPrice() {

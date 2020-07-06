@@ -1,4 +1,4 @@
-package Project.View.Menus;
+package Project.View.CLI;
 
 import Project.Controller.ItemAndCategoryController;
 import Project.Controller.UserController;

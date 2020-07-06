@@ -1,12 +1,12 @@
-package Project.View.Menus.AdminMenu;
+package Project.View.CLI.AdminMenu;
 
 import Project.Controller.Database;
 import Project.Controller.SortAndFilterController;
-import Project.View.Menus.LoginRegisterMenu;
-import Project.View.Menus.MainMenu;
-import Project.View.Menus.Menu;
-import Project.View.Menus.ShopAndDiscountMenu.SortAndFilterMenu;
-import Project.View.Menus.View;
+import Project.View.CLI.LoginRegisterMenu;
+import Project.View.CLI.MainMenu;
+import Project.View.CLI.Menu;
+import Project.View.CLI.ShopAndDiscountMenu.SortAndFilterMenu;
+import Project.View.CLI.View;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

@@ -1,9 +1,9 @@
-package Project.View.Menus;
+package Project.View.CLI;
 
 import Project.Controller.ItemAndCategoryController;
 import Project.Controller.UserController;
-import Project.View.Menus.ShopAndDiscountMenu.DiscountsMenu;
-import Project.View.Menus.ShopAndDiscountMenu.ShopMenu;
+import Project.View.CLI.ShopAndDiscountMenu.DiscountsMenu;
+import Project.View.CLI.ShopAndDiscountMenu.ShopMenu;
 
 import java.util.regex.Matcher;
 

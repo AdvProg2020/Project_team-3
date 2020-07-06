@@ -1,10 +1,10 @@
-package Project.View.Menus.ShopAndDiscountMenu;
+package Project.View.CLI.ShopAndDiscountMenu;
 
 import Project.Controller.SortAndFilterController;
-import Project.View.Menus.LoginRegisterMenu;
-import Project.View.Menus.MainMenu;
-import Project.View.Menus.Menu;
-import Project.View.Menus.View;
+import Project.View.CLI.LoginRegisterMenu;
+import Project.View.CLI.MainMenu;
+import Project.View.CLI.Menu;
+import Project.View.CLI.View;
 
 import java.util.regex.Matcher;
 

@@ -3,7 +3,7 @@ package Project.View.Menus.MenuController.SellerMenuController;
 import Project.Controller.*;
 import Project.View.Menus.MusicManager;
 import Project.View.Menus.SceneSwitcher;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;

@@ -2,7 +2,7 @@ package Project.Controller;
 
 import Project.Model.Requests.Request;
 import Project.Model.Users.User;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -7,7 +7,7 @@ import Project.Model.Logs.SaleLog;
 import Project.Model.Users.Seller;
 import Project.View.Menus.MusicManager;
 import Project.View.Menus.SceneSwitcher;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

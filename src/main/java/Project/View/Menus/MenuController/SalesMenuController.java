@@ -5,7 +5,7 @@ import Project.Model.Item;
 import Project.Model.Sale;
 import Project.View.Menus.MusicManager;
 import Project.View.Menus.SceneSwitcher;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

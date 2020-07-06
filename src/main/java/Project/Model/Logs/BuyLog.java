@@ -41,7 +41,7 @@ public class BuyLog {
         item.addTimesBoughtBy(count);
         item.addBuyerUserName(buyerName);
         Database.getInstance().saveItem(item);
-        SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price*count, itemID, buyerName, count);
+        SaleLog saleLog = new SaleLog(LocalDateTime.parse(time), price*count, itemID, buyerName, count , sellerName);
         UserController.getInstance().assignSaleLog(sellerName, saleLog);
     }
 

@@ -1,10 +1,10 @@
-package Project.View.Menus;
+package Project.View.CLI;
 
 import Project.Controller.Controller;
 import Project.Controller.UserController;
-import Project.View.Menus.AdminMenu.AdminMenu;
-import Project.View.Menus.SellerMenu.SellerMenu;
-import Project.View.Menus.ShopAndDiscountMenu.ShopMenu;
+import Project.View.CLI.AdminMenu.AdminMenu;
+import Project.View.CLI.SellerMenu.SellerMenu;
+import Project.View.CLI.ShopAndDiscountMenu.ShopMenu;
 
 public class LoginRegisterMenu extends Menu {
     private static LoginRegisterMenu loginRegisterMenu;

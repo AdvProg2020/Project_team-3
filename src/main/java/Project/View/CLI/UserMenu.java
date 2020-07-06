@@ -1,7 +1,9 @@
-package Project.View.Menus;
+package Project.View.CLI;
 
 import Project.Controller.Controller;
 import Project.Controller.UserController;
+import Project.View.CLI.Menu;
+import Project.View.CLI.View;
 
 public abstract class UserMenu extends Menu {
 

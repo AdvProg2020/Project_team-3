@@ -1,12 +1,12 @@
-package Project.View.Menus.AdminMenu;
+package Project.View.CLI.AdminMenu;
 
 import Project.Controller.*;
-import Project.View.Menus.LoginRegisterMenu;
-import Project.View.Menus.MainMenu;
-import Project.View.Menus.ShopAndDiscountMenu.DiscountsMenu;
-import Project.View.Menus.ShopAndDiscountMenu.ShopMenu;
-import Project.View.Menus.UserMenu;
-import Project.View.Menus.View;
+import Project.View.CLI.LoginRegisterMenu;
+import Project.View.CLI.MainMenu;
+import Project.View.CLI.ShopAndDiscountMenu.DiscountsMenu;
+import Project.View.CLI.ShopAndDiscountMenu.ShopMenu;
+import Project.View.CLI.UserMenu;
+import Project.View.CLI.View;
 
 
 import java.time.LocalDateTime;

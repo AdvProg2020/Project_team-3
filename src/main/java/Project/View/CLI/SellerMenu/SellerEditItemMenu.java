@@ -1,10 +1,10 @@
-package Project.View.Menus.SellerMenu;
+package Project.View.CLI.SellerMenu;
 
 import Project.Controller.ItemAndCategoryController;
-import Project.View.Menus.LoginRegisterMenu;
-import Project.View.Menus.MainMenu;
-import Project.View.Menus.UserMenu;
-import Project.View.Menus.View;
+import Project.View.CLI.LoginRegisterMenu;
+import Project.View.CLI.MainMenu;
+import Project.View.CLI.UserMenu;
+import Project.View.CLI.View;
 
 public class SellerEditItemMenu extends UserMenu {
     private static SellerEditItemMenu sellerEditItemMenu;

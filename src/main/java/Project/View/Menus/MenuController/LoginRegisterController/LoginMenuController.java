@@ -6,7 +6,7 @@ import Project.View.Menus.MusicManager;
 import Project.View.Menus.SceneSwitcher;
 import Project.Controller.UserController;
 import Project.Model.Users.User;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;

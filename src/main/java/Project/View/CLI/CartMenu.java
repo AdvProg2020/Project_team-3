@@ -1,4 +1,4 @@
-package Project.View.Menus;
+package Project.View.CLI;
 
 import Project.Controller.CartController;
 import Project.Controller.Controller;

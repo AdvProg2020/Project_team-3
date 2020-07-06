@@ -3,7 +3,7 @@ package Project.View.Menus.MenuController;
 import Project.Controller.ItemAndCategoryController;
 import Project.Model.Item;
 import Project.View.Menus.MusicManager;
-import Project.View.Menus.View;
+import Project.View.CLI.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
