@@ -6,7 +6,9 @@ module Project {
     requires javafx.media;
     opens Project to javafx.fxml;
     opens Project.Model.Users to com.google.gson;
+    opens Project.Model.Logs to com.google.gson;
     opens Project.Model to com.google.gson;
+    opens Project.Model.Requests to com.google.gson;
     opens Project.View.Menus.MenuController to javafx.fxml;
     opens Project.View.Menus.MenuController.AdminMenu to javafx.fxml;
     opens Project.View.Menus.MenuController.BuyerMenu  to javafx.fxml;

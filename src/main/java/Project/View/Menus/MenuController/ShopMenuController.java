@@ -259,6 +259,12 @@ public class ShopMenuController {
         itemBox.getChildren().add(star);
         itemBox.getChildren().add(nameAndPrice);
 
+        itemBox.setOnMouseEntered(e -> {
+            itemBox.setStyle("-fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );");
+        });
+        itemBox.setOnMouseExited(e -> {
+            itemBox.setStyle("");
+        });
         itemsVBox.add(itemBox);
         return itemBox;
     }
