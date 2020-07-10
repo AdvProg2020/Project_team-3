@@ -142,7 +142,7 @@ public class UserController {
         }
         controller.currentOnlineUser = user;
         Controller.getInstance().setCurrentOnlineUser(user);
-        return "Success: Login successful.";
+        return "Success: Login successful Token: "+AuthTokenHandler.getInstance().generateTokenForUser(username);
     }
 
     public double validateMoney(String money) {

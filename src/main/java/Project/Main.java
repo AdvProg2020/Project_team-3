@@ -3,6 +3,8 @@ package Project;
 import Project.Controller.Controller;
 import Project.Controller.Database;
 import Project.View.Menus.SceneSwitcher;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,7 +19,6 @@ public class Main extends Application{
         test.doSth();
         Controller.getInstance().updateDateAndTime();
         launch(args);
-        //View.run();
     }
 
     @Override
