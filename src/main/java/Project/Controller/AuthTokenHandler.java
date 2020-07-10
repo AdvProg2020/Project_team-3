@@ -19,14 +19,14 @@ public class AuthTokenHandler {
       return authTokenHandler;
    }
 
-   public void generateTokenForUser(String username){
+   public String generateTokenForUser(String username){
       while(true) {
          byte[] randomBytes = new byte[24];
          secureRandom.nextBytes(randomBytes);
          String token=base64Encoder.encodeToString(randomBytes);
          if(onlineUsersTokens.containsKey(token)==false) {
             onlineUsersTokens.put(token, username);
-            break;
+            return token;
          }
       }
    }
@@ -37,6 +37,17 @@ public class AuthTokenHandler {
          return "Successful: ";
       }
       return "Error: ";
+   }
+
+   public String getUserWithToken(String token){
+      if(onlineUsersTokens.containsKey(token)){
+         return onlineUsersTokens.get(token);
+      }
+      return null;
+   }
+
+   public Boolean isUserOnline(String username){
+      return false;
    }
 
 }

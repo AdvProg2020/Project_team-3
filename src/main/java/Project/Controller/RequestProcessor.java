@@ -18,34 +18,67 @@ public class RequestProcessor {
    }
 
    public String process(JsonObject command){
-   if( command.get("type").equals("1")){
+   if(command.get("type").getAsInt()==1){
       return loginMenuProcessor(command);
-   }else if( command.get("type").equals("2")){
+   }else if(command.get("type").getAsInt()==2){
       return buyerMenuProcessor(command);
-   }else if( command.get("type").equals("3")){
+   }else if(command.get("type").getAsInt()==3){
       return sellerMenuProcessor(command);
-   }else if( command.get("type").equals("4")){
+   }else if(command.get("type").getAsInt()==4){
       return adminMenuProcessor(command);
-   }else if( command.get("type").equals("G")){ //general commands that dont need token like show shop
+   }else if(command.get("type").getAsInt()==0){ //general commands that dont need token like show shop
 
    }
-
    return "Error: invalid command";
    }
 
    public String loginMenuProcessor(JsonObject command){
+      if(command.get("content").equals("login")){
+         return UserController.getInstance().login(command.get("username").toString(),command.get("password").toString());
+      }
+
+      if(command.get("content").equals("logout")){
+         //harvaght barname be current online user ehtiaj nadasht az comment dar miad
+        // return AuthTokenHandler.getInstance().deleteToken(command.get("token").toString());
+         return UserController.getInstance().logout();
+      }
+
+      if(command.get("content").equals("create account")) {
+         String name = command.get("name").toString();
+         String lastName = command.get("lastName").toString();
+         String password = command.get("password").toString();
+         String username = command.get("username").toString();
+         String email = command.get("email").toString();
+         String number = command.get("number").toString();
+         double money = command.get("money").getAsDouble();
+
+         if (command.get("account type").equals("buyer")) {
+            return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
+         }
+
+         if (command.get("account type").equals("seller")) {
+            String companyName= command.get("company").toString();
+            return UserController.getInstance().registerSeller(money,username,password,name,lastName,email,number,companyName);
+         }
+
+         return "Error: invalid account type";
+      }
+
       return "Error: invalid command";
    }
 
    public String adminMenuProcessor(JsonObject command){
+      String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
       return "Error: invalid command";
    }
 
    public String buyerMenuProcessor(JsonObject command){
+      String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
       return "Error: invalid command";
    }
 
    public String sellerMenuProcessor(JsonObject command){
+      String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
       return "Error: invalid command";
    }
 
