@@ -10,7 +10,7 @@ import Project.Model.Users.Admin;
 import Project.Model.Users.Buyer;
 import Project.Model.Users.Seller;
 import Project.Model.Users.User;
-import Project.View.CLI.ShopAndDiscountMenu.ShopMenu;
+import Project.View.CLI.ShopAndDiscountMenu.*;
 import Project.View.CLI.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

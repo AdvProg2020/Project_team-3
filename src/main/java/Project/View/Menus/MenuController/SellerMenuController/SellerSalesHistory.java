@@ -91,7 +91,7 @@ public class SellerSalesHistory {
 
     private void updateSaleLogListView(){
         Seller seller=(Seller) Controller.getInstance().getCurrentOnlineUser();
-        ArrayList<SaleLog> allLogs=seller.getSellLogs();
+        ArrayList<SaleLog> allLogs=UserController.getInstance().getSaleLogs(seller.getUsername());
         if(allLogs.size()==0){
             SaleLogLabel.setText("you did not sell anyThing!");
             return;

@@ -366,4 +366,25 @@ public class UserController {
         return buyer.getDiscountCodes();
     }
 
+    //arman  temp
+    public ArrayList<SaleLog> getSaleLogs(String username){
+        User user = getUserByUsername(username);
+        Seller seller;
+        if(user instanceof Seller){
+            seller = (Seller)user;
+            return seller.getSellLogs();
+        }
+        return null;
+    }
+
+    public ArrayList<BuyLog> getBuyLogs(String username){
+        User user = getUserByUsername(username);
+        Buyer buyer;
+        if(user instanceof Buyer){
+            buyer = (Buyer)user;
+            return buyer.getBuyLogs();
+        }
+        return null;
+    }
+
 }

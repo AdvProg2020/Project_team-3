@@ -1,7 +1,6 @@
 package Project.Model.Users;
 
 import Project.Controller.SaleAndDiscountCodeController;
-import Project.Model.Cart;
 import Project.Model.DiscountCode;
 import Project.Model.Logs.BuyLog;
 
@@ -11,12 +10,11 @@ public class Buyer extends User {
 
     private double money;
     private ArrayList<BuyLog> buyLogs;
-    private Cart cart;
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,number,"Buyer");
         this.money=money;
         buyLogs=new ArrayList<>();;
-        cart=new Cart();
+        //cart=new Cart();
     }
 
     @Override

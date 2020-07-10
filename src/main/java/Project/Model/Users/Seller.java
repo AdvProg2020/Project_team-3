@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Seller extends User {
     private String companyName;
     private ArrayList<SaleLog> sellLogs;
-    private ArrayList<String> soldItemsId;
     private ArrayList<String> allItemsId;
     private ArrayList<String> allSaleId;
     private boolean valid;
@@ -20,7 +19,7 @@ public class Seller extends User {
         super(username, password, name, lastName, email, number, "Seller");
         this.companyName = companyName;
         sellLogs = new ArrayList<>();
-        soldItemsId = new ArrayList<>();
+        //soldItemsId = new ArrayList<>();
         allItemsId = new ArrayList<>();
         allSaleId = new ArrayList<>();
         valid = false;
@@ -78,15 +77,6 @@ public class Seller extends User {
 
     public boolean hasItem(String id) {
         return allItemsId.contains(id);
-    }
-
-    public void addAllSaleId(String id) {
-        if(hasSale(id)==true) return;
-        allSaleId.add(id);
-    }
-
-    public boolean hasSale(String id) {
-        return allSaleId.contains(id);
     }
 
     public void setMoney(double money) {

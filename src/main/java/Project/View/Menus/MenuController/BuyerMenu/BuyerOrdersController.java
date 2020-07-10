@@ -53,7 +53,7 @@ public class BuyerOrdersController {
 
     public void initializeBuyLogListView(){
         Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
-        ArrayList<BuyLog> allLogs=buyer.getBuyLogs();
+        ArrayList<BuyLog> allLogs=UserController.getInstance().getBuyLogs(buyer.getUsername());
         if(allLogs.size()==0){
             buyLogEmptyLabel.setText("you did not bought anything!");
             return;
