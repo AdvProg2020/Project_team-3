@@ -8,10 +8,13 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Main extends Application{
     public static void main(String[] args) {
         Database.getInstance().initiate();
+        test.doSth();
         Controller.getInstance().updateDateAndTime();
         launch(args);
         //View.run();
