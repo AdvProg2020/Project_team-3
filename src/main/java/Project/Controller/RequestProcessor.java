@@ -18,16 +18,16 @@ public class RequestProcessor {
    }
 
    public String process(JsonObject command){
-   if(command.get("type").getAsInt()==1){
+   if(command.get("type").getAsInt()==1){  //login and register (doesnt contain token)
       return loginMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==2){
+   }else if(command.get("type").getAsInt()==2){  //buyer menu
       return buyerMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==3){
+   }else if(command.get("type").getAsInt()==3){  //seller menu
       return sellerMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==4){
+   }else if(command.get("type").getAsInt()==4){  //admin menu
       return adminMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==0){ //general commands that dont need token like show shop
-
+   }else if(command.get("type").getAsInt()==5){ //user general
+      return userGeneralProcessor(command);
    }
    return "Error: invalid command";
    }
@@ -69,20 +69,28 @@ public class RequestProcessor {
 
    public String adminMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      if(username==null) return "Error: incorrect Token";
       return "Error: invalid command";
    }
 
    public String buyerMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      if(username==null) return "Error: incorrect Token";
       return "Error: invalid command";
    }
 
    public String sellerMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      if(username==null) return "Error: incorrect Token";
       return "Error: invalid command";
    }
 
-   public String generalProcessor(JsonObject command){
+   public String userGeneralProcessor(JsonObject command){
+      String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      if(username==null) return "Error: incorrect Token";
+      if(command.get("content").equals("view personal info")){
+         return UserController.getInstance().viewPersonalInfo(username);
+      }
       return "Error: invalid command";
    }
 
