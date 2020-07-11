@@ -30,7 +30,8 @@ public class UserController {
     }
 
     public User getUserByUsername(String username) {
-        String path = "Resource" + File.separator + "Users";
+      //String path="E:"+File.separator+"Project_team-3"+File.separator+"Resource" + File.separator + "Users";
+      String path = "Resource" + File.separator + "Users";
         String name = username + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
