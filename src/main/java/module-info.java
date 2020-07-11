@@ -5,7 +5,7 @@ module Project {
     requires com.google.gson;
     requires javafx.media;
     requires kotlin.stdlib;
-    requires javax.servlet;
+    requires javax.servlet.api;
     opens Project to javafx.fxml;
     opens Project.Model.Users to com.google.gson;
     opens Project.Model.Logs to com.google.gson;
