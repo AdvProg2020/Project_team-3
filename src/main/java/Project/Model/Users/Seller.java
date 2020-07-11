@@ -11,7 +11,6 @@ public class Seller extends User {
     private String companyName;
     private ArrayList<SaleLog> sellLogs;
     private ArrayList<String> allItemsId;
-    private ArrayList<String> allSaleId;
     private boolean valid;
     private double money;
 
@@ -21,7 +20,7 @@ public class Seller extends User {
         sellLogs = new ArrayList<>();
         //soldItemsId = new ArrayList<>();
         allItemsId = new ArrayList<>();
-        allSaleId = new ArrayList<>();
+        //allSaleId = new ArrayList<>();
         valid = false;
         this.money = money;
     }
