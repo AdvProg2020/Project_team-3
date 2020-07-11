@@ -43,6 +43,7 @@ public class Database<Public> {
       }catch(IOException exception){
          exception.printStackTrace();
       }
+      //inja ba sql
    }
 
    public void saveRequest(Request request)  {
