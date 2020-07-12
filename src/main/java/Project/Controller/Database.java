@@ -30,6 +30,15 @@ public class Database<Public> {
       return database;
    }
 
+   private static Connection c = null;
+   public static Connection getConn() throws SQLException {
+      if(c == null){
+         c = DriverManager.getConnection("jdbc:sqlite:database.db");
+      }
+      return c;
+   }
+
+
    public void saveUser(User user)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String Username = user.getUsername();
@@ -66,7 +75,7 @@ public class Database<Public> {
       Connection connection = null;
       try
       {
-         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          try {
@@ -80,18 +89,6 @@ public class Database<Public> {
       {
          System.err.println(e.getMessage());
       }
-      finally
-      {
-         try
-         {
-            if(connection != null)
-               connection.close();
-         }
-         catch(SQLException e)
-         {
-            System.err.println(e.getMessage());
-         }
-      }
    }
 
    private void insertBuyer(Buyer buyer){
@@ -103,7 +100,7 @@ public class Database<Public> {
       Connection connection = null;
       try
       {
-         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          try {
@@ -116,18 +113,6 @@ public class Database<Public> {
       catch(SQLException e)
       {
          System.err.println(e.getMessage());
-      }
-      finally
-      {
-         try
-         {
-            if(connection != null)
-               connection.close();
-         }
-         catch(SQLException e)
-         {
-            System.err.println(e.getMessage());
-         }
       }
 
    }
@@ -142,7 +127,7 @@ public class Database<Public> {
       Connection connection = null;
       try
       {
-         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          try {
@@ -156,18 +141,7 @@ public class Database<Public> {
       {
          System.err.println(e.getMessage());
       }
-      finally
-      {
-         try
-         {
-            if(connection != null)
-               connection.close();
-         }
-         catch(SQLException e)
-         {
-            System.err.println(e.getMessage());
-         }
-      }
+
    }
 
    public void saveRequest(Request request)  {
@@ -270,7 +244,7 @@ public class Database<Public> {
       String tableName = user.getType() + "s";
       try
       {
-         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          statement.executeUpdate("delete FROM "+tableName +" WHERE username='"+user.getUsername()+"'");
@@ -279,18 +253,7 @@ public class Database<Public> {
       {
          System.err.println(e.getMessage());
       }
-      finally
-      {
-         try
-         {
-            if(connection != null)
-               connection.close();
-         }
-         catch(SQLException e)
-         {
-            System.err.println(e.getMessage());
-         }
-      }
+
    }
 
    public void deleteItem(Item item) {
@@ -423,7 +386,7 @@ public class Database<Public> {
       ArrayList<String> allUser = new ArrayList<>();
       Connection connection = null;
       try {
-         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          ResultSet rs = statement.executeQuery("select * FROM Admins");
@@ -445,17 +408,7 @@ public class Database<Public> {
       catch(SQLException e) {
          System.err.println(e.getMessage());
       }
-      finally {
-         try
-         {
-            if(connection != null)
-               connection.close();
-         }
-         catch(SQLException e)
-         {
-            System.err.println(e.getMessage());
-         }
-      }
+
       ArrayList<String> specificUser=new ArrayList<>();
       for (String user : allUser) {
          if(UserController.getInstance().getUserType(user).equals(type))
