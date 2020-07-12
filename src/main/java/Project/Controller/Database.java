@@ -1,10 +1,7 @@
 package Project.Controller;
 
-import Project.Model.Category;
-import Project.Model.DiscountCode;
-import Project.Model.Item;
+import Project.Model.*;
 import Project.Model.Requests.Request;
-import Project.Model.Sale;
 import Project.Model.Users.Admin;
 import Project.Model.Users.Buyer;
 import Project.Model.Users.Seller;
@@ -219,6 +216,7 @@ public class Database {
 
    public void saveCategory(Category category) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      /*
       String path = "Resource" + File.separator + "Categories";
       String name = category.getName() + ".json";
       File file = new File(path + File.separator + name);
@@ -231,15 +229,34 @@ public class Database {
          writer.close();
       }catch(IOException exception){
          exception.printStackTrace();
+      }*/
+      Connection connection = null;
+      String children = gson.toJson(category.getSubCategories());
+      String attributes = gson.toJson(category.getAttributes());
+      String items = gson.toJson(category.getAllItemsID());
+      String values = "'" + category.getName() +"', '"+category.getParent()+"', '"+items+"', '"+attributes+"', '"+children+"'";
+
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Categories WHERE name='"+category.getName()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Categories values("+values+")");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
       }
    }
 
    public void deleteUser(User user) {
-      String Username = user.getUsername();
+      /*String Username = user.getUsername();
       String path = "Resource" + File.separator + "Users";
       String name = Username + ".json";
       File file = new File(path + File.separator + name);
-      file.delete();
+      file.delete();*/
       Connection connection = null;
       String tableName = user.getType() + "s";
       try
@@ -281,11 +298,23 @@ public class Database {
 
 
    public void deleteCategory(Category category) {
-      String categoryName = category.getName();
+      /*String categoryName = category.getName();
       String path = "Resource" + File.separator + "Categories";
       String name = categoryName + ".json";
       File file = new File(path + File.separator + name);
-      file.delete();
+      file.delete();*/
+      Connection connection = null;
+      try
+      {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         statement.executeUpdate("delete FROM Categories WHERE name='"+category.getName()+"'");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
    }
 
    public void deleteRequest(Request request) {
@@ -347,6 +376,16 @@ public class Database {
    }
 
    public ArrayList<String> printFolderContent(String folderName) {
+      if(folderName.equals("Users")){
+         ArrayList<String> allUsers = new ArrayList<>();
+         allUsers.addAll(getAllUsername("Admin"));
+         allUsers.addAll(getAllUsername("Buyer"));
+         allUsers.addAll(getAllUsername("Seller"));
+         return allUsers;
+      }
+      if(folderName.equals("Categories")){
+         return getAllCategories();
+      }
       ArrayList<String> fileNames = new ArrayList();
       String path = "Resource" + File.separator + folderName;
       File[] files = new File(path).listFiles();
@@ -384,38 +423,44 @@ public class Database {
    }
 
    public ArrayList<String> getAllUsername(String type){
+      String tableName = type + "s";
       ArrayList<String> allUser = new ArrayList<>();
       Connection connection = null;
       try {
          connection = getConn();
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
-         ResultSet rs = statement.executeQuery("select * FROM Admins");
+         ResultSet rs = statement.executeQuery("select * FROM "+tableName);
          while(rs.next())
          {
             allUser.add(rs.getString(1));
          }
-         rs = statement.executeQuery("select * FROM Buyers");
-         while(rs.next())
-         {
-            allUser.add(rs.getString(1));
-         }
-         rs = statement.executeQuery("select * FROM Sellers");
-         while(rs.next())
-         {
-            allUser.add(rs.getString(1));
-         }
+
       }
       catch(SQLException e) {
          System.err.println(e.getMessage());
       }
+      return allUser;
+   }
 
-      ArrayList<String> specificUser=new ArrayList<>();
-      for (String user : allUser) {
-         if(UserController.getInstance().getUserType(user).equals(type))
-            specificUser.add(user);
+   public ArrayList<String> getAllCategories(){
+      ArrayList<String> allCats = new ArrayList<>();
+      Connection connection = null;
+      try {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         ResultSet rs = statement.executeQuery("select * FROM Categories");
+         while(rs.next())
+         {
+            allCats.add(rs.getString(1));
+         }
+
       }
-      return specificUser;
+      catch(SQLException e) {
+         System.err.println(e.getMessage());
+      }
+      return allCats;
    }
 }
 

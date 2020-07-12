@@ -27,6 +27,14 @@ public class Category {
         this.attributes=attributes;
     }
 
+    public Category(String name,String parent,ArrayList<String> allItemsID,ArrayList<String> attributes,ArrayList<String> subCategories){
+        this.name = name;
+        this.parent = parent;
+        this.allItemsID = allItemsID;
+        this.attributes = attributes;
+        this.subCategories = subCategories;
+    }
+
     public String getName() {
         return name;
     }

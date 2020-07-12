@@ -1,11 +1,6 @@
 package Project.Model;
 
-import Project.Controller.Controller;
-import Project.Controller.CommercialController;
-import Project.Controller.Database;
-import Project.Controller.ItemAndCategoryController;
-import Project.Controller.UserController;
-import Project.Controller.SaleAndDiscountCodeController;
+import Project.Controller.*;
 import Project.Model.Users.Seller;
 
 import java.time.LocalDateTime;
@@ -53,10 +48,10 @@ public class Item {
         allRatings = new ArrayList<>();
         allComments = new ArrayList<>();
         buyerUserName = new ArrayList<>();
-        videoName="";
+        videoName = "";
     }
 
-    public Item(String name, String brand, String description, String state, double price, String sellerName, String categoryName, HashMap<String, String> attributes, int inStock, String imageName , String videoName) {
+    public Item(String name, String brand, String description, String state, double price, String sellerName, String categoryName, HashMap<String, String> attributes, int inStock, String imageName, String videoName) {
         this.name = name;
         this.brand = brand;
         this.description = description;
@@ -99,7 +94,28 @@ public class Item {
         buyerUserName = new ArrayList<>();
         UserController.getInstance().assignItemToSeller(id, sellerName);
     }
-    //getters
+
+    public Item(String id, String state, String description, String name, String brand, double price, int inStock, int viewCount, HashMap<String, String> attributes, String sellerName, String categoryName, ArrayList<String> buyerUserName, ArrayList<Rating> allRatings, ArrayList<Comment> allComments, String saleId,
+                String imageName, String videoName, String addedTime) {
+        this.id = id;
+        this.state = state;
+        this.description = description;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.inStock = inStock;
+        this.viewCount = viewCount;
+        this.attributes = attributes;
+        this.sellerName = sellerName;
+        this.categoryName = categoryName;
+        this.buyerUserName = buyerUserName;
+        this.allComments = allComments;
+        this.allRatings = allRatings;
+        this.saleId = saleId;
+        this.imageName = imageName;
+        this.videoName = videoName;
+        this.addedTime = addedTime;
+    }
 
     public void delete() {
         Category category = ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
@@ -230,8 +246,8 @@ public class Item {
         return attributes;
     }
 
-    public void addAttribute(String key,String value){
-        attributes.put(key,value);
+    public void addAttribute(String key, String value) {
+        attributes.put(key, value);
     }
 
     public ArrayList<Comment> getAllComments() {
@@ -243,13 +259,13 @@ public class Item {
     }
 
     public void addComment(Comment newComment) {
-       if(newComment.getFatherCommentId()==null) this.allComments.add(newComment);
-       else if(newComment.getFatherCommentId()!=null){
-           Comment fatherComment=getCommentById(newComment.getFatherCommentId());
-           allComments.remove(fatherComment);
-           fatherComment.addReply(newComment);
-           this.allComments.add(fatherComment);
-       }
+        if (newComment.getFatherCommentId() == null) this.allComments.add(newComment);
+        else if (newComment.getFatherCommentId() != null) {
+            Comment fatherComment = getCommentById(newComment.getFatherCommentId());
+            allComments.remove(fatherComment);
+            fatherComment.addReply(newComment);
+            this.allComments.add(fatherComment);
+        }
         Database.getInstance().saveItem(this);
     }
 
@@ -264,7 +280,7 @@ public class Item {
 
     public boolean isInSale() {
         Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
-        if(sale==null) return false;
+        if (sale == null) return false;
         return (sale.getEndTime().isAfter(LocalDateTime.now()) && sale.getStartTime().isBefore(LocalDateTime.now()));
     }
 
@@ -299,7 +315,7 @@ public class Item {
     }
 
     public void setAttribute(String attributeName, String value) {
-        if(!attributes.containsKey(attributeName)) return;
+        if (!attributes.containsKey(attributeName)) return;
         attributes.replace(attributeName, value);
     }
 
@@ -308,7 +324,7 @@ public class Item {
         String string = name + "\nID: " + id + "\nSeller:" + sellerName + "\nStock:" + inStock + "\nPrice:" + price;
         if (isInSale()) {
             Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(saleId);
-            string += "\nprice after sale: " + price * (100-sale.getOffPercentage()) / 100;
+            string += "\nprice after sale: " + price * (100 - sale.getOffPercentage()) / 100;
         }
         string += "\nRating= " + getRating();
         return string;
@@ -349,9 +365,9 @@ public class Item {
         return saleId;
     }
 
-    public Comment getCommentById(String id){
-        for(Comment comment:allComments){
-            if(comment.getCommentId().equals(id)) return comment;
+    public Comment getCommentById(String id) {
+        for (Comment comment : allComments) {
+            if (comment.getCommentId().equals(id)) return comment;
         }
         return null;
     }

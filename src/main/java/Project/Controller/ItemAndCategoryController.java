@@ -10,14 +10,19 @@ import Project.Model.Users.Admin;
 import Project.Model.Users.Buyer;
 import Project.Model.Users.Seller;
 import Project.Model.Users.User;
-import Project.View.CLI.ShopAndDiscountMenu.*;
+import Project.View.CLI.ShopAndDiscountMenu.ShopMenu;
 import Project.View.CLI.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -72,13 +77,32 @@ public class ItemAndCategoryController {
     }
 
     public boolean isThereCategoryWithName(String name) {
-        String path = "Resource" + File.separator + "Categories";
+        //asd
+        int cnt=0;
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Categories WHERE name='"+name+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return cnt>0;
+        /*String path = "Resource" + File.separator + "Categories";
         String fileName = name + ".json";
         File file = new File(path + File.separator + fileName);
         if (!file.exists()) {
             return false;
         }
-        return true;
+        return true;*/
     }
 
 
@@ -114,7 +138,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getCategoryByName(String categoryName) {
-        String path = "Resource" + File.separator + "Categories";
+        /*String path = "Resource" + File.separator + "Categories";
         String name = categoryName + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) return null;
@@ -125,7 +149,33 @@ public class ItemAndCategoryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null;*/
+        ArrayList<Category> viableOptions = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Categories WHERE name='"+categoryName+"'");
+            while(rs.next())
+            {
+                //bayad be viableoptions new ezafe konim
+                String name = rs.getString(1);
+                String parent = rs.getString(2);
+                ArrayList<String> items = gson.fromJson(rs.getString(3),new TypeToken<ArrayList<String>>(){}.getType());
+                ArrayList<String> attributes = gson.fromJson(rs.getString(4),new TypeToken<ArrayList<String>>(){}.getType());
+                ArrayList<String> children = gson.fromJson(rs.getString(5),new TypeToken<ArrayList<String>>(){}.getType());
+                viableOptions.add(new Category(name,parent,items,attributes,children));
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(viableOptions.isEmpty()) return null;
+        return viableOptions.get(0);
     }
 
     public boolean searchItemInCategory(String categoryName, String itemId) {
