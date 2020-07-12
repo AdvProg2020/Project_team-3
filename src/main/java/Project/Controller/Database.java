@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Database<Public> {
+public class Database {
    private static Database database;
 
    private Database() {
@@ -40,7 +40,7 @@ public class Database<Public> {
 
 
    public void saveUser(User user)  {
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String Username = user.getUsername();
       String path = "Resource" + File.separator + "Users";
       String name = Username + ".json";
@@ -54,7 +54,7 @@ public class Database<Public> {
          writer.close();
       }catch(IOException exception){
          exception.printStackTrace();
-      }
+      }*/
       //inja ba sql
       if(user instanceof Admin){
          insertAdmin((Admin)user);
@@ -345,6 +345,7 @@ public class Database<Public> {
             saveCategory(category);
       }
    }
+
    public ArrayList<String> printFolderContent(String folderName) {
       ArrayList<String> fileNames = new ArrayList();
       String path = "Resource" + File.separator + folderName;
