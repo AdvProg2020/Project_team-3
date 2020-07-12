@@ -5,6 +5,7 @@ import Project.Model.DiscountCode;
 import Project.Model.Logs.BuyLog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Buyer extends User {
 
@@ -13,8 +14,15 @@ public class Buyer extends User {
     public Buyer(double money,String username, String password, String name, String lastName, String email, String number) {
         super(username,password,name,lastName,email,number,"Buyer");
         this.money=money;
-        buyLogs=new ArrayList<>();;
+        buyLogs=new ArrayList<>();
         //cart=new Cart();
+    }
+
+    public Buyer(double money, String username, String password, String name, String lastName, String email, String number, ArrayList<BuyLog> logs, HashMap<String,String> req) {
+        super(username,password,name,lastName,email,number,"Buyer");
+        this.money=money;
+        this.setAllRequests(req);
+        buyLogs=logs;
     }
 
     @Override

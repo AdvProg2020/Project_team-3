@@ -6,6 +6,7 @@ import Project.Model.Item;
 import Project.Model.Logs.SaleLog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Seller extends User {
     private String companyName;
@@ -18,10 +19,18 @@ public class Seller extends User {
         super(username, password, name, lastName, email, number, "Seller");
         this.companyName = companyName;
         sellLogs = new ArrayList<>();
-        //soldItemsId = new ArrayList<>();
         allItemsId = new ArrayList<>();
-        //allSaleId = new ArrayList<>();
         valid = false;
+        this.money = money;
+    }
+
+    public Seller(double money, String username, String password, String name, String lastName, String email, String number, String companyName , ArrayList<SaleLog> logs , ArrayList<String> items , boolean v, HashMap<String,String> req) {
+        super(username, password, name, lastName, email, number, "Seller");
+        this.companyName = companyName;
+        sellLogs =  logs;
+        allItemsId = items;
+        valid = v;
+        this.setAllRequests(req);
         this.money = money;
     }
 

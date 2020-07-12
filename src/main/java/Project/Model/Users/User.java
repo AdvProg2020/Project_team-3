@@ -96,4 +96,10 @@ public abstract class User {
     public String getAllRequests() {
         return allRequests.toString().replace("{","").replace("}","").replace(",","\n");
     }
+
+    public HashMap<String,String> getReqMap() {return allRequests;}
+
+    public void setAllRequests(HashMap<String, String> allRequests) {
+        this.allRequests = allRequests;
+    }
 }

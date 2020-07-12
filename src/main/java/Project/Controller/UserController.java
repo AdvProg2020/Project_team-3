@@ -8,12 +8,14 @@ import Project.Model.Users.Seller;
 import Project.Model.Users.User;
 import Project.View.CLI.View;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserController {
     Controller controller = Controller.getInstance();
@@ -76,13 +78,43 @@ public class UserController {
     }
 
     public boolean isThereUserWithUsername(String username) {
-        String path = "Resource" + File.separator + "Users";
-        String name = username + ".json";
-        File file = new File(path + File.separator + name);
-        if (!file.exists()) {
-            return false;
+        int cnt=0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Admins WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+            rs = statement.executeQuery("select * FROM Buyers WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+            rs = statement.executeQuery("select * FROM Sellers WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
         }
-        return true;
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        return cnt>0;
     }
 
     public String userImagePath(String username){
@@ -223,13 +255,17 @@ public class UserController {
         return user.getPersonalInfo();
     }
 
-    public ArrayList<User> getAllUserFromDataBase() {
+    //public ArrayList<User> getAllUserFromDataBase() {
+        //ArrayList<User> allUser = new ArrayList<>();
+        //
+
+        //
+        /*
         String path = "Resource" + File.separator + "Users";
         File file = new File(path);
         File[] allFiles = file.listFiles();
         String fileContent = null;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        ArrayList<User> allUser = new ArrayList<>();
         for (File file1 : allFiles) {
             try {
                 fileContent = new String(Files.readAllBytes(file1.toPath()));
@@ -245,18 +281,42 @@ public class UserController {
             if (fileContent.contains("\"type\": \"Buyer\"")) {
                 allUser.add(gson.fromJson(fileContent, Buyer.class));
             }
-        }
-        return allUser;
-    }
+        }*/
+        //return allUser;
+    //}
 
     protected ArrayList<Buyer> getAllBuyers(){
-        ArrayList<User> allUsers = getAllUserFromDataBase();
         ArrayList<Buyer> ans = new ArrayList<>();
+        Connection connection = null;
+        Gson gson = new Gson();
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Buyers");
+            while(rs.next())
+            {
+                ArrayList<BuyLog> logs = gson.fromJson(rs.getString("logs"),new TypeToken<ArrayList<BuyLog>>(){}.getType());
+                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                double money = Double.parseDouble(rs.getString("money"));
+                ans.add(new Buyer(money,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),logs,req));
+            }
 
-        for(User user:allUsers){
-            if(user instanceof Buyer) ans.add((Buyer)user);
         }
-
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
         return ans;
     }
 

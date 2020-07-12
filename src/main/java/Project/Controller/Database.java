@@ -6,6 +6,8 @@ import Project.Model.Item;
 import Project.Model.Requests.Request;
 import Project.Model.Sale;
 import Project.Model.Users.Admin;
+import Project.Model.Users.Buyer;
+import Project.Model.Users.Seller;
 import Project.Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Database<Public> {
@@ -44,6 +47,127 @@ public class Database<Public> {
          exception.printStackTrace();
       }
       //inja ba sql
+      if(user instanceof Admin){
+         insertAdmin((Admin)user);
+      }
+      else if(user instanceof Buyer){
+         insertBuyer((Buyer)user);
+      }
+      else if(user instanceof Seller){
+         insertSeller((Seller)user);
+      }
+   }
+
+   private void insertAdmin(Admin admin){
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String allRequests=gson.toJson(admin.getReqMap());
+      String values = "'"+admin.getUsername()+"', '"+admin.getPassword()+"', '"+admin.getName()+"', '"+admin.getLastName()+"', '"+admin.getEmail()+"', '"+admin.getNumber();
+      values+= "', '"+ "Admin" +"', '"+allRequests+"'";
+      Connection connection = null;
+      try
+      {
+         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Admins WHERE username='"+admin.getUsername()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Admins values("+values+")");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
+      finally
+      {
+         try
+         {
+            if(connection != null)
+               connection.close();
+         }
+         catch(SQLException e)
+         {
+            System.err.println(e.getMessage());
+         }
+      }
+   }
+
+   private void insertBuyer(Buyer buyer){
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String allRequests=gson.toJson(buyer.getReqMap());
+      String logs = gson.toJson(buyer.getBuyLogs());
+      String values = "'"+buyer.getUsername()+"', '"+buyer.getPassword()+"', '"+buyer.getName()+"', '"+buyer.getLastName()+"', '"+buyer.getEmail()+"', '"+buyer.getNumber();
+      values+= "', '"+ "Buyer" +"', '"+allRequests+"', '"+logs+"', '"+buyer.getMoney()+"'";
+      Connection connection = null;
+      try
+      {
+         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Buyers WHERE username='"+buyer.getUsername()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Buyers values("+values+")");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
+      finally
+      {
+         try
+         {
+            if(connection != null)
+               connection.close();
+         }
+         catch(SQLException e)
+         {
+            System.err.println(e.getMessage());
+         }
+      }
+
+   }
+
+   private void insertSeller(Seller seller){
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String allRequests=gson.toJson(seller.getReqMap());
+      String logs = gson.toJson(seller.getSellLogs());
+      String items = gson.toJson(seller.getAllItemsId());
+      String values = "'"+seller.getUsername()+"', '"+seller.getPassword()+"', '"+seller.getName()+"', '"+seller.getLastName()+"', '"+seller.getEmail()+"', '"+seller.getNumber();
+      values+= "', '"+ "Seller" +"', '"+allRequests+"', '"+seller.getCompanyName()+"', '"+logs+"', '"+items+"', '"+seller.getValid()+"', '"+seller.getMoney()+"'";
+      Connection connection = null;
+      try
+      {
+         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Sellers WHERE username='"+seller.getUsername()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Sellers values("+values+")");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
+      finally
+      {
+         try
+         {
+            if(connection != null)
+               connection.close();
+         }
+         catch(SQLException e)
+         {
+            System.err.println(e.getMessage());
+         }
+      }
    }
 
    public void saveRequest(Request request)  {
@@ -142,6 +266,31 @@ public class Database<Public> {
       String name = Username + ".json";
       File file = new File(path + File.separator + name);
       file.delete();
+      Connection connection = null;
+      String tableName = user.getType() + "s";
+      try
+      {
+         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         statement.executeUpdate("delete FROM "+tableName +" WHERE username='"+user.getUsername()+"'");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
+      finally
+      {
+         try
+         {
+            if(connection != null)
+               connection.close();
+         }
+         catch(SQLException e)
+         {
+            System.err.println(e.getMessage());
+         }
+      }
    }
 
    public void deleteItem(Item item) {
@@ -271,7 +420,42 @@ public class Database<Public> {
    }
 
    public ArrayList<String> getAllUsername(String type){
-      ArrayList<String> allUser=printFolderContent("Users");
+      ArrayList<String> allUser = new ArrayList<>();
+      Connection connection = null;
+      try {
+         connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         ResultSet rs = statement.executeQuery("select * FROM Admins");
+         while(rs.next())
+         {
+            allUser.add(rs.getString(1));
+         }
+         rs = statement.executeQuery("select * FROM Buyers");
+         while(rs.next())
+         {
+            allUser.add(rs.getString(1));
+         }
+         rs = statement.executeQuery("select * FROM Sellers");
+         while(rs.next())
+         {
+            allUser.add(rs.getString(1));
+         }
+      }
+      catch(SQLException e) {
+         System.err.println(e.getMessage());
+      }
+      finally {
+         try
+         {
+            if(connection != null)
+               connection.close();
+         }
+         catch(SQLException e)
+         {
+            System.err.println(e.getMessage());
+         }
+      }
       ArrayList<String> specificUser=new ArrayList<>();
       for (String user : allUser) {
          if(UserController.getInstance().getUserType(user).equals(type))

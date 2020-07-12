@@ -3,10 +3,18 @@ package Project.Model.Users;
 import Project.Controller.Database;
 import Project.Controller.UserController;
 
+import java.util.HashMap;
+
 public class Admin extends User {
 
     public Admin(String username, String password, String name, String lastName, String email, String number) {
         super(username, password, name, lastName, email, number, "Admin");
+        Database.getInstance().saveUser(this);
+    }
+
+    public Admin(String username, String password, String name, String lastName, String email, String number, HashMap<String,String> req) {
+        super(username, password, name, lastName, email, number, "Admin");
+        this.setAllRequests(req);
         Database.getInstance().saveUser(this);
     }
 

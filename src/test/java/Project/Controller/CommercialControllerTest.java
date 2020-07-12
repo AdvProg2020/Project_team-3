@@ -2,7 +2,6 @@ package Project.Controller;
 
 import Project.Model.Item;
 import Project.Model.Requests.Request;
-import Project.Model.Users.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -44,9 +43,9 @@ public class CommercialControllerTest {
    private void deleteJunk(){
       UserController.getInstance().logout();
       UserController.getInstance().login("admin","12345");
-      for (User user : UserController.getInstance().getAllUserFromDataBase()) {
-         UserController.getInstance().deleteUser(user.getUsername());
-      }
+      //for (User user : UserController.getInstance().getAllUserFromDataBase()) {
+      //   UserController.getInstance().deleteUser(user.getUsername());
+      //}
       UserController.getInstance().logout();
    }
 

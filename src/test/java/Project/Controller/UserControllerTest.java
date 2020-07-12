@@ -228,6 +228,7 @@ public class UserControllerTest {
         deleteJunk();
     }
 
+    /*
     @Test
     public void getAllUserFromDataBase() {
         registration();
@@ -236,7 +237,7 @@ public class UserControllerTest {
         Assert.assertNotNull(allUsers);
         Assert.assertTrue(allUsers.size()>0);
         deleteJunk();
-    }
+    }*/
 
     @Test
     public void getAllBuyers(){
