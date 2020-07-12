@@ -55,7 +55,76 @@ public class MakeRequest {
       json.addProperty("content","logout");
       return json;
    }
+   //type 4
+   public static JsonObject makeRequestAcceptRequest(String requestId){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","accept request");
+      json.addProperty("requestId",requestId);
+      return json;
+   }
 
+   public static JsonObject makeRequestDeclineRequest(String requestId){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","decline request");
+      json.addProperty("requestId",requestId);
+      return json;
+   }
+
+   public static JsonObject makeGetAllRequestsRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","request list");
+      return json;
+   }
+
+   public static JsonObject makeGetRequestInfoRequest(String requestId){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","view request");
+      json.addProperty("requestId",requestId);
+      return json;
+   }
+
+   public static JsonObject makeDeleteUserRequest(String username){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","delete user");
+      json.addProperty("username",username);
+      return json;
+   }
+
+   public static JsonObject makeViewUserRequest(String username){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","view user");
+      json.addProperty("username",username);
+      return json;
+   }
+
+   public static JsonObject makeGetAllUserRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","user list");
+      return json;
+   }
+
+   public static JsonObject makeDeleteCategoryRequest(String categoryName){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","delete category");
+      json.addProperty("category name",categoryName);
+      return json;
+   }
+
+   public static JsonObject makeDeleteProductAdminRequest(String productId){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",4);
+      json.addProperty("content","delete product");
+      json.addProperty("productId",productId);
+      return json;
+   }
    //type 5
    public static JsonObject makeGetPersonalInfoRequest(String Token){
       JsonObject json=new JsonObject();

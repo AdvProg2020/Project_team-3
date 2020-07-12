@@ -1,5 +1,6 @@
 package Project.Controller;
 
+import Project.Model.Item;
 import com.google.gson.JsonObject;
 
 import java.util.regex.Matcher;
@@ -33,17 +34,17 @@ public class RequestProcessor {
    }
 
    public String loginMenuProcessor(JsonObject command){
-      if(command.get("content").equals("login")){
+      if(command.get("content").equals("\"login\"")){
          return UserController.getInstance().login(command.get("username").toString(),command.get("password").toString());
       }
 
-      if(command.get("content").equals("logout")){
+      if(command.get("content").equals("\"logout\"")){
          //harvaght barname be current online user ehtiaj nadasht az comment dar miad
         // return AuthTokenHandler.getInstance().deleteToken(command.get("token").toString());
          return UserController.getInstance().logout();
       }
 
-      if(command.get("content").equals("create account")) {
+      if(command.get("content").equals("\"create account\"")) {
          String name = command.get("name").toString();
          String lastName = command.get("lastName").toString();
          String password = command.get("password").toString();
@@ -52,11 +53,11 @@ public class RequestProcessor {
          String number = command.get("number").toString();
          double money = command.get("money").getAsDouble();
 
-         if (command.get("account type").equals("buyer")) {
+         if (command.get("account type").equals("\"buyer\"")) {
             return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
          }
 
-         if (command.get("account type").equals("seller")) {
+         if (command.get("account type").equals("\"seller\"")) {
             String companyName= command.get("company").toString();
             return UserController.getInstance().registerSeller(money,username,password,name,lastName,email,number,companyName);
          }
@@ -69,26 +70,67 @@ public class RequestProcessor {
 
    public String adminMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      Controller.getInstance().setCurrentOnlineUser(username);
       if(username==null) return "Error: incorrect Token";
+
+      if(command.get("content").equals("\"delete user\"")){
+         return UserController.getInstance().deleteUser(command.get("username").toString());
+      }
+
+      if(command.get("content").equals("\"user list\"")){
+         return Database.getInstance().printFolderContent("Users").toString();
+      }
+
+      if(command.get("content").equals("\"view user\"")){
+         return UserController.getInstance().viewPersonalInfo(command.get("username").toString());
+      }
+
+      if(command.get("content").equals("\"accept request\"")){
+         return RequestController.getInstance().acceptRequest(command.get("requestId").toString());
+      }
+
+      if(command.get("content").equals("\"decline request\"")){
+         return RequestController.getInstance().declineRequest(command.get("requestId").toString());
+      }
+
+      if(command.get("content").equals("\"view request\"")){
+         return RequestController.getInstance().getRequestDetail(command.get("requestId").toString());
+      }
+
+      if(command.get("content").equals("\"request list\"")){
+         return Database.getInstance().printFolderContent("Requests").toString();
+      }
+
+      if(command.get("content").equals("\"delete category\"")){
+         return ItemAndCategoryController.getInstance().removeCategory(command.get("category name").toString());
+      }
+
+      if(command.get("content").equals("\"delete product\"")){
+         return ItemAndCategoryController.getInstance().deleteItem(command.get("productId").toString());
+      }
+
       return "Error: invalid command";
    }
 
    public String buyerMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      Controller.getInstance().setCurrentOnlineUser(username);
       if(username==null) return "Error: incorrect Token";
       return "Error: invalid command";
    }
 
    public String sellerMenuProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      Controller.getInstance().setCurrentOnlineUser(username);
       if(username==null) return "Error: incorrect Token";
       return "Error: invalid command";
    }
 
    public String userGeneralProcessor(JsonObject command){
       String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      Controller.getInstance().setCurrentOnlineUser(username);
       if(username==null) return "Error: incorrect Token";
-      if(command.get("content").equals("view personal info")){
+      if(command.get("content").equals("\"view personal info\"")){
          return UserController.getInstance().viewPersonalInfo(username);
       }
       return "Error: invalid command";

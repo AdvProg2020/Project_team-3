@@ -71,6 +71,11 @@ public class Controller {
         this.currentOnlineUser = currentOnlineUser;
     }
 
+    public void setCurrentOnlineUser(String username) {
+        this.currentOnlineUser=UserController.getInstance().getUserByUsername(username);
+        if(this.currentOnlineUser==null) System.out.println("ye jayi error darim");
+    }
+
     public void updateDateAndTime(){
         //in miad discount code hayi ke tarikh gozashte hastan va sale haye tarikh gozashte ro pak mikone
         LocalDateTime currentTime = LocalDateTime.now();
@@ -80,6 +85,7 @@ public class Controller {
             SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
         }
     }
+
 
 
 }
