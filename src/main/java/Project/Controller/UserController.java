@@ -11,8 +11,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,14 +30,53 @@ public class UserController {
     }
 
     public User getUserByUsername(String username) {
+        ArrayList<User> valid = new ArrayList<>();
+        Gson gson = new Gson();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Admins WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                valid.add(new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),req));
+            }
+            rs = statement.executeQuery("select * FROM Buyers WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                ArrayList<BuyLog> logs = gson.fromJson(rs.getString("logs"),new TypeToken<ArrayList<BuyLog>>(){}.getType());
+                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                double money = Double.parseDouble(rs.getString("money"));
+                valid.add(new Buyer(money,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),logs,req));
+            }
+            rs = statement.executeQuery("select * FROM Sellers WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                ArrayList<SaleLog> logs = gson.fromJson(rs.getString("logs"),new TypeToken<ArrayList<BuyLog>>(){}.getType());
+                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                double balance = Double.parseDouble(rs.getString("balance"));
+                boolean v = Boolean.parseBoolean(rs.getString("valid"));
+                ArrayList<String> items = gson.fromJson(rs.getString("items"),new TypeToken<ArrayList<String>>(){}.getType());
+                String company = rs.getString("company");
+                valid.add(new Seller(balance,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),company,logs,items,v,req));
+            }
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(valid.isEmpty()) return null;
+        return valid.get(0);
       //String path="E:"+File.separator+"Project_team-3"+File.separator+"Resource" + File.separator + "Users";
+        /*
       String path = "Resource" + File.separator + "Users";
         String name = username + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
             return null;
         }
-        Gson gson = new Gson();
         try {
             String content = new String(Files.readAllBytes(file.toPath()));
             if (content.contains("\"type\": \"Admin\"")) {
@@ -54,7 +91,7 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null;*/
     }
 
     public User getCurrentOnlineUser() {
@@ -81,7 +118,7 @@ public class UserController {
         int cnt=0;
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            connection = Database.getConn();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             ResultSet rs = statement.executeQuery("select * FROM Admins WHERE username='"+username+"'");
@@ -103,17 +140,7 @@ public class UserController {
         catch(SQLException e) {
             System.err.println(e.getMessage());
         }
-        finally {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                System.err.println(e.getMessage());
-            }
-        }
+
         return cnt>0;
     }
 
@@ -290,7 +317,7 @@ public class UserController {
         Connection connection = null;
         Gson gson = new Gson();
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            connection = Database.getConn();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             ResultSet rs = statement.executeQuery("select * FROM Buyers");
@@ -306,17 +333,7 @@ public class UserController {
         catch(SQLException e) {
             System.err.println(e.getMessage());
         }
-        finally {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                System.err.println(e.getMessage());
-            }
-        }
+
         return ans;
     }
 
