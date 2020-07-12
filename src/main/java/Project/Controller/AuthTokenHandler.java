@@ -5,6 +5,7 @@ import java.util.Base64;
 import java.util.HashMap;
 
 public class AuthTokenHandler {
+
    private static AuthTokenHandler authTokenHandler;
    private  final SecureRandom secureRandom = new SecureRandom();
    private  final Base64.Encoder base64Encoder = Base64.getUrlEncoder();

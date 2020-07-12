@@ -96,7 +96,7 @@ public class UserController {
 
     public User getCurrentOnlineUser() {
         if(Controller.getInstance().currentOnlineUser == null) return null;
-        return getUserByUsername(Controller.getInstance().currentOnlineUser.getUsername());
+        return Controller.getInstance().currentOnlineUser;
     }
 
     public String getCurrentOnlineUserUsername() {
