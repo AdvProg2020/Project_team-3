@@ -30,7 +30,7 @@ public class Database {
    private static Connection c = null;
    public static Connection getConn() throws SQLException {
       if(c == null){
-         c = DriverManager.getConnection("jdbc:sqlite:database.db");
+         c = DriverManager.getConnection("jdbc:sqlite::resource:database.db");
       }
       return c;
    }
@@ -280,7 +280,7 @@ public class Database {
    }
 
    public void deleteSale(Sale sale) {
-      for (String id : sale.getAllItemId()) {
+      /*for (String id : sale.getAllItemId()) {
          Item item = ItemAndCategoryController.getInstance().getItemById(id);
          if (item != null) {
             item.setSale("");
@@ -290,7 +290,20 @@ public class Database {
       String path = "Resource" + File.separator + "Sales";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
-      file.delete();
+      file.delete();*/
+      Connection connection = null;
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Sales WHERE id='"+sale.getId()+"'");
+         }catch (Exception e){
+
+         }
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
+      }
    }
 
    public void deleteCategory(Category category) {
@@ -382,6 +395,9 @@ public class Database {
       if(folderName.equals("Categories")){
          return getAllCategories();
       }
+      if(folderName.equals("Sales")){
+         return getAllSales();
+      }
       ArrayList<String> fileNames = new ArrayList();
       String path = "Resource" + File.separator + folderName;
       File[] files = new File(path).listFiles();
@@ -457,6 +473,26 @@ public class Database {
          System.err.println(e.getMessage());
       }
       return allCats;
+   }
+
+   public ArrayList<String> getAllSales(){
+      ArrayList<String> allSales = new ArrayList<>();
+      Connection connection = null;
+      try {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         ResultSet rs = statement.executeQuery("select * FROM Sales");
+         while(rs.next())
+         {
+            allSales.add(rs.getString(1));
+         }
+
+      }
+      catch(SQLException e) {
+         System.err.println(e.getMessage());
+      }
+      return allSales;
    }
 }
 
