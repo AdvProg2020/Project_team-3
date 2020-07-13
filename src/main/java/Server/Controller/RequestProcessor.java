@@ -1,6 +1,7 @@
 package Server.Controller;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,37 +18,35 @@ public class RequestProcessor {
        return requestProcessor;
    }
 
-   public String process(JsonObject command){
-      if(command==null) {
-         System.out.println("jojojo");
-         return "received";
-      }
-   if(command.get("type").getAsInt()==1){  //login and register (doesnt contain token)
-      return loginMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==2){  //buyer menu
-      return buyerMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==3){  //seller menu
-      return sellerMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==4){  //admin menu
-      return adminMenuProcessor(command);
-   }else if(command.get("type").getAsInt()==5){ //user general
-      return userGeneralProcessor(command);
+   public String process(String command){
+      JsonParser parser = new JsonParser();
+      JsonObject commandJson = (JsonObject) parser.parse(command);
+   if(commandJson.get("type").getAsInt()==1){  //login and register (doesnt contain token)
+      return loginMenuProcessor(commandJson);
+   }else if(commandJson.get("type").getAsInt()==2){  //buyer menu
+      return buyerMenuProcessor(commandJson);
+   }else if(commandJson.get("type").getAsInt()==3){  //seller menu
+      return sellerMenuProcessor(commandJson);
+   }else if(commandJson.get("type").getAsInt()==4){  //admin menu
+      return adminMenuProcessor(commandJson);
+   }else if(commandJson.get("type").getAsInt()==5){ //user general
+      return userGeneralProcessor(commandJson);
    }
    return "Error: invalid command";
    }
 
    public String loginMenuProcessor(JsonObject command){
-      if(command.get("content").equals("\"login\"")){
+      if(command.get("content").toString().equals("\"login\"")){
          return UserController.getInstance().login(command.get("username").toString(),command.get("password").toString());
       }
 
-      if(command.get("content").equals("\"logout\"")){
+      if(command.get("content").toString().equals("\"logout\"")){
          //harvaght barname be current online user ehtiaj nadasht az comment dar miad
         // return AuthTokenHandler.getInstance().deleteToken(command.get("token").toString());
          return UserController.getInstance().logout();
       }
 
-      if(command.get("content").equals("\"create account\"")) {
+      if(command.get("content").toString().equals("\"create account\"")) {
          String name = command.get("name").toString();
          String lastName = command.get("lastName").toString();
          String password = command.get("password").toString();
@@ -56,11 +55,11 @@ public class RequestProcessor {
          String number = command.get("number").toString();
          double money = command.get("money").getAsDouble();
 
-         if (command.get("account type").equals("\"buyer\"")) {
+         if (command.get("account type").toString().equals("\"buyer\"")) {
             return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
          }
 
-         if (command.get("account type").equals("\"seller\"")) {
+         if (command.get("account type").toString().equals("\"seller\"")) {
             String companyName= command.get("company").toString();
             return UserController.getInstance().registerSeller(money,username,password,name,lastName,email,number,companyName);
          }
@@ -72,43 +71,43 @@ public class RequestProcessor {
    }
 
    public String adminMenuProcessor(JsonObject command){
-      String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
-      Controller.getInstance().setCurrentOnlineUser(username);
-      if(username==null) return "Error: incorrect Token";
+     // String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      //Controller.getInstance().setCurrentOnlineUser(username);
+     // if(username==null) return "Error: incorrect Token";
 
-      if(command.get("content").equals("\"delete user\"")){
+      if(command.get("content").toString().equals("\"delete user\"")){
          return UserController.getInstance().deleteUser(command.get("username").toString());
       }
 
-      if(command.get("content").equals("\"user list\"")){
+      if(command.get("content").toString().equals("\"user list\"")){
          return Database.getInstance().printFolderContent("Users").toString();
       }
 
-      if(command.get("content").equals("\"view user\"")){
+      if(command.get("content").toString().equals("\"view user\"")){
          return UserController.getInstance().viewPersonalInfo(command.get("username").toString());
       }
 
-      if(command.get("content").equals("\"accept request\"")){
+      if(command.get("content").toString().equals("\"accept request\"")){
          return RequestController.getInstance().acceptRequest(command.get("requestId").toString());
       }
 
-      if(command.get("content").equals("\"decline request\"")){
+      if(command.get("content").toString().equals("\"decline request\"")){
          return RequestController.getInstance().declineRequest(command.get("requestId").toString());
       }
 
-      if(command.get("content").equals("\"view request\"")){
+      if(command.get("content").toString().equals("\"view request\"")){
          return RequestController.getInstance().getRequestDetail(command.get("requestId").toString());
       }
 
-      if(command.get("content").equals("\"request list\"")){
+      if(command.get("content").toString().equals("\"request list\"")){
          return Database.getInstance().printFolderContent("Requests").toString();
       }
 
-      if(command.get("content").equals("\"delete category\"")){
+      if(command.get("content").toString().toString().equals("\"delete category\"")){
          return ItemAndCategoryController.getInstance().removeCategory(command.get("category name").toString());
       }
 
-      if(command.get("content").equals("\"delete product\"")){
+      if(command.get("content").toString().equals("\"delete product\"")){
          return ItemAndCategoryController.getInstance().deleteItem(command.get("productId").toString());
       }
 

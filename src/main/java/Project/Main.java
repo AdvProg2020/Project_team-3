@@ -1,8 +1,10 @@
 package Project;
 
+import Project.Client.Client;
 import Server.Controller.Controller;
 import Server.Controller.Database;
 import Project.Client.Menus.SceneSwitcher;
+import Server.Server;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,6 +12,7 @@ import java.io.*;
 
 public class Main extends Application{
     public static void main(String[] args) {
+        System.out.println( Client.getInstance().sendMessage(MakeRequest.makeDeleteCategoryRequest("main")));
         Database.getInstance().initiate();
         Controller.getInstance().updateDateAndTime();
         launch(args);
