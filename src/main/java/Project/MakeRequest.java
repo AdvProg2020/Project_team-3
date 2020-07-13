@@ -1,5 +1,6 @@
 package Project;
 
+import Project.Client.Client;
 import com.google.gson.JsonObject;
 
 public class MakeRequest {
@@ -10,6 +11,7 @@ public class MakeRequest {
       json.addProperty("content","login");
       json.addProperty("username",username);
       json.addProperty("password",password);
+      Client.getInstance().sendMessage(json);
       return json;
   }
 
@@ -17,6 +19,7 @@ public class MakeRequest {
       JsonObject json=register(name,lastName,username,password,email,number);
       json.addProperty("money",money);
       json.addProperty("account type","buyer");
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -25,6 +28,7 @@ public class MakeRequest {
       json.addProperty("money",money);
       json.addProperty("company",companyName);
       json.addProperty("account type","seller");
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -33,6 +37,7 @@ public class MakeRequest {
       json.addProperty("account type","admin");
       json.remove("type");
       json.addProperty("type",4);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -53,6 +58,7 @@ public class MakeRequest {
       JsonObject json=new JsonObject();
       json.addProperty("type",1);
       json.addProperty("content","logout");
+      Client.getInstance().sendMessage(json);
       return json;
    }
    //type 4
@@ -61,6 +67,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","accept request");
       json.addProperty("requestId",requestId);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -69,6 +76,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","decline request");
       json.addProperty("requestId",requestId);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -76,6 +84,7 @@ public class MakeRequest {
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","request list");
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -84,6 +93,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","view request");
       json.addProperty("requestId",requestId);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -92,6 +102,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","delete user");
       json.addProperty("username",username);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -100,6 +111,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","view user");
       json.addProperty("username",username);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -107,6 +119,7 @@ public class MakeRequest {
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","user list");
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -115,6 +128,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","delete category");
       json.addProperty("category name",categoryName);
+      Client.getInstance().sendMessage(json);
       return json;
    }
 
@@ -123,6 +137,7 @@ public class MakeRequest {
       json.addProperty("type",4);
       json.addProperty("content","delete product");
       json.addProperty("productId",productId);
+      Client.getInstance().sendMessage(json);
       return json;
    }
    //type 5
@@ -130,6 +145,7 @@ public class MakeRequest {
       JsonObject json=new JsonObject();
       json.addProperty("type","5");
       json.addProperty("content","view personal info");
+      Client.getInstance().sendMessage(json);
       return json;
    }
 

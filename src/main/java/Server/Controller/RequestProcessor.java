@@ -47,20 +47,20 @@ public class RequestProcessor {
       }
 
       if(command.get("content").toString().equals("\"create account\"")) {
-         String name = command.get("name").toString();
-         String lastName = command.get("lastName").toString();
-         String password = command.get("password").toString();
-         String username = command.get("username").toString();
-         String email = command.get("email").toString();
-         String number = command.get("number").toString();
+         String name = getJsonStringField(command,"name");
+         String lastName = getJsonStringField(command,"lastName");
+         String password = getJsonStringField(command,"password");
+         String username = getJsonStringField(command,"username");
+         String email = getJsonStringField(command,"email");
+         String number = getJsonStringField(command,"number");
          double money = command.get("money").getAsDouble();
-
+         System.out.println(username);
          if (command.get("account type").toString().equals("\"buyer\"")) {
             return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
          }
 
          if (command.get("account type").toString().equals("\"seller\"")) {
-            String companyName= command.get("company").toString();
+            String companyName= getJsonStringField(command,"company");;
             return UserController.getInstance().registerSeller(money,username,password,name,lastName,email,number,companyName);
          }
 
@@ -144,8 +144,8 @@ public class RequestProcessor {
       return pattern.matcher(input);
    }
 
-   public String kir(){
-      return "kir";
+   public String getJsonStringField(JsonObject json,String field){
+      return json.get(field).toString().replace("\"","");
    }
 
 }

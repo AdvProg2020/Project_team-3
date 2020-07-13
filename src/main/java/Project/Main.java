@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class Main extends Application{
     public static void main(String[] args) {
-        System.out.println( Client.getInstance().sendMessage(MakeRequest.makeDeleteCategoryRequest("Main")));
         Database.getInstance().initiate();
         Controller.getInstance().updateDateAndTime();
         launch(args);

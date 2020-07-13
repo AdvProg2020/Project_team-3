@@ -2,8 +2,9 @@ package Project.Client.Menus.MenuController.LoginRegisterController;
 
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
+import Project.MakeRequest;
 import Project.Client.CLI.View;
+import Server.Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -93,14 +94,24 @@ public class BuyerRegisterController {
             validateLabelsAfterError(validation);
             return;
         }
-        double money=UserController.getInstance().validateMoney(moneyTextField.getText());
-        UserController.getInstance().registerBuyer(money,usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),numberTextField.getText());
+        double money=validateMoney(moneyTextField.getText());
+        MakeRequest.makeRegisterBuyerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),numberTextField.getText(),money);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("INFORMATION");
         alert.setContentText("your account has been registered");
         alert.show();
+    }
+
+    public double validateMoney(String money) {
+        double moneyDouble = -1;
+        try {
+            moneyDouble = Double.parseDouble(money);
+        } catch (Exception e) {
+            return -1;
+        }
+        return moneyDouble;
     }
 
     private boolean validUsername(String username){
@@ -111,11 +122,6 @@ public class BuyerRegisterController {
         }
         if(username.equals("")){
             usernameLabel.setText("you must fill the blank!");
-            usernameLabel.setTextFill(Color.rgb(255,0,0));
-            return false;
-        }
-        if(UserController.getInstance().isThereUserWithUsername(username)==true){
-            usernameLabel.setText("a username exists with this username");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
@@ -149,12 +155,20 @@ public class BuyerRegisterController {
         return true;
     }
 
+    public boolean isValidEmail(String email) {
+        return Controller.getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
+    }
+
+    public boolean isValidPhoneNumber(String number) {
+        return Controller.getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
+    }
+
     private boolean validPhoneNumber(String phoneNumber){
         if(phoneNumber.equals("")){
             phoneNumberLabel.setText("you must fill the blank!");
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
         }
-        if(UserController.getInstance().isValidPhoneNumber(phoneNumber)==false){
+        if(isValidPhoneNumber(phoneNumber)==false){
             phoneNumberLabel.setText("invalid phone number");
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
             return false;
@@ -168,7 +182,7 @@ public class BuyerRegisterController {
             emailLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
-        if(UserController.getInstance().isValidEmail(email)==false){
+        if(isValidEmail(email)==false){
             emailLabel.setText("invalid email");
             emailLabel.setTextFill(Color.rgb(255,0,0));
             return false;
@@ -182,7 +196,7 @@ public class BuyerRegisterController {
             moneyLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
-        if(UserController.getInstance().validateMoney(money)==-1){
+        if(validateMoney(money)==-1){
             moneyLabel.setText("invalid input!");
             moneyLabel.setTextFill(Color.rgb(255,0,0));
             return false;
