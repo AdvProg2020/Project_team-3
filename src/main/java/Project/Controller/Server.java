@@ -36,7 +36,7 @@ public class Server {
             e.printStackTrace();
         }
     }
-    public String getClientMessage(){
+    public String getMessageFromClient(){
         BufferedReader bufferedReader= null;
         try {
             bufferedReader = new BufferedReader(new InputStreamReader(request.getInputStream()));
