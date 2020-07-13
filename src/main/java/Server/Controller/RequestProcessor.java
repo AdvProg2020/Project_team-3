@@ -1,8 +1,12 @@
 package Server.Controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,13 +41,11 @@ public class RequestProcessor {
 
    public String loginMenuProcessor(JsonObject command){
       if(command.get("content").toString().equals("\"login\"")){
-         return UserController.getInstance().login(command.get("username").toString(),command.get("password").toString());
+         return UserController.getInstance().login(getJsonStringField(command,"username"),getJsonStringField(command,"password"));
       }
 
       if(command.get("content").toString().equals("\"logout\"")){
-         //harvaght barname be current online user ehtiaj nadasht az comment dar miad
-        // return AuthTokenHandler.getInstance().deleteToken(command.get("token").toString());
-         return UserController.getInstance().logout();
+         return AuthTokenHandler.getInstance().logout(command.get("token").toString());
       }
 
       if(command.get("content").toString().equals("\"create account\"")) {
@@ -135,6 +137,11 @@ public class RequestProcessor {
       if(username==null) return "Error: incorrect Token";
       if(command.get("content").equals("\"view personal info\"")){
          return UserController.getInstance().viewPersonalInfo(username);
+      }
+      if(getJsonStringField(command,"content").equals("get online user")) {
+         String name = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command, "token"));
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(UserController.getInstance().getUserByUsername(name)).toString();
       }
       return "Error: invalid command";
    }

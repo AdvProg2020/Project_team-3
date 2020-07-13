@@ -187,6 +187,9 @@ public class UserController {
 
 
     public String login(String username, String password) {
+        if(AuthTokenHandler.getInstance().isUserOnline(username)){
+            return "Error: you are already login with another device";
+        }
         if (!isThereUserWithUsername(username)) {
             return "Error: No user exists with this username!";
         }

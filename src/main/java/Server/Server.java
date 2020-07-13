@@ -29,7 +29,7 @@ public class Server {
                   String command=dataInputStream.readUTF();
                   System.out.println("FROM CLIENT: "+command);
                   String response=RequestProcessor.getInstance().process(command);
-                  System.out.println("FROM CONTROLLER: "+command);
+                  System.out.println("FROM CONTROLLER: "+response);
                   dataOutputStream.writeUTF(response);
                   dataOutputStream.flush();
                   dataOutputStream.close();

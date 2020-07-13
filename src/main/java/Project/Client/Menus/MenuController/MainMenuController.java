@@ -1,14 +1,13 @@
 package Project.Client.Menus.MenuController;
 
-import Server.Controller.CommercialController;
-import Server.Controller.ItemAndCategoryController;
+import Project.Client.Client;
+import Project.MakeRequest;
+import Server.Controller.*;
 import Server.Model.Item;
 import Server.Model.Users.Admin;
 import Server.Model.Users.Seller;
 import Project.Client.CLI.View;
 import Project.Client.Menus.*;
-import Server.Controller.Controller;
-import Server.Controller.UserController;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -147,16 +146,16 @@ public class MainMenuController {
 
     public void userzone(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        if(UserController.getInstance().getCurrentOnlineUser() == null){
+        if(Client.getInstance().getToken()==null){
             SceneSwitcher.getInstance().setSceneAndWait("Login");
             loginHandler();
             return;
         }
         animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
-        if(    UserController.getInstance().getUserType().equals("Admin")){
+        if(MakeRequest.makeGetUserRequest().contains("Admin")){
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
-        }else if(    UserController.getInstance().getUserType().equals("Seller")){
+        }else if(MakeRequest.makeGetUserRequest().contains("Seller")){
             SceneSwitcher.getInstance().setSceneTo("SellerMenu");
         }else{
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");

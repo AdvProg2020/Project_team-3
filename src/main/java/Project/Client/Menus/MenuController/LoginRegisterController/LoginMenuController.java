@@ -1,12 +1,11 @@
 package Project.Client.Menus.MenuController.LoginRegisterController;
 
-import Server.Controller.CartController;
-import Server.Controller.Controller;
-import Server.Model.Users.Buyer;
+import Project.MakeRequest;
+
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
-import Server.Model.Users.User;
+
 import Project.Client.CLI.View;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -51,7 +50,8 @@ public class LoginMenuController {
             errorAfterMistake();
             return;
         }
-        String message=UserController.getInstance().login(usernameTextField.getText(),passwordTextField.getText());
+        String message=MakeRequest.makeLoginRequest(usernameTextField.getText(),passwordTextField.getText());
+        System.out.println(message);
         if(message.startsWith("Error")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -60,12 +60,11 @@ public class LoginMenuController {
             return;
         }
         if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
-            if(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
+            if(MakeRequest.makeGetUserRequest().contains("Buyer")){
                 SceneSwitcher.getInstance().setSceneTo("CartMenu");
-            }
+           }
             else {
                 SceneSwitcher.getInstance().setSceneTo("MainMenu");
-                CartController.getInstance().getCurrentShoppingCart().empty();
             }
             return;
         }
@@ -79,23 +78,12 @@ public class LoginMenuController {
             errorLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
-        if(UserController.getInstance().isThereUserWithUsername(username)==false){
-            errorLabel.setText("invalid username or password");
-            errorLabel.setTextFill(Color.rgb(255,0,0));
-            return false;
-        }
         return true;
     }
 
     private boolean validPassword(String username,String password){
         if(password.equals("")){
             errorLabel.setText("invalid username or password!");
-            errorLabel.setTextFill(Color.rgb(255,0,0));
-            return false;
-        }
-        User user=UserController.getInstance().getUserByUsername(username);
-        if(!user.getPassword().equals(password)){
-            errorLabel.setText("invalid username or password");
             errorLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }

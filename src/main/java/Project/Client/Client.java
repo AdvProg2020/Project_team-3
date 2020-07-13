@@ -36,11 +36,11 @@ public class Client {
       return "error in server and client connection.";
    }
 
-   public static void setClient(Client client) {
-      Client.client = client;
+   public void setToken(String token) {
+      Token = token;
    }
 
-   public static Client getClient() {
-      return client;
+   public String getToken() {
+      return Token;
    }
 }

@@ -40,6 +40,10 @@ public class AuthTokenHandler {
       return "Error: ";
    }
 
+   public String logout(String token){
+      return deleteToken(token);
+   }
+
    public String getUserWithToken(String token){
       if(onlineUsersTokens.containsKey(token)){
          return onlineUsersTokens.get(token);

@@ -1,44 +1,50 @@
 package Project;
 
 import Project.Client.Client;
+import Project.Client.Model.Users.Admin;
+import Project.Client.Model.Users.Buyer;
+import Project.Client.Model.Users.Seller;
+import Project.Client.Model.Users.User;
+import Server.Model.Requests.AccountRequest;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class MakeRequest {
    //type1
-   public static JsonObject makeLoginRequest(String username,String password){
+   public static String makeLoginRequest(String username,String password){
       JsonObject json=new JsonObject();
       json.addProperty("type",1);
       json.addProperty("content","login");
       json.addProperty("username",username);
       json.addProperty("password",password);
-      Client.getInstance().sendMessage(json);
-      return json;
+      String response=Client.getInstance().sendMessage(json);
+      if(response.startsWith("Success"))
+      Client.getInstance().setToken(response.substring(33,65));
+      return response;
   }
 
-   public static JsonObject makeRegisterBuyerRequest(String name,String lastName,String username,String password,String email,String number,double money){
+   public static String makeRegisterBuyerRequest(String name,String lastName,String username,String password,String email,String number,double money){
       JsonObject json=register(name,lastName,username,password,email,number);
       json.addProperty("money",money);
       json.addProperty("account type","buyer");
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeRegisterSellerRequest(String name,String lastName,String username,String password,String email,String number,double money,String companyName){
+   public static String makeRegisterSellerRequest(String name,String lastName,String username,String password,String email,String number,double money,String companyName){
       JsonObject json=register(name,lastName,username,password,email,number);
       json.addProperty("money",money);
       json.addProperty("company",companyName);
       json.addProperty("account type","seller");
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeRegisterAdminRequest(String name,String lastName,String username,String password,String email,String number){
+   public static String makeRegisterAdminRequest(String name,String lastName,String username,String password,String email,String number){
       JsonObject json=register(name,lastName,username,password,email,number);
       json.addProperty("account type","admin");
       json.remove("type");
       json.addProperty("type",4);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
    private static JsonObject register(String name,String lastName,String username,String password,String email,String number){
@@ -54,99 +60,109 @@ public class MakeRequest {
       return json;
    }
 
-   public static JsonObject makeLogoutRequest(){
+   public static String makeLogoutRequest(){
       JsonObject json=new JsonObject();
       json.addProperty("type",1);
       json.addProperty("content","logout");
-      Client.getInstance().sendMessage(json);
-      return json;
+      json.addProperty("token",Client.getInstance().getToken());
+      return Client.getInstance().sendMessage(json);
    }
    //type 4
-   public static JsonObject makeRequestAcceptRequest(String requestId){
+   public static String makeRequestAcceptRequest(String requestId){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","accept request");
       json.addProperty("requestId",requestId);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeRequestDeclineRequest(String requestId){
+   public static String makeRequestDeclineRequest(String requestId){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","decline request");
       json.addProperty("requestId",requestId);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeGetAllRequestsRequest(){
+   public static String makeGetAllRequestsRequest(){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","request list");
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeGetRequestInfoRequest(String requestId){
+   public static String makeGetRequestInfoRequest(String requestId){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","view request");
       json.addProperty("requestId",requestId);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeDeleteUserRequest(String username){
+   public static String makeDeleteUserRequest(String username){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","delete user");
       json.addProperty("username",username);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeViewUserRequest(String username){
+   public static String makeViewUserRequest(String username){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","view user");
       json.addProperty("username",username);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeGetAllUserRequest(){
+   public static String makeGetAllUserRequest(){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","user list");
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeDeleteCategoryRequest(String categoryName){
+   public static String makeDeleteCategoryRequest(String categoryName){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","delete category");
       json.addProperty("category name",categoryName);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
 
-   public static JsonObject makeDeleteProductAdminRequest(String productId){
+   public static String makeDeleteProductAdminRequest(String productId){
       JsonObject json=new JsonObject();
       json.addProperty("type",4);
       json.addProperty("content","delete product");
       json.addProperty("productId",productId);
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
    }
    //type 5
-   public static JsonObject makeGetPersonalInfoRequest(String Token){
+   public static String makeGetPersonalInfoRequest(String Token){
       JsonObject json=new JsonObject();
       json.addProperty("type","5");
       json.addProperty("content","view personal info");
-      Client.getInstance().sendMessage(json);
-      return json;
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeGetUserRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("type","5");
+      json.addProperty("content","get online user");
+      json.addProperty("token",Client.getInstance().getToken());
+      String response=Client.getInstance().sendMessage(json);
+      return response;
+      /*JsonParser parser = new JsonParser();
+      JsonObject jsonUser = (JsonObject) parser.parse(response);
+      Gson gson=new Gson();
+      if(jsonUser.get("type").toString().equals("\"Admin\"")){
+         return gson.fromJson(jsonUser.toString(), Admin.class);
+      }else if(jsonUser.get("type").toString().equals("\"Buyer\"")){
+         return gson.fromJson(jsonUser.toString(), Buyer.class);
+      } else if(jsonUser.get("type").toString().equals("\"Seller\"")){
+         return gson.fromJson(jsonUser.toString(), Seller.class);
+      }
+      return null; */
    }
 
 }
