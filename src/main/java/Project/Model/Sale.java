@@ -16,10 +16,9 @@ public class Sale {
 
     private enum Status {accepted, addingProcess, editingProcess}
 
-    ;
     Status status;
 
-    public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage,String sellerUsername,ArrayList<String> saleItems) {
+    public Sale(LocalDateTime startTime, LocalDateTime endTime, int offPercentage, String sellerUsername, ArrayList<String> saleItems) {
         this.startTime = startTime.toString();
         this.endTime = endTime.toString();
         this.offPercentage = offPercentage;
@@ -28,9 +27,25 @@ public class Sale {
         itemId = saleItems;
     }
 
+    public Sale(String id, String sellerUsername, ArrayList<String> items, String startTime, String endTime, int offPercentage, String status) {
+        this.id = id;
+        this.sellerUsername = sellerUsername;
+        this.itemId = items;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.offPercentage = offPercentage;
+        if(status.startsWith("acc")){
+            this.status = Status.accepted;
+        }else if(status.startsWith("add")){
+            this.status = Status.addingProcess;
+        }else if(status.startsWith("edi")){
+            this.status = Status.editingProcess;
+        }
+    }
+
     public void acceptStatus() {
         status = Status.accepted;
-        for(String ID : itemId){
+        for (String ID : itemId) {
             ItemAndCategoryController.getInstance().getItemById(ID).setSale(this.id);
         }
     }
@@ -41,6 +56,10 @@ public class Sale {
 
     public void addStatus() {
         status = Status.addingProcess;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public LocalDateTime getEndTime() {
@@ -79,7 +98,7 @@ public class Sale {
         itemId.add(id);
     }
 
-    public void removeItemFromSale(String id){
+    public void removeItemFromSale(String id) {
         itemId.remove(id);
     }
 
@@ -90,19 +109,19 @@ public class Sale {
 
     @Override
     public String toString() {
-        String ans= "id: " + getId() + "\n" +
+        String ans = "id: " + getId() + "\n" +
                 "Off Percentage: " + getOffPercentage() + "\n" +
                 "Status: " + status + "\n" +
                 "Start Time: " + getStartTime() + "\n" +
                 "End Time: " + getEndTime() + "\n";
         ans += "Items in Sale:\nID             name              price\n";
-        for(String itemID:itemId){
-            ans+=ItemAndCategoryController.getInstance().getItemById(itemID).toSimpleString();
+        for (String itemID : itemId) {
+            ans += ItemAndCategoryController.getInstance().getItemById(itemID).toSimpleString();
         }
         return ans;
     }
 
-    public String toSimpleString(){
+    public String toSimpleString() {
         return id + "                                              " + offPercentage + "                                          " + endTime;
     }
 

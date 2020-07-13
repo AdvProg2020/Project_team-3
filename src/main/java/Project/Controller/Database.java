@@ -37,22 +37,6 @@ public class Database {
 
 
    public void saveUser(User user)  {
-      /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      String Username = user.getUsername();
-      String path = "Resource" + File.separator + "Users";
-      String name = Username + ".json";
-      File file = new File(path + File.separator + name);
-      try{
-      if (!file.exists()) {
-         file.createNewFile();
-      }
-         FileWriter writer = new FileWriter(file);
-         writer.write(gson.toJson(user));
-         writer.close();
-      }catch(IOException exception){
-         exception.printStackTrace();
-      }*/
-      //inja ba sql
       if(user instanceof Admin){
          insertAdmin((Admin)user);
       }
@@ -159,7 +143,6 @@ public class Database {
       }
    }
 
-
    public void saveItem(Item item)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = item.getId();
@@ -180,7 +163,7 @@ public class Database {
 
    public void saveSale(Sale sale)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      String id = sale.getId();
+      /*String id = sale.getId();
       String path = "Resource" + File.separator + "Sales";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
@@ -193,7 +176,26 @@ public class Database {
       writer.close();
       }catch(IOException exception){
          exception.printStackTrace();
+      }*/
+      Connection connection = null;
+      String items = gson.toJson(sale.getAllItemId());
+      String values = "'" + sale.getId() +"', '"+sale.getSellerUsername()+"', '"+items+"', '"+sale.getStartTime().toString()+"', '"+sale.getEndTime().toString();
+      values += "', " + sale.getOffPercentage() + ", '" + sale.getStatus() + "'";
+
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Sales WHERE id='"+sale.getId()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Sales values("+values+")");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
       }
+
    }
 
    public void saveDiscountCode(DiscountCode discount) {
@@ -252,11 +254,6 @@ public class Database {
    }
 
    public void deleteUser(User user) {
-      /*String Username = user.getUsername();
-      String path = "Resource" + File.separator + "Users";
-      String name = Username + ".json";
-      File file = new File(path + File.separator + name);
-      file.delete();*/
       Connection connection = null;
       String tableName = user.getType() + "s";
       try
@@ -295,7 +292,6 @@ public class Database {
       File file = new File(path + File.separator + name);
       file.delete();
    }
-
 
    public void deleteCategory(Category category) {
       /*String categoryName = category.getName();
