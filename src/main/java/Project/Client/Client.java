@@ -9,6 +9,7 @@ public class Client {
    private String Token;
    private int port=9000;
    private static Client client;
+
    private Client(){}
 
    public static Client getInstance(){
@@ -35,5 +36,11 @@ public class Client {
       return "error in server and client connection.";
    }
 
+   public static void setClient(Client client) {
+      Client.client = client;
+   }
 
+   public static Client getClient() {
+      return client;
+   }
 }

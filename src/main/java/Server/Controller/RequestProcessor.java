@@ -71,9 +71,9 @@ public class RequestProcessor {
    }
 
    public String adminMenuProcessor(JsonObject command){
-     // String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
-      //Controller.getInstance().setCurrentOnlineUser(username);
-     // if(username==null) return "Error: incorrect Token";
+     String username=AuthTokenHandler.getInstance().getUserWithToken(command.get("token").toString());
+      Controller.getInstance().setCurrentOnlineUser(username);
+      if(username==null) return "Error: incorrect Token";
 
       if(command.get("content").toString().equals("\"delete user\"")){
          return UserController.getInstance().deleteUser(command.get("username").toString());
