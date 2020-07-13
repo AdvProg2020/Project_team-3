@@ -1,9 +1,6 @@
 package Project.Controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -24,19 +21,9 @@ public class ClientConnector {
                 connection.setRequestProperty("selection",userToken);
             }
             else if(userToken.equals("")){} /// register request to server!!!!!!
-            byte [] input=dataToPost.getBytes();
-            OutputStream outputStream=connection.getOutputStream();
-            outputStream.write(input,0,input.length);
-            outputStream.flush();
-            outputStream.close();
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = bufferedReader.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
+            sendMessageToServer(connection,dataToPost);
             connection.disconnect();
-            return response.toString();//// server reaction!!!
+            return getMessageFromServer(connection);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,14 +38,8 @@ public class ClientConnector {
                 connection.setRequestProperty("selection",userToken);
             }
             else if(userToken.equals("")){}
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = bufferedReader.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
             connection.disconnect();
-            return response.toString(); /// data that is posted from server!!!
+            return getMessageFromServer(connection);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,18 +55,44 @@ public class ClientConnector {
                 connection.setRequestProperty("selection",userToken);
             }
             else if(userToken.equals("")){}
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+            connection.disconnect();
+            return getMessageFromServer(connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public String getMessageFromServer(HttpURLConnection connection){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
             StringBuilder response = new StringBuilder();
             String responseLine = null;
             while ((responseLine = bufferedReader.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            connection.disconnect();
             return response.toString();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public void sendMessageToServer(HttpURLConnection connection,String dataToPost){
+        byte [] input=dataToPost.getBytes();
+        try {
+            OutputStream outputStream = connection.getOutputStream();
+            outputStream.write(input,0,input.length);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

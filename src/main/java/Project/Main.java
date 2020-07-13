@@ -3,6 +3,7 @@ package Project;
 import Project.Controller.ClientConnector;
 import Project.Controller.Controller;
 import Project.Controller.Database;
+import Project.Model.Users.Admin;
 import Project.View.Menus.SceneSwitcher;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -18,6 +19,13 @@ public class Main extends Application{
     public static void main(String[] args) {
         Database.getInstance().initiate();
         Controller.getInstance().updateDateAndTime();
+        try {
+            URL url=new URL("http://localhost:8080/Project_team_3_war/Users/admin");
+            System.out.println(ClientConnector.getInstance().getRequest(url,""));
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         launch(args);
     }
 
