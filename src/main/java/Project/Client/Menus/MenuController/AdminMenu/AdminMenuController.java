@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
+import Project.Client.MakeRequest;
 import Server.Controller.Controller;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -39,7 +40,8 @@ public class AdminMenuController {
 
 
    public void personalInfoUpdate(){
-      String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
+//      String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
+      String message= MakeRequest.makeGetUserRequest();
       personalInfo.setText(message);
    }
    public void manageUsers(ActionEvent actionEvent) {

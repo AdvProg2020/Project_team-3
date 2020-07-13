@@ -1,7 +1,7 @@
 package Project.Client.Menus.MenuController;
 
 import Project.Client.Client;
-import Project.MakeRequest;
+import Project.Client.MakeRequest;
 import Server.Controller.*;
 import Server.Model.Item;
 import Server.Model.Users.Admin;

@@ -1,25 +1,29 @@
 package Project.Client.Model.Users;
 
-import Server.Controller.Database;
+
 
 import java.util.HashMap;
 
 public abstract class User {
 
-    private String username;
-    private String password;
-    private String name;
-    private String lastName;
-    private String email;
-    private String number;
-    private String type;
-    private HashMap<String,String> allRequests=new HashMap<>();
+    public String username;
+    public String password;
+    public String name;
+    public String lastName;
+    public String email;
+    public String number;
+    public String type;
+    public HashMap<String,String> allRequests=new HashMap<>();
 
-    public boolean doesPasswordMatch(String password) {
-        return this.password.equals(password);
+    public User(String username, String password, String name, String lastName, String email, String number, String type) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.number = number;
+        this.type = type;
     }
-
-
 
     public String getType() {
         return type;

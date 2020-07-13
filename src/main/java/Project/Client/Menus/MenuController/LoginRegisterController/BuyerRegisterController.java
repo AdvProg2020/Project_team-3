@@ -2,7 +2,7 @@ package Project.Client.Menus.MenuController.LoginRegisterController;
 
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Project.MakeRequest;
+import Project.Client.MakeRequest;
 import Project.Client.CLI.View;
 import Server.Controller.Controller;
 import javafx.event.ActionEvent;

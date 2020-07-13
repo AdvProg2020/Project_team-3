@@ -1,4 +1,4 @@
-package Project;
+package Project.Client;
 
 import Project.Client.Client;
 import Project.Client.Model.Users.Admin;
@@ -151,18 +151,18 @@ public class MakeRequest {
       json.addProperty("content","get online user");
       json.addProperty("token",Client.getInstance().getToken());
       String response=Client.getInstance().sendMessage(json);
-      return response;
-      /*JsonParser parser = new JsonParser();
+     /* JsonParser parser = new JsonParser();
       JsonObject jsonUser = (JsonObject) parser.parse(response);
       Gson gson=new Gson();
+      System.out.println(jsonUser.toString());
       if(jsonUser.get("type").toString().equals("\"Admin\"")){
-         return gson.fromJson(jsonUser.toString(), Admin.class);
+          return gson.fromJson(jsonUser, Admin.class);
       }else if(jsonUser.get("type").toString().equals("\"Buyer\"")){
-         return gson.fromJson(jsonUser.toString(), Buyer.class);
+          return gson.fromJson(jsonUser, Buyer.class);
       } else if(jsonUser.get("type").toString().equals("\"Seller\"")){
-         return gson.fromJson(jsonUser.toString(), Seller.class);
-      }
-      return null; */
+          return gson.fromJson(jsonUser, Seller.class);
+      } */
+      return response;
    }
 
 }
