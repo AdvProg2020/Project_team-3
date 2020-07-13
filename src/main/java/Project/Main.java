@@ -1,14 +1,13 @@
 package Project;
 
 import Project.Client.Client;
+import Project.Client.Menus.SceneSwitcher;
 import Server.Controller.Controller;
 import Server.Controller.Database;
-import Project.Client.Menus.SceneSwitcher;
-import Server.Server;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 
 public class Main extends Application{
     public static void main(String[] args) {
