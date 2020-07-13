@@ -18,16 +18,7 @@ public class Main extends Application{
     public static void main(String[] args) {
         Database.getInstance().initiate();
         Controller.getInstance().updateDateAndTime();
-
-        try {
-            URL url=new URL("http://localhost:8080/Project_team_3_war/Users/admin");
-            System.out.println(ClientConnector.getInstance().getRequest(url,""));
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-       // launch(args);
+        launch(args);
     }
 
     @Override
