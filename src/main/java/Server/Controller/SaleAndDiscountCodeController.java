@@ -1,17 +1,22 @@
 package Server.Controller;
 
+import Project.Client.CLI.View;
 import Server.Model.DiscountCode;
 import Server.Model.Item;
 import Server.Model.Sale;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
-import Project.Client.CLI.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,7 +54,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public Sale getSaleById(String id) {
-        String path = "Resource" + File.separator + "Sales";
+        /*String path = "Resource" + File.separator + "Sales";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
@@ -62,17 +67,63 @@ public class SaleAndDiscountCodeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null;*/
+        ArrayList<Sale> viableOptions = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Sales WHERE id='"+id+"'");
+            while(rs.next())
+            {
+                //bayad be viableoptions new ezafe konim
+                String saleID = rs.getString(1);
+                String seller = rs.getString(2);
+                ArrayList<String> items = gson.fromJson(rs.getString(3),new TypeToken<ArrayList<String>>(){}.getType());
+                String start = rs.getString(4);
+                String end = rs.getString(5);
+                int percent = rs.getInt(6);
+                String status = rs.getString(7);
+                 viableOptions.add(new Sale(saleID,seller,items,start,end,percent,status));
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(viableOptions.isEmpty()) return null;
+        return viableOptions.get(0);
     }
 
     public boolean isThereSaleWithId(String id) {
-        String path = "Resource" + File.separator + "Sales";
+        /*String path = "Resource" + File.separator + "Sales";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
             return false;
         }
-        return true;
+        return true;*/
+        int cnt=0;
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Sales WHERE id='"+id+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return cnt>0;
     }
 
     public String getSellerSalesString(String username) {
@@ -190,7 +241,7 @@ public class SaleAndDiscountCodeController {
     }
 
     public ArrayList<Sale> getAllSaleFromDataBase() {
-        String path = "Resource" + File.separator + "Sales";
+        /*String path = "Resource" + File.separator + "Sales";
         File file = new File(path);
         File[] allFiles = file.listFiles();
         String fileContent = null;
@@ -204,7 +255,34 @@ public class SaleAndDiscountCodeController {
             }
             allSale.add(gson.fromJson(fileContent, Sale.class));
         }
-        return allSale;
+        return allSale;*/
+        ArrayList<Sale> viableOptions = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Sales");
+            while(rs.next())
+            {
+                //bayad be viableoptions new ezafe konim
+                String saleID = rs.getString(1);
+                String seller = rs.getString(2);
+                ArrayList<String> items = gson.fromJson(rs.getString(3),new TypeToken<ArrayList<String>>(){}.getType());
+                String start = rs.getString(4);
+                String end = rs.getString(5);
+                int percent = rs.getInt(6);
+                String status = rs.getString(7);
+                viableOptions.add(new Sale(saleID,seller,items,start,end,percent,status));
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return viableOptions;
     }
 
     public ArrayList<String> getAllItemsIDWithSale() {
