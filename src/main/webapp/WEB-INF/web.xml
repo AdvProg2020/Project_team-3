@@ -12,7 +12,7 @@
 
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>Project.Controller.Servlet</servlet-class>
+        <servlet-class>Server.Controller.Servlet</servlet-class>
     </servlet>
 <!--    -->
 <!--    <servlet>-->

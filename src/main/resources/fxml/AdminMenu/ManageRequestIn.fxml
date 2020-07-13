@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" prefHeight="173.0" prefWidth="392.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.AdminMenu.ManageRequestIn">
+<AnchorPane fx:id="pane" prefHeight="173.0" prefWidth="392.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.ManageRequestIn">
     <Button layoutX="249.0" layoutY="118.0" onMouseClicked="#accept" prefHeight="27.0" prefWidth="113.0" styleClass="myBlueButton" text="accept" />
     <Button layoutX="28.0" layoutY="118.0" onMouseClicked="#decline" prefHeight="27.0" prefWidth="113.0" styleClass="redButton" text="decline" />
     <TextField fx:id="detail" editable="false" layoutX="31.0" layoutY="39.0" prefHeight="73.0" prefWidth="333.0" />

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" prefHeight="445.0" prefWidth="707.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.View.Menus.MenuController.AdminMenu.AddDiscountCode">
+<AnchorPane fx:id="pane" prefHeight="445.0" prefWidth="707.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.AddDiscountCode">
     <MenuBar prefHeight="25.0" prefWidth="707.0" styleClass="myMenuBar">
         <Menu text="options">
             <MenuItem onAction="#back" text="back" />
