@@ -13,9 +13,6 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Server.getInstance().setRequest(req);
         Server.getInstance().setResponse(resp);
-
-       // resp.getOutputStream().println(UserController.getInstance().getUserByUsername("admin").toString());
-
     }
 
     @Override
