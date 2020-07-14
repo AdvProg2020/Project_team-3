@@ -24,7 +24,7 @@ public class ManageRequests {
    public void update() {
       listView.getItems().clear();
       String requestList=MakeRequest.makeGetAllRequestsRequest();
-      if(requestList.isEmpty()==false) listView.getItems().addAll(requestList);
+      if(requestList.isEmpty()==false) listView.getItems().addAll(requestList.split("\n"));
      // for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
       //   listView.getItems().add("commercial request for item "+id);
      // }

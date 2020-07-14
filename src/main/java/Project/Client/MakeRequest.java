@@ -1,12 +1,8 @@
 package Project.Client;
 
-import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import java.io.IOException;
 
 public class MakeRequest {
    //type1
@@ -67,6 +63,8 @@ public class MakeRequest {
    }
 
    //type 4
+
+
    public static String makeRequestAcceptRequest(String requestId){
       JsonObject json=new JsonObject();
       json.addProperty("token",Client.getInstance().getToken());
@@ -129,10 +127,11 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetAllUserRequest(){
+   public static String makeGetAllUserRequest(String userType){
       JsonObject json=new JsonObject();
       json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
+      json.addProperty("userType",userType);
       json.addProperty("content","user list");
       return Client.getInstance().sendMessage(json);
    }
@@ -181,6 +180,14 @@ public class MakeRequest {
       json.addProperty("type","0");
       json.addProperty("content","update date and time");
       return Client.getInstance().sendMessage(json);
+   }
+
+   public static boolean isThereUserWithUsername(String username){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",0);
+      json.addProperty("content","is there user with username");
+      json.addProperty("username",username);
+      return Client.getInstance().sendMessage(json).equals("true");
    }
 
 

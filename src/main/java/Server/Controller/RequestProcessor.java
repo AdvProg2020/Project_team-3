@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -82,15 +83,36 @@ public class RequestProcessor {
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
       if (command.get("content").toString().equals("\"delete user\"")) {
-         return UserController.getInstance().deleteUser(command.get("username").toString());
+         return UserController.getInstance().deleteUser(getJsonStringField(command,"username"));
       }
 
       if (command.get("content").toString().equals("\"user list\"")) {
-         return Database.getInstance().printFolderContent("Users").toString();
+         String response="";
+         if(getJsonStringField(command,"userType").equals("Admin")) {
+            for (String user : Database.getInstance().getAllUsername("Admin")) {
+               response+=user+"\n";
+            }
+         }
+         if(getJsonStringField(command,"userType").equals("Seller")){
+            for (String user : Database.getInstance().getAllUsername("Seller")) {
+               response+=user+"\n";
+            }
+         }
+         if(getJsonStringField(command,"userType").equals("Buyer")){
+            for (String user : Database.getInstance().getAllUsername("Buyer")) {
+               response+=user+"\n";
+            }
+         }
+         if(getJsonStringField(command,"userType").equals("All")){
+            for (String user : Database.getInstance().printFolderContent("Users")) {
+               response+=user+"\n";
+            }
+         }
+        return response;
       }
 
       if (command.get("content").toString().equals("\"view user\"")) {
-         return UserController.getInstance().viewPersonalInfo(command.get("username").toString());
+         return UserController.getInstance().viewPersonalInfo(getJsonStringField(command,"username"));
       }
 
       if (command.get("content").toString().equals("\"accept request\"")) {
@@ -162,6 +184,11 @@ public class RequestProcessor {
       if (getJsonStringField(command,"content").equals("update date and time")) {
          Controller.getInstance().updateDateAndTime();
          return "Successful: ";
+      }
+      if (getJsonStringField(command,"content").equals("is there user with username")) {
+        if(UserController.getInstance().isThereUserWithUsername(getJsonStringField(command,"username")))
+           return "true";
+        return "false";
       }
       return "Error: invalid command";
    }

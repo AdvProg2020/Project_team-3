@@ -1,8 +1,9 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
+
 import Project.Client.CLI.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -22,7 +23,7 @@ public class ManageUserIn {
 
    public void deleteUser(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      String message=UserController.getInstance().deleteUser(username);
+      String message=MakeRequest.makeDeleteUserRequest(username);
       if(message.startsWith("Error")) {
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setContentText(message);
@@ -46,7 +47,7 @@ public class ManageUserIn {
    public void viewUser(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText(UserController.getInstance().viewPersonalInfo(username));
+      alert.setContentText(MakeRequest.makeViewUserRequest(username));
       alert.show();
    }
 }

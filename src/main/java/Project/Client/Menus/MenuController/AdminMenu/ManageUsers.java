@@ -1,7 +1,5 @@
 package Project.Client.Menus.MenuController.AdminMenu;
-
-import Server.Controller.Database;
-import Server.Controller.UserController;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -32,21 +30,19 @@ public class ManageUsers {
    public void update(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       listView.getItems().clear();
+      String userList="";
      if(adminCheck.isSelected()){
-        for (Object admin : Database.getInstance().getAllUsername("Admin")) {
-           listView.getItems().add(admin);
-        }
+       userList+=MakeRequest.makeGetAllUserRequest("Admin");
      }
       if(buyerCheck.isSelected()){
-         for (Object buyer : Database.getInstance().getAllUsername("Buyer")) {
-            listView.getItems().add(buyer);
-         }
+         userList+=MakeRequest.makeGetAllUserRequest("Buyer");
       }
       if(sellerCheck.isSelected()){
-         for (Object seller : Database.getInstance().getAllUsername("Seller")) {
-            listView.getItems().add(seller);
-         }
+         userList+=MakeRequest.makeGetAllUserRequest("Seller");
       }
+      userList.replace("\n\n","\n");
+      if(userList.equals("\n")==false)
+      listView.getItems().addAll(userList.split("\n"));
       if(listView.getItems().isEmpty())
          listView.getItems().add("no user");
    }
@@ -64,7 +60,7 @@ public class ManageUsers {
          return;
       String username=listView.getItems().get(index).toString();
       System.out.println(username);
-      if(UserController.getInstance().isThereUserWithUsername(username)) {
+      if(MakeRequest.isThereUserWithUsername(username)) {
          ManageUserIn.setUsername(username);
          SceneSwitcher.getInstance().setSceneTo("ManageUserIn", 348, 88);
       }

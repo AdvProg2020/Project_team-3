@@ -1,6 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Project.Client.Client;
+
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.Admin;
 
@@ -10,7 +10,7 @@ import Server.Controller.UserController;
 import Project.Client.CLI.View;
 
 
-import com.google.gson.JsonObject;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
