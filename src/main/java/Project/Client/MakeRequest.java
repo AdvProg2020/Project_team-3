@@ -214,6 +214,23 @@ public class MakeRequest {
       return ObjectMapper.jsonToUser(jsonObject);
    }
 
+   public static String makeEditPersonalInfoRequest(String field,String newValue){
+      JsonObject json=new JsonObject();
+      json.addProperty("type","5");
+      json.addProperty("content","edit personal info");
+      json.addProperty("field",field);
+      json.addProperty("new value",newValue);
+      json.addProperty("token",Client.getInstance().getToken());
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeUserImagePathRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("type","5");
+      json.addProperty("content","user image path");
+      json.addProperty("token",Client.getInstance().getToken());
+      return Client.getInstance().sendMessage(json);
+   }
 
    //type 0
    public static String makeUpdateDateAndTimeRequest(){

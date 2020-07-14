@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.Database;
+
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -22,7 +23,7 @@ public class ManageCategories {
 
    public void update() {
       categoryList.getItems().clear();
-      for (Object requests : Database.getInstance().printFolderContent("Categories")) {
+      for (Object requests : MakeRequest.makeGetAllCategoryName()) {
          categoryList.getItems().add(requests);
       }
       if(categoryList.getItems().isEmpty())

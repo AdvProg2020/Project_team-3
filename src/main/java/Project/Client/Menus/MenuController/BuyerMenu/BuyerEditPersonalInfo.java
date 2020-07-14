@@ -1,15 +1,11 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
-import Project.Client.Client;
-import Project.Client.Model.Users.*;
 import Project.Client.MakeRequest;
-import Project.Client.Model.Users.Buyer;
-import Server.Controller.Controller;
-import Server.Controller.UserController;
-import Server.Model.Users.User;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Users.User;
+import Server.Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,7 +23,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class BuyerEditPersonalInfo {
@@ -55,19 +50,18 @@ public class BuyerEditPersonalInfo {
 
     public void update(){
         personalInfo.getItems().clear();
-        String response=MakeRequest.makeGetPersonalInfoRequest();
-        personalInfo.getItems().addAll(response);
+        personalInfo.getItems().addAll(MakeRequest.makeGetUserRequest().getPersonalInfo());
         name.clear();
         surname.clear();
         email.clear();
         number.clear();
-//        String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
-//        File file=new File(path);
-//        try {
-//            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+        String path=MakeRequest.makeUserImagePathRequest();
+        File file=new File(path);
+        try {
+            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void changeName(MouseEvent mouseEvent) {
@@ -77,8 +71,7 @@ public class BuyerEditPersonalInfo {
             showAlertBox("incorrect name field value","ERROR");
             return;
         }
-        MakeRequest.makeEditPersonalInfoBuyer("Name",name.getText());
-       // UserController.getInstance().editPersonalInfo(buyer.getUsername(),"Name",name.getText());
+        MakeRequest.makeEditPersonalInfoRequest("Name",name.getText());
         showAlertBox("Successful","INFORMATION");
         update();
     }
@@ -90,9 +83,7 @@ public class BuyerEditPersonalInfo {
             showAlertBox("incorrect surname field value","ERROR");
             return;
         }
-       // Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
-        MakeRequest.makeEditPersonalInfoBuyer("Surname",surname.getText());
-       // UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Surname",surname.getText());
+        MakeRequest.makeEditPersonalInfoRequest("Surname",surname.getText());
         showAlertBox("Successful","INFORMATION");
         update();
     }
@@ -104,8 +95,7 @@ public class BuyerEditPersonalInfo {
             showAlertBox("incorrect email field value","ERROR");
             return;
         }
-        MakeRequest.makeEditPersonalInfoBuyer("Email",email.getText());
-        //UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Email",email.getText());
+        MakeRequest.makeEditPersonalInfoRequest("Email",email.getText());
         showAlertBox("Successful","INFORMATION");
         update();
     }
@@ -117,8 +107,7 @@ public class BuyerEditPersonalInfo {
             showAlertBox("incorrect Number field value","ERROR");
             return;
         }
-        MakeRequest.makeEditPersonalInfoBuyer("Number",number.getText());
-        //UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Number",number.getText());
+        MakeRequest.makeEditPersonalInfoRequest("Number",number.getText());
         showAlertBox("Successful","INFORMATION");
         update();
     }
@@ -140,7 +129,7 @@ public class BuyerEditPersonalInfo {
 
     public void updateEmail(KeyEvent keyEvent) {
         String text=email.getText();
-        if(UserController.getInstance().isValidEmail(text)){
+        if(isValidEmail(text)){
             email.setStyle("-fx-text-fill: green;");
             return;
         }
@@ -149,7 +138,7 @@ public class BuyerEditPersonalInfo {
 
     public void updateNumber(KeyEvent keyEvent) {
         String text=number.getText();
-        if(UserController.getInstance().isValidPhoneNumber(text)){
+        if(isValidPhoneNumber(text)){
             number.setStyle("-fx-text-fill: green;");
             return;
         }
@@ -180,8 +169,8 @@ public class BuyerEditPersonalInfo {
 
     public void removeImage(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        String path=UserController.getInstance().userImagePath(user.getUsername());
+        User user=MakeRequest.makeGetUserRequest();
+        String path=MakeRequest.makeUserImagePathRequest();
         File file=new File(path);
         if(!file.getName().equals("default.jpg"))file.delete();
         else return;
@@ -196,7 +185,7 @@ public class BuyerEditPersonalInfo {
 
     public void changeImage(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        User user=Controller.getInstance().getCurrentOnlineUser();
+        User user=MakeRequest.makeGetUserRequest();
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG","*.png"),
@@ -204,7 +193,7 @@ public class BuyerEditPersonalInfo {
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
-        File removed=new File(UserController.getInstance().userImagePath(user.getUsername()));
+        File removed=new File(MakeRequest.makeUserImagePathRequest());
         if(removed.getName().equals("default.jpg")){}
         else removed.delete();
         Path source= Paths.get(selected.getPath());
@@ -216,7 +205,7 @@ public class BuyerEditPersonalInfo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String path=UserController.getInstance().userImagePath(user.getUsername());
+        String path=MakeRequest.makeUserImagePathRequest();;
         File file=new File(path);
         try {
             imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
@@ -232,8 +221,7 @@ public class BuyerEditPersonalInfo {
             showAlertBox("incorrect password field value","ERROR");
             return;
         }
-        MakeRequest.makeEditPersonalInfoBuyer("Password",passwordTextField.getText());
-        //UserController.getInstance().editPersonalInfo(UserController.getInstance().getCurrentOnlineUserUsername(),"Password",passwordTextField.getText());
+        MakeRequest.makeEditPersonalInfoRequest("Password",passwordTextField.getText());
         showAlertBox("Successful","INFORMATION");
         passwordTextField.clear();
         update();
@@ -241,8 +229,16 @@ public class BuyerEditPersonalInfo {
 
     public void logout(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
+        MakeRequest.makeLogoutRequest();
+    }
+
+    public boolean isValidEmail(String email) {
+        return Controller.getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
+    }
+
+    public boolean isValidPhoneNumber(String number) {
+        return Controller.getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
     }
 }
