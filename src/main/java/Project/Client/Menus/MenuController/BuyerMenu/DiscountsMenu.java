@@ -1,14 +1,23 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
 
+import Project.Client.MakeRequest;
 import Server.Controller.UserController;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Server.Model.DiscountCode;
+import Server.Model.Logs.BuyLog;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DiscountsMenu {
@@ -22,7 +31,8 @@ public class DiscountsMenu {
    }
 
    public void update() {
-      discountList.getItems().addAll(UserController.getInstance().getBuyerDiscountCode());
+      String response=MakeRequest.makeGetBuyerDiscountCodesRequest();
+      discountList.getItems().addAll(response);
       if(discountList.getItems().isEmpty())
          discountList.getItems().add("you dont have any discount codes");
    }
@@ -32,7 +42,7 @@ public class DiscountsMenu {
    }
 
    public void logout(ActionEvent actionEvent) {
-      UserController.getInstance().logout();
+      MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }

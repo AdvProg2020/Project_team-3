@@ -175,15 +175,8 @@ public class RequestProcessor {
          return UserController.getInstance().getBuyLogs(username);
       }
 
-      if(command.get("content").toString().equals("\"personalInfo\"")){
-         return UserController.getInstance().viewPersonalInfo(username);
-      }
-
-      if(command.get("content").toString().equals("\"EditPersonalInfo\"")){
-         String filed=getJsonStringField(command,"field");
-         String filedValue=getJsonStringField(command,"fieldValue");
-         UserController.getInstance().editPersonalInfo(username,filed,filedValue);
-         return "successful";
+      if(command.get("content").toString().equals("\"getAllDiscountCodes\"")){
+         return UserController.getInstance().getBuyerDiscountCode();
       }
 
       return "Error: invalid command";
