@@ -51,7 +51,6 @@ public class LoginMenuController {
             return;
         }
         String message=MakeRequest.makeLoginRequest(usernameTextField.getText(),passwordTextField.getText());
-        System.out.println(MakeRequest.makeGetUserRequest());
         if(message.startsWith("Error")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);

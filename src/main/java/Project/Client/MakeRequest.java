@@ -149,9 +149,21 @@ public class MakeRequest {
       json.addProperty("content","get online user");
       json.addProperty("token",Client.getInstance().getToken());
       String response=Client.getInstance().sendMessage(json);
+      System.out.println(response+" "+Client.getInstance().getToken());
       JsonParser parser = new JsonParser();
       JsonObject jsonObject = (JsonObject) parser.parse(response);
       return ObjectMapper.jsonToUser(jsonObject);
    }
+
+
+   //type 0
+   public static String makeUpdateDateAndTimeRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("type","0");
+      json.addProperty("content","update date and time");
+      return Client.getInstance().sendMessage(json);
+   }
+
+
 
 }

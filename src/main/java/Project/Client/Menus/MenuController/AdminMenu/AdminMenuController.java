@@ -3,7 +3,7 @@ package Project.Client.Menus.MenuController.AdminMenu;
 import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.Admin;
-import Server.Controller.Controller;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Server.Controller.UserController;
@@ -28,7 +28,7 @@ public class AdminMenuController {
    @FXML AnchorPane pane;
 
    public void initialize(){
-       Controller.getInstance().updateDateAndTime();
+         MakeRequest.makeUpdateDateAndTimeRequest();
          View.setFonts(pane);
          MusicManager.getInstance().setSongName("first.wav");
          String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
@@ -78,7 +78,7 @@ public class AdminMenuController {
    }
 
    public void logout(ActionEvent actionEvent) {
-      UserController.getInstance().logout();
+      MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
