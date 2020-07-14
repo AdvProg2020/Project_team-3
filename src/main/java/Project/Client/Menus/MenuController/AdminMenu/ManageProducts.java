@@ -1,7 +1,9 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.SortAndFilterController;
+import Project.Client.MakeRequest;
+import Project.Client.Model.SortAndFilter;
+
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -33,13 +35,13 @@ public class ManageProducts {
    @FXML TextField maxPrice;
    @FXML TextField search;
    @FXML TextField brandName;
-   @FXML TextField categoryName;
+   @FXML TextField categoryNameFilter;
    @FXML TextField sellerName;
    @FXML private AnchorPane pane;
    @FXML public void initialize() {
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
-      sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
+      sortChoiceBox.getItems().addAll(SortAndFilter.getInstance().showAllAvailableSorts().split("\n"));
       sortChoiceBox.getItems().add("sort by view");
       sortChoiceBox.setValue("sort by view");
       update();
@@ -48,8 +50,7 @@ public class ManageProducts {
 
    public void update() {
       listView.getItems().clear();
-      listView.getItems().addAll(SortAndFilterController.getInstance().show("Project.Main"));
-
+      listView.getItems().addAll(MakeRequest.showProducts());
       if(listView.getItems().isEmpty()) {
          listView.getItems().add("there are no products right now");
          return;
@@ -57,7 +58,7 @@ public class ManageProducts {
    }
 
    public void updateFilter(){
-      SortAndFilterController control=SortAndFilterController.getInstance();
+      SortAndFilter control=SortAndFilter.getInstance();
       if(control.getFilterAttribute()){
          attributeCheckBox.setSelected(true);
          attributeKey.setText(control.getAttributeKey());
@@ -72,7 +73,7 @@ public class ManageProducts {
       }
       if(control.getFilterCategoryName()){
          categoryNameCheckBox.setSelected(true);
-         categoryName.setText(control.getCategoryName());
+         categoryNameFilter.setText(control.getCategoryName());
       }
       if(control.getFilterPriceRange()){
          priceCheckBox.setSelected(true);
@@ -97,9 +98,9 @@ public class ManageProducts {
    public void sort(ActionEvent actionEvent) {
       String sort=sortChoiceBox.getValue().toString();
       if(sort.equals("sort by view")){
-         SortAndFilterController.getInstance().disableSort();
+         SortAndFilter.getInstance().disableSort();
       }else {
-         SortAndFilterController.getInstance().activateSort(sort); }
+         SortAndFilter.getInstance().activateSort(sort); }
       update();
    }
 
@@ -126,13 +127,13 @@ public class ManageProducts {
    }
 
    public void reset(ActionEvent actionEvent) {
-      SortAndFilterController.getInstance().disableFilterAttribute();
-      SortAndFilterController.getInstance().disableFilterAvailability();
-      SortAndFilterController.getInstance().disableFilterBrandName();
-      SortAndFilterController.getInstance().disableFilterCategoryName();
-      SortAndFilterController.getInstance().disableFilterName();
-      SortAndFilterController.getInstance().disableFilterPriceRange();
-      SortAndFilterController.getInstance().disableFilterSellerName();
+      SortAndFilter.getInstance().disableFilterAttribute();
+      SortAndFilter.getInstance().disableFilterAvailability();
+      SortAndFilter.getInstance().disableFilterBrandName();
+      SortAndFilter.getInstance().disableFilterCategoryName();
+      SortAndFilter.getInstance().disableFilterName();
+      SortAndFilter.getInstance().disableFilterPriceRange();
+      SortAndFilter.getInstance().disableFilterSellerName();
       availableCheckBox.setSelected(false);
       categoryNameCheckBox.setSelected(false);
       brandNameCheckBox.setSelected(false);
@@ -146,94 +147,95 @@ public class ManageProducts {
       maxPrice.clear();
       search.clear();
       brandName.clear();
-      categoryName.clear();
+      categoryNameFilter.clear();
       sellerName.clear();
 
    }
 
    public void filterAvailibility(MouseEvent mouseEvent) {
       if(availableCheckBox.isSelected()){
-         SortAndFilterController.getInstance().activateFilterAvailability();
+         SortAndFilter.getInstance().activateFilterAvailability();
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterAvailability();
+      SortAndFilter.getInstance().disableFilterAvailability();
       update();
    }
 
    public void filterCategoryName(MouseEvent mouseEvent) {
-      if((categoryNameCheckBox.isSelected())&&(isValidAlphabeticTextField(categoryName))){
-         SortAndFilterController.getInstance().activateFilterCategoryName(categoryName.getText());
+      System.out.println("sojsodjo");
+      if((categoryNameCheckBox.isSelected())&&(isValidAlphabeticTextField(categoryNameFilter))){
+         SortAndFilter.getInstance().activateFilterCategoryName(categoryNameFilter.getText());
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterCategoryName();
+      SortAndFilter.getInstance().disableFilterCategoryName();
       categoryNameCheckBox.setSelected(false);
       update();
    }
 
    public void filterBrandName(MouseEvent mouseEvent) {
       if((brandNameCheckBox.isSelected())&&(isValidAlphabeticTextField(brandName))){
-         SortAndFilterController.getInstance().activateFilterBrandName(brandName.getText());
+         SortAndFilter.getInstance().activateFilterBrandName(brandName.getText());
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterBrandName();
+      SortAndFilter.getInstance().disableFilterBrandName();
       brandNameCheckBox.setSelected(false);
       update();
    }
 
    public void filterSearch(MouseEvent mouseEvent) {
       if((searchCheckBox.isSelected())&&(isValidAlphabeticTextField(search))){
-         SortAndFilterController.getInstance().activateFilterName(search.getText());
+         SortAndFilter.getInstance().activateFilterName(search.getText());
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterName();
+      SortAndFilter.getInstance().disableFilterName();
       searchCheckBox.setSelected(false);
       update();
    }
 
    public void sellerFilter(MouseEvent mouseEvent) {
       if((sellerNameCheckBox.isSelected())&&(isValidAlphabeticTextField(sellerName))){
-         SortAndFilterController.getInstance().activateFilterSellerName(sellerName.getText());
+         SortAndFilter.getInstance().activateFilterSellerName(sellerName.getText());
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterSellerName();
+      SortAndFilter.getInstance().disableFilterSellerName();
       sellerNameCheckBox.setSelected(false);
       update();
    }
 
    public void attributeFilter(MouseEvent mouseEvent) {
       if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))&&(isValidAlphabeticTextField(attributeValue))){
-         SortAndFilterController.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
+         SortAndFilter.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterAttribute();
+      SortAndFilter.getInstance().disableFilterAttribute();
       attributeCheckBox.setSelected(false);
       update();
    }
 
    public void priceFilter(MouseEvent mouseEvent) {
       if((priceCheckBox.isSelected())&&(isValidPositiveDoubleTextField(minPrice))&&(isValidPositiveDoubleTextField(maxPrice))){
-         SortAndFilterController.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
+         SortAndFilter.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterPriceRange();
+      SortAndFilter.getInstance().disableFilterPriceRange();
       priceCheckBox.setSelected(false);
       update();
    }
 
    public void saleFilter(MouseEvent mouseEvent) {
       if(filterSaleCheckBox.isSelected()){
-         SortAndFilterController.getInstance().activateFilterSale();
+         SortAndFilter.getInstance().activateFilterSale();
          update();
          return;
       }
-      SortAndFilterController.getInstance().disableFilterSale();
+      SortAndFilter.getInstance().disableFilterSale();
       update();
    }
 
@@ -267,7 +269,7 @@ public class ManageProducts {
          return;
       String id=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
-      if(ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
+      if(MakeRequest.isThereProductWithId(id)) {
          ManageProductsIn.setItemId(id);
          SceneSwitcher.getInstance().setSceneAndWait("ManageProductsIn", 392, 173);
       }

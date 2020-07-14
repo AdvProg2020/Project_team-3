@@ -1,5 +1,6 @@
 package Project.Client;
 
+import Project.Client.Model.SortAndFilter;
 import Project.Client.Model.Users.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -58,6 +59,7 @@ public class MakeRequest {
    }
 
    public static String makeLogoutRequest(){
+      SortAndFilter.getInstance().reset();
       JsonObject json=new JsonObject();
       json.addProperty("type",1);
       json.addProperty("content","logout");
@@ -373,6 +375,57 @@ public class MakeRequest {
       json.addProperty("content","get category info");
       json.addProperty("category name",categoryName);
       return Client.getInstance().sendMessage(json);
+   }
+
+   public static boolean isThereProductWithId(String productId){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",0);
+      json.addProperty("content","is there product with id");
+      json.addProperty("product id",productId);
+      return Client.getInstance().sendMessage(json).equals("true");
+   }
+
+   public static ArrayList<String> showProducts(){
+      JsonObject json=new JsonObject();
+      SortAndFilter sortAndFilter=SortAndFilter.getInstance();
+      json.addProperty("type",0);
+      json.addProperty("content","show products");
+      if(sortAndFilter.getFilterAttribute()){
+         json.addProperty("filter attribute","true");
+         json.addProperty("attribute key",sortAndFilter.getAttributeKey());
+         json.addProperty("attribute value",sortAndFilter.getAttributeValue());
+      }
+      if(sortAndFilter.getFilterBrand()){
+         json.addProperty("filter brand","true");
+         json.addProperty("brand",sortAndFilter.getBrandName());
+      }
+      if(sortAndFilter.getFilterAvailability()){
+         json.addProperty("filter availability","true");
+      }
+      if(sortAndFilter.getFilterCategoryName()){
+         json.addProperty("filter category","true");
+         json.addProperty("category name",sortAndFilter.getCategoryName());
+      }
+      if(sortAndFilter.getFilterName()){
+         json.addProperty("filter name","true");
+         json.addProperty("name",sortAndFilter.getName());
+      }
+      if(sortAndFilter.getFilterSellerName()){
+         json.addProperty("filter seller","true");
+         json.addProperty("seller",sortAndFilter.getSellerName());
+      }
+      if(sortAndFilter.getFilterPriceRange()){
+         json.addProperty("filter price range","true");
+         json.addProperty("min",sortAndFilter.getMinPrice());
+         json.addProperty("max",sortAndFilter.getMaxPrice());
+      }
+      json.addProperty("sort",sortAndFilter.showActiveSort());
+      ArrayList<String> result=new ArrayList<>();
+      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
+         if((s!=null)&&(s!="")&&(s!="\n"))
+            result.add(s);
+      }
+      return result;
    }
 
 

@@ -178,7 +178,6 @@ public class SellerAddProductMenu {
                 result.ifPresent(s -> attributeValue.put(key,s));
             }
         }
-
         ItemAndCategoryController.getInstance().addItem(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeValue,image,video);
         hasChosenVideo = false;
         hasChosenImage = false;
