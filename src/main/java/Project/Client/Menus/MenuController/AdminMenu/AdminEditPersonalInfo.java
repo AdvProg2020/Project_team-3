@@ -48,7 +48,7 @@ public class AdminEditPersonalInfo {
       passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
       update();
    }
-   
+
    public void update(){
       personalInfo.getItems().clear();
       Admin admin=(Admin) MakeRequest.makeGetUserRequest();
