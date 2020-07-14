@@ -1,6 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.CommercialController;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -23,7 +23,8 @@ public class ManageCommercialIn {
 
    public void accept(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      String message = CommercialController.getInstance().acceptCommercial(requestId);
+      String message=" ";
+     // String message = CommercialController.getInstance().acceptCommercial(requestId);
       showAlertBox(message);
       SceneSwitcher.getInstance().closeSecondStage();
       SceneSwitcher.getInstance().closeSecondStage();
@@ -32,7 +33,7 @@ public class ManageCommercialIn {
 
    public void decline(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      CommercialController.getInstance().declineCommercial(requestId);
+      //CommercialController.getInstance().declineCommercial(requestId);
       showAlertBox("Successful: request declined");
       SceneSwitcher.getInstance().closeSecondStage();
       SceneSwitcher.getInstance().closeSecondStage();
