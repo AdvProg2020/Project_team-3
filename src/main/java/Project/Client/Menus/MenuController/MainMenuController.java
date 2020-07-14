@@ -2,27 +2,25 @@ package Project.Client.Menus.MenuController;
 
 import Project.Client.Client;
 import Project.Client.MakeRequest;
-import Server.Controller.*;
-import Server.Model.Item;
+//import Server.Controller.*;
+
+import Server.Controller.Controller;
 import Server.Model.Users.Admin;
 import Server.Model.Users.Seller;
 import Project.Client.CLI.View;
 import Project.Client.Menus.*;
 import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Menu;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class MainMenuController {
@@ -39,32 +37,31 @@ public class MainMenuController {
     private AnimationTimer animationTimer;
     @FXML private AnchorPane pane;
     public void initialize(){
-        Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
-        Controller.getInstance().updateDateAndTime();
-        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
-        if(allCommercials.isEmpty()==false){
+       /* ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+       if(allCommercials.isEmpty()==false){
             showCommercial(0);
         }else{
             commercial.setVisible(false);
             slideCount.setVisible(false);
             nextButton.setVisible(false);
             previousButton.setVisible(false);
-        }
+        } */
         loginLogout.setText("Login");
         loginHandler();
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 timeSinceLastTransition += 0.016;//16 milisanie
-                updateTime();
+               // updateTime();
             }
         };
         animationTimer.start();
     }
 
-    private void updateTime(){
+   /* private void updateTime(){
         if(timeSinceLastTransition >= 4){
             if(CommercialController.getInstance().getAcceptedItemId().size()>1)
             nextCommercial(null);
@@ -125,7 +122,7 @@ public class MainMenuController {
         index++;
         slideCount.setText(index+"/"+allCommercials.size());
         fadeCommercial();
-    }
+    } */
 
     public void registerBuyer(){
         animationTimer.stop();
@@ -193,7 +190,7 @@ public class MainMenuController {
             @Override
             public void handle(ActionEvent event) {
                 MusicManager.getInstance().playSound("Button");
-                UserController.getInstance().logout();
+                MakeRequest.makeLogoutRequest();
                 menu.getItems().remove(getMenuItemByName("Logout"));
                 addLoginMenuItem();
                 loginHandler();
@@ -254,7 +251,7 @@ public class MainMenuController {
     public void loginLogout(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
         if(loginLogout.getText().equals("Logout")){
-            UserController.getInstance().logout();
+            MakeRequest.makeLogoutRequest();
             SceneSwitcher.getInstance().clearRecentScene();
             loginLogout.setText("Login");
             loginHandler();

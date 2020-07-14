@@ -1,6 +1,7 @@
 package Server.Controller;
 
 import Project.Client.CLI.View;
+import Project.Client.Model.SortAndFilter;
 import Server.Model.Item;
 import com.google.gson.*;
 
@@ -153,7 +154,7 @@ public class RequestProcessor {
       }
 
       if (command.get("content").toString().equals("\"delete product\"")) {
-         return ItemAndCategoryController.getInstance().deleteItem(command.get("productId").toString());
+         return ItemAndCategoryController.getInstance().deleteItem(getJsonStringField(command,"productId"));
       }
 
       if(getJsonStringField(command,"content").equals("add category")){
@@ -274,6 +275,11 @@ public class RequestProcessor {
            return "true";
         return "false";
       }
+      if (getJsonStringField(command,"content").equals("is there product with id")) {
+         if(ItemAndCategoryController.getInstance().isThereItemWithId(getJsonStringField(command,"product id")))
+            return "true";
+         return "false";
+      }
       if (getJsonStringField(command,"content").equals("category list")) {
          String response="";
          for (String category : Database.getInstance().printFolderContent("Categories")) {
@@ -299,6 +305,29 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("getCart")){
          Gson gson=new Gson();
          String response=gson.toJson(CartController.getInstance().getCurrentShoppingCart());
+         return response;
+      }
+      if(getJsonStringField(command,"content").equals("show products")){
+         SortAndFilterController.getInstance().reset();
+         if(command.has("filter attribute"))
+            SortAndFilterController.getInstance().activateFilterAttribute(getJsonStringField(command,"attribute key"),getJsonStringField(command,"attribute value"));
+         if(command.has("filter brand"))
+            SortAndFilterController.getInstance().activateFilterBrandName(getJsonStringField(command,"brand"));
+         if(command.has("filter availability"))
+            SortAndFilterController.getInstance().activateFilterAvailability();
+         if(command.has("filter category"))
+            SortAndFilterController.getInstance().activateFilterCategoryName(getJsonStringField(command,"category name"));
+         if(command.has("filter name"))
+            SortAndFilterController.getInstance().activateFilterName(getJsonStringField(command,"name"));
+         if(command.has("seller name"))
+            SortAndFilterController.getInstance().activateFilterSellerName(getJsonStringField(command,"seller"));
+         if(command.has("filter price range"))
+            SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
+         SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
+         String response="";
+         for (String productId : SortAndFilterController.getInstance().show("Project.Main")) {
+            response+=productId+"\n";
+         }
          return response;
       }
       return "Error: invalid command";
