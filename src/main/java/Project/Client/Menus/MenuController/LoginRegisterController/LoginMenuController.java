@@ -51,7 +51,7 @@ public class LoginMenuController {
             return;
         }
         String message=MakeRequest.makeLoginRequest(usernameTextField.getText(),passwordTextField.getText());
-        System.out.println(message);
+        System.out.println(MakeRequest.makeGetUserRequest());
         if(message.startsWith("Error")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -60,7 +60,7 @@ public class LoginMenuController {
             return;
         }
         if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
-            if(MakeRequest.makeGetUserRequest().contains("Buyer")){
+            if(MakeRequest.makeGetUserRequest().type.equals("Buyer")){
                 SceneSwitcher.getInstance().setSceneTo("CartMenu");
            }
             else {

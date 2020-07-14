@@ -6,6 +6,8 @@ module Project {
     requires javafx.media;
     requires kotlin.stdlib;
     requires javax.servlet;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
     opens Project to javafx.fxml;
     opens Server.Model.Users to com.google.gson;
     opens Server.Model.Logs to com.google.gson;

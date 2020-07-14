@@ -1,6 +1,6 @@
 package Project.Client.Model.Users;
 
-
+import Server.Controller.Database;
 
 import java.util.HashMap;
 
@@ -14,6 +14,10 @@ public abstract class User {
     public String number;
     public String type;
     public HashMap<String,String> allRequests=new HashMap<>();
+
+    public boolean doesPasswordMatch(String password) {
+        return this.password.equals(password);
+    }
 
     public User(String username, String password, String name, String lastName, String email, String number, String type) {
         this.username = username;
@@ -79,11 +83,16 @@ public abstract class User {
 
     public abstract String getPersonalInfo();
 
+
     public String getAllRequests() {
         return allRequests.toString().replace("{","").replace("}","").replace(",","\n");
     }
 
     public HashMap<String,String> getReqMap() {return allRequests;}
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public void setAllRequests(HashMap<String, String> allRequests) {
         this.allRequests = allRequests;

@@ -2,12 +2,19 @@ package Project;
 
 import Project.Client.Client;
 import Project.Client.Menus.SceneSwitcher;
+import Project.Client.Model.Users.Admin;
+
 import Server.Controller.Controller;
 import Server.Controller.Database;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 public class Main extends Application{
     public static void main(String[] args) {

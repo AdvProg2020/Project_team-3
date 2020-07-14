@@ -1,14 +1,12 @@
 package Project.Client;
 
-import Project.Client.Client;
 import Project.Client.Model.Users.Admin;
-import Project.Client.Model.Users.Buyer;
-import Project.Client.Model.Users.Seller;
 import Project.Client.Model.Users.User;
-import Server.Model.Requests.AccountRequest;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.io.IOException;
 
 public class MakeRequest {
    //type1
@@ -145,24 +143,15 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetUserRequest(){
+   public static User makeGetUserRequest(){
       JsonObject json=new JsonObject();
       json.addProperty("type","5");
       json.addProperty("content","get online user");
       json.addProperty("token",Client.getInstance().getToken());
       String response=Client.getInstance().sendMessage(json);
-     /* JsonParser parser = new JsonParser();
-      JsonObject jsonUser = (JsonObject) parser.parse(response);
-      Gson gson=new Gson();
-      System.out.println(jsonUser.toString());
-      if(jsonUser.get("type").toString().equals("\"Admin\"")){
-          return gson.fromJson(jsonUser, Admin.class);
-      }else if(jsonUser.get("type").toString().equals("\"Buyer\"")){
-          return gson.fromJson(jsonUser, Buyer.class);
-      } else if(jsonUser.get("type").toString().equals("\"Seller\"")){
-          return gson.fromJson(jsonUser, Seller.class);
-      } */
-      return response;
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(response);
+      return ObjectMapper.jsonToUser(jsonObject);
    }
 
 }

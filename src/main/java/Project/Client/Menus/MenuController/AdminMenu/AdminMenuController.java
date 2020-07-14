@@ -1,11 +1,16 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
+import Project.Client.Model.Users.Admin;
 import Server.Controller.Controller;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Server.Controller.UserController;
 import Project.Client.CLI.View;
+
+
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -40,9 +45,8 @@ public class AdminMenuController {
 
 
    public void personalInfoUpdate(){
-//      String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
-      String message= MakeRequest.makeGetUserRequest();
-      personalInfo.setText(message);
+      Admin admin=(Admin) MakeRequest.makeGetUserRequest();
+      personalInfo.setText(admin.getPersonalInfo());
    }
    public void manageUsers(ActionEvent actionEvent) {
 

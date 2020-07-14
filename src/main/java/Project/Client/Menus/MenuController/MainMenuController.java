@@ -153,9 +153,9 @@ public class MainMenuController {
         }
         animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
-        if(MakeRequest.makeGetUserRequest().contains("Admin")){
+        if(MakeRequest.makeGetUserRequest().type.equals("Admin")){
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
-        }else if(MakeRequest.makeGetUserRequest().contains("Seller")){
+        }else if(MakeRequest.makeGetUserRequest().type.equals("Seller")){
             SceneSwitcher.getInstance().setSceneTo("SellerMenu");
         }else{
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
