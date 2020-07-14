@@ -1,9 +1,6 @@
 package Server.Controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -45,31 +42,39 @@ public class RequestProcessor {
    }
 
    public String loginMenuProcessor(JsonObject command) {
-      if (command.get("content").toString().equals("\"login\"")) {
+      if (getJsonStringField(command,"content").equals("login")) {
          return UserController.getInstance().login(getJsonStringField(command, "username"), getJsonStringField(command, "password"));
       }
 
-      if (command.get("content").toString().equals("\"logout\"")) {
+      if (getJsonStringField(command,"content").equals("logout")) {
          return AuthTokenHandler.getInstance().logout(getJsonStringField(command,"token"));
       }
 
-      if (command.get("content").toString().equals("\"create account\"")) {
+      if (getJsonStringField(command,"content").equals("create account")) {
          String name = getJsonStringField(command, "name");
          String lastName = getJsonStringField(command, "lastName");
          String password = getJsonStringField(command, "password");
          String username = getJsonStringField(command, "username");
          String email = getJsonStringField(command, "email");
          String number = getJsonStringField(command, "number");
-         double money = command.get("money").getAsDouble();
          System.out.println(username);
-         if (command.get("account type").toString().equals("\"buyer\"")) {
+         if ((getJsonStringField(command,"account type").equals("buyer"))) {
+            double money = command.get("money").getAsDouble();
             return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
          }
 
-         if (command.get("account type").toString().equals("\"seller\"")) {
+         if ((getJsonStringField(command,"account type").equals("seller"))) {
+            double money = command.get("money").getAsDouble();
             String companyName = getJsonStringField(command, "company");
-            ;
             return UserController.getInstance().registerSeller(money, username, password, name, lastName, email, number, companyName);
+         }
+
+         if((getJsonStringField(command,"account type").equals("admin"))) {
+            String user = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
+            Controller.getInstance().setCurrentOnlineUser(username);
+            if (user == null) return "Error: incorrect Token";
+            if(UserController.getInstance().getUserType(user).equals("Admin")==false) return "Error: you cant register admin.";
+            return UserController.getInstance().registerAdmin(username,password,name,lastName,email,number);
          }
 
          return "Error: invalid account type";
@@ -137,14 +142,24 @@ public class RequestProcessor {
       if (command.get("content").toString().equals("\"is there request with id\"")) {
         if(RequestController.getInstance().isThereRequestWithId(getJsonStringField(command,"requestId")))
            return "true";
-        return "false";
+           return "false";
       }
-      if (command.get("content").toString().toString().equals("\"delete category\"")) {
+      if (command.get("content").toString().equals("\"delete category\"")) {
          return ItemAndCategoryController.getInstance().removeCategory(command.get("category name").toString());
       }
 
       if (command.get("content").toString().equals("\"delete product\"")) {
          return ItemAndCategoryController.getInstance().deleteItem(command.get("productId").toString());
+      }
+
+      if(getJsonStringField(command,"content").equals("add category")){
+         String categoryName=getJsonStringField(command,"category name");
+         String fatherCategoryName=getJsonStringField(command,"father category name");
+         ArrayList<String> attributes=new ArrayList<>();
+         for (JsonElement attribute : command.getAsJsonArray("attribute")) {
+            attributes.add(attribute.getAsString());
+         }
+         return ItemAndCategoryController.getInstance().addCategory(categoryName,attributes,fatherCategoryName);
       }
 
       return "Error: invalid command";
@@ -189,6 +204,13 @@ public class RequestProcessor {
         if(UserController.getInstance().isThereUserWithUsername(getJsonStringField(command,"username")))
            return "true";
         return "false";
+      }
+      if (getJsonStringField(command,"content").equals("category list")) {
+         String response="";
+         for (String category : Database.getInstance().printFolderContent("Categories")) {
+            response+=category+"\n";
+         }
+         return response;
       }
       return "Error: invalid command";
    }

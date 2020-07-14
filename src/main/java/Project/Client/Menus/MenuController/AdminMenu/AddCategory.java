@@ -1,7 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.Database;
-import Server.Controller.ItemAndCategoryController;
+import Project.Client.MakeRequest;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -50,7 +50,7 @@ public class AddCategory {
    }
 
    public void update(){
-      ArrayList<String> allCategories = Database.getInstance().printFolderContent("Categories");
+      ArrayList<String> allCategories = MakeRequest.makeGetAllCategoryName();
       fatherCategoryChoice.getItems().clear();
       for (String category : allCategories) {
          fatherCategoryChoice.getItems().add(category);
@@ -126,7 +126,7 @@ public class AddCategory {
             showAlertBox("please enter all fields", "ERROR");
             return;
          }
-         String message=ItemAndCategoryController.getInstance().addCategory(name,allAttribute,father);
+         String message= MakeRequest.makeAddCategoryRequest(name,father,allAttribute);
          if(message.contains("Error:")){
             showAlertBox(message,"ERROR");
             return;

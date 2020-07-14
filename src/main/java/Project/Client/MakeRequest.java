@@ -1,8 +1,12 @@
 package Project.Client;
 
 import Project.Client.Model.Users.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.util.ArrayList;
 
 public class MakeRequest {
    //type1
@@ -35,9 +39,8 @@ public class MakeRequest {
 
    public static String makeRegisterAdminRequest(String name,String lastName,String username,String password,String email,String number){
       JsonObject json=register(name,lastName,username,password,email,number);
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("account type","admin");
-      json.remove("type");
-      json.addProperty("type",4);
       return Client.getInstance().sendMessage(json);
    }
 
@@ -153,6 +156,18 @@ public class MakeRequest {
       json.addProperty("productId",productId);
       return Client.getInstance().sendMessage(json);
    }
+
+   public static String makeAddCategoryRequest(String categoryName,String fatherCategoryName,ArrayList<String> attribute){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","add category");
+      json.addProperty("category name",categoryName);
+      json.addProperty("father category name",fatherCategoryName);
+      JsonArray jsonArray = new Gson().toJsonTree(attribute).getAsJsonArray();
+      json.add("attribute",jsonArray);
+      return Client.getInstance().sendMessage(json);
+   }
    //type 5
    public static String makeGetPersonalInfoRequest(String Token){
       JsonObject json=new JsonObject();
@@ -188,6 +203,18 @@ public class MakeRequest {
       json.addProperty("content","is there user with username");
       json.addProperty("username",username);
       return Client.getInstance().sendMessage(json).equals("true");
+   }
+
+   public static ArrayList<String> makeGetAllCategoryName(){
+      ArrayList<String> result=new ArrayList<>();
+      JsonObject json=new JsonObject();
+      json.addProperty("type",0);
+      json.addProperty("content","category list");
+      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
+         if((s!=null)&&(s!="")&&(s!="\n"))
+         result.add(s);
+      }
+      return result;
    }
 
 

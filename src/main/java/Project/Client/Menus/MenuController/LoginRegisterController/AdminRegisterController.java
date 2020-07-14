@@ -1,9 +1,11 @@
 package Project.Client.Menus.MenuController.LoginRegisterController;
 
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
+
 import Project.Client.CLI.View;
+import Server.Controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -80,7 +82,7 @@ public class AdminRegisterController {
             usernameLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
-        if(UserController.getInstance().isThereUserWithUsername(username)==true){
+        if(MakeRequest.isThereUserWithUsername(username)){
             usernameLabel.setText("there is a user exist with this username!");
             usernameLabel.setTextFill(Color.rgb(255,0,0));
             return false;
@@ -120,7 +122,7 @@ public class AdminRegisterController {
             phoneNumberLabel.setText("you must fill the blank!");
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
         }
-        if(UserController.getInstance().isValidPhoneNumber(phoneNumber)==false){
+        if(isValidPhoneNumber(phoneNumber)==false){
             phoneNumberLabel.setText("invalid phone number!");
             phoneNumberLabel.setTextFill(Color.rgb(255,0,0));
             return false;
@@ -134,7 +136,7 @@ public class AdminRegisterController {
             emailLabel.setTextFill(Color.rgb(255,0,0));
             return false;
         }
-        if(UserController.getInstance().isValidEmail(email)==false){
+        if(isValidEmail(email)==false){
             emailLabel.setText("invalid email!");
             emailLabel.setTextFill(Color.rgb(255,0,0));
             return false;
@@ -167,7 +169,7 @@ public class AdminRegisterController {
             validateLabelsAfterError(validation);
             return;
         }
-        UserController.getInstance().registerAdmin(usernameTextField.getText(),passwordTextField.getText(),firstNameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
+        MakeRequest.makeRegisterAdminRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
@@ -254,6 +256,14 @@ public class AdminRegisterController {
         if(validations[5]==true){
             phoneNumberLabel.setText("");
         }
+    }
+
+    public boolean isValidEmail(String email) {
+        return Controller.getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
+    }
+
+    public boolean isValidPhoneNumber(String number) {
+        return Controller.getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
     }
 
 }

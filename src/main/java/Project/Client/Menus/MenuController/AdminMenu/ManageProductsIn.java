@@ -1,6 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.ItemAndCategoryController;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -28,7 +28,7 @@ public class ManageProductsIn {
 
    public void delete(MouseEvent mouseEvent) {
        MusicManager.getInstance().playSound("Button");
-    String message= ItemAndCategoryController.getInstance().deleteItem(itemId);
+    String message=MakeRequest.makeDeleteProductAdminRequest(itemId);
     Alert alert=new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText(message);
     alert.showAndWait();
