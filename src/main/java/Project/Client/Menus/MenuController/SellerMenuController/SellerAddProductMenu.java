@@ -1,10 +1,11 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
+
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Server.Controller.ItemAndCategoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -32,7 +33,7 @@ public class SellerAddProductMenu {
     }
     @FXML
     private void logout(){
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
