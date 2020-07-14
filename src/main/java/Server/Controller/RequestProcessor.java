@@ -94,15 +94,15 @@ public class RequestProcessor {
       }
 
       if (command.get("content").toString().equals("\"accept request\"")) {
-         return RequestController.getInstance().acceptRequest(command.get("requestId").toString());
+         return RequestController.getInstance().acceptRequest(getJsonStringField(command,"requestId"));
       }
 
       if (command.get("content").toString().equals("\"decline request\"")) {
-         return RequestController.getInstance().declineRequest(command.get("requestId").toString());
+         return RequestController.getInstance().declineRequest(getJsonStringField(command,"requestId"));
       }
 
       if (command.get("content").toString().equals("\"view request\"")) {
-         return RequestController.getInstance().getRequestDetail(command.get("requestId").toString());
+         return RequestController.getInstance().getRequestDetail(getJsonStringField(command,"requestId"));
       }
 
       if (command.get("content").toString().equals("\"request list\"")) {

@@ -1,6 +1,5 @@
 package Project.Client.Menus.MenuController.AdminMenu;
-
-import Server.Controller.RequestController;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -17,7 +16,7 @@ public class ManageRequestIn {
    @FXML public void initialize() {
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
-      detail.setText(RequestController.getInstance().getRequestDetail(requestId));
+      detail.setText(MakeRequest.makeGetRequestInfoRequest(requestId));
    }
 
    public static void setRequestId(String requestId) {
@@ -26,7 +25,7 @@ public class ManageRequestIn {
 
    public void decline(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      String message= RequestController.getInstance().declineRequest(requestId);
+      String message=MakeRequest.makeRequestDeclineRequest(requestId);
       if(message.startsWith("Successful")){
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
@@ -43,7 +42,7 @@ public class ManageRequestIn {
 
    public void accept(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      String message= RequestController.getInstance().acceptRequest(requestId);
+      String message= MakeRequest.makeRequestAcceptRequest(requestId);
       if(message.startsWith("Successful")){
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);

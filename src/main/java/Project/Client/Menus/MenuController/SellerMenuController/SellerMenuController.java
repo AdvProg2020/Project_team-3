@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
+import Project.Client.MakeRequest;
 import Server.Controller.Controller;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
@@ -41,8 +42,8 @@ public class SellerMenuController {
     }
 
     public void personalInfoUpdate(){
-        String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
-        personalInfo.setText(message);
+        Project.Client.Model.Users.Seller seller=(Project.Client.Model.Users.Seller) MakeRequest.makeGetUserRequest();
+        personalInfo.setText(seller.getPersonalInfo());
     }
 
     @FXML

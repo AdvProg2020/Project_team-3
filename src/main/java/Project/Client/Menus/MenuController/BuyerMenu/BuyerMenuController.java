@@ -1,8 +1,9 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
+import Project.Client.MakeRequest;
+import Project.Client.Model.Users.Buyer;
 import Server.Controller.Controller;
-import Server.Model.Users.Buyer;
-import Server.Model.Users.User;
+
 import Project.Client.Menus.MenuController.ViewRequestUser;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -28,7 +29,7 @@ public class BuyerMenuController {
         Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-        if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
+      /*  if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
             User onlineUser=Controller.getInstance().getCurrentOnlineUser();
             String path=UserController.getInstance().userImagePath(onlineUser.getUsername());
             File file=new File(path);
@@ -36,14 +37,14 @@ public class BuyerMenuController {
                 userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            }
-        }
+            } */
+        //}
         personalInfoUpdate();
     }
 
     public void personalInfoUpdate(){
-        String message=UserController.getInstance().viewPersonalInfo(UserController.getInstance().getCurrentOnlineUser().getUsername());
-        personalInfo.setText(message);
+        Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
+        personalInfo.setText(buyer.getPersonalInfo());
     }
 
     @FXML

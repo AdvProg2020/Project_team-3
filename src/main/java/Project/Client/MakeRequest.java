@@ -69,6 +69,7 @@ public class MakeRequest {
    //type 4
    public static String makeRequestAcceptRequest(String requestId){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","accept request");
       json.addProperty("requestId",requestId);
@@ -77,6 +78,7 @@ public class MakeRequest {
 
    public static String makeRequestDeclineRequest(String requestId){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","decline request");
       json.addProperty("requestId",requestId);
@@ -102,6 +104,7 @@ public class MakeRequest {
 
    public static String makeGetRequestInfoRequest(String requestId){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","view request");
       json.addProperty("requestId",requestId);
@@ -110,6 +113,7 @@ public class MakeRequest {
 
    public static String makeDeleteUserRequest(String username){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","delete user");
       json.addProperty("username",username);
@@ -118,6 +122,7 @@ public class MakeRequest {
 
    public static String makeViewUserRequest(String username){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","view user");
       json.addProperty("username",username);
@@ -126,6 +131,7 @@ public class MakeRequest {
 
    public static String makeGetAllUserRequest(){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","user list");
       return Client.getInstance().sendMessage(json);
@@ -133,6 +139,7 @@ public class MakeRequest {
 
    public static String makeDeleteCategoryRequest(String categoryName){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","delete category");
       json.addProperty("category name",categoryName);
@@ -141,6 +148,7 @@ public class MakeRequest {
 
    public static String makeDeleteProductAdminRequest(String productId){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","delete product");
       json.addProperty("productId",productId);
