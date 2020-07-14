@@ -189,6 +189,25 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
+   //type 2
+    public static String makeGetBuyerLogsRequest(){
+       JsonObject jsonObject=new JsonObject();
+       jsonObject.addProperty("token",Client.getInstance().getToken());
+       jsonObject.addProperty("type",2);
+       jsonObject.addProperty("content","getAllLogs");
+       return Client.getInstance().sendMessage(jsonObject);
+    }
+
+    public static String makeGetBuyerDiscountCodesRequest(){
+       JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("token",Client.getInstance().getToken());
+        jsonObject.addProperty("type",2);
+        jsonObject.addProperty("content","getAllDiscountCodes");
+        return Client.getInstance().sendMessage(jsonObject);
+   }
+
+
+
    //type 5
    public static String makeGetPersonalInfoRequest(String Token){
       JsonObject json=new JsonObject();

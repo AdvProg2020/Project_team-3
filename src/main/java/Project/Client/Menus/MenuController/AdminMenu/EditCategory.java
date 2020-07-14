@@ -1,7 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
 import Project.Client.MakeRequest;
-import Server.Controller.ItemAndCategoryController;
+
 
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -70,7 +70,7 @@ public class EditCategory {
       }
       String text=attributeField.getText();
       if(text.isEmpty()) return;
-      String message= ItemAndCategoryController.getInstance().addAttributeToCategory(categoryName,text);
+      String message= MakeRequest.makeAddAttributeToCategoryRequest(text,categoryName);
       if(message.startsWith("Successful")){
          showAlertBox(message,"INFORMATION");
          update();
