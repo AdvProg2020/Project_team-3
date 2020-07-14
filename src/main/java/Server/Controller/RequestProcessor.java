@@ -184,13 +184,21 @@ public class RequestProcessor {
       String username=AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
-      if (command.get("content").equals("\"view personal info\"")) {
+      if (getJsonStringField(command,"content").equals("view personal info")) {
          return UserController.getInstance().viewPersonalInfo(username);
       }
       if (getJsonStringField(command, "content").equals("get online user")) {
          String name = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command, "token"));
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
          return gson.toJson(UserController.getInstance().getUserByUsername(name)).toString();
+      }
+
+      if(getJsonStringField(command,"content").equals("edit personal info")){
+        UserController.getInstance().editPersonalInfo(username,getJsonStringField(command,"field"),getJsonStringField(command,"new value"));
+        return "Successful: ";
+      }
+      if(getJsonStringField(command,"content").equals("user image path")){
+         return UserController.getInstance().userImagePath(username);
       }
       return "Error: invalid command";
    }
