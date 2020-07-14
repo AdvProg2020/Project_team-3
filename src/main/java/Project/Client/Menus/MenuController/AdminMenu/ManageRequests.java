@@ -1,8 +1,8 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.CommercialController;
-import Server.Controller.Database;
-import Server.Controller.RequestController;
+import Project.Client.MakeRequest;
+
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -23,15 +23,13 @@ public class ManageRequests {
 
    public void update() {
       listView.getItems().clear();
-      for (Object requests : Database.getInstance().printFolderContent("Requests")) {
-         listView.getItems().add(requests);
-      }
-      for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
-         listView.getItems().add("commercial request for item "+id);
-      }
+      String requestList=MakeRequest.makeGetAllRequestsRequest();
+      if(requestList.isEmpty()==false) listView.getItems().addAll(requestList);
+     // for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
+      //   listView.getItems().add("commercial request for item "+id);
+     // }
       if(listView.getItems().isEmpty())
          listView.getItems().add("there are no request right now");
-
    }
 
    public void requestSelect(MouseEvent mouseEvent) {
@@ -48,7 +46,7 @@ public class ManageRequests {
 
       String requestId=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
-      if(RequestController.getInstance().isThereRequestWithId(requestId)) {
+      if(MakeRequest.makeIsThereRequestWithId(requestId)) {
          ManageRequestIn.setRequestId(requestId);
          SceneSwitcher.getInstance().setSceneAndWait("ManageRequestIn", 392, 173);
       }

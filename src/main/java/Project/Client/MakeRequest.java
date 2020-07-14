@@ -65,6 +65,7 @@ public class MakeRequest {
       json.addProperty("token",Client.getInstance().getToken());
       return Client.getInstance().sendMessage(json);
    }
+
    //type 4
    public static String makeRequestAcceptRequest(String requestId){
       JsonObject json=new JsonObject();
@@ -84,9 +85,19 @@ public class MakeRequest {
 
    public static String makeGetAllRequestsRequest(){
       JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
       json.addProperty("type",4);
       json.addProperty("content","request list");
       return Client.getInstance().sendMessage(json);
+   }
+
+   public static Boolean makeIsThereRequestWithId(String id){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","is there request with id");
+      json.addProperty("requestId",id);
+      return Client.getInstance().sendMessage(json).equals("true");
    }
 
    public static String makeGetRequestInfoRequest(String requestId){
