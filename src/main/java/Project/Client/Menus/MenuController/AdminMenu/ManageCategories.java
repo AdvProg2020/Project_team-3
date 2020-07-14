@@ -23,7 +23,7 @@ public class ManageCategories {
 
    public void update() {
       categoryList.getItems().clear();
-      for (Object requests : MakeRequest.makeGetAllCategoryName()) {
+      for (String requests : MakeRequest.makeGetAllCategoryName()) {
          categoryList.getItems().add(requests);
       }
       if(categoryList.getItems().isEmpty())

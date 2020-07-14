@@ -1,6 +1,6 @@
 package Server.Controller;
 
-import Server.Model.Users.User;
+import Server.Model.Item;
 import com.google.gson.*;
 
 import java.io.File;
@@ -146,7 +146,7 @@ public class RequestProcessor {
            return "false";
       }
       if (command.get("content").toString().equals("\"delete category\"")) {
-         return ItemAndCategoryController.getInstance().removeCategory(command.get("category name").toString());
+         return ItemAndCategoryController.getInstance().removeCategory(getJsonStringField(command,"category name"));
       }
 
       if (command.get("content").toString().equals("\"delete product\"")) {
@@ -163,6 +163,14 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().addCategory(categoryName,attributes,fatherCategoryName);
       }
 
+      if(getJsonStringField(command,"content").equals("rename category")){
+         return ItemAndCategoryController.getInstance().renameCategory(getJsonStringField(command,"category name"),getJsonStringField(command,"new name"));
+      }
+
+      if(getJsonStringField(command,"content").equals("add attribute")){
+         return ItemAndCategoryController.getInstance().addAttributeToCategory(getJsonStringField(command,"category name"),getJsonStringField(command,"attribute"));
+      }
+
       return "Error: invalid command";
    }
 
@@ -170,15 +178,6 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
-
-      if(command.get("content").toString().equals("\"getAllLogs\"")){
-         return UserController.getInstance().getBuyLogs(username);
-      }
-
-      if(command.get("content").toString().equals("\"getAllDiscountCodes\"")){
-         return UserController.getInstance().getBuyerDiscountCode();
-      }
-
       return "Error: invalid command";
    }
 
@@ -229,6 +228,9 @@ public class RequestProcessor {
             response+=category+"\n";
          }
          return response;
+      }
+      if(getJsonStringField(command,"content").equals("get category info")){
+         return ItemAndCategoryController.getInstance().getCategoryInfo(getJsonStringField(command,"category name"));
       }
       return "Error: invalid command";
    }

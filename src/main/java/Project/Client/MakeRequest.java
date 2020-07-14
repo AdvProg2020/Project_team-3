@@ -139,15 +139,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeDeleteCategoryRequest(String categoryName){
-      JsonObject json=new JsonObject();
-      json.addProperty("token",Client.getInstance().getToken());
-      json.addProperty("type",4);
-      json.addProperty("content","delete category");
-      json.addProperty("category name",categoryName);
-      return Client.getInstance().sendMessage(json);
-   }
-
    public static String makeDeleteProductAdminRequest(String productId){
       JsonObject json=new JsonObject();
       json.addProperty("token",Client.getInstance().getToken());
@@ -168,25 +159,35 @@ public class MakeRequest {
       json.add("attribute",jsonArray);
       return Client.getInstance().sendMessage(json);
    }
-   //type 2
-    public static String makeGetBuyerLogsRequest(){
-       JsonObject jsonObject=new JsonObject();
-       jsonObject.addProperty("token",Client.getInstance().getToken());
-       jsonObject.addProperty("type",2);
-       jsonObject.addProperty("content","getAllLogs");
-       return Client.getInstance().sendMessage(jsonObject);
-    }
 
-    public static String makeGetBuyerDiscountCodesRequest(){
-       JsonObject jsonObject=new JsonObject();
-        jsonObject.addProperty("token",Client.getInstance().getToken());
-        jsonObject.addProperty("type",2);
-        jsonObject.addProperty("content","getAllDiscountCodes");
-        return Client.getInstance().sendMessage(jsonObject);
+   public static String makeDeleteCategoryRequest(String categoryName){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","delete category");
+      json.addProperty("category name",categoryName);
+      return Client.getInstance().sendMessage(json);
    }
 
+   public static String makeAddAttributeToCategoryRequest(String attribute,String categoryName){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","add attribute");
+      json.addProperty("attribute",attribute);
+      json.addProperty("category name",categoryName);
+      return Client.getInstance().sendMessage(json);
+   }
 
-
+   public static String makeRenameCategoryRequest(String categoryName,String newName){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","rename category");
+      json.addProperty("category name",categoryName);
+      json.addProperty("new name",newName);
+      return Client.getInstance().sendMessage(json);
+   }
 
    //type 5
    public static String makeGetPersonalInfoRequest(String Token){
@@ -252,6 +253,14 @@ public class MakeRequest {
          result.add(s);
       }
       return result;
+   }
+
+   public static String makeGetCategoryInfoRequest(String categoryName){
+      JsonObject json=new JsonObject();
+      json.addProperty("type",0);
+      json.addProperty("content","get category info");
+      json.addProperty("category name",categoryName);
+      return Client.getInstance().sendMessage(json);
    }
 
 

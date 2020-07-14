@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
+import Project.Client.MakeRequest;
 import Server.Controller.ItemAndCategoryController;
 
 import Project.Client.Menus.MusicManager;
@@ -29,7 +30,7 @@ public class EditCategory {
 
    public void update(){
       info.getItems().clear();
-      String message=ItemAndCategoryController.getInstance().getCategoryInfo(categoryName);
+      String message= MakeRequest.makeGetCategoryInfoRequest(categoryName);
       info.getItems().addAll(message.split(","));
    }
 
@@ -51,7 +52,7 @@ public class EditCategory {
     if(text.isEmpty()){
        return;
     }
-    String message= ItemAndCategoryController.getInstance().renameCategory(categoryName,text);
+    String message= MakeRequest.makeRenameCategoryRequest(categoryName,text);
     if(message.startsWith("Successful")){
        showAlertBox(message,"INFORMATION");
        setCategoryName(text);
@@ -100,7 +101,7 @@ public class EditCategory {
 
    public void delete(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      String message=ItemAndCategoryController.getInstance().removeCategory(categoryName);
+      String message=MakeRequest.makeDeleteCategoryRequest(categoryName);
       if(message.startsWith("Successful")){
          showAlertBox(message,"INFORMATION");
          SceneSwitcher.getInstance().setSceneTo("ManageCategories");
