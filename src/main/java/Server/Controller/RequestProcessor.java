@@ -195,6 +195,34 @@ public class RequestProcessor {
          return response;
       }
 
+      if(getJsonStringField(command,"content").equals("get discount info")){
+         return SaleAndDiscountCodeController.getInstance().printDiscount(getJsonStringField(command,"discountId"));
+      }
+
+      if(getJsonStringField(command,"content").equals("edit discount int field")){
+         String field=getJsonStringField(command,"field");
+         String discountId=getJsonStringField(command,"discountId");
+         int value=command.get("value").getAsInt();
+         if(field.equals("percent"))
+            return SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountId,value);
+         if(field.equals("usage"))
+            return SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountId,value);
+         if(field.equals("maxDiscount"))
+            return SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(discountId,value);
+         return "Error: invalid discount field";
+      }
+
+      if(getJsonStringField(command,"content").equals("edit discount code end date")){
+         String date=getJsonStringField(command,"endDate");
+         String discountId=getJsonStringField(command,"discountId");
+         return SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountId,getDate(date));
+      }
+
+      if(getJsonStringField(command,"content").equals("delete discount code")){
+         String discountId=getJsonStringField(command,"discountId");
+         return SaleAndDiscountCodeController.getInstance().deleteDiscountCode(discountId);
+      }
+
       return "Error: invalid command";
    }
 

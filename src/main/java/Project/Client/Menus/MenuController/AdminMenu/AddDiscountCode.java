@@ -13,8 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 
 
@@ -159,7 +158,7 @@ public class AddDiscountCode {
       }
       userList.getSelectionModel().clearSelection();
    }
-   
+
    private void showAlertBox(String message,String type){
       MusicManager.getInstance().playSound("notify");
       Alert alert = new Alert(Alert.AlertType.valueOf(type));

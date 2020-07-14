@@ -188,6 +188,45 @@ public class MakeRequest {
       return result;
    }
 
+   public static String makeGetDiscountInfo(String discountId){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","get discount info");
+      json.addProperty("discountId",discountId);
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeEditDiscountIntField(String discountId,String field,int newInt){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","edit discount int field");
+      json.addProperty("field",field);
+      json.addProperty("value",newInt);
+      json.addProperty("discountId",discountId);
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeEditDiscountEndDateField(String discountId,String endDate){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","edit discount code end date");
+      json.addProperty("endDate",endDate);
+      json.addProperty("discountId",discountId);
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeDeleteDiscountCodeRequest(String discountId){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","delete discount code");
+      json.addProperty("discountId",discountId);
+      return Client.getInstance().sendMessage(json);
+   }
+
    public static String makeDeleteCategoryRequest(String categoryName){
       JsonObject json=new JsonObject();
       json.addProperty("token",Client.getInstance().getToken());

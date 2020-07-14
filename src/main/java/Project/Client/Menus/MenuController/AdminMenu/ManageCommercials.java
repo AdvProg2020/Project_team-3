@@ -1,6 +1,6 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.CommercialController;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -22,7 +22,7 @@ public class ManageCommercials {
 
    public void update() {
       commercials.getItems().clear();
-      commercials.getItems().addAll(CommercialController.getInstance().getAcceptedItemId());
+     // commercials.getItems().addAll(CommercialController.getInstance().getAcceptedItemId());
       if(commercials.getItems().isEmpty())
       commercials.getItems().add("there no commercials right now");
    }
@@ -33,7 +33,7 @@ public class ManageCommercials {
          return;
 
       String Id=commercials.getItems().get(index).toString();
-      CommercialController.getInstance().removeCommercial(Id);
+    //  CommercialController.getInstance().removeCommercial(Id);
       update();
       commercials.getSelectionModel().clearSelection();
    }

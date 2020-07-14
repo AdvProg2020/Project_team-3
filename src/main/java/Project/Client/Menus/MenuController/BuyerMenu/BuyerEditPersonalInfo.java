@@ -5,7 +5,7 @@ import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
 import Project.Client.Model.Users.User;
-import Server.Controller.Controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BuyerEditPersonalInfo {
@@ -235,10 +236,15 @@ public class BuyerEditPersonalInfo {
     }
 
     public boolean isValidEmail(String email) {
-        return Controller.getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
+        return getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
     }
 
     public boolean isValidPhoneNumber(String number) {
-        return Controller.getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
+        return getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
+    }
+
+    public static Matcher getMatcher(String string, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(string);
     }
 }

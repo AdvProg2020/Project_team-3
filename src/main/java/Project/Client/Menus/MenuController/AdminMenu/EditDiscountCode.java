@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.SaleAndDiscountCodeController;
+import Project.Client.MakeRequest;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -33,7 +34,7 @@ public class EditDiscountCode {
 
    public void update(){
       info.getItems().clear();
-      String message=SaleAndDiscountCodeController.getInstance().printDiscount(discountId);
+      String message= MakeRequest.makeGetDiscountInfo(discountId);
       info.getItems().addAll(message.split("   "));
    }
    public static void setDiscountId(String discountId) {
@@ -49,7 +50,7 @@ public class EditDiscountCode {
       MusicManager.getInstance().playSound("Button");
       if(percent.getStyle().toString().contains("green")){
          int percentInt=Integer.parseInt(percent.getText());
-         showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodePercentage(discountId,percentInt),"INFORMATION");
+         showAlertBox(MakeRequest.makeEditDiscountIntField(discountId,"percent",percentInt),"INFORMATION");
          update();
          return;
       }
@@ -60,7 +61,7 @@ public class EditDiscountCode {
       MusicManager.getInstance().playSound("Button");
       if(maxDiscount.getStyle().toString().contains("green")){
          int maxDiscountInt=Integer.parseInt(maxDiscount.getText());
-         showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeMaxDiscount(discountId,maxDiscountInt),"INFORMATION");
+         showAlertBox(MakeRequest.makeEditDiscountIntField(discountId,"maxDiscount",maxDiscountInt),"INFORMATION");
          update();
          return;
       }
@@ -71,7 +72,7 @@ public class EditDiscountCode {
       MusicManager.getInstance().playSound("Button");
       if(usage.getStyle().toString().contains("green")){
          int usageInt=Integer.parseInt(usage.getText());
-         showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeUsageCount(discountId,usageInt),"INFORMATION");
+         showAlertBox(MakeRequest.makeEditDiscountIntField(discountId,"usage",usageInt),"INFORMATION");
          update();
          return;
       }
@@ -83,7 +84,7 @@ public class EditDiscountCode {
       try{
          MusicManager.getInstance().playSound("Button");
          String date=end.getValue().toString();
-         showAlertBox(SaleAndDiscountCodeController.getInstance().editDiscountCodeEndTime(discountId,getDate(date)),"INFORMATION");
+         showAlertBox(MakeRequest.makeEditDiscountEndDateField(discountId,date),"INFORMATION");
          update();
       }catch (Exception e){
          showAlertBox("error date field is empty","ERROR");
@@ -93,7 +94,7 @@ public class EditDiscountCode {
    public void delete(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       System.out.println(discountId);
-    String message= SaleAndDiscountCodeController.getInstance().deleteDiscountCode(discountId);
+    String message= MakeRequest.makeDeleteDiscountCodeRequest(discountId);
     if(message.startsWith("Error")) {
        showAlertBox(message, "ERROR");
        return;
@@ -156,19 +157,6 @@ public class EditDiscountCode {
          maxDiscount.setStyle("-fx-text-fill: green;");
       }catch (Exception e){
          maxDiscount.setStyle("-fx-text-fill: red;");
-      }
-   }
-
-   private LocalDateTime getDate(String dateString){
-      LocalDateTime date;
-      dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
-      DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-      try{
-         date = LocalDateTime.parse(dateString,dateTimeFormatter);
-         return date;
-      }catch (Exception e){
-         System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
-         return null;
       }
    }
 }
