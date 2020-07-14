@@ -256,6 +256,23 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("get category info")){
          return ItemAndCategoryController.getInstance().getCategoryInfo(getJsonStringField(command,"category name"));
       }
+      if(getJsonStringField(command,"content").equals("cartWithoutDiscountCode")){
+         return String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode());
+      }
+      if(getJsonStringField(command,"content").equals("increaseDecrease")){
+         String itemId=getJsonStringField(command,"itemId");
+         int count=Integer.parseInt(getJsonStringField(command,"count"));
+         return CartController.getInstance().cartIncreaseDecrease(itemId,count);
+      }
+      if(getJsonStringField(command,"content").equals("empty")){
+         CartController.getInstance().getCurrentShoppingCart().empty();
+         return "successful";
+      }
+      if(getJsonStringField(command,"content").equals("getCart")){
+         Gson gson=new Gson();
+         String response=gson.toJson(CartController.getInstance().getCurrentShoppingCart());
+         return response;
+      }
       return "Error: invalid command";
    }
 

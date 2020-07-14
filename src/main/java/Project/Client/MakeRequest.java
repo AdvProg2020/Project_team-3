@@ -275,6 +275,32 @@ public class MakeRequest {
    }
 
    //type 0
+   public static String getCartPriceWithoutDiscountCode() {
+       JsonObject jsonObject=new JsonObject();
+       jsonObject.addProperty("type","0");
+       jsonObject.addProperty("content","cartWithoutDiscountCode");
+       return Client.getInstance().sendMessage(jsonObject);
+   }
+    public static String MakeRequestIncreaseDecreaseCart(String id, int i) {
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("type","0");
+        jsonObject.addProperty("content","increaseDecrease");
+        jsonObject.addProperty("itemId",id);
+        jsonObject.addProperty("count",i);
+        return Client.getInstance().sendMessage(jsonObject);
+    }
+    public static String MakeRequestEmptyCart() {
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("type","0");
+        jsonObject.addProperty("content","empty");
+        return Client.getInstance().sendMessage(jsonObject);
+    }
+    public static String makeGetCartRequest() {
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("type","0");
+        jsonObject.addProperty("content","getCart");
+        return Client.getInstance().sendMessage(jsonObject);
+    }
    public static String makeUpdateDateAndTimeRequest(){
       JsonObject json=new JsonObject();
       json.addProperty("type","0");
