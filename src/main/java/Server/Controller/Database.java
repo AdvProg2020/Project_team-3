@@ -167,20 +167,6 @@ public class Database {
 
    public void saveSale(Sale sale)  {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      /*String id = sale.getId();
-      String path = "Resource" + File.separator + "Sales";
-      String name = id + ".json";
-      File file = new File(path + File.separator + name);
-      try{
-      if (!file.exists()) {
-         file.createNewFile();
-      }
-      FileWriter writer = new FileWriter(file);
-      writer.write(gson.toJson(sale));
-      writer.close();
-      }catch(IOException exception){
-         exception.printStackTrace();
-      }*/
       Connection connection = null;
       String items = gson.toJson(sale.getAllItemId());
       String values = "'" + sale.getId() +"', '"+sale.getSellerUsername()+"', '"+items+"', '"+sale.getStartTime().toString()+"', '"+sale.getEndTime().toString();
@@ -222,20 +208,7 @@ public class Database {
 
    public void saveCategory(Category category) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      /*
-      String path = "Resource" + File.separator + "Categories";
-      String name = category.getName() + ".json";
-      File file = new File(path + File.separator + name);
-      try {
-         if (!file.exists()) {
-            file.createNewFile();
-         }
-         FileWriter writer = new FileWriter(file);
-         writer.write(gson.toJson(category));
-         writer.close();
-      }catch(IOException exception){
-         exception.printStackTrace();
-      }*/
+
       Connection connection = null;
       String children = gson.toJson(category.getSubCategories());
       String attributes = gson.toJson(category.getAttributes());
@@ -284,17 +257,7 @@ public class Database {
    }
 
    public void deleteSale(Sale sale) {
-      /*for (String id : sale.getAllItemId()) {
-         Item item = ItemAndCategoryController.getInstance().getItemById(id);
-         if (item != null) {
-            item.setSale("");
-         }
-      }
-      String id = sale.getId();
-      String path = "Resource" + File.separator + "Sales";
-      String name = id + ".json";
-      File file = new File(path + File.separator + name);
-      file.delete();*/
+
       Connection connection = null;
       try{
          connection = getConn();
@@ -311,11 +274,7 @@ public class Database {
    }
 
    public void deleteCategory(Category category) {
-      /*String categoryName = category.getName();
-      String path = "Resource" + File.separator + "Categories";
-      String name = categoryName + ".json";
-      File file = new File(path + File.separator + name);
-      file.delete();*/
+
       Connection connection = null;
       try
       {
@@ -351,34 +310,22 @@ public class Database {
       if (!file.exists()) {
          file.mkdir();
       }
-      file = new File("Resource" + File.separator + "Users");
-      if (!file.exists()) {
-         file.mkdir();
-      }
+
       file = new File("Resource" + File.separator + "Items");
       if (!file.exists()) {
          file.mkdir();
       }
-      file = new File("Resource" + File.separator + "Sales");
-      if (!file.exists()) {
-         file.mkdir();
-      }
+
       file = new File("Resource" + File.separator + "DiscountCodes");
       if (!file.exists()) {
          file.mkdir();
       }
-      file = new File("Resource" + File.separator + "Categories");
-      if (!file.exists()) {
-         file.mkdir();
-      }
+
       file = new File("Resource" + File.separator + "Requests");
       if (!file.exists()) {
          file.mkdir();
       }
-      file = new File("Resource" + File.separator + "Commercials");
-      if (!file.exists()) {
-         file.mkdir();
-      }
+
       if (!UserController.getInstance().isThereUserWithUsername("admin")) {
          Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
       }
