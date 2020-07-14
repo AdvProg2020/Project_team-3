@@ -160,6 +160,34 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
+   public static String makeAddDiscountCodeRequest(int percentInt,String endDate,String startDate,ArrayList<String> allUsername,int usageInt,int maxDiscountInt){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","add discount code");
+      json.addProperty("percent",percentInt);
+      json.addProperty("usage",usageInt);
+      json.addProperty("max discount",maxDiscountInt);
+      json.addProperty("start date",startDate);
+      json.addProperty("end date",endDate);
+      JsonArray jsonArray = new Gson().toJsonTree(allUsername).getAsJsonArray();
+      json.add("discount users",jsonArray);
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static ArrayList<String> makeGetAllDiscountCodesRequest(){
+      JsonObject json=new JsonObject();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("type",4);
+      json.addProperty("content","get discount code list");
+      ArrayList<String> result=new ArrayList<>();
+      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
+         if((s!=null)&&(s!="")&&(s!="\n"))
+            result.add(s);
+      }
+      return result;
+   }
+
    public static String makeDeleteCategoryRequest(String categoryName){
       JsonObject json=new JsonObject();
       json.addProperty("token",Client.getInstance().getToken());

@@ -1,10 +1,13 @@
 package Server.Controller;
 
+import Project.Client.CLI.View;
 import Server.Model.Item;
 import com.google.gson.*;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Matcher;
@@ -171,6 +174,27 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().addAttributeToCategory(getJsonStringField(command,"category name"),getJsonStringField(command,"attribute"));
       }
 
+      if(getJsonStringField(command,"content").equals("add discount code")){
+         int percent=command.get("percent").getAsInt();
+         int usage=command.get("usage").getAsInt();
+         int maxDiscount=command.get("max discount").getAsInt();
+         LocalDateTime start=getDate(getJsonStringField(command,"start date"));
+         LocalDateTime end=getDate(getJsonStringField(command,"end date"));
+         ArrayList<String> allUsers=new ArrayList<>();
+         for (JsonElement attribute : command.getAsJsonArray("discount users")) {
+            allUsers.add(attribute.getAsString());
+         }
+         return SaleAndDiscountCodeController.getInstance().addDiscountCode(percent,end,start,allUsers,usage,maxDiscount);
+      }
+
+      if(getJsonStringField(command,"content").equals("get discount code list")){
+         String response="";
+         for (String category : Database.getInstance().printFolderContent("DiscountCodes")) {
+            response+=category+"\n";
+         }
+         return response;
+      }
+
       return "Error: invalid command";
    }
 
@@ -242,6 +266,19 @@ public class RequestProcessor {
 
    public String getJsonStringField(JsonObject json, String field) {
       return json.get(field).toString().replace("\"", "");
+   }
+
+   private LocalDateTime getDate(String dateString){
+      LocalDateTime date;
+      dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
+      DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+      try{
+         date = LocalDateTime.parse(dateString,dateTimeFormatter);
+         return date;
+      }catch (Exception e){
+         System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
+         return null;
+      }
    }
 
 }

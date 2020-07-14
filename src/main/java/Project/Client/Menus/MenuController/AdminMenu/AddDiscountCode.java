@@ -1,7 +1,8 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
-import Server.Controller.Database;
-import Server.Controller.SaleAndDiscountCodeController;
+
+import Project.Client.MakeRequest;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -39,7 +40,7 @@ public class AddDiscountCode {
 
    public void update() {
       userList.getItems().clear();
-         for (Object buyer : Database.getInstance().getAllUsername("Buyer")) {
+         for (Object buyer : MakeRequest.makeGetAllUserRequest("Buyer").split("\n")) {
             userList.getItems().add(buyer);
          }
       if(userList.getItems().isEmpty())
@@ -68,7 +69,7 @@ public class AddDiscountCode {
        int maxDiscountInt=Integer.parseInt(maxDiscount.getText());
        String startDate=start.getValue().toString();
        String endDate=end.getValue().toString();
-       String message=SaleAndDiscountCodeController.getInstance().addDiscountCode(percentInt,getDate(endDate),getDate(startDate),allUserName,usageInt,maxDiscountInt);
+       String message=MakeRequest.makeAddDiscountCodeRequest(percentInt,endDate,startDate,allUserName,usageInt,maxDiscountInt);
        showAlertBox(message,"INFORMATION");
        if(message.startsWith("Successful:")) {
           back(null);
@@ -158,20 +159,7 @@ public class AddDiscountCode {
       }
       userList.getSelectionModel().clearSelection();
    }
-
-   private LocalDateTime getDate(String dateString){
-      LocalDateTime date;
-      dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
-      DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-      try{
-         date = LocalDateTime.parse(dateString,dateTimeFormatter);
-         return date;
-      }catch (Exception e){
-         System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
-         return null;
-      }
-   }
-
+   
    private void showAlertBox(String message,String type){
       MusicManager.getInstance().playSound("notify");
       Alert alert = new Alert(Alert.AlertType.valueOf(type));
