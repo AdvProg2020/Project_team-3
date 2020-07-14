@@ -168,6 +168,32 @@ public class MakeRequest {
       json.add("attribute",jsonArray);
       return Client.getInstance().sendMessage(json);
    }
+   //type 2
+    public static String makeGetBuyerLogsRequest(){
+       JsonObject jsonObject=new JsonObject();
+       jsonObject.addProperty("token",Client.getInstance().getToken());
+       jsonObject.addProperty("type",2);
+       jsonObject.addProperty("content","getAllLogs");
+       return Client.getInstance().sendMessage(jsonObject);
+    }
+
+    public static String makeGetPersonalInfoRequest(){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("type",2);
+      jsonObject.addProperty("content","personalInfo");
+      return Client.getInstance().sendMessage(jsonObject);
+    }
+
+    public static String makeEditPersonalInfoBuyer(String filed,String newFiledValue){
+       JsonObject jsonObject=new JsonObject();
+       jsonObject.addProperty("token",Client.getInstance().getToken());
+       jsonObject.addProperty("type",2);
+       jsonObject.addProperty("content","EditPersonalInfo");
+       jsonObject.addProperty("field",filed);
+       jsonObject.addProperty("fieldValue",newFiledValue);
+       return Client.getInstance().sendMessage(jsonObject);
+    }
    //type 5
    public static String makeGetPersonalInfoRequest(String Token){
       JsonObject json=new JsonObject();

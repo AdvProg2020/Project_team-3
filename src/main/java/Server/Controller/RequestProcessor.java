@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Server.Model.Users.User;
 import com.google.gson.*;
 
 import java.io.File;
@@ -169,6 +170,22 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
+
+      if(command.get("content").toString().equals("\"getAllLogs\"")){
+         return UserController.getInstance().getBuyLogs(username);
+      }
+
+      if(command.get("content").toString().equals("\"personalInfo\"")){
+         return UserController.getInstance().viewPersonalInfo(username);
+      }
+
+      if(command.get("content").toString().equals("\"EditPersonalInfo\"")){
+         String filed=getJsonStringField(command,"field");
+         String filedValue=getJsonStringField(command,"fieldValue");
+         UserController.getInstance().editPersonalInfo(username,filed,filedValue);
+         return "successful";
+      }
+
       return "Error: invalid command";
    }
 

@@ -1,15 +1,20 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
+import Project.Client.MakeRequest;
 import Server.Controller.Controller;
 import Server.Controller.ItemAndCategoryController;
 import Server.Controller.UserController;
 import Server.Model.Item;
 import Server.Model.Logs.BuyLog;
-import Server.Model.Users.Buyer;
+import Project.Client.Model.Users.*;
 import Project.Client.Menus.MenuController.ItemMenuController;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,6 +36,7 @@ import javafx.util.Callback;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BuyerOrdersController {
     public ListView<BuyLog>buyLogListView;
@@ -43,9 +49,9 @@ public class BuyerOrdersController {
     public void initialize(){
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-        Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
-        UserController.getInstance().logout();
-        UserController.getInstance().login(buyer.getUsername(),buyer.getPassword());
+        Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
+        MakeRequest.makeLogoutRequest();
+        MakeRequest.makeLoginRequest(buyer.getUsername(),buyer.getPassword());
         initializeBuyLogListView();
         updateBuyLogDetail();
     }
@@ -53,8 +59,10 @@ public class BuyerOrdersController {
 
 
     public void initializeBuyLogListView(){
-        Buyer buyer=(Buyer) Controller.getInstance().getCurrentOnlineUser();
-        ArrayList<BuyLog> allLogs=UserController.getInstance().getBuyLogs(buyer.getUsername());
+        String response=MakeRequest.makeGetBuyerLogsRequest();
+        TypeToken<List<BuyLog>> token = new TypeToken<List<BuyLog>>() {};
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ArrayList<BuyLog>allLogs=gson.fromJson(response,token.getType());
         if(allLogs.size()==0){
             buyLogEmptyLabel.setText("you did not bought anything!");
             return;

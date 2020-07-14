@@ -8,6 +8,8 @@ import Server.Model.Users.Seller;
 import Server.Model.Users.User;
 import Project.Client.CLI.View;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
@@ -458,12 +460,14 @@ public class UserController {
         return null;
     }
 
-    public ArrayList<BuyLog> getBuyLogs(String username){
+    public String getBuyLogs(String username){
         User user = getUserByUsername(username);
         Buyer buyer;
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
         if(user instanceof Buyer){
             buyer = (Buyer)user;
-            return buyer.getBuyLogs();
+            String response=gson.toJson(buyer.getBuyLogs());
+            return response;
         }
         return null;
     }
