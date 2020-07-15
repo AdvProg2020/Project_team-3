@@ -1,6 +1,6 @@
 package Project.Client.Menus.MenuController;
 
-import Server.Controller.UserController;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -20,7 +20,7 @@ public class ViewRequestUser {
    public void initialize(){
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("second.wav");
-      request.getItems().addAll(UserController.getInstance().getUserByUsername(username).getAllRequests());
+      request.getItems().addAll(MakeRequest.makeGetAllUserRequestInfo().split("\n"));
    }
 
    public void back(ActionEvent actionEvent) {

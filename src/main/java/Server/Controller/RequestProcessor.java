@@ -56,6 +56,11 @@ public class RequestProcessor {
          return AuthTokenHandler.getInstance().logout(getJsonStringField(command,"token"));
       }
 
+      if (getJsonStringField(command,"content").equals("is token valid")) {
+         if(AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"))==null) return "false";
+         return "true";
+      }
+
       if (getJsonStringField(command,"content").equals("create account")) {
          String name = getJsonStringField(command, "name");
          String lastName = getJsonStringField(command, "lastName");
@@ -256,7 +261,6 @@ public class RequestProcessor {
    }
 
    public String userGeneralProcessor(JsonObject command) {
-      System.out.println("salam");
       String username=AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
@@ -275,6 +279,9 @@ public class RequestProcessor {
       }
       if(getJsonStringField(command,"content").equals("user image path")){
          return UserController.getInstance().userImagePath(username);
+      }
+      if(getJsonStringField(command,"content").equals("view user all request")){
+         return UserController.getInstance().getUserByUsername(username).getAllRequests();
       }
       return "Error: invalid command";
    }

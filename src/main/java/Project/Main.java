@@ -1,6 +1,7 @@
 package Project;
 
 import Project.Client.Client;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Users.Admin;
 
@@ -31,6 +32,11 @@ public class Main extends Application{
         SceneSwitcher.getInstance().setSceneTo("MainMenu",1280,720);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        MakeRequest.makeLogoutRequest();
     }
 
     public void initializeScreens() throws IOException {

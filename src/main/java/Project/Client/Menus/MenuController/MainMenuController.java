@@ -2,11 +2,13 @@ package Project.Client.Menus.MenuController;
 
 import Project.Client.Client;
 import Project.Client.MakeRequest;
-//import Server.Controller.*;
 
-import Server.Controller.Controller;
-import Server.Model.Users.Admin;
-import Server.Model.Users.Seller;
+
+import Project.Client.Model.Users.Admin;
+import Project.Client.Model.Users.Seller;
+import Project.Client.Model.Users.User;
+
+
 import Project.Client.CLI.View;
 import Project.Client.Menus.*;
 import javafx.animation.AnimationTimer;
@@ -160,7 +162,7 @@ public class MainMenuController {
     }
 
     private void loginHandler(){
-        if(Controller.getInstance().isLogin()==true){
+        if(MakeRequest.isTokenValid()==true){  //this mean the user is loggined
             menu.getItems().remove(getMenuItemByName("Log In"));
             loginLogout.setText("Logout");
             addLogoutMenuItem();
@@ -229,7 +231,8 @@ public class MainMenuController {
     public void cartMenu(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         animationTimer.stop();
-        if(Controller.getInstance().getCurrentOnlineUser() instanceof Seller ||Controller.getInstance().getCurrentOnlineUser() instanceof Admin) {
+        User user=MakeRequest.makeGetUserRequest();
+        if(user instanceof Seller || user instanceof Admin) {
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("only buyers can view Cart Menu!");

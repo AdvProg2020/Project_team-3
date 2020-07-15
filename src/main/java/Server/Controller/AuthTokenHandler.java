@@ -1,6 +1,7 @@
 package Server.Controller;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 
@@ -10,7 +11,7 @@ public class AuthTokenHandler {
    private  final SecureRandom secureRandom = new SecureRandom();
    private  final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
    private HashMap<String,String> onlineUsersTokens;
-
+   private ArrayList<String> onlineUsername=new ArrayList<>();
    private AuthTokenHandler(){
       onlineUsersTokens=new HashMap<>();
    }
@@ -27,6 +28,7 @@ public class AuthTokenHandler {
          String token=base64Encoder.encodeToString(randomBytes);
          if(onlineUsersTokens.containsKey(token)==false) {
             onlineUsersTokens.put(token, username);
+            onlineUsername.add(username);
             return token;
          }
       }
@@ -34,6 +36,7 @@ public class AuthTokenHandler {
 
    public String deleteToken(String token){
       if(onlineUsersTokens.containsKey(token)){
+         onlineUsername.remove(onlineUsersTokens.get(token));
          onlineUsersTokens.remove(token);
          return "Successful: ";
       }
@@ -52,7 +55,7 @@ public class AuthTokenHandler {
    }
 
    public Boolean isUserOnline(String username){
-      return false;
+      return onlineUsername.contains(username);
    }
 
 }
