@@ -1,7 +1,8 @@
 package Server;
 
-import Server.Controller.RequestController;
+import Server.Controller.ItemAndCategoryController;
 import Server.Controller.RequestProcessor;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -49,6 +50,8 @@ public class Server {
 
    public static void main(String[] args) {
       new Server();
+      Gson gson = new Gson();
+      System.out.println(gson.toJson(ItemAndCategoryController.getInstance().getItemById("kBhRu")));
       System.out.println("server is running");
       while (true){}
    }

@@ -34,7 +34,7 @@ public class Database {
    private static Connection c = null;
    public static Connection getConn() throws SQLException {
       if(c == null){
-         c = DriverManager.getConnection("jdbc:sqlite::resource:database.db");
+         c = DriverManager.getConnection("jdbc:sqlite:database.db");
       }
       return c;
    }

@@ -1,15 +1,14 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.CLI.View;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Project.Client.CLI.View;
 import Project.Client.Model.Category;
 import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.User;
-import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,7 +32,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 import javafx.util.Duration;
-
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -84,6 +82,7 @@ public class ItemMenuController {
         playPause.setText("play");
         MakeRequest.makeAddViewToItem(itemID);
         Item item= MakeRequest.makeGetItemById(itemID);
+        System.out.println("made get req");
         itemDetails.setText("Description:\n"+item.getDescription());
         //item.addViewsBy(1);
         itemNameLabel.setText(item.getName());

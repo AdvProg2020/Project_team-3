@@ -1,14 +1,10 @@
 package Server.Controller;
 
 import Project.Client.CLI.View;
-import Project.Client.Client;
-import Project.Client.MakeRequest;
 import Server.Model.Category;
 import Server.Model.Item;
 import com.google.gson.*;
-import javafx.scene.image.Image;
 
-import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -456,7 +452,7 @@ public class RequestProcessor {
             SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
          SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
          String response="";
-         for (String productId : SortAndFilterController.getInstance().show("Project.Main")) {
+         for (String productId : SortAndFilterController.getInstance().show("Main")) {
             response+=productId+"\n";
          }
          return response;

@@ -1,17 +1,17 @@
 package Project.Client;
 
+import Project.Client.CLI.View;
+import Project.Client.Model.Category;
 import Project.Client.Model.Item;
 import Project.Client.Model.Logs.BuyLog;
 import Project.Client.Model.SortAndFilter;
 import Project.Client.Model.Users.User;
-import Project.Client.Model.Category;
-import Server.Controller.ItemAndCategoryController;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MakeRequest {
    //type1
@@ -446,6 +446,7 @@ public class MakeRequest {
       jsonObject.addProperty("content","getItem");
       jsonObject.addProperty("itemId",itemId);
       String response=Client.getInstance().sendMessage(jsonObject);
+      System.out.println(View.ANSI_BLUE+response+ View.ANSI_RESET);
       return ObjectMapper.gsonToItem(response);
    }
 

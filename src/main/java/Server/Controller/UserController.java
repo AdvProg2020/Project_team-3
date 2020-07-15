@@ -1,19 +1,21 @@
 package Server.Controller;
 
+import Project.Client.CLI.View;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Users.Admin;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
-import Project.Client.CLI.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -424,6 +426,7 @@ public class UserController {
             Seller seller=(Seller) getCurrentOnlineUser();
             return seller.getAllItemsId();
         }
+        System.err.println("seller nisti!");
         return null;
     }
 
