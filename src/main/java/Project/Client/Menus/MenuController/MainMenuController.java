@@ -51,14 +51,14 @@ public class MainMenuController {
         } */
         loginLogout.setText("Login");
         loginHandler();
-        animationTimer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                timeSinceLastTransition += 0.016;//16 milisanie
-               // updateTime();
-            }
-        };
-        animationTimer.start();
+//        animationTimer = new AnimationTimer() {
+//            @Override
+//            public void handle(long now) {
+//                timeSinceLastTransition += 0.016;//16 milisanie
+//               // updateTime();
+//            }
+//        };
+//        animationTimer.start();
     }
 
    /* private void updateTime(){
@@ -82,17 +82,17 @@ public class MainMenuController {
         }
     }
 
-    public void previousCommercial(MouseEvent mouseEvent) {
-        if(slideCount.isVisible()) {
-        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
-            int index = Integer.parseInt(slideCount.getText().split("/")[0])-1;
-            if(index-1>-1){
-                showCommercial(index-1);
-            }else{
-                showCommercial(allCommercials.size()-1);
-            }
-        }
-    }
+//    public void previousCommercial(MouseEvent mouseEvent) {
+//        if(slideCount.isVisible()) {
+//        ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
+//            int index = Integer.parseInt(slideCount.getText().split("/")[0])-1;
+//            if(index-1>-1){
+//                showCommercial(index-1);
+//            }else{
+//                showCommercial(allCommercials.size()-1);
+//            }
+//        }
+//    }
 
     private void fadeCommercial(){
         FadeTransition ft = new FadeTransition(Duration.millis(2000), commercial);
@@ -148,7 +148,7 @@ public class MainMenuController {
             loginHandler();
             return;
         }
-        animationTimer.stop();
+        //animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         if(MakeRequest.makeGetUserRequest().type.equals("Admin")){
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");

@@ -29,8 +29,8 @@
      <Button fx:id="loginLogout" layoutX="267.0" layoutY="484.0" onMouseClicked="#loginLogout" prefHeight="112.0" prefWidth="133.0" styleClass="myBlueButton" text="login" />
      <Button layoutX="746.0" layoutY="484.0" onMouseClicked="#saleShop" prefHeight="112.0" prefWidth="133.0" styleClass="myBlueButton" text="sale shop" />
        <VBox fx:id="commercial" layoutX="535.0" layoutY="91.0" prefHeight="241.0" prefWidth="211.0" />
-       <Button fx:id="nextButton" layoutX="717.0" layoutY="366.0" onMouseClicked="#nextCommercial" styleClass="myBlueButton" text="next" />
-       <Button fx:id="previousButton" layoutX="535.0" layoutY="366.0" onMouseClicked="#previousCommercial" styleClass="myBlueButton" text="previous" />
+<!--       <Button fx:id="nextButton" layoutX="717.0" layoutY="366.0" onMouseClicked="#nextCommercial" styleClass="myBlueButton" text="next" />-->
+<!--       <Button fx:id="previousButton" layoutX="535.0" layoutY="366.0" onMouseClicked="#previousCommercial" styleClass="myBlueButton" text="previous" />-->
        <Label fx:id="slideCount" layoutX="609.0" layoutY="369.0" prefHeight="17.0" prefWidth="90.0" />
    </children>
 

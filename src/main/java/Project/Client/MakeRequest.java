@@ -275,6 +275,16 @@ public class MakeRequest {
         return Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static String makeCommentRequest(String comment,String fatherCommentId,String itemId){
+       JsonObject jsonObject=new JsonObject();
+       jsonObject.addProperty("type",2);
+       jsonObject.addProperty("token",Client.getInstance().getToken());
+       jsonObject.addProperty("content","comment");
+       jsonObject.addProperty("comment",comment);
+       jsonObject.addProperty("fatherCommentId",fatherCommentId);
+       jsonObject.addProperty("itemId",itemId);
+       return Client.getInstance().sendMessage(jsonObject);
+   }
 
 
    //type 5

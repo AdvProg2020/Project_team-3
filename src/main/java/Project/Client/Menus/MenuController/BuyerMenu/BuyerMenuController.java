@@ -29,16 +29,15 @@ public class BuyerMenuController {
         Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-      /*  if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer){
-            User onlineUser=Controller.getInstance().getCurrentOnlineUser();
-            String path=UserController.getInstance().userImagePath(onlineUser.getUsername());
+//        if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)
+            //Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
+            String path=MakeRequest.makeUserImagePathRequest();
             File file=new File(path);
             try {
                 userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            } */
-        //}
+            }
         personalInfoUpdate();
     }
 

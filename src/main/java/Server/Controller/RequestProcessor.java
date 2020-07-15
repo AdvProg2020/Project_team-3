@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Project.Client.CLI.View;
 import Project.Client.Model.SortAndFilter;
+import Project.Client.Model.Users.User;
 import Server.Model.Item;
 import com.google.gson.*;
 
@@ -231,6 +232,19 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
+      if(getJsonStringField(command,"content").equals("getAllLogs")){
+         return UserController.getInstance().getBuyLogs(username);
+      }
+      if(getJsonStringField(command,"content").equals("getAllDiscountCodes")){
+         return UserController.getInstance().getBuyerDiscountCode();
+      }
+      if(getJsonStringField(command,"content").equals("comment")){
+         String fatherComment=getJsonStringField(command,"fatherCommentId");
+         String itemId=getJsonStringField(command,"itemId");
+         String comment=getJsonStringField(command,"comment");
+         return ItemAndCategoryController.getInstance().comment(comment,itemId,fatherComment);
+      }
+
       return "Error: invalid command";
    }
 

@@ -1,8 +1,8 @@
 package Project.Client.Menus.MenuController;
 
-import Server.Controller.Controller;
+import Project.Client.MakeRequest;
+import Project.Client.Model.Users.*;
 import Server.Controller.ItemAndCategoryController;
-import Server.Model.Users.User;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -36,8 +36,8 @@ public class commentMenuController {
    public void initialize(){
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("second.wav");
-      User user= Controller.getInstance().getCurrentOnlineUser();
-      String path= UserController.getInstance().userImagePath(user.getUsername());
+      User user=MakeRequest.makeGetUserRequest();
+      String path= MakeRequest.makeUserImagePathRequest();
       File file=new File(path);
       try {
          userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
@@ -57,7 +57,8 @@ public class commentMenuController {
          alert.show();
          return;
       }
-      ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID,fatherCommentId);
+      MakeRequest.makeCommentRequest(commentTextArea.getText(),itemID,fatherCommentId);
+     // ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID,fatherCommentId);
       MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText("your comment was sent to our admin!");
