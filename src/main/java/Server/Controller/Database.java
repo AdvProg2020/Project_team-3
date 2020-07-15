@@ -3,13 +3,13 @@ package Server.Controller;
 
 import Server.Model.Category;
 import Server.Model.DiscountCode;
+import Server.Model.Item;
 import Server.Model.Requests.Request;
+import Server.Model.Sale;
 import Server.Model.Users.Admin;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
-import Server.Model.Item;
-import Server.Model.Sale;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,7 +18,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Database {
    private static Database database;
@@ -185,7 +184,9 @@ public class Database {
          }catch (Exception e){
 
          }
+         System.err.println(values);
          statement.executeUpdate("insert into Items values("+values+")");
+         System.err.println(values);
       }
       catch(SQLException e)
       {
@@ -276,12 +277,12 @@ public class Database {
    }
 
    public void deleteItem(Item item) {
-      item.delete();
+      /*item.delete();
       String id = item.getId();
       String path = "Resource" + File.separator + "Items";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
-      file.delete();
+      file.delete();*/
 
       Connection connection = null;
       try
@@ -501,6 +502,7 @@ public class Database {
          while(rs.next())
          {
             allItems.add(rs.getString(1));
+            System.err.println(rs.getString(1));
          }
 
       }

@@ -154,6 +154,7 @@ public class ItemAndCategoryController {
                 Item item = new Item(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),Double.parseDouble(rs.getString(6)),rs.getInt(7),rs.getInt(8)
                 ,attributes,rs.getString(10),rs.getString(11),buyers,ratings,comments,rs.getString("saleID"),rs.getString("imageName"),rs.getString("videoName"),rs.getString("addedTime"));
                 allItems.add(item);
+                System.err.println("done");
             }
 
         }
