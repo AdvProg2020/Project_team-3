@@ -5,7 +5,7 @@ import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
-import Server.Controller.ItemAndCategoryController;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Optional;
 
 public class SellerAddProductMenu {
@@ -64,7 +64,7 @@ public class SellerAddProductMenu {
 
     @FXML
     private void videoChooserOpen(ActionEvent actionEvent) {
-        MusicManager.getInstance().playSound("Button");
+     /*   MusicManager.getInstance().playSound("Button");
         FileChooser fileChooser=new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("MP4","*.mp4"),
@@ -83,7 +83,7 @@ public class SellerAddProductMenu {
             e.printStackTrace();
         }
         videoName = selected.getName();
-        hasChosenVideo = true;
+        hasChosenVideo = true; */
     }
 
     private String imageName;
@@ -147,7 +147,7 @@ public class SellerAddProductMenu {
             countError.setText("");
         }
 
-        if(category.getText().isEmpty() || !ItemAndCategoryController.getInstance().isThereCategoryWithName(category.getText())){
+        if(category.getText().isEmpty() || !MakeRequest.isThereCategoryWithName(category.getText())){
             categoryError.setText("enter a valid category");
             categoryError.setTextFill(Color.rgb(255,0,0));
             return;
@@ -168,18 +168,18 @@ public class SellerAddProductMenu {
             video="";
         }
 
-        HashMap<String,String> attributeValue=new HashMap<>();
-        ArrayList<String> attributeKey=ItemAndCategoryController.getInstance().getCategoryByName(category.getText()).getAttributes();
+        ArrayList<String> attributeValue=new ArrayList<>();
+        ArrayList<String> attributeKey=MakeRequest.getCategoryAttribute(category.getText());
 
         if(attributeKey!=null) {
             for (String key : attributeKey) {
 
                 setDialogText(key);
                 Optional<String> result = dialog.showAndWait();
-                result.ifPresent(s -> attributeValue.put(key,s));
+                result.ifPresent(s -> attributeValue.add(s));
             }
         }
-        ItemAndCategoryController.getInstance().addItem(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeValue,image,video);
+        MakeRequest.addProduct(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeKey,attributeValue,image,video);
         hasChosenVideo = false;
         hasChosenImage = false;
         clearFields();

@@ -8,7 +8,7 @@
              <Label layoutX="259.0" layoutY="80.0" text="discount codes list" />
     <MenuBar prefHeight="25.0" prefWidth="616.0" styleClass="myMenuBar">
         <Menu text="options">
-            <MenuItem onAction="#logout" />
+            <MenuItem onAction="#logout" text="logout" />
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>

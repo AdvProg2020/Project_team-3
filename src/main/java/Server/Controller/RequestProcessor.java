@@ -1,18 +1,18 @@
 package Server.Controller;
 
 import Project.Client.CLI.View;
-import Project.Client.Model.SortAndFilter;
-import Project.Client.Model.Users.User;
+import Project.Client.Client;
+import Project.Client.MakeRequest;
 import Server.Model.Category;
 import Server.Model.Item;
 import com.google.gson.*;
+import javafx.scene.image.Image;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -258,6 +258,30 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
+
+      if(getJsonStringField(command,"content").equals("add product")){
+         String name=getJsonStringField(command,"name");
+         String brand=getJsonStringField(command,"brand");
+         String description=getJsonStringField(command,"description");
+         double price=command.get("price").getAsDouble();
+         int inStock=command.get("inStock").getAsInt();
+         String categoryName=getJsonStringField(command,"category");
+         String image=getJsonStringField(command,"image");
+         String video=getJsonStringField(command,"video");
+         ArrayList<String> attributeValue=new ArrayList<>();
+         for (JsonElement attribute : command.getAsJsonArray("attribute value")) {
+            attributeValue.add(attribute.getAsString());
+         }
+         ArrayList<String> attributeKey=new ArrayList<>();
+         for (JsonElement attribute : command.getAsJsonArray("attribute key")) {
+            attributeKey.add(attribute.getAsString());
+         }
+         HashMap<String,String> attribute=new HashMap<>();
+         for(int i=0;i<attributeKey.size();i++){
+            attribute.put(attributeKey.get(i),attributeValue.get(i));
+         }
+         return ItemAndCategoryController.getInstance().addItem(name,brand,description,price,inStock,categoryName,attribute,image,video);
+      }
       return "Error: invalid command";
    }
 
@@ -302,10 +326,22 @@ public class RequestProcessor {
             return "true";
          return "false";
       }
+      if (getJsonStringField(command,"content").equals("is there category with name")) {
+         if(ItemAndCategoryController.getInstance().isThereCategoryWithName(getJsonStringField(command,"name")))
+            return "true";
+         return "false";
+      }
       if (getJsonStringField(command,"content").equals("category list")) {
          String response="";
          for (String category : Database.getInstance().printFolderContent("Categories")) {
             response+=category+"\n";
+         }
+         return response;
+      }
+      if (getJsonStringField(command,"content").equals("get category attribute")) {
+         String response="";
+         for (String attribute : ItemAndCategoryController.getInstance().getCategoryByName(getJsonStringField(command,"name")).getAttributes()) {
+            response+=attribute+"\n";
          }
          return response;
       }
