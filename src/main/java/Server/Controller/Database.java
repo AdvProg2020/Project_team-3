@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Database {
    private static Database database;
@@ -330,8 +331,8 @@ public class Database {
       if (!UserController.getInstance().isThereUserWithUsername("admin")) {
          Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
       }
-      if (!ItemAndCategoryController.getInstance().isThereCategoryWithName("Project.Main")) {
-         Category category = new Category("Project.Main", null);
+      if (!ItemAndCategoryController.getInstance().isThereCategoryWithName("Main")) {
+         Category category = new Category("Main", new ArrayList<String>());
             saveCategory(category);
       }
    }

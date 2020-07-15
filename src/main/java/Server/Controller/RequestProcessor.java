@@ -69,7 +69,7 @@ public class RequestProcessor {
          String username = getJsonStringField(command, "username");
          String email = getJsonStringField(command, "email");
          String number = getJsonStringField(command, "number");
-         System.out.println(username);
+
          if ((getJsonStringField(command,"account type").equals("buyer"))) {
             double money = command.get("money").getAsDouble();
             return UserController.getInstance().registerBuyer(money, username, password, name, lastName, email, number);
@@ -261,25 +261,36 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("add product")){
          String name=getJsonStringField(command,"name");
+         System.out.println(1);
          String brand=getJsonStringField(command,"brand");
+         System.out.println(1);
          String description=getJsonStringField(command,"description");
+         System.out.println(1);
          double price=command.get("price").getAsDouble();
+         System.out.println(1);
          int inStock=command.get("inStock").getAsInt();
+         System.out.println(1);
          String categoryName=getJsonStringField(command,"category");
+         System.out.println(1);
          String image=getJsonStringField(command,"image");
+         System.out.println(1);
          String video=getJsonStringField(command,"video");
+         System.out.println(1);
          ArrayList<String> attributeValue=new ArrayList<>();
          for (JsonElement attribute : command.getAsJsonArray("attribute value")) {
             attributeValue.add(attribute.getAsString());
          }
+         System.out.println(1);
          ArrayList<String> attributeKey=new ArrayList<>();
          for (JsonElement attribute : command.getAsJsonArray("attribute key")) {
             attributeKey.add(attribute.getAsString());
          }
+         System.out.println(1);
          HashMap<String,String> attribute=new HashMap<>();
          for(int i=0;i<attributeKey.size();i++){
             attribute.put(attributeKey.get(i),attributeValue.get(i));
          }
+         System.out.println(1);
          return ItemAndCategoryController.getInstance().addItem(name,brand,description,price,inStock,categoryName,attribute,image,video);
       }
       return "Error: invalid command";
@@ -340,7 +351,9 @@ public class RequestProcessor {
       }
       if (getJsonStringField(command,"content").equals("get category attribute")) {
          String response="";
-         for (String attribute : ItemAndCategoryController.getInstance().getCategoryByName(getJsonStringField(command,"name")).getAttributes()) {
+         Category category=ItemAndCategoryController.getInstance().getCategoryByName(getJsonStringField(command,"name"));
+         if(category.getAttributes()==null) return response;
+         for (String attribute : category.getAttributes()) {
             response+=attribute+"\n";
          }
          return response;
