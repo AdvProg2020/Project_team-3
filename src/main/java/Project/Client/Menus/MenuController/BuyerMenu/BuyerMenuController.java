@@ -55,7 +55,7 @@ public class BuyerMenuController {
     @FXML
     private void logout(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }

@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.MakeRequest;
 import Server.Controller.CartController;
 import Server.Controller.Controller;
 import Server.Controller.ItemAndCategoryController;
@@ -9,6 +10,7 @@ import Server.Model.Item;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
 import java.io.File;
+import java.lang.reflect.GenericSignatureFormatError;
 import java.net.MalformedURLException;
 
 public class CartMenuController {
@@ -62,8 +65,10 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        Cart cart=CartController.getInstance().getCurrentShoppingCart();
-        CartController.getInstance().cartIncreaseDecrease(selected.getId(),1);
+        String cartString= MakeRequest.makeGetCartRequest();
+        Gson gson=new Gson();
+        Cart cart=gson.fromJson(cartString,Cart.class);
+        MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),1);
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
@@ -87,8 +92,10 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        Cart cart=CartController.getInstance().getCurrentShoppingCart();
-        CartController.getInstance().cartIncreaseDecrease(selected.getId(),-1);
+        String cartString= MakeRequest.makeGetCartRequest();
+        Gson gson=new Gson();
+        Cart cart=gson.fromJson(cartString,Cart.class);
+        MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),-1);
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
@@ -112,7 +119,8 @@ public class CartMenuController {
 
     public void clearCartPressed(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        CartController.getInstance().getCurrentShoppingCart().empty();
+        String cartString= MakeRequest.makeGetCartRequest();
+        MakeRequest.MakeRequestEmptyCart();
         itemListView.getItems().clear();
     }
 
@@ -195,7 +203,9 @@ public class CartMenuController {
     }
 
     public void updateItemAgain(){
-        Cart cart=Controller.getInstance().getCurrentShoppingCart();
+        String cartString= MakeRequest.makeGetCartRequest();
+        Gson gson=new Gson();
+        Cart cart=gson.fromJson(cartString,Cart.class);
         Item item=null;
         for(String id:cart.getAllItemId()){
             item= ItemAndCategoryController.getInstance().getItemById(id);
