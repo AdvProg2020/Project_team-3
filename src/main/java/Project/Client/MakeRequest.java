@@ -1,5 +1,6 @@
 package Project.Client;
 
+import Project.Client.Model.Item;
 import Project.Client.Model.SortAndFilter;
 import Project.Client.Model.Users.User;
 import com.google.gson.Gson;
@@ -343,17 +344,33 @@ public class MakeRequest {
    }
 
    //type 0
-   public static String makeGetItemById(String itemId){
+   public static String makeGetItemCountInCart(String itemId){
       JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type",0);
-      jsonObject.addProperty("content","getItem");
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","itemCount");
       jsonObject.addProperty("itemId",itemId);
       return Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static String makeGetAllItemIDInCart(){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","getAllItems");
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static Item makeGetItemById(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","");
+      jsonObject.addProperty("content","getItem");
+      jsonObject.addProperty("itemId",itemId);
+      String response=Client.getInstance().sendMessage(jsonObject);
+      return ObjectMapper.gsonToItem(response);
+   }
+
    public static String makeAddViewToItem(String itemId){
       JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type",0);
+      jsonObject.addProperty("type","0");
       jsonObject.addProperty("content","addView");
       jsonObject.addProperty("itemId",itemId);
       return Client.getInstance().sendMessage(jsonObject);
@@ -382,12 +399,12 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static String makeGetCartRequest() {
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", "0");
-      jsonObject.addProperty("content", "getCart");
-      return Client.getInstance().sendMessage(jsonObject);
-   }
+//   public static String makeGetCartRequest() {
+//      JsonObject jsonObject = new JsonObject();
+//      jsonObject.addProperty("type", "0");
+//      jsonObject.addProperty("content", "getCart");
+//      return Client.getInstance().sendMessage(jsonObject);
+//   }
 
    public static String makeUpdateDateAndTimeRequest() {
       JsonObject json = new JsonObject();

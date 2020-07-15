@@ -340,6 +340,17 @@ public class RequestProcessor {
          ItemAndCategoryController.getInstance().addView(itemId);
          return "successful!";
       }
+      if(getJsonStringField(command,"content").equals("itemCount")){
+         String itemId=getJsonStringField(command,"itemId");
+         int count=CartController.getInstance().getCurrentShoppingCart().getItemCount(itemId);
+         return String.valueOf(count);
+      }
+      if(getJsonStringField(command,"content").equals("getAllItems")){
+         ArrayList<String> allItemIds=CartController.getInstance().getCurrentShoppingCart().getAllItemId();
+         Gson gson=new Gson();
+         String response=gson.toJson(allItemIds);
+         return response;
+      }
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
          if(command.has("filter attribute"))

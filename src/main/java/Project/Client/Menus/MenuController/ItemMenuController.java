@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.MakeRequest;
 import Server.Controller.Controller;
 import Server.Controller.ItemAndCategoryController;
 import Server.Controller.UserController;
@@ -13,6 +14,7 @@ import Server.Model.Users.User;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -85,10 +87,10 @@ public class ItemMenuController {
         ivTarget.setSmooth(true);
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
-        ItemAndCategoryController.getInstance().addView(itemID);
+        MakeRequest.makeAddViewToItem(itemID);
         Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
         itemDetails.setText("Description:\n"+item.getDescription());
-        item.addViewsBy(1);
+        //item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
         itemNameLabelBigFont.setText(item.getName());
         categoryLabel.setText(item.getCategoryName());

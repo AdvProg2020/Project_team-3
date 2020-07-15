@@ -1,16 +1,13 @@
 package Project.Client.Menus.MenuController;
 
 import Project.Client.MakeRequest;
-import Server.Controller.CartController;
-import Server.Controller.Controller;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Model.Cart;
-import Server.Model.Item;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Item;
+import Server.Model.Logs.BuyLog;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +25,8 @@ import javafx.util.Callback;
 import java.io.File;
 import java.lang.reflect.GenericSignatureFormatError;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartMenuController {
 
@@ -38,7 +37,7 @@ public class CartMenuController {
     @FXML private AnchorPane pane;
 
     public void initialize(){
-        Controller.getInstance().updateDateAndTime();
+        //Controller.getInstance().updateDateAndTime();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();
@@ -67,14 +66,11 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        String cartString= MakeRequest.makeGetCartRequest();
-        Gson gson=new Gson();
-        Cart cart=gson.fromJson(cartString,Cart.class);
         MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),1);
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
+        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void decreaseItem(ActionEvent actionEvent) {
@@ -94,14 +90,11 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        String cartString= MakeRequest.makeGetCartRequest();
-        Gson gson=new Gson();
-        Cart cart=gson.fromJson(cartString,Cart.class);
         MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),-1);
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
+        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void showItem(ActionEvent actionEvent) {
@@ -121,7 +114,6 @@ public class CartMenuController {
 
     public void clearCartPressed(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        String cartString= MakeRequest.makeGetCartRequest();
         MakeRequest.MakeRequestEmptyCart();
         itemListView.getItems().clear();
     }
@@ -135,7 +127,7 @@ public class CartMenuController {
             alert.showAndWait();
             return;
         }
-        if(UserController.getInstance().getCurrentOnlineUser()==null){
+        if(MakeRequest.makeGetUserRequest()==null){
             MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("please login to buy items");
@@ -144,7 +136,7 @@ public class CartMenuController {
             SceneSwitcher.getInstance().setSceneAndWait("Login");
             return;
         }
-        if(UserController.getInstance().getUserType().equals("Buyer")==false){
+        if(MakeRequest.makeGetUserRequest().getType().equals("Buyer")==false){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setContentText("you must be a buyer to buy items");
@@ -185,7 +177,6 @@ public class CartMenuController {
         @Override
         protected void updateItem(Item item, boolean empty) {
             super.updateItem(item, empty);
-            Cart cart= Controller.getInstance().getCurrentShoppingCart();
             if(empty || item==null) {
                 setGraphic(null);
             }
@@ -197,7 +188,7 @@ public class CartMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String printItem=item.toString() +"\nitem Count: "+cart.getItemCount(item.getId())+"\ntotal Price:"+item.getPrice()*cart.getItemCount(item.getId());
+                String printItem=item.toString() +"\nitem Count: "+Integer.parseInt(MakeRequest.makeGetItemCountInCart(item.getId()))+"\ntotal Price:"+item.getPrice()*Integer.parseInt(MakeRequest.makeGetItemCountInCart(item.getId()));
                 label.setText(printItem);
                 setGraphic(vBox);
             }
@@ -205,12 +196,13 @@ public class CartMenuController {
     }
 
     public void updateItemAgain(){
-        String cartString= MakeRequest.makeGetCartRequest();
+        String gsonString=MakeRequest.makeGetAllItemIDInCart();///
         Gson gson=new Gson();
-        Cart cart=gson.fromJson(cartString,Cart.class);
+        TypeToken<List<String>> token = new TypeToken<List<String>>() {};
+        ArrayList<String> allItemIds=gson.fromJson(gsonString,token.getType());
         Item item=null;
-        for(String id:cart.getAllItemId()){
-            item= ItemAndCategoryController.getInstance().getItemById(id);
+        for(String id:allItemIds){
+            item= MakeRequest.makeGetItemById(id);
             allItems.add(item);
         }
         itemListView.setItems(allItems);

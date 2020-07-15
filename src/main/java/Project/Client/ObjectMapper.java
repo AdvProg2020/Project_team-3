@@ -1,10 +1,14 @@
 package Project.Client;
 
+import Project.Client.Model.Item;
 import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.Seller;
 import Project.Client.Model.Users.User;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 public class ObjectMapper {
 
@@ -48,6 +52,12 @@ public class ObjectMapper {
       String number = getJsonStringField(json,"number");
       double money= json.get("money").getAsDouble();
       return new Buyer(money,username,password,name,lastName,email,number);
+   }
+
+   public static Item gsonToItem(String itemGson){
+      Gson gson=new Gson();
+      Item item=gson.fromJson(itemGson,Item.class);
+      return item;
    }
 
    public static String getJsonStringField(JsonObject json,String field){

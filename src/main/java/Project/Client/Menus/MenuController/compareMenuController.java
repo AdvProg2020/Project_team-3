@@ -1,10 +1,9 @@
 package Project.Client.Menus.MenuController;
 
 import Project.Client.MakeRequest;
-import Server.Controller.ItemAndCategoryController;
-import Server.Model.Item;
 import Project.Client.Menus.MusicManager;
 import Project.Client.CLI.View;
+import Project.Client.Model.Item;
 import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -37,12 +36,8 @@ public class compareMenuController {
     public void initialize(){
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
-        String firstString= MakeRequest.makeGetItemById(firstItemID);
-        String secondString=MakeRequest.makeGetItemById(secondItemID);
-        Gson gson0=new Gson();
-        Gson gson1=new Gson();
-        Item first= gson0.fromJson(firstString,Item.class);
-        Item second=gson1.fromJson(secondString,Item.class);
+        Item first= MakeRequest.makeGetItemById(firstItemID);
+        Item second= MakeRequest.makeGetItemById(secondItemID);
         String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
         String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
         File firstFile=new File(firstPath);
