@@ -149,7 +149,7 @@ public class Database {
    }
 
    public void saveItem(Item item)  {
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = item.getId();
       String path = "Resource" + File.separator + "Items";
       String name = id + ".json";
@@ -163,6 +163,32 @@ public class Database {
       writer.close(); }
       catch(IOException exception){
          exception.printStackTrace();
+      }*/
+      //
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String attributes=gson.toJson(item.getAttributes());
+      String buyers = gson.toJson(item.getBuyerUserName());
+      String ratings = gson.toJson(item.getAllRatings());
+      String comments = gson.toJson(item.getAllComments());
+      String values = "'"+item.getId()+"', '"+item.getState()+"', '"+item.getDescription()+"', '"+item.getName()+"', '"+item.getBrand()+"', '"+item.getPrice();
+      values+= "', "+ item.getInStock() +", "+item.getViewCount()+", '"+attributes+"', '"+item.getSellerName()+"', '"+item.getCategoryName()+"', '"+buyers+"', '"+ratings;
+      values+= "', '" + comments + "', '" + item.getSaleId() + "', '" + item.getImageName() + "', '" + item.getVideoName() + "', '" + item.getAddedTime() + "'";
+      Connection connection = null;
+      try
+      {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Items WHERE id='"+item.getId()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Items values("+values+")");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
       }
    }
 
@@ -255,6 +281,19 @@ public class Database {
       String name = id + ".json";
       File file = new File(path + File.separator + name);
       file.delete();
+
+      Connection connection = null;
+      try
+      {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         statement.executeUpdate("delete FROM Items WHERE id='"+item.getId()+"'");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
    }
 
    public void deleteSale(Sale sale) {
@@ -349,6 +388,9 @@ public class Database {
       }
       if(folderName.equals("Sales")){
          return getAllSales();
+      }
+      if(folderName.equals("Items")){
+         return getAllItemIDs();
       }
       ArrayList<String> fileNames = new ArrayList();
       String path = "Resource" + File.separator + folderName;
@@ -445,6 +487,26 @@ public class Database {
          System.err.println(e.getMessage());
       }
       return allSales;
+   }
+
+   public ArrayList<String> getAllItemIDs(){
+      ArrayList<String> allItems = new ArrayList<>();
+      Connection connection = null;
+      try {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         ResultSet rs = statement.executeQuery("select * FROM Items");
+         while(rs.next())
+         {
+            allItems.add(rs.getString(1));
+         }
+
+      }
+      catch(SQLException e) {
+         System.err.println(e.getMessage());
+      }
+      return allItems;
    }
 }
 

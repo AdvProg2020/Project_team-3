@@ -371,4 +371,12 @@ public class Item {
         }
         return null;
     }
+
+    public ArrayList<Rating> getAllRatings() {
+        return allRatings;
+    }
+
+    public String getState() {
+        return state;
+    }
 }

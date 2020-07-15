@@ -1,5 +1,7 @@
 package Server.Controller;
 
+import Project.Client.CLI.ShopAndDiscountMenu.ShopMenu;
+import Project.Client.CLI.View;
 import Server.Model.Category;
 import Server.Model.Comment;
 import Server.Model.Item;
@@ -10,15 +12,10 @@ import Server.Model.Users.Admin;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
-import Project.Client.CLI.ShopAndDiscountMenu.ShopMenu;
-import Project.Client.CLI.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,13 +64,32 @@ public class ItemAndCategoryController {
     }
 
     public boolean isThereItemWithId(String id) {
-        String path = "Resource" + File.separator + "Items";
+        /*String path = "Resource" + File.separator + "Items";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
             return false;
         }
-        return true;
+        return true;*/
+
+        ArrayList<String> allItems = new ArrayList<>();
+        Connection connection = null;
+        int cnt = 0;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Items WHERE id='"+id+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return cnt>0;
     }
 
     public boolean isThereCategoryWithName(String name) {
@@ -107,7 +123,7 @@ public class ItemAndCategoryController {
 
 
     public Item getItemById(String id) {
-        String path = "Resource" + File.separator + "Items";
+        /*String path = "Resource" + File.separator + "Items";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
@@ -120,7 +136,33 @@ public class ItemAndCategoryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null;*/
+        Gson gson = new Gson();
+        ArrayList<Item> allItems = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Items");
+            while(rs.next())
+            {
+                HashMap<String,String> attributes = gson.fromJson(rs.getString(9),new TypeToken<HashMap<String,String>>(){}.getType());
+                ArrayList<String> buyers = gson.fromJson(rs.getString(12),new TypeToken<ArrayList<String>>(){}.getType());
+                ArrayList<Rating> ratings = gson.fromJson(rs.getString("allRatings"),new TypeToken<ArrayList<Rating>>(){}.getType());
+                ArrayList<Comment> comments = gson.fromJson(rs.getString("allComments"),new TypeToken<ArrayList<Comment>>(){}.getType());
+                Item item = new Item(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),Double.parseDouble(rs.getString(6)),rs.getInt(7),rs.getInt(8)
+                ,attributes,rs.getString(10),rs.getString(11),buyers,ratings,comments,rs.getString("saleID"),rs.getString("imageName"),rs.getString("videoName"),rs.getString("addedTime"));
+                allItems.add(item);
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(allItems.isEmpty()) return null;
+        return allItems.get(0);
     }
 
     public String viewItem(String id) {
@@ -138,18 +180,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getCategoryByName(String categoryName) {
-        /*String path = "Resource" + File.separator + "Categories";
-        String name = categoryName + ".json";
-        File file = new File(path + File.separator + name);
-        if (!file.exists()) return null;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try {
-            String content = new String(Files.readAllBytes(file.toPath()));
-            return gson.fromJson(content, Category.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;*/
+
         ArrayList<Category> viableOptions = new ArrayList<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Connection connection = null;
@@ -367,21 +398,12 @@ public class ItemAndCategoryController {
     }
 
     public ArrayList<Item> getAllItemFromDataBase() {
-        String path = "Resource" + File.separator + "Items";
-        File file = new File(path);
-        File[] allFiles = file.listFiles();
-        String fileContent = null;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        ArrayList<Item> allItems = new ArrayList<>();
-        for (File file1 : allFiles) {
-            try {
-                fileContent = new String(Files.readAllBytes(file1.toPath()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            allItems.add(gson.fromJson(fileContent, Item.class));
+        ArrayList<String> allIDs = Database.getInstance().getAllItemIDs();
+        ArrayList<Item> ans = new ArrayList<>();
+        for(String id:allIDs){
+            ans.add(getItemById(id));
         }
-        return allItems;
+        return ans;
     }
 
     public String renameCategory(String oldName,String newName){
