@@ -343,6 +343,22 @@ public class MakeRequest {
    }
 
    //type 0
+   public static String makeGetItemById(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type",0);
+      jsonObject.addProperty("content","getItem");
+      jsonObject.addProperty("itemId",itemId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static String makeAddViewToItem(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type",0);
+      jsonObject.addProperty("content","addView");
+      jsonObject.addProperty("itemId",itemId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static String getCartPriceWithoutDiscountCode() {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("type", "0");

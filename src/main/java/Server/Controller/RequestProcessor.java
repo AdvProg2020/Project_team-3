@@ -328,6 +328,18 @@ public class RequestProcessor {
          String response=gson.toJson(CartController.getInstance().getCurrentShoppingCart());
          return response;
       }
+      if(getJsonStringField(command,"content").equals("getItem")){
+         Gson gson=new Gson();
+         String itemId=getJsonStringField(command,"itemId");
+         Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
+         String response=gson.toJson(item);
+         return response;
+      }
+      if(getJsonStringField(command,"content").equals("addView")){
+         String itemId=getJsonStringField(command,"itemId");
+         ItemAndCategoryController.getInstance().addView(itemId);
+         return "successful!";
+      }
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
          if(command.has("filter attribute"))

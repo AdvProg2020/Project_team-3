@@ -43,7 +43,9 @@ public class CartMenuController {
         MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");
-        else totalPrice.setText(String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
+        else {
+            totalPrice.setText(MakeRequest.getCartPriceWithoutDiscountCode());
+        }
     }
 
 
