@@ -1,20 +1,13 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
 import Project.Client.MakeRequest;
-import Server.Controller.Controller;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Model.Item;
-import Server.Model.Logs.BuyLog;
+import Project.Client.Model.Item;
+import Project.Client.Model.Logs.BuyLog;
 import Project.Client.Model.Users.*;
 import Project.Client.Menus.MenuController.ItemMenuController;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,10 +52,7 @@ public class BuyerOrdersController {
 
 
     public void initializeBuyLogListView(){
-        String response=MakeRequest.makeGetBuyerLogsRequest();
-        TypeToken<List<BuyLog>> token = new TypeToken<List<BuyLog>>() {};
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        ArrayList<BuyLog>allLogs=gson.fromJson(response,token.getType());
+        ArrayList<BuyLog>allLogs=MakeRequest.makeGetBuyerLogsRequest();
         if(allLogs.size()==0){
             buyLogEmptyLabel.setText("you did not bought anything!");
             return;
@@ -179,7 +169,7 @@ public class BuyerOrdersController {
                 buyLogListView.getSelectionModel().clearSelection();
                 ArrayList<String> itemIds=buyLog.getAllItemsID();
                 for(String id:itemIds){
-                    allItems.add(ItemAndCategoryController.getInstance().getItemById(id));
+                    allItems.add(MakeRequest.makeGetItemById(id));
                 }
                 detailsListView.setItems(allItems);
                 detailsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
@@ -220,7 +210,7 @@ public class BuyerOrdersController {
 
     public void logout(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }

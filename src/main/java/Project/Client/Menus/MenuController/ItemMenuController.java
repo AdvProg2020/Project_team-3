@@ -1,19 +1,14 @@
 package Project.Client.Menus.MenuController;
 
 import Project.Client.MakeRequest;
-import Server.Controller.Controller;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Controller.CartController;
-import Server.Model.Cart;
-import Server.Model.Category;
-import Server.Model.Comment;
-import Server.Model.Item;
-import Server.Model.Users.Buyer;
-import Server.Model.Users.User;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Category;
+import Project.Client.Model.Comment;
+import Project.Client.Model.Item;
+import Project.Client.Model.Users.Buyer;
+import Project.Client.Model.Users.User;
 import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,7 +74,7 @@ public class ItemMenuController {
 
     public void initialize(){
         alternativeOptions = new ArrayList<>();
-        Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(anchorPane);
         MusicManager.getInstance().setSongName("second.wav");
         attributeListView.getItems().clear();
@@ -88,7 +83,7 @@ public class ItemMenuController {
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         MakeRequest.makeAddViewToItem(itemID);
-        Item item= ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item= MakeRequest.makeGetItemById(itemID);
         itemDetails.setText("Description:\n"+item.getDescription());
         //item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
@@ -99,7 +94,7 @@ public class ItemMenuController {
         stockLabel.setText(String.valueOf(item.getInStock()));
         gradeLabel.setText(String.valueOf(item.getRating()));
         priceLabel.setText(String.valueOf(item.getPrice()));
-        priceAfterSaleLabel.setText(String.valueOf(item.getPriceWithSale()));
+        priceAfterSaleLabel.setText(String.valueOf(Integer.parseInt(MakeRequest.makeGetItemPriceWithSaleRequest(itemID))));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
@@ -113,7 +108,7 @@ public class ItemMenuController {
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
-            if(item.isInSale()==true && item.getInStock()!=0) {
+            if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
                 messageImageName=messagePath+"sale.png";
             }
             if(messageImageName!=null){
@@ -155,7 +150,7 @@ public class ItemMenuController {
 
     public void comment(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        User user=UserController.getInstance().getCurrentOnlineUser();
+        User user=MakeRequest.makeGetUserRequest();
         if(user==null){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -186,7 +181,7 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-        String message=ItemAndCategoryController.getInstance().rate(rating,itemID);
+        String message=MakeRequest.makeRateRequest(rating,itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
@@ -195,7 +190,7 @@ public class ItemMenuController {
     }
 
     public  void addAttributeListView(){
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item=MakeRequest.makeGetItemById(itemID);
         HashMap<String , String> attributes=item.getAttributes();
         String print=null;
         for(String key:attributes.keySet()){
@@ -210,7 +205,7 @@ public class ItemMenuController {
     }
 
     public void commentListViewInitialize(){
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item=MakeRequest.makeGetItemById(itemID);
         for(Comment comment:item.getAllComments()){
             comments.add(comment);
         }
@@ -219,8 +214,8 @@ public class ItemMenuController {
 
     public void addToCart(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        User user=Controller.getInstance().getCurrentOnlineUser();
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        User user=MakeRequest.makeGetUserRequest();
+        Item item=MakeRequest.makeGetItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -229,8 +224,7 @@ public class ItemMenuController {
             alert.show();
             return;
         }
-        Cart cart=Controller.getInstance().getCurrentShoppingCart();
-        if(cart.includesItem(itemID)){
+        if(MakeRequest.cartIncludesItem(itemID)){
             MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
@@ -246,7 +240,7 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-        CartController.getInstance().addItemToCart(itemID);
+        MakeRequest.addItemToCart(itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
@@ -296,12 +290,12 @@ public class ItemMenuController {
     }
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
+        Item item=MakeRequest.makeGetItemById(itemID);
+        Category category= MakeRequest.getCategoryByName(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
         for(String id:category.getAllItemsID()){
             if(id.equals(itemID)) continue;
-            allItems.add(ItemAndCategoryController.getInstance().getItemById(id).getName()+" id:"+id);
+            allItems.add(MakeRequest.makeGetItemById(id).getName()+" id:"+id);
         }
         itemComoBox.setItems(allItems);
     }
@@ -332,7 +326,7 @@ public class ItemMenuController {
             }
             else {
                 addReplyAction(reply,comment);
-                String path= UserController.getInstance().userImagePath(comment.getUsername());
+                String path= MakeRequest.makeUserImagePathRequest();
                 File file=new File(path);
                 try {
                     imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
@@ -405,14 +399,14 @@ public class ItemMenuController {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(Controller.getInstance().getCurrentOnlineUser()==null){
+                if(MakeRequest.makeGetUserRequest()==null){
                     MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("you must login first!");
                     alert.showAndWait();
                     return;
                 }
-                if(!(Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)){
+                if(!(MakeRequest.makeGetUserRequest() instanceof Buyer)){
                     MusicManager.getInstance().playSound("error");
                     Alert alert=new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("only Buyers can leave comment here!");
@@ -428,7 +422,7 @@ public class ItemMenuController {
     }
 
     public void initializeMediaPlayer(){
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item=MakeRequest.makeGetItemById(itemID);
         if(item.getVideoName().equals("")){
             videoLabel.setText("no video for playing!");
             return;
@@ -457,7 +451,7 @@ public class ItemMenuController {
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item=MakeRequest.makeGetItemById(itemID);
         if(item.getVideoName().equals("")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -572,11 +566,11 @@ public class ItemMenuController {
 
     public void updateSimpleItem(){
         ArrayList<Item> allItems=new ArrayList<>();
-        Item item=ItemAndCategoryController.getInstance().getItemById(itemID);
-        Category category=ItemAndCategoryController.getInstance().getCategoryByName(item.getCategoryName());
+        Item item=MakeRequest.makeGetItemById(itemID);
+        Category category=MakeRequest.getCategoryByName(item.getCategoryName());
         for(String id:category.getAllItemsID()){
             if(id.equals(item.getId())) continue;
-            allItems.add(ItemAndCategoryController.getInstance().getItemById(id));
+            allItems.add(MakeRequest.makeGetItemById(id));
         }
         allSimpleItems.setAll(allItems);
         familyItemListView.setItems(allSimpleItems);
@@ -609,8 +603,8 @@ public class ItemMenuController {
 
     private void updateAlternates(){
         alternativeOptions.clear();
-        Item thisItem = ItemAndCategoryController.getInstance().getItemById(itemID);
-        for(Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()){
+        Item thisItem = MakeRequest.makeGetItemById(itemID);
+        for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
             if(itemsAreEqual(thisItem,item)){
                 alternativeOptions.add(item);
             }

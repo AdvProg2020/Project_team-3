@@ -2,12 +2,9 @@ package Project.Client.Menus.MenuController.BuyerMenu;
 
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.Buyer;
-import Server.Controller.Controller;
-
 import Project.Client.Menus.MenuController.ViewRequestUser;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
 import Project.Client.CLI.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +23,7 @@ public class BuyerMenuController {
     @FXML private Label personalInfo;
     @FXML private AnchorPane pane;
     public void initialize(){
-        Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
 //        if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)
@@ -96,7 +93,7 @@ public class BuyerMenuController {
     public void viewRequests(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("BuyerMenu");
-        ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
+        ViewRequestUser.setUsername(MakeRequest.makeGetUserRequest().getUsername());
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
     }
 }

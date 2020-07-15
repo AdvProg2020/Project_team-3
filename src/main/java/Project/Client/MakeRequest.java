@@ -1,13 +1,14 @@
 package Project.Client;
 
 import Project.Client.Model.Item;
+import Project.Client.Model.Logs.BuyLog;
 import Project.Client.Model.SortAndFilter;
 import Project.Client.Model.Users.User;
+import Project.Client.Model.Category;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import java.util.ArrayList;
 
 public class MakeRequest {
@@ -269,12 +270,13 @@ public class MakeRequest {
    }
 
    //type 2
-   public static String makeGetBuyerLogsRequest() {
+      public static ArrayList<BuyLog> makeGetBuyerLogsRequest() {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("type", 2);
       jsonObject.addProperty("content", "getAllLogs");
-      return Client.getInstance().sendMessage(jsonObject);
+      String response= Client.getInstance().sendMessage(jsonObject);
+      return ObjectMapper.getAllBuyLogsForBuyer(response);
    }
 
    public static String makeGetBuyerDiscountCodesRequest() {
@@ -282,7 +284,8 @@ public class MakeRequest {
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("type", 2);
       jsonObject.addProperty("content", "getAllDiscountCodes");
-      return Client.getInstance().sendMessage(jsonObject);
+      String response= Client.getInstance().sendMessage(jsonObject);
+      return response;
    }
 
    public static String makeCommentRequest(String comment, String fatherCommentId, String itemId) {
@@ -344,6 +347,68 @@ public class MakeRequest {
    }
 
    //type 0
+   public static String addItemToCart(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","addItemToCart");
+      jsonObject.addProperty("itemId",itemId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static Category getCategoryByName(String name){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","getCategory");
+      jsonObject.addProperty("categoryName",name);
+      String response=Client.getInstance().sendMessage(jsonObject);
+      return ObjectMapper.getCategory(response);
+   }
+
+   public static boolean cartIncludesItem(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","includeItem");
+      jsonObject.addProperty("itemId",itemId);
+      String response=Client.getInstance().sendMessage(jsonObject);
+      if(response.equals("true")) return true;
+      else return false;
+   }
+
+   public static ArrayList<Item> makeRequestGetAllItemsFromDataBase(){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","getAllItemsFromDataBase");
+      String response=Client.getInstance().sendMessage(jsonObject);
+      return ObjectMapper.getAllItemFromDatabase(response);
+   }
+
+   public static String makeGetItemPriceWithSaleRequest(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","itemPriceWithSale");
+      jsonObject.addProperty("itemId",itemId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static String makeRateRequest(int rating,String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","rateItem");
+      jsonObject.addProperty("itemId",itemId);
+      jsonObject.addProperty("rating",rating);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static boolean isInSaleItem(String itemId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("content","isInSale");
+      jsonObject.addProperty("itemId",itemId);
+      String response=Client.getInstance().sendMessage(jsonObject);
+      if(response.equals("true")) return true;
+      else return false;
+   }
+
    public static String makeGetItemCountInCart(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");

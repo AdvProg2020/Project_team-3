@@ -123,7 +123,6 @@ public class Item {
         this.sellerName = sellerName;
     }
 
-
     public HashMap<String, String> getAttributes() {
         return attributes;
     }
@@ -140,20 +139,14 @@ public class Item {
         return viewCount;
     }
 
-
-
     public ArrayList<String> getBuyerUserName() {
         return buyerUserName;
     }
-
-
-
 
     public boolean isBuyerWithUserName(String userName) {
         if (buyerUserName.contains(userName)) return true;
         return false;
     }
-
 
 
     public String showAttributes() {
@@ -175,12 +168,9 @@ public class Item {
     }
 
 
-
     public String toSimpleString() {
         return id + "        " + name + "        " + price;
     }
-
-
 
     public void addViewsBy(int count) {
         this.viewCount += count;

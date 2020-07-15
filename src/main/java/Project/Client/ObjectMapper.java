@@ -5,10 +5,14 @@ import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.Seller;
 import Project.Client.Model.Users.User;
+import Project.Client.Model.Category;
+import Project.Client.Model.Logs.BuyLog;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ObjectMapper {
 
@@ -59,6 +63,27 @@ public class ObjectMapper {
       Item item=gson.fromJson(itemGson,Item.class);
       return item;
    }
+
+   public static ArrayList<Item> getAllItemFromDatabase(String gsonString){
+      Gson gson=new Gson();
+      TypeToken<List<Item>> token = new TypeToken<List<Item>>() {};
+      ArrayList<Item> allItems=gson.fromJson(gsonString,token.getType());
+      return allItems;
+   }
+
+   public static ArrayList<BuyLog> getAllBuyLogsForBuyer(String gsonString){
+      Gson gson=new Gson();
+      TypeToken<List<BuyLog>> token = new TypeToken<List<BuyLog>>() {};
+      ArrayList<BuyLog> all=gson.fromJson(gsonString,token.getType());
+      return all;
+   }
+
+   public static Category getCategory(String gsonString){
+      Gson gson=new Gson();
+      Category category=gson.fromJson(gsonString,Category.class);
+      return category;
+   }
+
 
    public static String getJsonStringField(JsonObject json,String field){
       return json.get(field).toString().replace("\"","");
