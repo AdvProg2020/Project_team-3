@@ -31,7 +31,7 @@ public class DiscountsMenu {
 
    public void update() {
       String response=MakeRequest.makeGetBuyerDiscountCodesRequest();
-      discountList.getItems().addAll(response);
+      discountList.getItems().addAll(response.split("\n"));
       if(discountList.getItems().isEmpty())
          discountList.getItems().add("you dont have any discount codes");
    }

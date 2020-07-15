@@ -219,7 +219,7 @@ public class MainMenuController {
 
     @FXML
     private void shop(){
-        animationTimer.stop();
+//        animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }

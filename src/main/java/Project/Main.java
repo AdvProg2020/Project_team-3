@@ -7,8 +7,6 @@ import Project.Client.Model.Users.Admin;
 
 import Server.Controller.Controller;
 import Server.Controller.Database;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.gson.JsonObject;
 import javafx.application.Application;

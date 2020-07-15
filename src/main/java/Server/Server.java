@@ -8,9 +8,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-   private ServerSocket server;
-   private DataOutputStream dataOutputStream;
-   private DataInputStream dataInputStream;
+   private static ServerSocket server;
+   private static DataOutputStream dataOutputStream;
+   private static DataInputStream dataInputStream;
 
    public Server() {
       try {
@@ -41,6 +41,10 @@ public class Server {
             }
          }
       }).start();
+   }
+
+   public static DataOutputStream getDataOutputStream() {
+      return dataOutputStream;
    }
 
    public static void main(String[] args) {

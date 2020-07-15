@@ -1,13 +1,11 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
 import Project.Client.MakeRequest;
-import Server.Controller.Controller;
-import Server.Model.Users.Seller;
-import Server.Model.Users.User;
+import Project.Client.Model.Users.Seller;
+
 import Project.Client.Menus.MenuController.ViewRequestUser;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
 import Project.Client.CLI.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,12 +23,11 @@ public class SellerMenuController {
     @FXML private Label personalInfo;
     @FXML private AnchorPane pane;
     public void initialize(){
-        Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-        if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Seller){
-            User onlineUser=Controller.getInstance().getCurrentOnlineUser();
-            String path=UserController.getInstance().userImagePath(onlineUser.getUsername());
+        if(MakeRequest.isTokenValid() && MakeRequest.makeGetUserRequest() instanceof Seller){
+            String path=MakeRequest.makeUserImagePathRequest();
             File file=new File(path);
             try {
                 sellerImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
@@ -54,7 +51,7 @@ public class SellerMenuController {
     @FXML
     private void logout(){
         MusicManager.getInstance().playSound("Button");
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
@@ -105,7 +102,7 @@ public class SellerMenuController {
     public void viewRequests(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().saveScene("SellerMenu");
-        ViewRequestUser.setUsername(UserController.getInstance().getCurrentOnlineUserUsername());
+        ViewRequestUser.setUsername(MakeRequest.makeGetUserRequest().getUsername());
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
    }
 }
