@@ -21,14 +21,14 @@ public class Item {
     private String sellerName;
     private String categoryName;
     private ArrayList<String> buyerUserName;
-    private ArrayList<Rating> allRatings;
+    double rating;
     private ArrayList<Comment> allComments;
     private String saleId;
     private String imageName;
     private String videoName;
     private String addedTime;
 
-    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName) {
+    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName,String imageName,String sellerName,String categoryName,double rating,ArrayList<Comment> allComments) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -39,6 +39,11 @@ public class Item {
         this.viewCount = viewCount;
         this.attributes = attributes;
         this.buyerUserName=buyerUserName;
+        this.sellerName=sellerName;
+        this.imageName=imageName;
+        this.categoryName=categoryName;
+        this.rating=rating;
+        this.allComments=allComments;
     }
 
     public double getPrice() {
@@ -69,25 +74,8 @@ public class Item {
         return description;
     }
 
-    public boolean hasUserRated(String username) {
-        for (Rating rating : allRatings) {
-            if (rating.getUsername().equals(username)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public double getRating() {
-        double ratingSum = 0;
-        if (allRatings.size() == 0) {
-            return 0;
-        } else {
-            for (Rating rating : allRatings) {
-                ratingSum += rating.getScore();
-            }
-            return ratingSum / allRatings.size();
-        }
+      return rating;
     }
 
     //setters
@@ -204,10 +192,5 @@ public class Item {
         return saleId;
     }
 
-    public Comment getCommentById(String id) {
-        for (Comment comment : allComments) {
-            if (comment.getCommentId().equals(id)) return comment;
-        }
-        return null;
-    }
+
 }

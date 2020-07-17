@@ -6,6 +6,7 @@ import Project.Client.Menus.MenuController.ViewRequestUser;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -26,16 +27,16 @@ public class BuyerMenuController {
         MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-//        if(Controller.getInstance().isLogin()==true && Controller.getInstance().getCurrentOnlineUser() instanceof Buyer)
-            //Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
-            String path=MakeRequest.makeUserImagePathRequest();
-            File file=new File(path);
-            try {
-                userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        personalInfoUpdate();
+       if(MakeRequest.isTokenValid() && MakeRequest.makeGetUserRequest() instanceof Buyer) {
+           String path = MakeRequest.makeUserImagePathRequest();
+           File file = new File(path);
+           try {
+               userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+           } catch (MalformedURLException e) {
+               e.printStackTrace();
+           }
+           personalInfoUpdate();
+       }
     }
 
     public void personalInfoUpdate(){

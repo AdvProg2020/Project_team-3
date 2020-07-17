@@ -81,11 +81,8 @@ public class ItemMenuController {
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         MakeRequest.makeAddViewToItem(itemID);
-       //  mirza Item item= MakeRequest.makeGetItemById(itemID);
-        Item item=null;
-        System.out.println("made get req");
+        Item item= MakeRequest.getItem(itemID);
         itemDetails.setText("Description:\n"+item.getDescription());
-        //item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
         itemNameLabelBigFont.setText(item.getName());
         categoryLabel.setText(item.getCategoryName());
@@ -94,7 +91,7 @@ public class ItemMenuController {
         stockLabel.setText(String.valueOf(item.getInStock()));
         gradeLabel.setText(String.valueOf(item.getRating()));
         priceLabel.setText(String.valueOf(item.getPrice()));
-        priceAfterSaleLabel.setText(String.valueOf(Integer.parseInt(MakeRequest.makeGetItemPriceWithSaleRequest(itemID))));
+        // mirza priceAfterSaleLabel.setText(String.valueOf(Integer.parseInt(MakeRequest.makeGetItemPriceWithSaleRequest(itemID))));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
@@ -108,9 +105,9 @@ public class ItemMenuController {
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
-            if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
+        /*mirza    if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
                 messageImageName=messagePath+"sale.png";
-            }
+            } */
             if(messageImageName!=null){
                 File message=new File(messageImageName);
                 messageImageView.setImage(new Image(String.valueOf(message.toURI().toURL())));
@@ -181,22 +178,22 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-        String message=MakeRequest.makeRateRequest(rating,itemID);
+       //mirza String message=MakeRequest.makeRateRequest(rating,itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(message);
+       //mirza alert.setContentText(message);
         alert.showAndWait();
         initialize();
     }
 
     public  void addAttributeListView(){
-        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
-        //  mirza  HashMap<String , String> attributes=item.getAttributes();
-        String print=null;
-        //  mirza    for(String key:attributes.keySet()){
-        //  mirza      print=key+"                   "+attributes.get(key);
-        //  mirza       attributeListView.getItems().add(print);
-        //  mirza   }
+         Item item=MakeRequest.getItem(itemID);
+         HashMap<String , String> attributes=item.getAttributes();
+         String print=null;
+           for(String key:attributes.keySet()){
+             print=key+"                   "+attributes.get(key);
+              attributeListView.getItems().add(print);
+         }
     }
 
     public void back(ActionEvent actionEvent) {
@@ -205,17 +202,17 @@ public class ItemMenuController {
     }
 
     public void commentListViewInitialize(){
-        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
-        //  mirza  for(Comment comment:item.getAllComments()){
-        //  mirza       comments.add(comment);
-        //  mirza   }
-        //  mirza   commentListView.setItems(comments);
+        Item item=MakeRequest.getItem(itemID);
+         for(Comment comment:item.getAllComments()){
+              comments.add(comment);
+         }
+         commentListView.setItems(comments);
     }
 
     public void addToCart(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         User user=MakeRequest.makeGetUserRequest();
-        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
+        Item item=MakeRequest.getItem(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -232,15 +229,15 @@ public class ItemMenuController {
             alert.show();
             return;
         }
-        /*  mirza    if(item.getInStock()==0){
+            if(item.getInStock()==0){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("sold out Item!");
             alert.showAndWait();
             return;
-        } */
-        MakeRequest.addItemToCart(itemID);
+        }
+     // mirza   MakeRequest.addItemToCart(itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
@@ -290,7 +287,7 @@ public class ItemMenuController {
     }
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
-        //  mirza Item item=MakeRequest.makeGetItemById(itemID);
+        Item item=MakeRequest.getItem(itemID);
         //  mirza   Category category= MakeRequest.getCategoryByName(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
         //  mirza    for(String id:category.getAllItemsID()){
@@ -319,7 +316,7 @@ public class ItemMenuController {
             setPrefWidth(USE_PREF_SIZE);
         }
         @Override
-        protected  void updateItem(Comment comment,boolean empty){
+      protected  void updateItem(Comment comment,boolean empty){
             super.updateItem(comment,empty);
             if(empty||comment==null){
                 setGraphic(null);
@@ -422,7 +419,7 @@ public class ItemMenuController {
     }
 
     public void initializeMediaPlayer(){
-      /*  //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
+      /*  Item item=MakeRequest.getItem(itemID);
          if(item.getVideoName().equals("")){
             videoLabel.setText("no video for playing!");
             return;
@@ -446,12 +443,11 @@ public class ItemMenuController {
                 mediaPlayer.pause();
             }
         }); */
-
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
      /*   MusicManager.getInstance().playSound("Button");
-        //  mirza   Item item=MakeRequest.makeGetItemById(itemID);
+        //    Item item=MakeRequest.makeGetItemById(itemID);
         if(item.getVideoName().equals("")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -603,9 +599,9 @@ public class ItemMenuController {
     }
 
     private void updateAlternates(){
-        /*  mirza     alternativeOptions.clear();
-        Item thisItem = MakeRequest.makeGetItemById(itemID);
-        for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
+            alternativeOptions.clear();
+        Item thisItem = MakeRequest.getItem(itemID);
+     /*   for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
             if(itemsAreEqual(thisItem,item)){
                 alternativeOptions.add(item);
             }

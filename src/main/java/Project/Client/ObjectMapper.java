@@ -1,5 +1,6 @@
 package Project.Client;
 
+import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Buyer;
@@ -8,6 +9,8 @@ import Project.Client.Model.Users.User;
 import Project.Client.Model.Category;
 import Project.Client.Model.Logs.BuyLog;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -66,15 +69,37 @@ public class ObjectMapper {
       String name=getJsonStringField(json,"name");
       String brand=getJsonStringField(json,"brand");
       double price=json.get("price").getAsDouble();
+      double rating=json.get("rating").getAsDouble();
       String description=getJsonStringField(json,"description");
       String productId=getJsonStringField(json,"id");
+      String sellerName=getJsonStringField(json,"sellerName");
+      String imageName=getJsonStringField(json,"imageName");
+      String categoryName=getJsonStringField(json,"categoryName");
       int inStock=json.get("inStock").getAsInt();
       int viewCount=json.get("viewCount").getAsInt();
       int timesBought=json.get("timesBought").getAsInt();
       Gson gson = new Gson();
       HashMap attributes=gson.fromJson(json.get("attributes"), HashMap.class);
       ArrayList<String> allBuyers=gson.fromJson(json.get("buyerUserName"), ArrayList.class);
-      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers);
+      ArrayList<Comment> allComments=new ArrayList<>();
+      JsonArray comments=json.getAsJsonArray("allComments");
+      for (JsonElement comment : comments) {
+         allComments.add(jsonToComment(comment.getAsJsonObject()));
+      }
+      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers,imageName,sellerName,categoryName,rating,allComments);
+   }
+
+   public static Comment jsonToComment(JsonObject json){
+      String username=getJsonStringField(json,"username");
+      String text=getJsonStringField(json,"text");
+      Boolean hasBought=json.get("hasBought").getAsBoolean();
+      ArrayList<Comment> allReplies=new ArrayList<>();
+      Gson gson = new Gson();
+      JsonArray replies=json.getAsJsonArray("allReplies");
+      for (JsonElement reply : replies) {
+         allReplies.add(jsonToComment(reply.getAsJsonObject()));
+      }
+      return new Comment(username,text,hasBought,allReplies);
    }
 
    public static String getJsonStringField(JsonObject json,String field){

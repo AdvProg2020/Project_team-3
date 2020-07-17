@@ -392,7 +392,10 @@ public class RequestProcessor {
          String productId=getJsonStringField(command,"product id");
          Item item=ItemAndCategoryController.getInstance().getItemById(productId);
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         return gson.toJson(item);
+         JsonParser parser = new JsonParser();
+         JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
+         json.addProperty("rating",item.getRating());
+         return json.toString();
       }
 
       if(getJsonStringField(command,"content").equals("itemPriceWithSale")){

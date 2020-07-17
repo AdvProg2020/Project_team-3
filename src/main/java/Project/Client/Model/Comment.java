@@ -3,40 +3,30 @@ package Project.Client.Model;
 import java.util.ArrayList;
 
 public class Comment {
-   private String username;
-   private String itemId;
-   private String text;
+   public String username;
+   public String text;
 
-   private enum Status {accepted, inProcess}
+   public enum Status {accepted, inProcess}
 
-   private Boolean hasBought;
-   private Status status;
-   private String fatherCommentId;
-   private String commentId;
-   private ArrayList<Comment> allReplies=new ArrayList<>();
+   public Boolean hasBought;
+   public String fatherCommentId;
+   public String commentId;
+   public ArrayList<Comment> allReplies=new ArrayList<>();
 
-   public Comment(String username, String itemId, String text, Boolean hasBought) {
+   public Comment(String username,String text, Boolean hasBought,ArrayList<Comment> allReplies) {
       this.username = username;
-      this.itemId = itemId;
       this.text = text;
       this.hasBought = hasBought;
+      this.allReplies=allReplies;
    }
 
-   public void accept() {
-      status = Status.accepted;
-   }
 
-   public void inProcess() {
-      status = Status.inProcess;
-   }
 
    public String getUsername() {
       return username;
    }
 
-   public String getItemId() {
-      return itemId;
-   }
+
 
    public String getText() {
       return text;
@@ -65,5 +55,7 @@ public class Comment {
    public String getCommentId(){return this.commentId;}
 
    public ArrayList<Comment> getAllReplies(){return allReplies;}
+
+
 
 }
