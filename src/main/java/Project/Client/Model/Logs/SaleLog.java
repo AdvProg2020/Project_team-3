@@ -13,8 +13,8 @@ public class SaleLog {
     //private String deliveryState;
 
 
-    public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count , String sellerUsername) {
-        this.time = time.toString();
+    public SaleLog(String time, double price, String itemId, String buyerName, int count , String sellerUsername) {
+        this.time = time;
         this.price = price;
         this.itemId = itemId;
         this.buyerName = buyerName;

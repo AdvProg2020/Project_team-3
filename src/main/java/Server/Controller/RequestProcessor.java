@@ -5,6 +5,7 @@ package Server.Controller;
 import Project.Client.Model.SortAndFilter;
 import Server.Model.Category;
 import Server.Model.Item;
+import Server.Model.Logs.SaleLog;
 import Server.Model.Sale;
 import com.google.gson.*;
 
@@ -246,6 +247,10 @@ public class RequestProcessor {
          return UserController.getInstance().getBuyerDiscountCode();
       }
 
+      if(getJsonStringField(command,"content").equals("get buy log")){
+         return UserController.getInstance().getBuyLogs(username);
+      }
+
       if(getJsonStringField(command,"content").equals("rate")){
          String id=getJsonStringField(command,"id");
          int score=command.get("score").getAsInt();
@@ -289,6 +294,12 @@ public class RequestProcessor {
             attribute.put(attributeKey.get(i),attributeValue.get(i));
          }
          return ItemAndCategoryController.getInstance().addItem(name,brand,description,price,inStock,categoryName,attribute,image,video);
+      }
+
+      if(getJsonStringField(command,"content").equals("get sale log")){
+         ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(saleLogs).toString();
       }
 
       if(getJsonStringField(command,"content").equals("remove product")){
@@ -502,6 +513,8 @@ public class RequestProcessor {
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
          return gson.toJson(sale).toString();
       }
+
+
 
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
