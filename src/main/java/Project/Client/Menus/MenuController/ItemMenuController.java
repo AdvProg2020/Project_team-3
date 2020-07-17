@@ -105,9 +105,9 @@ public class ItemMenuController {
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
-        /*mirza    if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
+           if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
                 messageImageName=messagePath+"sale.png";
-            } */
+            }
             if(messageImageName!=null){
                 File message=new File(messageImageName);
                 messageImageView.setImage(new Image(String.valueOf(message.toURI().toURL())));
@@ -178,10 +178,10 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-       //mirza String message=MakeRequest.makeRateRequest(rating,itemID);
+        String message=MakeRequest.makeRatingRequest(rating,itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-       //mirza alert.setContentText(message);
+        alert.setContentText(message);
         alert.showAndWait();
         initialize();
     }
@@ -561,9 +561,9 @@ public class ItemMenuController {
     }
 
     public void updateSimpleItem(){
-     /* //  mirza    ArrayList<Item> allItems=new ArrayList<>();
-        Item item=MakeRequest.makeGetItemById(itemID);
-        Category category=MakeRequest.getCategoryByName(item.getCategoryName());
+        ArrayList<Item> allItems=new ArrayList<>();
+        Item item=MakeRequest.getItem(itemID);
+      /*  Category category=MakeRequest.getCategoryByName(item.getCategoryName());
         for(String id:category.getAllItemsID()){
             if(id.equals(item.getId())) continue;
             allItems.add(MakeRequest.makeGetItemById(id));
@@ -575,7 +575,7 @@ public class ItemMenuController {
             public ListCell<Item> call(ListView<Item> param) {
                 return  new simpleItemImageTextCell();
             }
-        });*/
+        }); */
     }
 
     public void showItem(MouseEvent mouseEvent) {
@@ -601,12 +601,12 @@ public class ItemMenuController {
     private void updateAlternates(){
             alternativeOptions.clear();
         Item thisItem = MakeRequest.getItem(itemID);
-     /*   for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
+        for(Item item : MakeRequest.getAllItem()){
             if(itemsAreEqual(thisItem,item)){
                 alternativeOptions.add(item);
             }
         }
-        updateChoiceBox(); */
+        updateChoiceBox();
     }
 
     @FXML private ChoiceBox sellerChoiceBox;

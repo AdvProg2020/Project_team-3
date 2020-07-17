@@ -237,9 +237,17 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("getAllLogs")){
          return UserController.getInstance().getBuyLogs(username);
       }
+
       if(getJsonStringField(command,"content").equals("getAllDiscountCodes")){
          return UserController.getInstance().getBuyerDiscountCode();
       }
+
+      if(getJsonStringField(command,"content").equals("rate")){
+         String id=getJsonStringField(command,"id");
+         int score=command.get("score").getAsInt();
+         return ItemAndCategoryController.getInstance().rate(score,id);
+      }
+
       if(getJsonStringField(command,"content").equals("comment")){
          String fatherComment=getJsonStringField(command,"fatherCommentId");
          String itemId=getJsonStringField(command,"itemId");
@@ -404,23 +412,19 @@ public class RequestProcessor {
          return String.valueOf(item.getPriceWithSale());
       }
 
-      if(getJsonStringField(command,"content").equals("isInSale")){
-         String itemId=getJsonStringField(command,"itemId");
+      if(getJsonStringField(command,"content").equals("is in sale")){
+         String itemId=getJsonStringField(command,"id");
          Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
          if(item.isInSale()==true) return "true";
-         else return "false";
+         return "false";
       }
 
-      if(getJsonStringField(command,"content").equals("rateItem")){
-         String itemId=getJsonStringField(command,"itemId");
-         int rating=Integer.parseInt(getJsonStringField(command,"rating"));
-         return ItemAndCategoryController.getInstance().rate(rating,itemId);
-      }
-
-      if(getJsonStringField(command,"content").equals("getAllItemsFromDataBase")){
-         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
-         Gson gson=new Gson();
-         return gson.toJson(allItems);
+      if(getJsonStringField(command,"content").equals("get all item id")){
+         ArrayList<String> allItemId=new ArrayList<>();
+         for (Item item : ItemAndCategoryController.getInstance().getAllItemFromDataBase()) {
+            allItemId.add(item.getId());
+         }
+         return allItemId.toString();
       }
 
       if(getJsonStringField(command,"content").equals("includeItem")){
