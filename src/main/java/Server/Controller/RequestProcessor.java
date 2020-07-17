@@ -321,14 +321,7 @@ public class RequestProcessor {
          return SaleAndDiscountCodeController.getInstance().editSale(id,field,value);
       }
 
-      if(getJsonStringField(command,"content").equals("get sale")){
-        Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
-        JsonObject json=new JsonObject();
-        json.addProperty("start",sale.getStartTime().toString());
-        json.addProperty("end",sale.getEndTime().toString());
-        json.addProperty("percent",sale.getOffPercentage());
-        return json.toString();
-      }
+
 
       if(getJsonStringField(command,"content").equals("add sale")){
          LocalDateTime start=getDate(getJsonStringField(command,"start"));
@@ -504,6 +497,11 @@ public class RequestProcessor {
          return CartController.getInstance().addItemToCart(itemId);
       }
 
+      if(getJsonStringField(command,"content").equals("get sale")){
+         Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(sale).toString();
+      }
 
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();

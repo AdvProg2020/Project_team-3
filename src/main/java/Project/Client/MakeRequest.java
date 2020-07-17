@@ -178,7 +178,7 @@ public class MakeRequest {
    public static Sale makeGetSale(String saleId){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
-      json.addProperty("type", 3);
+      json.addProperty("type", 0);
       json.addProperty("content", "get sale");
       json.addProperty("id",saleId);
       JsonParser parser = new JsonParser();

@@ -86,7 +86,8 @@ public class ObjectMapper {
       for (JsonElement comment : comments) {
          allComments.add(jsonToComment(comment.getAsJsonObject()));
       }
-      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers,imageName,sellerName,categoryName,rating,allComments);
+      String saleId=getJsonStringField(json,"saleId");
+      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers,imageName,sellerName,categoryName,rating,allComments,saleId);
    }
 
    public static Comment jsonToComment(JsonObject json){
@@ -113,9 +114,9 @@ public class ObjectMapper {
    }
 
    public static Sale jsonToSale(JsonObject json){
-      int percent=json.get("percent").getAsInt();
-      String start=getJsonStringField(json,"start");
-      String end=getJsonStringField(json,"end");
+      int percent=json.get("offPercentage").getAsInt();
+      String start=getJsonStringField(json,"startTime");
+      String end=getJsonStringField(json,"endTime");
       return new Sale(percent,start,end);
    }
    public static String getJsonStringField(JsonObject json,String field){

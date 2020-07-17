@@ -28,7 +28,7 @@ public class Item {
     private String videoName;
     private String addedTime;
 
-    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName,String imageName,String sellerName,String categoryName,double rating,ArrayList<Comment> allComments) {
+    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName,String imageName,String sellerName,String categoryName,double rating,ArrayList<Comment> allComments,String saleId) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -44,6 +44,7 @@ public class Item {
         this.categoryName=categoryName;
         this.rating=rating;
         this.allComments=allComments;
+        this.saleId=saleId;
     }
 
     public double getPrice() {
