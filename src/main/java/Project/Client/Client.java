@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class Client {
+   private String bankAccountToken="";
    private String Token;
    private int port=9000;
    private static Client client;
@@ -44,5 +45,11 @@ public class Client {
       return Token;
    }
 
+   public String getBankAccountToken() {
+      return bankAccountToken;
+   }
 
+   public void setBankAccountToken(String bankAccountToken) {
+      this.bankAccountToken = bankAccountToken;
+   }
 }

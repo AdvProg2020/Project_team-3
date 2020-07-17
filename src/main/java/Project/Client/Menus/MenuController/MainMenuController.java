@@ -133,7 +133,7 @@ public class MainMenuController {
     }
 
     public void registerSeller(){
-        animationTimer.stop();
+       // animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SellerRegister");
     }
@@ -230,7 +230,7 @@ public class MainMenuController {
 
     public void cartMenu(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        animationTimer.stop();
+        //animationTimer.stop();
         User user=MakeRequest.makeGetUserRequest();
         if(user instanceof Seller || user instanceof Admin) {
             MusicManager.getInstance().playSound("error");
@@ -246,7 +246,7 @@ public class MainMenuController {
 
     public void ShopMenu(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        animationTimer.stop();
+        //animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
@@ -268,7 +268,7 @@ public class MainMenuController {
 
     public void saleShop(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
-        animationTimer.stop();
+        //animationTimer.stop();
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SalesMenu");
     }
