@@ -16,15 +16,16 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 
 public class compareMenuController {
-    public ListView secondItemListView;
-    public ListView firstItemListView;
-    public ImageView secondItemImageView;
-    public ImageView firstItemImageView;
+    @FXML public ListView secondItemListView;
+    @FXML public ListView firstItemListView;
+    @FXML public ImageView secondItemImageView;
+    @FXML public ImageView firstItemImageView;
+    @FXML private AnchorPane pane;
 
     private static String firstItemID;
     private static String secondItemID;
-    @FXML
-    private AnchorPane pane;
+
+
     public static void setFirstItemID(String firstItemID) {
         compareMenuController.firstItemID = firstItemID;
     }
@@ -34,12 +35,12 @@ public class compareMenuController {
     }
 
     public void initialize(){
-        View.setFonts(pane);
+         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
-        Item first= MakeRequest.makeGetItemById(firstItemID);
-        Item second= MakeRequest.makeGetItemById(secondItemID);
-        String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
-        String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
+          Item first=MakeRequest.getItem(firstItemID);
+          Item second=MakeRequest.getItem(secondItemID);
+          String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
+          String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
         File firstFile=new File(firstPath);
         File secondFile=new File(secondPath);
         try {

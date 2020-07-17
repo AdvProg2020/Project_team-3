@@ -81,10 +81,8 @@ public class ItemMenuController {
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         MakeRequest.makeAddViewToItem(itemID);
-        Item item= MakeRequest.makeGetItemById(itemID);
-        System.out.println("made get req");
+        Item item= MakeRequest.getItem(itemID);
         itemDetails.setText("Description:\n"+item.getDescription());
-        //item.addViewsBy(1);
         itemNameLabel.setText(item.getName());
         itemNameLabelBigFont.setText(item.getName());
         categoryLabel.setText(item.getCategoryName());
@@ -93,7 +91,7 @@ public class ItemMenuController {
         stockLabel.setText(String.valueOf(item.getInStock()));
         gradeLabel.setText(String.valueOf(item.getRating()));
         priceLabel.setText(String.valueOf(item.getPrice()));
-        priceAfterSaleLabel.setText(String.valueOf(Integer.parseInt(MakeRequest.makeGetItemPriceWithSaleRequest(itemID))));
+        priceAfterSaleLabel.setText(String.valueOf(MakeRequest.makeGetItemPriceWithSaleRequest(itemID)));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
@@ -107,7 +105,7 @@ public class ItemMenuController {
             if(item.getInStock()==0){
                 messageImageName=messagePath+"soldOut.png";
             }
-            if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
+           if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
                 messageImageName=messagePath+"sale.png";
             }
             if(messageImageName!=null){
@@ -180,7 +178,7 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-        String message=MakeRequest.makeRateRequest(rating,itemID);
+        String message=MakeRequest.makeRatingRequest(rating,itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
@@ -189,13 +187,13 @@ public class ItemMenuController {
     }
 
     public  void addAttributeListView(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        HashMap<String , String> attributes=item.getAttributes();
-        String print=null;
-        for(String key:attributes.keySet()){
-            print=key+"                   "+attributes.get(key);
-            attributeListView.getItems().add(print);
-        }
+         Item item=MakeRequest.getItem(itemID);
+         HashMap<String , String> attributes=item.getAttributes();
+         String print=null;
+           for(String key:attributes.keySet()){
+             print=key+"                   "+attributes.get(key);
+              attributeListView.getItems().add(print);
+         }
     }
 
     public void back(ActionEvent actionEvent) {
@@ -204,17 +202,17 @@ public class ItemMenuController {
     }
 
     public void commentListViewInitialize(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        for(Comment comment:item.getAllComments()){
-            comments.add(comment);
-        }
-        commentListView.setItems(comments);
+        Item item=MakeRequest.getItem(itemID);
+         for(Comment comment:item.getAllComments()){
+              comments.add(comment);
+         }
+         commentListView.setItems(comments);
     }
 
     public void addToCart(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         User user=MakeRequest.makeGetUserRequest();
-        Item item=MakeRequest.makeGetItemById(itemID);
+        Item item=MakeRequest.getItem(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -231,7 +229,7 @@ public class ItemMenuController {
             alert.show();
             return;
         }
-        if(item.getInStock()==0){
+            if(item.getInStock()==0){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -239,7 +237,7 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-        MakeRequest.addItemToCart(itemID);
+     // mirza   MakeRequest.addItemToCart(itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");
@@ -289,14 +287,14 @@ public class ItemMenuController {
     }
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
-        Item item=MakeRequest.makeGetItemById(itemID);
-        Category category= MakeRequest.getCategoryByName(item.getCategoryName());
+        Item item=MakeRequest.getItem(itemID);
+        Category category= MakeRequest.getCategory(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
-        for(String id:category.getAllItemsID()){
-            if(id.equals(itemID)) continue;
-            allItems.add(MakeRequest.makeGetItemById(id).getName()+" id:"+id);
-        }
-        itemComoBox.setItems(allItems);
+           for(String id:category.getAllItemsID()){
+              if(id.equals(itemID)) continue;
+             allItems.add(MakeRequest.getItem(id).getName()+" id:"+id);
+          }
+            itemComoBox.setItems(allItems);
     }
 
 
@@ -318,7 +316,7 @@ public class ItemMenuController {
             setPrefWidth(USE_PREF_SIZE);
         }
         @Override
-        protected  void updateItem(Comment comment,boolean empty){
+      protected  void updateItem(Comment comment,boolean empty){
             super.updateItem(comment,empty);
             if(empty||comment==null){
                 setGraphic(null);
@@ -421,8 +419,8 @@ public class ItemMenuController {
     }
 
     public void initializeMediaPlayer(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        if(item.getVideoName().equals("")){
+      /*  Item item=MakeRequest.getItem(itemID);
+         if(item.getVideoName().equals("")){
             videoLabel.setText("no video for playing!");
             return;
         }
@@ -444,13 +442,12 @@ public class ItemMenuController {
                 mediaPlayer.seek(Duration.ZERO);
                 mediaPlayer.pause();
             }
-        });
-
+        }); */
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
-        MusicManager.getInstance().playSound("Button");
-        Item item=MakeRequest.makeGetItemById(itemID);
+     /*   MusicManager.getInstance().playSound("Button");
+        //    Item item=MakeRequest.makeGetItemById(itemID);
         if(item.getVideoName().equals("")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -465,7 +462,7 @@ public class ItemMenuController {
         }else{
             playPause.setText("Play");
             mediaPlayer.pause();
-        }
+        } */
     }
 
     public void addCommentDialogBox(){
@@ -565,8 +562,8 @@ public class ItemMenuController {
 
     public void updateSimpleItem(){
         ArrayList<Item> allItems=new ArrayList<>();
-        Item item=MakeRequest.makeGetItemById(itemID);
-        Category category=MakeRequest.getCategoryByName(item.getCategoryName());
+        Item item=MakeRequest.getItem(itemID);
+      /*  Category category=MakeRequest.getCategoryByName(item.getCategoryName());
         for(String id:category.getAllItemsID()){
             if(id.equals(item.getId())) continue;
             allItems.add(MakeRequest.makeGetItemById(id));
@@ -578,8 +575,9 @@ public class ItemMenuController {
             public ListCell<Item> call(ListView<Item> param) {
                 return  new simpleItemImageTextCell();
             }
-        });
+        }); */
     }
+
     public void showItem(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
         Item selected=familyItemListView.getSelectionModel().getSelectedItem();
@@ -601,9 +599,9 @@ public class ItemMenuController {
     }
 
     private void updateAlternates(){
-        alternativeOptions.clear();
-        Item thisItem = MakeRequest.makeGetItemById(itemID);
-        for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
+            alternativeOptions.clear();
+        Item thisItem = MakeRequest.getItem(itemID);
+        for(Item item : MakeRequest.getAllItem()){
             if(itemsAreEqual(thisItem,item)){
                 alternativeOptions.add(item);
             }

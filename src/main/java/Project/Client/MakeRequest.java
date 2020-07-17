@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MakeRequest {
    //type1
@@ -79,16 +80,8 @@ public class MakeRequest {
       json.addProperty("token", Client.getInstance().getToken());
       return Client.getInstance().sendMessage(json);
    }
-   //type 2 buyer menu
-   public static ArrayList<BuyLog> makeGetBuyerLogsRequest() {
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("token", Client.getInstance().getToken());
-      jsonObject.addProperty("type", 2);
-      jsonObject.addProperty("content", "getAllLogs");
-      String response= Client.getInstance().sendMessage(jsonObject);
-      return ObjectMapper.getAllBuyLogsForBuyer(response);
-   }
 
+   //type 2
    public static String makeGetBuyerDiscountCodesRequest() {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("token", Client.getInstance().getToken());
@@ -104,10 +97,21 @@ public class MakeRequest {
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("content", "comment");
       jsonObject.addProperty("comment", comment);
-      jsonObject.addProperty("fatherCommentId", fatherCommentId);
-      jsonObject.addProperty("itemId", itemId);
+      jsonObject.addProperty("father comment id", fatherCommentId);
+      jsonObject.addProperty("item id", itemId);
       return Client.getInstance().sendMessage(jsonObject);
    }
+
+   public static String makeRatingRequest(int score,String productId){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 2);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "rate");
+      jsonObject.addProperty("score", score);
+      jsonObject.addProperty("id",productId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    //type 3 seller menu
    public static String addProduct(String name, String brand, String description, double price, int inStock, String categoryName, ArrayList<String> attributesKey,ArrayList<String> attributeValue, String image, String video){
       JsonObject json = new JsonObject();
@@ -128,6 +132,27 @@ public class MakeRequest {
       json.add("attribute value", jsonArray);
       return Client.getInstance().sendMessage(json);
    }
+
+   public static String makeRemoveProductSellerRequest(String productId){
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 3);
+      json.addProperty("content", "remove product");
+      json.addProperty("id", productId);
+      return Client.getInstance().sendMessage(json);
+   }
+
+   public static String makeEditProductRequest(String productId,String field,String value){
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 3);
+      json.addProperty("content", "edit product");
+      json.addProperty("id", productId);
+      json.addProperty("field",field);
+      json.addProperty("value",value);
+      return Client.getInstance().sendMessage(json);
+   }
+
    //type 4 admin menu
    public static String makeRequestAcceptRequest(String requestId) {
       JsonObject json = new JsonObject();
@@ -318,12 +343,6 @@ public class MakeRequest {
    }
 
    //type 5
-   public static String makeGetPersonalInfoRequest(String Token) {
-      JsonObject json = new JsonObject();
-      json.addProperty("type", "5");
-      json.addProperty("content", "view personal info");
-      return Client.getInstance().sendMessage(json);
-   }
 
    public static User makeGetUserRequest() {
       JsonObject json = new JsonObject();
@@ -371,15 +390,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static Category getCategoryByName(String name){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","getCategory");
-      jsonObject.addProperty("categoryName",name);
-      String response=Client.getInstance().sendMessage(jsonObject);
-      return ObjectMapper.getCategory(response);
-   }
-
    public static boolean cartIncludesItem(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
@@ -390,39 +400,23 @@ public class MakeRequest {
       else return false;
    }
 
-   public static ArrayList<Item> makeRequestGetAllItemsFromDataBase(){
+   public static double makeGetItemPriceWithSaleRequest(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","getAllItemsFromDataBase");
-      String response=Client.getInstance().sendMessage(jsonObject);
-      return ObjectMapper.getAllItemFromDatabase(response);
-   }
-
-   public static String makeGetItemPriceWithSaleRequest(String itemId){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","itemPriceWithSale");
-      jsonObject.addProperty("itemId",itemId);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
-   public static String makeRateRequest(int rating,String itemId){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","rateItem");
-      jsonObject.addProperty("itemId",itemId);
-      jsonObject.addProperty("rating",rating);
-      return Client.getInstance().sendMessage(jsonObject);
+      jsonObject.addProperty("content","item price with sale");
+      jsonObject.addProperty("item id",itemId);
+      JsonParser parser = new JsonParser();
+      JsonObject response = (JsonObject) parser.parse(Client.getInstance().sendMessage(jsonObject));
+      return response.get("price").getAsDouble();
    }
 
    public static boolean isInSaleItem(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","isInSale");
-      jsonObject.addProperty("itemId",itemId);
+      jsonObject.addProperty("content","is in sale");
+      jsonObject.addProperty("id",itemId);
       String response=Client.getInstance().sendMessage(jsonObject);
-      if(response.equals("true")) return true;
-      else return false;
+      return response.equals("true");
    }
 
    public static String makeGetItemCountInCart(String itemId){
@@ -440,15 +434,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static Item makeGetItemById(String itemId){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","");
-      jsonObject.addProperty("content","getItem");
-      jsonObject.addProperty("itemId",itemId);
-      String response=Client.getInstance().sendMessage(jsonObject);
-      System.out.println(View.ANSI_BLUE+response+ View.ANSI_RESET);
-      return ObjectMapper.gsonToItem(response);
-   }
 
    public static String makeAddViewToItem(String itemId){
       JsonObject jsonObject=new JsonObject();
@@ -480,13 +465,6 @@ public class MakeRequest {
       jsonObject.addProperty("content", "empty");
       return Client.getInstance().sendMessage(jsonObject);
    }
-
-//   public static String makeGetCartRequest() {
-//      JsonObject jsonObject = new JsonObject();
-//      jsonObject.addProperty("type", "0");
-//      jsonObject.addProperty("content", "getCart");
-//      return Client.getInstance().sendMessage(jsonObject);
-//   }
 
    public static String makeUpdateDateAndTimeRequest() {
       JsonObject json = new JsonObject();
@@ -550,6 +528,39 @@ public class MakeRequest {
             result.add(s);
       }
       return result;
+   }
+
+   public static Item getItem(String productId){
+      JsonObject json = new JsonObject();
+      json.addProperty("type", 0);
+      json.addProperty("content","get item");
+      json.addProperty("product id",productId);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      return ObjectMapper.jsonToItem(jsonObject);
+   }
+
+   public static Category getCategory(String categoryName){
+      JsonObject json = new JsonObject();
+      json.addProperty("type", 0);
+      json.addProperty("content","get category");
+      json.addProperty("category name",categoryName);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      return ObjectMapper.jsonToCategory(jsonObject);
+   }
+
+   public static ArrayList<Item> getAllItem(){
+      JsonObject json = new JsonObject();
+      json.addProperty("type", 0);
+      json.addProperty("content","get all item id");
+      Gson gson = new Gson();
+      ArrayList<String> allItemId=gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      ArrayList<Item> allItems=new ArrayList<>();
+      for (String itemId : allItemId) {
+         allItems.add(getItem(itemId));
+      }
+      return allItems;
    }
 
    public static ArrayList<String> showProducts() {

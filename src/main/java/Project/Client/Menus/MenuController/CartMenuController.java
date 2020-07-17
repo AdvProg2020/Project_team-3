@@ -202,7 +202,7 @@ public class CartMenuController {
         ArrayList<String> allItemIds=gson.fromJson(gsonString,token.getType());
         Item item=null;
         for(String id:allItemIds){
-            item= MakeRequest.makeGetItemById(id);
+            //  mirza   item= MakeRequest.makeGetItemById(id);
             allItems.add(item);
         }
         itemListView.setItems(allItems);

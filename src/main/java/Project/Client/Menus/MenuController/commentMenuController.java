@@ -56,7 +56,6 @@ public class commentMenuController {
          return;
       }
       MakeRequest.makeCommentRequest(commentTextArea.getText(),itemID,fatherCommentId);
-     // ItemAndCategoryController.getInstance().comment(commentTextArea.getText(),itemID,fatherCommentId);
       MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText("your comment was sent to our admin!");

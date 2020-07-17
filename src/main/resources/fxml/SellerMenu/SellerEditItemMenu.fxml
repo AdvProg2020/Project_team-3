@@ -19,5 +19,5 @@
    <Label fx:id="label" layoutX="308.0" layoutY="48.0" prefHeight="17.0" prefWidth="252.0" text="Label" />
    <ListView fx:id="buyersListView" layoutX="796.0" layoutY="187.0" prefHeight="417.0" prefWidth="200.0" />
    <Label layoutX="796.0" layoutY="150.0" prefHeight="25.0" prefWidth="44.0" text="Buyers" />
-    <Button layoutX="796.0" layoutY="85.0" onMouseClicked="#commercial" styleClass="myBlueButton" text="add Commercial" />
+
 </AnchorPane>

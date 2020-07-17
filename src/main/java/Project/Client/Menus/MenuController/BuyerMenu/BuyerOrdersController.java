@@ -43,8 +43,6 @@ public class BuyerOrdersController {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
-        MakeRequest.makeLogoutRequest();
-        MakeRequest.makeLoginRequest(buyer.getUsername(),buyer.getPassword());
         initializeBuyLogListView();
         updateBuyLogDetail();
     }
@@ -52,7 +50,7 @@ public class BuyerOrdersController {
 
 
     public void initializeBuyLogListView(){
-        ArrayList<BuyLog>allLogs=MakeRequest.makeGetBuyerLogsRequest();
+        /*  mirza     ArrayList<BuyLog>allLogs=MakeRequest.makeGetBuyerLogsRequest();
         if(allLogs.size()==0){
             buyLogEmptyLabel.setText("you did not bought anything!");
             return;
@@ -66,7 +64,7 @@ public class BuyerOrdersController {
            public ListCell<BuyLog> call(ListView<BuyLog> param) {
               return  new BuyLogTextImageCell();
            }
-       });
+       }); */
     }
 
     class BuyLogTextImageCell extends ListCell<BuyLog> {
@@ -157,7 +155,7 @@ public class BuyerOrdersController {
 
 
     public void updateBuyLogDetail(){
-        buyLogListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        /*  mirza   buyLogListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 int index=buyLogListView.getSelectionModel().getSelectedIndex();
@@ -180,7 +178,7 @@ public class BuyerOrdersController {
                 });
             }
         });
-
+      */
     }
 
     public void goToUserZone(ActionEvent actionEvent) {

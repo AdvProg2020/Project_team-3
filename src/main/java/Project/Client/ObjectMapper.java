@@ -1,5 +1,6 @@
 package Project.Client;
 
+import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Buyer;
@@ -8,10 +9,13 @@ import Project.Client.Model.Users.User;
 import Project.Client.Model.Category;
 import Project.Client.Model.Logs.BuyLog;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ObjectMapper {
@@ -36,6 +40,7 @@ public class ObjectMapper {
       String number = getJsonStringField(json,"number");
       return new Admin(username,password,name,lastName,email,number);
    }
+
    public static Seller jsonToSeller(JsonObject json){
       String name = getJsonStringField(json,"name");
       String lastName = getJsonStringField(json,"lastName");
@@ -47,6 +52,7 @@ public class ObjectMapper {
       String company=getJsonStringField(json,"companyName");
       return new Seller(money,username,password,name,lastName,email,number,company);
    }
+
    public static Buyer jsonToBuyer(JsonObject json){
       String name = getJsonStringField(json,"name");
       String lastName = getJsonStringField(json,"lastName");
@@ -58,32 +64,53 @@ public class ObjectMapper {
       return new Buyer(money,username,password,name,lastName,email,number);
    }
 
-   public static Item gsonToItem(String itemGson){
-      Gson gson=new Gson();
-      Item item=gson.fromJson(itemGson,Item.class);
-      return item;
+   public static Item jsonToItem(JsonObject json){
+      System.out.println(json.toString());
+      String name=getJsonStringField(json,"name");
+      String brand=getJsonStringField(json,"brand");
+      double price=json.get("price").getAsDouble();
+      double rating=json.get("rating").getAsDouble();
+      String description=getJsonStringField(json,"description");
+      String productId=getJsonStringField(json,"id");
+      String sellerName=getJsonStringField(json,"sellerName");
+      String imageName=getJsonStringField(json,"imageName");
+      String categoryName=getJsonStringField(json,"categoryName");
+      int inStock=json.get("inStock").getAsInt();
+      int viewCount=json.get("viewCount").getAsInt();
+      int timesBought=json.get("timesBought").getAsInt();
+      Gson gson = new Gson();
+      HashMap attributes=gson.fromJson(json.get("attributes"), HashMap.class);
+      ArrayList<String> allBuyers=gson.fromJson(json.get("buyerUserName"), ArrayList.class);
+      ArrayList<Comment> allComments=new ArrayList<>();
+      JsonArray comments=json.getAsJsonArray("allComments");
+      for (JsonElement comment : comments) {
+         allComments.add(jsonToComment(comment.getAsJsonObject()));
+      }
+      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers,imageName,sellerName,categoryName,rating,allComments);
    }
 
-   public static ArrayList<Item> getAllItemFromDatabase(String gsonString){
-      Gson gson=new Gson();
-      TypeToken<List<Item>> token = new TypeToken<List<Item>>() {};
-      ArrayList<Item> allItems=gson.fromJson(gsonString,token.getType());
-      return allItems;
+   public static Comment jsonToComment(JsonObject json){
+      String username=getJsonStringField(json,"username");
+      String text=getJsonStringField(json,"text");
+      Boolean hasBought=json.get("hasBought").getAsBoolean();
+      ArrayList<Comment> allReplies=new ArrayList<>();
+      Gson gson = new Gson();
+      JsonArray replies=json.getAsJsonArray("allReplies");
+      for (JsonElement reply : replies) {
+         allReplies.add(jsonToComment(reply.getAsJsonObject()));
+      }
+      return new Comment(username,text,hasBought,allReplies);
    }
 
-   public static ArrayList<BuyLog> getAllBuyLogsForBuyer(String gsonString){
-      Gson gson=new Gson();
-      TypeToken<List<BuyLog>> token = new TypeToken<List<BuyLog>>() {};
-      ArrayList<BuyLog> all=gson.fromJson(gsonString,token.getType());
-      return all;
+   public static Category jsonToCategory(JsonObject json){
+        Gson gson = new Gson();
+        String name=getJsonStringField(json,"name");
+        String parent=getJsonStringField(json,"parent");
+        ArrayList<String> allItemsID=gson.fromJson(json.get("allItemsID"), ArrayList.class);
+        ArrayList<String> attributes=gson.fromJson(json.get("attributes"), ArrayList.class);
+        ArrayList<String> subCategories=gson.fromJson(json.get("subCategories"), ArrayList.class);
+        return new Category(name,parent,allItemsID,attributes,subCategories);
    }
-
-   public static Category getCategory(String gsonString){
-      Gson gson=new Gson();
-      Category category=gson.fromJson(gsonString,Category.class);
-      return category;
-   }
-
 
    public static String getJsonStringField(JsonObject json,String field){
       return json.get(field).toString().replace("\"","");
