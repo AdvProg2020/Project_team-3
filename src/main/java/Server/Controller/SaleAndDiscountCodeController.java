@@ -10,15 +10,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class SaleAndDiscountCodeController {
@@ -37,7 +35,7 @@ public class SaleAndDiscountCodeController {
 
 
     public DiscountCode getDiscountCodeById(String id) {
-        String path = "Resource" + File.separator + "DiscountCodes";
+        /*String path = "Resource" + File.separator + "DiscountCodes";
         String name = id + ".json";
         File file = new File(path + File.separator + name);
         if (!file.exists()) {
@@ -50,24 +48,38 @@ public class SaleAndDiscountCodeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return null;*/
+        ArrayList<DiscountCode> viableOptions = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM DiscountCodes WHERE id='"+id+"'");
+            while(rs.next())
+            {
+                String discountID = rs.getString(1);
+                int percentage = rs.getInt(2);
+                double max = Double.parseDouble(rs.getString(3));
+                HashMap<String,Integer> usageCount = gson.fromJson(rs.getString(4),new TypeToken<HashMap<String,Integer>>(){}.getType());
+                int usageCountInt = rs.getInt(5);
+                String start = rs.getString(6);
+                String end = rs.getString(7);
+                viableOptions.add(new DiscountCode(discountID,percentage,max,usageCount,usageCountInt,start,end));
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(viableOptions.isEmpty()) return null;
+        return viableOptions.get(0);
     }
 
     public Sale getSaleById(String id) {
-        /*String path = "Resource" + File.separator + "Sales";
-        String name = id + ".json";
-        File file = new File(path + File.separator + name);
-        if (!file.exists()) {
-            return null;
-        }
-        Gson gson = new Gson();
-        try {
-            String content = new String(Files.readAllBytes(file.toPath()));
-            return gson.fromJson(content, Sale.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;*/
+
         ArrayList<Sale> viableOptions = new ArrayList<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Connection connection = null;
@@ -213,49 +225,36 @@ public class SaleAndDiscountCodeController {
     }
 
     public boolean isThereDiscountCodeWithId(String id) {
-        String path = "Resource" + File.separator + "DiscountCodes";
-        String name = id + ".json";
-        File file = new File(path + File.separator + name);
-        if (!file.exists()) {
-            return false;
+        Connection connection = null;
+        int cnt = 0;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM DiscountCodes WHERE id='"+id+"'");
+            while(rs.next())
+            {
+                cnt++;
+            }
+
         }
-        return true;
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return cnt>0;
     }
 
     public ArrayList<DiscountCode> getAllDiscountCodesFromDataBase() {
-        String path = "Resource" + File.separator + "DiscountCodes";
-        File file = new File(path);
-        File[] allFiles = file.listFiles();
-        String fileContent = null;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         ArrayList<DiscountCode> allDiscounts = new ArrayList<>();
-        for (File file1 : allFiles) {
-            try {
-                fileContent = new String(Files.readAllBytes(file1.toPath()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            allDiscounts.add(gson.fromJson(fileContent, DiscountCode.class));
+        for(String id:Database.getInstance().getAllDiscountCodeIDs()){
+            allDiscounts.add(getDiscountCodeById(id));
         }
         return allDiscounts;
     }
 
     public ArrayList<Sale> getAllSaleFromDataBase() {
-        /*String path = "Resource" + File.separator + "Sales";
-        File file = new File(path);
-        File[] allFiles = file.listFiles();
-        String fileContent = null;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        ArrayList<Sale> allSale = new ArrayList<>();
-        for (File file1 : allFiles) {
-            try {
-                fileContent = new String(Files.readAllBytes(file1.toPath()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            allSale.add(gson.fromJson(fileContent, Sale.class));
-        }
-        return allSale;*/
+
         ArrayList<Sale> viableOptions = new ArrayList<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Connection connection = null;

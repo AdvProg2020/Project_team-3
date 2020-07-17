@@ -218,7 +218,7 @@ public class Database {
    }
 
    public void saveDiscountCode(DiscountCode discount) {
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String id = discount.getDiscountId();
       String path = "Resource" + File.separator + "DiscountCodes";
       String name = id + ".json";
@@ -232,6 +232,25 @@ public class Database {
          writer.close();
          }catch(IOException exception){
          exception.printStackTrace();
+      }*/
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      Connection connection = null;
+      String values = "'"+discount.getDiscountId()+"', "+discount.getDiscountPercentage()+", '"+discount.getMaxDiscount()+"', '";
+      String usageCount = gson.toJson(discount.getUsageCount());
+      values+=usageCount+"', "+discount.getUsageCountInt()+", '"+discount.getStartTime()+"', '"+discount.getEndTime()+"'";
+
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM DiscountCodes WHERE id='"+discount.getDiscountId()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into DiscountCodes values("+values+")");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
       }
    }
 
@@ -340,11 +359,21 @@ public class Database {
    }
 
    public void deleteDiscountCode(DiscountCode discount) {
-      String id = discount.getDiscountId();
+      /*String id = discount.getDiscountId();
       String path = "Resource" + File.separator + "DiscountCodes";
       String name = id + ".json";
       File file = new File(path + File.separator + name);
-      file.delete();
+      file.delete();*/
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      Connection connection = null;
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         statement.executeUpdate("delete FROM DiscountCodes WHERE id='"+discount.getDiscountId()+"'");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
+      }
    }
 
    public void initiate() {
@@ -394,7 +423,18 @@ public class Database {
       if(folderName.equals("Items")){
          return getAllItemIDs();
       }
-      ArrayList<String> fileNames = new ArrayList();
+      ArrayList<String> fileNames = new ArrayList<>();
+      if (folderName.equals("DiscountCodes")) {
+         ArrayList<String> discountCodeInfo = new ArrayList<>();
+         for (String fileName : getAllDiscountCodeIDs()) {
+            DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(fileName);
+            if (discountCode == null) {
+               continue;
+            }
+            discountCodeInfo.add(discountCode.toSimpleString());
+         }
+         return discountCodeInfo;
+      }
       String path = "Resource" + File.separator + folderName;
       File[] files = new File(path).listFiles();
       for (File file : files) {
@@ -405,17 +445,7 @@ public class Database {
             fileNames.add(file.getName().replace(".json", ""));
          }
       }
-      if (folderName.equals("DiscountCodes")) {
-         ArrayList<String> discountCodeInfo = new ArrayList<>();
-         for (String fileName : fileNames) {
-            DiscountCode discountCode = SaleAndDiscountCodeController.getInstance().getDiscountCodeById(fileName);
-            if (discountCode == null) {
-               continue;
-            }
-            discountCodeInfo.add(discountCode.toSimpleString());
-         }
-         return discountCodeInfo;
-      }
+
       if (folderName.equals("Requests")) {
          ArrayList<String> requestInfo = new ArrayList<>();
          for (String fileName : fileNames) {
@@ -502,7 +532,6 @@ public class Database {
          while(rs.next())
          {
             allItems.add(rs.getString(1));
-            System.err.println(rs.getString(1));
          }
 
       }
@@ -510,6 +539,26 @@ public class Database {
          System.err.println(e.getMessage());
       }
       return allItems;
+   }
+
+   public ArrayList<String> getAllDiscountCodeIDs(){
+      ArrayList<String> allDiscountCodes = new ArrayList<>();
+      Connection connection = null;
+      try {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         ResultSet rs = statement.executeQuery("select * FROM DiscountCodes");
+         while(rs.next())
+         {
+            allDiscountCodes.add(rs.getString(1));
+         }
+
+      }
+      catch(SQLException e) {
+         System.err.println(e.getMessage());
+      }
+      return allDiscountCodes;
    }
 }
 

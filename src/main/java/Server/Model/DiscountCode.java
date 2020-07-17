@@ -31,6 +31,16 @@ public class DiscountCode {
       //this.allUsers=new HashMap<>();
    }
 
+   public DiscountCode(String discountId,int discountPercentage,double maxDiscount,HashMap<String,Integer> usageCount,int usageCountInt, String startTime, String endTime){
+      this.discountId = discountId;
+      this.discountPercentage = discountPercentage;
+      this.maxDiscount = maxDiscount;
+      this.usageCount = usageCount;
+      this.usageCountInt = usageCountInt;
+      this.startTime = startTime;
+      this.endTime = endTime;
+   }
+
 
    @Override
    public String toString() {
@@ -91,6 +101,10 @@ public class DiscountCode {
 
    public double getMaxDiscount() {
       return maxDiscount;
+   }
+
+   public HashMap<String, Integer> getUsageCount() {
+      return usageCount;
    }
 
    public void setMaxDiscount(double maxDiscount) {
