@@ -65,7 +65,6 @@ public class ObjectMapper {
    }
 
    public static Item jsonToItem(JsonObject json){
-      System.out.println(json.toString());
       String name=getJsonStringField(json,"name");
       String brand=getJsonStringField(json,"brand");
       double price=json.get("price").getAsDouble();

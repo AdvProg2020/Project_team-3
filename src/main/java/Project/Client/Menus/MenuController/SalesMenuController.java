@@ -1,11 +1,11 @@
 package Project.Client.Menus.MenuController;
 
-import Server.Controller.*;
-import Server.Model.Item;
-import Server.Model.Sale;
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Item;
+import Project.Client.Model.SortAndFilter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -56,9 +56,8 @@ public class SalesMenuController {
     @FXML TextField sellerName;
 
     public void logout(ActionEvent actionEvent) {
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
-        // SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 
     public void Exit(ActionEvent actionEvent) {
@@ -78,7 +77,7 @@ public class SalesMenuController {
         MusicManager.getInstance().setSongName("second.wav");
         reset(null);
         allItemsBox = new ArrayList<>();
-        sortChoiceBox.getItems().addAll(SortAndFilterController.getInstance().showAllAvailableSorts().split("\n"));
+        sortChoiceBox.getItems().addAll(SortAndFilter.getInstance().showAllAvailableSorts().split("\n"));
         sortChoiceBox.getItems().add("sort by view");
         sortChoiceBox.setValue("sort by view");
         updateFilter();
@@ -86,8 +85,8 @@ public class SalesMenuController {
     }
 
     private void initLists(){
-        Controller.getInstance().updateDateAndTime();
-        allItemsID = SortAndFilterController.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale());
+        MakeRequest.makeUpdateDateAndTimeRequest();
+     //mirza   allItemsID = SortAndFilter.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale());
         gridPane.getChildren().removeAll(allItemsBox);
         allItemsBox.clear();
         int row=0,column=0;
@@ -102,7 +101,7 @@ public class SalesMenuController {
     }
 
     private VBox createItem(String itemID){
-        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+        Item item = MakeRequest.getItem(itemID);
 
         if(item==null){
             System.out.println(itemID);
@@ -119,7 +118,7 @@ public class SalesMenuController {
         itemBox.setPrefSize(230,400);
         ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
 
-        Label nameAndPrice = new Label(item.getName() + "           " + (item.getPriceWithSale()));
+        Label nameAndPrice = new Label(item.getName() + "           " + (MakeRequest.makeGetItemPriceWithSaleRequest(item.getId())));
 
         Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),108,20,false,false);
         ImageView star=new ImageView(ratingImage);
@@ -132,11 +131,11 @@ public class SalesMenuController {
         itemBox.getChildren().add(star);
         itemBox.getChildren().add(nameAndPrice);
 
-        Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(item.getSaleId());
+     /*   Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(item.getSaleId());
         itemBox.getChildren().add(new Label("Sale Start:"+sale.getStartTime().toString()));
         itemBox.getChildren().add(new Label("Sale End:"+sale.getEndTime().toString()));
         itemBox.getChildren().add(new Label("Ends In:"+LocalDateTime.now().until(sale.getEndTime().truncatedTo(ChronoUnit.HOURS),ChronoUnit.HOURS)+" Hours."));
-        itemBox.getChildren().add(new Label("Sale is %"+sale.getOffPercentage()));
+        itemBox.getChildren().add(new Label("Sale is %"+sale.getOffPercentage()));  */
 
         allItemsBox.add(itemBox);
         return itemBox;
@@ -151,76 +150,76 @@ public class SalesMenuController {
 
     public void filterAvailibility(MouseEvent mouseEvent) {
         if(availableCheckBox.isSelected()){
-            SortAndFilterController.getInstance().activateFilterAvailability();
+            SortAndFilter.getInstance().activateFilterAvailability();
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterAvailability();
+        SortAndFilter.getInstance().disableFilterAvailability();
         initLists();
     }
 
     public void filterCategoryName(MouseEvent mouseEvent) {
         if((categoryNameCheckBox.isSelected())&&(isValidAlphabeticTextField(categoryNameFilter))){
-            SortAndFilterController.getInstance().activateFilterCategoryName(categoryNameFilter.getText());
+            SortAndFilter.getInstance().activateFilterCategoryName(categoryNameFilter.getText());
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterCategoryName();
+        SortAndFilter.getInstance().disableFilterCategoryName();
         categoryNameCheckBox.setSelected(false);
         initLists();
     }
 
     public void filterBrandName(MouseEvent mouseEvent) {
         if((brandNameCheckBox.isSelected())&&(isValidAlphabeticTextField(brandName))){
-            SortAndFilterController.getInstance().activateFilterBrandName(brandName.getText());
+            SortAndFilter.getInstance().activateFilterBrandName(brandName.getText());
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterBrandName();
+        SortAndFilter.getInstance().disableFilterBrandName();
         brandNameCheckBox.setSelected(false);
         initLists();
     }
 
     public void filterSearch(MouseEvent mouseEvent) {
         if((searchCheckBox.isSelected())&&(isValidAlphabeticTextField(search))){
-            SortAndFilterController.getInstance().activateFilterName(search.getText());
+            SortAndFilter.getInstance().activateFilterName(search.getText());
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterName();
+        SortAndFilter.getInstance().disableFilterName();
         searchCheckBox.setSelected(false);
         initLists();
     }
 
     public void sellerFilter(MouseEvent mouseEvent) {
         if((sellerNameCheckBox.isSelected())&&(isValidAlphabeticTextField(sellerName))){
-            SortAndFilterController.getInstance().activateFilterSellerName(sellerName.getText());
+            SortAndFilter.getInstance().activateFilterSellerName(sellerName.getText());
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterSellerName();
+        SortAndFilter.getInstance().disableFilterSellerName();
         sellerNameCheckBox.setSelected(false);
         initLists();
     }
 
     public void attributeFilter(MouseEvent mouseEvent) {
         if((attributeCheckBox.isSelected())&&(isValidAlphabeticTextField(attributeKey))&&(isValidAlphabeticTextField(attributeValue))){
-            SortAndFilterController.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
+            SortAndFilter.getInstance().activateFilterAttribute(attributeKey.getText(),attributeValue.getText());
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterAttribute();
+        SortAndFilter.getInstance().disableFilterAttribute();
         attributeCheckBox.setSelected(false);
         initLists();
     }
 
     public void priceFilter(MouseEvent mouseEvent) {
         if((priceCheckBox.isSelected())&&(isValidPositiveDoubleTextField(minPrice))&&(isValidPositiveDoubleTextField(maxPrice))){
-            SortAndFilterController.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
+            SortAndFilter.getInstance().activateFilterPriceRange(Double.parseDouble(minPrice.getText()),Double.parseDouble(maxPrice.getText()));
             initLists();
             return;
         }
-        SortAndFilterController.getInstance().disableFilterPriceRange();
+        SortAndFilter.getInstance().disableFilterPriceRange();
         priceCheckBox.setSelected(false);
         initLists();
     }
@@ -250,13 +249,13 @@ public class SalesMenuController {
     }
 
     public void reset(ActionEvent actionEvent) {
-        SortAndFilterController.getInstance().disableFilterAttribute();
-        SortAndFilterController.getInstance().disableFilterAvailability();
-        SortAndFilterController.getInstance().disableFilterBrandName();
-        SortAndFilterController.getInstance().disableFilterCategoryName();
-        SortAndFilterController.getInstance().disableFilterName();
-        SortAndFilterController.getInstance().disableFilterPriceRange();
-        SortAndFilterController.getInstance().disableFilterSellerName();
+        SortAndFilter.getInstance().disableFilterAttribute();
+        SortAndFilter.getInstance().disableFilterAvailability();
+        SortAndFilter.getInstance().disableFilterBrandName();
+        SortAndFilter.getInstance().disableFilterCategoryName();
+        SortAndFilter.getInstance().disableFilterName();
+        SortAndFilter.getInstance().disableFilterPriceRange();
+        SortAndFilter.getInstance().disableFilterSellerName();
         availableCheckBox.setSelected(false);
         categoryNameCheckBox.setSelected(false);
         brandNameCheckBox.setSelected(false);
@@ -299,7 +298,7 @@ public class SalesMenuController {
     }
 
     public void updateFilter(){
-        SortAndFilterController control=SortAndFilterController.getInstance();
+        SortAndFilter control=SortAndFilter.getInstance();
         if(control.getFilterAttribute()){
             attributeCheckBox.setSelected(true);
             attributeKey.setText(control.getAttributeKey());
@@ -334,9 +333,9 @@ public class SalesMenuController {
     public void sort(ActionEvent actionEvent) {
         String sort=sortChoiceBox.getValue().toString();
         if(sort.equals("sort by view")){
-            SortAndFilterController.getInstance().disableSort();
+            SortAndFilter.getInstance().disableSort();
         }else {
-            SortAndFilterController.getInstance().activateSort(sort); }
+            SortAndFilter.getInstance().activateSort(sort); }
         initLists();
     }
 

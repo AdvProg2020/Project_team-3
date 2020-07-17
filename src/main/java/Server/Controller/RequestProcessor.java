@@ -1,8 +1,11 @@
 package Server.Controller;
 
 import Project.Client.CLI.View;
+import Project.Client.Client;
+import Project.Client.Model.SortAndFilter;
 import Server.Model.Category;
 import Server.Model.Item;
+import Server.Model.Sale;
 import com.google.gson.*;
 
 import java.time.LocalDateTime;
@@ -293,6 +296,33 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().deleteItem(getJsonStringField(command,id));
       }
 
+      if(getJsonStringField(command,"content").equals("get seller sale")){
+         String response="";
+         for (Sale sale : SaleAndDiscountCodeController.getInstance().getSellerSales(username)) {
+            response+=sale.toSimpleString()+"\n";
+         }
+         return response;
+      }
+
+
+      if(getJsonStringField(command,"content").equals("show seller items")){
+         SortAndFilterController.getInstance().reset();
+         String response="";
+         for (String productId : SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems())) {
+            response+=productId+"\n";
+         }
+         return response;
+      }
+
+      if(getJsonStringField(command,"content").equals("add sale")){
+         LocalDateTime start=getDate(getJsonStringField(command,"start"));
+         LocalDateTime end=getDate(getJsonStringField(command,"end"));
+         int percent=command.get("percent").getAsInt();
+         Gson gson = new Gson();
+         ArrayList<String> allItems=gson.fromJson(command.get("items"), ArrayList.class);
+         return SaleAndDiscountCodeController.getInstance().addSale(start,end,percent,allItems);
+      }
+
       if(getJsonStringField(command,"content").equals("edit product")){
          String id=getJsonStringField(command,"id");
          String field=getJsonStringField(command,"field");
@@ -342,6 +372,11 @@ public class RequestProcessor {
       }
       if (getJsonStringField(command,"content").equals("is there product with id")) {
          if(ItemAndCategoryController.getInstance().isThereItemWithId(getJsonStringField(command,"product id")))
+            return "true";
+         return "false";
+      }
+      if (getJsonStringField(command,"content").equals("is there sale with id")) {
+         if(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(getJsonStringField(command,"id")))
             return "true";
          return "false";
       }

@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SellerEditOff {
     private static String offID;
@@ -84,7 +85,7 @@ public class SellerEditOff {
     @FXML
     private void editStartDate(){
         try {
-            LocalDateTime start=SellerAddOff.getDate(newStartDate.getValue().toString());
+            LocalDateTime start=getDate(newStartDate.getValue().toString());
             String message= SaleAndDiscountCodeController.getInstance().editSale(offID,"start time",start.toString());
             SellerAddOff.showAlertBox(message,"INFORMATION");
         }catch (Exception e){
@@ -95,7 +96,7 @@ public class SellerEditOff {
     @FXML
     private void editEndDate(){
         try {
-            LocalDateTime end=SellerAddOff.getDate(newEndDate.getValue().toString());
+            LocalDateTime end=getDate(newEndDate.getValue().toString());
             String message= SaleAndDiscountCodeController.getInstance().editSale(offID,"end time",end.toString());
             SellerAddOff.showAlertBox(message,"INFORMATION");
         }catch (Exception e){
@@ -131,5 +132,18 @@ public class SellerEditOff {
 
     public static String getOffID() {
         return offID;
+    }
+
+    private LocalDateTime getDate(String dateString){
+        LocalDateTime date;
+        dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        try{
+            date = LocalDateTime.parse(dateString,dateTimeFormatter);
+            return date;
+        }catch (Exception e){
+            System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
+            return null;
+        }
     }
 }

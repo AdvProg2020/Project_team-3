@@ -1,12 +1,12 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Server.Controller.SaleAndDiscountCodeController;
-import Server.Controller.UserController;
-import Server.Model.Sale;
+import Project.Client.MakeRequest;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
@@ -23,19 +23,19 @@ public class SellerManageOffs {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         listView.getItems().clear();
-        //inja miam listview ro update mikonim
-        //click rooye yeki az ona mibare menuye edit sale
-        ArrayList<Sale> allSales = SaleAndDiscountCodeController.getInstance().getSellerSales(UserController.getInstance().getCurrentOnlineUser().getUsername());
-        ArrayList<String> allSalesString = new ArrayList<>();
-        for(Sale sale:allSales){
-            allSalesString.add(sale.toSimpleString());
-            listView.getItems().add(sale.toSimpleString());
-        }
-
+        String saleList=MakeRequest.makeGetSellerSaleToSimpleString();
+        if(saleList.isEmpty()==false) listView.getItems().addAll(saleList.split("\n"));
+        else listView.getItems().add("you dont have any sales");
     }
 
     @FXML
     private void startSale(){
+        if(MakeRequest.makeGetAllSellerItems().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("you dont have any product!");
+            alert.showAndWait();
+            return;
+        }
         SceneSwitcher.getInstance().saveScene("SellerManageOffs");
         SceneSwitcher.getInstance().setSceneTo("SellerAddOff");
     }
@@ -47,7 +47,7 @@ public class SellerManageOffs {
             return;
         String saleID=listView.getItems().get(index).toString().substring(0,5);
         listView.getSelectionModel().clearSelection();
-        if(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(saleID)) {
+        if(MakeRequest.isThereSaleWithId(saleID)) {
             SellerEditOff.setOffID(saleID);
             SceneSwitcher.getInstance().saveScene("SellerManageOffs");
             SceneSwitcher.getInstance().setSceneTo("SellerEditOff", 1280, 720);
@@ -61,7 +61,7 @@ public class SellerManageOffs {
     }
     @FXML
     private void logout(){
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }

@@ -1,7 +1,7 @@
 package Project.Client.Model;
 
-import Server.Controller.*;
-import Server.Model.Users.Seller;
+
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -149,14 +149,6 @@ public class Item {
     }
 
 
-    public String showAttributes() {
-        String string = "";
-        ArrayList<String> attributesKey = ItemAndCategoryController.getInstance().getCategoryByName(categoryName).getAttributes();
-        for (String key : attributesKey) {
-            string += key + ":" + attributes.get(key) + "\n";
-        }
-        return string;
-    }
 
     public boolean hasAttribute(String key) {
         return attributes.containsKey(key);

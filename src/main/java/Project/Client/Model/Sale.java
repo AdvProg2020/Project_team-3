@@ -1,7 +1,7 @@
 package Project.Client.Model;
 
-import Server.Controller.Controller;
-import Server.Controller.ItemAndCategoryController;
+
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -67,22 +67,8 @@ public class Sale {
     }
 
 
-    @Override
-    public String toString() {
-        String ans = "id: " + getId() + "\n" +
-                "Off Percentage: " + getOffPercentage() + "\n" +
-                "Status: " + status + "\n" +
-                "Start Time: " + getStartTime() + "\n" +
-                "End Time: " + getEndTime() + "\n";
-        ans += "Items in Sale:\nID             name              price\n";
-        for (String itemID : itemId) {
-            ans += ItemAndCategoryController.getInstance().getItemById(itemID).toSimpleString();
-        }
-        return ans;
-    }
-
     public String toSimpleString() {
-        return id + "                                              " + offPercentage + "                                          " + endTime;
+        return id + "                        " + offPercentage + "                            " + endTime;
     }
 
 
