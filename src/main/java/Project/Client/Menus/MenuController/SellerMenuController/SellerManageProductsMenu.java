@@ -51,8 +51,7 @@ public class SellerManageProductsMenu {
 
     public void update() {
         listView.getItems().clear();
-        SortAndFilter.getInstance().activateFilterSellerName(MakeRequest.makeGetUserRequest().username);
-        listView.getItems().addAll(MakeRequest.showProducts());
+        listView.getItems().addAll(MakeRequest.makeGetAllSellerItems());
         SortAndFilter.getInstance().disableFilterSellerName();
         if(listView.getItems().isEmpty()) {
             listView.getItems().add("there are no products right now");

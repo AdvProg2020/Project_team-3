@@ -1,7 +1,6 @@
 package Project.Client.Model;
 
-import Server.Controller.Database;
-import Server.Controller.ItemAndCategoryController;
+
 
 import java.util.ArrayList;
 

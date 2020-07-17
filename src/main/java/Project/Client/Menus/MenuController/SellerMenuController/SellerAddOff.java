@@ -1,20 +1,16 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
+import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.SaleAndDiscountCodeController;
-import Server.Controller.SortAndFilterController;
-import Server.Controller.UserController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class SellerAddOff {
@@ -28,7 +24,7 @@ public class SellerAddOff {
     }
     @FXML
     private void logout(){
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
@@ -62,13 +58,14 @@ public class SellerAddOff {
         MusicManager.getInstance().setSongName("first.wav");
         errorLabel.setText("");
         allItems.getItems().clear();
-        ArrayList<String> availableItems = SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems());
+        ArrayList<String> availableItems = MakeRequest.makeGetAllSellerItems();
+        System.out.println();
         ArrayList<String> toBeRemoved = new ArrayList<>();
         for(String item:availableItems){
-            String id = item.substring(4,9);
-            if(ItemAndCategoryController.getInstance().getItemById(id).isInSale()){
-                toBeRemoved.add(item);
-            }
+                String id = item.substring(4, 9);
+                if (MakeRequest.isInSaleItem(id)) {
+                    toBeRemoved.add(item);
+                }
         }
         availableItems.removeAll(toBeRemoved);
 
@@ -99,8 +96,6 @@ public class SellerAddOff {
 
     @FXML
     private void createSale(){
-        //age darsad va dota tarikh valid bodan
-        //miad sale request mide be yaro
         if(offPercentage.getStyle().contains("red")){
             errorLabel.setText("Enter a valid off percentage.");
             errorLabel.setTextFill(Color.rgb(255,0,0));
@@ -108,9 +103,7 @@ public class SellerAddOff {
         }
         try{
             int percent = Integer.parseInt(offPercentage.getText());
-            LocalDateTime start=getDate(startDate.getValue().toString());
-            LocalDateTime end=getDate(endDate.getValue().toString());
-            String message= SaleAndDiscountCodeController.getInstance().addSale(start,end,percent,selectedItemsID);
+            String message=MakeRequest.makeAddSaleRequest(startDate.getValue().toString(),endDate.getValue().toString(),percent,selectedItemsID);
             showAlertBox(message,"INFORMATION");
             if(message.startsWith("Successful:")) {
                 back();
@@ -142,17 +135,6 @@ public class SellerAddOff {
     }
 
 
-    protected static LocalDateTime getDate(String dateString){
-        LocalDateTime date;
-        dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        try{
-            date = LocalDateTime.parse(dateString,dateTimeFormatter);
-            return date;
-        }catch (Exception e){
-            System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
-            return null;
-        }
-    }
+
 
 }
