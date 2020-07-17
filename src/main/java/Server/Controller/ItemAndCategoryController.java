@@ -144,7 +144,7 @@ public class ItemAndCategoryController {
             connection = Database.getConn();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            ResultSet rs = statement.executeQuery("select * FROM Items");
+            ResultSet rs = statement.executeQuery("select * FROM Items WHERE id='"+id+"'");
             while(rs.next())
             {
                 HashMap<String,String> attributes = gson.fromJson(rs.getString(9),new TypeToken<HashMap<String,String>>(){}.getType());
