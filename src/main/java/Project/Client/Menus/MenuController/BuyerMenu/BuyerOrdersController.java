@@ -43,8 +43,6 @@ public class BuyerOrdersController {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
-        MakeRequest.makeLogoutRequest();
-        MakeRequest.makeLoginRequest(buyer.getUsername(),buyer.getPassword());
         initializeBuyLogListView();
         updateBuyLogDetail();
     }

@@ -102,6 +102,16 @@ public class ObjectMapper {
       return new Comment(username,text,hasBought,allReplies);
    }
 
+   public static Category jsonToCategory(JsonObject json){
+        Gson gson = new Gson();
+        String name=getJsonStringField(json,"name");
+        String parent=getJsonStringField(json,"parent");
+        ArrayList<String> allItemsID=gson.fromJson(json.get("allItemsID"), ArrayList.class);
+        ArrayList<String> attributes=gson.fromJson(json.get("attributes"), ArrayList.class);
+        ArrayList<String> subCategories=gson.fromJson(json.get("subCategories"), ArrayList.class);
+        return new Category(name,parent,allItemsID,attributes,subCategories);
+   }
+
    public static String getJsonStringField(JsonObject json,String field){
       return json.get(field).toString().replace("\"","");
    }

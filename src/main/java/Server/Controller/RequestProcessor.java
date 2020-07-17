@@ -249,8 +249,8 @@ public class RequestProcessor {
       }
 
       if(getJsonStringField(command,"content").equals("comment")){
-         String fatherComment=getJsonStringField(command,"fatherCommentId");
-         String itemId=getJsonStringField(command,"itemId");
+         String fatherComment=getJsonStringField(command,"father comment id");
+         String itemId=getJsonStringField(command,"item id");
          String comment=getJsonStringField(command,"comment");
          return ItemAndCategoryController.getInstance().comment(comment,itemId,fatherComment);
       }
@@ -406,10 +406,20 @@ public class RequestProcessor {
          return json.toString();
       }
 
-      if(getJsonStringField(command,"content").equals("itemPriceWithSale")){
-         String itemId=getJsonStringField(command,"itemId");
+      if(getJsonStringField(command,"content").equals("get category")){
+         String categoryName=getJsonStringField(command,"category name");
+         Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         JsonParser parser = new JsonParser();
+         return gson.toJson(category);
+      }
+
+      if(getJsonStringField(command,"content").equals("item price with sale")){
+         String itemId=getJsonStringField(command,"item id");
          Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
-         return String.valueOf(item.getPriceWithSale());
+         JsonObject json=new JsonObject();
+         json.addProperty("price",item.getPriceWithSale());
+         return json.toString();
       }
 
       if(getJsonStringField(command,"content").equals("is in sale")){

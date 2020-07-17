@@ -97,8 +97,8 @@ public class MakeRequest {
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("content", "comment");
       jsonObject.addProperty("comment", comment);
-      jsonObject.addProperty("fatherCommentId", fatherCommentId);
-      jsonObject.addProperty("itemId", itemId);
+      jsonObject.addProperty("father comment id", fatherCommentId);
+      jsonObject.addProperty("item id", itemId);
       return Client.getInstance().sendMessage(jsonObject);
    }
 
@@ -400,12 +400,14 @@ public class MakeRequest {
       else return false;
    }
 
-   public static String makeGetItemPriceWithSaleRequest(String itemId){
+   public static double makeGetItemPriceWithSaleRequest(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","itemPriceWithSale");
-      jsonObject.addProperty("itemId",itemId);
-      return Client.getInstance().sendMessage(jsonObject);
+      jsonObject.addProperty("content","item price with sale");
+      jsonObject.addProperty("item id",itemId);
+      JsonParser parser = new JsonParser();
+      JsonObject response = (JsonObject) parser.parse(Client.getInstance().sendMessage(jsonObject));
+      return response.get("price").getAsDouble();
    }
 
    public static boolean isInSaleItem(String itemId){
@@ -536,6 +538,16 @@ public class MakeRequest {
       JsonParser parser = new JsonParser();
       JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
       return ObjectMapper.jsonToItem(jsonObject);
+   }
+
+   public static Category getCategory(String categoryName){
+      JsonObject json = new JsonObject();
+      json.addProperty("type", 0);
+      json.addProperty("content","get category");
+      json.addProperty("category name",categoryName);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      return ObjectMapper.jsonToCategory(jsonObject);
    }
 
    public static ArrayList<Item> getAllItem(){

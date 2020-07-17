@@ -91,7 +91,7 @@ public class ItemMenuController {
         stockLabel.setText(String.valueOf(item.getInStock()));
         gradeLabel.setText(String.valueOf(item.getRating()));
         priceLabel.setText(String.valueOf(item.getPrice()));
-        // mirza priceAfterSaleLabel.setText(String.valueOf(Integer.parseInt(MakeRequest.makeGetItemPriceWithSaleRequest(itemID))));
+        priceAfterSaleLabel.setText(String.valueOf(MakeRequest.makeGetItemPriceWithSaleRequest(itemID)));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
         String path="src/main/resources/Images/ItemImages/"+item.getImageName();
@@ -288,13 +288,13 @@ public class ItemMenuController {
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
         Item item=MakeRequest.getItem(itemID);
-        //  mirza   Category category= MakeRequest.getCategoryByName(item.getCategoryName());
+        Category category= MakeRequest.getCategory(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
-        //  mirza    for(String id:category.getAllItemsID()){
-        //  mirza       if(id.equals(itemID)) continue;
-            //  mirza   allItems.add(MakeRequest.makeGetItemById(id).getName()+" id:"+id);
-        //  mirza    }
-        //  mirza    itemComoBox.setItems(allItems);
+           for(String id:category.getAllItemsID()){
+              if(id.equals(itemID)) continue;
+             allItems.add(MakeRequest.getItem(id).getName()+" id:"+id);
+          }
+            itemComoBox.setItems(allItems);
     }
 
 
