@@ -70,6 +70,78 @@ public class TransactionController {
         return null;
     }
 
+    public String getReceiptID(String token, String type, String money, String sourceId, String desId, String description){
+        StringBuilder sb=new StringBuilder("create_receipt "+token+" "+type+" "+money+" "+sourceId+" "+desId);
+        if(!description.equals("")) sb.append(description);
+        String toBeSend=sb.toString();
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getTransaction(String type,String token){
+        String toBeSend="get_transactions "+token+" "+type;
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String payReceipt(String receiptId){
+        String toBeSend="pay "+receiptId;
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getBalance(String token){
+        String toBeSend="get_balance "+token;
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String exitBank(){
+        String toBeSend="exit";
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
 
