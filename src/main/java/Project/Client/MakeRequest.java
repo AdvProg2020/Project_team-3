@@ -438,8 +438,8 @@ public class MakeRequest {
    public static String makeAddViewToItem(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","addView");
-      jsonObject.addProperty("itemId",itemId);
+      jsonObject.addProperty("content","add view");
+      jsonObject.addProperty("item id",itemId);
       return Client.getInstance().sendMessage(jsonObject);
    }
 
@@ -604,6 +604,13 @@ public class MakeRequest {
             result.add(s);
       }
       return result;
+   }
+
+   public static ArrayList<String> show(String categoryName){
+      SortAndFilter.getInstance().activateFilterCategoryName(categoryName);
+      ArrayList<String> items=showProducts();
+      SortAndFilter.getInstance().disableFilterCategoryName();
+      return items;
    }
 
 

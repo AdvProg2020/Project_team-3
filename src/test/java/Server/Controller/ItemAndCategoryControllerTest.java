@@ -426,7 +426,6 @@ public class ItemAndCategoryControllerTest {
         allItems.clear();
         allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         Assert.assertTrue(allItems.get(0).getViewCount()==1);
-        ItemAndCategoryController.getInstance().addView("sdfsdfsdfsdfsdf");
         for(Item item:allItems){
             Database.getInstance().deleteItem(item);
         }

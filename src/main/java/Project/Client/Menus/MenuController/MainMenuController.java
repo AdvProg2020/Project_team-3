@@ -145,7 +145,7 @@ public class MainMenuController {
 
     public void userzone(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        if(Client.getInstance().getToken()==null){
+        if((Client.getInstance().getToken()==null)||(MakeRequest.isTokenValid()==false)){
             SceneSwitcher.getInstance().setSceneAndWait("Login");
             loginHandler();
             return;

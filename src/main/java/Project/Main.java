@@ -1,15 +1,9 @@
 package Project;
 
-import Project.Client.Client;
+
 import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
-import Project.Client.Model.Users.Admin;
 
-import Server.Controller.Controller;
-import Server.Controller.Database;
-
-import Server.Controller.TransactionController;
-import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,8 +12,7 @@ import java.io.IOException;
 
 public class Main extends Application{
     public static void main(String[] args) {
-        Database.getInstance().initiate();
-        Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         launch(args);
     }
 
@@ -86,7 +79,7 @@ public class Main extends Application{
     }
 
 }
-//// enteghal aks ha monde!
-/// buyer Menu View Request hanoz server client nashode!
-///update date and time dar Item menu!
+
+
+
 

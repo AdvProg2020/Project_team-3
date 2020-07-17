@@ -1,5 +1,6 @@
 package Server;
 
+import Server.Controller.Database;
 import Server.Controller.ItemAndCategoryController;
 import Server.Controller.RequestProcessor;
 import com.google.gson.Gson;
@@ -49,11 +50,9 @@ public class Server {
    }
 
    public static void main(String[] args) {
+      Database.getInstance().initiate();
       new Server();
-      Gson gson = new Gson();
-      System.out.println(gson.toJson(ItemAndCategoryController.getInstance().getItemById("kBhRu")));
       System.out.println("server is running");
-      while (true){}
    }
 
 }

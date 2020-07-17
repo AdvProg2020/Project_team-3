@@ -232,8 +232,9 @@ public class RequestProcessor {
 
    public String buyerMenuProcessor(JsonObject command) {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
-      Controller.getInstance().setCurrentOnlineUser(username);
-      if (username == null) return "Error: incorrect Token";
+      if ((username == null)&&(getJsonStringField(command,"content").equals("rate")==false)){
+         return "Error: incorrect Token";
+      } else  Controller.getInstance().setCurrentOnlineUser(username);
       if(getJsonStringField(command,"content").equals("getAllLogs")){
          return UserController.getInstance().getBuyLogs(username);
       }
@@ -384,10 +385,10 @@ public class RequestProcessor {
 
       }
 
-      if(getJsonStringField(command,"content").equals("addView")){
-         String itemId=getJsonStringField(command,"itemId");
+      if(getJsonStringField(command,"content").equals("add view")){
+         String itemId=getJsonStringField(command,"item id");
          ItemAndCategoryController.getInstance().addView(itemId);
-         return "successful!";
+         return "successful:";
       }
 
       if(getJsonStringField(command,"content").equals("itemCount")){

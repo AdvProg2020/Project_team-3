@@ -71,6 +71,7 @@ public class ItemMenuController {
     private ArrayList<Item> alternativeOptions;
 
     public void initialize(){
+        MakeRequest.makeAddViewToItem(itemID);
         alternativeOptions = new ArrayList<>();
         MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(anchorPane);
@@ -80,7 +81,6 @@ public class ItemMenuController {
         ivTarget.setSmooth(true);
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
-        MakeRequest.makeAddViewToItem(itemID);
         Item item= MakeRequest.getItem(itemID);
         itemDetails.setText("Description:\n"+item.getDescription());
         itemNameLabel.setText(item.getName());
@@ -131,7 +131,7 @@ public class ItemMenuController {
         Rectangle mask = new Rectangle(frameWidth, 28);
         rating.setClip(mask);
         updateSimpleItem();
-        initializeMediaPlayer();
+       // initializeMediaPlayer();
     }
 
 
@@ -147,6 +147,12 @@ public class ItemMenuController {
 
     public void comment(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
+        if(MakeRequest.isTokenValid()==false){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("please login first");
+            alert.show();
+            return;
+        }
         User user=MakeRequest.makeGetUserRequest();
         if(user==null){
             MusicManager.getInstance().playSound("error");
@@ -563,10 +569,10 @@ public class ItemMenuController {
     public void updateSimpleItem(){
         ArrayList<Item> allItems=new ArrayList<>();
         Item item=MakeRequest.getItem(itemID);
-      /*  Category category=MakeRequest.getCategoryByName(item.getCategoryName());
+        Category category=MakeRequest.getCategory(item.getCategoryName());
         for(String id:category.getAllItemsID()){
             if(id.equals(item.getId())) continue;
-            allItems.add(MakeRequest.makeGetItemById(id));
+            allItems.add(MakeRequest.getItem(id));
         }
         allSimpleItems.setAll(allItems);
         familyItemListView.setItems(allSimpleItems);
@@ -575,7 +581,7 @@ public class ItemMenuController {
             public ListCell<Item> call(ListView<Item> param) {
                 return  new simpleItemImageTextCell();
             }
-        }); */
+        });
     }
 
     public void showItem(MouseEvent mouseEvent) {
