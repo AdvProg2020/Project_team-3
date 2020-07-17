@@ -257,38 +257,41 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("add product")){
          String name=getJsonStringField(command,"name");
-         System.out.println(1);
          String brand=getJsonStringField(command,"brand");
-         System.out.println(1);
          String description=getJsonStringField(command,"description");
-         System.out.println(1);
          double price=command.get("price").getAsDouble();
-         System.out.println(1);
          int inStock=command.get("inStock").getAsInt();
-         System.out.println(1);
          String categoryName=getJsonStringField(command,"category");
-         System.out.println(1);
          String image=getJsonStringField(command,"image");
-         System.out.println(1);
          String video=getJsonStringField(command,"video");
-         System.out.println(1);
          ArrayList<String> attributeValue=new ArrayList<>();
          for (JsonElement attribute : command.getAsJsonArray("attribute value")) {
             attributeValue.add(attribute.getAsString());
          }
-         System.out.println(1);
          ArrayList<String> attributeKey=new ArrayList<>();
          for (JsonElement attribute : command.getAsJsonArray("attribute key")) {
             attributeKey.add(attribute.getAsString());
          }
-         System.out.println(1);
          HashMap<String,String> attribute=new HashMap<>();
          for(int i=0;i<attributeKey.size();i++){
             attribute.put(attributeKey.get(i),attributeValue.get(i));
          }
-         System.out.println(1);
          return ItemAndCategoryController.getInstance().addItem(name,brand,description,price,inStock,categoryName,attribute,image,video);
       }
+
+      if(getJsonStringField(command,"content").equals("remove product")){
+         String id=getJsonStringField(command,"id");
+         return ItemAndCategoryController.getInstance().deleteItem(getJsonStringField(command,id));
+      }
+
+      if(getJsonStringField(command,"content").equals("edit product")){
+         String id=getJsonStringField(command,"id");
+         String field=getJsonStringField(command,"field");
+         String value=getJsonStringField(command,"value");
+         ItemAndCategoryController.getInstance().editItem(field,value,id);
+         return "Successful:";
+      }
+
       return "Error: invalid command";
    }
 
@@ -370,70 +373,65 @@ public class RequestProcessor {
          return "successful";
       }
       if(getJsonStringField(command,"content").equals("getCart")){
-         Gson gson=new Gson();
-         String response=gson.toJson(CartController.getInstance().getCurrentShoppingCart());
-         return response;
+
       }
-      if(getJsonStringField(command,"content").equals("getItem")){
-         Gson gson=new Gson();
-         String itemId=getJsonStringField(command,"itemId");
-         Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
-         String response=gson.toJson(item);
-         return response;
-      }
+
       if(getJsonStringField(command,"content").equals("addView")){
          String itemId=getJsonStringField(command,"itemId");
          ItemAndCategoryController.getInstance().addView(itemId);
          return "successful!";
       }
+
       if(getJsonStringField(command,"content").equals("itemCount")){
          String itemId=getJsonStringField(command,"itemId");
          int count=CartController.getInstance().getCurrentShoppingCart().getItemCount(itemId);
          return String.valueOf(count);
       }
-      if(getJsonStringField(command,"content").equals("getAllItems")){
-         ArrayList<String> allItemIds=CartController.getInstance().getCurrentShoppingCart().getAllItemId();
-         Gson gson=new Gson();
-         String response=gson.toJson(allItemIds);
-         return response;
+
+      if(getJsonStringField(command,"content").equals("get item")){
+         String productId=getJsonStringField(command,"product id");
+         Item item=ItemAndCategoryController.getInstance().getItemById(productId);
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(item);
       }
+
       if(getJsonStringField(command,"content").equals("itemPriceWithSale")){
          String itemId=getJsonStringField(command,"itemId");
          Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
          return String.valueOf(item.getPriceWithSale());
       }
+
       if(getJsonStringField(command,"content").equals("isInSale")){
          String itemId=getJsonStringField(command,"itemId");
          Item item=ItemAndCategoryController.getInstance().getItemById(itemId);
          if(item.isInSale()==true) return "true";
          else return "false";
       }
+
       if(getJsonStringField(command,"content").equals("rateItem")){
          String itemId=getJsonStringField(command,"itemId");
          int rating=Integer.parseInt(getJsonStringField(command,"rating"));
          return ItemAndCategoryController.getInstance().rate(rating,itemId);
       }
+
       if(getJsonStringField(command,"content").equals("getAllItemsFromDataBase")){
          ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
          Gson gson=new Gson();
          return gson.toJson(allItems);
       }
+
       if(getJsonStringField(command,"content").equals("includeItem")){
          String itemId=getJsonStringField(command,"itemId");
          if(CartController.getInstance().getCurrentShoppingCart().includesItem(itemId)==true) return "true";
          else return "false";
       }
+
       if(getJsonStringField(command,"content").equals("addItemToCart")){
          String itemId=getJsonStringField(command,"itemId");
          return CartController.getInstance().addItemToCart(itemId);
       }
-      if(getJsonStringField(command,"content").equals("getCategory")){
-         String categoryName=getJsonStringField(command,"categoryName");
-         Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
-         Gson gson=new Gson();
-         String response=gson.toJson(category);
-         return response;
-      }
+
+
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
          if(command.has("filter attribute"))

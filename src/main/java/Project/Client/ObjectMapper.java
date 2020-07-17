@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ObjectMapper {
@@ -36,6 +37,7 @@ public class ObjectMapper {
       String number = getJsonStringField(json,"number");
       return new Admin(username,password,name,lastName,email,number);
    }
+
    public static Seller jsonToSeller(JsonObject json){
       String name = getJsonStringField(json,"name");
       String lastName = getJsonStringField(json,"lastName");
@@ -47,6 +49,7 @@ public class ObjectMapper {
       String company=getJsonStringField(json,"companyName");
       return new Seller(money,username,password,name,lastName,email,number,company);
    }
+
    public static Buyer jsonToBuyer(JsonObject json){
       String name = getJsonStringField(json,"name");
       String lastName = getJsonStringField(json,"lastName");
@@ -58,32 +61,21 @@ public class ObjectMapper {
       return new Buyer(money,username,password,name,lastName,email,number);
    }
 
-   public static Item gsonToItem(String itemGson){
-      Gson gson=new Gson();
-      Item item=gson.fromJson(itemGson,Item.class);
-      return item;
+   public static Item jsonToItem(JsonObject json){
+      System.out.println(json.toString());
+      String name=getJsonStringField(json,"name");
+      String brand=getJsonStringField(json,"brand");
+      double price=json.get("price").getAsDouble();
+      String description=getJsonStringField(json,"description");
+      String productId=getJsonStringField(json,"id");
+      int inStock=json.get("inStock").getAsInt();
+      int viewCount=json.get("viewCount").getAsInt();
+      int timesBought=json.get("timesBought").getAsInt();
+      Gson gson = new Gson();
+      HashMap attributes=gson.fromJson(json.get("attributes"), HashMap.class);
+      ArrayList<String> allBuyers=gson.fromJson(json.get("buyerUserName"), ArrayList.class);
+      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers);
    }
-
-   public static ArrayList<Item> getAllItemFromDatabase(String gsonString){
-      Gson gson=new Gson();
-      TypeToken<List<Item>> token = new TypeToken<List<Item>>() {};
-      ArrayList<Item> allItems=gson.fromJson(gsonString,token.getType());
-      return allItems;
-   }
-
-   public static ArrayList<BuyLog> getAllBuyLogsForBuyer(String gsonString){
-      Gson gson=new Gson();
-      TypeToken<List<BuyLog>> token = new TypeToken<List<BuyLog>>() {};
-      ArrayList<BuyLog> all=gson.fromJson(gsonString,token.getType());
-      return all;
-   }
-
-   public static Category getCategory(String gsonString){
-      Gson gson=new Gson();
-      Category category=gson.fromJson(gsonString,Category.class);
-      return category;
-   }
-
 
    public static String getJsonStringField(JsonObject json,String field){
       return json.get(field).toString().replace("\"","");

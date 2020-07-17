@@ -81,7 +81,8 @@ public class ItemMenuController {
         ivTarget.setPreserveRatio(true);
         playPause.setText("play");
         MakeRequest.makeAddViewToItem(itemID);
-        Item item= MakeRequest.makeGetItemById(itemID);
+       //  mirza Item item= MakeRequest.makeGetItemById(itemID);
+        Item item=null;
         System.out.println("made get req");
         itemDetails.setText("Description:\n"+item.getDescription());
         //item.addViewsBy(1);
@@ -189,13 +190,13 @@ public class ItemMenuController {
     }
 
     public  void addAttributeListView(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        HashMap<String , String> attributes=item.getAttributes();
+        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
+        //  mirza  HashMap<String , String> attributes=item.getAttributes();
         String print=null;
-        for(String key:attributes.keySet()){
-            print=key+"                   "+attributes.get(key);
-            attributeListView.getItems().add(print);
-        }
+        //  mirza    for(String key:attributes.keySet()){
+        //  mirza      print=key+"                   "+attributes.get(key);
+        //  mirza       attributeListView.getItems().add(print);
+        //  mirza   }
     }
 
     public void back(ActionEvent actionEvent) {
@@ -204,17 +205,17 @@ public class ItemMenuController {
     }
 
     public void commentListViewInitialize(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        for(Comment comment:item.getAllComments()){
-            comments.add(comment);
-        }
-        commentListView.setItems(comments);
+        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
+        //  mirza  for(Comment comment:item.getAllComments()){
+        //  mirza       comments.add(comment);
+        //  mirza   }
+        //  mirza   commentListView.setItems(comments);
     }
 
     public void addToCart(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         User user=MakeRequest.makeGetUserRequest();
-        Item item=MakeRequest.makeGetItemById(itemID);
+        //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -231,14 +232,14 @@ public class ItemMenuController {
             alert.show();
             return;
         }
-        if(item.getInStock()==0){
+        /*  mirza    if(item.getInStock()==0){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("sold out Item!");
             alert.showAndWait();
             return;
-        }
+        } */
         MakeRequest.addItemToCart(itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
@@ -289,14 +290,14 @@ public class ItemMenuController {
     }
 
     public void updateItemComoBox(MouseEvent mouseEvent) {
-        Item item=MakeRequest.makeGetItemById(itemID);
-        Category category= MakeRequest.getCategoryByName(item.getCategoryName());
+        //  mirza Item item=MakeRequest.makeGetItemById(itemID);
+        //  mirza   Category category= MakeRequest.getCategoryByName(item.getCategoryName());
         ObservableList<String>allItems=FXCollections.observableArrayList();
-        for(String id:category.getAllItemsID()){
-            if(id.equals(itemID)) continue;
-            allItems.add(MakeRequest.makeGetItemById(id).getName()+" id:"+id);
-        }
-        itemComoBox.setItems(allItems);
+        //  mirza    for(String id:category.getAllItemsID()){
+        //  mirza       if(id.equals(itemID)) continue;
+            //  mirza   allItems.add(MakeRequest.makeGetItemById(id).getName()+" id:"+id);
+        //  mirza    }
+        //  mirza    itemComoBox.setItems(allItems);
     }
 
 
@@ -421,8 +422,8 @@ public class ItemMenuController {
     }
 
     public void initializeMediaPlayer(){
-        Item item=MakeRequest.makeGetItemById(itemID);
-        if(item.getVideoName().equals("")){
+      /*  //  mirza  Item item=MakeRequest.makeGetItemById(itemID);
+         if(item.getVideoName().equals("")){
             videoLabel.setText("no video for playing!");
             return;
         }
@@ -444,13 +445,13 @@ public class ItemMenuController {
                 mediaPlayer.seek(Duration.ZERO);
                 mediaPlayer.pause();
             }
-        });
+        }); */
 
     }
 
     public void playPauseButtonPressed(ActionEvent actionEvent) {
-        MusicManager.getInstance().playSound("Button");
-        Item item=MakeRequest.makeGetItemById(itemID);
+     /*   MusicManager.getInstance().playSound("Button");
+        //  mirza   Item item=MakeRequest.makeGetItemById(itemID);
         if(item.getVideoName().equals("")){
             MusicManager.getInstance().playSound("error");
             Alert alert=new Alert(Alert.AlertType.ERROR);
@@ -465,7 +466,7 @@ public class ItemMenuController {
         }else{
             playPause.setText("Play");
             mediaPlayer.pause();
-        }
+        } */
     }
 
     public void addCommentDialogBox(){
@@ -564,7 +565,7 @@ public class ItemMenuController {
     }
 
     public void updateSimpleItem(){
-        ArrayList<Item> allItems=new ArrayList<>();
+     /* //  mirza    ArrayList<Item> allItems=new ArrayList<>();
         Item item=MakeRequest.makeGetItemById(itemID);
         Category category=MakeRequest.getCategoryByName(item.getCategoryName());
         for(String id:category.getAllItemsID()){
@@ -578,8 +579,9 @@ public class ItemMenuController {
             public ListCell<Item> call(ListView<Item> param) {
                 return  new simpleItemImageTextCell();
             }
-        });
+        });*/
     }
+
     public void showItem(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
         Item selected=familyItemListView.getSelectionModel().getSelectedItem();
@@ -601,14 +603,14 @@ public class ItemMenuController {
     }
 
     private void updateAlternates(){
-        alternativeOptions.clear();
+        /*  mirza     alternativeOptions.clear();
         Item thisItem = MakeRequest.makeGetItemById(itemID);
         for(Item item : MakeRequest.makeRequestGetAllItemsFromDataBase()){
             if(itemsAreEqual(thisItem,item)){
                 alternativeOptions.add(item);
             }
         }
-        updateChoiceBox();
+        updateChoiceBox(); */
     }
 
     @FXML private ChoiceBox sellerChoiceBox;

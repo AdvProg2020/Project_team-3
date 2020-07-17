@@ -28,6 +28,18 @@ public class Item {
     private String videoName;
     private String addedTime;
 
+    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+        this.brand = brand;
+        this.timesBought = timesBought;
+        this.price = price;
+        this.inStock = inStock;
+        this.viewCount = viewCount;
+        this.attributes = attributes;
+        this.buyerUserName=buyerUserName;
+    }
 
     public double getPrice() {
         return price;

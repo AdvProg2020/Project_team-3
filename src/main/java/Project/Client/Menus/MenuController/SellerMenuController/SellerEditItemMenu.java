@@ -1,9 +1,9 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Server.Controller.CommercialController;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Model.Item;
+import Project.Client.MakeRequest;
+
+import Project.Client.Model.Item;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -28,6 +28,7 @@ public class SellerEditItemMenu {
 
     @FXML
     private void initialize(){
+        MakeRequest.getItem(itemID);
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         label.setText("You are editing "+itemID);
@@ -35,12 +36,9 @@ public class SellerEditItemMenu {
         updateBuyers();
     }
 
-    private void setFont(){
 
-    }
-
-    private void updateAttributes(){
-        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+     private void updateAttributes(){
+        Item item = MakeRequest.getItem(itemID);
         listView.getItems().clear();
         listView.getItems().add("Name:" +  item.getName());
         listView.getItems().add("Brand:" +item.getBrand());
@@ -55,7 +53,8 @@ public class SellerEditItemMenu {
 
     private void updateBuyers(){
         buyersListView.getItems().clear();
-        ArrayList<String> buyers = ItemAndCategoryController.getInstance().getItemBuyer(itemID);
+        Item item = MakeRequest.getItem(itemID);
+        ArrayList<String> buyers = item.getBuyerUserName();
         for(String buyer:buyers){
             buyersListView.getItems().add(buyer);
         }
@@ -83,7 +82,7 @@ public class SellerEditItemMenu {
 
     private void sendEditRequest(String key,String value){
         if(isAValidValue(key,value)) {
-            ItemAndCategoryController.getInstance().editItem(key, value, itemID);
+            MakeRequest.makeEditProductRequest(itemID,key,value);
             sendAlert("Editing request has been sent.", "SellerEditItemMenu");
         }
         else {
@@ -119,9 +118,10 @@ public class SellerEditItemMenu {
     private void back(){
         SceneSwitcher.getInstance().setSceneTo("SellerManageProductsMenu");
     }
+
     @FXML
     private void logout(){
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
@@ -129,7 +129,7 @@ public class SellerEditItemMenu {
 
     @FXML
     private void removeItem(){
-        sendAlert(ItemAndCategoryController.getInstance().deleteItem(itemID),"SellerManageProductsMenu");
+        sendAlert(MakeRequest.makeRemoveProductSellerRequest(itemID),"SellerManageProductsMenu");
     }
 
     public static String getItemID() {
@@ -148,12 +148,12 @@ public class SellerEditItemMenu {
     }
 
 
-    public void commercial(MouseEvent mouseEvent) {
+  /*  public void commercial(MouseEvent mouseEvent) {
         MusicManager.getInstance().playSound("Button");
         String message=CommercialController.getInstance().addCommercialRequest(itemID);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
-    }
+    } */
 
 }

@@ -34,12 +34,12 @@ public class compareMenuController {
     }
 
     public void initialize(){
-        View.setFonts(pane);
+        /*  mirza   View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
-        Item first= MakeRequest.makeGetItemById(firstItemID);
-        Item second= MakeRequest.makeGetItemById(secondItemID);
-        String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
-        String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
+        //  mirza  Item first= MakeRequest.makeGetItemById(firstItemID);
+        //  mirza  Item second= MakeRequest.makeGetItemById(secondItemID);
+        //  mirza  String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
+        //  mirza   String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
         File firstFile=new File(firstPath);
         File secondFile=new File(secondPath);
         try {
@@ -48,7 +48,7 @@ public class compareMenuController {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        updateListViews(first,second);
+        //  mirza  updateListViews(first,second); */
     }
 
     private void updateListViews(Item first,Item second){

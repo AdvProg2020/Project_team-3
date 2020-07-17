@@ -27,7 +27,6 @@ public class SellerManageProductsMenu {
     @FXML CheckBox searchCheckBox;
     @FXML CheckBox priceCheckBox;
     @FXML CheckBox attributeCheckBox;
-    @FXML CheckBox sellerNameCheckBox;
     @FXML CheckBox filterSaleCheckBox;
 
     @FXML TextField attributeKey;
@@ -37,7 +36,7 @@ public class SellerManageProductsMenu {
     @FXML TextField search;
     @FXML TextField brandName;
     @FXML TextField categoryName;
-    @FXML TextField sellerName;
+
 
 
     @FXML public void initialize() {
@@ -54,6 +53,7 @@ public class SellerManageProductsMenu {
         listView.getItems().clear();
         SortAndFilter.getInstance().activateFilterSellerName(MakeRequest.makeGetUserRequest().username);
         listView.getItems().addAll(MakeRequest.showProducts());
+        SortAndFilter.getInstance().disableFilterSellerName();
         if(listView.getItems().isEmpty()) {
             listView.getItems().add("there are no products right now");
             return;
@@ -85,10 +85,6 @@ public class SellerManageProductsMenu {
         if(control.getFilterName()){
             searchCheckBox.setSelected(true);
             search.setText(control.getName());
-        }
-        if(control.getFilterSellerName()){
-            sellerNameCheckBox.setSelected(true);
-            sellerName.setText(control.getSellerName());
         }
     }
     @FXML
@@ -199,7 +195,6 @@ public class SellerManageProductsMenu {
         searchCheckBox.setSelected(false);
         priceCheckBox.setSelected(false);
         attributeCheckBox.setSelected(false);
-        sellerNameCheckBox.setSelected(false);
         attributeKey.clear();
         attributeValue.clear();
         minPrice.clear();
@@ -207,8 +202,6 @@ public class SellerManageProductsMenu {
         search.clear();
         brandName.clear();
         categoryName.clear();
-        sellerName.clear();
-
     }
 
     public void filterAvailibility(MouseEvent mouseEvent) {
@@ -255,18 +248,6 @@ public class SellerManageProductsMenu {
         }
         SortAndFilter.getInstance().disableFilterName();
         searchCheckBox.setSelected(false);
-        update();
-    }
-
-    public void sellerFilter(MouseEvent mouseEvent) {
-        MusicManager.getInstance().playSound("Button");
-        if((sellerNameCheckBox.isSelected())&&(isValidAlphabeticTextField(sellerName))){
-            SortAndFilter.getInstance().activateFilterSellerName(sellerName.getText());
-            update();
-            return;
-        }
-        SortAndFilter.getInstance().disableFilterSellerName();
-        sellerNameCheckBox.setSelected(false);
         update();
     }
 
@@ -325,7 +306,5 @@ public class SellerManageProductsMenu {
         if(attributeCheckBox.isSelected()) attributeFilter(null);
     }
 
-    public void filterSellerTextChange(KeyEvent keyEvent) {
-        if(sellerNameCheckBox.isSelected()) sellerFilter(null);
-    }
+
 }

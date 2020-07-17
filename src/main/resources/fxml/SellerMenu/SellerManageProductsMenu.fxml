@@ -29,7 +29,7 @@
 
                 <CheckBox fx:id="categoryNameCheckBox" layoutX="22.0" layoutY="287.0" onMouseClicked="#filterCategoryName" />
                 <Label layoutX="40.0" layoutY="287.0" text="category name:" />
-                <TextField fx:id="categoryNameFilter" layoutX="20.0" layoutY="310.0" onKeyReleased="#filterCategoryTextChange" promptText="Desired Category" styleClass="underlinedTextField" />
+                <TextField fx:id="categoryName" layoutX="20.0" layoutY="310.0" onKeyReleased="#filterCategoryTextChange" promptText="Desired Category" styleClass="underlinedTextField" />
 
 
                 <CheckBox fx:id="brandNameCheckBox" layoutX="22.0" layoutY="342.0" onMouseClicked="#filterBrandName" />
@@ -53,11 +53,6 @@
                 <CheckBox fx:id="attributeCheckBox" layoutX="22.0" layoutY="168.0" onMouseClicked="#attributeFilter" />
                 <TextField fx:id="attributeKey" layoutX="19.0" layoutY="192.0" onKeyReleased="#filterAttributeTextChange" promptText="Enter a key" styleClass="underlinedTextField" />
                 <TextField fx:id="attributeValue" layoutX="19.0" layoutY="227.0" onKeyReleased="#filterAttributeTextChange" promptText="Enter a value" styleClass="underlinedTextField" />
-
-
-                <CheckBox fx:id="sellerNameCheckBox" layoutX="22.0" layoutY="397.0" onMouseClicked="#sellerFilter" />
-                <Label layoutX="41.0" layoutY="397.0" text="seller name:" />
-                <TextField fx:id="sellerName" layoutX="19.0" layoutY="414.0" onKeyReleased="#filterSellerTextChange" promptText="Enter a Seller" styleClass="underlinedTextField" />
 
 
                 <Label layoutX="45.0" layoutY="168.0" prefHeight="17.0" prefWidth="65.0" text="attributes:" />
