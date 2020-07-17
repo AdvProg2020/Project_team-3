@@ -2,6 +2,7 @@ package Project.Client;
 
 import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
+import Project.Client.Model.Sale;
 import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.Seller;
@@ -111,6 +112,12 @@ public class ObjectMapper {
         return new Category(name,parent,allItemsID,attributes,subCategories);
    }
 
+   public static Sale jsonToSale(JsonObject json){
+      int percent=json.get("percent").getAsInt();
+      String start=getJsonStringField(json,"start");
+      String end=getJsonStringField(json,"end");
+      return new Sale(percent,start,end);
+   }
    public static String getJsonStringField(JsonObject json,String field){
       return json.get(field).toString().replace("\"","");
    }

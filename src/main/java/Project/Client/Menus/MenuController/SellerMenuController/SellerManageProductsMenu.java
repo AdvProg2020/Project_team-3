@@ -40,6 +40,7 @@ public class SellerManageProductsMenu {
 
 
     @FXML public void initialize() {
+        SortAndFilter.getInstance().reset();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         sortChoiceBox.getItems().addAll(SortAndFilter.getInstance().showAllAvailableSorts().split("\n"));

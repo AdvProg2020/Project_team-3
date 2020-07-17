@@ -93,9 +93,9 @@ public class ShopMenuController {
     @FXML private AnchorPane pane;
  
     @FXML private void initialize(){
+        SortAndFilter.getInstance().reset();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-        //categoryName = "Main";
         allCategories =   MakeRequest.makeGetAllCategoryName();
         pageNumber = 1;
         updateAllCats();

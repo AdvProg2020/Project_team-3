@@ -195,6 +195,8 @@ public class SortAndFilter {
       filterAvailability = false;
       activeSort = 0;
       filterAvailability = false;
+      filterSale=false;
+      filterSellerName=false;
    }
    public Boolean getFilterAttribute() {
       return filterAttribute;
@@ -240,5 +242,8 @@ public class SortAndFilter {
    }
    public String getSellerName() {
       return sellerName;
+   }
+   public Boolean getFilterSale() {
+      return filterSale;
    }
 }

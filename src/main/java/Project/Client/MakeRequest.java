@@ -4,10 +4,11 @@ import Project.Client.CLI.View;
 import Project.Client.Model.Category;
 import Project.Client.Model.Item;
 import Project.Client.Model.Logs.BuyLog;
+import Project.Client.Model.Sale;
 import Project.Client.Model.SortAndFilter;
 import Project.Client.Model.Users.User;
-import Server.Controller.SortAndFilterController;
-import Server.Controller.UserController;
+
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -147,6 +148,7 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> makeGetAllSellerItems(){
+      resetFilter();
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
@@ -173,6 +175,27 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
+   public static Sale makeGetSale(String saleId){
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 3);
+      json.addProperty("content", "get sale");
+      json.addProperty("id",saleId);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      return ObjectMapper.jsonToSale(jsonObject);
+   }
+
+   public static String editSale(String saleId,String field,String value){
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 3);
+      json.addProperty("content", "edit sale");
+      json.addProperty("id",saleId);
+      json.addProperty("field",field);
+      json.addProperty("value",value);
+      return Client.getInstance().sendMessage(json);
+   }
    public static String makeGetSellerSaleToSimpleString(){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
@@ -611,6 +634,7 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> showProducts() {
+      resetFilter();
       JsonObject json = new JsonObject();
       SortAndFilter sortAndFilter = SortAndFilter.getInstance();
       json.addProperty("type", 0);
@@ -644,23 +668,34 @@ public class MakeRequest {
          json.addProperty("min", sortAndFilter.getMinPrice());
          json.addProperty("max", sortAndFilter.getMaxPrice());
       }
+      if(sortAndFilter.getFilterSale()){
+         json.addProperty("filter sale", "true");
+      }
       json.addProperty("sort", sortAndFilter.showActiveSort());
       ArrayList<String> result = new ArrayList<>();
       for (String s : Client.getInstance().sendMessage(json).split("\n")) {
          if ((s != null) && (s != "") && (s != "\n"))
             result.add(s);
       }
+      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>();
       return result;
    }
 
    public static ArrayList<String> show(String categoryName){
+      resetFilter();
       SortAndFilter.getInstance().activateFilterCategoryName(categoryName);
       ArrayList<String> items=showProducts();
       SortAndFilter.getInstance().disableFilterCategoryName();
       return items;
    }
 
-   public static String getJsonStringField(JsonObject json,String field){
-      return json.get(field).toString().replace("\"","");
+   private static void resetFilter(){
+      JsonObject json = new JsonObject();
+      SortAndFilter sortAndFilter = SortAndFilter.getInstance();
+      json.addProperty("type", 0);
+      json.addProperty("content", "reset filter");
+      Client.getInstance().sendMessage(json);
    }
+
+
 }

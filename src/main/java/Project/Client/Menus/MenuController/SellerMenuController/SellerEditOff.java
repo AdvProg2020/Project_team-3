@@ -1,8 +1,8 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Server.Controller.SaleAndDiscountCodeController;
-import Server.Controller.UserController;
-import Server.Model.Sale;
+import Project.Client.MakeRequest;
+import Project.Client.Model.Sale;
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -28,7 +28,7 @@ public class SellerEditOff {
     @FXML
     private void logout(){
         MusicManager.getInstance().playSound("Button");
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
@@ -38,10 +38,10 @@ public class SellerEditOff {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         reset();
-        Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(offID);
-        currentOffPercent.setText(Integer.toString(sale.getOffPercentage()));
-        currentStartDate.setText(sale.getStartTime().toString());
-        currentEndDate.setText(sale.getEndTime().toString());
+        Sale sale=MakeRequest.makeGetSale(offID);
+        currentOffPercent.setText(Integer.toString(sale.getPercent()));
+        currentStartDate.setText(sale.getStart().toString());
+        currentEndDate.setText(sale.getEnd().toString());
         setFonts();
     }
 
@@ -74,7 +74,7 @@ public class SellerEditOff {
             return;
         }
         try {
-            String message= SaleAndDiscountCodeController.getInstance().editSale(offID,"off percentage",newOffPercent.getText());
+            String message= MakeRequest.editSale(offID,"off percentage",newOffPercent.getText());
             SellerAddOff.showAlertBox(message,"INFORMATION");
 
         }catch (Exception e){
@@ -86,7 +86,7 @@ public class SellerEditOff {
     private void editStartDate(){
         try {
             LocalDateTime start=getDate(newStartDate.getValue().toString());
-            String message= SaleAndDiscountCodeController.getInstance().editSale(offID,"start time",start.toString());
+            String message= MakeRequest.editSale(offID,"start time",start.toString());
             SellerAddOff.showAlertBox(message,"INFORMATION");
         }catch (Exception e){
 
@@ -97,7 +97,7 @@ public class SellerEditOff {
     private void editEndDate(){
         try {
             LocalDateTime end=getDate(newEndDate.getValue().toString());
-            String message= SaleAndDiscountCodeController.getInstance().editSale(offID,"end time",end.toString());
+            String message=  MakeRequest.editSale(offID,"end time",end.toString());
             SellerAddOff.showAlertBox(message,"INFORMATION");
         }catch (Exception e){
 

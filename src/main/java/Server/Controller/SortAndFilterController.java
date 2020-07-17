@@ -273,6 +273,8 @@ public class SortAndFilterController {
       filterAvailability = false;
       activeSort = 0;
       filterAvailability = false;
+      filterSale=false;
+      filterSellerName=false;
    }
 
    public Boolean getFilterAttribute() {

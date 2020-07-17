@@ -1,7 +1,7 @@
 package Server.Controller;
 
-import Project.Client.CLI.View;
-import Project.Client.Client;
+
+
 import Project.Client.Model.SortAndFilter;
 import Server.Model.Category;
 import Server.Model.Item;
@@ -314,6 +314,22 @@ public class RequestProcessor {
          return response;
       }
 
+      if(getJsonStringField(command,"content").equals("edit sale")){
+         String id=getJsonStringField(command,"id");
+         String field=getJsonStringField(command,"field");
+         String value=getJsonStringField(command,"value");
+         return SaleAndDiscountCodeController.getInstance().editSale(id,field,value);
+      }
+
+      if(getJsonStringField(command,"content").equals("get sale")){
+        Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
+        JsonObject json=new JsonObject();
+        json.addProperty("start",sale.getStartTime().toString());
+        json.addProperty("end",sale.getEndTime().toString());
+        json.addProperty("percent",sale.getOffPercentage());
+        return json.toString();
+      }
+
       if(getJsonStringField(command,"content").equals("add sale")){
          LocalDateTime start=getDate(getJsonStringField(command,"start"));
          LocalDateTime end=getDate(getJsonStringField(command,"end"));
@@ -374,6 +390,10 @@ public class RequestProcessor {
          if(ItemAndCategoryController.getInstance().isThereItemWithId(getJsonStringField(command,"product id")))
             return "true";
          return "false";
+      }
+      if (getJsonStringField(command,"content").equals("reset filter")) {
+         SortAndFilterController.getInstance().reset();
+            return "Successful:v";
       }
       if (getJsonStringField(command,"content").equals("is there sale with id")) {
          if(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(getJsonStringField(command,"id")))
@@ -499,6 +519,8 @@ public class RequestProcessor {
             SortAndFilterController.getInstance().activateFilterName(getJsonStringField(command,"name"));
          if(command.has("seller name"))
             SortAndFilterController.getInstance().activateFilterSellerName(getJsonStringField(command,"seller"));
+         if(command.has("filter sale"))
+            SortAndFilterController.getInstance().activateFilterSale();
          if(command.has("filter price range"))
             SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
          SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
@@ -528,7 +550,7 @@ public class RequestProcessor {
          date = LocalDateTime.parse(dateString,dateTimeFormatter);
          return date;
       }catch (Exception e){
-         System.out.println(View.ANSI_RED+"Invalid date. Try again."+View.ANSI_RESET);
+         System.out.println("Invalid date. Try again.");
          return null;
       }
    }

@@ -5,6 +5,7 @@ import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
 import Project.Client.Model.Item;
+import Project.Client.Model.Sale;
 import Project.Client.Model.SortAndFilter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -73,6 +75,7 @@ public class SalesMenuController {
     @FXML private AnchorPane pane;
     @FXML
     private void initialize(){
+        SortAndFilter.getInstance().reset();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         reset(null);
@@ -86,7 +89,8 @@ public class SalesMenuController {
 
     private void initLists(){
         MakeRequest.makeUpdateDateAndTimeRequest();
-     //mirza   allItemsID = SortAndFilter.getInstance().show(SaleAndDiscountCodeController.getInstance().getAllItemsIDWithSale());
+        SortAndFilter.getInstance().activateFilterSale();
+        allItemsID = MakeRequest.showProducts();
         gridPane.getChildren().removeAll(allItemsBox);
         allItemsBox.clear();
         int row=0,column=0;
@@ -131,11 +135,11 @@ public class SalesMenuController {
         itemBox.getChildren().add(star);
         itemBox.getChildren().add(nameAndPrice);
 
-     /*   Sale sale = SaleAndDiscountCodeController.getInstance().getSaleById(item.getSaleId());
-        itemBox.getChildren().add(new Label("Sale Start:"+sale.getStartTime().toString()));
-        itemBox.getChildren().add(new Label("Sale End:"+sale.getEndTime().toString()));
-        itemBox.getChildren().add(new Label("Ends In:"+LocalDateTime.now().until(sale.getEndTime().truncatedTo(ChronoUnit.HOURS),ChronoUnit.HOURS)+" Hours."));
-        itemBox.getChildren().add(new Label("Sale is %"+sale.getOffPercentage()));  */
+        Sale sale =MakeRequest.makeGetSale(item.getSaleId());
+        itemBox.getChildren().add(new Label("Sale Start:"+sale.getStart()));
+        itemBox.getChildren().add(new Label("Sale End:"+sale.getEnd()));
+        itemBox.getChildren().add(new Label("Ends In:"+LocalDateTime.now().until(getDate(sale.getEnd()).truncatedTo(ChronoUnit.HOURS),ChronoUnit.HOURS)+" Hours."));
+        itemBox.getChildren().add(new Label("Sale is %"+sale.getPercent()));
 
         allItemsBox.add(itemBox);
         return itemBox;
@@ -342,5 +346,18 @@ public class SalesMenuController {
     public void cart(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().saveScene("ShopMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu");
+    }
+
+    private LocalDateTime getDate(String dateString){
+        LocalDateTime date;
+        dateString=dateString.substring(8,10)+"/"+dateString.substring(5,7)+"/"+dateString.substring(0,4)+" 12:12";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        try{
+            date = LocalDateTime.parse(dateString,dateTimeFormatter);
+            return date;
+        }catch (Exception e){
+            System.out.println("Invalid date. Try again.");
+            return null;
+        }
     }
 }
