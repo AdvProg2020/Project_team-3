@@ -1,11 +1,8 @@
 package Server.Controller;
 
 
-import Server.Model.Category;
-import Server.Model.DiscountCode;
-import Server.Model.Item;
+import Server.Model.*;
 import Server.Model.Requests.Request;
-import Server.Model.Sale;
 import Server.Model.Users.Admin;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
@@ -276,6 +273,14 @@ public class Database {
       }catch (SQLException e){
          System.err.println(e.getMessage());
       }
+   }
+
+   public void saveAuction(Auction auction){
+
+   }
+
+   public void deleteAuction(Auction auction){
+
    }
 
    public void deleteUser(User user) {
