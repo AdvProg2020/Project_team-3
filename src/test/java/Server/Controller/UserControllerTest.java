@@ -304,7 +304,7 @@ public class UserControllerTest {
         for(Request request:allRequest){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
-        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Project.Main", attributes));
+        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Main", attributes));
         ArrayList<Request>allRequess=RequestController.getInstance().getAllRequestFromDataBase();
          System.out.println(allRequess.size());
         for(Request request:allRequess){
@@ -357,7 +357,7 @@ public class UserControllerTest {
         for(Request request:allRequest){
             RequestController.getInstance().acceptRequest(request.getRequestId());
         }
-        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Project.Main", attributes));
+        System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Main", attributes));
         ArrayList<Request>allRequess=RequestController.getInstance().getAllRequestFromDataBase();
         System.out.println(allRequess.size());
         for(Request request:allRequess){

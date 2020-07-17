@@ -40,9 +40,9 @@ public class CartControllerTest {
     }
 
     public void addCategory() {
-        Category category1= ItemAndCategoryController.getInstance().getCategoryByName("Project.Main");
+        Category category1= ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
-        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
         ArrayList<String>attributes1=new ArrayList<>();
         ItemAndCategoryController.getInstance().addCategory("Vacuum",attributes1,"lavazem manzel");
         ArrayList<String>attributes2=new ArrayList<>();
@@ -76,12 +76,12 @@ public class CartControllerTest {
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
         ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz"
-                ,"this is vaccum",500,12,"Project.Main",
+                ,"this is vaccum",500,12,"Main",
                 attributes);
         ItemAndCategoryController.getInstance().addItem("Oven456","Benz"
-                ,"this is oven",5000,12,"Project.Main",attributes1);
+                ,"this is oven",5000,12,"Main",attributes1);
         System.out.println(ItemAndCategoryController.getInstance().addItem("microwave67","Benz",
-                "this is microWave",600,12,"Project.Main",attributes2));
+                "this is microWave",600,12,"Main",attributes2));
         UserController.getInstance().logout();
         ArrayList<Request> allRequests=RequestController.getInstance().getAllRequestFromDataBase();
         acceptRequests();

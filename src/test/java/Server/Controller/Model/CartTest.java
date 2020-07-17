@@ -24,7 +24,7 @@ public class CartTest {
         System.out.println(UserController.getInstance().login(seller.getUsername(),seller.getPassword()));
         HashMap<String,String> attributes=new HashMap<>();
         attributes.put("price","cheap");
-        ItemAndCategoryController.getInstance().addCategory("testSort",null,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("testSort",null,"Main");
         ItemAndCategoryController.getInstance().addItem("Vacuum345search","Benz"
                 ,"this is vaccum",500,10,"testSort",
                 attributes);

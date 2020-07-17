@@ -267,6 +267,7 @@ public class ManageProducts {
       int index=listView.getSelectionModel().getSelectedIndex();
       if(index==-1)
          return;
+      if(listView.getItems().get(index).toString().isEmpty()) return;
       String id=listView.getItems().get(index).toString().substring(4,9);
       listView.getSelectionModel().clearSelection();
       if(MakeRequest.isThereProductWithId(id)) {

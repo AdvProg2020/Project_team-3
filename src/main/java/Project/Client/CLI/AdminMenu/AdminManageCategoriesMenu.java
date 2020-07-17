@@ -100,15 +100,15 @@ public class AdminManageCategoriesMenu extends UserMenu {
             return;
         }
         if (fatherCategory.isEmpty()) {
-            System.out.println(ItemAndCategoryController.getInstance().addCategory(name, attributes,"Project.Main"));
+            System.out.println(ItemAndCategoryController.getInstance().addCategory(name, attributes,"Main"));
         } else {
             System.out.println((ItemAndCategoryController.getInstance().addCategory(name, attributes, fatherCategory)));
         }
     }
 
     private void editCategory(String categoryName) {
-     if(categoryName.equals("Project.Main")){
-         System.out.println("Error: you cant edit Project.Main");
+     if(categoryName.equals("Main")){
+         System.out.println("Error: you cant edit Main");
          return;
      }
      if(!ItemAndCategoryController.getInstance().isThereCategoryWithName(categoryName)){
@@ -134,8 +134,8 @@ public class AdminManageCategoriesMenu extends UserMenu {
     }
 
     private void removeCategory(String name) {
-        if(name.equals("Project.Main")){
-            System.out.println("Error: you cant delete Project.Main");
+        if(name.equals("Main")){
+            System.out.println("Error: you cant delete Main");
         }
         System.out.println(ItemAndCategoryController.getInstance().removeCategory(name));
     }

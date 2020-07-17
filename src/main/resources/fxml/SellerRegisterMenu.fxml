@@ -34,7 +34,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Login or Register">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Project.Main" />
+                  <MenuItem mnemonicParsing="false" onAction="#mainMenu" text="Main" />
                   <MenuItem mnemonicParsing="false" onAction="#login" text="Login" />
                   <MenuItem mnemonicParsing="false" onAction="#buyerRegister" text="Register Buyer" />
               <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />

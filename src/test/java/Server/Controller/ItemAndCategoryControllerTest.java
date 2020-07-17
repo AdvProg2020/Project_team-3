@@ -177,9 +177,9 @@ public class ItemAndCategoryControllerTest {
     @Test
     public void addCategory() {
         Category category=new Category("test",null);
-        Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Project.Main");
+        Category category1=ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
-        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
         ArrayList<String>attributes1=new ArrayList<>();
         ItemAndCategoryController.getInstance().addCategory("Vacuum",attributes1,"lavazem manzel");
         ArrayList<String>attributes2=new ArrayList<>();
@@ -285,7 +285,7 @@ public class ItemAndCategoryControllerTest {
         addItem();
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         System.out.println(ItemAndCategoryController.getInstance().getBaseCategory().getName());
-        Assert.assertEquals(ItemAndCategoryController.getInstance().getBaseCategory().getName(),"Project.Main");
+        Assert.assertEquals(ItemAndCategoryController.getInstance().getBaseCategory().getName(),"Main");
         for(Item item:allItems) Database.getInstance().deleteItem(item);
         deleteJunk();
     }
@@ -295,10 +295,10 @@ public class ItemAndCategoryControllerTest {
         addItem();
         ArrayList<Item> allItems=ItemAndCategoryController.getInstance().getAllItemFromDataBase();
         System.out.println(ItemAndCategoryController.getInstance().previousCategory("Vacuum"));
-        System.out.println(ItemAndCategoryController.getInstance().previousCategory("Project.Main"));
+        System.out.println(ItemAndCategoryController.getInstance().previousCategory("Main"));
         Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Vacuum"),
                 ItemAndCategoryController.getInstance().getCategoryByName("Vacuum").getParent());
-        Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Project.Main"),"Project.Main");
+        Assert.assertEquals(ItemAndCategoryController.getInstance().previousCategory("Main"),"Project.Main");
         for(Item item:allItems) Database.getInstance().deleteItem(item);
         deleteJunk();
     }
@@ -488,10 +488,10 @@ public class ItemAndCategoryControllerTest {
         ArrayList<String> allAttribute=new ArrayList<>();
         allAttribute.add("sorat");
         allAttribute.add("godrat");
-        ItemAndCategoryController.getInstance().addCategory("testAddAttribute",allAttribute,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("testAddAttribute",allAttribute,"Main");
         assertEquals(ItemAndCategoryController.getInstance().addAttributeToCategory("testAddAttribute","sorat"),"Error: category already has this attribute");
         assertEquals(ItemAndCategoryController.getInstance().addAttributeToCategory("testAddAttribute","vazn"),"Successful: attribute added");
-        assertEquals(ItemAndCategoryController.getInstance().getCategoryInfo("testAddAttribute"),"Category{name='testAddAttribute', parent='Project.Main', allItemsID=[], attributes=[sorat, godrat, vazn], subCategories=[]}");
+        assertEquals(ItemAndCategoryController.getInstance().getCategoryInfo("testAddAttribute"),"Category{name='testAddAttribute', parent='Main', allItemsID=[], attributes=[sorat, godrat, vazn], subCategories=[]}");
         deleteJunk();
     }
 

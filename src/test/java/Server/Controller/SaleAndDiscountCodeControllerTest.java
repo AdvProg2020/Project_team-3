@@ -24,9 +24,9 @@ public class SaleAndDiscountCodeControllerTest {
         Database.getInstance().initiate();}
 
     public void addCategory() {
-        Category category1= ItemAndCategoryController.getInstance().getCategoryByName("Project.Main");
+        Category category1= ItemAndCategoryController.getInstance().getCategoryByName("Main");
         ArrayList<String>attributes=new ArrayList<>();
-        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("lavazem manzel",attributes,"Main");
         ArrayList<String>attributes1=new ArrayList<>();
         ItemAndCategoryController.getInstance().addCategory("Vacuum",attributes1,"lavazem manzel");
         ArrayList<String>attributes2=new ArrayList<>();

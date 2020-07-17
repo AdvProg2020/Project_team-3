@@ -30,7 +30,7 @@ public class CommercialControllerTest {
          RequestController.getInstance().acceptRequest(request.getRequestId());
       }
       HashMap<String,String> attributes=new HashMap<>();
-      System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Project.Main",
+      System.out.println(ItemAndCategoryController.getInstance().addItem("Vacuum345","Benz","this is vaccum",500,10,"Main",
               attributes));
       ArrayList<Request>allRequess=RequestController.getInstance().getAllRequestFromDataBase();
       System.out.println(allRequess.size());

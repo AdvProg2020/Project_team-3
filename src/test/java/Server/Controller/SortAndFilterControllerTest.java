@@ -25,7 +25,7 @@ public class SortAndFilterControllerTest {
         attributes1.put("price","expensive");
         HashMap<String,String> attributes2=new HashMap<>();
         attributes2.put("price","cheap");
-        ItemAndCategoryController.getInstance().addCategory("testSort",null,"Project.Main");
+        ItemAndCategoryController.getInstance().addCategory("testSort",null,"Main");
         ItemAndCategoryController.getInstance().addItem("Vacuum345search","Benz"
                 ,"this is vaccum",500,10,"testSort",
                 attributes);

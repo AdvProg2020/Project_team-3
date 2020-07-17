@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 
 public class ShopMenu extends Menu {
    private static ShopMenu shopMenu;
-   private String categoryName = "Project.Main";
+   private String categoryName = "Main";
 
    private ShopMenu() {
    }
@@ -132,7 +132,7 @@ public class ShopMenu extends Menu {
    }
 
    public void showAllItems() {
-      printList(SortAndFilterController.getInstance().show("Project.Main"));
+      printList(SortAndFilterController.getInstance().show("Main"));
    }
 
    public void showCategory(){

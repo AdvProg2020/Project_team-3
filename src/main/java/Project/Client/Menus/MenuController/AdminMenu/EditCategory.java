@@ -40,8 +40,8 @@ public class EditCategory {
 
    public void changeName(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-    if(categoryName.equals("Project.Main")){
-        showAlertBox("you cant edit Project.Main","ERROR");
+    if(categoryName.equals("Main")){
+        showAlertBox("you cant edit Main","ERROR");
         return;
      }
     if(categoryNameField.getStyle().toString().contains("red")){
@@ -64,8 +64,8 @@ public class EditCategory {
 
    public void addAttribute(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
-      if(categoryName.equals("Project.Main")){
-         showAlertBox("you cant edit Project.Main","ERROR");
+      if(categoryName.equals("Main")){
+         showAlertBox("you cant edit Main","ERROR");
          return;
       }
       String text=attributeField.getText();

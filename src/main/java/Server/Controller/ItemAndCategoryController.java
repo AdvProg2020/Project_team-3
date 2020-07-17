@@ -377,7 +377,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getBaseCategory() {
-        return getCategoryByName("Project.Main");
+        return getCategoryByName("Main");
     }
 
     public String previousCategory(String categoryName) {
@@ -431,7 +431,7 @@ public class ItemAndCategoryController {
     }
 
     public String removeCategory(String name) {
-        if(name.equals("Project.Main")) return "Error: you cant delete Project.Main";
+        if(name.equals("Main")) return "Error: you cant delete Main";
         if(!isThereCategoryWithName(name)) return "Error: Invalid category name!";
         Category category=getCategoryByName(name);
         Category parent=getCategoryByName(category.getParent());

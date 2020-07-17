@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 public class ShopMenuController {
 
     public Menu menu;
-    private String categoryName = "Project.Main";
+    private String categoryName = "Main";
     private ArrayList<String> itemsToString = new ArrayList<>();
     private ArrayList<String> itemsID = new ArrayList<>();
     private ArrayList<VBox> itemsVBox = new ArrayList<>();
@@ -91,7 +91,7 @@ public class ShopMenuController {
     @FXML private void initialize(){
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
-        //categoryName = "Project.Main";
+        //categoryName = "Main";
         allCategories = Database.getInstance().printFolderContent("Categories");
         pageNumber = 1;
         updateAllCats();
