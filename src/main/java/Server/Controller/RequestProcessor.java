@@ -396,6 +396,19 @@ public class RequestProcessor {
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
 
+      if(getJsonStringField(command,"content").equals("createBankAccount")){
+         String bankAccountUsername=getJsonStringField(command,"username");
+         String bankAccountPassword=getJsonStringField(command,"password");
+         String firstName=getJsonStringField(command,"firstName");
+         String lastName=getJsonStringField(command,"lastName");
+         String repeatPassword=getJsonStringField(command,"repeatPassword");
+         return TransactionController.getInstance().addAccountToBank(firstName,lastName,bankAccountUsername,bankAccountPassword,repeatPassword);
+      }
+      if(getJsonStringField(command,"content").equals("getBankToken")){
+         String bankAccountUsername=getJsonStringField(command,"username");
+         String bankAccountPassword=getJsonStringField(command,"password");
+         return TransactionController.getInstance().getBankToken(bankAccountUsername,bankAccountPassword);
+      }
       if (getJsonStringField(command,"content").equals("view personal info")) {
          return UserController.getInstance().viewPersonalInfo(username);
       }

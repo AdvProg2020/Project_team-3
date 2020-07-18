@@ -461,6 +461,28 @@ public class MakeRequest {
 
    //type 5
 
+   public static String getBankTokenForClient(String username , String password){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("content","getBankToken");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("username",username);
+      jsonObject.addProperty("password",password);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+   public static String makeAccountRequestInBank(String username,String password ,String firstName ,String lastName,String repeatPassword){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("content","createBankAccount");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("username",username);
+      jsonObject.addProperty("password",password);
+      jsonObject.addProperty("firstName",firstName);
+      jsonObject.addProperty("lastName",lastName);
+      jsonObject.addProperty("repeatPassword",repeatPassword);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static User makeGetUserRequest() {
       if(MakeRequest.isTokenValid()==false) return null;
       JsonObject json = new JsonObject();

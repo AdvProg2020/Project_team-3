@@ -13,6 +13,7 @@ public abstract class User {
     public String email;
     public String number;
     public String type;
+    public String bankAccountId;
     public HashMap<String,String> allRequests=new HashMap<>();
 
     public boolean doesPasswordMatch(String password) {
@@ -29,6 +30,12 @@ public abstract class User {
         this.type = type;
     }
 
+    public String getBankAccountId() {
+        return bankAccountId;
+    }
+    public void setBankAccountId(String bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
     public String getType() {
         return type;
     }
