@@ -3,10 +3,7 @@ package Server.Controller;
 import Project.Client.CLI.View;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
-import Server.Model.Users.Admin;
-import Server.Model.Users.Buyer;
-import Server.Model.Users.Seller;
-import Server.Model.Users.User;
+import Server.Model.Users.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -47,6 +44,12 @@ public class UserController {
                 HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
                 valid.add(new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),req));
             }
+            rs = statement.executeQuery("select * FROM Assistants WHERE username='"+username+"'");
+            while(rs.next())
+            {
+                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                valid.add(new Assistant(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),req));
+            }
             rs = statement.executeQuery("select * FROM Buyers WHERE username='"+username+"'");
             while(rs.next())
             {
@@ -73,29 +76,7 @@ public class UserController {
 
         if(valid.isEmpty()) return null;
         return valid.get(0);
-      //String path="E:"+File.separator+"Project_team-3"+File.separator+"Resource" + File.separator + "Users";
-        /*
-      String path = "Resource" + File.separator + "Users";
-        String name = username + ".json";
-        File file = new File(path + File.separator + name);
-        if (!file.exists()) {
-            return null;
-        }
-        try {
-            String content = new String(Files.readAllBytes(file.toPath()));
-            if (content.contains("\"type\": \"Admin\"")) {
-                return gson.fromJson(content, Admin.class);
-            }
-            if (content.contains("\"type\": \"Buyer\"")) {
-                return gson.fromJson(content, Buyer.class);
-            }
-            if (content.contains("\"type\": \"Seller\"")) {
-                return gson.fromJson(content, Seller.class);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;*/
+
     }
 
     public User getCurrentOnlineUser() {
@@ -165,6 +146,9 @@ public class UserController {
     }
 
     public String registerBuyer(double money, String username, String password, String name, String lastName, String email, String number) {
+        if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
+            return "Error : Lengthy inputs";
+        }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
         }
@@ -174,6 +158,9 @@ public class UserController {
     }
 
     public String registerSeller(double money, String username, String password, String name, String lastName, String email, String number, String companyName) {
+        if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
+            return "Error : Lengthy inputs";
+        }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
         }
@@ -223,10 +210,12 @@ public class UserController {
     }
 
     public boolean isValidEmail(String email) {
+        if(email.length()>18) return false;
         return Controller.getMatcher(email, "^[A-Za-z0-9+_.-]+@(.+)\\.(.+)$").matches();
     }
 
     public boolean isValidPhoneNumber(String number) {
+        if(number.length()>18) return false;
         return Controller.getMatcher(number, "\\d\\d\\d\\d\\d(\\d+)$").matches();
     }
 
@@ -288,36 +277,6 @@ public class UserController {
         }
         return user.getPersonalInfo();
     }
-
-    //public ArrayList<User> getAllUserFromDataBase() {
-        //ArrayList<User> allUser = new ArrayList<>();
-        //
-
-        //
-        /*
-        String path = "Resource" + File.separator + "Users";
-        File file = new File(path);
-        File[] allFiles = file.listFiles();
-        String fileContent = null;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        for (File file1 : allFiles) {
-            try {
-                fileContent = new String(Files.readAllBytes(file1.toPath()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (fileContent.contains("\"type\": \"Admin\"")) {
-                allUser.add(gson.fromJson(fileContent, Admin.class));
-            }
-            if (fileContent.contains("\"type\": \"Seller\"")) {
-                allUser.add(gson.fromJson(fileContent, Seller.class));
-            }
-            if (fileContent.contains("\"type\": \"Buyer\"")) {
-                allUser.add(gson.fromJson(fileContent, Buyer.class));
-            }
-        }*/
-        //return allUser;
-    //}
 
     protected ArrayList<Buyer> getAllBuyers(){
         ArrayList<Buyer> ans = new ArrayList<>();

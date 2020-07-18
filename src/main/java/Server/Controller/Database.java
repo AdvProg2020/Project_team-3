@@ -3,10 +3,7 @@ package Server.Controller;
 
 import Server.Model.*;
 import Server.Model.Requests.Request;
-import Server.Model.Users.Admin;
-import Server.Model.Users.Buyer;
-import Server.Model.Users.Seller;
-import Server.Model.Users.User;
+import Server.Model.Users.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,6 +44,9 @@ public class Database {
       else if(user instanceof Seller){
          insertSeller((Seller)user);
       }
+      else if(user instanceof Assistant){
+         insertAssistant((Assistant)user);
+      }
    }
 
    private void insertAdmin(Admin admin){
@@ -66,6 +66,30 @@ public class Database {
 
          }
          statement.executeUpdate("insert into Admins values("+values+")");
+      }
+      catch(SQLException e)
+      {
+         System.err.println(e.getMessage());
+      }
+   }
+
+   private void insertAssistant(Assistant assistant){
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String allRequests=gson.toJson(assistant.getReqMap());
+      String values = "'"+assistant.getUsername()+"', '"+assistant.getPassword()+"', '"+assistant.getName()+"', '"+assistant.getLastName()+"', '"+assistant.getEmail()+"', '"+assistant.getNumber();
+      values+= "', '"+ "Admin" +"', '"+allRequests+"'";
+      Connection connection = null;
+      try
+      {
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Assistants WHERE username='"+assistant.getUsername()+"'");
+         }catch (Exception e){
+
+         }
+         statement.executeUpdate("insert into Assistants values("+values+")");
       }
       catch(SQLException e)
       {
@@ -215,21 +239,7 @@ public class Database {
    }
 
    public void saveDiscountCode(DiscountCode discount) {
-      /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      String id = discount.getDiscountId();
-      String path = "Resource" + File.separator + "DiscountCodes";
-      String name = id + ".json";
-      File file = new File(path + File.separator + name);
-      try {
-         if (!file.exists()) {
-            file.createNewFile();
-         }
-         FileWriter writer = new FileWriter(file);
-         writer.write(gson.toJson(discount));
-         writer.close();
-         }catch(IOException exception){
-         exception.printStackTrace();
-      }*/
+
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       Connection connection = null;
       String values = "'"+discount.getDiscountId()+"', "+discount.getDiscountPercentage()+", '"+discount.getMaxDiscount()+"', '";
@@ -417,6 +427,7 @@ public class Database {
          allUsers.addAll(getAllUsername("Admin"));
          allUsers.addAll(getAllUsername("Buyer"));
          allUsers.addAll(getAllUsername("Seller"));
+         allUsers.addAll(getAllUsername("Assistant"));
          return allUsers;
       }
       if(folderName.equals("Categories")){
