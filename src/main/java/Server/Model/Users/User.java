@@ -14,7 +14,6 @@ public abstract class User {
     private String number;
     private String type;
     private HashMap<String,String> allRequests=new HashMap<>();
-    private boolean hasBankAccount;
     public boolean doesPasswordMatch(String password) {
         return this.password.equals(password);
     }
@@ -27,15 +26,6 @@ public abstract class User {
         this.email = email;
         this.number = number;
         this.type = type;
-        hasBankAccount=false;
-    }
-
-    public boolean isHasBankAccount() {
-        return hasBankAccount;
-    }
-
-    public void setHasBankAccount(boolean hasBankAccount) {
-        this.hasBankAccount = hasBankAccount;
     }
 
     public String getType() {

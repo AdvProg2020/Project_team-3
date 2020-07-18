@@ -102,7 +102,7 @@ public class SellerRegisterController {
         }
         double money=validateMoney(moneyTextField.getText());
         MakeRequest.makeRegisterSellerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextField.getText(),money,companyTextField.getText());
-        MakeRequest.sendImageToServer(srcPath,desPath);
+        if(!imageDirectory.getText().equals(""))MakeRequest.sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);

@@ -12,7 +12,7 @@ public class TransactionController {
             socket=new Socket("localHost",8000);
             dataInputStream= new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             dataOutputStream=new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            setMainBankAccountId();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,23 +26,23 @@ public class TransactionController {
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
 
-    public String getMainBankAccountId() {
+
+    public String getMainBankAccountId(){
         return mainBankAccountId;
     }
 
     public void setMainBankAccountId() {
         Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
-        if(!admin.getBankAccountId().equals("")){
-            mainBankAccountId=admin.getBankAccountId();
+        String received=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
+        if(received.equals("username is not available")){
+            return;
         }
-        else if(admin.getBankAccountId().equals("")) {
-            String string=addAccountToBank(admin.getName(),admin.getLastName(),"reza",admin.getPassword(),admin.getPassword());
-            mainBankAccountId=string;
-            admin.setBankAccountId(mainBankAccountId);
+        else{
+            mainBankAccountId=received;
         }
     }
 
-    public String addAccountToBank(String firstName,String lastName,String username,String password , String repeatPassword){
+    public String addAccountToBank(String firstName, String lastName, String username, String password , String repeatPassword){
         String toBeSend="create_account "+firstName+" "+lastName+" "+username+" "+password+" "+repeatPassword;
         String received="";
         try {
