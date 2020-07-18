@@ -97,7 +97,8 @@ public class BuyerRegisterController {
         }
         double money=validateMoney(moneyTextField.getText());
         MakeRequest.makeRegisterBuyerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),numberTextField.getText(),money);
-        if(!imageDirectory.getText().equals(""))MakeRequest.sendImageToServer(srcPath,desPath);
+//        if(!imageDirectory.getText().equals(""))MakeRequest.sendImageToServer(srcPath,desPath);
+        if(!imageDirectory.getText().equals(""))Client.getInstance().sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);

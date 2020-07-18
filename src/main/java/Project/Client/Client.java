@@ -1,6 +1,7 @@
 package Project.Client;
 
 import com.google.gson.JsonObject;
+import javafx.scene.image.Image;
 
 import java.io.*;
 import java.net.Socket;
@@ -37,6 +38,48 @@ public class Client {
       }
       return "error in server and client connection.";
    }
+
+   public String sendImageToServer(String srcPath,String desPath){
+
+      try {
+         Socket clientSocket = new Socket("localhost", port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         File file=new File(srcPath);
+         dataOutputStream.writeUTF("image get "+desPath + " "+(int)file.length());
+         dataOutputStream.flush();
+         String received=dataInputStream.readUTF();
+         byte[] imageData=new byte[(int)file.length()];
+         FileInputStream fis=new FileInputStream(file);
+         fis.read(imageData);
+         fis.close();
+         dataOutputStream.write(imageData);
+         dataOutputStream.flush();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+   public Image getImageFromServer(String imageName , String imageType){
+      try {
+         Socket clientSocket=new Socket("localhost",port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         dataOutputStream.writeUTF("image send "+ imageName +" "+imageType);
+         dataOutputStream.flush();
+         String received=dataInputStream.readUTF();
+         int size=Integer.parseInt(received);
+         byte[]imageData=new byte[size];
+         dataInputStream.readFully(imageData);
+         Image image=new Image(new ByteArrayInputStream(imageData));
+         return image;
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
 
    public void setToken(String token) {
       Token = token;

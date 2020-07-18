@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.LoginRegisterController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -169,7 +170,7 @@ public class AdminRegisterController {
             return;
         }
         MakeRequest.makeRegisterAdminRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
-        if(!imageDirectory.getText().equals(""))MakeRequest.sendImageToServer(srcPath,desPath);
+        if(!imageDirectory.getText().equals("")) Client.getInstance().sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);

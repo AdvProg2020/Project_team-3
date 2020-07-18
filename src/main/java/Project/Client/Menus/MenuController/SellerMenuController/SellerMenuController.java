@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.Seller;
 
@@ -27,7 +28,7 @@ public class SellerMenuController {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         if(MakeRequest.isTokenValid() && MakeRequest.makeGetUserRequest() instanceof Seller){
-            Image image=MakeRequest.getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
+            Image image= Client.getInstance().getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
             sellerImage.setImage(image);
             personalInfoUpdate();
         }

@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.Admin;
 
@@ -31,7 +32,7 @@ public class AdminMenuController {
          MakeRequest.makeUpdateDateAndTimeRequest();
          View.setFonts(pane);
          MusicManager.getInstance().setSongName("first.wav");
-         Image image=MakeRequest.getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
+       Image image= Client.getInstance().getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
          adminImage.setImage(image);
          personalInfoUpdate();
    }
