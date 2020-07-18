@@ -43,6 +43,7 @@ public class CartMenuController {
         updateItemAgain();
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");
         else {
+            totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
            //mirza totalPrice.setText(MakeRequest.getCartPriceWithoutDiscountCode());
         }
     }
@@ -71,6 +72,7 @@ public class CartMenuController {
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
+        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
        //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
@@ -95,6 +97,7 @@ public class CartMenuController {
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
+        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
         //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 

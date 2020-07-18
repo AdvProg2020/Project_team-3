@@ -2,6 +2,7 @@ package Server.Controller;
 
 
 
+import Project.Client.CLI.View;
 import Project.Client.Model.SortAndFilter;
 import Server.Model.Cart;
 import Server.Model.Category;
@@ -9,6 +10,7 @@ import Server.Model.Item;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Sale;
 import com.google.gson.*;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -454,11 +456,6 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().getCategoryInfo(getJsonStringField(command,"category name"));
       }
 
-      if(getJsonStringField(command,"content").equals("increaseDecrease")){
-         String itemId=getJsonStringField(command,"itemId");
-         int count=Integer.parseInt(getJsonStringField(command,"count"));
-         return CartController.getInstance().cartIncreaseDecrease(itemId,count);
-      }
 
       if(getJsonStringField(command,"content").equals("add view")){
          String itemId=getJsonStringField(command,"item id");
@@ -549,13 +546,17 @@ public class RequestProcessor {
          return response;
       }
 
-      if(getJsonStringField(command,"content").equals("initialize cart")){
-         System.out.println(command.toString());
+      if(getJsonStringField(command,"content").equals("get cart price without discount")){
          Cart cart=CartController.getInstance().getCurrentShoppingCart();
-         Gson gson=new Gson();
-         cart.setAllItemId(gson.fromJson(command.get("all item id"),ArrayList.class));
-         cart.setAllItemCount(gson.fromJson(command.get("item count"),HashMap.class));
-         return "successful";
+         Gson gson = new Gson();
+         ArrayList<String> allItems=gson.fromJson(command.get("all item id"), ArrayList.class);
+         ArrayList<String> allItemsCount=gson.fromJson(command.get("item count"), ArrayList.class);
+         HashMap<String,Integer> itemIdWithCount=new HashMap<>();
+         for(int i=0;i<allItems.size();i++) itemIdWithCount.put(allItems.get(i),Integer.parseInt(allItemsCount.get(i)));
+         cart.setAllItemId(allItems);
+         cart.setAllItemCount(itemIdWithCount);
+         System.out.println(allItemsCount.toString());
+         return String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode());
       }
       return "Error: invalid command";
    }

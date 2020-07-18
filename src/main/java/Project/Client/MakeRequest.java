@@ -86,6 +86,15 @@ public class MakeRequest {
    }
 
    //type 2
+   public static String buyCart(){
+      JsonObject json=initializeCart();
+      json.addProperty("token",Client.getInstance().getToken());
+      json.remove("type");
+      json.addProperty("type",2);
+      json.addProperty("content", "buy cart");
+      return Client.getInstance().sendMessage(json);
+   }
+
    public static String makeGetBuyerDiscountCodesRequest() {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("token", Client.getInstance().getToken());
@@ -347,28 +356,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String sendImageToServer(String srcPath, String desPath){
-      File file=new File(srcPath);
-      String imageDataString="";
-      try {
-         FileInputStream fis=new FileInputStream(file);
-         byte[] imageData=new byte[(int) file.length()];
-         fis.read(imageData);
-         imageDataString= Base64.getEncoder().encodeToString(imageData);
-         fis.close();
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("content","getImage");
-      jsonObject.addProperty("type",0);
-      jsonObject.addProperty("desPath",desPath);
-      jsonObject.addProperty("image",imageDataString);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
    public static ArrayList<String> makeGetAllDiscountCodesRequest() {
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
@@ -491,22 +478,27 @@ public class MakeRequest {
    }
 
    //type 0
-   public static String addItemToCart(String itemId){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","addItemToCart");
-      jsonObject.addProperty("itemId",itemId);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
 
-   public static boolean cartIncludesItem(String itemId){
+   public static String sendImageToServer(String srcPath, String desPath){
+      File file=new File(srcPath);
+      String imageDataString="";
+      try {
+         FileInputStream fis=new FileInputStream(file);
+         byte[] imageData=new byte[(int) file.length()];
+         fis.read(imageData);
+         imageDataString= Base64.getEncoder().encodeToString(imageData);
+         fis.close();
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
       JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","includeItem");
-      jsonObject.addProperty("itemId",itemId);
-      String response=Client.getInstance().sendMessage(jsonObject);
-      if(response.equals("true")) return true;
-      else return false;
+      jsonObject.addProperty("content","getImage");
+      jsonObject.addProperty("type",0);
+      jsonObject.addProperty("desPath",desPath);
+      jsonObject.addProperty("image",imageDataString);
+      return Client.getInstance().sendMessage(jsonObject);
    }
 
    public static double makeGetItemPriceWithSaleRequest(String itemId){
@@ -528,22 +520,6 @@ public class MakeRequest {
       return response.equals("true");
    }
 
-   public static String makeGetItemCountInCart(String itemId){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","itemCount");
-      jsonObject.addProperty("itemId",itemId);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
-   public static String makeGetAllItemIDInCart(){
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("content","getAllItems");
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
-
    public static String makeAddViewToItem(String itemId){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","0");
@@ -556,22 +532,6 @@ public class MakeRequest {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("type", "0");
       jsonObject.addProperty("content", "cartWithoutDiscountCode");
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
-   public static String MakeRequestIncreaseDecreaseCart(String id, int i) {
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", "0");
-      jsonObject.addProperty("content", "increaseDecrease");
-      jsonObject.addProperty("itemId", id);
-      jsonObject.addProperty("count", i);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
-   public static String MakeRequestEmptyCart() {
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", "0");
-      jsonObject.addProperty("content", "empty");
       return Client.getInstance().sendMessage(jsonObject);
    }
 
@@ -737,15 +697,25 @@ public class MakeRequest {
       return items;
    }
 
-   public static void initializeCart(){
-      resetFilter();
+   public static double getCartPriceWithoutDiscount(){
+   JsonObject json=initializeCart();
+   json.addProperty("content", "get cart price without discount");
+   return Double.parseDouble(Client.getInstance().sendMessage(json));
+   }
+
+   private static JsonObject initializeCart(){
       JsonObject json = new JsonObject();
       SortAndFilter sortAndFilter = SortAndFilter.getInstance();
       json.addProperty("type", 0);
-      json.addProperty("content", "initialize cart");
-      json.addProperty("all Items", Cart.getInstance().getAllItemId().toString());
-      json.addProperty("item count",Cart.getInstance().getAllItemCount().toString());
-      Client.getInstance().sendMessage(json);
+      JsonArray jsonArray1 = new Gson().toJsonTree(Cart.getInstance().getAllItemId()).getAsJsonArray();
+      json.add("all item id",jsonArray1);
+      ArrayList<String> itemCount=new ArrayList<>();
+      for (String s : Cart.getInstance().getAllItemId()) {
+         itemCount.add(String.valueOf(Cart.getInstance().getAllItemCount().get(s)));
+      }
+      JsonArray jsonArray2 = new Gson().toJsonTree(itemCount).getAsJsonArray();
+      json.add("item count",jsonArray2);
+      return json;
    }
 
    private static void resetFilter(){
