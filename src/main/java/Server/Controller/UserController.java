@@ -61,7 +61,7 @@ public class UserController {
             rs = statement.executeQuery("select * FROM Sellers WHERE username='"+username+"'");
             while(rs.next())
             {
-                ArrayList<SaleLog> logs = gson.fromJson(rs.getString("logs"),new TypeToken<ArrayList<BuyLog>>(){}.getType());
+                ArrayList<SaleLog> logs = gson.fromJson(rs.getString("logs"),new TypeToken<ArrayList<SaleLog>>(){}.getType());
                 HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
                 double balance = Double.parseDouble(rs.getString("balance"));
                 boolean v = Boolean.parseBoolean(rs.getString("valid"));
