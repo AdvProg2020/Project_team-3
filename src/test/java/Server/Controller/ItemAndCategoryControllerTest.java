@@ -129,7 +129,7 @@ public class ItemAndCategoryControllerTest {
         if(allItems.isEmpty()) return;
         Item item=allItems.get(0);
         Assert.assertNotNull(item);
-        ItemAndCategoryController.getInstance().comment(text,item.getId(),null);
+        ItemAndCategoryController.getInstance().comment(text,item.getId());
         Assert.assertNotNull(RequestController.getInstance().getAllRequestFromDataBase());
         acceptRequests();
 

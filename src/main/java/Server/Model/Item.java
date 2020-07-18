@@ -259,13 +259,7 @@ public class Item {
     }
 
     public void addComment(Comment newComment) {
-        if (newComment.getFatherCommentId() == null) this.allComments.add(newComment);
-        else if (newComment.getFatherCommentId() != null) {
-            Comment fatherComment = getCommentById(newComment.getFatherCommentId());
-            allComments.remove(fatherComment);
-            fatherComment.addReply(newComment);
-            this.allComments.add(fatherComment);
-        }
+        this.allComments.add(newComment);
         Database.getInstance().saveItem(this);
     }
 

@@ -10,7 +10,7 @@ public class SaleLog {
     private String buyerName;
     private int count;
     private String sellerUsername;
-    //private String deliveryState;
+
 
 
     public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count , String sellerUsername) {
@@ -36,5 +36,22 @@ public class SaleLog {
     public String toSimpleString() {
         return "   "+ buyerName + "            " + count + "     " + price;
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
 }
 

@@ -153,11 +153,17 @@ public class RequestController {
         } else if (accepted instanceof SaleEdit) {
             requestController.SaleEditing((SaleEdit) accepted);
         } else if (accepted instanceof CommentRequest) {
+            System.out.println("salam");
             Comment comment = ((CommentRequest) accepted).getNewComment();
+            System.out.println("salam");
             comment.accept();
+            System.out.println("salam");
             Item item = ItemAndCategoryController.getInstance().getItemById(comment.getItemId());
+            System.out.println("salam");
             item.addComment(comment);
-                Database.getInstance().saveItem(item);
+            System.out.println("salam");
+            Database.getInstance().saveItem(item);
+            System.out.println("salam");
         }  else if(accepted instanceof  ItemDelete){
             String id=((ItemDelete) accepted).getItemId();
             Item removed=ItemAndCategoryController.getInstance().getItemById(id);

@@ -1,9 +1,4 @@
 package Server.Controller;
-
-
-
-import Project.Client.CLI.View;
-import Project.Client.Model.SortAndFilter;
 import Server.Model.*;
 import Server.Model.Logs.SaleLog;
 import com.google.gson.*;
@@ -287,10 +282,9 @@ public class RequestProcessor {
       }
 
       if(getJsonStringField(command,"content").equals("comment")){
-         String fatherComment=getJsonStringField(command,"father comment id");
          String itemId=getJsonStringField(command,"item id");
          String comment=getJsonStringField(command,"comment");
-         return ItemAndCategoryController.getInstance().comment(comment,itemId,fatherComment);
+         return ItemAndCategoryController.getInstance().comment(comment,itemId);
       }
 
       return "Error: invalid command";
@@ -327,8 +321,22 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("get sale log")){
          ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
-         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         return gson.toJson(saleLogs).toString();
+         JsonObject json=new JsonObject();
+         json.addProperty("size",saleLogs.size());
+         System.out.println(saleLogs.size());
+         System.out.println(saleLogs.get(0).getPrice());
+         for(int i=0;i<saleLogs.size();i++) {
+            SaleLog log = saleLogs.get(i);
+            json.addProperty("buyer" , log.getBuyerName());
+            json.addProperty("seller" , log.getSellerUsername());
+            json.addProperty("itemId" , log.getItemId());
+            json.addProperty("date" , log.getTime());
+            json.addProperty("price" , log.getPrice());
+            json.addProperty("count" , log.getCount());
+         }
+         System.out.println("salam");
+         System.out.println(json.toString());
+         return json.toString();
       }
 
       if(getJsonStringField(command,"content").equals("remove product")){

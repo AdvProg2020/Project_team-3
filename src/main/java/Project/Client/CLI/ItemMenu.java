@@ -137,7 +137,7 @@ public class ItemMenu extends Menu {
         if (comment.equals("exit")) {
             return;
         }
-        System.out.println(ItemAndCategoryController.getInstance().comment(comment, itemID,null));
+        System.out.println(ItemAndCategoryController.getInstance().comment(comment, itemID));
     }
 
     public void setItemID(String itemID) {

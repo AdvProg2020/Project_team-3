@@ -452,7 +452,7 @@ public class UserController {
         return buyer.getDiscountCodes();
     }
 
-    //arman  temp
+
     public ArrayList<SaleLog> getSaleLogs(String username){
         User user = getUserByUsername(username);
         Seller seller;

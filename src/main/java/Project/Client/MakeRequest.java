@@ -128,13 +128,12 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static String makeCommentRequest(String comment, String fatherCommentId, String itemId) {
+   public static String makeCommentRequest(String comment,String itemId, String fatherCommentId) {
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("type", 2);
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("content", "comment");
       jsonObject.addProperty("comment", comment);
-      jsonObject.addProperty("father comment id", fatherCommentId);
       jsonObject.addProperty("item id", itemId);
       return Client.getInstance().sendMessage(jsonObject);
    }
@@ -221,15 +220,22 @@ public class MakeRequest {
    public static ArrayList<SaleLog> makeGetSaleLogRequest(){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
-      json.addProperty("type", 0);
+      json.addProperty("type", 3);
       json.addProperty("content", "get sale log");
-      Gson gson=new Gson();
-      ArrayList<String> allSaleLogs=gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      System.out.println(jsonObject.toString());
+      int size=jsonObject.get("size").getAsInt();
       ArrayList<SaleLog> saleLogs=new ArrayList<>();
-      for (String log : allSaleLogs) {
-         JsonParser parser = new JsonParser();
-         JsonObject jsonObject = (JsonObject) parser.parse(log);
-         saleLogs.add(ObjectMapper.jsonToSaleLog(jsonObject));
+      for(int i=0;i<size;i++){
+         String seller=getJsonStringField(jsonObject,"seller"+i);
+         String buyer=getJsonStringField(jsonObject,"buyer"+i);
+         String itemId=getJsonStringField(jsonObject,"itemId"+i);
+         String date=getJsonStringField(jsonObject,"date"+i);
+         int price=jsonObject.get("price"+i).getAsInt();
+         int count=jsonObject.get("count"+i).getAsInt();
+         saleLogs.add(new SaleLog(date,price,itemId,buyer,count,seller));
       }
       return saleLogs;
    }
@@ -756,5 +762,8 @@ public class MakeRequest {
    }
 
 
+   public static String getJsonStringField(JsonObject json, String field) {
+      return json.get(field).toString().replace("\"", "");
+   }
 
 }

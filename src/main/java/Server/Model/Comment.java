@@ -11,7 +11,6 @@ public class Comment {
 
     private Boolean hasBought;
     private Status status;
-    private String fatherCommentId;
     private String commentId;
     private ArrayList<Comment> allReplies=new ArrayList<>();
 
@@ -42,13 +41,6 @@ public class Comment {
        return text;
     }
 
-    public String getFatherCommentId() {
-        return fatherCommentId;
-    }
-
-    public void setFatherCommentId(String fatherCommentId) {
-        this.fatherCommentId = fatherCommentId;
-    }
 
     public void setCommentId(String commentId) {
         this.commentId = commentId;

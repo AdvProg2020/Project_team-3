@@ -250,7 +250,7 @@ public class ItemAndCategoryController {
         return allComments;
     }
 
-    public String comment(String text, String itemId ,String fatherCommentId) {
+    public String comment(String text, String itemId) {
         if (!isThereItemWithId(itemId)) {
             return "Error: Invalid ID";
         }
@@ -265,14 +265,12 @@ public class ItemAndCategoryController {
             String commentId=Controller.getInstance().getAlphaNumericString(controller.getIdSize(),"Requests");
             Comment comment = new Comment(controller.currentOnlineUser.getUsername(), itemId, text, true);
             comment.setCommentId(commentId);
-            comment.setFatherCommentId(fatherCommentId);
             String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
             RequestController.getInstance().addCommentRequest(requestID, comment);
         } else {
             String commentId=Controller.getInstance().getAlphaNumericString(controller.getIdSize(),"Requests");
             Comment comment = new Comment(controller.currentOnlineUser.getUsername(), itemId, text, false);
             comment.setCommentId(commentId);
-            comment.setFatherCommentId(fatherCommentId);
             String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
             RequestController.getInstance().addCommentRequest(requestID, comment);
         }

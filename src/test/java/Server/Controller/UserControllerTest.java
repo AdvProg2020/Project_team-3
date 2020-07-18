@@ -379,7 +379,7 @@ public class UserControllerTest {
         assertNotNull(buyer.getBuyLogs());
         assertNotNull(buyer.getBuyLogsString());
         assertNotNull(buyer.getDiscountCodes());
-        System.out.println(ItemAndCategoryController.getInstance().comment("kheili alie",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId(),null));
+        System.out.println(ItemAndCategoryController.getInstance().comment("kheili alie",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId()));
         allRequess=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequess){
             System.out.println(request.toString());
@@ -390,7 +390,7 @@ public class UserControllerTest {
             assertEquals(comment.getItemId(),ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
             assertNotNull(comment.getCommentId());
             assertNotNull(comment.getAllReplies());
-            ItemAndCategoryController.getInstance().comment("reply",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId(),comment.getFatherCommentId());
+            ItemAndCategoryController.getInstance().comment("reply",ItemAndCategoryController.getInstance().getAllItemFromDataBase().get(0).getId());
         }
         allRequess=RequestController.getInstance().getAllRequestFromDataBase();
         for(Request request:allRequess){

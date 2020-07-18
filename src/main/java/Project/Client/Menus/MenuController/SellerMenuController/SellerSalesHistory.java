@@ -10,6 +10,8 @@ import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
 import Project.Client.Model.Item;
 import Project.Client.Model.Logs.SaleLog;
+import Server.Controller.UserController;
+import Server.Model.Users.Seller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -39,6 +41,10 @@ public class SellerSalesHistory {
     private SaleLog selected;
     @FXML private AnchorPane pane;
     public void initialize(){
+      /*  UserController.getInstance().login("seller","seller");
+        Seller seller=(Seller)UserController.getInstance().getCurrentOnlineUser();
+        System.out.println(seller.getSellLogs().size());
+        System.out.println(seller.getSellLogs().get(0).getBuyerName()); */
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         updateSaleLogListView();
