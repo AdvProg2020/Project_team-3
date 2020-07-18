@@ -4,6 +4,7 @@ import Project.Client.CLI.View;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
+import Project.Client.Model.Cart;
 import Project.Client.Model.Category;
 import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
@@ -227,7 +228,7 @@ public class ItemMenuController {
             alert.show();
             return;
         }
-        if(MakeRequest.cartIncludesItem(itemID)){
+        if(Cart.getInstance().includesItem(itemID)){
             MusicManager.getInstance().playSound("notify");
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ERROR");
@@ -243,7 +244,7 @@ public class ItemMenuController {
             alert.showAndWait();
             return;
         }
-     // mirza   MakeRequest.addItemToCart(itemID);
+        Cart.getInstance().add(itemID);
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("item has been added to cart.");

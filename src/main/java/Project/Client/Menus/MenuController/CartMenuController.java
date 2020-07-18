@@ -4,10 +4,10 @@ import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Cart;
 import Project.Client.Model.Item;
-import Server.Model.Logs.BuyLog;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,13 +37,13 @@ public class CartMenuController {
     @FXML private AnchorPane pane;
 
     public void initialize(){
-        //Controller.getInstance().updateDateAndTime();
+        MakeRequest.makeUpdateDateAndTimeRequest();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         updateItemAgain();
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");
         else {
-            totalPrice.setText(MakeRequest.getCartPriceWithoutDiscountCode());
+           //mirza totalPrice.setText(MakeRequest.getCartPriceWithoutDiscountCode());
         }
     }
 
@@ -66,11 +66,12 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),1);
+        System.out.println(Cart.getInstance().cartIncreaseDecrease(selected.getId(),1));
+        System.out.println(Cart.getInstance().getAllItemCount().toString());
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
+       //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void decreaseItem(ActionEvent actionEvent) {
@@ -90,11 +91,11 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        MakeRequest.MakeRequestIncreaseDecreaseCart(selected.getId(),-1);
+        Cart.getInstance().cartIncreaseDecrease(selected.getId(),-1);
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
-        totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
+        //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void showItem(ActionEvent actionEvent) {
@@ -114,7 +115,7 @@ public class CartMenuController {
 
     public void clearCartPressed(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        MakeRequest.MakeRequestEmptyCart();
+        Cart.getInstance().empty();
         itemListView.getItems().clear();
     }
 
@@ -154,7 +155,6 @@ public class CartMenuController {
 
     public void goToShopMenu(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
-        //SceneSwitcher.getInstance().saveScene("CartMenu");
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
@@ -188,7 +188,7 @@ public class CartMenuController {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                String printItem=item.toString() +"\nitem Count: "+Integer.parseInt(MakeRequest.makeGetItemCountInCart(item.getId()))+"\ntotal Price:"+item.getPrice()*Integer.parseInt(MakeRequest.makeGetItemCountInCart(item.getId()));
+                String printItem=item.toString() +"\nitem Count: "+Cart.getInstance().getItemCount(item.getId())+"\ntotal Price:"+item.getPrice()*Cart.getInstance().getItemCount(item.getId());
                 label.setText(printItem);
                 setGraphic(vBox);
             }
@@ -196,13 +196,9 @@ public class CartMenuController {
     }
 
     public void updateItemAgain(){
-        String gsonString=MakeRequest.makeGetAllItemIDInCart();///
-        Gson gson=new Gson();
-        TypeToken<List<String>> token = new TypeToken<List<String>>() {};
-        ArrayList<String> allItemIds=gson.fromJson(gsonString,token.getType());
         Item item=null;
-        for(String id:allItemIds){
-            //  mirza   item= MakeRequest.makeGetItemById(id);
+        for(String id:Cart.getInstance().getAllItemId()){
+           item=MakeRequest.getItem(id);
             allItems.add(item);
         }
         itemListView.setItems(allItems);

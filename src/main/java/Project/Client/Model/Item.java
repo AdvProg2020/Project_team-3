@@ -3,6 +3,10 @@ package Project.Client.Model;
 
 
 
+import Project.Client.MakeRequest;
+
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -185,5 +189,15 @@ public class Item {
         return saleId;
     }
 
+    @Override
+    public String toString() {
+        String string = name + "\nID: " + id + "\nSeller:" + sellerName + "\nStock:" + inStock + "\nPrice:" + price;
+        if (MakeRequest.isInSaleItem(id)) {
+            Sale sale=MakeRequest.makeGetSale(saleId);
+            string += "\nprice after sale: " + price * (100 - sale.getPercent()) / 100;
+        }
+        string += "\nRating= " + getRating();
+        return string;
+    }
 
 }

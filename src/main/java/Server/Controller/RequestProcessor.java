@@ -3,14 +3,17 @@ package Server.Controller;
 
 
 import Project.Client.Model.SortAndFilter;
+import Server.Model.Cart;
 import Server.Model.Category;
 import Server.Model.Item;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Sale;
-import Server.Server;
 import com.google.gson.*;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -361,6 +364,7 @@ public class RequestProcessor {
       String username=AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
+
       if (getJsonStringField(command,"content").equals("view personal info")) {
          return UserController.getInstance().viewPersonalInfo(username);
       }
@@ -384,6 +388,7 @@ public class RequestProcessor {
    }
 
    public String generalProcessor(JsonObject command) {
+
       if(getJsonStringField(command,"content").equals("getImage")){
          String desPath=getJsonStringField(command,"desPath");
          String imageDataString=getJsonStringField(command,"image");
@@ -448,17 +453,11 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("get category info")){
          return ItemAndCategoryController.getInstance().getCategoryInfo(getJsonStringField(command,"category name"));
       }
-      if(getJsonStringField(command,"content").equals("cartWithoutDiscountCode")){
-         return String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode());
-      }
+
       if(getJsonStringField(command,"content").equals("increaseDecrease")){
          String itemId=getJsonStringField(command,"itemId");
          int count=Integer.parseInt(getJsonStringField(command,"count"));
          return CartController.getInstance().cartIncreaseDecrease(itemId,count);
-      }
-      if(getJsonStringField(command,"content").equals("empty")){
-         CartController.getInstance().getCurrentShoppingCart().empty();
-         return "successful";
       }
 
       if(getJsonStringField(command,"content").equals("add view")){
@@ -514,16 +513,7 @@ public class RequestProcessor {
          return allItemId.toString();
       }
 
-      if(getJsonStringField(command,"content").equals("includeItem")){
-         String itemId=getJsonStringField(command,"itemId");
-         if(CartController.getInstance().getCurrentShoppingCart().includesItem(itemId)==true) return "true";
-         else return "false";
-      }
 
-      if(getJsonStringField(command,"content").equals("addItemToCart")){
-         String itemId=getJsonStringField(command,"itemId");
-         return CartController.getInstance().addItemToCart(itemId);
-      }
 
       if(getJsonStringField(command,"content").equals("get sale")){
          Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
@@ -557,6 +547,15 @@ public class RequestProcessor {
             response+=productId+"\n";
          }
          return response;
+      }
+
+      if(getJsonStringField(command,"content").equals("initialize cart")){
+         System.out.println(command.toString());
+         Cart cart=CartController.getInstance().getCurrentShoppingCart();
+         Gson gson=new Gson();
+         cart.setAllItemId(gson.fromJson(command.get("all item id"),ArrayList.class));
+         cart.setAllItemCount(gson.fromJson(command.get("item count"),HashMap.class));
+         return "successful";
       }
       return "Error: invalid command";
    }

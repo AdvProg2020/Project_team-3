@@ -100,6 +100,14 @@ public class Cart {
         }
     }
 
+    public void setAllItemCount(HashMap<String, Integer> allItemCount) {
+        this.allItemCount = allItemCount;
+    }
+
+    public void setAllItemId(ArrayList<String> allItemId) {
+        this.allItemId = allItemId;
+    }
+
     @Override
     public String toString() {
         String cart = "";

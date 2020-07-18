@@ -1,14 +1,15 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Server.Controller.Controller;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Model.Item;
-import Server.Model.Logs.SaleLog;
-import Server.Model.Users.Seller;
+import Project.Client.MakeRequest;
+
+
+
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Project.Client.Model.Item;
+import Project.Client.Model.Logs.SaleLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -50,7 +51,7 @@ public class SellerSalesHistory {
     }
     @FXML
     private void logout(){
-        UserController.getInstance().logout();
+        MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
@@ -91,8 +92,7 @@ public class SellerSalesHistory {
     }
 
     private void updateSaleLogListView(){
-        Seller seller=(Seller) Controller.getInstance().getCurrentOnlineUser();
-        ArrayList<SaleLog> allLogs=UserController.getInstance().getSaleLogs(seller.getUsername());
+        ArrayList<SaleLog> allLogs=MakeRequest.makeGetSaleLogRequest();
         if(allLogs.size()==0){
             SaleLogLabel.setText("you did not sell anyThing!");
             return;
@@ -154,7 +154,7 @@ public class SellerSalesHistory {
                 if(!saleLog1.equals(selected)) itemListView.getItems().clear();
                 selected=saleLog1;
                 String itemId=saleLog1.getItemId();
-                Item item= ItemAndCategoryController.getInstance().getItemById(itemId);
+                Item item= MakeRequest.getItem(itemId);
                 allItems.add(item);
                 itemListView.setItems(allItems);
                 itemListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
