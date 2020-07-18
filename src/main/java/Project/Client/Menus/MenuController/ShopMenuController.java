@@ -94,6 +94,7 @@ public class ShopMenuController {
  
     @FXML private void initialize(){
         SortAndFilter.getInstance().reset();
+        MakeRequest.resetFilter();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         allCategories =   MakeRequest.makeGetAllCategoryName();

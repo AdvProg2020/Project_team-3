@@ -41,6 +41,7 @@ public class SellerManageProductsMenu {
 
     @FXML public void initialize() {
         SortAndFilter.getInstance().reset();
+        MakeRequest.resetFilter();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         sortChoiceBox.getItems().addAll(SortAndFilter.getInstance().showAllAvailableSorts().split("\n"));
@@ -59,6 +60,7 @@ public class SellerManageProductsMenu {
             return;
         }
     }
+
     public void updateFilter(){
         SortAndFilter control=SortAndFilter.getInstance();
         if(control.getFilterAttribute()){

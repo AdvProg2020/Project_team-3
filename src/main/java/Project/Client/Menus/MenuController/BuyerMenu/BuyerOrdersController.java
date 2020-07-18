@@ -50,7 +50,7 @@ public class BuyerOrdersController {
 
 
     public void initializeBuyLogListView(){
-        /*  mirza     ArrayList<BuyLog>allLogs=MakeRequest.makeGetBuyerLogsRequest();
+        ArrayList<BuyLog>allLogs=MakeRequest.makeGetBuyerBuyLogsRequest();
         if(allLogs.size()==0){
             buyLogEmptyLabel.setText("you did not bought anything!");
             return;
@@ -64,7 +64,7 @@ public class BuyerOrdersController {
            public ListCell<BuyLog> call(ListView<BuyLog> param) {
               return  new BuyLogTextImageCell();
            }
-       }); */
+       });
     }
 
     class BuyLogTextImageCell extends ListCell<BuyLog> {
@@ -155,7 +155,7 @@ public class BuyerOrdersController {
 
 
     public void updateBuyLogDetail(){
-        /*  mirza   buyLogListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+       buyLogListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 int index=buyLogListView.getSelectionModel().getSelectedIndex();
@@ -167,7 +167,7 @@ public class BuyerOrdersController {
                 buyLogListView.getSelectionModel().clearSelection();
                 ArrayList<String> itemIds=buyLog.getAllItemsID();
                 for(String id:itemIds){
-                    allItems.add(MakeRequest.makeGetItemById(id));
+                    allItems.add(MakeRequest.getItem(id));
                 }
                 detailsListView.setItems(allItems);
                 detailsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
@@ -178,7 +178,6 @@ public class BuyerOrdersController {
                 });
             }
         });
-      */
     }
 
     public void goToUserZone(ActionEvent actionEvent) {

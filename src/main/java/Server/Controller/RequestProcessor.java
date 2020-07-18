@@ -271,7 +271,8 @@ public class RequestProcessor {
          return UserController.getInstance().getBuyerDiscountCode();
       }
 
-      if(getJsonStringField(command,"content").equals("get buy log")){
+      if(getJsonStringField(command,"content").equals("get buyer buy log")){
+         UserController.getInstance().getBuyLogs(username);
          return UserController.getInstance().getBuyLogs(username);
       }
 
@@ -323,18 +324,16 @@ public class RequestProcessor {
          ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
          JsonObject json=new JsonObject();
          json.addProperty("size",saleLogs.size());
-         System.out.println(saleLogs.size());
-         System.out.println(saleLogs.get(0).getPrice());
+
          for(int i=0;i<saleLogs.size();i++) {
             SaleLog log = saleLogs.get(i);
-            json.addProperty("buyer" , log.getBuyerName());
-            json.addProperty("seller" , log.getSellerUsername());
-            json.addProperty("itemId" , log.getItemId());
-            json.addProperty("date" , log.getTime());
-            json.addProperty("price" , log.getPrice());
-            json.addProperty("count" , log.getCount());
+            json.addProperty("buyer"+i , log.getBuyerName());
+            json.addProperty("seller"+i , log.getSellerUsername());
+            json.addProperty("itemId"+i , log.getItemId());
+            json.addProperty("date"+i , log.getTime());
+            json.addProperty("price"+i , log.getPrice());
+            json.addProperty("count"+i , log.getCount());
          }
-         System.out.println("salam");
          System.out.println(json.toString());
          return json.toString();
       }
@@ -354,7 +353,6 @@ public class RequestProcessor {
 
 
       if(getJsonStringField(command,"content").equals("show seller items")){
-         SortAndFilterController.getInstance().reset();
          String response="";
          for (String productId : SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems())) {
             response+=productId+"\n";

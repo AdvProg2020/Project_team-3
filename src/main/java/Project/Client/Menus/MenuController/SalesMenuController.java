@@ -76,6 +76,7 @@ public class SalesMenuController {
     @FXML
     private void initialize(){
         SortAndFilter.getInstance().reset();
+        MakeRequest.resetFilter();
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
         reset(null);

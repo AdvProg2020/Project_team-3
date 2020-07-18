@@ -120,12 +120,12 @@ public class MakeRequest {
       return response;
    }
 
-   public static String makeGetBuyerBuyLogsRequest(){
+   public static ArrayList<BuyLog> makeGetBuyerBuyLogsRequest(){
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("type", 2);
-      jsonObject.addProperty("content", "get buy log");
-      return Client.getInstance().sendMessage(jsonObject);
+      jsonObject.addProperty("content", "get buyer buy log");
+      return null;
    }
 
    public static String makeCommentRequest(String comment,String itemId, String fatherCommentId) {
@@ -179,7 +179,7 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> makeGetAllSellerItems(){
-      resetFilter();
+      showProducts();
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
@@ -584,13 +584,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static String getCartPriceWithoutDiscountCode() {
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", "0");
-      jsonObject.addProperty("content", "cartWithoutDiscountCode");
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
    public static String makeUpdateDateAndTimeRequest() {
       JsonObject json = new JsonObject();
       json.addProperty("type", "0");
@@ -698,7 +691,6 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> showProducts() {
-      resetFilter();
       JsonObject json = new JsonObject();
       SortAndFilter sortAndFilter = SortAndFilter.getInstance();
       json.addProperty("type", 0);
@@ -746,7 +738,6 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> show(String categoryName){
-      resetFilter();
       SortAndFilter.getInstance().activateFilterCategoryName(categoryName);
       ArrayList<String> items=showProducts();
       SortAndFilter.getInstance().disableFilterCategoryName();
@@ -775,7 +766,7 @@ public class MakeRequest {
       return json;
    }
 
-   private static void resetFilter(){
+   public static void resetFilter(){
       JsonObject json = new JsonObject();
       SortAndFilter sortAndFilter = SortAndFilter.getInstance();
       json.addProperty("type", 0);

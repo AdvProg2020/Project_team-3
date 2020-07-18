@@ -140,6 +140,7 @@ public class ItemAndCategoryControllerTest {
         UserController.getInstance().deleteUser("TestComment");
         deleteJunk();
     }
+
     @Test
     public void showItemComments() {
         comment();
