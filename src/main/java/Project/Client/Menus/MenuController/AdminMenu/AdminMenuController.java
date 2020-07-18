@@ -33,14 +33,7 @@ public class AdminMenuController {
          MusicManager.getInstance().setSongName("first.wav");
          Image image=MakeRequest.getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
          adminImage.setImage(image);
-//         String path=UserController.getInstance().userImagePath(UserController.getInstance().getCurrentOnlineUserUsername());
-//         File file=new File(path);
-//         try {
-//            adminImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-//         } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//         }
-      personalInfoUpdate();
+         personalInfoUpdate();
    }
 
 

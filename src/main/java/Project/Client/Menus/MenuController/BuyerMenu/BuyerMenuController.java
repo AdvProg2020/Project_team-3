@@ -30,13 +30,6 @@ public class BuyerMenuController {
        if(MakeRequest.isTokenValid() && MakeRequest.makeGetUserRequest() instanceof Buyer) {
            Image image=MakeRequest.getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user");
            userImage.setImage(image);
-//           String path = MakeRequest.makeUserImagePathRequest();
-//           File file = new File(path);
-//           try {
-//               userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-//           } catch (MalformedURLException e) {
-//               e.printStackTrace();
-//           }
            personalInfoUpdate();
        }
     }

@@ -23,6 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SellerRegisterController {
+    public String desPath;
+    public String srcPath;
     public TextField usernameTextField;
     public TextField surnameTextField;
     public TextField firstNameTextField;
@@ -67,12 +69,8 @@ public class SellerRegisterController {
         if(validUsername(usernameTextField.getText())==false) return;
         imageDirectory.setText(selected.getPath());
         String fullPath="src/main/resources/Images/"+usernameTextField.getText()+ext;
-        Path des=Paths.get(fullPath);
-        try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        srcPath=selected.getPath();
+        desPath=fullPath;
     }
 
     public void Register(ActionEvent actionEvent) {
@@ -104,6 +102,7 @@ public class SellerRegisterController {
         }
         double money=validateMoney(moneyTextField.getText());
         MakeRequest.makeRegisterSellerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextField.getText(),money,companyTextField.getText());
+        MakeRequest.sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);

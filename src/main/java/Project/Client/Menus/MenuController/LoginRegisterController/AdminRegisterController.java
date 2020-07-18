@@ -23,6 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AdminRegisterController {
+    public String desPath;
+    public String srcPath;
     public ComboBox roleChooser;
     public TextField usernameTextField;
     public TextField firstNameTextField;
@@ -64,13 +66,8 @@ public class AdminRegisterController {
         String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
         if(validUsername(usernameTextField.getText())==false) return;
         imageDirectory.setText(selected.getPath());
-        String fullPath="src/main/resources/Images/"+usernameTextField.getText()+ext;
-        Path des=Paths.get(fullPath);
-        try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        desPath="src/main/resources/Images/"+usernameTextField.getText()+ext;
+        srcPath=selected.getPath();
     }
 
     private boolean validUsername(String username){
@@ -172,6 +169,7 @@ public class AdminRegisterController {
             return;
         }
         MakeRequest.makeRegisterAdminRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
+        MakeRequest.sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
