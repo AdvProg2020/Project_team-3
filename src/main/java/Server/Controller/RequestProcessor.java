@@ -12,10 +12,7 @@ import Server.Model.Sale;
 import com.google.gson.*;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -391,7 +388,7 @@ public class RequestProcessor {
 
    public String generalProcessor(JsonObject command) {
 
-      if(getJsonStringField(command,"content").equals("getImage")){
+      if(getJsonStringField(command,"content").equals("SendImage")){
          String desPath=getJsonStringField(command,"desPath");
          String imageDataString=getJsonStringField(command,"image");
          byte[] imageByte= Base64.getDecoder().decode(imageDataString);
@@ -407,6 +404,28 @@ public class RequestProcessor {
          }
          return "done!";
       }
+      if(getJsonStringField(command,"content").equalsIgnoreCase("getImage")){
+         String imageName=getJsonStringField(command,"imageName");
+         String imageType=getJsonStringField(command,"imageType");
+         String desPath="";
+         if(imageType.equalsIgnoreCase("user")) desPath=UserController.getInstance().userImagePath(imageName);
+         else if(imageType.equalsIgnoreCase("item")) desPath="src/main/resources/Images/ItemImages/"+imageName;
+         File file=new File(desPath);
+         String imageDataString="";
+         try {
+            FileInputStream fileInputStream=new FileInputStream(file);
+            byte[]imageData=new byte[(int)file.length()];
+            fileInputStream.read(imageData);
+            imageDataString=Base64.getEncoder().encodeToString(imageData);
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }
+         return imageDataString;
+      }
+
+
 
       if (getJsonStringField(command,"content").equals("update date and time")) {
          Controller.getInstance().updateDateAndTime();
