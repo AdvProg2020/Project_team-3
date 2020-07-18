@@ -87,14 +87,29 @@ public class MakeRequest {
    }
 
    //type 2
-   public static String buyCart(){
+   public static String buyCart(String discountId,String address){
       JsonObject json=initializeCart();
       json.addProperty("token",Client.getInstance().getToken());
       json.remove("type");
       json.addProperty("type",2);
       json.addProperty("content", "buy cart");
+      json.addProperty("address",address);
+      if(discountId!=null)
+      json.addProperty("discount",discountId);
       return Client.getInstance().sendMessage(json);
    }
+
+   public static double makeGetCartPriceWithDiscountCode(String discountId){
+      JsonObject json=initializeCart();
+      json.addProperty("content", "get cart price with discount");
+      json.remove("type");
+      json.addProperty("type",2);
+      json.addProperty("token",Client.getInstance().getToken());
+      json.addProperty("discount id",discountId);
+      return Double.parseDouble(Client.getInstance().sendMessage(json));
+   }
+
+
 
    public static String makeGetBuyerDiscountCodesRequest() {
       JsonObject jsonObject = new JsonObject();
@@ -715,6 +730,7 @@ public class MakeRequest {
    json.addProperty("content", "get cart price without discount");
    return Double.parseDouble(Client.getInstance().sendMessage(json));
    }
+
 
    private static JsonObject initializeCart(){
       JsonObject json = new JsonObject();

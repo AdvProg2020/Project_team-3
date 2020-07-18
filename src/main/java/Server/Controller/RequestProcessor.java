@@ -4,11 +4,8 @@ package Server.Controller;
 
 import Project.Client.CLI.View;
 import Project.Client.Model.SortAndFilter;
-import Server.Model.Cart;
-import Server.Model.Category;
-import Server.Model.Item;
+import Server.Model.*;
 import Server.Model.Logs.SaleLog;
-import Server.Model.Sale;
 import com.google.gson.*;
 import javafx.scene.layout.VBox;
 
@@ -244,8 +241,35 @@ public class RequestProcessor {
       if ((username == null)&&(getJsonStringField(command,"content").equals("rate")==false)){
          return "Error: incorrect Token";
       } else  Controller.getInstance().setCurrentOnlineUser(username);
-      if(getJsonStringField(command,"content").equals("getAllLogs")){
-         return UserController.getInstance().getBuyLogs(username);
+
+
+      if(getJsonStringField(command,"content").equals("get cart price with discount")){
+         Cart cart=CartController.getInstance().getCurrentShoppingCart();
+         Gson gson = new Gson();
+         ArrayList<String> allItems=gson.fromJson(command.get("all item id"), ArrayList.class);
+         ArrayList<String> allItemsCount=gson.fromJson(command.get("item count"), ArrayList.class);
+         HashMap<String,Integer> itemIdWithCount=new HashMap<>();
+         for(int i=0;i<allItems.size();i++) itemIdWithCount.put(allItems.get(i),Integer.parseInt(allItemsCount.get(i)));
+         cart.setAllItemId(allItems);
+         cart.setAllItemCount(itemIdWithCount);
+         return String.valueOf(CartController.getInstance().getCartPriceWithDiscountCode(getJsonStringField(command,"discount id")));
+      }
+
+      if(getJsonStringField(command,"content").equals("buy cart")){
+         String address=getJsonStringField(command,"address");
+         Cart cart=CartController.getInstance().getCurrentShoppingCart();
+         Gson gson = new Gson();
+         ArrayList<String> allItems=gson.fromJson(command.get("all item id"), ArrayList.class);
+         ArrayList<String> allItemsCount=gson.fromJson(command.get("item count"), ArrayList.class);
+         HashMap<String,Integer> itemIdWithCount=new HashMap<>();
+         for(int i=0;i<allItems.size();i++) itemIdWithCount.put(allItems.get(i),Integer.parseInt(allItemsCount.get(i)));
+         cart.setAllItemId(allItems);
+         cart.setAllItemCount(itemIdWithCount);
+         if(command.has("discount")){
+            String discountId=getJsonStringField(command,"discount");
+            return CartController.getInstance().buy(address,discountId);
+         }
+         return CartController.getInstance().buy(address);
       }
 
       if(getJsonStringField(command,"content").equals("getAllDiscountCodes")){

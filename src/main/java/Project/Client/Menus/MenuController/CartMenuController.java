@@ -23,10 +23,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
 import java.io.File;
-import java.lang.reflect.GenericSignatureFormatError;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CartMenuController {
 
@@ -44,7 +41,6 @@ public class CartMenuController {
         if(itemListView.getItems().size()==0) totalPrice.setText("you did not add any item!");
         else {
             totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
-           //mirza totalPrice.setText(MakeRequest.getCartPriceWithoutDiscountCode());
         }
     }
 
@@ -73,7 +69,6 @@ public class CartMenuController {
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
         totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
-       //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void decreaseItem(ActionEvent actionEvent) {
@@ -98,7 +93,6 @@ public class CartMenuController {
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
         totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
-        //mirza totalPrice.setText(String.valueOf(MakeRequest.getCartPriceWithoutDiscountCode()));
     }
 
     public void showItem(ActionEvent actionEvent) {

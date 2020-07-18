@@ -1,7 +1,9 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
-import Server.Controller.CartController;
-import Server.Controller.UserController;
+import Project.Client.MakeRequest;
+import Project.Client.Model.Cart;
+
+
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -22,17 +24,17 @@ public class PurchaseMenu {
    public void initialize()  {
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
-      discounts.getItems().addAll(UserController.getInstance().getBuyerDiscountCode());
+      discounts.getItems().addAll(MakeRequest.makeGetBuyerDiscountCodesRequest());
       discounts.getItems().add("NONE");
       discounts.setValue("NONE");
-      priceLabel.setText("price="+String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode()));
-      itemListView.getItems().addAll(CartController.getInstance().showCart());
+      priceLabel.setText("price="+String.valueOf(MakeRequest.getCartPriceWithoutDiscount()));
+      itemListView.getItems().addAll(Cart.getInstance().toString());
       update();
    }
 
    public void update(){
    if(discountIsValid)
-      priceLabel.setText("cart price before discount="+CartController.getInstance().getCartPriceWithoutDiscountCode()+"\ncart price after discount="+CartController.getInstance().getCartPriceWithDiscountCode(discounts.getValue().toString()));
+      priceLabel.setText("cart price before discount="+MakeRequest.getCartPriceWithoutDiscount()+"\ncart price after discount="+MakeRequest.makeGetCartPriceWithDiscountCode(discounts.getValue().toString()));
    }
 
    public void discountChange(ActionEvent actionEvent) {
@@ -57,9 +59,9 @@ public class PurchaseMenu {
       }
       String message="";
       if(discountIsValid) {
-         message = CartController.getInstance().buy(address.getText(), getDiscountCode());
+         message=MakeRequest.buyCart(discounts.getValue().toString(),address.getText());
       }else {
-         message=CartController.getInstance().buy(address.getText());
+         message=MakeRequest.buyCart(null,address.getText());
       }
       MusicManager.getInstance().playSound("notify");
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
