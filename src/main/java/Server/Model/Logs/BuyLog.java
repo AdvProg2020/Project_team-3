@@ -106,4 +106,12 @@ public class BuyLog {
     public Double getDiscountGrandTotal() {
         return discountGrandTotal;
     }
+
+    public HashMap<String, Double> getItemsPrice() {
+        return itemsPrice;
+    }
+
+    public HashMap<String, String> getItemsSeller() {
+        return itemsSeller;
+    }
 }

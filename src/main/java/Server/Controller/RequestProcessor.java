@@ -1,6 +1,8 @@
 package Server.Controller;
 import Server.Model.*;
+import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
+import Server.Model.Users.Buyer;
 import com.google.gson.*;
 import javafx.scene.layout.VBox;
 
@@ -272,8 +274,31 @@ public class RequestProcessor {
       }
 
       if(getJsonStringField(command,"content").equals("get buyer buy log")){
-         UserController.getInstance().getBuyLogs(username);
-         return UserController.getInstance().getBuyLogs(username);
+         ArrayList<BuyLog> buyLogs=((Buyer)UserController.getInstance().getUserByUsername(username)).getBuyLogs();
+         JsonObject json=new JsonObject();
+         json.addProperty("size",buyLogs.size());
+         for(int i=0;i<buyLogs.size();i++) {
+            BuyLog log = buyLogs.get(i);
+            ArrayList<Double> itemPrice=new ArrayList<>();
+            ArrayList<Integer> itemCount=new ArrayList<>();
+            ArrayList<String> sellerName=new ArrayList<>();
+            for (String itemId : log.getAllItemsID()) {
+               itemPrice.add(log.getItemsPrice().get(itemId));
+               itemCount.add(log.getItemsCount().get(itemId));
+               sellerName.add(log.getItemsSeller().get(itemId));
+            }
+            JsonArray jsonArray1 = new Gson().toJsonTree(log.getAllItemsID()).getAsJsonArray();
+            JsonArray jsonArray2 = new Gson().toJsonTree(itemPrice).getAsJsonArray();
+            JsonArray jsonArray3 = new Gson().toJsonTree(itemCount).getAsJsonArray();
+            JsonArray jsonArray4 = new Gson().toJsonTree(sellerName).getAsJsonArray();
+            json.add("sellerName"+i,jsonArray4);
+            json.add("itemCount"+i,jsonArray3);
+            json.add("itemPrice"+i,jsonArray2);
+            json.add("itemId"+i,jsonArray1);
+            json.addProperty("address"+i,log.getAddress());
+            json.addProperty("time"+i,log.getTime());
+         }
+         return json.toString();
       }
 
       if(getJsonStringField(command,"content").equals("rate")){
@@ -334,7 +359,6 @@ public class RequestProcessor {
             json.addProperty("price"+i , log.getPrice());
             json.addProperty("count"+i , log.getCount());
          }
-         System.out.println(json.toString());
          return json.toString();
       }
 

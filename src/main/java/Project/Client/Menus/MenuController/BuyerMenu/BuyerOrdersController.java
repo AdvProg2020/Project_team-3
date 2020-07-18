@@ -92,7 +92,7 @@ public class BuyerOrdersController {
                 File file = new File(path);
                 try {
                     thumbImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                    label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nBuyer name: "+item.getBuyerName()+"\nAddress:\n"+ item.getAddress());
+                    label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nAddress:\n"+ item.getAddress());
                     setGraphic(hBox);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

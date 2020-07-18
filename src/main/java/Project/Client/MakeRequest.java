@@ -20,6 +20,8 @@ import java.util.Base64;
 import java.util.HashMap;
 
 public class MakeRequest {
+   private ArrayList<BuyLog> buyLogs;
+
    //type1
    public static Boolean isTokenValid() {
       if (Client.getInstance().getToken() == null) return false;
@@ -121,11 +123,35 @@ public class MakeRequest {
    }
 
    public static ArrayList<BuyLog> makeGetBuyerBuyLogsRequest(){
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("token", Client.getInstance().getToken());
-      jsonObject.addProperty("type", 2);
-      jsonObject.addProperty("content", "get buyer buy log");
-      return null;
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 2);
+      json.addProperty("content", "get buyer buy log");
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
+      System.out.println(jsonObject.toString());
+
+      int size=jsonObject.get("size").getAsInt();
+      ArrayList<BuyLog> buyLogs= new ArrayList<>();
+      Gson gson = new Gson();
+      for(int i=0;i<size;i++){
+         HashMap<String,Double> itemCount=new HashMap<>();
+         HashMap<String,Double> itemPrice=new HashMap<>();
+         HashMap<String,String> sellerName=new HashMap<>();
+         ArrayList<String> itemIdArrayList=gson.fromJson(jsonObject.get("itemId"+i), ArrayList.class);
+         ArrayList<Double> itemCountArrayList=gson.fromJson(jsonObject.get("itemCount"+i), ArrayList.class);
+         ArrayList<Double> itemPriceArrayList=gson.fromJson(jsonObject.get("itemPrice"+i), ArrayList.class);
+         ArrayList<String> itemSellerArrayList=gson.fromJson(jsonObject.get("sellerName"+i), ArrayList.class);
+         for(int j=0;j<itemIdArrayList.size();j++){
+            itemCount.put(itemIdArrayList.get(j),itemCountArrayList.get(j));
+            itemPrice.put(itemIdArrayList.get(j),itemPriceArrayList.get(j));
+            sellerName.put(itemIdArrayList.get(j),itemSellerArrayList.get(j));
+         }
+         String time=getJsonStringField(jsonObject,"time"+i);
+         String address=getJsonStringField(jsonObject,"address"+i);
+         buyLogs.add(new BuyLog(itemIdArrayList,itemCount,itemPrice,sellerName,address,time));
+      }
+      return buyLogs;
    }
 
    public static String makeCommentRequest(String comment,String itemId, String fatherCommentId) {

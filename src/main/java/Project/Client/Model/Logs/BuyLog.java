@@ -1,9 +1,9 @@
 package Project.Client.Model.Logs;
 
-import Server.Controller.Database;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.UserController;
-import Server.Model.Item;
+
+
+import Project.Client.MakeRequest;
+import Project.Client.Model.Item;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,13 +15,20 @@ public class BuyLog {
     private String time;
     private ArrayList<String> allItemsID;
     private HashMap<String,String> itemsSeller;
-    private HashMap<String,Integer> itemsCount;
+    private HashMap<String,Double> itemsCount;
     private HashMap<String,Double> itemsPrice;
-    private String buyerName;
     private String address;
     private Double discountGrandTotal;
 
 
+  public BuyLog(ArrayList<String> allItemsID,HashMap<String,Double> itemsCount,HashMap<String,Double> itemsPrice,HashMap<String,String> itemsSeller,String address,String time){
+      this.allItemsID=allItemsID;
+      this.itemsSeller=itemsSeller;
+      this.itemsCount=itemsCount;
+      this.itemsPrice=itemsPrice;
+      this.time=time;
+      this.address=address;
+  }
     @Override
     public String toString() {
         String ans ="Total sum:"+totalPrice()+"   "+time.toString();
@@ -46,7 +53,7 @@ public class BuyLog {
 
     public Item getItemById(String id) {
         for (String itemID : allItemsID) {
-            if (itemID.equals(id)) return ItemAndCategoryController.getInstance().getItemById(id);
+            if (itemID.equals(id)) return MakeRequest.getItem(id);
         }
         return null;
     }
@@ -68,13 +75,11 @@ public class BuyLog {
     public ArrayList<String> getAllItemsID() {
         return allItemsID;
     }
-    public HashMap<String, Integer> getItemsCount() {
+    public HashMap<String, Double> getItemsCount() {
         return itemsCount;
     }
 
-    public String getBuyerName() {
-        return buyerName;
-    }
+
 
     public String getAddress() {
         return address;
