@@ -7,11 +7,14 @@ import Server.Model.Category;
 import Server.Model.Item;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Sale;
+import Server.Server;
 import com.google.gson.*;
 
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -381,6 +384,23 @@ public class RequestProcessor {
    }
 
    public String generalProcessor(JsonObject command) {
+      if(getJsonStringField(command,"content").equals("getImage")){
+         String desPath=getJsonStringField(command,"desPath");
+         String imageDataString=getJsonStringField(command,"image");
+         byte[] imageByte= Base64.getDecoder().decode(imageDataString);
+         File file=new File(desPath);
+         try {
+            FileOutputStream fos=new FileOutputStream(file);
+            fos.write(imageByte);
+            fos.close();
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }
+         return "done!";
+      }
+
       if (getJsonStringField(command,"content").equals("update date and time")) {
          Controller.getInstance().updateDateAndTime();
          return "Successful: ";
@@ -439,9 +459,6 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("empty")){
          CartController.getInstance().getCurrentShoppingCart().empty();
          return "successful";
-      }
-      if(getJsonStringField(command,"content").equals("getCart")){
-
       }
 
       if(getJsonStringField(command,"content").equals("add view")){

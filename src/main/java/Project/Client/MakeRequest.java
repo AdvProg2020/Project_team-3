@@ -15,8 +15,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-import java.io.StringReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class MakeRequest {
@@ -321,6 +322,28 @@ public class MakeRequest {
       JsonArray jsonArray = new Gson().toJsonTree(allUsername).getAsJsonArray();
       json.add("discount users", jsonArray);
       return Client.getInstance().sendMessage(json);
+   }
+
+   public static String sendImageToServer(String srcPath, String desPath){
+      File file=new File(srcPath);
+      String imageDataString="";
+      try {
+         FileInputStream fis=new FileInputStream(file);
+         byte[] imageData=new byte[(int) file.length()];
+         fis.read(imageData);
+         imageDataString= Base64.getEncoder().encodeToString(imageData);
+         fis.close();
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","getImage");
+      jsonObject.addProperty("type",0);
+      jsonObject.addProperty("desPath",desPath);
+      jsonObject.addProperty("image",imageDataString);
+      return Client.getInstance().sendMessage(jsonObject);
    }
 
    public static ArrayList<String> makeGetAllDiscountCodesRequest() {

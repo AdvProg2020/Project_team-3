@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.LoginRegisterController;
 
+import Project.Client.Client;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.MakeRequest;
@@ -62,12 +63,14 @@ public class BuyerRegisterController {
         if(validUsername(usernameTextField.getText())==false) return;
         imageDirectory.setText(selected.getPath());
         String fullPath="src/main/resources/Images/"+usernameTextField.getText()+ext;
-        Path des=Paths.get(fullPath);
-        try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MakeRequest.sendImageToServer(selected.getPath(),fullPath);
+
+//        Path des=Paths.get(fullPath);
+//        try {
+//            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void register(ActionEvent actionEvent) {

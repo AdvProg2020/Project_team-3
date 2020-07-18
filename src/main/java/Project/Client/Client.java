@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Base64;
 
 public class Client {
    private String bankAccountToken="";

@@ -1,6 +1,7 @@
 package Project;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
 

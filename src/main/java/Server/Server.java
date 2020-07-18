@@ -29,9 +29,10 @@ public class Server {
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command=dataInputStream.readUTF();
-                  System.out.println("FROM CLIENT: "+command);
-                  String response=RequestProcessor.getInstance().process(command);
-                  System.out.println("FROM CONTROLLER: "+response);
+                  System.out.println("command"+command);
+                  System.out.println("FROM CLIENT: " + command);
+                  String response = RequestProcessor.getInstance().process(command);
+                  System.out.println("FROM CONTROLLER: " + response);
                   dataOutputStream.writeUTF(response);
                   dataOutputStream.flush();
                   dataOutputStream.close();
@@ -43,6 +44,10 @@ public class Server {
             }
          }
       }).start();
+   }
+
+   public static DataInputStream getDataInputStream(){
+      return dataInputStream;
    }
 
    public static DataOutputStream getDataOutputStream() {
