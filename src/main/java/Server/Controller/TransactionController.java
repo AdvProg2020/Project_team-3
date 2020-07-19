@@ -9,33 +9,38 @@ import java.nio.file.Files;
 
 public class TransactionController {
     private static TransactionController transactionController;
-    private TransactionController(){
-        try {
-            socket=new Socket("localHost",8000);
-            dataInputStream= new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            dataOutputStream=new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            TransactionController.getInstance().setMainBankAccountId();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static TransactionController getInstance(){
-        if(transactionController==null) transactionController=new TransactionController();
-        return transactionController;
-    }
     private final String mainBankAccountId="10001";
     private Socket socket;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private int wagePercent=0;
+    private int minimumMoney=0;
 
+    public static TransactionController getInstance(){
+        if(transactionController==null) transactionController=new TransactionController();
+        return transactionController;
+    }
+    private TransactionController(){
+        try {
+            socket=new Socket("localHost",8080);
+            dataInputStream= new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            dataOutputStream=new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            //TransactionController.getInstance().setMainBankAccountId();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public String getMainBankAccountId(){
         return mainBankAccountId;
     }
 
-    public void setWagePercent(int percent){
+
+    public int getWagePercent(){return wagePercent;}
+    public int getMinimumMoney(){return minimumMoney;}
+    public void setNumbers(int percent , int minimum){
         wagePercent=percent;
-        String value=String.valueOf(percent);
+        minimumMoney=minimum;
+        String value=String.valueOf(wagePercent)+" "+String.valueOf(minimumMoney);
         Gson gson=new Gson();
         String content=gson.toJson(value);
         String path="Resource"+File.separator+"WagePercent.gson";
@@ -58,12 +63,13 @@ public class TransactionController {
                 file.createNewFile();
                 Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
                 addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
-                String string="5";
+                String string="5 1000";
                 String gsonToSave=gson.toJson(string);
                 FileWriter writer = new FileWriter(file);
                 writer.write(gson.toJson(gsonToSave));
                 writer.close();
                 wagePercent=5;
+                minimumMoney=1000;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,13 +78,13 @@ public class TransactionController {
             try {
                 String content=new String(Files.readAllBytes(file.toPath()));
                 String string=gson.fromJson(content,String.class);
-                wagePercent=Integer.parseInt(string.substring(1,string.length()-1));
+                wagePercent=Integer.parseInt(string.substring(1,string.indexOf(" ")));
+                minimumMoney=Integer.parseInt(string.substring(string.indexOf(" ")+1,string.length()-1));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
     public String addAccountToBank(String firstName, String lastName, String username, String password , String repeatPassword){
         String toBeSend="create_account "+firstName+" "+lastName+" "+username+" "+password+" "+repeatPassword;
         String received="";
@@ -92,7 +98,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String getBankToken(String username,String password){
         String toBeSend="get_token "+username+" "+password;
         String received="";
@@ -106,7 +111,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String getReceiptID(String token, String type, String money, String sourceId, String desId, String description){
         StringBuilder sb=new StringBuilder("create_receipt "+token+" "+type+" "+money+" "+sourceId+" "+desId);
         if(!description.equals("")) sb.append(description);
@@ -122,7 +126,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String getTransaction(String type,String token){
         String toBeSend="get_transactions "+token+" "+type;
         String received="";
@@ -136,7 +139,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String payReceipt(String receiptId){
         String toBeSend="pay "+receiptId;
         String received="";
@@ -150,7 +152,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String getBalance(String token){
         String toBeSend="get_balance "+token;
         String received="";
@@ -164,7 +165,6 @@ public class TransactionController {
         }
         return null;
     }
-
     public String exitBank(){
         String toBeSend="exit";
         String received="";
@@ -178,6 +178,7 @@ public class TransactionController {
         }
         return null;
     }
+
 
 
 

@@ -80,8 +80,9 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("CompareMenu","src/main/resources/fxml/compareMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("SalesMenu","src/main/resources/fxml/SalesMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("bankLogin","src/main/resources/fxml/bankLogin.fxml");
-        SceneSwitcher.getInstance().addSceneFXML("bankRegisterAccount","src/main/resources/bankRegisterController.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("bankRegisterAccount","src/main/resources/fxml/bankRegisterAccount.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AssistantMenu","src/main/resources/fxml/AssistantMenu/AssistantMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("TransactionMenu","src/main/resources/fxml/TransactionMenu.fxml");
     }
 
 }

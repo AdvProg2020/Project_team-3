@@ -101,4 +101,8 @@ public class SellerMenuController {
         ViewRequestUser.setUsername(MakeRequest.makeGetUserRequest().getUsername());
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
    }
+
+    public void goToTransactionMenu(ActionEvent actionEvent) {
+
+    }
 }

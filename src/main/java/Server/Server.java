@@ -1,9 +1,6 @@
 package Server;
 
-import Server.Controller.Database;
-import Server.Controller.ItemAndCategoryController;
-import Server.Controller.RequestProcessor;
-import Server.Controller.UserController;
+import Server.Controller.*;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -119,6 +116,7 @@ public class Server {
       Database.getInstance().initiate();
       new Server();
       System.out.println("server is running");
+      TransactionController.getInstance().setMainBankAccountId();
    }
 
 }

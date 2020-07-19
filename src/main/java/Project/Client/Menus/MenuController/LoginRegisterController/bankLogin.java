@@ -20,15 +20,22 @@ public class bankLogin {
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in Login process!");
             alert.setContentText(result);
+            alert.showAndWait();
+            usernameTextField.setText("");
+            passwordTextField.setText("");
             return;
         }
         else{
+            usernameTextField.setText("");
+            passwordTextField.setText("");
             Client.getInstance().setBankAccountToken(result);
+            SceneSwitcher.getInstance().setSceneTo("TransactionMenu");
+            SceneSwitcher.getInstance().closeSecondStage();
         }
     }
 
     public void goToRegisterBank(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().closeSecondStage();
         SceneSwitcher.getInstance().setSceneTo("bankRegisterAccount");
+        SceneSwitcher.getInstance().closeSecondStage();
     }
 }
