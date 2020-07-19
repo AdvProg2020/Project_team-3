@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" styleClass="userZoneBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AssistantMenu.AssistantMenuController">
+    <children>
+
+        <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
+            <menus>
+                <Menu mnemonicParsing="false" text="option">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewEditPersonalInfo" text="Edit personal info" />
+                        <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                    </items>
+                </Menu>
+
+            </menus>
+        </MenuBar>
+        <Button layoutX="203.0" layoutY="321.0" onMouseClicked="#viewEditPersonalInfo" prefHeight="27.0" prefWidth="190.0" styleClass="greyButton" text="edit personal info"> </Button>
+        <ImageView fx:id="userImage" fitHeight="170.0" fitWidth="201.0" layoutX="202.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="personalInfo" layoutX="208.0" layoutY="390.0" prefHeight="300.0" prefWidth="482.0" />
+    </children>
+
+</AnchorPane>

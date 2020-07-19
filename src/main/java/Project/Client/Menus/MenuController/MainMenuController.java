@@ -156,8 +156,10 @@ public class MainMenuController {
             SceneSwitcher.getInstance().setSceneTo("AdminMenu");
         }else if(MakeRequest.makeGetUserRequest().type.equals("Seller")){
             SceneSwitcher.getInstance().setSceneTo("SellerMenu");
-        }else{
+        }else if(MakeRequest.makeGetUserRequest().type.equals("Buyer")){
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+        }else{
+            SceneSwitcher.getInstance().setSceneTo("AssistantMenu");
         }
     }
 

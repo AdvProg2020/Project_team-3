@@ -17,10 +17,12 @@ module Project {
     opens Project.Client.Menus.MenuController.BuyerMenu  to javafx.fxml;
     opens Project.Client.Menus.MenuController.LoginRegisterController to javafx.fxml;
     opens Project.Client.Menus.MenuController.SellerMenuController to javafx.fxml;
+    opens Project.Client.Menus.MenuController.AssistantMenu to javafx.fxml;
     exports Project;
     exports Project.Client.Menus.MenuController.AdminMenu;
     exports Project.Client.Menus.MenuController.BuyerMenu;
     exports Project.Client.Menus.MenuController.LoginRegisterController;
     exports Project.Client.Menus.MenuController.SellerMenuController;
+    exports Project.Client.Menus.MenuController.AssistantMenu;
     exports Project.Client.Menus.MenuController;
 }

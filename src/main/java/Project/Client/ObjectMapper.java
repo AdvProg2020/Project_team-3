@@ -4,10 +4,7 @@ import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Logs.SaleLog;
 import Project.Client.Model.Sale;
-import Project.Client.Model.Users.Admin;
-import Project.Client.Model.Users.Buyer;
-import Project.Client.Model.Users.Seller;
-import Project.Client.Model.Users.User;
+import Project.Client.Model.Users.*;
 import Project.Client.Model.Category;
 import Project.Client.Model.Logs.BuyLog;
 import com.google.gson.Gson;
@@ -28,7 +25,9 @@ public class ObjectMapper {
       }else if(getJsonStringField(json,"type").equals("Buyer")){
         return jsonToBuyer(json);
       }else if(getJsonStringField(json,"type").equals("Seller")){
-       return jsonToSeller(json);
+         return jsonToSeller(json);
+      }else if(getJsonStringField(json,"type").equals("Assistant")){
+         return jsonToAssistant(json);
       }
       return null;
    }
@@ -41,6 +40,15 @@ public class ObjectMapper {
       String email = getJsonStringField(json,"email");
       String number = getJsonStringField(json,"number");
       return new Admin(username,password,name,lastName,email,number);
+   }
+   public static Assistant jsonToAssistant(JsonObject json){
+      String name = getJsonStringField(json,"name");
+      String lastName = getJsonStringField(json,"lastName");
+      String password = getJsonStringField(json,"password");
+      String username = getJsonStringField(json,"username");
+      String email = getJsonStringField(json,"email");
+      String number = getJsonStringField(json,"number");
+      return new Assistant(username,password,name,lastName,email,number);
    }
 
    public static Seller jsonToSeller(JsonObject json){
@@ -73,7 +81,7 @@ public class ObjectMapper {
       double price=json.get("price").getAsDouble();
       String description=getJsonStringField(json,"description");
       String productId=getJsonStringField(json,"id");
-      double rating=MakeRequest.getItemRating(productId);
+      double rating=json.get("rating").getAsDouble();
       String sellerName=getJsonStringField(json,"sellerName");
       String imageName=getJsonStringField(json,"imageName");
       String categoryName=getJsonStringField(json,"categoryName");

@@ -580,17 +580,11 @@ public class RequestProcessor {
          Item item=ItemAndCategoryController.getInstance().getItemById(productId);
          if(item==null) System.out.println("nulle ke");
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        // JsonParser parser = new JsonParser();
-        // JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
-         return gson.toJson(item);
+         JsonParser parser = new JsonParser();
+         JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
+         json.addProperty("rating",item.getRating());
+         return json.toString();
       }
-
-      if(getJsonStringField(command,"content").equals("get item rating")){
-         String productId=getJsonStringField(command,"product id");
-         Item item=ItemAndCategoryController.getInstance().getItemById(productId);
-         return String.valueOf(item.getRating());
-      }
-
 
       if(getJsonStringField(command,"content").equals("get category")){
          String categoryName=getJsonStringField(command,"category name");
@@ -623,15 +617,11 @@ public class RequestProcessor {
          return allItemId.toString();
       }
 
-
-
       if(getJsonStringField(command,"content").equals("get sale")){
          Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
          return gson.toJson(sale).toString();
       }
-
-
 
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
