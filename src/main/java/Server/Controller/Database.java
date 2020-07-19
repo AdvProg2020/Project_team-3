@@ -77,7 +77,7 @@ public class Database {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String allRequests=gson.toJson(assistant.getReqMap());
       String values = "'"+assistant.getUsername()+"', '"+assistant.getPassword()+"', '"+assistant.getName()+"', '"+assistant.getLastName()+"', '"+assistant.getEmail()+"', '"+assistant.getNumber();
-      values+= "', '"+ "Admin" +"', '"+allRequests+"'";
+      values+= "', '"+ "Assistant" +"', '"+allRequests+"'";
       Connection connection = null;
       try
       {
