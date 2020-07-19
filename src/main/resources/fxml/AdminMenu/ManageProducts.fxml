@@ -6,6 +6,7 @@
 <AnchorPane fx:id="pane" prefHeight="537.0" prefWidth="898.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.ManageProducts">
     <MenuBar prefHeight="25.0" prefWidth="898.0" styleClass="myMenuBar">
         <Menu text="options">
+            <MenuItem onAction="#refresh" text="refresh" />
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>

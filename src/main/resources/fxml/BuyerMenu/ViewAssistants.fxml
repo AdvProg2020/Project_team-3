@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dedcde;" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.BuyerMenu.ViewAssistants">
+
+
+    <CheckBox fx:id="online" layoutX="14.0" layoutY="55.0" onMouseClicked="#update" selected="false" text="online"> </CheckBox>
+    <ListView fx:id="listView" layoutX="13.0" layoutY="85.0" onMouseClicked="#userSelect" prefHeight="265.0" prefWidth="266.0" />
+    <MenuBar prefHeight="25.0" prefWidth="600.0" styleClass="myMenuBar">
+        <Menu text="options">
+            <MenuItem onAction="#refresh" text="refresh" />
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+</AnchorPane>

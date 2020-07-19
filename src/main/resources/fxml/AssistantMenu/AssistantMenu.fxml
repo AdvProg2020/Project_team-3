@@ -12,7 +12,6 @@
                 <Menu mnemonicParsing="false" text="option">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
-                        <MenuItem mnemonicParsing="false" onAction="#viewEditPersonalInfo" text="Edit personal info" />
                         <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
                     </items>
                 </Menu>
