@@ -437,6 +437,10 @@ public class RequestProcessor {
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
 
+      if(getJsonStringField(command,"content").equals("getBankBalance")){
+         String bankAccountToken=getJsonStringField(command,"bankToken");
+         return TransactionController.getInstance().getBalance(bankAccountToken);
+      }
       if(getJsonStringField(command,"content").equals("createBankAccount")){
          String bankAccountUsername=getJsonStringField(command,"username");
          String bankAccountPassword=getJsonStringField(command,"password");

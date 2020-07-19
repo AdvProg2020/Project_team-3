@@ -8,6 +8,7 @@ import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
 
+import Server.Controller.TransactionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -95,15 +96,19 @@ public class BuyerMenuController {
     }
 
     public void goToTransactionMenu(ActionEvent actionEvent) {
+        TransactionController.getInstance().setMainBankAccountId();
         if(Client.getInstance().getBankAccountToken().equals("")){
             SceneSwitcher.getInstance().saveScene("BuyerMenu");
             SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
         }
         else {
             SceneSwitcher.getInstance().saveScene("BuyerMenu");
+            String result=MakeRequest.getBankAccountBalance();
+            if(result.equals("token expired") || result.equals("token is invalid")){
+                SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
+            }
             SceneSwitcher.getInstance().setSceneTo("TransactionMenu");
         }
-
     }
 }
 

@@ -116,7 +116,6 @@ public class Server {
       Database.getInstance().initiate();
       new Server();
       System.out.println("server is running");
-      TransactionController.getInstance().setMainBankAccountId();
    }
 
 }

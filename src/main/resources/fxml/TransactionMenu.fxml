@@ -7,19 +7,19 @@
    <children>
       <Button layoutX="357.0" layoutY="511.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="154.0" styleClass="myBlueButton" text="Pay" />
       <Label layoutX="259.0" layoutY="184.0" text="bank Account Id" />
-      <TextField fx:id="bankAccountIdLabel" layoutX="359.0" layoutY="180.0" />
+      <TextField fx:id="bankAccountId" layoutX="359.0" layoutY="180.0" />
       <ComboBox fx:id="transactionComboBox" layoutX="358.0" layoutY="245.0" prefWidth="150.0" />
       <Label layoutX="280.0" layoutY="249.0" prefHeight="17.0" prefWidth="44.0" text="choose:" />
       <Label layoutX="269.0" layoutY="131.0" text="user balance" />
-      <Label fx:id="userBalanceLabel" layoutX="359.0" layoutY="123.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label layoutX="243.0" layoutY="68.0" prefHeight="17.0" prefWidth="119.0" text="bank Account Balance" />
-      <Label fx:id="bankAccountBalanceLabel" layoutX="359.0" layoutY="60.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label fx:id="finalAmountLabel" layoutX="358.0" layoutY="389.0" prefHeight="17.0" prefWidth="150.0" />
+      <Label layoutX="226.0" layoutY="68.0" prefHeight="17.0" prefWidth="119.0" text="bank Account Balance" />
       <Label layoutX="263.0" layoutY="336.0" prefHeight="17.0" prefWidth="79.0" text="enter Amount:" />
-      <TextField fx:id="amountLabel" layoutX="359.0" layoutY="332.0" onKeyPressed="#amountTyped" />
+      <TextField fx:id="amount" layoutX="359.0" layoutY="332.0" onKeyPressed="#amountTyped" />
       <Label layoutX="263.0" layoutY="389.0" prefHeight="17.0" prefWidth="79.0" text="final Amount" />
       <Label layoutX="259.0" layoutY="443.0" text="wage Amount" />
-      <Label fx:id="wageAmountLabel" layoutX="359.0" layoutY="434.0" prefHeight="17.0" prefWidth="149.0" />
       <Button mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="60.0" styleClass="myBlueButton" text="back" />
+      <TextField fx:id="bankBalance" editable="false" layoutX="359.0" layoutY="64.0" />
+      <TextField fx:id="userBalance" editable="false" layoutX="360.0" layoutY="127.0" />
+      <TextField fx:id="finalAmount" editable="false" layoutX="357.0" layoutY="385.0" />
+      <TextField fx:id="wageAmount" editable="false" layoutX="359.0" layoutY="439.0" />
    </children>
 </Pane>
