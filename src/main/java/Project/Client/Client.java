@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Base64;
 
 public class Client {
    private String bankAccountToken="";

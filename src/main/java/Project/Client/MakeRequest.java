@@ -181,6 +181,16 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static String makeAddMessageToChannel(String channelName,String message){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 2);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "add message to channel");
+      jsonObject.addProperty("message", message);
+      jsonObject.addProperty("channel name",channelName);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    //type 3 seller menu
    public static String addProduct(String name, String brand, String description, double price, int inStock, String categoryName, ArrayList<String> attributesKey,ArrayList<String> attributeValue, String image, String video){
       JsonObject json = new JsonObject();

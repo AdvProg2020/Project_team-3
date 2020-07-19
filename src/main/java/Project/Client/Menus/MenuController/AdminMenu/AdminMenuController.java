@@ -7,7 +7,7 @@ import Project.Client.Model.Users.Admin;
 
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.UserController;
+
 import Project.Client.CLI.View;
 
 
@@ -20,8 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.File;
-import java.net.MalformedURLException;
+
 
 public class AdminMenuController {
     public ImageView adminImage;

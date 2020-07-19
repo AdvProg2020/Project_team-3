@@ -2,6 +2,7 @@ package Server.Controller;
 
 
 import Server.Model.*;
+import Server.Model.Chat.Channel;
 import Server.Model.Requests.Request;
 import Server.Model.Users.*;
 import com.google.gson.Gson;
@@ -293,6 +294,23 @@ public class Database {
 
    }
 
+   public void saveChannel(Channel channel) {
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String path = "Resource" + File.separator + "Channels";
+      String name = channel.getName() + ".json";
+      File file = new File(path + File.separator + name);
+      try {
+         if (!file.exists()) {
+            file.createNewFile();
+         }
+         FileWriter writer = new FileWriter(file);
+         writer.write(gson.toJson(channel));
+         writer.close();
+      } catch (IOException exception) {
+         exception.printStackTrace();
+      }
+   }
+
    public void deleteUser(User user) {
       Connection connection = null;
       String tableName = user.getType() + "s";
@@ -408,6 +426,11 @@ public class Database {
       }
 
       file = new File("Resource" + File.separator + "Requests");
+      if (!file.exists()) {
+         file.mkdir();
+      }
+
+      file = new File("Resource" + File.separator + "Channels");
       if (!file.exists()) {
          file.mkdir();
       }

@@ -11,6 +11,7 @@ module Project {
     opens Project to javafx.fxml;
     opens Server.Model.Users to com.google.gson;
     opens Server.Model.Logs to com.google.gson;
+    opens Server.Model.Chat to com.google.gson;
     opens Server.Model to com.google.gson;
     opens Server.Model.Requests to com.google.gson;
     opens Project.Client.Menus.MenuController to javafx.fxml;

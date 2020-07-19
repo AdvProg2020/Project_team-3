@@ -332,6 +332,13 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().comment(comment,itemId);
       }
 
+      if(getJsonStringField(command,"content").equals("add message to channel")){
+         String message=getJsonStringField(command,"message");
+         String channelName=getJsonStringField(command,"channel name");
+         ChatController.getInstance().sendMessageToChannel(channelName,username,message);
+         return "Successful";
+      }
+
       return "Error: invalid command";
    }
 
