@@ -56,4 +56,9 @@ public class ManageRequests {
       MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().setSceneTo("AdminMenu");
    }
+
+   public void refresh(ActionEvent actionEvent) {
+      update();
+   }
+
 }

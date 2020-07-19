@@ -94,6 +94,12 @@ public class BuyerMenuController {
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
     }
 
+    public void viewAssistants(ActionEvent actionEvent) {
+        MusicManager.getInstance().playSound("Button");
+        SceneSwitcher.getInstance().saveScene("BuyerMenu");
+        SceneSwitcher.getInstance().setSceneTo("ViewAssistants");
+    }
+
     public void goToTransactionMenu(ActionEvent actionEvent) {
         if(Client.getInstance().getBankAccountToken().equals("")){
             SceneSwitcher.getInstance().saveScene("BuyerMenu");

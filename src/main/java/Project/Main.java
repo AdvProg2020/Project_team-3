@@ -1,11 +1,10 @@
 package Project;
 
 
-
 import Project.Client.MakeRequest;
+
+
 import Project.Client.Menus.SceneSwitcher;
-
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -83,6 +82,8 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("bankRegisterAccount","src/main/resources/fxml/bankRegisterAccount.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AssistantMenu","src/main/resources/fxml/AssistantMenu/AssistantMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("TransactionMenu","src/main/resources/fxml/TransactionMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AssistantEditPersonalInfo","src/main/resources/fxml/AssistantMenu/AssistantEditPersonalInfo.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ViewAssistants","src/main/resources/fxml/BuyerMenu/ViewAssistants.fxml");
     }
 
 }

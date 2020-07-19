@@ -22,6 +22,7 @@
                    <MenuItem mnemonicParsing="false" onAction="#viewDiscountCodes" text="View Discount Codes" />
                    <MenuItem mnemonicParsing="false" onAction="#viewOrders" text="View Orders" />
                    <MenuItem onAction="#viewRequests" text="view Requests" />
+                   <MenuItem onAction="#viewAssistants" text="view Assistans" />
                </Menu>
            </menus>
        </MenuBar>

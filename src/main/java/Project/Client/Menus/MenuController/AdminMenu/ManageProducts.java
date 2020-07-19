@@ -277,6 +277,10 @@ public class ManageProducts {
          SceneSwitcher.getInstance().setSceneAndWait("ManageProductsIn", 392, 173);
       }
    }
+
+   public void refresh(ActionEvent actionEvent) {
+      update();
+   }
 }
 
 

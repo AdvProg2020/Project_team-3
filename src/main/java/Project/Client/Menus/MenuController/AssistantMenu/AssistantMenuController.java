@@ -58,6 +58,6 @@ public class AssistantMenuController {
 
 
    public void viewEditPersonalInfo(MouseEvent mouseEvent) {
-      SceneSwitcher.getInstance().setSceneTo("AdminEditPersonalInfo");
+      SceneSwitcher.getInstance().setSceneTo("AssistantEditPersonalInfo");
    }
 }
