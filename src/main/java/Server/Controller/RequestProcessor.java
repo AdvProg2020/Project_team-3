@@ -1,4 +1,6 @@
 package Server.Controller;
+import Project.Client.Client;
+import Project.Client.Model.Chat.Channel;
 import Server.Model.*;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
@@ -43,6 +45,8 @@ public class RequestProcessor {
          return adminMenuProcessor(commandJson);
       } else if (commandJson.get("type").getAsInt() == 5) { //user general
          return userGeneralProcessor(commandJson);
+      }else if (commandJson.get("type").getAsInt() == 6) { //chat menu
+         return chatProcessor(commandJson);
       }
       return "Error: invalid command";
    }
@@ -330,13 +334,6 @@ public class RequestProcessor {
          String itemId=getJsonStringField(command,"item id");
          String comment=getJsonStringField(command,"comment");
          return ItemAndCategoryController.getInstance().comment(comment,itemId);
-      }
-
-      if(getJsonStringField(command,"content").equals("add message to channel")){
-         String message=getJsonStringField(command,"message");
-         String channelName=getJsonStringField(command,"channel name");
-         ChatController.getInstance().sendMessageToChannel(channelName,username,message);
-         return "Successful";
       }
 
       return "Error: invalid command";
@@ -679,6 +676,37 @@ public class RequestProcessor {
          System.out.println(allItemsCount.toString());
          return String.valueOf(CartController.getInstance().getCartPriceWithoutDiscountCode());
       }
+      return "Error: invalid command";
+   }
+
+   public String chatProcessor(JsonObject command){
+      String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
+      Controller.getInstance().setCurrentOnlineUser(username);
+      if (username == null) return "Error: incorrect Token";
+
+      if(getJsonStringField(command,"content").equals("add message to channel")){
+         String message=getJsonStringField(command,"message");
+         String channelName=getJsonStringField(command,"channel name");
+         ChatController.getInstance().sendMessageToChannel(channelName,username,message);
+         return "Successful";
+      }
+
+      if(getJsonStringField(command,"content").equals("get channel")){
+         String name=getJsonStringField(command,"name");
+         Gson gson=new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(ChatController.getInstance().getChannel(name));
+      }
+
+      if(getJsonStringField(command,"content").equals("get assistant channel")){
+         ArrayList<String> allChannels=Database.getInstance().printFolderContent("Channels");
+         ArrayList<String> assistantChannels=new ArrayList<>();
+         for (String channelName : allChannels) {
+            if(channelName.contains("#"+username)) assistantChannels.add(channelName.substring(0,channelName.indexOf('#')));
+         }
+         Gson gson=new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(assistantChannels);
+      }
+
       return "Error: invalid command";
    }
 

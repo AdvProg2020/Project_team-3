@@ -60,4 +60,9 @@ public class AssistantMenuController {
    public void viewEditPersonalInfo(MouseEvent mouseEvent) {
       SceneSwitcher.getInstance().setSceneTo("AssistantEditPersonalInfo");
    }
+
+   public void manageChats(MouseEvent mouseEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageChats");
+   }
+
 }

@@ -1,5 +1,7 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 import Project.Client.MakeRequest;
+import Project.Client.Menus.MenuController.AdminMenu.ManageRequestIn;
+import Project.Client.Menus.MenuController.ChatMenu;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
@@ -46,7 +48,9 @@ public class ViewAssistants {
       String username=listView.getItems().get(index).toString();
       System.out.println(username);
       if(MakeRequest.isThereUserWithUsername(username)) {
-        ///code inja bayad bashe
+         ChatMenu.setReceiver(username);
+         ChatMenu.setChannelName(MakeRequest.makeGetUserRequest().username+'#'+username);
+         SceneSwitcher.getInstance().setSceneAndWait("ChatMenu", 600, 800);
       }
       listView.getSelectionModel().clearSelection();
    }

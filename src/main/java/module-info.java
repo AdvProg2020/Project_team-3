@@ -16,6 +16,7 @@ module Project {
 
     opens Project.Client.Model.Logs to com.google.gson;
     opens Project.Client.Model.Users to com.google.gson;
+    opens Project.Client.Model.Chat to com.google.gson;
     opens Project.Client.Model to com.google.gson;
 
     opens Server.Model.Requests to com.google.gson;

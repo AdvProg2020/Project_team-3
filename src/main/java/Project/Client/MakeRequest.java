@@ -2,6 +2,7 @@ package Project.Client;
 
 import Project.Client.CLI.View;
 import Project.Client.Model.*;
+import Project.Client.Model.Chat.Channel;
 import Project.Client.Model.Logs.BuyLog;
 import Project.Client.Model.Logs.SaleLog;
 import Project.Client.Model.Users.User;
@@ -181,15 +182,7 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static String makeAddMessageToChannel(String channelName,String message){
-      JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", 2);
-      jsonObject.addProperty("token", Client.getInstance().getToken());
-      jsonObject.addProperty("content", "add message to channel");
-      jsonObject.addProperty("message", message);
-      jsonObject.addProperty("channel name",channelName);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
+
 
    //type 3 seller menu
    public static String addProduct(String name, String brand, String description, double price, int inStock, String categoryName, ArrayList<String> attributesKey,ArrayList<String> attributeValue, String image, String video){
@@ -232,7 +225,7 @@ public class MakeRequest {
          if ((s != null) && (s != "") && (s != "\n"))
             result.add(s);
       }
-      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>(); 
+      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>();
       return result;
    }
 
@@ -848,6 +841,35 @@ public class MakeRequest {
       Client.getInstance().sendMessage(json);
    }
 
+   //type 6
+   public static String makeAddMessageToChannel(String channelName,String message){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 6);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "add message to channel");
+      jsonObject.addProperty("message", message);
+      jsonObject.addProperty("channel name",channelName);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static Channel getChannel(String channelName){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 6);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "get channel");
+      jsonObject.addProperty("name",channelName);
+      Gson gson=new Gson();
+      return gson.fromJson(Client.getInstance().sendMessage(jsonObject),Channel.class);
+   }
+
+   public static ArrayList<String> getAssistantChannel(){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 6);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "get assistant channel");
+      Gson gson=new Gson();
+      return gson.fromJson(Client.getInstance().sendMessage(jsonObject),ArrayList.class);
+   }
 
    public static String getJsonStringField(JsonObject json, String field) {
       return json.get(field).toString().replace("\"", "");
