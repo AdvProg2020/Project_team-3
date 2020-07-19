@@ -3,6 +3,7 @@ import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
+import Server.Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -11,15 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class ManageUsers {
-   @FXML
-   private ListView listView;
-   @FXML
-   private CheckBox adminCheck;
-   @FXML
-   private CheckBox buyerCheck;
-   @FXML
-   private CheckBox sellerCheck;
+   @FXML private ListView listView;
+   @FXML private CheckBox adminCheck;
+   @FXML private CheckBox buyerCheck;
+   @FXML private CheckBox sellerCheck;
+   @FXML private CheckBox assistantCheck;
    @FXML private AnchorPane pane;
+
    @FXML
    public void initialize() {
       View.setFonts(pane);
@@ -28,6 +27,7 @@ public class ManageUsers {
    }
 
    public void update(MouseEvent mouseEvent) {
+
       MusicManager.getInstance().playSound("Button");
       listView.getItems().clear();
       String userList="";
@@ -39,6 +39,9 @@ public class ManageUsers {
       }
       if(sellerCheck.isSelected()){
          userList+=MakeRequest.makeGetAllUserRequest("Seller");
+      }
+      if(assistantCheck.isSelected()){
+         userList+=MakeRequest.makeGetAllUserRequest("Assistant");
       }
       userList.replace("\n\n","\n");
       if(userList.equals("\n")==false)

@@ -66,6 +66,13 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
+   public static String makeRegisterAssistantRequest(String name, String lastName, String username, String password, String email, String number) {
+      JsonObject json = register(name, lastName, username, password, email, number);
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("account type", "assistant");
+      return Client.getInstance().sendMessage(json);
+   }
+
    private static JsonObject register(String name, String lastName, String username, String password, String email, String number) {
       JsonObject json = new JsonObject();
       json.addProperty("type", 1);

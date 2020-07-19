@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="registerAdminMenu" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.LoginRegisterController.AssistantRegisterMenu">
+    <children>
+        <TextField fx:id="usernameTextField" layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="137.0" promptText="Username" styleClass="myTextField" />
+        <PasswordField fx:id="passwordField" layoutX="890.0" layoutY="125.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" styleClass="myTextField" />
+        <TextField fx:id="passwordTextField" layoutX="890.0" layoutY="125.0" prefHeight="25.0" prefWidth="137.0" promptText="Password" styleClass="myTextField" />
+        <TextField fx:id="firstNameTextField" layoutX="711.0" layoutY="240.0" prefHeight="25.0" prefWidth="137.0" promptText="First Name" styleClass="myTextField" />
+        <TextField fx:id="surnameTextField" layoutX="897.0" layoutY="238.0" prefHeight="25.0" prefWidth="137.0" promptText="Surname" styleClass="myTextField" />
+        <TextField fx:id="emailTextField" layoutX="713.0" layoutY="348.0" prefHeight="25.0" prefWidth="137.0" promptText="Email" styleClass="myTextField" />
+        <TextField fx:id="phoneNumberTextFiled" layoutX="890.0" layoutY="348.0" prefHeight="25.0" prefWidth="149.0" promptText="Phone" styleClass="myTextField" />
+        <Button layoutX="879.0" layoutY="550.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" text="Register" />
+        <TextField fx:id="imageDirectory" layoutX="715.0" layoutY="454.0" prefHeight="25.0" prefWidth="137.0" promptText="Image" styleClass="myTextField" />
+        <Button layoutX="850.0" layoutY="454.0" mnemonicParsing="false" onAction="#fileChooserOpen" styleClass="myBlueButton" text="..." />
+        <CheckBox fx:id="passwordCheckBox" layoutX="921.0" layoutY="167.0" mnemonicParsing="false" text="show Password?" />
+        <Label fx:id="usernameLabel" layoutX="688.0" layoutY="150.0" prefHeight="17.0" prefWidth="191.0" />
+        <Label fx:id="passwordLabel" layoutX="880.0" layoutY="150.0" prefHeight="17.0" prefWidth="149.0" />
+        <Label fx:id="firstnameLabel" layoutX="688.0" layoutY="267.0" prefHeight="17.0" prefWidth="149.0" />
+        <Label fx:id="surnameLabel" layoutX="880.0" layoutY="267.0" prefHeight="17.0" prefWidth="149.0" />
+        <Label fx:id="emailLabel" layoutX="688.0" layoutY="373.0" prefHeight="17.0" prefWidth="149.0" />
+        <Label fx:id="phoneNumberLabel" layoutX="879.0" layoutY="373.0" prefHeight="17.0" prefWidth="149.0" />
+        <MenuBar prefHeight="25.0" prefWidth="1280.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Login or Register">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#MainMenu" text="Main" />
+                        <MenuItem mnemonicParsing="false" onAction="#Login" text="Login" />
+                        <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Button layoutY="25.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="74.0" styleClass="myBlueButton" text="Back" />
+    </children>
+</AnchorPane>

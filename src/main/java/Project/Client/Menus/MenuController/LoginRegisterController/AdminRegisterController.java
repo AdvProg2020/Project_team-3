@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 public class AdminRegisterController {
     public String desPath;
     public String srcPath;
-    public ComboBox roleChooser;
     public TextField usernameTextField;
     public TextField firstNameTextField;
     public TextField surnameTextField;

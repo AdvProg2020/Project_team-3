@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Assistant extends User {
     public Assistant(String username, String password, String name, String lastName, String email, String number) {
-        super(username, password, name, lastName, email, number, "Admin");
+        super(username, password, name, lastName, email, number, "Assistant");
         Database.getInstance().saveUser(this);
     }
 

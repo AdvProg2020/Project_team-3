@@ -84,11 +84,6 @@ public class UserController {
         return Controller.getInstance().currentOnlineUser;
     }
 
-    public String getCurrentOnlineUserUsername() {
-        if(Controller.getInstance().currentOnlineUser == null) return null;
-        return Controller.getInstance().currentOnlineUser.getUsername();
-    }
-
     public double currentOnlineUserBalance() {
         if (getCurrentOnlineUser() instanceof Buyer) {
             return ((Buyer) getCurrentOnlineUser()).getMoney();
@@ -173,8 +168,27 @@ public class UserController {
     }
 
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number) {
+        if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
+            return "Error : Lengthy inputs";
+        }
+        if (isThereUserWithUsername(username)) {
+            return "Error : User exist with this username!";
+        }
         return Admin.addAdminAccount(username, password, name, lastName, email, number);
     }
+
+    public String registerAssistant(String username, String password, String name, String lastName, String email, String number) {
+        if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
+            return "Error : Lengthy inputs";
+        }
+        if (isThereUserWithUsername(username)) {
+            return "Error : User exist with this username!";
+        }
+        Assistant user=new Assistant(username,password,name,lastName,email,number);
+        Database.getInstance().saveUser(user);
+        return "Success: Your assistant account registered.";
+    }
+
 
 
     public String login(String username, String password) {
@@ -422,16 +436,6 @@ public class UserController {
         return null;
     }
 
-    public String getBuyLogs(String username){
-        User user = getUserByUsername(username);
-        Buyer buyer;
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        if(user instanceof Buyer){
-            buyer = (Buyer)user;
-            String response=gson.toJson(buyer.getBuyLogs());
-            return response;
-        }
-        return null;
-    }
+
 
 }

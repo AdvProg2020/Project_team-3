@@ -34,7 +34,7 @@ public class PurchaseMenu {
 
    public void update(){
    if(discountIsValid)
-      priceLabel.setText("cart price before discount="+MakeRequest.getCartPriceWithoutDiscount()+"\ncart price after discount="+MakeRequest.makeGetCartPriceWithDiscountCode(discounts.getValue().toString()));
+      priceLabel.setText("cart price before discount="+MakeRequest.getCartPriceWithoutDiscount()+"\ncart price after discount="+MakeRequest.makeGetCartPriceWithDiscountCode(discounts.getValue().toString().substring(16,21)));
    }
 
    public void discountChange(ActionEvent actionEvent) {
@@ -42,6 +42,7 @@ public class PurchaseMenu {
          discountIsValid=false;
       }else{
          discountIsValid=true;
+         update();
       }
    }
 
@@ -59,7 +60,7 @@ public class PurchaseMenu {
       }
       String message="";
       if(discountIsValid) {
-         message=MakeRequest.buyCart(discounts.getValue().toString(),address.getText());
+         message=MakeRequest.buyCart(discounts.getValue().toString().substring(16,21),address.getText());
       }else {
          message=MakeRequest.buyCart(null,address.getText());
       }

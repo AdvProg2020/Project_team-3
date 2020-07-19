@@ -24,6 +24,7 @@
                </Menu>
                <Menu text="add">
                    <MenuItem onAction="#createAdminProfile" text="manager profile" />
+                   <MenuItem onAction="#createAssistantProfile" text="assistant profile" />
                    <MenuItem onAction="#addCategory" text="category" />
                    <MenuItem onAction="#addDiscountCode" text="discount code" />
                </Menu>

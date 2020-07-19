@@ -88,6 +88,11 @@ public class AdminMenuController {
        SceneSwitcher.getInstance().setSceneTo("AdminRegister");
    }
 
+   public void createAssistantProfile(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().saveScene("AdminMenu");
+      SceneSwitcher.getInstance().setSceneTo("AssistantRegister");
+   }
+
    public void editPersonalInfo(MouseEvent mouseEvent) {
    SceneSwitcher.getInstance().setSceneTo("AdminEditPersonalInfo");
    }
@@ -95,5 +100,6 @@ public class AdminMenuController {
    public void manageCommercials(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageCommercials",705,483);
    }
+
 
 }

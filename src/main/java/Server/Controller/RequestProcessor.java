@@ -88,6 +88,14 @@ public class RequestProcessor {
             return UserController.getInstance().registerAdmin(username,password,name,lastName,email,number);
          }
 
+         if((getJsonStringField(command,"account type").equals("assistant"))) {
+            String user = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
+            Controller.getInstance().setCurrentOnlineUser(username);
+            if (user == null) return "Error: incorrect Token";
+            if(UserController.getInstance().getUserType(user).equals("Admin")==false) return "Error: you cant register assistant.";
+            return UserController.getInstance().registerAssistant(username,password,name,lastName,email,number);
+         }
+
          return "Error: invalid account type";
       }
 
@@ -106,6 +114,11 @@ public class RequestProcessor {
          String response="";
          if(getJsonStringField(command,"userType").equals("Admin")) {
             for (String user : Database.getInstance().getAllUsername("Admin")) {
+               response+=user+"\n";
+            }
+         }
+         if(getJsonStringField(command,"userType").equals("Assistant")){
+            for (String user : Database.getInstance().getAllUsername("Assistant")) {
                response+=user+"\n";
             }
          }
