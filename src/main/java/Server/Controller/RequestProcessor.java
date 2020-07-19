@@ -383,7 +383,7 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("remove product")){
          String id=getJsonStringField(command,"id");
-         return ItemAndCategoryController.getInstance().deleteItem(getJsonStringField(command,id));
+         return ItemAndCategoryController.getInstance().deleteItem(id);
       }
 
       if(getJsonStringField(command,"content").equals("get seller sale")){

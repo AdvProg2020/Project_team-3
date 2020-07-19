@@ -15,6 +15,10 @@ public class Server {
    private static DataOutputStream dataOutputStream;
    private static DataInputStream dataInputStream;
 
+   public static final String ANSI_RESET = "\u001B[0m";
+   public static final String ANSI_GREEN = "\u001B[32m";
+   public static final String ANSI_BLUE = "\u001B[34m";
+
    public Server() {
       try {
          server = new ServerSocket(9000);
@@ -30,11 +34,11 @@ public class Server {
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
-                  System.out.println("command is :  " + command);
+
                   if(command.startsWith("image")==false){
-                     System.out.println("FROM CLIENT: " + command);
+                     System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
                      String response = RequestProcessor.getInstance().process(command);
-                     System.out.println("FROM CONTROLLER: " + response);
+                     System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
                      dataOutputStream.writeUTF(response);
                   }
                   else if(command.startsWith("image get")==true){
