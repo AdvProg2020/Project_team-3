@@ -34,6 +34,7 @@ public class TransactionController {
     }
 
     public void setWagePercent(int percent){
+        wagePercent=percent;
         String value=String.valueOf(percent);
         Gson gson=new Gson();
         String content=gson.toJson(value);
