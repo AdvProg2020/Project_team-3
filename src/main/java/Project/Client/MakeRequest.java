@@ -232,7 +232,7 @@ public class MakeRequest {
          if ((s != null) && (s != "") && (s != "\n"))
             result.add(s);
       }
-      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>();
+      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>(); 
       return result;
    }
 
@@ -265,10 +265,10 @@ public class MakeRequest {
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
       json.addProperty("content", "get sale log");
-
+      Gson gson=new Gson();
       JsonParser parser = new JsonParser();
       JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
-      System.out.println(jsonObject.toString());
+
       int size=jsonObject.get("size").getAsInt();
       ArrayList<SaleLog> saleLogs=new ArrayList<>();
       for(int i=0;i<size;i++){

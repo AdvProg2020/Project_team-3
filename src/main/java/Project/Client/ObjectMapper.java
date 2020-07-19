@@ -6,128 +6,48 @@ import Project.Client.Model.Logs.SaleLog;
 import Project.Client.Model.Sale;
 import Project.Client.Model.Users.*;
 import Project.Client.Model.Category;
-import Project.Client.Model.Logs.BuyLog;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+import com.google.gson.Gson;
+
+import com.google.gson.JsonObject;
+
 
 public class ObjectMapper {
 
    public static User jsonToUser(JsonObject json){
+      Gson gson = new Gson();
       if(getJsonStringField(json,"type").equals("Admin")){
-         return jsonToAdmin(json);
+         return gson.fromJson(json, Admin.class);
       }else if(getJsonStringField(json,"type").equals("Buyer")){
-        return jsonToBuyer(json);
+         return gson.fromJson(json, Buyer.class);
       }else if(getJsonStringField(json,"type").equals("Seller")){
-         return jsonToSeller(json);
+         return gson.fromJson(json, Seller.class);
       }else if(getJsonStringField(json,"type").equals("Assistant")){
-         return jsonToAssistant(json);
+         return gson.fromJson(json, Assistant.class);
       }
       return null;
    }
 
-   public static Admin jsonToAdmin(JsonObject json){
-      String name = getJsonStringField(json,"name");
-      String lastName = getJsonStringField(json,"lastName");
-      String password = getJsonStringField(json,"password");
-      String username = getJsonStringField(json,"username");
-      String email = getJsonStringField(json,"email");
-      String number = getJsonStringField(json,"number");
-      return new Admin(username,password,name,lastName,email,number);
-   }
-   public static Assistant jsonToAssistant(JsonObject json){
-      String name = getJsonStringField(json,"name");
-      String lastName = getJsonStringField(json,"lastName");
-      String password = getJsonStringField(json,"password");
-      String username = getJsonStringField(json,"username");
-      String email = getJsonStringField(json,"email");
-      String number = getJsonStringField(json,"number");
-      return new Assistant(username,password,name,lastName,email,number);
-   }
-
-   public static Seller jsonToSeller(JsonObject json){
-      String name = getJsonStringField(json,"name");
-      String lastName = getJsonStringField(json,"lastName");
-      String password = getJsonStringField(json,"password");
-      String username = getJsonStringField(json,"username");
-      String email = getJsonStringField(json,"email");
-      String number = getJsonStringField(json,"number");
-      double money= json.get("money").getAsDouble();
-      String company=getJsonStringField(json,"companyName");
-      return new Seller(money,username,password,name,lastName,email,number,company);
-   }
-
-   public static Buyer jsonToBuyer(JsonObject json){
-      String name = getJsonStringField(json,"name");
-      String lastName = getJsonStringField(json,"lastName");
-      String password = getJsonStringField(json,"password");
-      String username = getJsonStringField(json,"username");
-      String email = getJsonStringField(json,"email");
-      String number = getJsonStringField(json,"number");
-      double money= json.get("money").getAsDouble();
-      return new Buyer(money,username,password,name,lastName,email,number);
-   }
 
    public static Item jsonToItem(JsonObject json){
-      System.out.println(json.toString()+"ine");
-      String name=getJsonStringField(json,"name");
-      String brand=getJsonStringField(json,"brand");
-      double price=json.get("price").getAsDouble();
-      String description=getJsonStringField(json,"description");
-      String productId=getJsonStringField(json,"id");
-      double rating=json.get("rating").getAsDouble();
-      String sellerName=getJsonStringField(json,"sellerName");
-      String imageName=getJsonStringField(json,"imageName");
-      String categoryName=getJsonStringField(json,"categoryName");
-      int inStock=json.get("inStock").getAsInt();
-      int viewCount=json.get("viewCount").getAsInt();
-      int timesBought=json.get("timesBought").getAsInt();
       Gson gson = new Gson();
-      HashMap attributes=gson.fromJson(json.get("attributes"), HashMap.class);
-      ArrayList<String> allBuyers=gson.fromJson(json.get("buyerUserName"), ArrayList.class);
-      ArrayList<Comment> allComments=new ArrayList<>();
-      JsonArray comments=json.getAsJsonArray("allComments");
-      for (JsonElement comment : comments) {
-         allComments.add(jsonToComment(comment.getAsJsonObject()));
-      }
-      String saleId=getJsonStringField(json,"saleId");
-      return new Item(productId,description,name,brand,timesBought,price,inStock,viewCount,attributes,allBuyers,imageName,sellerName,categoryName,rating,allComments,saleId);
+      return gson.fromJson(json, Item.class);
    }
 
    public static Comment jsonToComment(JsonObject json){
-      String username=getJsonStringField(json,"username");
-      String text=getJsonStringField(json,"text");
-      Boolean hasBought=json.get("hasBought").getAsBoolean();
-      ArrayList<Comment> allReplies=new ArrayList<>();
       Gson gson = new Gson();
-      JsonArray replies=json.getAsJsonArray("allReplies");
-      for (JsonElement reply : replies) {
-         allReplies.add(jsonToComment(reply.getAsJsonObject()));
-      }
-      return new Comment(username,text,hasBought,allReplies);
+      return gson.fromJson(json, Comment.class);
    }
 
    public static Category jsonToCategory(JsonObject json){
-        Gson gson = new Gson();
-        String name=getJsonStringField(json,"name");
-        String parent=getJsonStringField(json,"parent");
-        ArrayList<String> allItemsID=gson.fromJson(json.get("allItemsID"), ArrayList.class);
-        ArrayList<String> attributes=gson.fromJson(json.get("attributes"), ArrayList.class);
-        ArrayList<String> subCategories=gson.fromJson(json.get("subCategories"), ArrayList.class);
-        return new Category(name,parent,allItemsID,attributes,subCategories);
+      Gson gson = new Gson();
+      return gson.fromJson(json, Category.class);
    }
 
    public static Sale jsonToSale(JsonObject json){
-      int percent=json.get("offPercentage").getAsInt();
-      String start=getJsonStringField(json,"startTime");
-      String end=getJsonStringField(json,"endTime");
-      return new Sale(percent,start,end);
+      Gson gson = new Gson();
+      return gson.fromJson(json, Sale.class);
    }
 
    public static SaleLog jsonToSaleLog(JsonObject json){

@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 public class Item {
     private String id;
+    private String state;
     private String description;
     private String name;
     private String brand;
@@ -24,31 +25,15 @@ public class Item {
     private String sellerName;
     private String categoryName;
     private ArrayList<String> buyerUserName;
-    double rating;
+    private ArrayList<Rating> allRatings;
     private ArrayList<Comment> allComments;
     private String saleId;
+
     private String imageName;
     private String videoName;
+
     private String addedTime;
 
-    public Item(String id,String description, String name, String brand, int timesBought, double price, int inStock, int viewCount, HashMap<String, String> attributes,ArrayList<String> buyerUserName,String imageName,String sellerName,String categoryName,double rating,ArrayList<Comment> allComments,String saleId) {
-        this.id = id;
-        this.description = description;
-        this.name = name;
-        this.brand = brand;
-        this.timesBought = timesBought;
-        this.price = price;
-        this.inStock = inStock;
-        this.viewCount = viewCount;
-        this.attributes = attributes;
-        this.buyerUserName=buyerUserName;
-        this.sellerName=sellerName;
-        this.imageName=imageName;
-        this.categoryName=categoryName;
-        this.rating=rating;
-        this.allComments=allComments;
-        this.saleId=saleId;
-    }
 
     public double getPrice() {
         return price;
@@ -79,7 +64,15 @@ public class Item {
     }
 
     public double getRating() {
-      return rating;
+        double ratingSum = 0;
+        if (allRatings.size() == 0) {
+            return 0;
+        } else {
+            for (Rating rating : allRatings) {
+                ratingSum += rating.getScore();
+            }
+            return ratingSum / allRatings.size();
+        }
     }
 
     //setters
@@ -151,6 +144,7 @@ public class Item {
         if (buyerUserName.contains(userName)) return true;
         return false;
     }
+
 
 
 

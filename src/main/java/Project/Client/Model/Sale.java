@@ -1,26 +1,25 @@
 package Project.Client.Model;
 
 
-public class Sale {
-    int percent;
-    String end;
-    String start;
+import java.util.ArrayList;
 
-    public Sale(int percent,String end,String start){
-       this.start=start;
-       this.end=end;
-       this.percent=percent;
-    }
+public class Sale {
+
+    private String startTime;
+    private String endTime;
+    private int offPercentage;
+
+
 
     public int getPercent() {
-        return percent;
+        return offPercentage;
     }
 
     public String getEnd() {
-        return end;
+        return startTime;
     }
 
     public String getStart() {
-        return start;
+        return endTime;
     }
 }

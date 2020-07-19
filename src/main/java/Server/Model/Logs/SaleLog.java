@@ -11,8 +11,6 @@ public class SaleLog {
     private int count;
     private String sellerUsername;
 
-
-
     public SaleLog(LocalDateTime time, double price, String itemId, String buyerName, int count , String sellerUsername) {
         this.time = time.toString();
         this.price = price;

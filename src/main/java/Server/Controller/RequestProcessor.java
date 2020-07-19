@@ -375,8 +375,7 @@ public class RequestProcessor {
          ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
          JsonObject json=new JsonObject();
          json.addProperty("size",saleLogs.size());
-
-         for(int i=0;i<saleLogs.size();i++) {
+           for(int i=0;i<saleLogs.size();i++) {
             SaleLog log = saleLogs.get(i);
             json.addProperty("buyer"+i , log.getBuyerName());
             json.addProperty("seller"+i , log.getSellerUsername());
@@ -601,12 +600,8 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("get item")){
          String productId=getJsonStringField(command,"product id");
          Item item=ItemAndCategoryController.getInstance().getItemById(productId);
-         if(item==null) System.out.println("nulle ke");
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         JsonParser parser = new JsonParser();
-         JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
-         json.addProperty("rating",item.getRating());
-         return json.toString();
+         return gson.toJson(item);
       }
 
       if(getJsonStringField(command,"content").equals("get category")){
@@ -643,7 +638,7 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("get sale")){
          Sale sale=SaleAndDiscountCodeController.getInstance().getSaleById(getJsonStringField(command,"id"));
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         return gson.toJson(sale).toString();
+         return gson.toJson(sale);
       }
 
       if(getJsonStringField(command,"content").equals("show products")){

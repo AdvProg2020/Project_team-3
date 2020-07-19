@@ -13,6 +13,11 @@ module Project {
     opens Server.Model.Logs to com.google.gson;
     opens Server.Model.Chat to com.google.gson;
     opens Server.Model to com.google.gson;
+
+    opens Project.Client.Model.Logs to com.google.gson;
+    opens Project.Client.Model.Users to com.google.gson;
+    opens Project.Client.Model to com.google.gson;
+
     opens Server.Model.Requests to com.google.gson;
     opens Project.Client.Menus.MenuController to javafx.fxml;
     opens Project.Client.Menus.MenuController.AdminMenu to javafx.fxml;
