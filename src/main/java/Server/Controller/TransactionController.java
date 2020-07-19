@@ -13,8 +13,8 @@ public class TransactionController {
     private Socket socket;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
-    private int wagePercent=0;
-    private int minimumMoney=0;
+    private int wagePercent;
+    private int minimumMoney;
 
     public static TransactionController getInstance(){
         if(transactionController==null) transactionController=new TransactionController();
@@ -62,7 +62,8 @@ public class TransactionController {
             try {
                 file.createNewFile();
                 Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
-                addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
+                String s=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
+                System.out.println("the main account id is : "+ s);
                 String string="5 1000";
                 String gsonToSave=gson.toJson(string);
                 FileWriter writer = new FileWriter(file);
@@ -80,6 +81,9 @@ public class TransactionController {
                 String string=gson.fromJson(content,String.class);
                 wagePercent=Integer.parseInt(string.substring(1,string.indexOf(" ")));
                 minimumMoney=Integer.parseInt(string.substring(string.indexOf(" ")+1,string.length()-1));
+                System.out.println(minimumMoney);
+                System.out.println(wagePercent);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

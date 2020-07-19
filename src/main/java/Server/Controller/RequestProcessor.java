@@ -444,6 +444,15 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("exit")){
          return TransactionController.getInstance().exitBank();
       }
+
+      if(getJsonStringField(command,"content").equals("wallet limit")){
+         return String.valueOf(TransactionController.getInstance().getMinimumMoney());
+      }
+      if(getJsonStringField(command,"content").equals("set bank")){
+         TransactionController.getInstance().setMainBankAccountId();
+         return "done!";
+      }
+
       if(getJsonStringField(command,"content").equals("createBankAccount")){
          String bankAccountUsername=getJsonStringField(command,"username");
          String bankAccountPassword=getJsonStringField(command,"password");

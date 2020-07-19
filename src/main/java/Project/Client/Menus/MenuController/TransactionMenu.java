@@ -22,12 +22,15 @@ public class TransactionMenu {
     public TextField userBalance;
     public TextField finalAmount;
     public TextField wageAmount;
+    private double userMoney=0;
+    private double bank=0;
 
     public void initialize(){
         setBankAccountBalance();
         setUserBalance();
-        transactionComboBox.getItems().add("deposit");
-        transactionComboBox.getItems().add("withdraw");
+        transactionComboBox.getItems().add("deposit"); //variz be hesab
+        transactionComboBox.getItems().add("withdraw");// bardasht az hesab!
+        transactionComboBox.getSelectionModel().selectFirst();
     }
 
     public void setBankAccountBalance(){
@@ -37,16 +40,19 @@ public class TransactionMenu {
             bBalance= MakeRequest.getBankAccountBalance();
         }
         bankBalance.setText(bBalance);
+        bank=Double.parseDouble(bankBalance.getText());
     }
 
     public void setUserBalance(){
         String type=MakeRequest.makeGetUserRequest().type;
         if(type.equalsIgnoreCase("Buyer")){
             Buyer buyer=(Buyer) MakeRequest.makeGetUserRequest();
+            userMoney=buyer.getMoney();
             userBalance.setText(String.valueOf(buyer.getMoney()));
         }
         else if(type.equalsIgnoreCase("seller")){
             Seller seller=(Seller) MakeRequest.makeGetUserRequest();
+            userMoney=seller.getMoney();
             userBalance.setText(String.valueOf(seller.getMoney()));
         }
     }
@@ -62,10 +68,51 @@ public class TransactionMenu {
         String allChars=amount.getText() + keyEvent.getText();
         if(allChars.matches("\\d+")){
             amount.setStyle("-fx-text-fill: green");
+            finalAmount.setText("");
+            wageAmount.setText("");
+            String selectedItem=(String) transactionComboBox.getSelectionModel().getSelectedItem();
+            if(selectedItem.equals("deposit")) deposit(allChars);
+            else withdraw(allChars);
         }
         else {
             amount.setStyle("-fx-text-fill: #a30000");
+            finalAmount.setText("invalid input");
+            wageAmount.setText("invalid input!");
+            finalAmount.setStyle("-fx-text-fill: #a30000");
+            wageAmount.setStyle("-fx-text-fill: #a30000");
         }
+    }
+
+
+    public void deposit(String string){
+        int amountMoney=Integer.parseInt(string);
+        int limit=Integer.parseInt(MakeRequest.getWalletLimit());
+        if((userMoney-amountMoney)< limit){
+            finalAmount.setText("limit error!");
+            wageAmount.setText("limit error!");
+            bankBalance.setText(String.valueOf(bank));
+            userBalance.setText(String.valueOf(userMoney));
+            finalAmount.setStyle("-fx-text-fill: #a30000");
+            wageAmount.setStyle("-fx-text-fill: #a30000");
+            return;
+        }
+        bankBalance.setText(String.valueOf((amountMoney+bank)));
+        userBalance.setText(String.valueOf(userMoney-amountMoney));
+    }
+
+    public void withdraw(String string){
+        int amountMoney=Integer.parseInt(string);
+        if(bank-amountMoney<0){
+            finalAmount.setText("limit error!");
+            wageAmount.setText("limit error!");
+            bankBalance.setText(String.valueOf(bank));
+            userBalance.setText(String.valueOf(userMoney));
+            finalAmount.setStyle("-fx-text-fill: #a30000");
+            wageAmount.setStyle("-fx-text-fill: #a30000");
+            return;
+        }
+        bankBalance.setText(String.valueOf((bank-amountMoney)));
+        userBalance.setText(String.valueOf(userMoney+amountMoney));
     }
 
 
