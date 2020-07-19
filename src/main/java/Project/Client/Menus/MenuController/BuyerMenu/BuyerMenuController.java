@@ -97,7 +97,7 @@ public class BuyerMenuController {
     public void goToTransactionMenu(ActionEvent actionEvent) {
         if(Client.getInstance().getBankAccountToken().equals("")){
             SceneSwitcher.getInstance().saveScene("BuyerMenu");
-            SceneSwitcher.getInstance().setSceneAndWait("bankLogin");
+            SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
         }
         else {
             SceneSwitcher.getInstance().saveScene("BuyerMenu");

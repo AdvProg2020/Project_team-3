@@ -23,7 +23,7 @@ public class bankRegisterAccount {
         String lastName=lastNameField.getText();
         String result= MakeRequest.makeAccountRequestInBank(username,password,firstName,lastName,repeatPassword);
         Alert alert;
-        if(result.equals("passwords do not match") || result.equals("username is not available")){
+        if(result.equals("passwords do not match") || result.equals("username is not available") || result.equals("")){
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error in register process!");
             alert.setContentText(result);
@@ -39,9 +39,5 @@ public class bankRegisterAccount {
             Client.getInstance().setBankAccountToken(token);
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
         }
-    }
-
-    public void back(ActionEvent actionEvent) {
-        SceneSwitcher.getInstance().back();
     }
 }

@@ -3,15 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="Project.Client.Menus.MenuController.LoginRegisterController.bankLogin" stylesheets="@../Styles.CSS">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.LoginRegisterController.bankLogin">
    <children>
-      <Button layoutX="190.0" layoutY="267.0" mnemonicParsing="false" onAction="#loginInBank" prefHeight="59.0" prefWidth="192.0" text="login" styleClass="myBlueButton" stylesheets="@../Styles.CSS"/>
+      <Button layoutX="190.0" layoutY="267.0" mnemonicParsing="false" onAction="#loginInBank" prefHeight="59.0" prefWidth="192.0" styleClass="myBlueButton" stylesheets="@../Styles.CSS" text="login" />
       <Label layoutX="127.0" layoutY="65.0" text="username" />
       <Label layoutX="127.0" layoutY="192.0" text="password" />
-      <TextField fx:id="usernameTextField" layoutX="212.0" layoutY="61.0" styleClass="myTextField"/>
-      <TextField fx:id="passwordTextField" layoutX="212.0" layoutY="188.0" styleClass="myTextField" />
+      <TextField fx:id="usernameTextField" layoutX="212.0" layoutY="61.0" prefHeight="25.0" prefWidth="149.0"  />
+      <TextField fx:id="passwordTextField" layoutX="212.0" layoutY="188.0" />
       <Hyperlink layoutX="236.0" layoutY="352.0" onAction="#goToRegisterBank" text="didn't sign up?" />
    </children>
 </Pane>

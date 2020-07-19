@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.LoginRegisterController.bankRegisterAccount">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="600.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.LoginRegisterController.bankRegisterAccount">
    <children>
-      <Button layoutX="203.0" layoutY="428.0" mnemonicParsing="false" onAction="#registerInBank" prefHeight="59.0" prefWidth="208.0" text="Register" />
+      <Button layoutX="226.0" layoutY="429.0" mnemonicParsing="false" onAction="#registerInBank" prefHeight="59.0" prefWidth="149.0" styleClass="myBlueButton" stylesheets="@../Styles.CSS" text="Register" />
       <Label layoutX="115.0" layoutY="61.0" prefHeight="17.0" prefWidth="55.0" text="username" />
       <Label layoutX="114.0" layoutY="130.0" prefHeight="17.0" prefWidth="65.0" text="Password" />
       <Label layoutX="94.0" layoutY="211.0" prefHeight="17.0" prefWidth="98.0" text="confrim Password" />
@@ -16,6 +16,5 @@
       <TextField fx:id="firstNameTextField" layoutX="226.0" layoutY="292.0" />
       <Label layoutX="110.0" layoutY="372.0" prefHeight="17.0" prefWidth="55.0" text="lastname" />
       <TextField fx:id="lastNameField" layoutX="226.0" layoutY="368.0" />
-      <Button layoutX="11.0" layoutY="22.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="55.0" text="back" />
    </children>
 </Pane>

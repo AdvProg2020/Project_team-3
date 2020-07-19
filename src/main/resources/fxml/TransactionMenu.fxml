@@ -3,23 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.TransactionMenu">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="866.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.TransactionMenu">
    <children>
-      <Button layoutX="197.0" layoutY="511.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="154.0" text="Pay" />
-      <Label layoutX="95.0" layoutY="184.0" text="bank Account Id" />
-      <TextField fx:id="bankAccountIdLabel" layoutX="200.0" layoutY="180.0" />
-      <ComboBox fx:id="transactionComboBox" layoutX="197.0" layoutY="253.0" prefWidth="150.0" />
-      <Label layoutX="116.0" layoutY="257.0" prefHeight="17.0" prefWidth="44.0" text="choose:" />
-      <Label layoutX="99.0" layoutY="123.0" text="user balance" />
-      <Label fx:id="userBalanceLabel" layoutX="200.0" layoutY="123.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label layoutX="73.0" layoutY="60.0" prefHeight="17.0" prefWidth="119.0" text="bank Account Balance" />
-      <Label fx:id="bankAccountBalanceLabel" layoutX="201.0" layoutY="60.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label fx:id="finalAmountLabel" layoutX="199.0" layoutY="389.0" prefHeight="17.0" prefWidth="150.0" />
-      <Label layoutX="93.0" layoutY="336.0" prefHeight="17.0" prefWidth="79.0" text="enter Amount:" />
-      <TextField fx:id="amountLabel" layoutX="200.0" layoutY="332.0" onKeyPressed="#amountTyped" />
-      <Label layoutX="99.0" layoutY="389.0" prefHeight="17.0" prefWidth="79.0" text="final Amount" />
-      <Label layoutX="95.0" layoutY="442.0" text="wage Amount" />
-      <Label fx:id="wageAmountLabel" layoutX="197.0" layoutY="442.0" prefHeight="17.0" prefWidth="149.0" />
-      <Button layoutY="27.0" mnemonicParsing="false" onAction="#back" text="back" />
+      <Button layoutX="357.0" layoutY="511.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="154.0" styleClass="myBlueButton" text="Pay" />
+      <Label layoutX="259.0" layoutY="184.0" text="bank Account Id" />
+      <TextField fx:id="bankAccountIdLabel" layoutX="359.0" layoutY="180.0" />
+      <ComboBox fx:id="transactionComboBox" layoutX="358.0" layoutY="245.0" prefWidth="150.0" />
+      <Label layoutX="280.0" layoutY="249.0" prefHeight="17.0" prefWidth="44.0" text="choose:" />
+      <Label layoutX="269.0" layoutY="131.0" text="user balance" />
+      <Label fx:id="userBalanceLabel" layoutX="359.0" layoutY="123.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label layoutX="243.0" layoutY="68.0" prefHeight="17.0" prefWidth="119.0" text="bank Account Balance" />
+      <Label fx:id="bankAccountBalanceLabel" layoutX="359.0" layoutY="60.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="finalAmountLabel" layoutX="358.0" layoutY="389.0" prefHeight="17.0" prefWidth="150.0" />
+      <Label layoutX="263.0" layoutY="336.0" prefHeight="17.0" prefWidth="79.0" text="enter Amount:" />
+      <TextField fx:id="amountLabel" layoutX="359.0" layoutY="332.0" onKeyPressed="#amountTyped" />
+      <Label layoutX="263.0" layoutY="389.0" prefHeight="17.0" prefWidth="79.0" text="final Amount" />
+      <Label layoutX="259.0" layoutY="443.0" text="wage Amount" />
+      <Label fx:id="wageAmountLabel" layoutX="359.0" layoutY="434.0" prefHeight="17.0" prefWidth="149.0" />
+      <Button mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="60.0" styleClass="myBlueButton" text="back" />
    </children>
 </Pane>
