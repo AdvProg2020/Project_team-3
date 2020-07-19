@@ -88,7 +88,7 @@ public class Main extends Application{
 }
 
 
-/// 42 main menu kharabe!
+///har ja log out bud token account poch shavad!
 
 
 

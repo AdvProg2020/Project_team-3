@@ -16,5 +16,6 @@
       <TextField fx:id="firstNameTextField" layoutX="226.0" layoutY="292.0" />
       <Label layoutX="110.0" layoutY="372.0" prefHeight="17.0" prefWidth="55.0" text="lastname" />
       <TextField fx:id="lastNameField" layoutX="226.0" layoutY="368.0" />
+      <Button mnemonicParsing="false" onAction="#back" text="back" />
    </children>
 </Pane>

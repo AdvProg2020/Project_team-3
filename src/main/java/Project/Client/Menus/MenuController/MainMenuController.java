@@ -259,6 +259,7 @@ public class MainMenuController {
             MakeRequest.makeLogoutRequest();
             SceneSwitcher.getInstance().clearRecentScene();
             loginLogout.setText("Login");
+            Client.getInstance().setBankAccountToken("");
             loginHandler();
             return;
         }

@@ -40,4 +40,8 @@ public class bankRegisterAccount {
             SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
         }
     }
+
+    public void back(ActionEvent actionEvent) {
+        SceneSwitcher.getInstance().back();
+    }
 }

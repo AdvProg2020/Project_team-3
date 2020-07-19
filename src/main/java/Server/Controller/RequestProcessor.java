@@ -441,6 +441,9 @@ public class RequestProcessor {
          String bankAccountToken=getJsonStringField(command,"bankToken");
          return TransactionController.getInstance().getBalance(bankAccountToken);
       }
+      if(getJsonStringField(command,"content").equals("exit")){
+         return TransactionController.getInstance().exitBank();
+      }
       if(getJsonStringField(command,"content").equals("createBankAccount")){
          String bankAccountUsername=getJsonStringField(command,"username");
          String bankAccountPassword=getJsonStringField(command,"password");

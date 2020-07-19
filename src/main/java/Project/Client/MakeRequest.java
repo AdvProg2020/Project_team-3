@@ -495,6 +495,13 @@ public class MakeRequest {
 
    //type 5
 
+   public static String exitFromBankAccount(){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","exit");
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      return Client.getInstance().sendMessage(jsonObject);
+   }
    public static String getBankAccountBalance(){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","getBankBalance");

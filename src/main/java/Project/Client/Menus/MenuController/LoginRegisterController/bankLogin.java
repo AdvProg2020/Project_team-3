@@ -36,7 +36,6 @@ public class bankLogin {
 
     public void goToRegisterBank(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeSecondStage();
-        SceneSwitcher.getInstance().setSceneAndWait("bankRegisterAccount" ,600 ,500);
-
+        SceneSwitcher.getInstance().setSceneTo("bankRegisterAccount" ,600 ,500);
     }
 }
