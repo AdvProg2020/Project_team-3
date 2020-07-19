@@ -14,6 +14,7 @@ import java.io.IOException;
 public class Main extends Application{
     public static void main(String[] args) {
         MakeRequest.makeUpdateDateAndTimeRequest();
+
         launch(args);
     }
 
@@ -80,6 +81,9 @@ public class Main extends Application{
     }
 
 }
+
+
+/// 42 main menu kharabe!
 
 
 

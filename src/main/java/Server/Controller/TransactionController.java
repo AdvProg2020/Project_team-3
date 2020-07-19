@@ -1,9 +1,11 @@
 package Server.Controller;
 
 import Server.Model.Users.Admin;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 
 public class TransactionController {
     private static TransactionController transactionController;
@@ -12,7 +14,7 @@ public class TransactionController {
             socket=new Socket("localHost",8000);
             dataInputStream= new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             dataOutputStream=new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-
+            TransactionController.getInstance().setMainBankAccountId();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -21,24 +23,58 @@ public class TransactionController {
         if(transactionController==null) transactionController=new TransactionController();
         return transactionController;
     }
-    private String mainBankAccountId="";
+    private final String mainBankAccountId="10001";
     private Socket socket;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
-
+    private int wagePercent=0;
 
     public String getMainBankAccountId(){
         return mainBankAccountId;
     }
 
-    public void setMainBankAccountId() {
-        Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
-        String received=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
-        if(received.equals("username is not available")){
-            return;
+    public void setWagePercent(int percent){
+        String value=String.valueOf(percent);
+        Gson gson=new Gson();
+        String content=gson.toJson(value);
+        String path="Resource"+File.separator+"WagePercent.gson";
+        File file=new File(path);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else{
-            mainBankAccountId=received;
+    }
+    public void setMainBankAccountId() {
+        String path="Resource"+File.separator+"WagePercent.gson";
+        File file=new File(path);
+        Gson gson=new Gson();
+        if(file.exists()==false){
+            try {
+                file.createNewFile();
+                Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
+                addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
+                String string="5";
+                String gsonToSave=gson.toJson(string);
+                FileWriter writer = new FileWriter(file);
+                writer.write(gson.toJson(gsonToSave));
+                writer.close();
+                wagePercent=5;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(file.exists()==true){
+            try {
+                String content=new String(Files.readAllBytes(file.toPath()));
+                String string=gson.fromJson(content,String.class);
+                wagePercent=Integer.parseInt(string.substring(1,string.length()-1));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -39,7 +39,7 @@ public class MainMenuController {
     private AnimationTimer animationTimer;
     @FXML private AnchorPane pane;
     public void initialize(){
-        MakeRequest.makeUpdateDateAndTimeRequest();
+        MakeRequest.makeUpdateDateAndTimeRequest();//////42
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
        /* ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
