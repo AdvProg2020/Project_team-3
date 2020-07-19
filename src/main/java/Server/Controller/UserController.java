@@ -44,12 +44,12 @@ public class UserController {
                 HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
                 valid.add(new Admin(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),req));
             }
-          /*mirza  rs = statement.executeQuery("select * FROM Assistants WHERE username='"+username+"'");
+           rs = statement.executeQuery("select * FROM Assistants WHERE username='"+username+"'");
             while(rs.next())
             {
-                HashMap<String,String> req = gson.fromJson(rs.getString("allRequests"),new TypeToken<HashMap<String,String>>(){}.getType());
+                HashMap<String,String> req = gson.fromJson(rs.getString("requests"),new TypeToken<HashMap<String,String>>(){}.getType());
                 valid.add(new Assistant(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),req));
-            } */
+            }
             rs = statement.executeQuery("select * FROM Assistants WHERE username='"+username+"'");
             while(rs.next())
             {
