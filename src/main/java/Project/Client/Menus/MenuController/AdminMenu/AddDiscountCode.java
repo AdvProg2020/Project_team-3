@@ -39,7 +39,7 @@ public class AddDiscountCode {
 
    public void update() {
       userList.getItems().clear();
-         for (Object buyer : MakeRequest.makeGetAllUserRequest("Buyer").split("\n")) {
+         for (Object buyer : MakeRequest.makeGetAllUserRequest("Buyer",false).split("\n")) {
             userList.getItems().add(buyer);
          }
       if(userList.getItems().isEmpty())

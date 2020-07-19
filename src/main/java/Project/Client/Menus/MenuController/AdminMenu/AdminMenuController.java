@@ -45,7 +45,6 @@ public class AdminMenuController {
       personalInfo.setText(admin.getPersonalInfo());
    }
    public void manageUsers(ActionEvent actionEvent) {
-
        SceneSwitcher.getInstance().setSceneTo("ManageUsers",600,400);
    }
 

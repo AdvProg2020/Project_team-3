@@ -366,12 +366,13 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetAllUserRequest(String userType) {
+   public static String makeGetAllUserRequest(String userType,boolean online) {
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 4);
       json.addProperty("userType", userType);
       json.addProperty("content", "user list");
+      if(online) json.addProperty("online","true");
       return Client.getInstance().sendMessage(json);
    }
 

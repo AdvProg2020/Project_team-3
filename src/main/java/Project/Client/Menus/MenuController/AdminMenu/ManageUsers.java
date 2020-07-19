@@ -17,6 +17,7 @@ public class ManageUsers {
    @FXML private CheckBox buyerCheck;
    @FXML private CheckBox sellerCheck;
    @FXML private CheckBox assistantCheck;
+   @FXML private CheckBox online;
    @FXML private AnchorPane pane;
 
    @FXML
@@ -27,21 +28,20 @@ public class ManageUsers {
    }
 
    public void update(MouseEvent mouseEvent) {
-
       MusicManager.getInstance().playSound("Button");
       listView.getItems().clear();
       String userList="";
      if(adminCheck.isSelected()){
-       userList+=MakeRequest.makeGetAllUserRequest("Admin");
+       userList+=MakeRequest.makeGetAllUserRequest("Admin",online.isSelected());
      }
       if(buyerCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Buyer");
+         userList+=MakeRequest.makeGetAllUserRequest("Buyer",online.isSelected());
       }
       if(sellerCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Seller");
+         userList+=MakeRequest.makeGetAllUserRequest("Seller",online.isSelected());
       }
       if(assistantCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Assistant");
+         userList+=MakeRequest.makeGetAllUserRequest("Assistant",online.isSelected());
       }
       userList.replace("\n\n","\n");
       if(userList.equals("\n")==false)
@@ -58,7 +58,6 @@ public class ManageUsers {
    public void userSelect(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       int index=listView.getSelectionModel().getSelectedIndex();
-      System.out.println(index);
       if(index==-1)
          return;
       String username=listView.getItems().get(index).toString();
@@ -68,5 +67,9 @@ public class ManageUsers {
          SceneSwitcher.getInstance().setSceneTo("ManageUserIn", 348, 88);
       }
       listView.getSelectionModel().clearSelection();
+   }
+
+   public void refresh(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageUsers",600,400);
    }
 }

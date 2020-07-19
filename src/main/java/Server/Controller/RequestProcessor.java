@@ -112,28 +112,34 @@ public class RequestProcessor {
 
       if (command.get("content").toString().equals("\"user list\"")) {
          String response="";
+         boolean online=command.has("online");
          if(getJsonStringField(command,"userType").equals("Admin")) {
             for (String user : Database.getInstance().getAllUsername("Admin")) {
+               if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
                response+=user+"\n";
             }
          }
          if(getJsonStringField(command,"userType").equals("Assistant")){
             for (String user : Database.getInstance().getAllUsername("Assistant")) {
+               if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
                response+=user+"\n";
             }
          }
          if(getJsonStringField(command,"userType").equals("Seller")){
             for (String user : Database.getInstance().getAllUsername("Seller")) {
+               if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
                response+=user+"\n";
             }
          }
          if(getJsonStringField(command,"userType").equals("Buyer")){
             for (String user : Database.getInstance().getAllUsername("Buyer")) {
+               if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
                response+=user+"\n";
             }
          }
          if(getJsonStringField(command,"userType").equals("All")){
             for (String user : Database.getInstance().printFolderContent("Users")) {
+               if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
                response+=user+"\n";
             }
          }
@@ -516,6 +522,7 @@ public class RequestProcessor {
            return "true";
         return "false";
       }
+
       if (getJsonStringField(command,"content").equals("is there product with id")) {
          if(ItemAndCategoryController.getInstance().isThereItemWithId(getJsonStringField(command,"product id")))
             return "true";

@@ -9,10 +9,12 @@
     <CheckBox fx:id="sellerCheck" layoutX="131.0" layoutY="37.0" onMouseClicked="#update" selected="true" text="Seller"> </CheckBox>
     <CheckBox fx:id="adminCheck" layoutX="217.0" layoutY="37.0" onMouseClicked="#update" selected="true" text="Admin"> </CheckBox>
     <CheckBox fx:id="assistantCheck" layoutX="280.0" layoutY="37.0" onMouseClicked="#update" selected="true" text="Assistant"> </CheckBox>
+    <CheckBox fx:id="online" layoutX="57.0" layoutY="67.0" onMouseClicked="#update" selected="false" text="online"> </CheckBox>
     <Label layoutX="14.0" layoutY="38.0" text="show:" />
    <ListView fx:id="listView" layoutX="13.0" layoutY="85.0" onMouseClicked="#userSelect" prefHeight="265.0" prefWidth="266.0" />
     <MenuBar prefHeight="25.0" prefWidth="600.0" styleClass="myMenuBar">
         <Menu text="options">
+            <MenuItem onAction="#refresh" text="refresh" />
             <MenuItem onAction="#back" text="back" />
         </Menu>
     </MenuBar>
