@@ -56,11 +56,18 @@ public class ItemAndCategoryController {
         String requestId=Controller.getInstance().getAlphaNumericString(5,"Requests");
         RequestController.getInstance().deleteItemRequest(requestId,id);
         if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin) {
+            removeItemFromCategory(item.getCategoryName(),item.getId());
             UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
             Database.getInstance().deleteItem(item);
             return "Successful: item deleted";
         }
         return "the request for deleting item has been sent to the admin!";
+    }
+
+    public void removeItemFromCategory(String categoryName,String productId){
+        Category category=ItemAndCategoryController.getInstance().getCategoryByName(categoryName);
+        category.removeItem(productId);
+        Database.getInstance().saveCategory(category);
     }
 
     public boolean isThereItemWithId(String id) {

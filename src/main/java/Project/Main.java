@@ -5,6 +5,9 @@ import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
 
+import Server.Controller.ItemAndCategoryController;
+import Server.Controller.UserController;
+import Server.Model.Users.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,7 +17,6 @@ import java.io.IOException;
 public class Main extends Application{
     public static void main(String[] args) {
         MakeRequest.makeUpdateDateAndTimeRequest();
-
         launch(args);
     }
 

@@ -578,12 +578,19 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("get item")){
          String productId=getJsonStringField(command,"product id");
          Item item=ItemAndCategoryController.getInstance().getItemById(productId);
+         if(item==null) System.out.println("nulle ke");
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
-         JsonParser parser = new JsonParser();
-         JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
-         json.addProperty("rating",item.getRating());
-         return json.toString();
+        // JsonParser parser = new JsonParser();
+        // JsonObject json = (JsonObject) parser.parse(gson.toJson(item));
+         return gson.toJson(item);
       }
+
+      if(getJsonStringField(command,"content").equals("get item rating")){
+         String productId=getJsonStringField(command,"product id");
+         Item item=ItemAndCategoryController.getInstance().getItemById(productId);
+         return String.valueOf(item.getRating());
+      }
+
 
       if(getJsonStringField(command,"content").equals("get category")){
          String categoryName=getJsonStringField(command,"category name");

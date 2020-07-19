@@ -169,6 +169,7 @@ public class RequestController {
             Item removed=ItemAndCategoryController.getInstance().getItemById(id);
             if(removed!=null) {
                 UserController.getInstance().deleteItemFromSeller(id, removed.getSellerName());
+                ItemAndCategoryController.getInstance().removeItemFromCategory(removed.getCategoryName(),removed.getId());
                 Database.getInstance().deleteItem(removed);
             }
         }

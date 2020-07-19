@@ -67,12 +67,13 @@ public class ObjectMapper {
    }
 
    public static Item jsonToItem(JsonObject json){
+      System.out.println(json.toString()+"ine");
       String name=getJsonStringField(json,"name");
       String brand=getJsonStringField(json,"brand");
       double price=json.get("price").getAsDouble();
-      double rating=json.get("rating").getAsDouble();
       String description=getJsonStringField(json,"description");
       String productId=getJsonStringField(json,"id");
+      double rating=MakeRequest.getItemRating(productId);
       String sellerName=getJsonStringField(json,"sellerName");
       String imageName=getJsonStringField(json,"imageName");
       String categoryName=getJsonStringField(json,"categoryName");

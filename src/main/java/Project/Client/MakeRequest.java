@@ -701,6 +701,14 @@ public class MakeRequest {
       return ObjectMapper.jsonToItem(jsonObject);
    }
 
+   public static double getItemRating(String productId){
+      JsonObject json = new JsonObject();
+      json.addProperty("type", 0);
+      json.addProperty("content","get item rating");
+      json.addProperty("product id",productId);
+      return Double.parseDouble(Client.getInstance().sendMessage(json));
+   }
+
    public static Category getCategory(String categoryName){
       JsonObject json = new JsonObject();
       json.addProperty("type", 0);

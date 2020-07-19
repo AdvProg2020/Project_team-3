@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 public class Item {
     private String id;
-    private String state;
     private String description;
     private String name;
     private String brand;
