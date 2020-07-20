@@ -4,6 +4,8 @@ import Server.Model.*;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Users.Buyer;
+import Server.Model.Users.Seller;
+import Server.Model.Users.User;
 import com.google.gson.*;
 
 
@@ -434,6 +436,22 @@ public class RequestProcessor {
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
 
+      if(getJsonStringField(command,"content").equals("set Money")){
+         double money=Double.parseDouble(getJsonStringField(command,"money"));
+         User user=UserController.getInstance().getUserByUsername(username);
+         String type=user.getType();
+         if(type.equalsIgnoreCase("buyer")){
+            Buyer buyer=(Buyer) user;
+            buyer.setMoney(money);
+            Database.getInstance().saveUser(buyer);
+         }else if(type.equalsIgnoreCase("seller")){
+            Seller seller=(Seller) user;
+            seller.setMoney(money);
+            Database.getInstance().saveUser(seller);
+         }
+         return "done!";
+      }
+
       if(getJsonStringField(command,"content").equals("getBankBalance")){
          String bankAccountToken=getJsonStringField(command,"bankToken");
          return TransactionController.getInstance().getBalance(bankAccountToken);
@@ -448,6 +466,20 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("set bank")){
          TransactionController.getInstance().setMainBankAccountId();
          return "done!";
+      }
+      if(getJsonStringField(command,"content").equals("wage percent")){
+         int wage=TransactionController.getInstance().getWagePercent();
+         return String.valueOf(wage);
+      }
+
+      if(getJsonStringField(command,"content").equals("bank receipt")){
+         String bankToken=getJsonStringField(command,"bank token");
+         String type=getJsonStringField(command,"receipt Type");
+         String money=getJsonStringField(command,"money");
+         String srcId=getJsonStringField(command,"srcId");
+         String desId=getJsonStringField(command,"desId");
+         String description=getJsonStringField(command,"description");
+         return TransactionController.getInstance().getReceiptID(bankToken,type,money,srcId,desId,description);
       }
 
       if(getJsonStringField(command,"content").equals("createBankAccount")){
@@ -486,7 +518,10 @@ public class RequestProcessor {
    }
 
    public String generalProcessor(JsonObject command) {
-
+      if(getJsonStringField(command,"content").equals("payReceipt")){
+         String receiptId=getJsonStringField(command,"id");
+         return TransactionController.getInstance().payReceipt(receiptId);
+      }
       if(getJsonStringField(command,"content").equals("SendImage")){
          String desPath=getJsonStringField(command,"desPath");
          String imageDataString=getJsonStringField(command,"image");

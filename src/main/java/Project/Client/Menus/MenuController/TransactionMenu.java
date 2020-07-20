@@ -7,9 +7,7 @@ import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.Seller;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 
 import java.util.regex.Pattern;
@@ -22,8 +20,10 @@ public class TransactionMenu {
     public TextField userBalance;
     public TextField finalAmount;
     public TextField wageAmount;
+    public TextArea description;
     private double userMoney=0;
     private double bank=0;
+    private double wagePercent=0;
 
     public void initialize(){
         setBankAccountBalance();
@@ -41,6 +41,7 @@ public class TransactionMenu {
         }
         bankBalance.setText(bBalance);
         bank=Double.parseDouble(bankBalance.getText());
+        wagePercent=Integer.parseInt(MakeRequest.getWagePercent());
     }
 
     public void setUserBalance(){
@@ -62,6 +63,30 @@ public class TransactionMenu {
     }
 
     public void pay(ActionEvent actionEvent) {
+        if(finalAmount.getText().equals("invalid input") || finalAmount.getText().equals("limit error!")){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Transaction Error!");
+            alert.setContentText("you must correct the invalid fields!");
+            alert.showAndWait();
+            return;
+        }
+        if(bankAccountId.getText().equals("")){
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Transaction Error!");
+            alert.setContentText("you must fill the blank!");
+            alert.showAndWait();
+            return;
+        }
+        String selectedItem=(String) transactionComboBox.getSelectionModel().getSelectedItem();
+        if(selectedItem.equals("deposit")){
+            deposit();
+        }
+        else if(selectedItem.equals("withdraw")){
+            withDraw();
+        }
+        String type=MakeRequest.makeGetUserRequest().type;
+        if(type.equalsIgnoreCase("buyer")) SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+        else SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
 
     public void amountTyped(KeyEvent keyEvent) {
@@ -71,8 +96,8 @@ public class TransactionMenu {
             finalAmount.setText("");
             wageAmount.setText("");
             String selectedItem=(String) transactionComboBox.getSelectionModel().getSelectedItem();
-            if(selectedItem.equals("deposit")) deposit(allChars);
-            else withdraw(allChars);
+            if(selectedItem.equals("deposit")) depositChecker(allChars);
+            else withdrawChecker(allChars);
         }
         else {
             amount.setStyle("-fx-text-fill: #a30000");
@@ -84,7 +109,7 @@ public class TransactionMenu {
     }
 
 
-    public void deposit(String string){
+    public void depositChecker(String string){
         int amountMoney=Integer.parseInt(string);
         int limit=Integer.parseInt(MakeRequest.getWalletLimit());
         if((userMoney-amountMoney)< limit){
@@ -96,11 +121,15 @@ public class TransactionMenu {
             wageAmount.setStyle("-fx-text-fill: #a30000");
             return;
         }
-        bankBalance.setText(String.valueOf((amountMoney+bank)));
-        userBalance.setText(String.valueOf(userMoney-amountMoney));
+        finalAmount.setStyle("-fx-text-fill: green");
+        wageAmount.setStyle("-fx-text-fill: green");
+        bankBalance.setText(String.valueOf((int)(bank+(((100-wagePercent)/100)*amountMoney))));
+        userBalance.setText(String.valueOf((int)(userMoney-amountMoney)));
+        finalAmount.setText(String.valueOf((int)(((100-wagePercent)/100)*amountMoney)));
+        wageAmount.setText(String.valueOf((int)(((wagePercent)/100)*amountMoney)));
     }
 
-    public void withdraw(String string){
+    public void withdrawChecker(String string){
         int amountMoney=Integer.parseInt(string);
         if(bank-amountMoney<0){
             finalAmount.setText("limit error!");
@@ -111,8 +140,78 @@ public class TransactionMenu {
             wageAmount.setStyle("-fx-text-fill: #a30000");
             return;
         }
-        bankBalance.setText(String.valueOf((bank-amountMoney)));
-        userBalance.setText(String.valueOf(userMoney+amountMoney));
+        finalAmount.setStyle("-fx-text-fill: green");
+        wageAmount.setStyle("-fx-text-fill: green");
+        bankBalance.setText(String.valueOf((int)(bank-(((100-wagePercent)/100)*amountMoney))));
+        userBalance.setText(String.valueOf((int)(userMoney+amountMoney)));
+        finalAmount.setText(String.valueOf((int)(((100-wagePercent)/100)*amountMoney)));
+        wageAmount.setText(String.valueOf((int)(((wagePercent)/100)*amountMoney)));
+    }
+
+    public void deposit(){
+        String result0="";
+        String result1="";
+        String receipt0=MakeRequest.makeBankReceiptRequest("deposit",finalAmount.getText(),"-1",bankAccountId.getText(),"");
+        System.out.println("receipt0 :"+receipt0);
+        if(receipt0.matches("\\d+")){
+            String receipt1=MakeRequest.makeBankReceiptRequest("deposit",wageAmount.getText(),"-1","10001","");
+            System.out.println("receipt1 :"+receipt1);
+            result0=MakeRequest.payReceipt(receipt0);
+            result1=MakeRequest.payReceipt(receipt1);
+            System.out.println(result0 + " "+ result1);
+            if(result0.equalsIgnoreCase("done successfully")){
+                double d=Double.parseDouble(amount.getText());
+                System.out.println(d);
+                MakeRequest.setUserMoney(String.valueOf(userMoney-d));
+                makeAlertBox(result0,"information");
+            }
+            return;
+        }
+        else if(receipt0.equalsIgnoreCase("token expired") || receipt0.equalsIgnoreCase("token is invalid")){
+            tokenError();
+            deposit();
+        }
+        else {
+            makeAlertBox(receipt0,"error");
+        }
+    }
+
+    public void withDraw(){
+        String result0="";
+        String result1="";
+        String receipt0=MakeRequest.makeBankReceiptRequest("withdraw",finalAmount.getText(),bankAccountId.getText(),"-1",description.getText());
+        System.out.println("receipt0 :"+receipt0);
+        if(receipt0.matches("\\d+")){
+            String receipt1=MakeRequest.makeBankReceiptRequest("deposit",wageAmount.getText(),"-1","10001","");
+            System.out.println("receipt1: "+receipt1);
+            result0=MakeRequest.payReceipt(receipt0);
+            result1=MakeRequest.payReceipt(receipt1);
+            if(result0.equalsIgnoreCase("done successfully")){
+                double d=Double.parseDouble(amount.getText());
+                MakeRequest.setUserMoney(String.valueOf(userMoney+d));
+                makeAlertBox(result0,"information");
+            }
+            return;
+        }
+        else if(receipt0.equalsIgnoreCase("token expired") || receipt0.equalsIgnoreCase("token is invalid")){
+            tokenError();
+            withDraw();
+        }
+        else {
+            makeAlertBox(receipt0,"error");
+        }
+    }
+
+
+    public void makeAlertBox(String message , String type){
+        Alert alert=null;
+        if(type.equalsIgnoreCase("error")){
+            alert=new Alert(Alert.AlertType.ERROR);
+        }else if(type.equalsIgnoreCase("information")){
+            alert=new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 

@@ -496,6 +496,36 @@ public class MakeRequest {
 
    //type 5
 
+   public static String setUserMoney(String money){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","set Money");
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("money",money);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+
+   public static String makeBankReceiptRequest(String type,String money,String srcId,String desId,String description){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","bank receipt");
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("bank token",Client.getInstance().getBankAccountToken());
+      jsonObject.addProperty("receipt Type",type);
+      jsonObject.addProperty("money",money);
+      jsonObject.addProperty("srcId",srcId);
+      jsonObject.addProperty("desId",desId);
+      jsonObject.addProperty("description",description);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+   public static String getWagePercent(){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","wage percent");
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      return Client.getInstance().sendMessage(jsonObject);
+   }
    public static String getWalletLimit(){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","wallet limit");
@@ -592,6 +622,13 @@ public class MakeRequest {
 
    //type 0
 
+   public static String payReceipt(String receiptId){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","payReceipt");
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("id",receiptId);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
    public static String sendImageToServer(String srcPath, String desPath){
       File file=new File(srcPath);
       String imageDataString="";
