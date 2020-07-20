@@ -275,4 +275,9 @@ public class MainMenuController {
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("SalesMenu");
     }
+
+    public void fileShop(MouseEvent mouseEvent) {
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("FileShop");
+    }
 }
