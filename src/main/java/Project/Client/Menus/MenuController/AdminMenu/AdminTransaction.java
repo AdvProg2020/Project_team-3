@@ -30,7 +30,7 @@ public class AdminTransaction {
             alert.showAndWait();
             return;
         }
-        ///MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
+        MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("successful!");
         alert.showAndWait();
@@ -43,7 +43,7 @@ public class AdminTransaction {
             alert.showAndWait();
             return;
         }
-        //MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
+        MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("successful!");
         alert.showAndWait();

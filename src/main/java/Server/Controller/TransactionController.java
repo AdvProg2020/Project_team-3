@@ -79,8 +79,11 @@ public class TransactionController {
             try {
                 String content=new String(Files.readAllBytes(file.toPath()));
                 String string=gson.fromJson(content,String.class);
-                wagePercent=Integer.parseInt(string.substring(1,string.indexOf(" ")));
-                minimumMoney=Integer.parseInt(string.substring(string.indexOf(" ")+1,string.length()-1));
+                System.out.println("string in file is: "+string +"*");
+                String [] token=string.split(" ");
+                System.out.println(token[0] + " "+ token[1]);
+                wagePercent=Integer.parseInt(token[0]);
+                minimumMoney=Integer.parseInt(token[1]);
                 System.out.println(minimumMoney);
                 System.out.println(wagePercent);
 
