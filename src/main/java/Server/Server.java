@@ -32,25 +32,35 @@ public class Server {
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
 
-                  if(command.startsWith("image")==false){
-                     System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
-                     String response = RequestProcessor.getInstance().process(command);
-                     System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
-                     dataOutputStream.writeUTF(response);
-                  }
-                  else if(command.startsWith("image get")==true){
+                  if(command.startsWith("image get")==true){
                      getImageFromClient(command,dataInputStream,dataOutputStream);
                   }
-                  else if(command.startsWith("image send")==true){
+                   if(command.startsWith("image send")==true){
                      sendImageToClient(command,dataInputStream,dataOutputStream);
                   }
+                   System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
+                   String response = RequestProcessor.getInstance().process(command);
+                   System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
+                   dataOutputStream.writeUTF(response);
+                   dataOutputStream.flush();
+                   dataOutputStream.close();
+                   dataInputStream.close();
+                   request.close();
+               }
+            } catch (IOException e) {
+              e.printStackTrace();
+            } catch (NullPointerException e){
+               try {
+                  e.printStackTrace();
+                  dataOutputStream.writeUTF("Error: invalid command");
                   dataOutputStream.flush();
                   dataOutputStream.close();
                   dataInputStream.close();
-                  request.close();
-               }
-            } catch (Exception e) {
-               return;
+                  server.close();
+                  new Server();
+               } catch (IOException ex) {
+               ex.printStackTrace();
+              }
             }
          }
       }).start();

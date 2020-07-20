@@ -5,7 +5,6 @@ import Project.Client.MakeRequest;
 
 
 import Project.Client.Menus.SceneSwitcher;
-import Server.Controller.ChatController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
