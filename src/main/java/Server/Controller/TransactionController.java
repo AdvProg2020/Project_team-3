@@ -121,6 +121,7 @@ public class TransactionController {
         String toBeSend=sb.toString();
         String received="";
         try {
+            System.out.println("to be send "+toBeSend+"*");
             dataOutputStream.writeUTF(toBeSend);
             dataOutputStream.flush();
             received=dataInputStream.readUTF();

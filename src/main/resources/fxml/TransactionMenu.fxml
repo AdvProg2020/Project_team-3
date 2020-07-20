@@ -21,5 +21,7 @@
       <TextField fx:id="userBalance" editable="false" layoutX="360.0" layoutY="127.0" />
       <TextField fx:id="finalAmount" editable="false" layoutX="357.0" layoutY="385.0" />
       <TextField fx:id="wageAmount" editable="false" layoutX="359.0" layoutY="439.0" />
+      <TextArea layoutX="595.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" fx:id="description" />
+      <Label layoutX="595.0" layoutY="47.0" text="description" />
    </children>
 </Pane>
