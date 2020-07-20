@@ -287,11 +287,36 @@ public class Database {
    }
 
    public void saveAuction(Auction auction){
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      Connection connection = null;
+      String values = "'" + auction.getId() +"', '"+auction.getItemID()+"', '"+auction.getEndTime()+"', '"+auction.getHighestBidderUsername()+"', '"+auction.getHighestBid()+"', '";
+      values += gson.toJson(auction.getChat()) + "'";
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         try {
+            statement.executeUpdate("delete FROM Auctions WHERE id='"+auction.getId()+"'");
+         }catch (Exception e){
 
+         }
+         statement.executeUpdate("insert into Auctions values("+values+")");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
+      }
    }
 
    public void deleteAuction(Auction auction){
-
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      Connection connection = null;
+      try{
+         connection = getConn();
+         Statement statement = connection.createStatement();
+         statement.setQueryTimeout(30);
+         statement.executeUpdate("delete FROM Auctions WHERE id='"+auction.getId()+"'");
+      }catch (SQLException e){
+         System.err.println(e.getMessage());
+      }
    }
 
    public void saveChannel(Channel channel) {

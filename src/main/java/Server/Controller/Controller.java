@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Server.Model.Auction;
 import Server.Model.Cart;
 import Server.Model.Users.User;
 
@@ -84,6 +85,7 @@ public class Controller {
         if(currentTime.getDayOfMonth() % 13 == 3){
             SaleAndDiscountCodeController.getInstance().giveRandomDiscountCode();
         }
+        AuctionController.getInstance().updateAuctionsTime();
     }
 
 
