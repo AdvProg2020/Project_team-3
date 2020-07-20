@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -232,6 +233,7 @@ public class BuyerEditPersonalInfo {
         MusicManager.getInstance().playSound("Button");
         SceneSwitcher.getInstance().clearRecentScene();
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
+        Client.getInstance().setBankAccountToken("");
         MakeRequest.makeLogoutRequest();
     }
 

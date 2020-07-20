@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -20,6 +21,7 @@ public class FileShopController {
    public void logout(ActionEvent actionEvent) {
       MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
+      Client.getInstance().setBankAccountToken("");
    }
 
    @FXML private void initialize(){

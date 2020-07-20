@@ -50,6 +50,7 @@ public class SellerMenuController {
         MusicManager.getInstance().playSound("Button");
         MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
+        Client.getInstance().setBankAccountToken("");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
     @FXML

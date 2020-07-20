@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Item;
 import Project.Client.Model.Logs.BuyLog;
@@ -209,6 +210,7 @@ public class BuyerOrdersController {
         MusicManager.getInstance().playSound("Button");
         MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
+        Client.getInstance().setBankAccountToken("");
         SceneSwitcher.getInstance().setSceneTo("MainMenu");
     }
 

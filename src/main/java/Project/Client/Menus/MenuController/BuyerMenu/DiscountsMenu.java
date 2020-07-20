@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -43,6 +44,7 @@ public class DiscountsMenu {
    public void logout(ActionEvent actionEvent) {
       MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
+      Client.getInstance().setBankAccountToken("");
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
 }
