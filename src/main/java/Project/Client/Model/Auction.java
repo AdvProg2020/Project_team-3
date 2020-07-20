@@ -10,7 +10,7 @@ public class Auction {
 
     private String highestBidderUsername;
     private double highestBid;
-
+    private String id;
     private HashMap<String,String> chat;
 
     public Auction(LocalDateTime endTime, String itemID, double startingPrice){
@@ -24,6 +24,10 @@ public class Auction {
     public void rebid(String username,double value){
         highestBidderUsername = username;
         highestBid = value;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getItemID() {

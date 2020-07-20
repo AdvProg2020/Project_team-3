@@ -1,5 +1,7 @@
 package Server.Model;
 
+import Server.Controller.Controller;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -10,7 +12,7 @@ public class Auction {
 
     private String highestBidderUsername;
     private double highestBid;
-
+    private String id;
     private HashMap<String,String> chat;
 
     public Auction(LocalDateTime endTime,String itemID,double startingPrice){
@@ -19,11 +21,16 @@ public class Auction {
         this.itemID = itemID;
         this.highestBidderUsername="<none>";
         this.highestBid = startingPrice;
+        this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
     }
 
     public void rebid(String username,double value){
         highestBidderUsername = username;
         highestBid = value;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getItemID() {
