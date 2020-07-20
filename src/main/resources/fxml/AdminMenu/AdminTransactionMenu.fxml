@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.AdminTransaction">
+   <children>
+      <Label layoutX="87.0" layoutY="53.0" text="bank Account Balance" />
+      <TextField fx:id="bankBalance" editable="false" layoutX="218.0" layoutY="49.0" />
+      <Button layoutX="378.0" layoutY="133.0" mnemonicParsing="false" onAction="#changeWage" text="change" />
+      <Button layoutX="378.0" layoutY="216.0" mnemonicParsing="false" onAction="#changeMin" text="change" />
+      <TextField fx:id="wagePercentText" layoutX="218.0" layoutY="133.0" onKeyPressed="#wageTyped" />
+      <TextField fx:id="minMoneyText" layoutX="218.0" layoutY="216.0" onKeyPressed="#minimumTyped" />
+      <Label layoutX="107.0" layoutY="137.0" prefHeight="17.0" prefWidth="77.0" text="wage percent" />
+      <Label layoutX="99.0" layoutY="220.0" text="minimum money " />
+   </children>
+</Pane>

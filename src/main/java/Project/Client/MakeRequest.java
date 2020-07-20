@@ -621,6 +621,14 @@ public class MakeRequest {
    }
 
    //type 0
+   public static String setTransactionNumbers(String wage , String min){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","set Numbers");
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("wage",wage);
+      jsonObject.addProperty("min",min);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
 
    public static String payReceipt(String receiptId){
       JsonObject jsonObject=new JsonObject();

@@ -518,6 +518,13 @@ public class RequestProcessor {
    }
 
    public String generalProcessor(JsonObject command) {
+      if(getJsonStringField(command,"content").equals("set Numbers")){
+         int wage=Integer.parseInt(getJsonStringField(command,"wage"));
+         int min=Integer.parseInt(getJsonStringField(command,"min"));
+         TransactionController.getInstance().setNumbers(wage,min);
+         return "done!";
+      }
+
       if(getJsonStringField(command,"content").equals("payReceipt")){
          String receiptId=getJsonStringField(command,"id");
          return TransactionController.getInstance().payReceipt(receiptId);

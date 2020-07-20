@@ -33,5 +33,6 @@
        <Button layoutX="203.0" layoutY="321.0" onMouseClicked="#editPersonalInfo" prefHeight="27.0" prefWidth="190.0" styleClass="greyButton" text="edit personal info"> </Button>
       <ImageView fx:id="adminImage" fitHeight="161.0" fitWidth="200.0" layoutX="203.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="personalInfo" layoutX="203.0" layoutY="394.0" prefHeight="288.0" prefWidth="498.0" />
+      <Button layoutX="498.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToTransactionMenu" prefHeight="25.0" prefWidth="190.0" styleClass="greyButton" text="Transaction Menu" />
    </children>
 </AnchorPane>

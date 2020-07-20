@@ -25,7 +25,6 @@ public class TransactionController {
             socket=new Socket("localHost",8080);
             dataInputStream= new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             dataOutputStream=new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            //TransactionController.getInstance().setMainBankAccountId();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,6 +37,7 @@ public class TransactionController {
     public int getWagePercent(){return wagePercent;}
     public int getMinimumMoney(){return minimumMoney;}
     public void setNumbers(int percent , int minimum){
+        System.out.println(percent+" "+minimum+" "+"new new");
         wagePercent=percent;
         minimumMoney=minimum;
         String value=String.valueOf(wagePercent)+" "+String.valueOf(minimumMoney);
