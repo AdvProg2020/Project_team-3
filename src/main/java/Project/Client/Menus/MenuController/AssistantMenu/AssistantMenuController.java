@@ -52,6 +52,7 @@ public class AssistantMenuController {
    public void logout(ActionEvent actionEvent) {
       MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
+      Client.getInstance().setBankAccountToken("");
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
 

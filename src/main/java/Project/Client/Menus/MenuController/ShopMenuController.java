@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 
 import Project.Client.Model.Category;
@@ -71,6 +72,7 @@ public class ShopMenuController {
     public void logout(ActionEvent actionEvent) {
         MakeRequest.makeLogoutRequest();
         SceneSwitcher.getInstance().clearRecentScene();
+        Client.getInstance().setBankAccountToken("");
     }
 
     public void Exit(ActionEvent actionEvent) {
