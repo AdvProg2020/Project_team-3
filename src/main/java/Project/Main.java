@@ -91,6 +91,8 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("SellerStartAuction","src/main/resources/fxml/SellerMenu/SellerStartAuctionMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AllAuctionsMenu","src/main/resources/fxml/AllAuctionsMenu.fxml");
         SceneSwitcher.getInstance().addSceneFXML("AuctionMenu","src/main/resources/fxml/AuctionMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("FileShop","src/main/resources/fxml/FileShop.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("FileMenu","src/main/resources/fxml/FileMenu.fxml");
     }
 
 }

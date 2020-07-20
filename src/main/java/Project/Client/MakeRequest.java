@@ -375,6 +375,7 @@ public class MakeRequest {
       json.addProperty("type", 4);
       json.addProperty("userType", userType);
       json.addProperty("content", "user list");
+      if(online) json.addProperty("online","true");
       Gson gson=new Gson();
       ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
@@ -906,6 +907,14 @@ public class MakeRequest {
       jsonObject.addProperty("content", "get assistant channel");
       Gson gson=new Gson();
       return gson.fromJson(Client.getInstance().sendMessage(jsonObject),ArrayList.class);
+   }
+
+   public static ArrayList<String> getAllFiles(){
+      return new ArrayList<>();
+   }
+
+   public static boolean isThereFileWithName(String fileName){
+      return false;
    }
 
    public static String getJsonStringField(JsonObject json, String field) {

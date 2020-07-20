@@ -108,6 +108,7 @@ public class ShopMenuController {
         gridPane.setMaxHeight(500000);
         loginHandler();
     }
+
     public void updateFilter(){
         SortAndFilter control=SortAndFilter.getInstance();
         if(control.getFilterAttribute()){
@@ -543,7 +544,7 @@ public class ShopMenuController {
             alert.showAndWait();
             return;
         }
-        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().saveScene("ShopMenu");
         SceneSwitcher.getInstance().setSceneTo("CartMenu",620,427);
     }
 }
