@@ -6,12 +6,13 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
 
 public class Server {
    private static ServerSocket server;
    private static DataOutputStream dataOutputStream;
    private static DataInputStream dataInputStream;
-
+   private static HashSet<Integer> blockedIp=new HashSet<>();
    public static final String ANSI_RESET = "\u001B[0m";
    public static final String ANSI_GREEN = "\u001B[32m";
    public static final String ANSI_BLUE = "\u001B[34m";
@@ -25,24 +26,25 @@ public class Server {
       new Thread(new Runnable() {
          @Override
          public synchronized void run() {
+            Socket request=null;
             try {
                while (true) {
-                  Socket request = server.accept();
+                  request = server.accept();
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
-
-                  if(command.startsWith("image get")==true){
-                     getImageFromClient(command,dataInputStream,dataOutputStream);
+                  if(command.startsWith("image")==false){
+                     System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
+                     String response = RequestProcessor.getInstance().process(command);
+                     System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
+                     dataOutputStream.writeUTF(response);
+                     dataOutputStream.flush();
                   }
-                   if(command.startsWith("image send")==true){
+                  else if(command.startsWith("image get")==true){
+                     getImageFromClient(command,dataInputStream,dataOutputStream);
+                  }else if(command.startsWith("image send")==true){
                      sendImageToClient(command,dataInputStream,dataOutputStream);
                   }
-                   System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
-                   String response = RequestProcessor.getInstance().process(command);
-                   System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
-                   dataOutputStream.writeUTF(response);
-                   dataOutputStream.flush();
                    dataOutputStream.close();
                    dataInputStream.close();
                    request.close();
@@ -52,6 +54,7 @@ public class Server {
             } catch (NullPointerException e){
                try {
                   e.printStackTrace();
+                  blockedIp.add(request.getLocalPort());
                   dataOutputStream.writeUTF("Error: invalid command");
                   dataOutputStream.flush();
                   dataOutputStream.close();
