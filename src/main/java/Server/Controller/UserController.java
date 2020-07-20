@@ -155,6 +155,10 @@ public class UserController {
         if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
             return "Error : Lengthy inputs";
         }
+        String allData = username.concat(password).concat(name).concat(lastName).concat(email);
+        if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
+            return "Error: special characters!";
+        }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
         }
@@ -166,6 +170,10 @@ public class UserController {
     public String registerSeller(double money, String username, String password, String name, String lastName, String email, String number, String companyName) {
         if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
             return "Error : Lengthy inputs";
+        }
+        String allData = username.concat(password).concat(name).concat(lastName).concat(email);
+        if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
+            return "Error: special characters!";
         }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
@@ -181,6 +189,10 @@ public class UserController {
     public String registerAdmin(String username, String password, String name, String lastName, String email, String number) {
         if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
             return "Error : Lengthy inputs";
+        }
+        String allData = username.concat(password).concat(name).concat(lastName).concat(email);
+        if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
+            return "Error: special characters!";
         }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";

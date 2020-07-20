@@ -19,7 +19,7 @@ public class Auction {
         chat = new HashMap<>();
         this.endTime = endTime;
         this.itemID = itemID;
-        this.highestBidderUsername="<none>";
+        this.highestBidderUsername="*none*";
         this.highestBid = startingPrice;
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
     }
