@@ -142,8 +142,8 @@ public class TransactionMenu {
         }
         finalAmount.setStyle("-fx-text-fill: green");
         wageAmount.setStyle("-fx-text-fill: green");
-        bankBalance.setText(String.valueOf((int)(bank-(((100-wagePercent)/100)*amountMoney))));
-        userBalance.setText(String.valueOf((int)(userMoney+amountMoney)));
+        bankBalance.setText(String.valueOf((int)(bank-amountMoney)));
+        userBalance.setText(String.valueOf((int)(userMoney+((100-wagePercent)/100)*amountMoney)));
         finalAmount.setText(String.valueOf((int)(((100-wagePercent)/100)*amountMoney)));
         wageAmount.setText(String.valueOf((int)(((wagePercent)/100)*amountMoney)));
     }
