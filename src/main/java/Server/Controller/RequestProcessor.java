@@ -1,12 +1,11 @@
 package Server.Controller;
-import Project.Client.Client;
-import Project.Client.Model.Chat.Channel;
+
 import Server.Model.*;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Users.Buyer;
 import com.google.gson.*;
-import javafx.scene.layout.VBox;
+
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -110,79 +109,78 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
-      if (command.get("content").toString().equals("\"delete user\"")) {
+      if (getJsonStringField(command,"content").equals("delete user")) {
          return UserController.getInstance().deleteUser(getJsonStringField(command,"username"));
       }
 
-      if (command.get("content").toString().equals("\"user list\"")) {
-         String response="";
+      if (getJsonStringField(command,"content").equals("user list")) {
+         ArrayList<String> response=new ArrayList<>();
          boolean online=command.has("online");
          if(getJsonStringField(command,"userType").equals("Admin")) {
             for (String user : Database.getInstance().getAllUsername("Admin")) {
                if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
-               response+=user+"\n";
+               response.add(user);
             }
          }
          if(getJsonStringField(command,"userType").equals("Assistant")){
             for (String user : Database.getInstance().getAllUsername("Assistant")) {
                if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
-               response+=user+"\n";
+               response.add(user);
             }
          }
          if(getJsonStringField(command,"userType").equals("Seller")){
             for (String user : Database.getInstance().getAllUsername("Seller")) {
                if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
-               response+=user+"\n";
+               response.add(user);
             }
          }
          if(getJsonStringField(command,"userType").equals("Buyer")){
             for (String user : Database.getInstance().getAllUsername("Buyer")) {
                if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
-               response+=user+"\n";
+               response.add(user);
             }
          }
          if(getJsonStringField(command,"userType").equals("All")){
             for (String user : Database.getInstance().printFolderContent("Users")) {
                if((online)&&(AuthTokenHandler.getInstance().isUserOnline(user)==false)) continue;
-               response+=user+"\n";
+               response.add(user);
             }
          }
-        return response;
+         Gson gson=new Gson();
+        return gson.toJson(response);
       }
 
-      if (command.get("content").toString().equals("\"view user\"")) {
+      if (getJsonStringField(command,"content").equals("view user")) {
          return UserController.getInstance().viewPersonalInfo(getJsonStringField(command,"username"));
       }
 
-      if (command.get("content").toString().equals("\"accept request\"")) {
+      if (getJsonStringField(command,"content").equals("accept request")) {
          return RequestController.getInstance().acceptRequest(getJsonStringField(command,"requestId"));
       }
 
-      if (command.get("content").toString().equals("\"decline request\"")) {
+      if (getJsonStringField(command,"content").equals("decline request")) {
          return RequestController.getInstance().declineRequest(getJsonStringField(command,"requestId"));
       }
 
-      if (command.get("content").toString().equals("\"view request\"")) {
+      if (getJsonStringField(command,"content").equals("view request")) {
          return RequestController.getInstance().getRequestDetail(getJsonStringField(command,"requestId"));
       }
 
-      if (command.get("content").toString().equals("\"request list\"")) {
-         String response="";
-         for (String requests : Database.getInstance().printFolderContent("Requests")) {
-            response+=requests+"\n";
-         }
-         return response;
+      if (getJsonStringField(command,"content").equals("request list")) {
+         Gson gson=new Gson();
+         return gson.toJson(Database.getInstance().printFolderContent("Requests"));
       }
-      if (command.get("content").toString().equals("\"is there request with id\"")) {
+
+      if (getJsonStringField(command,"content").equals("is there request with id")) {
         if(RequestController.getInstance().isThereRequestWithId(getJsonStringField(command,"requestId")))
            return "true";
            return "false";
       }
-      if (command.get("content").toString().equals("\"delete category\"")) {
+      if (getJsonStringField(command,"content").equals("delete category")) {
          return ItemAndCategoryController.getInstance().removeCategory(getJsonStringField(command,"category name"));
       }
 
-      if (command.get("content").toString().equals("\"delete product\"")) {
+      if (getJsonStringField(command,"content").equals("delete product")) {
          return ItemAndCategoryController.getInstance().deleteItem(getJsonStringField(command,"productId"));
       }
 
@@ -218,11 +216,8 @@ public class RequestProcessor {
       }
 
       if(getJsonStringField(command,"content").equals("get discount code list")){
-         String response="";
-         for (String category : Database.getInstance().printFolderContent("DiscountCodes")) {
-            response+=category+"\n";
-         }
-         return response;
+         Gson gson=new Gson();
+         return gson.toJson( Database.getInstance().printFolderContent("DiscountCodes"));
       }
 
       if(getJsonStringField(command,"content").equals("get discount info")){
@@ -390,20 +385,19 @@ public class RequestProcessor {
       }
 
       if(getJsonStringField(command,"content").equals("get seller sale")){
-         String response="";
-         for (Sale sale : SaleAndDiscountCodeController.getInstance().getSellerSales(username)) {
-            response+=sale.toSimpleString()+"\n";
+         Gson gson=new Gson();
+         ArrayList<Sale> allSales=SaleAndDiscountCodeController.getInstance().getSellerSales(username);
+         ArrayList<String> saleString=new ArrayList<>();
+         for (Sale sale : allSales) {
+            saleString.add(sale.toSimpleString());
          }
-         return response;
+         return gson.toJson(saleString);
       }
 
 
       if(getJsonStringField(command,"content").equals("show seller items")){
-         String response="";
-         for (String productId : SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems())) {
-            response+=productId+"\n";
-         }
-         return response;
+       Gson gson=new Gson();
+       return gson.toJson(SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems()));
       }
 
       if(getJsonStringField(command,"content").equals("edit sale")){
@@ -547,36 +541,36 @@ public class RequestProcessor {
             return "true";
          return "false";
       }
+
       if (getJsonStringField(command,"content").equals("reset filter")) {
          SortAndFilterController.getInstance().reset();
             return "Successful:v";
       }
+
       if (getJsonStringField(command,"content").equals("is there sale with id")) {
          if(SaleAndDiscountCodeController.getInstance().isThereSaleWithId(getJsonStringField(command,"id")))
             return "true";
          return "false";
       }
+
       if (getJsonStringField(command,"content").equals("is there category with name")) {
          if(ItemAndCategoryController.getInstance().isThereCategoryWithName(getJsonStringField(command,"name")))
             return "true";
          return "false";
       }
+
       if (getJsonStringField(command,"content").equals("category list")) {
-         String response="";
-         for (String category : Database.getInstance().printFolderContent("Categories")) {
-            response+=category+"\n";
-         }
-         return response;
+         Gson gson=new Gson();
+         return gson.toJson(Database.getInstance().printFolderContent("Categories"));
       }
+
       if (getJsonStringField(command,"content").equals("get category attribute")) {
-         String response="";
          Category category=ItemAndCategoryController.getInstance().getCategoryByName(getJsonStringField(command,"name"));
-         if(category.getAttributes()==null) return response;
-         for (String attribute : category.getAttributes()) {
-            response+=attribute+"\n";
-         }
-         return response;
+         Gson gson=new Gson();
+         if(category.getAttributes()==null) return gson.toJson(new ArrayList<String>());
+         return gson.toJson(category.getAttributes());
       }
+
       if(getJsonStringField(command,"content").equals("get category info")){
          return ItemAndCategoryController.getInstance().getCategoryInfo(getJsonStringField(command,"category name"));
       }
@@ -656,12 +650,13 @@ public class RequestProcessor {
             SortAndFilterController.getInstance().activateFilterSale();
          if(command.has("filter price range"))
             SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
-         SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
-         String response="";
-         for (String productId : SortAndFilterController.getInstance().show("Main")) {
-            response+=productId+"\n";
-         }
-         return response;
+         if(command.has("filter seller"))
+            SortAndFilterController.getInstance().activateFilterSellerName(getJsonStringField(command,"seller"));
+
+            SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
+
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(SortAndFilterController.getInstance().show("Main"));
       }
 
       if(getJsonStringField(command,"content").equals("get cart price without discount")){

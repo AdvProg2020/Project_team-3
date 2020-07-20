@@ -23,9 +23,9 @@ public class SellerManageOffs {
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("first.wav");
         listView.getItems().clear();
-        String saleList=MakeRequest.makeGetSellerSaleToSimpleString();
-        if(saleList.isEmpty()==false) listView.getItems().addAll(saleList.split("\n"));
-        else listView.getItems().add("you dont have any sales");
+        listView.getItems().addAll(MakeRequest.makeGetSellerSaleToSimpleString());
+        if(listView.getItems().isEmpty())
+        listView.getItems().add("you dont have any sales");
     }
 
     @FXML

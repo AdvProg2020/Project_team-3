@@ -30,22 +30,18 @@ public class ManageUsers {
    public void update(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       listView.getItems().clear();
-      String userList="";
      if(adminCheck.isSelected()){
-       userList+=MakeRequest.makeGetAllUserRequest("Admin",online.isSelected());
+        listView.getItems().addAll(MakeRequest.makeGetAllUserRequest("Admin",online.isSelected()));
      }
       if(buyerCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Buyer",online.isSelected());
+         listView.getItems().addAll(MakeRequest.makeGetAllUserRequest("Buyer",online.isSelected()));
       }
       if(sellerCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Seller",online.isSelected());
+         listView.getItems().addAll(MakeRequest.makeGetAllUserRequest("Seller",online.isSelected()));
       }
       if(assistantCheck.isSelected()){
-         userList+=MakeRequest.makeGetAllUserRequest("Assistant",online.isSelected());
+         listView.getItems().addAll(MakeRequest.makeGetAllUserRequest("Assistant",online.isSelected()));
       }
-      userList.replace("\n\n","\n");
-      if(userList.equals("\n")==false)
-      listView.getItems().addAll(userList.split("\n"));
       if(listView.getItems().isEmpty())
          listView.getItems().add("no user");
    }

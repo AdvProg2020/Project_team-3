@@ -171,9 +171,6 @@ public class SellerAddProductMenu {
         ArrayList<String> attributeValue=new ArrayList<>();
         ArrayList<String> attributeKey=MakeRequest.getCategoryAttribute(category.getText());
 
-        if((attributeKey!=null)&&(attributeKey.get(0).equals(""))){
-           attributeKey.clear();
-        }
 
         if(attributeKey!=null) {
             for (String key : attributeKey) {

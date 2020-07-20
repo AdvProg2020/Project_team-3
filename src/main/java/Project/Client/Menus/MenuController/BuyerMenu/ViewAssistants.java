@@ -27,10 +27,7 @@ public class ViewAssistants {
    public void update(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       listView.getItems().clear();
-      String userList=MakeRequest.makeGetAllUserRequest("Assistant",online.isSelected());
-      userList.replace("\n\n","\n");
-      if(userList.equals("\n")==false)
-         listView.getItems().addAll(userList.split("\n"));
+      listView.getItems().addAll(MakeRequest.makeGetAllUserRequest("Assistant",online.isSelected()));
       if(listView.getItems().isEmpty())
          listView.getItems().add("no user");
    }

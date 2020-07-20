@@ -23,11 +23,12 @@ public class ManageRequests {
 
    public void update() {
       listView.getItems().clear();
-      String requestList=MakeRequest.makeGetAllRequestsRequest();
-      if(requestList.isEmpty()==false) listView.getItems().addAll(requestList.split("\n"));
-     // for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
-      //   listView.getItems().add("commercial request for item "+id);
-     // }
+      for (Object requests : MakeRequest.makeGetAllRequestsRequest()) {
+         listView.getItems().add(requests);
+      }
+   /*   for (String id : CommercialController.getInstance().getCommercialItemRequest()) {
+         listView.getItems().add("commercial request for item "+id);
+      } */
       if(listView.getItems().isEmpty())
          listView.getItems().add("there are no request right now");
    }

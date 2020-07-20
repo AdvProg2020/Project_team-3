@@ -220,12 +220,8 @@ public class MakeRequest {
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
       json.addProperty("content", "show seller items");
-      ArrayList<String> result = new ArrayList<>();
-      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
-         if ((s != null) && (s != "") && (s != "\n"))
-            result.add(s);
-      }
-      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>();
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
    }
 
@@ -287,12 +283,14 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetSellerSaleToSimpleString(){
+   public static ArrayList<String> makeGetSellerSaleToSimpleString(){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
       json.addProperty("content", "get seller sale");
-      return Client.getInstance().sendMessage(json);
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      return result;
    }
 
    public static String makeEditProductRequest(String productId,String field,String value){
@@ -325,12 +323,14 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetAllRequestsRequest() {
+   public static ArrayList<String> makeGetAllRequestsRequest() {
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 4);
       json.addProperty("content", "request list");
-      return Client.getInstance().sendMessage(json);
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      return result;
    }
 
    public static Boolean makeIsThereRequestWithId(String id) {
@@ -369,14 +369,15 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String makeGetAllUserRequest(String userType,boolean online) {
+   public static ArrayList<String> makeGetAllUserRequest(String userType, boolean online) {
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 4);
       json.addProperty("userType", userType);
       json.addProperty("content", "user list");
-      if(online) json.addProperty("online","true");
-      return Client.getInstance().sendMessage(json);
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      return result;
    }
 
    public static String makeDeleteProductAdminRequest(String productId) {
@@ -420,11 +421,8 @@ public class MakeRequest {
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 4);
       json.addProperty("content", "get discount code list");
-      ArrayList<String> result = new ArrayList<>();
-      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
-         if ((s != null) && (s != "") && (s != "\n"))
-            result.add(s);
-      }
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
    }
 
@@ -513,6 +511,7 @@ public class MakeRequest {
       jsonObject.addProperty("token",Client.getInstance().getToken());
       return Client.getInstance().sendMessage(jsonObject);
    }
+
    public static String exitFromBankAccount(){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","exit");
@@ -520,6 +519,7 @@ public class MakeRequest {
       jsonObject.addProperty("token",Client.getInstance().getToken());
       return Client.getInstance().sendMessage(jsonObject);
    }
+
    public static String getBankAccountBalance(){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","getBankBalance");
@@ -528,6 +528,7 @@ public class MakeRequest {
       jsonObject.addProperty("bankToken",Client.getInstance().getBankAccountToken());
       return Client.getInstance().sendMessage(jsonObject);
    }
+
    public static String getBankTokenForClient(String username , String password){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","5");
@@ -537,6 +538,7 @@ public class MakeRequest {
       jsonObject.addProperty("password",password);
       return Client.getInstance().sendMessage(jsonObject);
    }
+
    public static String makeAccountRequestInBank(String username,String password ,String firstName ,String lastName,String repeatPassword){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("type","5");
@@ -675,14 +677,11 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> makeGetAllCategoryName() {
-      ArrayList<String> result = new ArrayList<>();
       JsonObject json = new JsonObject();
       json.addProperty("type", 0);
       json.addProperty("content", "category list");
-      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
-         if ((s != null) && (s != "") && (s != "\n"))
-            result.add(s);
-      }
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
    }
 
@@ -712,15 +711,12 @@ public class MakeRequest {
    }
 
    public static ArrayList<String> getCategoryAttribute(String categoryName){
-      ArrayList<String> result=new ArrayList<>();
       JsonObject json = new JsonObject();
       json.addProperty("type", 0);
       json.addProperty("content", "get category attribute");
       json.addProperty("name", categoryName);
-      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
-         if ((s != null) && (s != "") && (s != "\n"))
-            result.add(s);
-      }
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
    }
 
@@ -795,12 +791,8 @@ public class MakeRequest {
          json.addProperty("filter sale", "true");
       }
       json.addProperty("sort", sortAndFilter.showActiveSort());
-      ArrayList<String> result = new ArrayList<>();
-      for (String s : Client.getInstance().sendMessage(json).split("\n")) {
-         if ((s != null) && (s != "") && (s != "\n"))
-            result.add(s);
-      }
-      if((result.size()==1)&&(result.get(0).isEmpty())) return new ArrayList<String>();
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
       return result;
    }
 
