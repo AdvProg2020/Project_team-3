@@ -1,4 +1,4 @@
-package Server.Model;
+package Project.Client.Model;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public class Auction {
 
     private HashMap<String,String> chat;
 
-    public Auction(LocalDateTime endTime,String itemID,double startingPrice){
+    public Auction(LocalDateTime endTime, String itemID, double startingPrice){
         chat = new HashMap<>();
         this.endTime = endTime;
         this.itemID = itemID;
