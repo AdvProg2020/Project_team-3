@@ -2,10 +2,15 @@ package Server.Controller;
 
 import Server.Model.Users.Admin;
 import com.google.gson.Gson;
+import javafx.scene.layout.Background;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.Formatter;
+import java.util.Scanner;
 
 public class TransactionController {
     private static TransactionController transactionController;
@@ -41,21 +46,17 @@ public class TransactionController {
         wagePercent=percent;
         minimumMoney=minimum;
         String value=String.valueOf(wagePercent)+" "+String.valueOf(minimumMoney);
-        Gson gson=new Gson();
-        String content=gson.toJson(value);
-        String path="Resource"+File.separator+"WagePercent.gson";
+        String path="Resource"+File.separator+"WagePercent.txt";
         File file=new File(path);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(file);
-            writer.write(content);
-            writer.close();
-        } catch (IOException e) {
+        try (Formatter formatter=new Formatter(path)){
+            formatter.format("%d %d",wagePercent,minimumMoney);
+            formatter.flush();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public void setMainBankAccountId() {
-        String path="Resource"+File.separator+"WagePercent.gson";
+        String path="Resource"+File.separator+"WagePercent.txt";
         File file=new File(path);
         Gson gson=new Gson();
         if(file.exists()==false){
@@ -65,10 +66,10 @@ public class TransactionController {
                 String s=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
                 System.out.println("the main account id is : "+ s);
                 String string="5 1000";
-                String gsonToSave=gson.toJson(string);
-                FileWriter writer = new FileWriter(file);
-                writer.write(gson.toJson(gsonToSave));
-                writer.close();
+                Formatter formatter=new Formatter(path);
+                formatter.format("%d %d",5,1000);
+                formatter.flush();
+                formatter.close();
                 wagePercent=5;
                 minimumMoney=1000;
             } catch (IOException e) {
@@ -77,16 +78,15 @@ public class TransactionController {
         }
         else if(file.exists()==true){
             try {
-                String content=new String(Files.readAllBytes(file.toPath()));
-                String string=gson.fromJson(content,String.class);
-                System.out.println("string in file is: "+string +"*");
+                Scanner scanner=new Scanner(Paths.get(path));
+                String string="";
+                while (scanner.hasNextLine()){
+                    string=scanner.nextLine();
+                }
+                System.out.println(string);
                 String [] token=string.split(" ");
-                System.out.println(token[0] + " "+ token[1]);
                 wagePercent=Integer.parseInt(token[0]);
                 minimumMoney=Integer.parseInt(token[1]);
-                System.out.println(minimumMoney);
-                System.out.println(wagePercent);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -6,6 +6,8 @@ import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.Seller;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -24,6 +26,7 @@ public class TransactionMenu {
     private double userMoney=0;
     private double bank=0;
     private double wagePercent=0;
+    private String allChars="";
 
     public void initialize(){
         setBankAccountBalance();
@@ -31,6 +34,15 @@ public class TransactionMenu {
         transactionComboBox.getItems().add("deposit"); //variz be hesab
         transactionComboBox.getItems().add("withdraw");// bardasht az hesab!
         transactionComboBox.getSelectionModel().selectFirst();
+        transactionComboBox.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                String selected=(String) transactionComboBox.getSelectionModel().getSelectedItem();
+                if(selected.equalsIgnoreCase("deposit")) depositChecker();
+                else withdrawChecker();
+            }
+        });
+
     }
 
     public void setBankAccountBalance(){
@@ -90,14 +102,14 @@ public class TransactionMenu {
     }
 
     public void amountTyped(KeyEvent keyEvent) {
-        String allChars=amount.getText() + keyEvent.getText();
+        allChars=amount.getText() + keyEvent.getText();
         if(allChars.matches("\\d+")){
             amount.setStyle("-fx-text-fill: green");
             finalAmount.setText("");
             wageAmount.setText("");
             String selectedItem=(String) transactionComboBox.getSelectionModel().getSelectedItem();
-            if(selectedItem.equals("deposit")) depositChecker(allChars);
-            else withdrawChecker(allChars);
+            if(selectedItem.equals("deposit")) depositChecker();
+            else withdrawChecker();
         }
         else {
             amount.setStyle("-fx-text-fill: #a30000");
@@ -109,8 +121,9 @@ public class TransactionMenu {
     }
 
 
-    public void depositChecker(String string){
-        int amountMoney=Integer.parseInt(string);
+    public void depositChecker(){
+
+        int amountMoney=Integer.parseInt(allChars);
         int limit=Integer.parseInt(MakeRequest.getWalletLimit());
         if((userMoney-amountMoney)< limit){
             finalAmount.setText("limit error!");
@@ -129,8 +142,8 @@ public class TransactionMenu {
         wageAmount.setText(String.valueOf((int)(((wagePercent)/100)*amountMoney)));
     }
 
-    public void withdrawChecker(String string){
-        int amountMoney=Integer.parseInt(string);
+    public void withdrawChecker(){
+        int amountMoney=Integer.parseInt(allChars);
         if(bank-amountMoney<0){
             finalAmount.setText("limit error!");
             wageAmount.setText("limit error!");

@@ -37,7 +37,10 @@ public class bankRegisterAccount {
             alert.showAndWait();
             String token=MakeRequest.getBankTokenForClient(username,password);
             Client.getInstance().setBankAccountToken(token);
-            SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+            String type=MakeRequest.makeGetUserRequest().type;
+            if(type.equalsIgnoreCase("buyer")) SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+            else if(type.equalsIgnoreCase("seller")) SceneSwitcher.getInstance().setSceneTo("SellerMenu");
+
         }
     }
 

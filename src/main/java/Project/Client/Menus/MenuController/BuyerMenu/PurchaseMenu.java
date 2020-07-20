@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class PurchaseMenu {
+   public ComboBox transactionBox;
    @FXML TextField address;
    @FXML Label priceLabel;
    @FXML ListView itemListView;
@@ -24,6 +25,9 @@ public class PurchaseMenu {
    public void initialize()  {
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("first.wav");
+      transactionBox.getItems().add("from wallet");
+      transactionBox.getItems().add("from bank Account");
+      transactionBox.getSelectionModel().selectFirst();
       discounts.getItems().addAll(MakeRequest.makeGetBuyerDiscountCodesRequest());
       discounts.getItems().add("NONE");
       discounts.setValue("NONE");
