@@ -25,6 +25,7 @@
                    <MenuItem mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
                    <MenuItem mnemonicParsing="false" onAction="#manageProducts" text="Manage Products" />
                    <MenuItem mnemonicParsing="false" onAction="#manageSales" text="Manage Sales" />
+                   <MenuItem mnemonicParsing="false" onAction="#startAuction" text="start auction" />
                </Menu>
            </menus>
        </MenuBar>

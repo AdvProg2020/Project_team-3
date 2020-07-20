@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="419.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AssistantMenu.ManageChats">
-<ListView onMouseClicked="#chat" fx:id="chats" layoutX="14.0" layoutY="36.0" prefHeight="363.0" prefWidth="276.0" />
+<AnchorPane prefHeight="720.0" prefWidth="720.0" styleClass="jedBackground" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AssistantMenu.ManageChats">
+<ListView fx:id="chats" layoutX="161.0" layoutY="127.0" onMouseClicked="#chat" prefHeight="339.0" prefWidth="276.0" style="-fx-border-color: #94a8b3;" />
     <MenuBar prefHeight="25.0" prefWidth="898.0" styleClass="myMenuBar">
         <Menu text="options">
             <MenuItem onAction="#refresh" text="refresh" />

@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.ChatMenu">
-          <ListView fx:id="channel" />
-    <TextField fx:id="message" layoutX="310.0" layoutY="27.0" prefHeight="223.0" prefWidth="199.0" />
-    <Button layoutX="387.0" layoutY="277.0" onMouseClicked="#send" text="send" />
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.ChatMenu">
+          <ListView fx:id="channel" style="-fx-border-color: #94a8b3;" />
+    <TextField fx:id="message" layoutX="310.0" layoutY="27.0" prefHeight="223.0" prefWidth="199.0" style="-fx-border-color: #94a8b3;" />
+    <Button layoutX="387.0" layoutY="277.0" onMouseClicked="#send" prefHeight="22.0" prefWidth="46.0" styleClass="myBlueButton" text="send" />
 </AnchorPane>

@@ -2,6 +2,7 @@ package Server.Controller;
 
 import Server.Model.Auction;
 import Server.Model.DiscountCode;
+import Server.Model.Item;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -28,6 +29,10 @@ public class AuctionController {
     }
 
     public String addAuction(int duration,double startPrice,String itemID){
+        Item item = ItemAndCategoryController.getInstance().getItemById(itemID);
+        if(item.getInStock()<=0){
+            return "Error: item not in stock";
+        }
         LocalDateTime endTime = LocalDateTime.now().plusHours(duration);
         Auction auction = new Auction(endTime,itemID,startPrice);
         String requestID = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Requests");

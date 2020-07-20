@@ -104,6 +104,10 @@ public class SellerMenuController {
         SceneSwitcher.getInstance().setSceneTo("ViewRequests");
    }
 
+   public void startAuction(){
+       SceneSwitcher.getInstance().setSceneTo("SellerStartAuction");
+   }
+
     public void goToTransactionMenu(ActionEvent actionEvent) {
         MakeRequest.setMainAccountRequest();
         if(Client.getInstance().getBankAccountToken().equals("")){

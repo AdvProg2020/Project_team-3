@@ -73,6 +73,7 @@ public class SceneSwitcher {
                 popupStage = new Stage();
                 popupStage.setScene(new Scene(parent, width, height));
                 popupStage.initModality(Modality.APPLICATION_MODAL);
+                popupStage.setResizable(false);
                 popupStage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
