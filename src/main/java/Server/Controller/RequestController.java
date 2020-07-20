@@ -1,6 +1,7 @@
 package Server.Controller;
 
 
+import Server.Model.Auction;
 import Server.Model.Requests.*;
 import Server.Model.Comment;
 import Server.Model.Item;
@@ -102,6 +103,11 @@ public class RequestController {
         newComment.inProcess();
         CommentRequest commentRequest = new CommentRequest(requestId, newComment);
         Database.getInstance().saveRequest(commentRequest);
+    }
+
+    public void addAuctionRequest(String requestId, Auction auction) {
+        AuctionRequest auctionRequest = new AuctionRequest(requestId, auction);
+        Database.getInstance().saveRequest(auctionRequest);
     }
 
     public void editSaleRequest(String requestId, String saleID, String changedFiled, String newFieldValue) {
