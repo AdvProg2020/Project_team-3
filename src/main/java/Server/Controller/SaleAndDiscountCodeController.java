@@ -172,14 +172,6 @@ public class SaleAndDiscountCodeController {
         return "Successful: Your request to add the sale has been sent to the admins.";
     }
 
-    public String addAuction(int duration,double startPrice,String itemID){
-        LocalDateTime endTime = LocalDateTime.now().plusHours(duration);
-        Auction auction = new Auction(endTime,itemID,startPrice);
-        String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
-        RequestController.getInstance().addAuctionRequest(requestID,auction);
-        return "Successful: Your request to start this auction has been sent to the admins.";
-    }
-
     public ArrayList<Sale> getSellerSales(String username) {
         if (!(UserController.getInstance().getUserByUsername(username) instanceof Seller)) {
             return null;

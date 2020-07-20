@@ -24,6 +24,15 @@ public class Auction {
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
     }
 
+    public Auction(LocalDateTime endTime,String itemID,String highestBidderUsername,double highestBid,String id, HashMap<String,String> chat){
+        this.endTime = endTime;
+        this.itemID = itemID;
+        this.highestBid = highestBid;
+        this.highestBidderUsername = highestBidderUsername;
+        this.id = id;
+        this.chat = chat;
+    }
+
     public void rebid(String username,double value){
         highestBidderUsername = username;
         highestBid = value;

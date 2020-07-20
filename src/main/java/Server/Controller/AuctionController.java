@@ -1,6 +1,10 @@
 package Server.Controller;
 
 import Server.Model.Auction;
+import Server.Model.DiscountCode;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 
 import java.sql.Connection;
@@ -9,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AuctionController {
     private static AuctionController auctionController;
@@ -22,8 +27,41 @@ public class AuctionController {
         return auctionController;
     }
 
+    public String addAuction(int duration,double startPrice,String itemID){
+        LocalDateTime endTime = LocalDateTime.now().plusHours(duration);
+        Auction auction = new Auction(endTime,itemID,startPrice);
+        String requestID = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Requests");
+        RequestController.getInstance().addAuctionRequest(requestID,auction);
+        return "Successful: Your request to start this auction has been sent to the admins.";
+    }
+
     public Auction getAuctionByID(String auctionID){
-        return null;
+        ArrayList<Auction> viableOptions = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Connection connection = null;
+        try {
+            connection = Database.getConn();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            ResultSet rs = statement.executeQuery("select * FROM Auctions WHERE id='"+auctionID+"'");
+            while(rs.next())
+            {
+                String id = rs.getString(1);
+                HashMap<String,String> chat = gson.fromJson(rs.getString(6),new TypeToken<HashMap<String,String>>(){}.getType());
+                String itemID = rs.getString(2);
+                LocalDateTime end = LocalDateTime.parse(rs.getString(3));
+                String username = rs.getString(4);
+                double bid = Double.parseDouble(rs.getString(5));
+                viableOptions.add(new Auction(end,itemID,username,bid,id,chat));
+            }
+
+        }
+        catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(viableOptions.isEmpty()) return null;
+        return viableOptions.get(0);
     }
 
     public ArrayList<String> getAllAuctionDescription(){

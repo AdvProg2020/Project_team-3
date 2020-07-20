@@ -226,6 +226,13 @@ public class MainMenuController {
         SceneSwitcher.getInstance().setSceneTo("ShopMenu");
     }
 
+    @FXML
+    private void auctions(){
+//        animationTimer.stop();
+        SceneSwitcher.getInstance().saveScene("MainMenu");
+        SceneSwitcher.getInstance().setSceneTo("AllAuctionsMenu");
+    }
+
     public void exit(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().closeWindow();
     }
