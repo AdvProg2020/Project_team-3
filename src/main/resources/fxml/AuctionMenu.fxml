@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Project.Client.Menus.MenuController.AuctionMenu"
-            prefHeight="720.0" prefWidth="1280.0">
-
+<AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" styleClass="softGreyBackground" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AuctionMenu">
+   <children>
+       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="22.0" prefWidth="51.0" styleClass="myBlueButton" text="Back" />
+      <ListView layoutX="867.0" layoutY="46.0" prefHeight="416.0" prefWidth="359.0" style="-fx-border-color: #94a8b3;" />
+      <TextArea layoutX="867.0" layoutY="477.0" prefHeight="102.0" prefWidth="359.0" style="-fx-border-color: #94a8b3;" />
+      <Button layoutX="927.0" layoutY="613.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" styleClass="myBlueButton" text="Send" />
+      <Button layoutX="1089.0" layoutY="613.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" styleClass="redButton" text="Clear" />
+      <Label layoutX="867.0" layoutY="14.0" prefHeight="25.0" prefWidth="116.0" text="Auction Group Chat" />
+      <Label layoutX="374.0" layoutY="163.0" prefHeight="39.0" prefWidth="51.0" text="Name:" />
+      <Label fx:id="nameLabel" layoutX="427.0" layoutY="174.0" prefHeight="17.0" prefWidth="200.0" />
+      <Label layoutX="374.0" layoutY="237.0" prefHeight="17.0" prefWidth="51.0" text="Brand:" />
+      <Label fx:id="brandLabel" layoutX="427.0" layoutY="237.0" prefHeight="17.0" prefWidth="200.0" />
+      <Label layoutX="376.0" layoutY="301.0" prefHeight="17.0" prefWidth="68.0" text="Description:" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="452.0" layoutY="310.0" prefHeight="146.0" prefWidth="225.0" style="-fx-border-color: #94a8b3;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextArea fx:id="description" prefHeight="398.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="386.0" layoutY="562.0" prefHeight="39.0" prefWidth="102.0" text="Current Bid:" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="539.0" layoutY="613.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="172.0" styleClass="myBlueButton" text="Bid" />
+      <Label fx:id="bidLabel" layoutX="489.0" layoutY="564.0" prefHeight="39.0" prefWidth="183.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="376.0" layoutY="613.0" promptText="Enter a Value" style="-fx-border-color: #94a8b3;" />
+      <Hyperlink layoutX="435.0" layoutY="514.0" onAction="#learnMore" prefHeight="23.0" prefWidth="192.0" text="Click to learn more about this item" />
+   </children>
 </AnchorPane>
