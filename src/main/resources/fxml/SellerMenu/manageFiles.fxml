@@ -10,5 +10,13 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Project.Client.Menus.MenuController.SellerMenuController.SellerManageFiles"
             prefHeight="400.0" prefWidth="600.0">
-
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
+        <menus>
+            <Menu mnemonicParsing="false" text="option">
+                <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="logout" />
+            </Menu>
+        </menus>
+    </MenuBar>
+    <ListView fx:id="listView" layoutX="389.0" layoutY="148.0" onMouseClicked="#fileSelect" prefHeight="429.0" prefWidth="502.0" />
 </AnchorPane>

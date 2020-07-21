@@ -240,6 +240,17 @@ public class MakeRequest {
       return result;
    }
 
+   public static ArrayList<String> makeGetAllSellerFiles(){
+      showProducts();
+      JsonObject json = new JsonObject();
+      json.addProperty("token", Client.getInstance().getToken());
+      json.addProperty("type", 3);
+      json.addProperty("content", "show seller files");
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      return result;
+   }
+
    public static String makeAddSaleRequest(String start,String end,int percent,ArrayList<String> selectedItemsID){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());

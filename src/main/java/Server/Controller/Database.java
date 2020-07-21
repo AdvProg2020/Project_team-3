@@ -477,7 +477,9 @@ public class Database {
          return allUsers;
       }
       if(folderName.equals("Categories")){
-         return getAllCategories();
+         ArrayList<String> result=getAllCategories();
+         result.remove("File");
+         return result;
       }
       if(folderName.equals("Sales")){
          return getAllSales();

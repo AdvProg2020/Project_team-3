@@ -408,8 +408,25 @@ public class RequestProcessor {
 
 
       if(getJsonStringField(command,"content").equals("show seller items")){
-       Gson gson=new Gson();
-       return gson.toJson(SortAndFilterController.getInstance().show(UserController.getInstance().getSellerItems()));
+         Gson gson=new Gson();
+         Seller seller=(Seller) UserController.getInstance().getCurrentOnlineUser();
+         ArrayList<String> result=new ArrayList<>();
+         for (String id : seller.getAllItemsId()) {
+            Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item.getState().equals("file")==false) result.add(item.showIdWithName());
+         }
+         return gson.toJson(result);
+      }
+
+      if(getJsonStringField(command,"content").equals("show seller files")){
+         Gson gson=new Gson();
+         Seller seller=(Seller) UserController.getInstance().getCurrentOnlineUser();
+         ArrayList<String> result=new ArrayList<>();
+         for (String id : seller.getAllItemsId()) {
+            Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item.getState().equals("file")) result.add(item.showIdWithName());
+         }
+         return gson.toJson(result);
       }
 
       if(getJsonStringField(command,"content").equals("edit sale")){

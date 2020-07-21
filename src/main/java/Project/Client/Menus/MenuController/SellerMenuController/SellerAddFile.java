@@ -1,26 +1,14 @@
 package Project.Client.Menus.MenuController.SellerMenuController;
 
-import Project.Client.CLI.View;
 import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class SellerAddFile {
    
@@ -37,19 +25,12 @@ public class SellerAddFile {
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
 
-
-
    @FXML TextField itemName;
    @FXML TextArea descriptionText;
    @FXML TextField price;
-
-
    @FXML Label itemNameError;
    @FXML Label priceError;
 
-
-
-   private TextInputDialog dialog = new TextInputDialog("");
 
    @FXML private void createItem(){
       if(itemName.getText().isEmpty()){

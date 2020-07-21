@@ -341,9 +341,10 @@ public class ItemAndCategoryController {
     public String addFile(String name,String description,double price){
         if(UserController.getInstance().getCurrentOnlineUser()==null)
             return "Error: No user is logged in!";
-        FileItem item = new FileItem(name,description,"",price,controller.getCurrentOnlineUser().getUsername());
+        FileItem item = new FileItem(name,description,price,controller.getCurrentOnlineUser().getUsername());
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
+        System.out.println("inja hastim");
         return "Successful: Admins have been notified of your request to add this file.";
     }
 

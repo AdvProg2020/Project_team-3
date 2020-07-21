@@ -1,12 +1,9 @@
 package Server.Controller;
 
 
-import Server.Model.Auction;
+import Server.Model.*;
 import Server.Model.Requests.*;
-import Server.Model.Comment;
-import Server.Model.Item;
 import Server.Model.Requests.*;
-import Server.Model.Sale;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
 import com.google.gson.Gson;
@@ -63,7 +60,7 @@ public class RequestController {
             if (content.contains("\"type\": \"ItemEdit\"")) {
                 return gson.fromJson(content, ItemEdit.class);
             }
-            if (content.contains("\"type\": \"ItemRequest\"")) {
+            if ((content.contains("\"type\": \"ItemRequest\""))||(content.contains("\"type\": \"FileRequest\""))) {
                 return gson.fromJson(content, ItemRequest.class);
             }
             if (content.contains("\"type\": \"SaleEdit\"")) {
