@@ -923,13 +923,12 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static ArrayList<Auction> getAllAuctions(){
+   public static String getAllAuctions(){
       JsonObject jsonObject = new JsonObject();
-      jsonObject.addProperty("type", 5);
+      jsonObject.addProperty("type", 0);
       jsonObject.addProperty("token", Client.getInstance().getToken());
       jsonObject.addProperty("content", "get all auctions");
-      Gson gson=new Gson();
-      return gson.fromJson(Client.getInstance().sendMessage(jsonObject),new TypeToken<ArrayList<Auction>>(){}.getType());
+      return Client.getInstance().sendMessage(jsonObject);
    }
 
    public static ArrayList<String> getAllFiles(){

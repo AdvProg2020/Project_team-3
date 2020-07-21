@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AllAuctionsMenu {
@@ -24,8 +25,8 @@ public class AllAuctionsMenu {
     @FXML private void initialize(){
         //miad list ro update mikone
         //on click : berim auction menu
-        ArrayList<Auction> allAuctions = MakeRequest.getAllAuctions();
-
+        String str = MakeRequest.getAllAuctions();
+        ArrayList<Auction> allAuctions = ObjectMapper.jsonToAuction(str);
         for(Auction auction:allAuctions){
             listView.getItems().add(auction.getId()+"   for item "+auction.getItemID()+"  current bid:"+auction.getHighestBid()+"    ends:"+auction.getEndTime());
         }

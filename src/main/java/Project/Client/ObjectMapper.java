@@ -8,6 +8,10 @@ import Project.Client.Model.Users.*;
 import com.google.gson.Gson;
 
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 public class ObjectMapper {
@@ -47,9 +51,9 @@ public class ObjectMapper {
       return gson.fromJson(json, Sale.class);
    }
 
-   public static Auction jsonToAuction(String json){
+   public static ArrayList<Auction> jsonToAuction(String json){
       Gson gson = new Gson();
-      return gson.fromJson(json,Auction.class);
+      return gson.fromJson(json,new TypeToken<ArrayList<Auction>>(){}.getType());
    }
 
    public static SaleLog jsonToSaleLog(JsonObject json){
