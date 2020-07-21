@@ -33,10 +33,7 @@ public class SellerStartAuction {
         listView.getItems().addAll(MakeRequest.makeGetAllSellerItems());
         SortAndFilter.getInstance().disableFilterSellerName();
         errorLabel.setTextFill(Color.RED);
-        if(listView.getItems().isEmpty()) {
-            listView.getItems().add("there are no products right now");
-            return;
-        }
+
     }
 
     @FXML private void startAuction(){

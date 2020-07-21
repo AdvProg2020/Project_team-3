@@ -184,8 +184,8 @@ public class SellerAddProductMenu {
         }
         hasChosenVideo = false;
         hasChosenImage = false;
-        clearFields();
         sendAlert(MakeRequest.addProduct(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeKey,attributeValue,image,video));
+        clearFields();
     }
 
     private void setDialogText(String attributeKey){

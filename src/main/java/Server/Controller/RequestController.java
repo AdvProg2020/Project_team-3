@@ -75,6 +75,9 @@ public class RequestController {
             if(content.contains("\"type\": \"ItemDelete\"")){
                 return gson.fromJson(content, ItemDelete.class);
             }
+            if(content.contains("\"type\": \"AuctionRequest\"")){
+                return gson.fromJson(content, AuctionRequest.class);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -279,6 +282,12 @@ public class RequestController {
             }
             if(fileContent.contains("\"type\": \"ItemDelete\"")){
                 allRequests.add(gson.fromJson(fileContent,ItemDelete.class));
+            }
+            System.err.println("eh");
+            if(fileContent.contains("\"type\": \"AuctionRequest\"")){
+                System.err.println("found");
+                allRequests.add(gson.fromJson(fileContent,AuctionRequest.class));
+                System.err.println("done");
             }
         }
         return allRequests;

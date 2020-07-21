@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class Auction {
-    private LocalDateTime endTime;
+    private String endTime;
 
     private String itemID;
 
@@ -15,7 +15,7 @@ public class Auction {
 
     public Auction(LocalDateTime endTime, String itemID, double startingPrice){
         chat = new HashMap<>();
-        this.endTime = endTime;
+        this.endTime = endTime.toString();
         this.itemID = itemID;
         this.highestBidderUsername="*none*";
         this.highestBid = startingPrice;
@@ -35,7 +35,7 @@ public class Auction {
     }
 
     public LocalDateTime getEndTime() {
-        return endTime;
+        return LocalDateTime.parse(endTime);
     }
 
     public HashMap<String, String> getChat() {

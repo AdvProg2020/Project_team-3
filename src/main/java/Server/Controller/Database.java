@@ -307,7 +307,6 @@ public class Database {
    }
 
    public void deleteAuction(Auction auction){
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
       Connection connection = null;
       try{
          connection = getConn();
@@ -417,12 +416,7 @@ public class Database {
    }
 
    public void deleteDiscountCode(DiscountCode discount) {
-      /*String id = discount.getDiscountId();
-      String path = "Resource" + File.separator + "DiscountCodes";
-      String name = id + ".json";
-      File file = new File(path + File.separator + name);
-      file.delete();*/
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
       Connection connection = null;
       try{
          connection = getConn();
