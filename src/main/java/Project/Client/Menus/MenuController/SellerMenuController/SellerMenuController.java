@@ -123,4 +123,9 @@ public class SellerMenuController {
             SceneSwitcher.getInstance().setSceneTo("TransactionMenu");
         }
     }
+
+    public void addFile(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().setSceneTo("AddFile");
+    }
+
 }

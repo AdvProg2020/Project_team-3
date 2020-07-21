@@ -156,6 +156,7 @@ public class RequestController {
                 Item item = ((ItemRequest) accepted).getNewItem();
                 item.setAddedTime(LocalDateTime.now());
                 Database.getInstance().saveItem(item);
+                if(item.getCategoryName()!=null)
                 ItemAndCategoryController.getInstance().addItemToCategory(item.getId(), item.getCategoryName());
         } else if (accepted instanceof ItemEdit) {
             requestController.ItemEditing((ItemEdit) accepted);

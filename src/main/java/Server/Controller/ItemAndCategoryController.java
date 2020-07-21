@@ -2,10 +2,7 @@ package Server.Controller;
 
 import Project.Client.CLI.ShopAndDiscountMenu.ShopMenu;
 import Project.Client.CLI.View;
-import Server.Model.Category;
-import Server.Model.Comment;
-import Server.Model.Item;
-import Server.Model.Rating;
+import Server.Model.*;
 import Server.Model.Requests.ItemRequest;
 import Server.Model.Requests.Request;
 import Server.Model.Users.Admin;
@@ -339,6 +336,15 @@ public class ItemAndCategoryController {
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: Admins have been notified of your request to add this item.";
+    }
+
+    public String addFile(String name,String description,double price){
+        if(UserController.getInstance().getCurrentOnlineUser()==null)
+            return "Error: No user is logged in!";
+        FileItem item = new FileItem(name,description,"",price,controller.getCurrentOnlineUser().getUsername());
+        String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
+        RequestController.getInstance().addItemRequest(requestID, item);
+        return "Successful: Admins have been notified of your request to add this file.";
     }
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute,String image,String video) {

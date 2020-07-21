@@ -368,6 +368,13 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().addItem(name,brand,description,price,inStock,categoryName,attribute,image,video);
       }
 
+      if(getJsonStringField(command,"content").equals("add file")){
+         String name=getJsonStringField(command,"name");
+         String description=getJsonStringField(command,"description");
+         double price=command.get("price").getAsDouble();
+         return ItemAndCategoryController.getInstance().addFile(name,description,price);
+      }
+
       if(getJsonStringField(command,"content").equals("get sale log")){
          ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
          JsonObject json=new JsonObject();

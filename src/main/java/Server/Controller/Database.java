@@ -461,6 +461,10 @@ public class Database {
          Category category = new Category("Main", new ArrayList<String>());
             saveCategory(category);
       }
+      if (!ItemAndCategoryController.getInstance().isThereCategoryWithName("File")) {
+         Category category = new Category("File", new ArrayList<String>());
+         saveCategory(category);
+      }
    }
 
    public ArrayList<String> printFolderContent(String folderName) {
