@@ -4,6 +4,7 @@ import Server.Controller.Controller;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Auction {
     private String endTime;
@@ -13,10 +14,10 @@ public class Auction {
     private String highestBidderUsername;
     private double highestBid;
     private String id;
-    private HashMap<String,String> chat;
+    private LinkedHashMap<String,String> chat;
 
     public Auction(LocalDateTime endTime,String itemID,double startingPrice){
-        chat = new HashMap<>();
+        chat = new LinkedHashMap<>();
         this.endTime = endTime.toString();
         this.itemID = itemID;
         this.highestBidderUsername="*none*";
@@ -24,7 +25,7 @@ public class Auction {
         this.id = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Items");
     }
 
-    public Auction(LocalDateTime endTime,String itemID,String highestBidderUsername,double highestBid,String id, HashMap<String,String> chat){
+    public Auction(LocalDateTime endTime,String itemID,String highestBidderUsername,double highestBid,String id, LinkedHashMap<String,String> chat){
         this.endTime = endTime.toString();
         this.itemID = itemID;
         this.highestBid = highestBid;
@@ -63,6 +64,9 @@ public class Auction {
     }
 
     public void addChatMessage(String username,String message){
+        while(chat.containsKey(username)){
+            username += "*";
+        }
         chat.put(username,message);
     }
 }

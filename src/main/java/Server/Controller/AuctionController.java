@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class AuctionController {
     private static AuctionController auctionController;
@@ -52,7 +53,7 @@ public class AuctionController {
             while(rs.next())
             {
                 String id = rs.getString(1);
-                HashMap<String,String> chat = gson.fromJson(rs.getString(6),new TypeToken<HashMap<String,String>>(){}.getType());
+                LinkedHashMap<String,String> chat = gson.fromJson(rs.getString(6),new TypeToken<LinkedHashMap<String,String>>(){}.getType());
                 String itemID = rs.getString(2);
                 LocalDateTime end = LocalDateTime.parse(rs.getString(3));
                 String username = rs.getString(4);
@@ -67,6 +68,12 @@ public class AuctionController {
 
         if(viableOptions.isEmpty()) return null;
         return viableOptions.get(0);
+    }
+
+    public void addChatToAuction(String id,String username,String message){
+        Auction auction = getAuctionByID(id);
+        auction.addChatMessage(username,message);
+        Database.getInstance().saveAuction(auction);
     }
 
     public ArrayList<String> getAllAuctionIDs(){

@@ -954,6 +954,16 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static void addAuctionChat(String auctionID,String message){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 5);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "add chat to auction");
+      jsonObject.addProperty("auction id", auctionID);
+      jsonObject.addProperty("message", message);
+      Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static ArrayList<String> getAllFiles(){
       return new ArrayList<>();
    }

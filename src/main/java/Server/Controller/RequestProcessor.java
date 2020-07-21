@@ -548,6 +548,13 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("view user all request")){
          return UserController.getInstance().getUserByUsername(username).getAllRequests();
       }
+
+      if(getJsonStringField(command,"content").equals("add chat to auction")){
+         String id=getJsonStringField(command,"auction id");
+         String message = getJsonStringField(command,"message");
+         AuctionController.getInstance().addChatToAuction(id,username,message);
+         return "Successful:";
+      }
       return "Error: invalid command";
    }
 
