@@ -29,7 +29,7 @@ public class bankLogin {
             usernameTextField.setText("");
             passwordTextField.setText("");
             Client.getInstance().setBankAccountToken(result);
-            SceneSwitcher.getInstance().setSceneTo("TransactionMenu");
+//            SceneSwitcher.getInstance().setSceneTo("TransactionMenu");
             SceneSwitcher.getInstance().closeSecondStage();
         }
     }

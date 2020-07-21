@@ -63,11 +63,11 @@ public class PurchaseMenu extends Menu {
         System.out.println("Are you sure you want to buy these items? (enter yes to continue or anything else to exit process)");
         String command = View.read.nextLine();
         if (command.equals("yes")) {
-            if(hasDiscount)
-                System.out.println(CartController.getInstance().buy(address,discountID));
-            else
-                System.out.println(CartController.getInstance().buy(address));
-            CartMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
+//            if(hasDiscount)
+//               // System.out.println(CartController.getInstance().buy(address,discountID));
+//            else
+//               // System.out.println(CartController.getInstance().buy(address));
+//            CartMenu.getInstance().setPreviousMenu(MainMenu.getInstance());
             View.setCurrentMenu(CartMenu.getInstance());
 
             return;

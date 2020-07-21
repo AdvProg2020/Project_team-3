@@ -97,13 +97,15 @@ public class MakeRequest {
    }
 
    //type 2
-   public static String buyCart(String discountId,String address){
+   public static String buyCart(String discountId,String address,String bankAccountId){
       JsonObject json=initializeCart();
       json.addProperty("token",Client.getInstance().getToken());
       json.remove("type");
       json.addProperty("type",2);
       json.addProperty("content", "buy cart");
       json.addProperty("address",address);
+      json.addProperty("bankAccountId",bankAccountId);
+      json.addProperty("bankToken",Client.getInstance().getBankAccountToken());
       if(discountId!=null)
       json.addProperty("discount",discountId);
       return Client.getInstance().sendMessage(json);

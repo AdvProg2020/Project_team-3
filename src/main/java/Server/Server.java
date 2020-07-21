@@ -128,6 +128,7 @@ public class Server {
    public static void main(String[] args) {
       Database.getInstance().initiate();
       new Server();
+      TransactionController.getInstance().initiate();
       System.out.println("server is running");
    }
 

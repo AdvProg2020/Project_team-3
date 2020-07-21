@@ -12,12 +12,14 @@ import Server.Controller.TransactionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.Optional;
 
 public class BuyerMenuController {
 
@@ -103,7 +105,7 @@ public class BuyerMenuController {
     }
 
     public void goToTransactionMenu(ActionEvent actionEvent) {
-        MakeRequest.setMainAccountRequest();
+//        MakeRequest.setMainAccountRequest();
         if(Client.getInstance().getBankAccountToken().equals("")){
             SceneSwitcher.getInstance().saveScene("BuyerMenu");
             SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);

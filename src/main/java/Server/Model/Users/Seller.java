@@ -2,6 +2,7 @@ package Server.Model.Users;
 
 import Server.Controller.Database;
 import Server.Controller.ItemAndCategoryController;
+import Server.Controller.TransactionController;
 import Server.Model.Item;
 import Server.Model.Logs.SaleLog;
 
@@ -61,7 +62,9 @@ public class Seller extends User {
 
     public void addSaleLog(SaleLog saleLog) {
         sellLogs.add(saleLog);
-        money+=saleLog.getPrice();
+        double wagePercent= TransactionController.getInstance().getWagePercent();
+        double plus=saleLog.getPrice()*((100-wagePercent)/100);
+        money+=plus;
     }
 
     public void addItemID(String id) {

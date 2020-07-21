@@ -274,6 +274,8 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("buy cart")){
          String address=getJsonStringField(command,"address");
+         String bankAccountId=getJsonStringField(command,"bankAccountId");
+         String bankToken=getJsonStringField(command,"bankToken");
          Cart cart=CartController.getInstance().getCurrentShoppingCart();
          Gson gson = new Gson();
          ArrayList<String> allItems=gson.fromJson(command.get("all item id"), ArrayList.class);
@@ -284,9 +286,9 @@ public class RequestProcessor {
          cart.setAllItemCount(itemIdWithCount);
          if(command.has("discount")){
             String discountId=getJsonStringField(command,"discount");
-            return CartController.getInstance().buy(address,discountId);
+            return CartController.getInstance().buy(address,discountId,bankAccountId,bankToken);
          }
-         return CartController.getInstance().buy(address);
+         return CartController.getInstance().buy(address,bankAccountId,bankToken);
       }
 
       if(getJsonStringField(command,"content").equals("getAllDiscountCodes")){

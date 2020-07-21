@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController.BuyerMenu;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Cart;
 
@@ -13,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.Optional;
+
 public class PurchaseMenu {
    public ComboBox transactionBox;
    @FXML TextField address;
@@ -20,6 +23,7 @@ public class PurchaseMenu {
    @FXML ListView itemListView;
    @FXML ChoiceBox discounts;
    private Boolean discountIsValid=false;
+   private String bankAccountId="";
    @FXML private AnchorPane pane;
    @FXML
    public void initialize()  {
@@ -54,6 +58,17 @@ public class PurchaseMenu {
       SceneSwitcher.getInstance().setSceneTo("CartMenu");
    }
 
+   public void bankAccountWithDraw(){
+      if(Client.getInstance().getBankAccountToken().equals(""))  SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
+      TextInputDialog dialog=new TextInputDialog("");
+      dialog.setGraphic(null);
+      dialog.setTitle("enter valid bank Account Id");
+      dialog.setHeaderText("bank Account Id:");
+      Optional<String> wrote=dialog.showAndWait();
+      wrote.ifPresent(s -> bankAccountId=s);
+      System.out.println(bankAccountId+" bank account id is: ");
+   }
+
    public void buy(MouseEvent mouseEvent){
       if(validateAddress()==false) {
          MusicManager.getInstance().playSound("notify");
@@ -62,11 +77,15 @@ public class PurchaseMenu {
          alert.showAndWait();
          return;
       }
+      if(Client.getInstance().getBankAccountToken().equals(""))  SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
       String message="";
+      String selected=(String) transactionBox.getSelectionModel().getSelectedItem();
       if(discountIsValid) {
-         message=MakeRequest.buyCart(discounts.getValue().toString().substring(16,21),address.getText());
+         if(selected.equals("from bank Account")){bankAccountWithDraw();}
+         message=MakeRequest.buyCart(discounts.getValue().toString().substring(16,21),address.getText(),bankAccountId);
       }else {
-         message=MakeRequest.buyCart(null,address.getText());
+         if(selected.equals("from bank Account")){bankAccountWithDraw();}
+         message=MakeRequest.buyCart(null,address.getText(),bankAccountId);
       }
       MusicManager.getInstance().playSound("notify");
       Alert alert = new Alert(Alert.AlertType.INFORMATION);

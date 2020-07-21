@@ -38,11 +38,9 @@ public class TransactionController {
         return mainBankAccountId;
     }
 
-
     public int getWagePercent(){return wagePercent;}
     public int getMinimumMoney(){return minimumMoney;}
     public void setNumbers(int percent , int minimum){
-        System.out.println(percent+" "+minimum+" "+"new new");
         wagePercent=percent;
         minimumMoney=minimum;
         String value=String.valueOf(wagePercent)+" "+String.valueOf(minimumMoney);
@@ -56,15 +54,18 @@ public class TransactionController {
         }
     }
     public void setMainBankAccountId() {
+     Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
+     String s=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
+     System.out.println(s);
+    }
+    public void initiate(){
         String path="Resource"+File.separator+"WagePercent.txt";
         File file=new File(path);
         Gson gson=new Gson();
         if(file.exists()==false){
             try {
+                setMainBankAccountId();
                 file.createNewFile();
-                Admin admin=(Admin) UserController.getInstance().getUserByUsername("admin");
-                String s=addAccountToBank(admin.getName(),admin.getLastName(),admin.getUsername(),admin.getPassword(),admin.getPassword());
-                System.out.println("the main account id is : "+ s);
                 String string="5 1000";
                 Formatter formatter=new Formatter(path);
                 formatter.format("%d %d",5,1000);
