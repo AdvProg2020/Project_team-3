@@ -684,6 +684,11 @@ public class RequestProcessor {
          return gson.toJson(sale);
       }
 
+      if(getJsonStringField(command,"content").equals("get all auctions")){
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(AuctionController.getInstance().getAllAuctions());
+      }
+
       if(getJsonStringField(command,"content").equals("show products")){
          SortAndFilterController.getInstance().reset();
          if(command.has("filter attribute"))

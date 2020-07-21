@@ -69,10 +69,6 @@ public class AuctionController {
         return viableOptions.get(0);
     }
 
-    public ArrayList<String> getAllAuctionDescription(){
-        return null;
-    }
-
     public ArrayList<String> getAllAuctionIDs(){
         ArrayList<String> allAucs = new ArrayList<>();
         Connection connection = null;

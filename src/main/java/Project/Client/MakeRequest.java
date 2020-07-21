@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import javafx.scene.image.Image;
 
@@ -920,6 +921,15 @@ public class MakeRequest {
       jsonObject.addProperty("price",startPrice);
       jsonObject.addProperty("item",itemID);
       return Client.getInstance().sendMessage(jsonObject);
+   }
+
+   public static ArrayList<Auction> getAllAuctions(){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 5);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "get all auctions");
+      Gson gson=new Gson();
+      return gson.fromJson(Client.getInstance().sendMessage(jsonObject),new TypeToken<ArrayList<Auction>>(){}.getType());
    }
 
    public static ArrayList<String> getAllFiles(){

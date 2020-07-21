@@ -1,11 +1,8 @@
 package Project.Client;
 
-import Project.Client.Model.Comment;
-import Project.Client.Model.Item;
+import Project.Client.Model.*;
 import Project.Client.Model.Logs.SaleLog;
-import Project.Client.Model.Sale;
 import Project.Client.Model.Users.*;
-import Project.Client.Model.Category;
 
 
 import com.google.gson.Gson;
@@ -48,6 +45,11 @@ public class ObjectMapper {
    public static Sale jsonToSale(JsonObject json){
       Gson gson = new Gson();
       return gson.fromJson(json, Sale.class);
+   }
+
+   public static Auction jsonToAuction(String json){
+      Gson gson = new Gson();
+      return gson.fromJson(json,Auction.class);
    }
 
    public static SaleLog jsonToSaleLog(JsonObject json){
