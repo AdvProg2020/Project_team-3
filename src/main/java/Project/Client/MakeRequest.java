@@ -911,6 +911,17 @@ public class MakeRequest {
       return gson.fromJson(Client.getInstance().sendMessage(jsonObject),ArrayList.class);
    }
 
+   public static String startAuction(int duration,double startPrice,String itemID){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 3);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "start auction");
+      jsonObject.addProperty("duration",duration);
+      jsonObject.addProperty("price",startPrice);
+      jsonObject.addProperty("item",itemID);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static ArrayList<String> getAllFiles(){
       return new ArrayList<>();
    }

@@ -10,6 +10,7 @@ import com.google.gson.*;
 
 
 import java.io.*;
+import java.net.Inet4Address;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -428,6 +429,13 @@ public class RequestProcessor {
          String value=getJsonStringField(command,"value");
          ItemAndCategoryController.getInstance().editItem(field,value,id);
          return "Successful:";
+      }
+
+      if(getJsonStringField(command,"content").equals("start auction")){
+         int duration= Integer.parseInt(getJsonStringField(command,"duration"));
+         double startPrice=Double.parseDouble(getJsonStringField(command,"price"));
+         String itemID=getJsonStringField(command,"item");
+         return AuctionController.getInstance().addAuction(duration,startPrice,itemID);
       }
 
       return "Error: invalid command";

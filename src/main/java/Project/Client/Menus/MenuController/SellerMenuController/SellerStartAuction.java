@@ -6,6 +6,7 @@ import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.SortAndFilter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -52,7 +53,23 @@ public class SellerStartAuction {
             return;
         }
         //inja miad request e sakhtane auction ro mide
+        sendAlert(MakeRequest.startAuction(Integer.parseInt(duration.getText()),Double.parseDouble(startPrice.getText()),itemID.getText()));
+        itemID.clear();
+        errorLabel.setText("");
+        startPrice.clear();
+        duration.clear();
+    }
 
+    private void sendAlert(String result){
+        MusicManager.getInstance().playSound("notify");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText(null);
+        alert.setContentText(result);
+        alert.setGraphic(null);
+        alert.show();
+        alert.setHeight(127);
+        alert.setOnHidden(evt -> SceneSwitcher.getInstance().setSceneTo("SellerMenu"));
     }
 
     @FXML private void select(){

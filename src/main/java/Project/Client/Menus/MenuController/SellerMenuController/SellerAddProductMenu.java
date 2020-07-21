@@ -182,11 +182,10 @@ public class SellerAddProductMenu {
                 result.ifPresent(s -> attributeValue.add(s));
             }
         }
-        MakeRequest.addProduct(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeKey,attributeValue,image,video);
         hasChosenVideo = false;
         hasChosenImage = false;
         clearFields();
-        sendAlert();
+        sendAlert(MakeRequest.addProduct(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeKey,attributeValue,image,video));
     }
 
     private void setDialogText(String attributeKey){
@@ -196,12 +195,12 @@ public class SellerAddProductMenu {
         dialog.setGraphic(null);
     }
 
-    private void sendAlert(){
+    private void sendAlert(String result){
         MusicManager.getInstance().playSound("notify");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
+        alert.setTitle("");
         alert.setHeaderText(null);
-        alert.setContentText("Your Item will be added if and once admins approve. ");
+        alert.setContentText(result);
         alert.setGraphic(null);
         alert.show();
         alert.setHeight(127);
