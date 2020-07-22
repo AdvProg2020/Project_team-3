@@ -96,28 +96,20 @@ public class ItemMenuController {
         priceAfterSaleLabel.setText(String.valueOf(MakeRequest.makeGetItemPriceWithSaleRequest(itemID)));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
-        //String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-        String messagePath="src/main/resources/Images/ItemImages/";
         String messageImageName=null;
-       // File file=new File(path);
-        try {
-            itemImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
-            itemImage.setFitHeight(235);
-            itemImage.setFitWidth(235);
-            if(item.getInStock()==0){
-                messageImageName=messagePath+"soldOut.png";
-            }
-           if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
-                messageImageName=messagePath+"sale.png";
-            }
-            if(messageImageName!=null){
-                File message=new File(messageImageName);
-                messageImageView.setImage(new Image(String.valueOf(message.toURI().toURL())));
-                messageImageView.setTranslateX(-10);
-                messageImageView.setTranslateY(230);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        itemImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
+        itemImage.setFitHeight(235);
+        itemImage.setFitWidth(235);
+        if(item.getInStock()==0){
+            messageImageName="soldOut.png";
+        }
+        if(MakeRequest.isInSaleItem(itemID)==true && item.getInStock()!=0) {
+             messageImageName="sale.png";
+         }
+        if(messageImageName!=null){
+            messageImageView.setImage(Client.getInstance().getImageFromServer(messageImageName,"item"));
+            messageImageView.setTranslateX(-10);
+            messageImageView.setTranslateY(230);
         }
         addAttributeListView();
         commentListViewInitialize();
@@ -128,7 +120,6 @@ public class ItemMenuController {
             }
         });
         //Image ratingImage=new Image(Client.getInstance().getImageFromServer("star","user"),200,28,false,false);
-
         rating.setImage(Client.getInstance().getImageFromServer("star","user"));
         double frameWidth = (item.getRating() / 5)*200;
         Rectangle mask = new Rectangle(frameWidth, 28);
@@ -318,10 +309,6 @@ public class ItemMenuController {
             vBox.setAlignment(Pos.CENTER_LEFT);
             imageView.setPreserveRatio(true);
             imageView.setFitHeight(30);
-           // hBox.getChildren().add(imageView);
-           // label.setWrapText(true);
-           // label.setTextAlignment(TextAlignment.CENTER);
-           // hBox.getChildren().add(label);
             setPrefWidth(USE_PREF_SIZE);
         }
         @Override
@@ -555,13 +542,7 @@ public class ItemMenuController {
                 setGraphic(null);
             }
             else {
-                String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-                File file=new File(path);
-                try {
-                    imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                imageView.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
                 String printItem=item.toString();
                 label.setText(printItem);
                 setGraphic(vBox);

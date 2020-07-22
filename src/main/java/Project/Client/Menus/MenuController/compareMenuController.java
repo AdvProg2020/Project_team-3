@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.CLI.View;
@@ -43,12 +44,8 @@ public class compareMenuController {
           String secondPath="src/main/resources/Images/ItemImages/"+second.getImageName();
         File firstFile=new File(firstPath);
         File secondFile=new File(secondPath);
-        try {
-            firstItemImageView.setImage(new Image(String.valueOf(firstFile.toURI().toURL())));
-            secondItemImageView.setImage(new Image(String.valueOf(secondFile.toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        firstItemImageView.setImage(Client.getInstance().getImageFromServer(first.getImageName(),"item"));
+        secondItemImageView.setImage(Client.getInstance().getImageFromServer(first.getImageName(),"item"));
         updateListViews(first,second);
     }
 

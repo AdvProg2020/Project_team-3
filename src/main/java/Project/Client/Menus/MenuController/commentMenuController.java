@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Model.Users.*;
 import Project.Client.Menus.MusicManager;
@@ -35,13 +36,7 @@ public class commentMenuController {
       View.setFonts(pane);
       MusicManager.getInstance().setSongName("second.wav");
       User user=MakeRequest.makeGetUserRequest();
-      String path= MakeRequest.makeUserImagePathRequest();
-      File file=new File(path);
-      try {
-         userImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-      } catch (MalformedURLException e) {
-         e.printStackTrace();
-      }
+      userImage.setImage(Client.getInstance().getImageFromServer(user.getUsername(),"user"));
       usernameTexField.setText(user.getUsername());
       usernameTexField.setEditable(false);
    }

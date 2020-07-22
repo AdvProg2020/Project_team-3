@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -7,6 +8,7 @@ import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.User;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,8 +81,8 @@ public class FileMenuController {
             return  new imageCommentTextCell();
          }
       });
-      Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
-      rating.setImage(ratingImage);
+     // Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
+      rating.setImage(Client.getInstance().getImageFromServer("star","user"));
       double frameWidth = (item.getRating() / 5)*200;
       Rectangle mask = new Rectangle(frameWidth, 28);
       rating.setClip(mask);
@@ -202,13 +204,7 @@ public class FileMenuController {
          }
          else {
             addReplyAction(reply,comment);
-            String path= MakeRequest.makeUserImagePathRequest();
-            File file=new File(path);
-            try {
-               imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-            } catch (MalformedURLException e) {
-               e.printStackTrace();
-            }
+            imageView.setImage(Client.getInstance().getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user"));
             status.setText("has Bought?:"+comment.hasBought());
             status.setTextFill(Color.rgb(0,0,255));
             textArea.setText(comment.getText());
@@ -378,13 +374,7 @@ public class FileMenuController {
             setGraphic(null);
          }
          else {
-            String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-            File file=new File(path);
-            try {
-               imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-            } catch (MalformedURLException e) {
-               e.printStackTrace();
-            }
+            imageView.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
             String printItem=item.toString();
             label.setText(printItem);
             setGraphic(vBox);
