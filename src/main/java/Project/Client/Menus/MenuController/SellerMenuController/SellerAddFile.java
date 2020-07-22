@@ -62,7 +62,15 @@ public class SellerAddFile {
          alert.showAndWait();
          return;
       }
-      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()));
+
+      String image,video;
+      if(hasChosenImage){
+         Client.getInstance().sendImageToServer(srcImagePath,desImagePath);
+         image = imageName;
+      }else {
+         image = "default.png";
+      }
+      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()),image);
       if(message.startsWith("Successful")){
          String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+'_'+itemName.getText()+ext;
          Client.getInstance().sendFileToServer(srcPath,desPath);
@@ -136,4 +144,29 @@ public class SellerAddFile {
       File file=new File(srcPath);
       return file.exists();
    }
+
+   private String srcImagePath="";
+   private String desImagePath="";
+
+   @FXML private void imageChooserOpen(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
+      FileChooser fileChooser=new FileChooser();
+      fileChooser.getExtensionFilters().addAll(
+              new FileChooser.ExtensionFilter("PNG","*.png"),
+              new FileChooser.ExtensionFilter("JPG","*.jpg")
+      );
+      File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+      if(selected==null) return;
+      String fullPath="src/main/resources/Images/ItemImages/"+selected.getName();
+      imageAddress.setText(selected.getPath());
+      imageName = selected.getName();
+      hasChosenImage = true;
+      srcImagePath=selected.getPath();
+      desImagePath=fullPath;
+   }
+
+   private String imageName;
+   private boolean hasChosenImage = false;
+   @FXML Label imageAddress;
+
 }
