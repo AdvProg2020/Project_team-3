@@ -26,9 +26,10 @@
                 <Font size="27.0" />
             </font>
         </Label>
-        <Label layoutX="356.0" layoutY="501.0" text="seller name:" />
-        <Label fx:id="sellerLabel" layoutX="443.0" layoutY="501.0" prefHeight="17.0" prefWidth="340.0" />
 
+        <Label layoutX="23.0" layoutY="607.0" prefHeight="17.0" prefWidth="43.0" text="Seller:" />
+        <Label fx:id="sellerLabel" layoutX="80.0" layoutY="607.0" prefHeight="17.0" prefWidth="238.0" />
+        
         <Label layoutX="28.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="price:" />
         <Label fx:id="priceLabel" layoutX="58.0" layoutY="442.0" prefHeight="17.0" prefWidth="245.0" />
         <Label layoutX="28.0" layoutY="501.0" text="Grade:" />
@@ -46,10 +47,19 @@
         <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
         <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="387.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="240.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-        <Label layoutX="26.0" layoutY="610.0" text="price after Sale:" />
-        <Label fx:id="priceAfterSaleLabel" layoutX="119.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
+
+
         <TabPane layoutX="787.0" layoutY="-2.0" prefHeight="729.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
+                <Tab text="Details">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="itemDetails" editable="false" layoutX="61.0" layoutY="42.0" prefHeight="106.0" prefWidth="385.0" style="-fx-border-color: #94a8b3;" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+
                 <Tab text="Comments">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -60,16 +70,10 @@
                             </children></AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Detail">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TextArea fx:id="itemDetails" editable="false" layoutX="61.0" layoutY="42.0" prefHeight="513.0" prefWidth="385.0" style="-fx-border-color: #94a8b3;" />
-                            </children></AnchorPane>
-                    </content>
 
-                </Tab>
+
             </tabs>
         </TabPane>
+
     </children>
 </AnchorPane>

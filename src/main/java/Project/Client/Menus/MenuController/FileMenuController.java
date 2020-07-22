@@ -32,7 +32,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class FileMenuController {
-   private static String fileName;
+
+   private static String itemID;
    public Label itemNameLabelBigFont;
    public Label itemNameLabel;
    public Label sellerLabel;
@@ -41,37 +42,38 @@ public class FileMenuController {
    public Label viewLabel;
    public ListView<Comment> commentListView;
    public ImageView itemImage;
+
    private final ObservableList<Comment> comments= FXCollections.observableArrayList();
+   private final ObservableList<Item> allSimpleItems=FXCollections.observableArrayList();
 
    public ImageView ivTarget;
-   public ImageView messageImageView;
+
 
    @FXML public ImageView rating;
-   public Label priceAfterSaleLabel;
 
    @FXML private TextArea itemDetails;
 
    private ArrayList<Item> alternativeOptions;
 
    public void initialize(){
-      MakeRequest.makeAddViewToItem(fileName);
+      MakeRequest.makeAddViewToItem(itemID);
       alternativeOptions = new ArrayList<>();
       MakeRequest.makeUpdateDateAndTimeRequest();
       MusicManager.getInstance().setSongName("second.wav");
       ivTarget.setSmooth(true);
       ivTarget.setPreserveRatio(true);
-      Item item= MakeRequest.getItem(fileName);
+      Item item= MakeRequest.getItem(itemID);
       itemDetails.setText("Description:\n"+item.getDescription());
       itemNameLabel.setText(item.getName());
       itemNameLabelBigFont.setText(item.getName());
       sellerLabel.setText(item.getSellerName());
       gradeLabel.setText(String.valueOf(item.getRating()));
       priceLabel.setText(String.valueOf(item.getPrice()));
-      priceAfterSaleLabel.setText(String.valueOf(MakeRequest.makeGetItemPriceWithSaleRequest(fileName)));
       viewLabel.setText(String.valueOf(item.getViewCount()));
-      String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-      String messagePath="src/main/resources/Images/ItemImages/";
       String messageImageName=null;
+      itemImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
+      itemImage.setFitHeight(235);
+      itemImage.setFitWidth(235);
       commentListViewInitialize();
       commentListView.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
          @Override
@@ -79,15 +81,22 @@ public class FileMenuController {
             return  new imageCommentTextCell();
          }
       });
-     // Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
+      //Image ratingImage=new Image(Client.getInstance().getImageFromServer("star","user"),200,28,false,false);
       rating.setImage(Client.getInstance().getImageFromServer("star","user",200,28));
       double frameWidth = (item.getRating() / 5)*200;
       Rectangle mask = new Rectangle(frameWidth, 28);
       rating.setClip(mask);
+//      updateSimpleItem();
+      // initializeMediaPlayer();
    }
 
-   public static void setFileName(String fileName) {
-      FileMenuController.fileName = fileName;
+
+   public static void setItemID(String itemID) {
+      FileMenuController.itemID = itemID;
+   }
+
+   public static String getItemID() {
+      return itemID;
    }
 
    public void comment(ActionEvent actionEvent) {
@@ -113,7 +122,7 @@ public class FileMenuController {
          alert.show();
          return;
       }
-      commentMenuController.setItemID(fileName);
+      commentMenuController.setItemID(itemID);
       commentMenuController.setFatherCommentId(null);
       addCommentDialogBox();
    }
@@ -129,7 +138,7 @@ public class FileMenuController {
          alert.showAndWait();
          return;
       }
-      String message=MakeRequest.makeRatingRequest(rating, fileName);
+      String message=MakeRequest.makeRatingRequest(rating,itemID);
       MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
       alert.setContentText(message);
@@ -138,36 +147,52 @@ public class FileMenuController {
    }
 
 
-
    public void back(ActionEvent actionEvent) {
       MusicManager.getInstance().playSound("Button");
       SceneSwitcher.getInstance().back();
    }
 
    public void commentListViewInitialize(){
-      Item item=MakeRequest.getItem(fileName);
+      Item item=MakeRequest.getItem(itemID);
       for(Comment comment:item.getAllComments()){
          comments.add(comment);
       }
       commentListView.setItems(comments);
    }
 
-   public void buy(ActionEvent actionEvent) {
-     if(MakeRequest.isTokenValid()==false){
-        showAlert("Error: please login first");
-        return;
-     }
-     if(MakeRequest.makeGetUserRequest() instanceof Buyer ==false){
-       showAlert("Error: only buyers can buy files");
-       return;
-     }
-
-   }
-
-   public void showAlert(String message){
+   public void addToCart(ActionEvent actionEvent) {
+    /*  MusicManager.getInstance().playSound("Button");
+      User user=MakeRequest.makeGetUserRequest();
+      Item item=MakeRequest.getItem(itemID);
+      if( user!=null &&(user instanceof Buyer)==false){
+         MusicManager.getInstance().playSound("error");
+         Alert alert=new Alert(Alert.AlertType.ERROR);
+         alert.setHeaderText("ERROR");
+         alert.setContentText("you are not a buyer");
+         alert.show();
+         return;
+      }
+      if(Cart.getInstance().includesItem(itemID)){
+         MusicManager.getInstance().playSound("notify");
+         Alert alert=new Alert(Alert.AlertType.INFORMATION);
+         alert.setTitle("ERROR");
+         alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
+         alert.show();
+         return;
+      }
+      if(item.getInStock()==0){
+         MusicManager.getInstance().playSound("error");
+         Alert alert=new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("ERROR");
+         alert.setContentText("sold out Item!");
+         alert.showAndWait();
+         return;
+      }
+      Cart.getInstance().add(itemID);
+      MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText(message);
-      alert.showAndWait();
+      alert.setContentText("item has been added to cart.");
+      alert.show(); */
    }
 
    public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
@@ -191,6 +216,13 @@ public class FileMenuController {
       ivTarget.setViewport(viewPort);
    }
 
+   public void removeImage(MouseEvent mouseEvent) {
+      ivTarget.setImage(null);
+   }
+
+   public void buy(ActionEvent actionEvent) {
+
+   }
 
 
    class imageCommentTextCell extends ListCell<Comment>{
@@ -214,6 +246,13 @@ public class FileMenuController {
          }
          else {
             addReplyAction(reply,comment);
+            String path= MakeRequest.makeUserImagePathRequest();
+            File file=new File(path);
+            try {
+               imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
+            } catch (MalformedURLException e) {
+               e.printStackTrace();
+            }
             status.setText("has Bought?:"+comment.hasBought());
             status.setTextFill(Color.rgb(0,0,255));
             textArea.setText(comment.getText());
@@ -294,7 +333,7 @@ public class FileMenuController {
                alert.showAndWait();
                return;
             }
-            commentMenuController.setItemID(fileName);
+            commentMenuController.setItemID(itemID);
             commentMenuController.setFatherCommentId(comment.getCommentId());
             addCommentDialogBox();
          }
@@ -302,12 +341,15 @@ public class FileMenuController {
 
    }
 
+
+
    public void addCommentDialogBox(){
       SceneSwitcher.getInstance().setSceneAndWait("CommentMenu");
    }
 
 
-   @FXML Polygon star1;
+   @FXML
+   Polygon star1;
    @FXML Polygon star2;
    @FXML Polygon star3;
    @FXML Polygon star4;
@@ -391,8 +433,40 @@ public class FileMenuController {
       }
    }
 
-   public void removeImage(MouseEvent mouseEvent) {
-      ivTarget.setImage(null);
-   }
+ /*  public void updateSimpleItem(){
+      ArrayList<Item> allItems=new ArrayList<>();
+      Item item=MakeRequest.getItem(itemID);
+      Category category=MakeRequest.getCategory(item.getCategoryName());
+      for(String id:category.getAllItemsID()){
+         if(id.equals(item.getId())) continue;
+         allItems.add(MakeRequest.getItem(id));
+      }
+      allSimpleItems.setAll(allItems);
+      familyItemListView.setItems(allSimpleItems);
+      familyItemListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+         @Override
+         public ListCell<Item> call(ListView<Item> param) {
+            return  new simpleItemImageTextCell();
+         }
+      });
+   } */
+
+  /* public void showItem(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
+      Item selected=familyItemListView.getSelectionModel().getSelectedItem();
+      if(selected!=null) {
+         ItemMenuController.setItemID(selected.getId());
+         SceneSwitcher.getInstance().setSceneTo("ItemMenu");
+      }
+   } */
+
+
+
+
+
+
+
+
+
 
 }

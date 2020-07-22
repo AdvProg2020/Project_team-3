@@ -238,6 +238,10 @@ public class RequestController {
             if(!imagePath.equals("src/main/resources/Images/default.jpg")) file.delete();
             Database.getInstance().deleteUser(((AccountRequest) declined).getUser());
         }
+        if (declined instanceof ItemRequest) {
+            ItemRequest request=(ItemRequest) RequestController.getInstance().getRequestById(requestID);
+            Database.getInstance().deleteItem(request.getNewItem());
+        }
         if (declined == null) {
             return "Error: Request doesn't exist";
         }

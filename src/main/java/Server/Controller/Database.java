@@ -362,7 +362,9 @@ public class Database {
          path = "src/main/resources/Files";
       }else if(type.equals("user image")){
          path = "src/main/resources/Images";
+         if((name.equals("default.jpg"))||(name.equals("default.png"))) return;
       }else if(type.equals("item image")){
+         if((name.equals("default.jpg"))||(name.equals("default.png"))) return;
          path = "src/main/resources/Images/ItemImages";
       }
       File file = new File(path + File.separator + name);
