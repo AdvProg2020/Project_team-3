@@ -7,6 +7,9 @@ import java.io.*;
 import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.Clock;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Server {
@@ -17,8 +20,17 @@ public class Server {
    public static final String ANSI_RESET = "\u001B[0m";
    public static final String ANSI_GREEN = "\u001B[32m";
    public static final String ANSI_BLUE = "\u001B[34m";
+   private long previousCommandMillis = 0;
+   private int previousIP;
+   private HashMap<Integer,Integer> suspiciousIPsConnection;
+   private HashMap<Integer,Long> DoSBlackListTime;
+   private Clock clock;
 
    public Server() {
+      clock = Clock.systemDefaultZone();
+      suspiciousIPsConnection = new HashMap<>();
+      DoSBlackListTime = new HashMap<>();
+      AuthTokenHandler.getInstance().updateTime();
       try {
          server = new ServerSocket(9000);
       } catch (IOException e) {
@@ -36,6 +48,25 @@ public class Server {
                      request.close();
                      continue;
                   }
+                  if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
+                     if (suspiciousIPsConnection.get(request.getLocalPort()) > 300) {
+                        blockedIp.add(request.getLocalPort());
+                        System.err.println("connection refused:too many");
+                        DoSBlackListTime.put(request.getLocalPort(),clock.millis());
+                        request.close();
+                        continue;
+                     }
+                  }
+                  if(clock.millis() - previousCommandMillis < 10 && previousIP==request.getLocalPort()){
+                     if(suspiciousIPsConnection.containsKey(request.getLocalPort())){
+                        int cnt = suspiciousIPsConnection.get(request.getLocalPort());
+                        suspiciousIPsConnection.replace(request.getLocalPort(),cnt,cnt+1);
+                     }else{
+                        suspiciousIPsConnection.put(request.getLocalPort(),1);
+                     }
+                  }
+                  updateDoSList();
+
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
@@ -55,7 +86,10 @@ public class Server {
                   }
                    dataOutputStream.close();
                    dataInputStream.close();
+                  previousIP = request.getLocalPort();
                    request.close();
+                  previousCommandMillis = clock.millis();
+
                }
             } catch (IOException e) {
               e.printStackTrace();
@@ -163,6 +197,18 @@ public class Server {
          System.out.println("bank server is not online.");
       }
       System.out.println("server is running");
+   }
+
+   private void updateDoSList(){
+      ArrayList<Integer> removeUs = new ArrayList<>();
+      for(int ip:DoSBlackListTime.keySet()){
+         if(clock.millis() - DoSBlackListTime.get(ip) > 5000){
+            removeUs.add(ip);
+         }
+      }
+      for(int ip:removeUs){
+         DoSBlackListTime.remove(ip);
+      }
    }
 
 }

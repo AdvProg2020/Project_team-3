@@ -1,6 +1,7 @@
 package Server.Controller;
 
 import java.security.SecureRandom;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -11,9 +12,13 @@ public class AuthTokenHandler {
    private  final SecureRandom secureRandom = new SecureRandom();
    private  final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
    private HashMap<String,String> onlineUsersTokens;
+   private HashMap<String,Long> tokenMillis;
    private ArrayList<String> onlineUsername=new ArrayList<>();
+   private Clock clock;
    private AuthTokenHandler(){
       onlineUsersTokens=new HashMap<>();
+      tokenMillis = new HashMap<>();
+      clock = Clock.systemDefaultZone();
    }
 
    public static AuthTokenHandler getInstance(){
@@ -28,9 +33,25 @@ public class AuthTokenHandler {
          String token=base64Encoder.encodeToString(randomBytes);
          if(onlineUsersTokens.containsKey(token)==false) {
             onlineUsersTokens.put(token, username);
+            tokenMillis.put(token,clock.millis());
             onlineUsername.add(username);
             return token;
          }
+      }
+   }
+
+   public void updateTime(){
+      ArrayList<String> deleteTheseTokens = new ArrayList<>();
+      for(String token:tokenMillis.keySet()){
+         if(clock.millis() - tokenMillis.get(token) > 7200000){
+            deleteTheseTokens.add(token);
+         }
+      }
+      for(String token:deleteTheseTokens){
+         tokenMillis.remove(token);
+         String username = onlineUsersTokens.get(token);
+         onlineUsersTokens.remove(token);
+         onlineUsername.remove(username);
       }
    }
 

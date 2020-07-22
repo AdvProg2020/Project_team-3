@@ -149,9 +149,10 @@ public class AuctionController {
             double moneyToSeller = auction.getHighestBid() - karMozd;
             seller.setMoney(seller.getMoney() + moneyToSeller);
             //karMozd bere be hesabe modir
-            /*String depositReceipt=TransactionController.getInstance().getReceiptID(bankToken,"deposit",karMozd,"-1","10001","");
+            String adminToken = TransactionController.getInstance().getBankToken("admin","12345");
+            String depositReceipt=TransactionController.getInstance().getReceiptID(adminToken,"deposit",Integer.toString((int)karMozd),"-1","10001","");
             String string=TransactionController.getInstance().payReceipt(depositReceipt);
-            System.out.println("10001 bank account: "+depositReceipt+" "+string);*/
+            System.out.println("10001 bank account: "+depositReceipt+" "+string);
         }
 
         Database.getInstance().deleteAuction(auction);
