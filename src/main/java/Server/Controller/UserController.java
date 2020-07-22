@@ -157,7 +157,10 @@ public class UserController {
         }
         String allData = username.concat(password).concat(name).concat(lastName).concat(email);
         if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
-            return "Error: special characters!";
+            return "Error: invalid characters!";
+        }
+        if(isPasswordWeak(password)){
+            return "Error: weak password";
         }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
@@ -173,7 +176,10 @@ public class UserController {
         }
         String allData = username.concat(password).concat(name).concat(lastName).concat(email);
         if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
-            return "Error: special characters!";
+            return "Error: invalid characters!";
+        }
+        if(isPasswordWeak(password)){
+            return "Error: weak password";
         }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
@@ -192,7 +198,10 @@ public class UserController {
         }
         String allData = username.concat(password).concat(name).concat(lastName).concat(email);
         if(allData.contains("*") || allData.contains("|") || allData.contains("'") || allData.contains("\"") || allData.contains(" ")){
-            return "Error: special characters!";
+            return "Error: invalid characters!";
+        }
+        if(isPasswordWeak(password)){
+            return "Error: weak password";
         }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
@@ -204,12 +213,32 @@ public class UserController {
         if (username.length()>18 || password.length()>18 || name.length() > 18 || lastName.length() > 18) {
             return "Error : Lengthy inputs";
         }
+        if(isPasswordWeak(password)){
+            return "Error: weak password";
+        }
         if (isThereUserWithUsername(username)) {
             return "Error : User exist with this username!";
         }
         Assistant user=new Assistant(username,password,name,lastName,email,number);
         Database.getInstance().saveUser(user);
         return "Success: Your assistant account registered.";
+    }
+
+    private boolean isPasswordWeak(String password){
+        if(password.length() < 5) return true;
+        if(password.matches("\\d+")) return true;
+        String[] weakPasswords = {"12345","123456","123456789","test1","password","12345678","zinch","g_czechout","asdf"
+                ,"qwerty","1234567890","1234567","Aa123456.","iloveyou","1234","abc123","111111","123123","dubsmash","test","princess","qwertyuiop","sunshine","BvtTest123","11111","ashley"
+                ,"00000","000000","password1","monkey","livetest","55555","soccer","charlie","asdfghjkl","654321","family"
+                ," michael","123321","football","baseball","q1w2e3r4t5y6","nicole","jessica","purple","shadow","hannah","chocolate","michelle","daniel","maggie","qwerty123","hello","112233","jordan","tigger","666666"
+                ,"987654321","superman","12345678910","summer","1q2w3e4r5t","fitness","bailey","zxcvbnm","fuckyou","121212","buster","butterfly","dragon","jennifer","amanda","justin","cookie","basketball","shopping","pepper","joshua","hunter","ginger"
+                ,"matthew","abcd1234","taylor","samantha","whatever","andrew","1qaz2wsx3edc","thomas","jasmine","animoto","madison","0987654321","54321","flower","Password","maria","babygirl","lovely","sophie","Chegg123"};
+        for(String weakPass : weakPasswords){
+            if(password.equals(weakPass)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -219,16 +248,16 @@ public class UserController {
             return "Error: you are already login with another device";
         }
         if (!isThereUserWithUsername(username)) {
-            return "Error: No user exists with this username!";
+            return "Error: Incorrect password/username or account pending!";
         }
         User user = getUserByUsername(username);
         if (!user.doesPasswordMatch(password)) {
-            return "Error: Incorrect password!";
+            return "Error: Incorrect password/username or account pending!";
         }
         if(user instanceof Seller){
             Seller seller=(Seller) user;
             if(!seller.getValid()){
-                return "Error: your account is not accepted yet";
+                return "Error: Incorrect password/username or account pending!";
             }
         }
         controller.currentOnlineUser = user;

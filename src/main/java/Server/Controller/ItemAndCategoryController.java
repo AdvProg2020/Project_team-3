@@ -265,6 +265,12 @@ public class ItemAndCategoryController {
         if(controller.currentOnlineUser instanceof Buyer==false){
             return "Error: Only customers can post comments.";
         }
+        if(text.length() > 1200){
+            return "Error: lengthy comment";
+        }
+        if(text.contains(" OR ") || text.contains("*") || text.contains("|")){
+            return "Error: invalid characters in comment";
+        }
         if (item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())) {
             String commentId=Controller.getInstance().getAlphaNumericString(controller.getIdSize(),"Requests");
             Comment comment = new Comment(controller.currentOnlineUser.getUsername(), itemId, text, true);
@@ -329,6 +335,13 @@ public class ItemAndCategoryController {
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
         if ((!isThereCategoryWithName(categoryName))||(categoryName.equals("file"))) {
             return "Error: Invalid category name.";
+        }
+        String data = Name.concat(companyName).concat(description);
+        if(data.length() > 2000){
+            return "Error: lengthy inputs";
+        }
+        if(data.contains("*") || data.contains("|") || data.contains("'") || data.contains("\"")){
+            return "Error: invalid characters";
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null)
             return "Error: No user is logged in!";
