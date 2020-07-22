@@ -50,6 +50,10 @@ public class AllAuctionsMenu {
         System.out.println(id);
         id = id.substring(0,5);
         listView.getSelectionModel().clearSelection();
+        if(getSelected(id)==null){
+            initialize();
+            return;
+        }
         AuctionMenu.setAuction(getSelected(id));
         SceneSwitcher.getInstance().setSceneTo("AuctionMenu");
     }

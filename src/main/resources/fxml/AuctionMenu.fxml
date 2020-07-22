@@ -31,14 +31,15 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="539.0" layoutY="613.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="172.0" styleClass="myBlueButton" text="Bid" />
+      <Button fx:id="bidButton" layoutX="539.0" layoutY="613.0" mnemonicParsing="false" onAction="#bid" prefHeight="25.0" prefWidth="172.0" styleClass="myBlueButton" text="Bid" />
       <Label fx:id="bidLabel" layoutX="489.0" layoutY="564.0" prefHeight="39.0" prefWidth="183.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="376.0" layoutY="613.0" promptText="Enter a Value" style="-fx-border-color: #94a8b3;" />
+      <TextField fx:id="bidValue" layoutX="376.0" layoutY="613.0" promptText="Enter a Value" style="-fx-border-color: #94a8b3;" />
       <Hyperlink layoutX="435.0" layoutY="514.0" onAction="#learnMore" prefHeight="23.0" prefWidth="192.0" text="Click to learn more about this item" />
       <Label fx:id="errorLabel" layoutX="651.0" layoutY="674.0" prefHeight="17.0" prefWidth="378.0" />
+      <Button fx:id="refresh" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="51.0" styleClass="myBlueButton" text="Refresh" />
    </children>
 </AnchorPane>

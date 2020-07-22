@@ -10,14 +10,18 @@ import Project.Client.Model.Auction;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Seller;
 import Project.Client.Model.Users.User;
+import Project.Client.ObjectMapper;
+import Server.Controller.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AuctionMenu {
@@ -31,6 +35,8 @@ public class AuctionMenu {
     @FXML private TextArea description;
     @FXML private Label nameLabel;
     @FXML private Label brandLabel;
+
+    @FXML private TextField bidValue;
 
     protected static void setAuction(Auction newAuction){
         auction = newAuction;
@@ -49,12 +55,37 @@ public class AuctionMenu {
         nameLabel.setText(item.getName()+"        Sold by:  "+item.getSellerName());
         description.setText(item.getDescription());
         brandLabel.setText(item.getBrand());
-
+        bidLabel.setText(Double.toString(auction.getHighestBid()));
         //bayad biaim menush ro update konim
 
         //ghabeliat chat beine hamme (login shode bashe!)
 
         //ghabeliat bid baraye buyer ha
+    }
+
+    @FXML private void bid(){
+
+    }
+
+    @FXML private void refresh(){
+        ArrayList<Auction> allAuctions = ObjectMapper.jsonToAuction(MakeRequest.getAllAuctions());
+        String id = auction.getId();
+        Auction newAuc = getById(id,allAuctions);
+        if(newAuc==null){
+            SceneSwitcher.getInstance().setSceneTo("AllAuctionsMenu");
+        }else{
+            auction = newAuc;
+            initialize();
+        }
+    }
+
+    private Auction getById(String id, ArrayList<Auction> allAuctions){
+        for(Auction auction:allAuctions){
+            if(auction.getId().equals(id)){
+                return auction;
+            }
+        }
+        return null;
     }
 
     private void initializeChat(){
