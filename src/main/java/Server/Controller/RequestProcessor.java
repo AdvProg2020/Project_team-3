@@ -421,6 +421,7 @@ public class RequestProcessor {
          ArrayList<String> result=new ArrayList<>();
          for (String id : seller.getAllItemsId()) {
             Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item==null) continue;
             if(item.getState().equals("file")==false) result.add(item.showIdWithName());
          }
          return gson.toJson(result);
@@ -432,6 +433,7 @@ public class RequestProcessor {
          ArrayList<String> result=new ArrayList<>();
          for (String id : seller.getAllItemsId()) {
             Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if(item==null) continue;
             if(item.getState().equals("file")) result.add(item.showIdWithName());
          }
          return gson.toJson(result);

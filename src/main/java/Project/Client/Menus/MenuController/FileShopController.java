@@ -193,8 +193,8 @@ public class FileShopController {
       VBox itemBox = new VBox();
 
       itemBox.setOnMouseClicked(event -> {
-         ItemMenuController.setItemID(itemID);
-         SceneSwitcher.getInstance().saveScene("ShopMenu");
+         SceneSwitcher.getInstance().saveScene("FileShop");
+         FileMenuController.setItemID(itemID);
          SceneSwitcher.getInstance().setSceneTo("FileMenu",1280,750);
       });
       itemBox.setPrefSize(230,345);
