@@ -208,7 +208,7 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String addFile(String name,String description, double price){
+   public static String addFile(String name,String description, double price,String image){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
@@ -216,7 +216,7 @@ public class MakeRequest {
       json.addProperty("name", name);
       json.addProperty("description", description);
       json.addProperty("price",price);
-      //inja bayad file ham ferestade bashe
+      json.addProperty("image",image);
       return Client.getInstance().sendMessage(json);
    }
 

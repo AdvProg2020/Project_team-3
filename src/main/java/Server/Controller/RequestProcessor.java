@@ -378,7 +378,8 @@ public class RequestProcessor {
          String name=getJsonStringField(command,"name");
          String description=getJsonStringField(command,"description");
          double price=command.get("price").getAsDouble();
-         return ItemAndCategoryController.getInstance().addFile(name,description,price);
+         String image=getJsonStringField(command,"image");
+         return ItemAndCategoryController.getInstance().addFile(name,description,price,image);
       }
 
       if(getJsonStringField(command,"content").equals("get sale log")){
