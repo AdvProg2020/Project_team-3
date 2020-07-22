@@ -123,7 +123,7 @@ public class TransactionMenu {
 
 
     public void depositChecker(){
-
+        if(allChars.equals("")) return;
         int amountMoney=Integer.parseInt(allChars);
         int limit=Integer.parseInt(MakeRequest.getWalletLimit());
         if((userMoney-amountMoney)< limit){
@@ -144,6 +144,7 @@ public class TransactionMenu {
     }
 
     public void withdrawChecker(){
+        if(allChars.equals("")) return;
         int amountMoney=Integer.parseInt(allChars);
         if(bank-amountMoney<0){
             finalAmount.setText("limit error!");

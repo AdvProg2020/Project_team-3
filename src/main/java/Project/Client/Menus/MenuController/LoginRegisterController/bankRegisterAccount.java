@@ -39,9 +39,10 @@ public class bankRegisterAccount {
             Client.getInstance().setBankAccountToken(token);
             String receipt=MakeRequest.makeBankReceiptRequest("deposit","1000","-1",result,"",Client.getInstance().getBankAccountToken());
             String result1=MakeRequest.payReceipt(receipt);
-            String type=MakeRequest.makeGetUserRequest().type;
-            if(type.equalsIgnoreCase("buyer")) SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
-            else if(type.equalsIgnoreCase("seller")) SceneSwitcher.getInstance().setSceneTo("SellerMenu");
+            SceneSwitcher.getInstance().back();
+//            String type=MakeRequest.makeGetUserRequest().type;
+//            if(type.equalsIgnoreCase("buyer")) SceneSwitcher.getInstance().setSceneTo("BuyerMenu");
+//            else if(type.equalsIgnoreCase("seller")) SceneSwitcher.getInstance().setSceneTo("SellerMenu");
 
         }
     }
