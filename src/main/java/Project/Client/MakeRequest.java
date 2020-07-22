@@ -954,6 +954,16 @@ public class MakeRequest {
       Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static String addBid(String auctionID,String bid){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 2);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "bid");
+      jsonObject.addProperty("auction id", auctionID);
+      jsonObject.addProperty("bid", bid);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static ArrayList<String> getAllFiles(){
       return new ArrayList<>();
    }

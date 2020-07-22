@@ -104,6 +104,10 @@ public class AuctionController {
         return ans;
     }
 
+    public String bidOnAuction(String auctionID,double bid){
+        return "kire khar";
+    }
+
     public void updateAuctionsTime(){
         for(Auction auction:getAllAuctions()){
             if(auction.getEndTime().isBefore(LocalDateTime.now())){

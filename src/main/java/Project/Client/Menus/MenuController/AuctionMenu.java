@@ -64,7 +64,30 @@ public class AuctionMenu {
     }
 
     @FXML private void bid(){
+        String bidVal = bidValue.getText();
+        if(!isValidPrice(bidVal)){
+            errorLabel.setText("Invalid bid value.");
+            return;
+        }
+        if((Client.getInstance().getToken()==null)||(MakeRequest.isTokenValid()==false)){
+            errorLabel.setText("You must be logged in to send a message");
+            return;
+        }
+        if(!MakeRequest.makeGetUserRequest().type.equals("Buyer")){
+            errorLabel.setText("Only customers can bid!");
+            return;
+        }
+        errorLabel.setText(MakeRequest.addBid(auction.getId(),bidVal));
+    }
 
+    private boolean isValidPrice(String price){
+        double d = -1;
+        try {
+            d = Double.parseDouble(price);
+        }catch (Exception e){
+            return false;
+        }
+        return d > 0;
     }
 
     @FXML private void refresh(){

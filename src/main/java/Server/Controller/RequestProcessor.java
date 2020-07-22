@@ -336,6 +336,12 @@ public class RequestProcessor {
          return ItemAndCategoryController.getInstance().comment(comment,itemId);
       }
 
+      if(getJsonStringField(command,"content").equals("bid")){
+         String auctionId=getJsonStringField(command,"auction id");
+         String bid =getJsonStringField(command,"bid");
+         return AuctionController.getInstance().bidOnAuction(auctionId,Double.parseDouble(bid));
+      }
+
       return "Error: invalid command";
    }
 
