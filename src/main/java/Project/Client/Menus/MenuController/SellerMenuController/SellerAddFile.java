@@ -62,14 +62,16 @@ public class SellerAddFile {
          alert.showAndWait();
          return;
       }
-
-      String message=MakeRequest.addFile(itemName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()));
+      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()));
       if(message.startsWith("Successful")){
-       String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+itemName.getText()+ext;
-       Client.getInstance().sendFileToServer(srcPath,desPath);
+         String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+'_'+itemName.getText()+ext;
+         Client.getInstance().sendFileToServer(srcPath,desPath);
+         sendAlert(message);
+         return;
       }
-      sendAlert(message);
-      clearFields();
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(message);
+      alert.showAndWait();
    }
 
 
@@ -126,12 +128,11 @@ public class SellerAddFile {
       Path source= Paths.get(selected.getPath());
       ext=selected.getName().substring(selected.getName().lastIndexOf("."));
       filePath.setText(selected.getPath());
-     // String fullPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+itemName.getText()+ext;
       srcPath=selected.getPath();
-     // desPath=fullPath;
    }
 
    private boolean isFileValid(){
+      if(srcPath==null) return false;
       File file=new File(srcPath);
       return file.exists();
    }

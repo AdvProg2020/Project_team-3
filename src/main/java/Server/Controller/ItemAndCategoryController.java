@@ -341,6 +341,12 @@ public class ItemAndCategoryController {
     public String addFile(String name,String description,double price){
         if(UserController.getInstance().getCurrentOnlineUser()==null)
             return "Error: No user is logged in!";
+        Seller seller=(Seller) Controller.getInstance().getCurrentOnlineUser();
+        for (String id : seller.getAllItemsId()) {
+            Item item=ItemAndCategoryController.getInstance().getItemById(id);
+            if((item!=null)&&(item.getName().equals(name)))
+                return "Error: please choose a different name";
+        }
         FileItem item = new FileItem(name,description,price,controller.getCurrentOnlineUser().getUsername());
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);

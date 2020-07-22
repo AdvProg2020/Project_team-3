@@ -352,6 +352,14 @@ public class Database {
 
    }
 
+
+   public void deleteItemFile(Item item) {
+      String name = item.getSellerName()+'_'+item.getName();
+      String path = "src/main/resources/Files";
+      File file = new File(path + File.separator + name);
+      file.delete();
+   }
+
    public void deleteItem(Item item) {
       /*item.delete();
       String id = item.getId();
@@ -448,8 +456,12 @@ public class Database {
       if (!file.exists()) {
          file.mkdir();
       }
+      file = new File("src/main/resources/Channels");
+      if (!file.exists()) {
+         file.mkdir();
+      }
 
-      file = new File("Resource" + File.separator + "Channels");
+      file = new File("src/main/resources/Files");
       if (!file.exists()) {
          file.mkdir();
       }
