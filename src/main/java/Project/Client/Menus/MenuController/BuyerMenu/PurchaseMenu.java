@@ -78,20 +78,26 @@ public class PurchaseMenu {
          return;
       }
       if(Client.getInstance().getBankAccountToken().equals(""))  SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
-      String message="";
-      String selected=(String) transactionBox.getSelectionModel().getSelectedItem();
-      if(discountIsValid) {
-         if(selected.equals("from bank Account")){bankAccountWithDraw();}
-         message=MakeRequest.buyCart(discounts.getValue().toString().substring(16,21),address.getText(),bankAccountId);
-      }else {
-         if(selected.equals("from bank Account")){bankAccountWithDraw();}
-         message=MakeRequest.buyCart(null,address.getText(),bankAccountId);
+      if(!Client.getInstance().getBankAccountToken().equals("")) {
+         String message = "";
+         String selected = (String) transactionBox.getSelectionModel().getSelectedItem();
+         if (discountIsValid) {
+            if (selected.equals("from bank Account")) {
+               bankAccountWithDraw();
+            }
+            message = MakeRequest.buyCart(discounts.getValue().toString().substring(16, 21), address.getText(), bankAccountId);
+         } else {
+            if (selected.equals("from bank Account")) {
+               bankAccountWithDraw();
+            }
+            message = MakeRequest.buyCart(null, address.getText(), bankAccountId);
+         }
+         MusicManager.getInstance().playSound("notify");
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setContentText(message);
+         alert.showAndWait();
+         if (message.startsWith("Successful")) SceneSwitcher.getInstance().back();
       }
-      MusicManager.getInstance().playSound("notify");
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText(message);
-      alert.showAndWait();
-      if(message.startsWith("Successful")) SceneSwitcher.getInstance().back();
    }
 
    private Boolean validateAddress(){
