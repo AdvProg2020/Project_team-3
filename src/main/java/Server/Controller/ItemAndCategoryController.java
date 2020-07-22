@@ -27,8 +27,6 @@ public class ItemAndCategoryController {
     private ItemAndCategoryController() {
     }
 
-    ArrayList<Item> currentViewableItems = new ArrayList<>();
-
     public static ItemAndCategoryController getInstance() {
         if (itemAndCategoryController == null)
             itemAndCategoryController = new ItemAndCategoryController();
@@ -329,7 +327,7 @@ public class ItemAndCategoryController {
     }
 
     public String addItem(String Name, String companyName, String description, double price, int instock, String categoryName, HashMap<String, String> attribute) {
-        if (!isThereCategoryWithName(categoryName)) {
+        if ((!isThereCategoryWithName(categoryName))||(categoryName.equals("file"))) {
             return "Error: Invalid category name.";
         }
         if(UserController.getInstance().getCurrentOnlineUser()==null)
@@ -545,8 +543,5 @@ public class ItemAndCategoryController {
         Database.getInstance().saveCategory(category);
            return "Successful: attribute added";
     }
-
-
-
 
 }

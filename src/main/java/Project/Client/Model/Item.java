@@ -124,9 +124,6 @@ public class Item {
         return attributes;
     }
 
-    public void addAttribute(String key, String value) {
-        attributes.put(key, value);
-    }
 
     public ArrayList<Comment> getAllComments() {
         return allComments;
@@ -140,34 +137,9 @@ public class Item {
         return buyerUserName;
     }
 
-    public boolean isBuyerWithUserName(String userName) {
-        if (buyerUserName.contains(userName)) return true;
-        return false;
-    }
-
-
-
-
-    public boolean hasAttribute(String key) {
-        return attributes.containsKey(key);
-    }
-
-    public void setAttribute(String attributeName, String value) {
-        if (!attributes.containsKey(attributeName)) return;
-        attributes.replace(attributeName, value);
-    }
-
 
     public String toSimpleString() {
         return id + "        " + name + "        " + price;
-    }
-
-    public void addViewsBy(int count) {
-        this.viewCount += count;
-    }
-
-    public void addTimesBoughtBy(int count) {
-        this.timesBought += count;
     }
 
     public String getAddedTime() {

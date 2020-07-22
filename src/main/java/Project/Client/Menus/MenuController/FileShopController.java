@@ -51,7 +51,7 @@ public class FileShopController {
       if(index==-1)
          return;
       String fileName=allFiles.getItems().get(index).toString().substring(4,9);
-      if(MakeRequest.isThereFileWithName(fileName)) {
+      if(MakeRequest.isThereProductWithId(fileName)) {
         FileMenuController.setFileName(fileName);
         SceneSwitcher.getInstance().setSceneTo("FileMenu");
       }

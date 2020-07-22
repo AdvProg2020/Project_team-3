@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Project.Client.Menus.MenuController.FileMenuController"
-            prefHeight="720.0" prefWidth="1280.0">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.FileMenuController">
+    <children>
 
+        <MenuBar layoutX="0.0" layoutY="0.0" prefHeight="25.0" prefWidth="1292.0" styleClass="myMenuBar">
+            <menus>
+                <Menu mnemonicParsing="false" text="option">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#back" text="Back" />
+                    </items></Menu>
+            </menus>
+        </MenuBar>
+        <ImageView fx:id="itemImage" fitHeight="200.0" fitWidth="200.0" layoutX="60.0" layoutY="90.0" onMouseExited="#removeImage" onMouseMoved="#zoom" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="rating" fitHeight="28.0" fitWidth="200.0" layoutX="60.0" layoutY="325" />
+        <Label layoutX="28.0" layoutY="392.0" prefHeight="17.0" prefWidth="36.0" text="name:" />
+        <Label fx:id="itemNameLabel" layoutX="72.0" layoutY="392.0" prefHeight="17.0" prefWidth="261.0" />
+        <Label fx:id="itemNameLabelBigFont" layoutX="371.0" layoutY="43.0" prefHeight="39.0" prefWidth="396.0">
+            <font>
+                <Font size="27.0" />
+            </font>
+        </Label>
+        <Label layoutX="356.0" layoutY="501.0" text="seller name:" />
+        <Label fx:id="sellerLabel" layoutX="443.0" layoutY="501.0" prefHeight="17.0" prefWidth="340.0" />
+
+        <Label layoutX="28.0" layoutY="442.0" prefHeight="17.0" prefWidth="36.0" text="price:" />
+        <Label fx:id="priceLabel" layoutX="58.0" layoutY="442.0" prefHeight="17.0" prefWidth="245.0" />
+        <Label layoutX="28.0" layoutY="501.0" text="Grade:" />
+        <Label fx:id="gradeLabel" layoutX="64.0" layoutY="501.0" prefHeight="17.0" prefWidth="93.0" />
+        <Separator layoutX="334.0" layoutY="25.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="4.0" />
+        <Button layoutX="451.0" layoutY="640.0" mnemonicParsing="false" onAction="#buy" prefHeight="30.0" prefWidth="232.0" styleClass="myBlueButton" text="buy" />
+        <Label layoutX="32.0" layoutY="559.0" prefHeight="17.0" prefWidth="35.0" text="View:" />
+        <Label fx:id="viewLabel" layoutX="64.0" layoutY="559.0" prefHeight="17.0" prefWidth="56.0" />
+        <Button layoutX="228.0" layoutY="641.0" mnemonicParsing="false" onAction="#rate" prefHeight="27.0" prefWidth="93.0" styleClass="myBlueButton" text="Rate Item" />
+
+        <Polygon fx:id="star1" fill="#AAAAAA" layoutX="25.0" layoutY="635.0" onMouseClicked="#star1Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star2" fill="#AAAAAA" layoutX="60" layoutY="635" onMouseClicked="#star2Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star3" fill="#AAAAAA" layoutX="95" layoutY="635" onMouseClicked="#star3Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star4" fill="#AAAAAA" layoutX="130" layoutY="635" onMouseClicked="#star4Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <Polygon fx:id="star5" fill="#AAAAAA" layoutX="165" layoutY="635" onMouseClicked="#star5Update" points="20,4.006 ,23.97,16.224 ,36.814,16.224, 26.424,23.774 ,30.392,35.992 ,20,28.442, 9.606,35.992 ,13.578,23.774 ,3.184,16.224 ,16.03,16.224" />
+        <ImageView fx:id="ivTarget" fitHeight="355.0" fitWidth="365.0" layoutX="387.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="messageImageView" fitHeight="76.0" fitWidth="93.0" layoutX="240.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+        <Label layoutX="26.0" layoutY="610.0" text="price after Sale:" />
+        <Label fx:id="priceAfterSaleLabel" layoutX="119.0" layoutY="610.0" prefHeight="17.0" prefWidth="82.0" />
+        <TabPane layoutX="787.0" layoutY="-2.0" prefHeight="729.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Comments">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ListView fx:id="commentListView" layoutX="14.0" layoutY="37.0" prefHeight="591.0" prefWidth="445.0" style="-fx-border-color: #94a8b3;" />
+                                <Button layoutX="276.0" layoutY="638.0" mnemonicParsing="false" onAction="#comment" prefHeight="48.0" prefWidth="183.0" styleClass="myBlueButton" text="add Comment" />
+                                <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="146.0" text="all Comments" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Detail">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="itemDetails" editable="false" layoutX="61.0" layoutY="42.0" prefHeight="513.0" prefWidth="385.0" style="-fx-border-color: #94a8b3;" />
+                            </children></AnchorPane>
+                    </content>
+
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
