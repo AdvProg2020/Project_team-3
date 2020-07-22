@@ -339,7 +339,7 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("bid")){
          String auctionId=getJsonStringField(command,"auction id");
          String bid =getJsonStringField(command,"bid");
-         return AuctionController.getInstance().bidOnAuction(auctionId,Double.parseDouble(bid));
+         return AuctionController.getInstance().bidOnAuction(auctionId,Double.parseDouble(bid),username);
       }
 
       return "Error: invalid command";

@@ -3,6 +3,7 @@ package Server.Controller;
 import Server.Model.Auction;
 import Server.Model.DiscountCode;
 import Server.Model.Item;
+import Server.Model.Users.Buyer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -104,8 +105,24 @@ public class AuctionController {
         return ans;
     }
 
-    public String bidOnAuction(String auctionID,double bid){
-        return "kire khar";
+    public String bidOnAuction(String auctionID,double bid,String newBidder){
+        Auction auction = getAuctionByID(auctionID);
+        if(bid <= auction.getHighestBid()){
+            return "Your bid is too low.";
+        }
+        Buyer newGuy = (Buyer)UserController.getInstance().getUserByUsername(newBidder);
+        if(newGuy.getMoney() - bid < TransactionController.getInstance().getMinimumMoney()){
+            return "insufficient money!";
+        }
+        if(!auction.getHighestBidderUsername().equals("*none*")){
+            Buyer buyer = (Buyer)UserController.getInstance().getUserByUsername(auction.getHighestBidderUsername());
+            buyer.setMoney(buyer.getMoney()+auction.getHighestBid());
+            Database.getInstance().saveUser(buyer);
+        }
+        auction.rebid(newBidder,bid);
+        Database.getInstance().saveAuction(auction);
+        newGuy.setMoney(newGuy.getMoney() - bid);
+        return "Bid successful";
     }
 
     public void updateAuctionsTime(){
