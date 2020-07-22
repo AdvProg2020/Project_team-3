@@ -74,7 +74,7 @@ public class AdminMenuController {
    public void logout(ActionEvent actionEvent) {
       MakeRequest.makeLogoutRequest();
       SceneSwitcher.getInstance().clearRecentScene();
-       Client.getInstance().setBankAccountToken("");
+      Client.getInstance().setBankAccountToken("");
       SceneSwitcher.getInstance().setSceneTo("MainMenu");
    }
 
@@ -110,5 +110,9 @@ public class AdminMenuController {
 
    public void manageFiles(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageFiles",898,537);
+   }
+
+   public void manageBuyLogs(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageBuyLogs");
    }
 }

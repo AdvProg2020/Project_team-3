@@ -8,7 +8,6 @@ import Project.Client.Model.Comment;
 import Project.Client.Model.Item;
 import Project.Client.Model.Users.Buyer;
 import Project.Client.Model.Users.User;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,7 +50,6 @@ public class FileMenuController {
    public Label priceAfterSaleLabel;
 
    @FXML private TextArea itemDetails;
-   private boolean playing=false;
 
    private ArrayList<Item> alternativeOptions;
 
@@ -155,7 +153,21 @@ public class FileMenuController {
    }
 
    public void buy(ActionEvent actionEvent) {
+     if(MakeRequest.isTokenValid()==false){
+        showAlert("Error: please login first");
+        return;
+     }
+     if(MakeRequest.makeGetUserRequest() instanceof Buyer ==false){
+       showAlert("Error: only buyers can buy files");
+       return;
+     }
 
+   }
+
+   public void showAlert(String message){
+      Alert alert=new Alert(Alert.AlertType.INFORMATION);
+      alert.setContentText(message);
+      alert.showAndWait();
    }
 
    public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
@@ -179,9 +191,7 @@ public class FileMenuController {
       ivTarget.setViewport(viewPort);
    }
 
-   public void removeImage(MouseEvent mouseEvent) {
-      ivTarget.setImage(null);
-   }
+
 
    class imageCommentTextCell extends ListCell<Comment>{
       private VBox vBox=new VBox(5);
@@ -204,7 +214,6 @@ public class FileMenuController {
          }
          else {
             addReplyAction(reply,comment);
-            imageView.setImage(Client.getInstance().getImageFromServer(MakeRequest.makeGetUserRequest().getUsername(),"user"));
             status.setText("has Bought?:"+comment.hasBought());
             status.setTextFill(Color.rgb(0,0,255));
             textArea.setText(comment.getText());
@@ -380,6 +389,10 @@ public class FileMenuController {
             setGraphic(vBox);
          }
       }
+   }
+
+   public void removeImage(MouseEvent mouseEvent) {
+      ivTarget.setImage(null);
    }
 
 }

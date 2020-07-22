@@ -4,6 +4,7 @@ import Server.Controller.*;
 import com.google.gson.Gson;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
@@ -30,10 +31,15 @@ public class Server {
             try {
                while (true) {
                   request = server.accept();
+                  if(blockedIp.contains(request.getLocalPort())) {  //improper input
+                     System.out.println("connection refused.");
+                     request.close();
+                     continue;
+                  }
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
-                  if(command.startsWith("image")==false){
+                  if((command.startsWith("image")==false)&&(command.startsWith("file")==false)){
                      System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
                      String response = RequestProcessor.getInstance().process(command);
                      System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
@@ -44,6 +50,8 @@ public class Server {
                      getImageFromClient(command,dataInputStream,dataOutputStream);
                   }else if(command.startsWith("image send")==true){
                      sendImageToClient(command,dataInputStream,dataOutputStream);
+                  }else if(command.startsWith("file send")==true){
+                     getFileFromClient(command,dataInputStream,dataOutputStream);
                   }
                    dataOutputStream.close();
                    dataInputStream.close();
@@ -55,7 +63,7 @@ public class Server {
                try {
                   e.printStackTrace();
                   blockedIp.add(request.getLocalPort());
-                  dataOutputStream.writeUTF("Error: invalid command");
+                  dataOutputStream.writeUTF("Error: connection refused your account has been blacklisted.");
                   dataOutputStream.flush();
                   dataOutputStream.close();
                   dataInputStream.close();
@@ -83,7 +91,28 @@ public class Server {
          FileOutputStream fileOutputStream=new FileOutputStream(file);
          fileOutputStream.write(imageData);
          fileOutputStream.close();
-         System.out.println("hello!");
+         System.out.println("finish");
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return "done!";
+   }
+
+   public String getFileFromClient(String command , DataInputStream dataInputStream, DataOutputStream dataOutputStream){
+      String [] token=command.split(" ");
+      String desPath=token[2];
+      int size=Integer.parseInt(token[3]);
+      try {
+         dataOutputStream.writeUTF("ok");
+         dataOutputStream.flush();
+         byte[] fileData=new byte[size];
+         System.out.println("reading data from client!");
+         dataInputStream.readFully(fileData);
+         File file=new File(desPath);
+         FileOutputStream fileOutputStream=new FileOutputStream(file);
+         fileOutputStream.write(fileData);
+         fileOutputStream.close();
+         System.out.println("finish");
       } catch (IOException e) {
          e.printStackTrace();
       }
@@ -128,7 +157,11 @@ public class Server {
    public static void main(String[] args) {
       Database.getInstance().initiate();
       new Server();
-      TransactionController.getInstance().initiate();
+      try {
+         TransactionController.getInstance().initiate();
+      }catch (NullPointerException e){
+         System.out.println("bank server is not online.");
+      }
       System.out.println("server is running");
    }
 

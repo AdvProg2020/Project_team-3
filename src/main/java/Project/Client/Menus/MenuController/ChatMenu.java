@@ -40,6 +40,7 @@ public class ChatMenu {
       String text=message.getText();
       if(text.isEmpty()) return;
       MakeRequest.makeAddMessageToChannel(channelName,text);
+      message.clear();
       update();
    }
 

@@ -20,7 +20,7 @@ public class ChatController {
    }
 
    public Channel getChannel(String name){
-      String path = "Resource" + File.separator + "Channels";
+      String path = "src/main/resources/Channels";
       String fileName = name + ".json";
       File file = new File(path + File.separator + fileName);
       if (!file.exists()) {

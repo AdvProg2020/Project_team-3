@@ -320,7 +320,7 @@ public class Database {
 
    public void saveChannel(Channel channel) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-      String path = "Resource" + File.separator + "Channels";
+      String path = "src/main/resources/Channels";
       String name = channel.getName() + ".json";
       File file = new File(path + File.separator + name);
       try {
@@ -350,6 +350,14 @@ public class Database {
          System.err.println(e.getMessage());
       }
 
+   }
+
+
+   public void deleteItemFile(Item item) {
+      String name = item.getSellerName()+'_'+item.getName();
+      String path = "src/main/resources/Files";
+      File file = new File(path + File.separator + name);
+      file.delete();
    }
 
    public void deleteItem(Item item) {
@@ -448,12 +456,16 @@ public class Database {
       if (!file.exists()) {
          file.mkdir();
       }
-
-      file = new File("Resource" + File.separator + "Channels");
+      file = new File("src/main/resources/Channels");
       if (!file.exists()) {
          file.mkdir();
       }
 
+      file = new File("src/main/resources/Files");
+      if (!file.exists()) {
+         file.mkdir();
+      }
+      
       if (!UserController.getInstance().isThereUserWithUsername("admin")) {
          Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
       }
@@ -499,7 +511,12 @@ public class Database {
          }
          return discountCodeInfo;
       }
-      String path = "Resource" + File.separator + folderName;
+      String path;
+      if(folderName.equals("Channels")){
+         path = "src/main/resources/Channels";
+      }else {
+         path = "Resource" + File.separator + folderName;
+      }
       File[] files = new File(path).listFiles();
       for (File file : files) {
          if (file.isFile()) {
@@ -624,6 +641,8 @@ public class Database {
       }
       return allDiscountCodes;
    }
+
+
 }
 
 

@@ -4,10 +4,17 @@ import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class SellerAddFile {
@@ -49,8 +56,30 @@ public class SellerAddFile {
       else {
          priceError.setText("");
       }
-      sendAlert(MakeRequest.addFile(itemName.getText(),descriptionText.getText(),Double.parseDouble(price.getText())));
-      clearFields();
+      if(isFileValid()==false){
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setContentText("please select the file you wish to sell");
+         alert.showAndWait();
+         return;
+      }
+
+      String image,video;
+      if(hasChosenImage){
+         Client.getInstance().sendImageToServer(srcImagePath,desImagePath);
+         image = imageName;
+      }else {
+         image = "default.png";
+      }
+      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()),image);
+      if(message.startsWith("Successful")){
+         String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+'_'+itemName.getText()+ext;
+         Client.getInstance().sendFileToServer(srcPath,desPath);
+         sendAlert(message);
+         return;
+      }
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(message);
+      alert.showAndWait();
    }
 
 
@@ -94,5 +123,50 @@ public class SellerAddFile {
       }
       return aDouble>0;
    }
+
+    @FXML Label filePath;
+    String srcPath;
+    String ext;
+   public void fileChooser(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
+      FileChooser fileChooser=new FileChooser();
+
+      File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+      if(selected==null) return;
+      Path source= Paths.get(selected.getPath());
+      ext=selected.getName().substring(selected.getName().lastIndexOf("."));
+      filePath.setText(selected.getPath());
+      srcPath=selected.getPath();
+   }
+
+   private boolean isFileValid(){
+      if(srcPath==null) return false;
+      File file=new File(srcPath);
+      return file.exists();
+   }
+
+   private String srcImagePath="";
+   private String desImagePath="";
+
+   @FXML private void imageChooserOpen(ActionEvent actionEvent) {
+      MusicManager.getInstance().playSound("Button");
+      FileChooser fileChooser=new FileChooser();
+      fileChooser.getExtensionFilters().addAll(
+              new FileChooser.ExtensionFilter("PNG","*.png"),
+              new FileChooser.ExtensionFilter("JPG","*.jpg")
+      );
+      File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+      if(selected==null) return;
+      String fullPath="src/main/resources/Images/ItemImages/"+selected.getName();
+      imageAddress.setText(selected.getPath());
+      imageName = selected.getName();
+      hasChosenImage = true;
+      srcImagePath=selected.getPath();
+      desImagePath=fullPath;
+   }
+
+   private String imageName;
+   private boolean hasChosenImage = false;
+   @FXML Label imageAddress;
 
 }

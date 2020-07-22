@@ -1,10 +1,12 @@
 package Project;
 
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 
 
 import Project.Client.Menus.SceneSwitcher;
+import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,8 +15,8 @@ import java.io.IOException;
 
 public class Main extends Application{
     public static void main(String[] args) {
-         MakeRequest.makeUpdateDateAndTimeRequest();
-         launch(args);
+          MakeRequest.makeUpdateDateAndTimeRequest();
+          launch(args);
     }
 
     @Override
@@ -97,6 +99,8 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageFileInSeller","src/main/resources/fxml/SellerMenu/manageFilesIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageFiles","src/main/resources/fxml/AdminMenu/ManageFiles.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageFileIn","src/main/resources/fxml/AdminMenu/ManageFileIn.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("ManageBuyLogs","src/main/resources/fxml/AdminMenu/ManageBuyLogs.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("FilePurchase","src/main/resources/fxml/BuyerMenu/FilePurchaseMenu.fxml");
     }
 
 }
