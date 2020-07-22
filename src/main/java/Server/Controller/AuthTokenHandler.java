@@ -13,12 +13,19 @@ public class AuthTokenHandler {
    private  final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
    private HashMap<String,String> onlineUsersTokens;
    private HashMap<String,Long> tokenMillis;
+   private HashMap<String,Integer> tokensIP;
    private ArrayList<String> onlineUsername=new ArrayList<>();
    private Clock clock;
+   private int userIP;
    private AuthTokenHandler(){
       onlineUsersTokens=new HashMap<>();
       tokenMillis = new HashMap<>();
+      tokensIP = new HashMap<>();
       clock = Clock.systemDefaultZone();
+   }
+
+   public void setUserIP(int userIP) {
+      this.userIP = userIP;
    }
 
    public static AuthTokenHandler getInstance(){
@@ -35,6 +42,7 @@ public class AuthTokenHandler {
             onlineUsersTokens.put(token, username);
             tokenMillis.put(token,clock.millis());
             onlineUsername.add(username);
+            tokensIP.put(token,userIP);
             return token;
          }
       }
@@ -70,6 +78,9 @@ public class AuthTokenHandler {
 
    public String getUserWithToken(String token){
       if(onlineUsersTokens.containsKey(token)){
+         if(tokensIP.get(token)!=userIP){
+            return null;
+         }
          return onlineUsersTokens.get(token);
       }
       return null;
@@ -78,5 +89,6 @@ public class AuthTokenHandler {
    public Boolean isUserOnline(String username){
       return onlineUsername.contains(username);
    }
+
 
 }

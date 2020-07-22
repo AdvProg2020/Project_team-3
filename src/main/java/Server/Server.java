@@ -66,22 +66,22 @@ public class Server {
                      }
                   }
                   updateDoSList();
-
+                  AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
                   String command = dataInputStream.readUTF();
-                  if((command.startsWith("image")==false)&&(command.startsWith("file")==false)){
+                  if((!command.startsWith("image"))&&(!command.startsWith("file"))){
                      System.out.println("FROM CLIENT: " + ANSI_BLUE+command+ANSI_RESET);
                      String response = RequestProcessor.getInstance().process(command);
                      System.out.println("FROM CONTROLLER: " +ANSI_GREEN +response+ANSI_RESET);
                      dataOutputStream.writeUTF(response);
                      dataOutputStream.flush();
                   }
-                  else if(command.startsWith("image get")==true){
+                  else if(command.startsWith("image get")){
                      getImageFromClient(command,dataInputStream,dataOutputStream);
-                  }else if(command.startsWith("image send")==true){
+                  }else if(command.startsWith("image send")){
                      sendImageToClient(command,dataInputStream,dataOutputStream);
-                  }else if(command.startsWith("file send")==true){
+                  }else if(command.startsWith("file send")){
                      getFileFromClient(command,dataInputStream,dataOutputStream);
                   }
                    dataOutputStream.close();
