@@ -82,7 +82,7 @@ public class FileMenuController {
          }
       });
      // Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
-      rating.setImage(Client.getInstance().getImageFromServer("star","user"));
+      rating.setImage(Client.getInstance().getImageFromServer("star","user",200,28));
       double frameWidth = (item.getRating() / 5)*200;
       Rectangle mask = new Rectangle(frameWidth, 28);
       rating.setClip(mask);

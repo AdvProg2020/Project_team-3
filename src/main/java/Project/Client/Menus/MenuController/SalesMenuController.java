@@ -123,11 +123,11 @@ public class SalesMenuController {
         });
 
         itemBox.setPrefSize(230,400);
-        ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+        ImageView imageView = new ImageView(Client.getInstance().getImageFromServer(item.getImageName(),"item",230,230));
 
         Label nameAndPrice = new Label(item.getName() + "           " + (MakeRequest.makeGetItemPriceWithSaleRequest(item.getId())));
 
-        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),108,20,false,false);
+        Image ratingImage=Client.getInstance().getImageFromServer("star","user",108,20);
         ImageView star=new ImageView(ratingImage);
         double frameWidth = (item.getRating() / 5)*108;
         Rectangle mask = new Rectangle(frameWidth, 20);

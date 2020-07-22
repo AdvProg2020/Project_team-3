@@ -79,6 +79,27 @@ public class Client {
       return null;
    }
 
+   public Image getImageFromServer(String imageName , String imageType , int width, int height){
+      try {
+         Socket clientSocket=new Socket("localhost",port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         dataOutputStream.writeUTF("image send "+ imageName +" "+imageType);
+         dataOutputStream.flush();
+         String received=dataInputStream.readUTF();
+         int size=Integer.parseInt(received);
+         byte[]imageData=new byte[size];
+         dataInputStream.readFully(imageData);
+         Image image=new Image(new ByteArrayInputStream(imageData),width,height,false,false);
+         return image;
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+
+
 
    public void setToken(String token) {
       Token = token;

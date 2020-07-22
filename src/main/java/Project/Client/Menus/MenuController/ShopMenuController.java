@@ -241,13 +241,18 @@ public class ShopMenuController {
         final StackPane container = new StackPane();
         container.setAlignment(Pos.BOTTOM_RIGHT);
         itemBox.setAlignment(Pos.CENTER);
-        ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+        Image image=Client.getInstance().getImageFromServer(item.getImageName(),"item",230,230);
+        //ImageView imageView = new ImageView(new Image(new File("src/main/resources/Images/ItemImages/"+item.getImageName()).toURI().toString(),230,230,false,false));
+        ImageView imageView=new ImageView();
+        imageView.setImage(image);
         if(item.getInStock()==0){
-            Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),66,65,false,false);
+           // Image inStock=new Image(new File("src/main/resources/Images/ItemImages/soldOut.png").toURI().toString(),66,65,false,false);
+            Image inStock=Client.getInstance().getImageFromServer("soldOut.png","item",66,65);
             ImageView soldOut=new ImageView(inStock);
             container.getChildren().addAll(imageView, soldOut);
         }else if( MakeRequest.isInSaleItem(item.getId())){
-            Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),70,64,false,false);
+            //Image sale=new Image(new File("src/main/resources/Images/ItemImages/sale.png").toURI().toString(),70,64,false,false);
+            Image sale=Client.getInstance().getImageFromServer("sale.png","item",70,64);
             ImageView inSale=new ImageView(sale);
             container.getChildren().addAll(imageView, inSale);
         }else{
@@ -256,7 +261,8 @@ public class ShopMenuController {
 
         Label nameAndPrice = new Label(item.getName() + "           " + (MakeRequest.makeGetItemPriceWithSaleRequest(item.getId())));
 
-        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),108,20,false,false);
+        //Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),108,20,false,false);
+        Image ratingImage=Client.getInstance().getImageFromServer("star","user",108,20);
         ImageView star=new ImageView(ratingImage);
         double frameWidth = (item.getRating() / 5)*108;
         Rectangle mask = new Rectangle(frameWidth, 20);

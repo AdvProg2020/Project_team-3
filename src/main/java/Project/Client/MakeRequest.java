@@ -674,28 +674,6 @@ public class MakeRequest {
       jsonObject.addProperty("id",receiptId);
       return Client.getInstance().sendMessage(jsonObject);
    }
-   public static String sendImageToServer(String srcPath, String desPath){
-      File file=new File(srcPath);
-      String imageDataString="";
-      try {
-         FileInputStream fis=new FileInputStream(file);
-         byte[] imageData=new byte[(int) file.length()];
-         fis.read(imageData);
-         imageDataString= Base64.getEncoder().encodeToString(imageData);
-         fis.close();
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("content","SendImage");
-      jsonObject.addProperty("type",0);
-      jsonObject.addProperty("desPath",desPath);
-      jsonObject.addProperty("image",imageDataString);
-      return Client.getInstance().sendMessage(jsonObject);
-   }
-
 
    public static double makeGetItemPriceWithSaleRequest(String itemId){
       JsonObject jsonObject=new JsonObject();

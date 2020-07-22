@@ -1,5 +1,6 @@
 package Project.Client.Menus.MenuController;
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -63,8 +64,6 @@ public class CartMenuController {
             alert.show();
             return;
         }
-        System.out.println(Cart.getInstance().cartIncreaseDecrease(selected.getId(),1));
-        System.out.println(Cart.getInstance().getAllItemCount().toString());
         itemListView.getItems().clear();
         updateItemAgain();
         itemListView.getSelectionModel().select(selected);
@@ -178,13 +177,7 @@ public class CartMenuController {
                 setGraphic(null);
             }
             else{
-                String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-                File file=new File(path);
-                try {
-                    imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                imageView.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
                 String printItem=item.toString() +"\nitem Count: "+Cart.getInstance().getItemCount(item.getId())+"\ntotal Price:"+item.getPrice()*Cart.getInstance().getItemCount(item.getId());
                 label.setText(printItem);
                 setGraphic(vBox);

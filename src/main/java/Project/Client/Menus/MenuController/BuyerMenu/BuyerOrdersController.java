@@ -89,15 +89,9 @@ public class BuyerOrdersController {
             if (empty || item == null) {
                 setGraphic(null);
             } else {
-                String path = "src/main/resources/Images/ShoppingBasket.jpg";
-                File file = new File(path);
-                try {
-                    thumbImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                    label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nAddress:\n"+ item.getAddress());
-                    setGraphic(hBox);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                thumbImage.setImage(Client.getInstance().getImageFromServer("ShoppingBasket","user"));
+                label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nAddress:\n"+ item.getAddress());
+                setGraphic(hBox);
             }
         }
     }
@@ -124,17 +118,10 @@ public class BuyerOrdersController {
                 setGraphic(null);
             }
             else{
-                String path="src/main/resources/Images/ItemImages/"+item.getImageName();
-                File file=new File(path);
-                try {
-                    thumbImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                    label.setText("Item Id:"+item.getId()+"   "+"price:"+item.getPrice()+"  "+"seller name:"+item.getSellerName()+ "  "+"items count:"+
-                            selected.getItemsCount().get(item.getId()));
-                    setGraphic(hBox);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
+                thumbImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
+                label.setText("Item Id:"+item.getId()+"   "+"price:"+item.getPrice()+"  "+"seller name:"+item.getSellerName()+ "  "+"items count:"+
+                        selected.getItemsCount().get(item.getId()));
+                setGraphic(hBox);
             }
         }
     }

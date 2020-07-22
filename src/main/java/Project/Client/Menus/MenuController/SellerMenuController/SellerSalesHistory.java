@@ -76,15 +76,9 @@ public class SellerSalesHistory {
             if (empty || item == null) {
                 setGraphic(null);
             } else {
-                String path = "src/main/resources/Images/ShoppingBasket.jpg";
-                File file = new File(path);
-                try {
-                    thumbImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                    label.setText(item.toString());
-                    setGraphic(hBox);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                thumbImage.setImage(Client.getInstance().getImageFromServer("ShoppingBasket","user"));
+                label.setText(item.toString());
+                setGraphic(hBox);
             }
         }
     }
@@ -130,13 +124,9 @@ public class SellerSalesHistory {
             else{
                 String path = "src/main/resources/Images/ItemImages/"+item.getImageName();
                 File file = new File(path);
-                try {
-                    thumbImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
-                    label.setText(item.toString());
-                    setGraphic(hBox);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                thumbImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
+                label.setText(item.toString());
+                setGraphic(hBox);
             }
         }
     }
