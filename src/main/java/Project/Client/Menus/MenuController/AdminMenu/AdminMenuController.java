@@ -108,4 +108,7 @@ public class AdminMenuController {
        SceneSwitcher.getInstance().setSceneAndWait("AdminTransaction" ,600,337);
     }
 
+   public void manageFiles(ActionEvent actionEvent) {
+      SceneSwitcher.getInstance().setSceneTo("ManageFiles",898,537);
+   }
 }

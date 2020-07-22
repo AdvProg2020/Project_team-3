@@ -4,7 +4,7 @@ package Project.Client.Model;
 
 
 import Project.Client.MakeRequest;
-
+import Server.Controller.SaleAndDiscountCodeController;
 
 
 import java.time.LocalDateTime;
@@ -191,6 +191,10 @@ public class Item {
         }
         string += "\nRating= " + getRating();
         return string;
+    }
+
+    public String showIdWithName() {
+        return "id: " + id + " name: " + name + " price=" + price;
     }
 
 }

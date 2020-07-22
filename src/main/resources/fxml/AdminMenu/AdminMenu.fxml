@@ -17,6 +17,7 @@
                <Menu text="manage">
                    <MenuItem onAction="#manageCategories" text="manage category" />
                    <MenuItem onAction="#manageProducts" text="manage products" />
+                   <MenuItem onAction="#manageFiles" text="manage files" />
                    <MenuItem onAction="#manageRequests" text="manage requests" />
                    <MenuItem onAction="#manageDiscountCodes" text="manage discount codes" />
                    <MenuItem onAction="#manageUsers" text="manage users" />

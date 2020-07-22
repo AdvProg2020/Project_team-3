@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Project.Client.Menus.MenuController.SellerMenuController.SellerAddFile"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.SellerMenuController.SellerAddFile">
     <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
         <menus>
             <Menu mnemonicParsing="false" text="option">
@@ -33,11 +27,8 @@
 
 
     <Label fx:id="itemNameError" layoutX="501.0" layoutY="56.0" prefHeight="17.0" prefWidth="165.0" />
-    <Separator layoutX="683.0" layoutY="44.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="18.0" />
 
     <Label fx:id="priceError" layoutX="501.0" layoutY="428.0" prefHeight="17.0" prefWidth="165.0" />
-
-    <TextField fx:id="category" layoutX="338.0" layoutY="539.0" prefHeight="27.0" prefWidth="149.0" promptText="Type a valid Category" styleClass="underlinedTextField" />
 
 
 </AnchorPane>

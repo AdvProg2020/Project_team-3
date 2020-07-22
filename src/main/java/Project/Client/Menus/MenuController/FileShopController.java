@@ -6,6 +6,8 @@ import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 
+import Project.Client.Model.Category;
+import Project.Client.Model.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -30,8 +32,17 @@ public class FileShopController {
    }
 
    private void update(){
-      allFiles.getItems().addAll(MakeRequest.getAllFiles());
-      if(allFiles.getItems().isEmpty()) allFiles.getItems().add("there are no file right now");
+      allFiles.getItems().clear();
+      Category category=MakeRequest.getCategory("File");
+
+      for (String id : category.getAllItemsID()) {
+         Item item=MakeRequest.getItem(id);
+         if(item!=null) allFiles.getItems().add(item.showIdWithName());
+      }
+      if(allFiles.getItems().isEmpty()) {
+         allFiles.getItems().add("there are no files right now");
+         return;
+      }
    }
 
    public void fileSelect(MouseEvent mouseEvent) {
@@ -39,7 +50,7 @@ public class FileShopController {
       int index=allFiles.getSelectionModel().getSelectedIndex();
       if(index==-1)
          return;
-      String fileName=allFiles.getItems().get(index).toString();
+      String fileName=allFiles.getItems().get(index).toString().substring(4,9);
       if(MakeRequest.isThereFileWithName(fileName)) {
         FileMenuController.setFileName(fileName);
         SceneSwitcher.getInstance().setSceneTo("FileMenu");

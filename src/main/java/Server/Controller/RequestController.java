@@ -57,7 +57,7 @@ public class RequestController {
             if (content.contains("\"type\": \"CommentRequest\"")) {
                 return gson.fromJson(content, CommentRequest.class);
             }
-            if (content.contains("\"type\": \"ItemEdit\"")) {
+            if ((content.contains("\"type\": \"ItemEdit\""))|| (content.contains("\"type\": \"FileEdit\""))) {
                 return gson.fromJson(content, ItemEdit.class);
             }
             if ((content.contains("\"type\": \"ItemRequest\""))||(content.contains("\"type\": \"FileRequest\""))) {
@@ -69,7 +69,7 @@ public class RequestController {
             if (content.contains("\"type\": \"SaleRequest\"")) {
                 return gson.fromJson(content, SaleRequest.class);
             }
-            if(content.contains("\"type\": \"ItemDelete\"")){
+            if((content.contains("\"type\": \"ItemDelete\""))||(content.contains("\"type\": \"FileDelete\""))){
                 return gson.fromJson(content, ItemDelete.class);
             }
             if(content.contains("\"type\": \"AuctionRequest\"")){

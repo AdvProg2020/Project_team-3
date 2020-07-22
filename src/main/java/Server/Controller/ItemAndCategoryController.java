@@ -58,7 +58,9 @@ public class ItemAndCategoryController {
             Database.getInstance().deleteItem(item);
             return "Successful: item deleted";
         }
+        if(item.getState().equals("file")==false)
         return "the request for deleting item has been sent to the admin!";
+        return "the request for deleting file has been sent to the admin!";
     }
 
     public void removeItemFromCategory(String categoryName,String productId){
@@ -344,7 +346,6 @@ public class ItemAndCategoryController {
         FileItem item = new FileItem(name,description,price,controller.getCurrentOnlineUser().getUsername());
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
-        System.out.println("inja hastim");
         return "Successful: Admins have been notified of your request to add this file.";
     }
 

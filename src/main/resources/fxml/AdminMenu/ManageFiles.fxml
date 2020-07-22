@@ -10,5 +10,12 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Project.Client.Menus.MenuController.AdminMenu.ManageFiles"
             prefHeight="400.0" prefWidth="600.0">
+    <MenuBar prefHeight="25.0" prefWidth="898.0" styleClass="myMenuBar">
+        <Menu text="options">
+            <MenuItem onAction="#refresh" text="refresh" />
+            <MenuItem onAction="#back" text="back" />
+        </Menu>
+    </MenuBar>
+    <ListView fx:id="listView" layoutX="229.0" layoutY="81.0" onMouseClicked="#fileSelect" prefHeight="362.0" prefWidth="277.0" style="-fx-border-color: #94a8b3;" />
 
 </AnchorPane>

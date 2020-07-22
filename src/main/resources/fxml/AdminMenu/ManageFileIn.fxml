@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Project.Client.Menus.MenuController.AdminMenu.ManageFileIn"
+            prefHeight="400.0" prefWidth="600.0">
+    <Button layoutX="66.0" layoutY="59.0" onMouseClicked="#delete" styleClass="redButton" text="Yes" />
+    <Button layoutX="177.0" layoutY="59.0" onMouseClicked="#close" styleClass="greyButton" text="No" />
+    <Label layoutX="44.0" layoutY="20.0" text="do you want to delete this file?" />
+</AnchorPane>

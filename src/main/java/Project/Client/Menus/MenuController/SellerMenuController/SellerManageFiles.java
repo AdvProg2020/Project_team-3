@@ -42,7 +42,7 @@ public class SellerManageFiles {
       listView.getSelectionModel().clearSelection();
       if(MakeRequest.isThereProductWithId(fileId)) {
          SellerManageFileIn.setFileName(fileId);
-         SceneSwitcher.getInstance().setSceneAndWait("ManageFileIn", 392, 173);
+         SceneSwitcher.getInstance().setSceneTo("ManageFileInSeller");
       }
 
    }
