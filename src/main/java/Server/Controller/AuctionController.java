@@ -4,6 +4,7 @@ import Server.Model.Auction;
 import Server.Model.DiscountCode;
 import Server.Model.Item;
 import Server.Model.Users.Buyer;
+import Server.Model.Users.Seller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -35,6 +36,8 @@ public class AuctionController {
         if(item.getInStock()<=0){
             return "Error: item not in stock";
         }
+        item.setInStock(item.getInStock()-1);
+        Database.getInstance().saveItem(item);
         LocalDateTime endTime = LocalDateTime.now().plusHours(duration);
         Auction auction = new Auction(endTime,itemID,startPrice);
         String requestID = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Requests");
@@ -134,9 +137,22 @@ public class AuctionController {
     }
 
     private void endAuction(Auction auction){
-        // in miad pool ro az highest bidder kam mikone mirize hesabe seller
 
         //...
+        Item item = ItemAndCategoryController.getInstance().getItemById(auction.getItemID());
+        if(auction.getHighestBidderUsername().equals("*none*")){
+            item.setInStock(item.getInStock()+1);
+        }
+        else {
+            Seller seller = (Seller)UserController.getInstance().getUserByUsername(item.getSellerName());
+            double karMozd = auction.getHighestBid() * TransactionController.getInstance().getWagePercent();
+            double moneyToSeller = auction.getHighestBid() - karMozd;
+            seller.setMoney(seller.getMoney() + moneyToSeller);
+            //karMozd bere be hesabe modir
+            /*String depositReceipt=TransactionController.getInstance().getReceiptID(bankToken,"deposit",karMozd,"-1","10001","");
+            String string=TransactionController.getInstance().payReceipt(depositReceipt);
+            System.out.println("10001 bank account: "+depositReceipt+" "+string);*/
+        }
 
         Database.getInstance().deleteAuction(auction);
     }
