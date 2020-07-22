@@ -1,5 +1,6 @@
 package Server.Controller;
 
+import Project.Client.Model.SortAndFilter;
 import Server.Model.*;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
@@ -753,11 +754,22 @@ public class RequestProcessor {
             SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
          if(command.has("filter seller"))
             SortAndFilterController.getInstance().activateFilterSellerName(getJsonStringField(command,"seller"));
-
             SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
-
          Gson gson = new GsonBuilder().setPrettyPrinting().create();
          return gson.toJson(SortAndFilterController.getInstance().show("Main"));
+      }
+
+      if(getJsonStringField(command,"content").equals("show files")){
+         SortAndFilterController.getInstance().reset();
+         if(command.has("filter name"))
+            SortAndFilterController.getInstance().activateFilterName(getJsonStringField(command,"name"));
+         if(command.has("filter seller"))
+            SortAndFilterController.getInstance().activateFilterSellerName(getJsonStringField(command,"seller"));
+         if(command.has("filter price range"))
+            SortAndFilterController.getInstance().activateFilterPriceRange(command.get("min").getAsDouble(),command.get("max").getAsDouble());
+         SortAndFilterController.getInstance().activateSort(getJsonStringField(command,"sort"));
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+         return gson.toJson(SortAndFilterController.getInstance().show("File"));
       }
 
       if(getJsonStringField(command,"content").equals("get cart price without discount")){

@@ -865,6 +865,30 @@ public class MakeRequest {
       return items;
    }
 
+   public static ArrayList<String> showFiles(){
+      JsonObject json = new JsonObject();
+      SortAndFilter sortAndFilter = SortAndFilter.getInstance();
+      json.addProperty("type", 0);
+      json.addProperty("content", "show files");
+      if (sortAndFilter.getFilterName()) {
+         json.addProperty("filter name", "true");
+         json.addProperty("name", sortAndFilter.getName());
+      }
+      if (sortAndFilter.getFilterSellerName()) {
+         json.addProperty("filter seller", "true");
+         json.addProperty("seller", sortAndFilter.getSellerName());
+      }
+      if (sortAndFilter.getFilterPriceRange()) {
+         json.addProperty("filter price range", "true");
+         json.addProperty("min", sortAndFilter.getMinPrice());
+         json.addProperty("max", sortAndFilter.getMaxPrice());
+      }
+      json.addProperty("sort", sortAndFilter.showActiveSort());
+      Gson gson=new Gson();
+      ArrayList<String> result = gson.fromJson(Client.getInstance().sendMessage(json),ArrayList.class);
+      return result;
+   }
+
    public static double getCartPriceWithoutDiscount(){
    JsonObject json=initializeCart();
    json.addProperty("content", "get cart price without discount");
@@ -962,10 +986,6 @@ public class MakeRequest {
       jsonObject.addProperty("auction id", auctionID);
       jsonObject.addProperty("bid", bid);
       return Client.getInstance().sendMessage(jsonObject);
-   }
-
-   public static ArrayList<String> getAllFiles(){
-      return new ArrayList<>();
    }
 
    public static boolean isThereFileWithName(String fileName){

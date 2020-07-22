@@ -307,7 +307,7 @@ public class ShopMenuController {
         try{
             String text=textField.getText();
             if(text.isEmpty()) return false;
-            Pattern p = Pattern.compile("[^a-zA-Z]");
+            Pattern p = Pattern.compile("[^a-zA-Z0-9]");
             return !p.matcher(text).find();
         }catch (Exception e){
             return false;
