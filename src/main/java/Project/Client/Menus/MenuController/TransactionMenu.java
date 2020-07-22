@@ -2,6 +2,7 @@ package Project.Client.Menus.MenuController;
 
 /// for buyer and seller!!!!
 
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Users.Buyer;
@@ -164,14 +165,13 @@ public class TransactionMenu {
     public void deposit(){
         String result0="";
         String result1="";
-        String receipt0=MakeRequest.makeBankReceiptRequest("deposit",finalAmount.getText(),"-1",bankAccountId.getText(),"");
-        System.out.println("receipt0 :"+receipt0);
+        String receipt0=MakeRequest.makeBankReceiptRequest("deposit",amount.getText(),"-1","10001",description.getText(), Client.getInstance().getBankAccountToken());
+        result0=MakeRequest.payReceipt(receipt0);
         if(receipt0.matches("\\d+")){
-            String receipt1=MakeRequest.makeBankReceiptRequest("deposit",wageAmount.getText(),"-1","10001","");
-            System.out.println("receipt1 :"+receipt1);
-            result0=MakeRequest.payReceipt(receipt0);
+            String adminToken=MakeRequest.getBankTokenForClient("admin","12345");
+            String receipt1=MakeRequest.makeBankReceiptRequest("move",finalAmount.getText(),"10001",bankAccountId.getText(),description.getText(),adminToken);
             result1=MakeRequest.payReceipt(receipt1);
-            System.out.println(result0 + " "+ result1);
+            System.out.println(result1);
             if(result0.equalsIgnoreCase("done successfully")){
                 double d=Double.parseDouble(amount.getText());
                 System.out.println(d);
@@ -192,15 +192,14 @@ public class TransactionMenu {
     public void withDraw(){
         String result0="";
         String result1="";
-        String receipt0=MakeRequest.makeBankReceiptRequest("withdraw",finalAmount.getText(),bankAccountId.getText(),"-1",description.getText());
-        System.out.println("receipt0 :"+receipt0);
+        String receipt0=MakeRequest.makeBankReceiptRequest("move",amount.getText(),bankAccountId.getText(),"10001",description.getText(),Client.getInstance().getBankAccountToken());
+        result0=MakeRequest.payReceipt(receipt0);
         if(receipt0.matches("\\d+")){
-            String receipt1=MakeRequest.makeBankReceiptRequest("deposit",wageAmount.getText(),"-1","10001","");
-            System.out.println("receipt1: "+receipt1);
-            result0=MakeRequest.payReceipt(receipt0);
+            String adminToken=MakeRequest.getBankTokenForClient("admin","12345");
+            String receipt1=MakeRequest.makeBankReceiptRequest("withdraw",finalAmount.getText(),"10001","-1",description.getText(),adminToken);
             result1=MakeRequest.payReceipt(receipt1);
             if(result0.equalsIgnoreCase("done successfully")){
-                double d=Double.parseDouble(amount.getText());
+                double d=Double.parseDouble(finalAmount.getText());
                 MakeRequest.setUserMoney(String.valueOf(userMoney+d));
                 makeAlertBox(result0,"information");
             }

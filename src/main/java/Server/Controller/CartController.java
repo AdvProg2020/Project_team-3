@@ -79,27 +79,24 @@ public class CartController {
             SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
         }
         if(!bankAccountId.equals("")){
-            System.out.println("b Id: "+bankAccountId);
             int money= (int) price;
             String receipt=TransactionController.getInstance().getReceiptID(bankToken,
-                    "withdraw",String.valueOf(money),bankAccountId,"-1","");
+                    "move",String.valueOf(money),bankAccountId,"10001","");
+            System.out.println(receipt);
             String transactionResult=TransactionController.getInstance().payReceipt(receipt);
             if(!transactionResult.equals("done successfully")){
                 return transactionResult;
-            }else if(transactionResult.equals("done successfully")){
-                buyer.setMoney(buyer.getMoney() + cart.getCartPriceWithoutDiscountCode());
             }
         }
-        System.out.println(TransactionController.getInstance().getMinimumMoney() + "minim money!");
-        if(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode()< TransactionController.getInstance().getMinimumMoney()){
+        if(bankAccountId.equals("") && buyer.getMoney() - cart.getCartPriceWithoutDiscountCode()< TransactionController.getInstance().getMinimumMoney()){
             return "your wallet can not contains less than +"+TransactionController.getInstance().getMinimumMoney();
         }
-        buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
-        double wagePercent=TransactionController.getInstance().getWagePercent();
-        int deposit= (int) ((wagePercent/100)*cart.getCartPriceWithoutDiscountCode());
-        String depositReceipt=TransactionController.getInstance().getReceiptID(bankToken,"deposit",String.valueOf(deposit),"-1","10001","");
-        String string=TransactionController.getInstance().payReceipt(depositReceipt);
-        System.out.println("10001 bank account: "+depositReceipt+" "+string);
+        if(bankAccountId.equals("")) {
+            buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithoutDiscountCode());
+            int deposit = (int) price;
+            String depositReceipt = TransactionController.getInstance().getReceiptID(bankToken, "deposit", String.valueOf(deposit), "-1", "10001", "");
+            TransactionController.getInstance().payReceipt(depositReceipt);
+        }
             Database.getInstance().saveUser(buyer);
         cart.buy(buyer.getUsername(), address);
         return "Successful: Shopping complete.";
@@ -122,25 +119,23 @@ public class CartController {
             SaleAndDiscountCodeController.getInstance().giveGiftDiscountCode(buyer.getUsername());
         }
         if(!bankAccountId.equals("")){
-            System.out.println("b Id: "+bankAccountId);
             int money= (int) price;
             String receipt=TransactionController.getInstance().getReceiptID(bankToken,
-                    "withdraw",String.valueOf(money),bankAccountId,"-1","");
+                    "move",String.valueOf(money),bankAccountId,"10001","");
             String transactionResult=TransactionController.getInstance().payReceipt(receipt);
             if(!transactionResult.equals("done successfully")){
                 return transactionResult;
-            }else if(transactionResult.equals("done successfully")){
-                buyer.setMoney(buyer.getMoney() + cart.getCartPriceWithoutDiscountCode());
             }
         }
-        if(buyer.getMoney() - cart.getCartPriceWithDiscountCode()< TransactionController.getInstance().getMinimumMoney()){
+        if(bankAccountId.equals("") && buyer.getMoney() - cart.getCartPriceWithDiscountCode()< TransactionController.getInstance().getMinimumMoney()){
             return "your wallet can not contains less than +"+TransactionController.getInstance().getMinimumMoney();
         }
+        if(bankAccountId.equals("")) {
         buyer.setMoney(buyer.getMoney() - cart.getCartPriceWithDiscountCode());
-        double wagePercent=TransactionController.getInstance().getWagePercent();
-        int deposit= (int) ((wagePercent/100)*cart.getCartPriceWithDiscountCode());
-        String depositReceipt=TransactionController.getInstance().getReceiptID(bankToken,"deposit",String.valueOf(deposit),"-1","10001","");
+        int deposit = (int) cart.getCartPriceWithDiscountCode();
+        String depositReceipt = TransactionController.getInstance().getReceiptID(bankToken, "deposit", String.valueOf(deposit), "-1", "10001", "");
         TransactionController.getInstance().payReceipt(depositReceipt);
+        }
         discountCode.useDiscountCode(buyer.getUsername());
             Database.getInstance().saveUser(buyer);
             Database.getInstance().saveDiscountCode(discountCode);

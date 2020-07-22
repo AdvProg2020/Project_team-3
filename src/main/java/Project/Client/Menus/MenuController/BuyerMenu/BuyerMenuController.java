@@ -105,7 +105,6 @@ public class BuyerMenuController {
     }
 
     public void goToTransactionMenu(ActionEvent actionEvent) {
-//        MakeRequest.setMainAccountRequest();
         if(Client.getInstance().getBankAccountToken().equals("")){
             SceneSwitcher.getInstance().saveScene("BuyerMenu");
             SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);

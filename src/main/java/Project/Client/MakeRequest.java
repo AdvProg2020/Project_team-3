@@ -533,12 +533,12 @@ public class MakeRequest {
    }
 
 
-   public static String makeBankReceiptRequest(String type,String money,String srcId,String desId,String description){
+   public static String makeBankReceiptRequest(String type,String money,String srcId,String desId,String description,String bankAccountToken){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","bank receipt");
       jsonObject.addProperty("type","5");
       jsonObject.addProperty("token",Client.getInstance().getToken());
-      jsonObject.addProperty("bank token",Client.getInstance().getBankAccountToken());
+      jsonObject.addProperty("bank token",bankAccountToken);
       jsonObject.addProperty("receipt Type",type);
       jsonObject.addProperty("money",money);
       jsonObject.addProperty("srcId",srcId);

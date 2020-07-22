@@ -64,6 +64,12 @@ public class Seller extends User {
         sellLogs.add(saleLog);
         double wagePercent= TransactionController.getInstance().getWagePercent();
         double plus=saleLog.getPrice()*((100-wagePercent)/100);
+        int moneyToWithdraw=(int) plus;
+        String adminToken=TransactionController.getInstance().getBankToken("admin","12345");
+        String receipt=TransactionController.getInstance().getReceiptID(adminToken,"withdraw",String.valueOf(moneyToWithdraw),"10001","-1","");
+        System.out.println("money with draw is: "+ receipt);
+        String result=TransactionController.getInstance().payReceipt(receipt);
+        System.out.println(result);
         money+=plus;
     }
 
