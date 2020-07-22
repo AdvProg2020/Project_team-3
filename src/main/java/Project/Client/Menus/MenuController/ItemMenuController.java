@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController;
 
 import Project.Client.CLI.View;
+import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
@@ -95,12 +96,12 @@ public class ItemMenuController {
         priceAfterSaleLabel.setText(String.valueOf(MakeRequest.makeGetItemPriceWithSaleRequest(itemID)));
         viewLabel.setText(String.valueOf(item.getViewCount()));
         updateAlternates();
-        String path="src/main/resources/Images/ItemImages/"+item.getImageName();
+        //String path="src/main/resources/Images/ItemImages/"+item.getImageName();
         String messagePath="src/main/resources/Images/ItemImages/";
         String messageImageName=null;
-        File file=new File(path);
+       // File file=new File(path);
         try {
-            itemImage.setImage(new Image(String.valueOf(file.toURI().toURL())));
+            itemImage.setImage(Client.getInstance().getImageFromServer(item.getImageName(),"item"));
             itemImage.setFitHeight(235);
             itemImage.setFitWidth(235);
             if(item.getInStock()==0){
@@ -126,8 +127,9 @@ public class ItemMenuController {
                 return  new imageCommentTextCell();
             }
         });
-        Image ratingImage=new Image(new File("src/main/resources/Images/star.png").toURI().toString(),200,28,false,false);
-        rating.setImage(ratingImage);
+        //Image ratingImage=new Image(Client.getInstance().getImageFromServer("star","user"),200,28,false,false);
+
+        rating.setImage(Client.getInstance().getImageFromServer("star","user"));
         double frameWidth = (item.getRating() / 5)*200;
         Rectangle mask = new Rectangle(frameWidth, 28);
         rating.setClip(mask);

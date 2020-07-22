@@ -27,6 +27,8 @@ import java.util.Optional;
 
 public class SellerAddProductMenu {
     @FXML private AnchorPane pane;
+    private String srcImagePath="";
+    private String desImagePath="";
     @FXML
     private void back(){
         MusicManager.getInstance().playSound("Button");
@@ -50,18 +52,20 @@ public class SellerAddProductMenu {
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
-        Path source= Paths.get(selected.getPath());
+//        Path source= Paths.get(selected.getPath());
 
         String fullPath="src/main/resources/Images/ItemImages/"+selected.getName();
-        imageAddress.setText(source.toString());
-        Path des=Paths.get(fullPath);
-        try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        imageAddress.setText(selected.getPath());
+//        Path des=Paths.get(fullPath);
+//        try {
+//            //Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         imageName = selected.getName();
         hasChosenImage = true;
+        srcImagePath=selected.getPath();
+        desImagePath=fullPath;
     }
 
     @FXML
@@ -160,6 +164,7 @@ public class SellerAddProductMenu {
 
         String image,video;
         if(hasChosenImage){
+            Client.getInstance().sendImageToServer(srcImagePath,desImagePath);
             image = imageName;
         }else {
             image = "default.png";

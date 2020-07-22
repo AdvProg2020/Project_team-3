@@ -648,6 +648,16 @@ public class MakeRequest {
    }
 
    //type 0
+
+   public static String deleteImageFromServer(String imagePath){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("content","delete Image");
+      jsonObject.addProperty("type","0");
+      jsonObject.addProperty("path",imagePath);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
+
    public static String setTransactionNumbers(String wage , String min){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","set Numbers");
@@ -686,17 +696,6 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
-   public static Image getImageFromServer(String imageName, String type) {
-      JsonObject jsonObject=new JsonObject();
-      jsonObject.addProperty("content","getImage");
-      jsonObject.addProperty("type","0");
-      jsonObject.addProperty("imageName",imageName);
-      jsonObject.addProperty("imageType",type);
-      String response=Client.getInstance().sendMessage(jsonObject);
-      byte[] imageData=Base64.getDecoder().decode(response);
-      Image image=new Image(new ByteArrayInputStream(imageData));
-      return image;
-   }
 
    public static double makeGetItemPriceWithSaleRequest(String itemId){
       JsonObject jsonObject=new JsonObject();

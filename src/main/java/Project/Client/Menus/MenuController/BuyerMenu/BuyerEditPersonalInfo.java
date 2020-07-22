@@ -57,13 +57,8 @@ public class BuyerEditPersonalInfo {
         surname.clear();
         email.clear();
         number.clear();
-        String path=MakeRequest.makeUserImagePathRequest();
-        File file=new File(path);
-        try {
-            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        String username=MakeRequest.makeGetUserRequest().username;
+        imageView.setImage(Client.getInstance().getImageFromServer(username,"user"));
     }
 
     public void changeName(MouseEvent mouseEvent) {
@@ -173,15 +168,9 @@ public class BuyerEditPersonalInfo {
         MusicManager.getInstance().playSound("Button");
         User user=MakeRequest.makeGetUserRequest();
         String path=MakeRequest.makeUserImagePathRequest();
-        File file=new File(path);
-        if(!file.getName().equals("default.jpg"))file.delete();
+        if(!path.contains("default.jpg"))MakeRequest.deleteImageFromServer(path);
         else return;
-        File defaultImage=new File("src/main/resources/Images/default.jpg");
-        try {
-            imageView.setImage(new Image(String.valueOf(defaultImage.toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        imageView.setImage(Client.getInstance().getImageFromServer("default","user"));
         update();
     }
 
@@ -195,25 +184,14 @@ public class BuyerEditPersonalInfo {
         );
         File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
         if(selected==null) return;
-        File removed=new File(MakeRequest.makeUserImagePathRequest());
-        if(removed.getName().equals("default.jpg")){}
-        else removed.delete();
-        Path source= Paths.get(selected.getPath());
+        String removed=MakeRequest.makeUserImagePathRequest();
+        if(removed.contains("default.jpg")){}
+        else MakeRequest.deleteImageFromServer(removed);
+        String srcPath=selected.getPath();
         String ext=selected.getName().substring(selected.getName().lastIndexOf("."));
-        String fullPath="src/main/resources/Images/"+user.getUsername()+ext;
-        Path des=Paths.get(fullPath);
-        try {
-            Files.copy(source,des, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String path=MakeRequest.makeUserImagePathRequest();;
-        File file=new File(path);
-        try {
-            imageView.setImage(new Image(String.valueOf(file.toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        String desPath="src/main/resources/Images/"+user.getUsername()+ext;
+        Client.getInstance().sendImageToServer(srcPath,desPath);
+        imageView.setImage(Client.getInstance().getImageFromServer(MakeRequest.makeGetUserRequest().username,"user"));
         update();
     }
 

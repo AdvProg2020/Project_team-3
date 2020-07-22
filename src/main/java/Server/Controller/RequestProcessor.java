@@ -559,6 +559,12 @@ public class RequestProcessor {
    }
 
    public String generalProcessor(JsonObject command) {
+      if(getJsonStringField(command,"content").equals("delete Image")){
+         String path=getJsonStringField(command,"path");
+         File file=new File(path);
+         if(file.exists()) file.delete();
+         return "done!";
+      }
       if(getJsonStringField(command,"content").equals("set Numbers")){
          int wage=Integer.parseInt(getJsonStringField(command,"wage"));
          int min=Integer.parseInt(getJsonStringField(command,"min"));

@@ -136,9 +136,9 @@ public class UserController {
     }
 
     public String userImagePath(String username){
-        if(isThereUserWithUsername(username)==false){
-            return "Erorr: no user exist with this username!";
-        }
+//        if(isThereUserWithUsername(username)==false){
+//            return "Erorr: no user exist with this username!";
+//        }
         String jpgFullPath="src/main/resources/Images/"+username+".jpg";
         String pngFullPath="src/main/resources/Images/"+username+".png";
         File jpgFile=new File(jpgFullPath);
