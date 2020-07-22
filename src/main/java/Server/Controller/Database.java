@@ -335,6 +335,7 @@ public class Database {
       }
    }
 
+
    public void deleteUser(User user) {
       Connection connection = null;
       String tableName = user.getType() + "s";
@@ -344,6 +345,8 @@ public class Database {
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          statement.executeUpdate("delete FROM "+tableName +" WHERE username='"+user.getUsername()+"'");
+         deleteResourceFile("user image",user.getUsername()+".png");
+         deleteResourceFile("user image",user.getUsername()+".jpg");
       }
       catch(SQLException e)
       {
@@ -353,9 +356,15 @@ public class Database {
    }
 
 
-   public void deleteItemFile(Item item) {
-      String name = item.getSellerName()+'_'+item.getName();
-      String path = "src/main/resources/Files";
+   public void deleteResourceFile(String type,String name) {
+      String path="";
+      if(type.equals("file")) {
+         path = "src/main/resources/Files";
+      }else if(type.equals("user image")){
+         path = "src/main/resources/Images";
+      }else if(type.equals("item image")){
+         path = "src/main/resources/Images/ItemImages";
+      }
       File file = new File(path + File.separator + name);
       file.delete();
    }
@@ -375,6 +384,8 @@ public class Database {
          Statement statement = connection.createStatement();
          statement.setQueryTimeout(30);
          statement.executeUpdate("delete FROM Items WHERE id='"+item.getId()+"'");
+         deleteResourceFile("item image",item.getImageName());
+         if(item.getState().equals("file")) deleteResourceFile("file",item.getSellerName()+"_"+item.getName());
       }
       catch(SQLException e)
       {

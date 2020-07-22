@@ -48,14 +48,14 @@ public class ItemAndCategoryController {
         if(user instanceof Buyer){
             return "Error: Internal Error.";
         }
-        String requestId=Controller.getInstance().getAlphaNumericString(5,"Requests");
-        RequestController.getInstance().deleteItemRequest(requestId,id);
         if(UserController.getInstance().getCurrentOnlineUser() instanceof Admin) {
             removeItemFromCategory(item.getCategoryName(),item.getId());
             UserController.getInstance().deleteItemFromSeller(id,item.getSellerName());
             Database.getInstance().deleteItem(item);
             return "Successful: item deleted";
         }
+        String requestId=Controller.getInstance().getAlphaNumericString(5,"Requests");
+        RequestController.getInstance().deleteItemRequest(requestId,id);
         if(item.getState().equals("file")==false)
         return "the request for deleting item has been sent to the admin!";
         return "the request for deleting file has been sent to the admin!";
