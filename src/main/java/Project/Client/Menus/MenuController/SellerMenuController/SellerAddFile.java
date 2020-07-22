@@ -4,10 +4,17 @@ import Project.Client.Client;
 import Project.Client.MakeRequest;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class SellerAddFile {
@@ -49,7 +56,19 @@ public class SellerAddFile {
       else {
          priceError.setText("");
       }
-      sendAlert(MakeRequest.addFile(itemName.getText(),descriptionText.getText(),Double.parseDouble(price.getText())));
+      if(isFileValid()==false){
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setContentText("please select the file you wish to sell");
+         alert.showAndWait();
+         return;
+      }
+
+      String message=MakeRequest.addFile(itemName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()));
+      if(message.startsWith("Successful")){
+       String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+itemName.getText()+ext;
+       Client.getInstance().sendFileToServer(srcPath,desPath);
+      }
+      sendAlert(message);
       clearFields();
    }
 
@@ -95,4 +114,25 @@ public class SellerAddFile {
       return aDouble>0;
    }
 
+    @FXML Label filePath;
+    String srcPath;
+    String ext;
+   public void fileChooser(MouseEvent mouseEvent) {
+      MusicManager.getInstance().playSound("Button");
+      FileChooser fileChooser=new FileChooser();
+
+      File selected=fileChooser.showOpenDialog(SceneSwitcher.getInstance().getStage());
+      if(selected==null) return;
+      Path source= Paths.get(selected.getPath());
+      ext=selected.getName().substring(selected.getName().lastIndexOf("."));
+      filePath.setText(selected.getPath());
+     // String fullPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+itemName.getText()+ext;
+      srcPath=selected.getPath();
+     // desPath=fullPath;
+   }
+
+   private boolean isFileValid(){
+      File file=new File(srcPath);
+      return file.exists();
+   }
 }

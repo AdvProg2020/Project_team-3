@@ -340,6 +340,19 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
+   public static ArrayList<BuyLog> makeGetAllBuyLogs(){
+      ArrayList<String> allBuyers=MakeRequest.makeGetAllUserRequest("Buyer",false);
+      ArrayList<BuyLog> allBuyLog=new ArrayList<>();
+      for (String buyer : allBuyers) {
+         allBuyLog.addAll(getBuyerBuyLog(buyer));
+      }
+      return allBuyLog;
+   }
+
+   private static ArrayList<BuyLog> getBuyerBuyLog(String username){
+      return null;
+   }
+
    public static String makeRequestDeclineRequest(String requestId) {
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());

@@ -21,17 +21,17 @@ public class Client {
 
    public String sendMessage(JsonObject message){
       try {
-      Socket clientSocket = new Socket("localhost", port);
-      DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
-      DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
-      dataOutputStream.writeUTF(message.toString());
-      dataOutputStream.flush();
-      String response=dataInputStream.readUTF();
-      dataOutputStream.flush();
-      dataOutputStream.close();
-      dataInputStream.close();
-      clientSocket.close();
-      return response;
+         Socket clientSocket = new Socket("localhost", port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         dataOutputStream.writeUTF(message.toString());
+         dataOutputStream.flush();
+         String response=dataInputStream.readUTF();
+         dataOutputStream.flush();
+         dataOutputStream.close();
+         dataInputStream.close();
+         clientSocket.close();
+         return response;
       } catch (IOException e) {
          e.printStackTrace();
       }
@@ -98,7 +98,31 @@ public class Client {
       return null;
    }
 
+   public String sendFileToServer(String srcPath,String desPath){
+      try {
+         Socket clientSocket = new Socket("localhost", port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         File file=new File(srcPath);
+         dataOutputStream.writeUTF("file send "+desPath + " "+(int)file.length());
+         dataOutputStream.flush();
+         String received=dataInputStream.readUTF();
+         byte[] fileData=new byte[(int)file.length()];
+         FileInputStream fis=new FileInputStream(file);
+         fis.read(fileData);
+         fis.close();
+         dataOutputStream.write(fileData);
+         dataOutputStream.flush();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
 
+
+   public Image getFileFromServer(String imageName , String imageType){
+      return null;
+   }
 
 
    public void setToken(String token) {

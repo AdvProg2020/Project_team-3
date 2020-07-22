@@ -453,7 +453,7 @@ public class Database {
       if (!file.exists()) {
          file.mkdir();
       }
-
+      
       if (!UserController.getInstance().isThereUserWithUsername("admin")) {
          Admin.addAdminAccount("admin", "12345", "admin", "admin", "admin", "admin");
       }

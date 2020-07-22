@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Project.Client.Menus.MenuController.AdminMenu.ManageBuyLogs"
+            prefHeight="400.0" prefWidth="600.0">
+    <MenuBar prefHeight="25.0" prefWidth="1280.0" styleClass="myMenuBar">
+        <menus>
+            <Menu mnemonicParsing="false" text="Options">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#back" text="back" />
+                    <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <ListView fx:id="buyLogListView" layoutX="149.0" layoutY="99.0" prefHeight="453.0" prefWidth="339.0" />
+    <ListView fx:id="detailsListView" layoutX="600.0" layoutY="93.0" prefHeight="461.0" prefWidth="321.0" />
+    <Label alignment="CENTER" layoutX="158.0" layoutY="50.0" prefHeight="17.0" prefWidth="321.0" text="Buy Log">
+        <font>
+            <Font name="System Bold Italic" size="29.0" />
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="599.0" layoutY="63.0" prefHeight="30.0" prefWidth="321.0" text="details">
+        <font>
+            <Font name="System Italic" size="20.0" />
+        </font>
+    </Label>
+    <Button layoutX="700.0" layoutY="577.0" mnemonicParsing="false" onAction="#showLog" prefHeight="64.0" prefWidth="136.0" styleClass="greyButton" text="show buyLog" />
+    <Label fx:id="buyLogEmptyLabel" layoutX="149.0" layoutY="99.0" prefHeight="17.0" prefWidth="339.0" />
+</AnchorPane>

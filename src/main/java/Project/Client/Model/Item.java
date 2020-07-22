@@ -169,4 +169,7 @@ public class Item {
         return "id: " + id + " name: " + name + " price=" + price;
     }
 
+    public String getState() {
+        return state;
+    }
 }
