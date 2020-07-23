@@ -40,18 +40,18 @@ public class AdminTransaction {
 
     public void getTransactionInitiate(){
         getTransaction.getItems().add("all"); //*
-        getTransaction.getItems().add("input");//-
-        getTransaction.getItems().add("output");//+
+        getTransaction.getItems().add("input");//+
+        getTransaction.getItems().add("output");//-
     }
 
     public void listViewUpdate(String selected){
         transactionList.getItems().clear();
         String returned="";
         if(selected.equals("all")) returned=MakeRequest.getTransaction("*");
-        else if(selected.equals("input")) returned=MakeRequest.getTransaction("-");
-        else if(selected.equals("output")) returned=MakeRequest.getTransaction("+");
+        else if(selected.equals("input")) returned=MakeRequest.getTransaction("+");
+        else if(selected.equals("output")) returned=MakeRequest.getTransaction("-");
         if(returned.equals("")) return;
-        String [] token=returned.split("\\*");
+        String [] token=returned.split("}");
         for(String string:token){
             string=string.replaceAll("\"","");
             string=string.replaceAll(",","\n");

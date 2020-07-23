@@ -102,7 +102,6 @@ public class AdminMenuController {
 
 
     public void goToTransactionMenu(ActionEvent actionEvent) {
-       MakeRequest.setMainAccountRequest();
        String bankToken=MakeRequest.getBankTokenForClient("admin","12345");
        Client.getInstance().setBankAccountToken(bankToken);
        SceneSwitcher.getInstance().setSceneAndWait("AdminTransaction" ,600,571);

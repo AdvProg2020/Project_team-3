@@ -35,8 +35,8 @@ public class TransactionMenu {
     public void initialize(){
         setBankAccountBalance();
         setUserBalance();
-        transactionComboBox.getItems().add("deposit"); //variz be hesab
         transactionComboBox.getItems().add("withdraw");// bardasht az hesab!
+        if(MakeRequest.makeGetUserRequest().type.equalsIgnoreCase("seller"))transactionComboBox.getItems().add("deposit"); //variz be hesab
         transactionComboBox.getSelectionModel().selectFirst();
         getTransactionInitiate();
         getTransaction.valueProperty().addListener(new ChangeListener() {
@@ -59,22 +59,24 @@ public class TransactionMenu {
 
     public void getTransactionInitiate(){
         getTransaction.getItems().add("all"); //*
-        getTransaction.getItems().add("input");//-
-        getTransaction.getItems().add("output");//+
+        getTransaction.getItems().add("input");//+
+        getTransaction.getItems().add("output");//-
     }
 
     public void listViewUpdate(String selected){
         transactionList.getItems().clear();
         String returned="";
         if(selected.equals("all")) returned=MakeRequest.getTransaction("*");
-        else if(selected.equals("input")) returned=MakeRequest.getTransaction("-");
-        else if(selected.equals("output")) returned=MakeRequest.getTransaction("+");
+        else if(selected.equals("input")) returned=MakeRequest.getTransaction("+");
+        else if(selected.equals("output")) returned=MakeRequest.getTransaction("-");
         if(returned.equals("")) return;
-        String [] token=returned.split("\\*");
+        String [] token=returned.split("}");
         for(String string:token){
+            string=string.replaceAll("\\[","");
+            string=string.replaceAll("]","");
+            string=string.replaceAll("\\{","");
             string=string.replaceAll("\"","");
             string=string.replaceAll(",","\n");
-            string=string.substring(1,string.length()-1);
             transactionList.getItems().add(string);
         }
     }
@@ -271,6 +273,10 @@ public class TransactionMenu {
         String all=receiptId.getText()+keyEvent.getText();
         if(all.equals("")) return;
         String returned=MakeRequest.getTransaction(all);
+        returned=returned.replaceAll("\\{","");
+        returned=returned.replaceAll("}","");
+        returned=returned.replaceAll("\"","");
+        returned=returned.replaceAll(",","\n");
         transactionList.getItems().add(returned);
     }
 
