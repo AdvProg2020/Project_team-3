@@ -350,7 +350,7 @@ public class ItemAndCategoryController {
         return "Successful: Admins have been notified of your request to add this item.";
     }
 
-    public String addFile(String name,String description,double price,String image){
+    public String addFile(String name,String description,double price,String image,String path){
         if(UserController.getInstance().getCurrentOnlineUser()==null)
             return "Error: No user is logged in!";
         Seller seller=(Seller) Controller.getInstance().getCurrentOnlineUser();
@@ -359,7 +359,7 @@ public class ItemAndCategoryController {
             if((item!=null)&&(item.getName().equals(name)))
                 return "Error: please choose a different name";
         }
-        FileItem item = new FileItem(name,description,price,controller.getCurrentOnlineUser().getUsername(),image);
+        FileItem item = new FileItem(name,description,price,controller.getCurrentOnlineUser().getUsername(),image,path);
         String requestID = controller.getAlphaNumericString(controller.getIdSize(), "Requests");
         RequestController.getInstance().addItemRequest(requestID, item);
         return "Successful: Admins have been notified of your request to add this file.";

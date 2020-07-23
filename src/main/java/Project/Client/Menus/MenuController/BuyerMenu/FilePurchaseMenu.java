@@ -84,6 +84,13 @@ public class FilePurchaseMenu {
          alert.showAndWait();
          return;
       }
+      Item item=MakeRequest.getItem(itemId);
+      if(MakeRequest.isSellerServerOnline(item.getSellerName())==false){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setContentText("this file seller is not online please try again later.");
+         alert.showAndWait();
+         return;
+      }
         if(Client.getInstance().getBankAccountToken().equals(""))  SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
         if(!Client.getInstance().getBankAccountToken().equals("")) {
          String message = "";
@@ -104,8 +111,7 @@ public class FilePurchaseMenu {
          alert.setContentText(message);
          alert.showAndWait();
          if (message.startsWith("Successful")){
-            Item item=MakeRequest.getItem(itemId);
-            Client.getInstance().getFileFromServer(path,item.getSellerName()+"_"+item.getName());
+            Client.getInstance().getFileFromServer(item,path);
             SceneSwitcher.getInstance().back();
          }
       }

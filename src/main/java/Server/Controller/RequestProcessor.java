@@ -332,6 +332,19 @@ public class RequestProcessor {
          return AuctionController.getInstance().bidOnAuction(auctionId,Double.parseDouble(bid),username);
       }
 
+      if(getJsonStringField(command,"content").equals("is seller server online")){
+        String sellerName=getJsonStringField(command,"seller name");
+        if(Server.isSellerServerOnline(sellerName)) return "true";
+        return "false";
+      }
+
+      if(getJsonStringField(command,"content").equals("get seller port")){
+         String sellerName=getJsonStringField(command,"seller name");
+         return String.valueOf(Server.getSellerPort(sellerName));
+      }
+
+
+
       return "Error: invalid command";
    }
 
@@ -345,6 +358,11 @@ public class RequestProcessor {
        int port=command.get("port").getAsInt();
          Server.addSellerServerPort(username,port);
          return "seller server saved";
+      }
+
+      if(getJsonStringField(command,"content").equals("seller remove port")){
+         Server.removeSellerServerPort(username);
+         return "Successful: seller port removed";
       }
 
       if(getJsonStringField(command,"content").equals("add product")){
@@ -376,7 +394,8 @@ public class RequestProcessor {
          String description=getJsonStringField(command,"description");
          double price=command.get("price").getAsDouble();
          String image=getJsonStringField(command,"image");
-         return ItemAndCategoryController.getInstance().addFile(name,description,price,image);
+         String path=getJsonStringField(command,"path");
+         return ItemAndCategoryController.getInstance().addFile(name,description,price,image,path);
       }
 
       if(getJsonStringField(command,"content").equals("get sale log")){

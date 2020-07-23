@@ -199,8 +199,13 @@ public class FileMenuController {
          alert.show();
          return;
       }
-      if(true){
-       //age dobar haride bod bege nemishe
+      if(MakeRequest.isSellerServerOnline(item.getSellerName())==false){
+         MusicManager.getInstance().playSound("error");
+         Alert alert=new Alert(Alert.AlertType.ERROR);
+         alert.setHeaderText("ERROR");
+         alert.setContentText("this file seller is not online please try again later.");
+         alert.show();
+         return;
       }
       FilePurchaseMenu.setItemId(itemID);
       SceneSwitcher.getInstance().setSceneTo("FilePurchase",605,305);
