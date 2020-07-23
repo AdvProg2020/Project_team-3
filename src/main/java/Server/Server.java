@@ -48,8 +48,8 @@ public class Server {
                      request.close();
                      continue;
                   }
-               /*   if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
-                     if (suspiciousIPsConnection.get(request.getLocalPort()) > 300) {
+                  if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
+                     if (suspiciousIPsConnection.get(request.getLocalPort()) > 1000) {
                         blockedIp.add(request.getLocalPort());
                         System.err.println("connection refused:too many");
                         DoSBlackListTime.put(request.getLocalPort(),clock.millis());
@@ -65,7 +65,7 @@ public class Server {
                         suspiciousIPsConnection.put(request.getLocalPort(),1);
                      }
                   }
-                  updateDoSList();*/
+                  updateDoSList();
                   AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
@@ -227,7 +227,7 @@ public class Server {
    private void updateDoSList(){
       ArrayList<Integer> removeUs = new ArrayList<>();
       for(int ip:DoSBlackListTime.keySet()){
-         if(clock.millis() - DoSBlackListTime.get(ip) > 5000){
+         if(clock.millis() - DoSBlackListTime.get(ip) > 3000){
             removeUs.add(ip);
          }
       }

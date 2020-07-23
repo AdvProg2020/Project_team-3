@@ -102,13 +102,13 @@ public class SellerRegisterController {
             return;
         }
         double money=validateMoney(moneyTextField.getText());
-        MakeRequest.makeRegisterSellerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextField.getText(),money,companyTextField.getText());
+        String text = MakeRequest.makeRegisterSellerRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextField.getText(),money,companyTextField.getText());
         if(!imageDirectory.getText().equals("")) Client.getInstance().sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("successful!");
-        alert.setContentText("your request has been sent to the admin");
+        alert.setTitle("Result:");
+        alert.setContentText(text);
         alert.show();
     }
 

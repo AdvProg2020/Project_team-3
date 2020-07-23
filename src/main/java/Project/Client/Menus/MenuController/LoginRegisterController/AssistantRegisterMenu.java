@@ -168,13 +168,13 @@ public class AssistantRegisterMenu {
          validateLabelsAfterError(validation);
          return;
       }
-      MakeRequest.makeRegisterAssistantRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
+      String text = MakeRequest.makeRegisterAssistantRequest(firstNameTextField.getText(),surnameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),emailTextField.getText(),phoneNumberTextFiled.getText());
       if(!imageDirectory.getText().equals("")) Client.getInstance().sendImageToServer(srcPath,desPath);
       emptyAllText();
       MusicManager.getInstance().playSound("notify");
       Alert alert=new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("successful register!");
-      alert.setContentText("new assistant successfully added to your system!");
+      alert.setTitle("Result:");
+      alert.setContentText(text);
       alert.show();
    }
 
