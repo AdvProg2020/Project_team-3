@@ -5,6 +5,7 @@ import Project.Client.Model.*;
 import Project.Client.Model.Chat.Channel;
 import Project.Client.Model.Logs.BuyLog;
 import Project.Client.Model.Logs.SaleLog;
+import Project.Client.Model.Users.Seller;
 import Project.Client.Model.Users.User;
 
 
@@ -41,8 +42,10 @@ public class MakeRequest {
       json.addProperty("username", username);
       json.addProperty("password", password);
       String response = Client.getInstance().sendMessage(json);
-      if (response.startsWith("Success"))
+      if (response.startsWith("Success")) {
          Client.getInstance().setToken(response.substring(33, 65));
+         if(makeGetUserRequest() instanceof Seller) SellerServer.getInstance().initiateServer();
+      }
       return response;
    }
 
@@ -94,6 +97,7 @@ public class MakeRequest {
       json.addProperty("type", 1);
       json.addProperty("content", "logout");
       json.addProperty("token", Client.getInstance().getToken());
+      if(makeGetUserRequest() instanceof Seller) SellerServer.getInstance().closeServer();
       return Client.getInstance().sendMessage(json);
    }
 

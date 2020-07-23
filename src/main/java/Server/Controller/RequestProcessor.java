@@ -7,6 +7,7 @@ import Server.Model.Logs.SaleLog;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
 import Server.Model.Users.User;
+import Server.Server;
 import com.google.gson.*;
 
 
@@ -36,13 +37,15 @@ public class RequestProcessor {
    public String process(String command) {
       JsonParser parser = new JsonParser();
       JsonObject commandJson = (JsonObject) parser.parse(command);
-      try{
-         LocalDateTime timestamp = LocalDateTime.parse(commandJson.get("timestamp").getAsString());
-         if(LocalDateTime.now().isBefore(timestamp) || LocalDateTime.now().isAfter(timestamp.plusMinutes(1))){
+      if(commandJson.has("timestamp")) {
+         try {
+            LocalDateTime timestamp = LocalDateTime.parse(commandJson.get("timestamp").getAsString());
+            if (LocalDateTime.now().isBefore(timestamp) || LocalDateTime.now().isAfter(timestamp.plusMinutes(1))) {
+               return "Error: invalid command";
+            }
+         } catch (Exception e) {
             return "Error: invalid command";
          }
-      }catch (Exception e){
-         return "Error: invalid command";
       }
       if (commandJson.get("type").getAsInt() == 0) {  //genral command doesnt need token
          return generalProcessor(commandJson);
@@ -336,6 +339,13 @@ public class RequestProcessor {
       String username = AuthTokenHandler.getInstance().getUserWithToken(getJsonStringField(command,"token"));
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
+
+      if(getJsonStringField(command,"content").equals("seller server port")){
+         System.out.println("salam");
+       int port=command.get("port").getAsInt();
+         Server.addSellerServerPort(username,port);
+         return "seller server saved";
+      }
 
       if(getJsonStringField(command,"content").equals("add product")){
          String name=getJsonStringField(command,"name");

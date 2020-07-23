@@ -75,11 +75,10 @@ public class BuyLog {
     public ArrayList<String> getAllItemsID() {
         return allItemsID;
     }
+
     public HashMap<String, Double> getItemsCount() {
         return itemsCount;
     }
-
-
 
     public String getAddress() {
         return address;
