@@ -125,6 +125,7 @@ public class AuctionController {
         auction.rebid(newBidder,bid);
         Database.getInstance().saveAuction(auction);
         newGuy.setMoney(newGuy.getMoney() - bid);
+        Database.getInstance().saveUser(newGuy);
         return "Bid successful";
     }
 
