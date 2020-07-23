@@ -120,9 +120,29 @@ public class Client {
    }
 
 
-   public Image getFileFromServer(String imageName , String imageType){
+   public String getFileFromServer(String path,String fileName){
+      try {
+         Socket clientSocket=new Socket("localhost",port);
+         DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+         dataOutputStream.writeUTF("file get "+ fileName);
+         dataOutputStream.flush();
+         String received=dataInputStream.readUTF();
+         int size=Integer.parseInt(received);
+         byte[]fileData=new byte[size];
+         dataInputStream.readFully(fileData);
+         File file=new File(path+File.separator+fileName);
+         FileOutputStream fileOutputStream=new FileOutputStream(file);
+         fileOutputStream.write(fileData);
+         fileOutputStream.close();
+         System.out.println("finish");
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
       return null;
    }
+
+
 
 
    public void setToken(String token) {

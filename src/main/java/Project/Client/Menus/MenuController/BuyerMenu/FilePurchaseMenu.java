@@ -102,7 +102,10 @@ public class FilePurchaseMenu {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setContentText(message);
          alert.showAndWait();
-         if (message.startsWith("Successful")) SceneSwitcher.getInstance().back();
+         if (message.startsWith("Successful")){
+            Client.getInstance().getFileFromServer(path,MakeRequest.getItem(itemId).getName());
+            SceneSwitcher.getInstance().back();
+         }
       }
    }
 

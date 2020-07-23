@@ -83,6 +83,8 @@ public class Server {
                      sendImageToClient(command,dataInputStream,dataOutputStream);
                   }else if(command.startsWith("file send")){
                      getFileFromClient(command,dataInputStream,dataOutputStream);
+                  }else if(command.startsWith("file get")){
+                     sendFileToClient(command,dataInputStream,dataOutputStream);
                   }
                    dataOutputStream.close();
                    dataInputStream.close();
@@ -176,7 +178,29 @@ public class Server {
       } catch (IOException e) {
          e.printStackTrace();
       }
+      return "done!";
+   }
 
+   public String sendFileToClient(String command , DataInputStream dataInputStream , DataOutputStream dataOutputStream){
+      String [] token=command.split(" ");
+      String imageName=token[2];
+      String desPath="src/main/resources/Files"+File.separator+imageName;
+      File file=new File(desPath);
+      System.out.println("the des path is: "+desPath);
+      byte[]imageData=new byte[(int)file.length()];
+      try {
+         dataOutputStream.writeUTF(String.valueOf((int)file.length()));
+         dataOutputStream.flush();
+         FileInputStream fis=new FileInputStream(file);
+         fis.read(imageData);
+         fis.close();
+         dataOutputStream.write(imageData);
+         dataOutputStream.flush();
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
       return "done!";
    }
 
