@@ -31,7 +31,7 @@ public class Cart {
 
    public String add(String itemId) {
       Item item= MakeRequest.getItem(itemId);
-      if (0 == item.getInStock()) {
+      if ((0 == item.getInStock())&&(item.getState().equals("file")==false)) {
          return "Error: there isn't enough in stock";
       }
       if (allItemCount.get(itemId) == null) {

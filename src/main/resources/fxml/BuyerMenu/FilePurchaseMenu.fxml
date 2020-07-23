@@ -3,23 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="277.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.BuyerMenu.FilePurchaseMenu">
-
-    <MenuBar prefHeight="25.0" prefWidth="645.0" styleClass="myMenuBar">
-        <menus>
-            <Menu mnemonicParsing="false" text="Options">
-                <items>
-                    <MenuItem onAction="#back" text="back" />
-                </items>
-            </Menu>
-        </menus>
-    </MenuBar>
-
-            <Button layoutX="36.0" layoutY="71.0" text="file chooser" onMouseClicked="#fileChooser" />
-            <Label fx:id="path" layoutX="137.0" layoutY="76.0" prefHeight="17.0" prefWidth="381.0" />
-            <Label fx:id="price" layoutX="137.0" layoutY="135.0" prefHeight="17.0" prefWidth="72.0" />
-    <Label fx:id="name" layoutX="137.0" layoutY="192.0" prefHeight="17.0" prefWidth="108.0" />
-    <Label layoutX="79.0" layoutY="135.0" text="price" />
-    <Label layoutX="79.0" layoutY="192.0" text="name" />
-    <Button layoutX="41.0" layoutY="230.0" prefHeight="27.0" prefWidth="231.0" text="download" onMouseClicked="#buy" />
+<AnchorPane prefHeight="305.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.BuyerMenu.FilePurchaseMenu">
+    <Label layoutX="57.0" layoutY="152.0" text="discount code:" />
+    <ChoiceBox fx:id="discounts" layoutX="160.0" layoutY="147.0" onAction="#discountChange" prefHeight="27.0" prefWidth="287.0" styleClass="myBlueButton" />
+    <Label fx:id="priceLabel" layoutX="106.0" layoutY="16.0" prefHeight="74.0" prefWidth="197.0" text="price=" />
+    <Button layoutX="67.0" layoutY="278.0" onMouseClicked="#buy" prefHeight="27.0" prefWidth="161.0" styleClass="myBlueButton" text="buy" />
+    <Button onMouseClicked="#back" styleClass="myBlueButton" text="back" />
+    <ComboBox fx:id="transactionBox" layoutX="160.0" layoutY="207.0" prefHeight="27.0" prefWidth="287.0" styleClass="myBlueButton" />
+    <Label layoutX="67.0" layoutY="212.0" prefHeight="17.0" prefWidth="78.0" text="Transaction:" />
+    <Label fx:id="pathLabel" layoutX="160.0" layoutY="106.0" prefHeight="17.0" prefWidth="287.0" text="path" />
+    <Button layoutX="14.0" layoutY="93.0" prefHeight="35.0" prefWidth="136.0" text="download destination" onMouseClicked="#pathChooser"/>
 </AnchorPane>

@@ -48,7 +48,7 @@ public class Server {
                      request.close();
                      continue;
                   }
-                  if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
+               /*   if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
                      if (suspiciousIPsConnection.get(request.getLocalPort()) > 300) {
                         blockedIp.add(request.getLocalPort());
                         System.err.println("connection refused:too many");
@@ -65,7 +65,7 @@ public class Server {
                         suspiciousIPsConnection.put(request.getLocalPort(),1);
                      }
                   }
-                  updateDoSList();
+                  updateDoSList();*/
                   AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));

@@ -2,6 +2,7 @@ package Project.Client.Menus.MenuController;
 
 import Project.Client.Client;
 import Project.Client.MakeRequest;
+import Project.Client.Menus.MenuController.BuyerMenu.FilePurchaseMenu;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Comment;
@@ -160,40 +161,6 @@ public class FileMenuController {
       commentListView.setItems(comments);
    }
 
-   public void addToCart(ActionEvent actionEvent) {
-    /*  MusicManager.getInstance().playSound("Button");
-      User user=MakeRequest.makeGetUserRequest();
-      Item item=MakeRequest.getItem(itemID);
-      if( user!=null &&(user instanceof Buyer)==false){
-         MusicManager.getInstance().playSound("error");
-         Alert alert=new Alert(Alert.AlertType.ERROR);
-         alert.setHeaderText("ERROR");
-         alert.setContentText("you are not a buyer");
-         alert.show();
-         return;
-      }
-      if(Cart.getInstance().includesItem(itemID)){
-         MusicManager.getInstance().playSound("notify");
-         Alert alert=new Alert(Alert.AlertType.INFORMATION);
-         alert.setTitle("ERROR");
-         alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
-         alert.show();
-         return;
-      }
-      if(item.getInStock()==0){
-         MusicManager.getInstance().playSound("error");
-         Alert alert=new Alert(Alert.AlertType.ERROR);
-         alert.setTitle("ERROR");
-         alert.setContentText("sold out Item!");
-         alert.showAndWait();
-         return;
-      }
-      Cart.getInstance().add(itemID);
-      MusicManager.getInstance().playSound("notify");
-      Alert alert=new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText("item has been added to cart.");
-      alert.show(); */
-   }
 
    public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {
       int x=(int)mouseEvent.getX();
@@ -221,7 +188,22 @@ public class FileMenuController {
    }
 
    public void buy(ActionEvent actionEvent) {
-
+      MusicManager.getInstance().playSound("Button");
+      User user=MakeRequest.makeGetUserRequest();
+      Item item=MakeRequest.getItem(itemID);
+      if( user!=null &&(user instanceof Buyer)==false){
+         MusicManager.getInstance().playSound("error");
+         Alert alert=new Alert(Alert.AlertType.ERROR);
+         alert.setHeaderText("ERROR");
+         alert.setContentText("you are not a buyer");
+         alert.show();
+         return;
+      }
+      if(true){
+       //age dobar haride bod bege nemishe
+      }
+      FilePurchaseMenu.setItemId(itemID);
+      SceneSwitcher.getInstance().setSceneTo("FilePurchase",605,305);
    }
 
 
