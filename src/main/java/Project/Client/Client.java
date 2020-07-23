@@ -121,7 +121,6 @@ public class Client {
       return null;
    }
 
-
    public String getFileFromServer(String path,String fileName){
       try {
          Socket clientSocket=new Socket("localhost",port);
@@ -144,9 +143,6 @@ public class Client {
       return null;
    }
 
-
-
-
    public void setToken(String token) {
       Token = token;
    }
@@ -161,5 +157,9 @@ public class Client {
 
    public void setBankAccountToken(String bankAccountToken) {
       this.bankAccountToken = bankAccountToken;
+   }
+
+   public void initiateSellerServer(){
+
    }
 }

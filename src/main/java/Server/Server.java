@@ -17,6 +17,7 @@ public class Server {
    private static DataOutputStream dataOutputStream;
    private static DataInputStream dataInputStream;
    private static HashSet<Integer> blockedIp=new HashSet<>();
+   private static HashMap<String,Integer> sellerServerPort=new HashMap<>();
    public static final String ANSI_RESET = "\u001B[0m";
    public static final String ANSI_GREEN = "\u001B[32m";
    public static final String ANSI_BLUE = "\u001B[34m";
@@ -246,5 +247,14 @@ public class Server {
          blockedIp.remove(ip);
       }
    }
+
+   public static void addSellerServerPort(String username,int port){
+      sellerServerPort.put(username,port);
+   }
+
+   public static void removeSellerServerPort(String username){
+      sellerServerPort.remove(username);
+   }
+
 
 }
