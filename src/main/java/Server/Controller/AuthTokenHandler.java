@@ -51,7 +51,7 @@ public class AuthTokenHandler {
    public void updateTime(){
       ArrayList<String> deleteTheseTokens = new ArrayList<>();
       for(String token:tokenMillis.keySet()){
-         if(clock.millis() - tokenMillis.get(token) > 10800000){
+         if(clock.millis() - tokenMillis.get(token) > 3600000){
             deleteTheseTokens.add(token);
          }
       }

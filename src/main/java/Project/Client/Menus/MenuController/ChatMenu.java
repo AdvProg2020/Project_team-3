@@ -53,9 +53,9 @@ public class ChatMenu {
       ChatMenu.channelName = channelName;
    }
 
-  /*@FXML
+  @FXML
    public void exitApplication() {
       timeline.stop();
-   }*/
+   }
 
 }

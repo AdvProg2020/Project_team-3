@@ -8,7 +8,6 @@ import Project.Client.Menus.MenuController.ViewRequestUser;
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.CLI.View;
-import Server.Controller.TransactionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

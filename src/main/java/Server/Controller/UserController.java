@@ -1,6 +1,5 @@
 package Server.Controller;
 
-import Project.Client.CLI.View;
 import Server.Model.Logs.BuyLog;
 import Server.Model.Logs.SaleLog;
 import Server.Model.Users.*;
@@ -291,7 +290,7 @@ public class UserController {
 
     public String logout() {
         if (controller.currentOnlineUser == null) {
-            return View.ANSI_RED + "Error: Not logged in!" + View.ANSI_RESET;
+            return "Error: Not logged in!";
         }
         controller.currentOnlineUser = null;
         controller.emptyCart();

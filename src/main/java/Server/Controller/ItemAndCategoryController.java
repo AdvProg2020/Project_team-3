@@ -1,7 +1,6 @@
 package Server.Controller;
 
-import Project.Client.CLI.ShopAndDiscountMenu.ShopMenu;
-import Project.Client.CLI.View;
+//import Project.Client.CLI.ShopAndDiscountMenu.ShopMenu;
 import Server.Model.*;
 import Server.Model.Requests.ItemRequest;
 import Server.Model.Requests.Request;
@@ -37,7 +36,7 @@ public class ItemAndCategoryController {
         User user=UserController.getInstance().getCurrentOnlineUser();
         Item item = getItemById(id);
         if (item == null) {
-            return View.ANSI_RED+"Error: item doesn't exist."+View.ANSI_RESET;
+            return "Error: item doesn't exist.";
         }
         if(user instanceof Seller){
             Seller seller=(Seller) user;
@@ -173,7 +172,7 @@ public class ItemAndCategoryController {
 
     public String viewItem(String id) {
         if (!ItemAndCategoryController.getInstance().isThereItemWithId(id)) {
-            return (View.ANSI_RED + "Error: Invalid ID\n" + View.ANSI_RESET);
+            return ("Error: Invalid ID\n");
         }
         Item item = getItemById(id);
         item.addViewsBy(1);
@@ -388,7 +387,7 @@ public class ItemAndCategoryController {
     }
 
     public Category getCurrentCategory() {
-        return getCategoryByName(ShopMenu.getInstance().getCurrentCategory());
+        return null;
     }
 
     public ArrayList<String> getCategoryItems(String categoryName) { //<== in miad itemaye bache hasham mide, test konid!
@@ -423,9 +422,9 @@ public class ItemAndCategoryController {
 
     public String openCategory(String name) {
         if (!isThereCategoryWithName(name)) {
-            return View.ANSI_RED + "Error: No such category." + View.ANSI_RESET;
+            return "Error: No such category.";
         }
-        ShopMenu.getInstance().setCurrentCategory(name);
+        //ShopMenu.getInstance().setCurrentCategory(name);
         return "Successful:";
     }
 

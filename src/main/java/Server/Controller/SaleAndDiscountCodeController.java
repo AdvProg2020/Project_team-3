@@ -1,6 +1,6 @@
 package Server.Controller;
 
-import Project.Client.CLI.View;
+//import Project.Client.CLI.View;
 import Server.Model.Auction;
 import Server.Model.DiscountCode;
 import Server.Model.Item;
@@ -188,7 +188,7 @@ public class SaleAndDiscountCodeController {
     public String deleteSale(String id) {
         Sale sale = getSaleById(id);
         if (id == null) {
-            return View.ANSI_RED+"Error: Sale doesn't exist."+View.ANSI_RESET;
+            return "Error: Sale doesn't exist.";
         }
         Database.getInstance().deleteSale(sale);
         return "Successful: Deleted sale.";
@@ -197,7 +197,7 @@ public class SaleAndDiscountCodeController {
     public String deleteDiscountCode(String id) {
         DiscountCode code = getDiscountCodeById(id);
         if ((id == null) || (code == null)) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         Database.getInstance().deleteDiscountCode(code);
         return "Successful: Deleted discount code.";
@@ -301,7 +301,7 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodePercentage(String discountID, int percentage) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         discountCode.setDiscountPercentage(percentage);
         Database.getInstance().saveDiscountCode(discountCode);
@@ -311,7 +311,7 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodeMaxDiscount(String discountID, double amount) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         discountCode.setMaxDiscount(amount);
         Database.getInstance().saveDiscountCode(discountCode);
@@ -321,7 +321,7 @@ public class SaleAndDiscountCodeController {
     public String editDiscountCodeEndTime(String discountID, LocalDateTime endTime) {
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         if (!endTime.isAfter(discountCode.getStartTime())) {
             return "Error: Ending time is after the starting time!";
@@ -335,7 +335,7 @@ public class SaleAndDiscountCodeController {
         if (newUsage <= 0) return "Error: Usage count can't be negative.";
         DiscountCode discountCode = getDiscountCodeById(discountID);
         if (discountCode == null) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         discountCode.changeUsageCount(newUsage);
         Database.getInstance().saveDiscountCode(discountCode);
@@ -354,7 +354,7 @@ public class SaleAndDiscountCodeController {
     public String printDiscount(String id) {
         DiscountCode discountCode = getDiscountCodeById(id);
         if (discountCode == null) {
-            return View.ANSI_RED+"Error: Discount code doesn't exist."+View.ANSI_RESET;
+            return "Error: Discount code doesn't exist.";
         }
         return discountCode.toString();
     }

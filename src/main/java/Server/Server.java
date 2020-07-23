@@ -30,7 +30,7 @@ public class Server {
       clock = Clock.systemDefaultZone();
       suspiciousIPsConnection = new HashMap<>();
       DoSBlackListTime = new HashMap<>();
-      AuthTokenHandler.getInstance().updateTime();
+      //AuthTokenHandler.getInstance().updateTime();
       try {
          server = new ServerSocket(9000);
       } catch (IOException e) {
@@ -48,7 +48,7 @@ public class Server {
                      request.close();
                      continue;
                   }
-                  if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
+                  /*if(suspiciousIPsConnection.containsKey(request.getLocalPort())) {
                      if (suspiciousIPsConnection.get(request.getLocalPort()) > 1000) {
                         blockedIp.add(request.getLocalPort());
                         System.err.println("connection refused:too many");
@@ -65,7 +65,7 @@ public class Server {
                         suspiciousIPsConnection.put(request.getLocalPort(),1);
                      }
                   }
-                  updateDoSList();
+                  updateDoSList();*/
                   AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
