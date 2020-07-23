@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
+import kotlin.jvm.internal.MagicApiIntrinsics;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -155,6 +156,7 @@ public class BuyerOrdersController {
                 buyLogListView.getSelectionModel().clearSelection();
                 ArrayList<String> itemIds=buyLog.getAllItemsID();
                 for(String id:itemIds){
+                    if(MakeRequest.isThereProductWithId(id))
                     allItems.add(MakeRequest.getItem(id));
                 }
                 detailsListView.setItems(allItems);

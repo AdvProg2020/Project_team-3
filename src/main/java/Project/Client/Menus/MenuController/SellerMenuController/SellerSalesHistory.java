@@ -142,16 +142,17 @@ public class SellerSalesHistory {
                 if(!saleLog1.equals(selected)) itemListView.getItems().clear();
                 selected=saleLog1;
                 String itemId=saleLog1.getItemId();
-                Item item= MakeRequest.getItem(itemId);
-                allItems.add(item);
-                itemListView.setItems(allItems);
-                itemListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
-                    @Override
-                    public ListCell<Item> call(ListView<Item> param) {
-                        return new ItemImageText();
-                    }
-                });
-
+                if(MakeRequest.isThereProductWithId(itemId)) {
+                    Item item = MakeRequest.getItem(itemId);
+                    allItems.add(item);
+                    itemListView.setItems(allItems);
+                    itemListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+                        @Override
+                        public ListCell<Item> call(ListView<Item> param) {
+                            return new ItemImageText();
+                        }
+                    });
+                }
             }
         });
 

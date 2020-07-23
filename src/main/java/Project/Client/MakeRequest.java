@@ -138,31 +138,8 @@ public class MakeRequest {
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 2);
       json.addProperty("content", "get buyer buy log");
-      JsonParser parser = new JsonParser();
-      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
-      System.out.println(jsonObject.toString());
-
-      int size=jsonObject.get("size").getAsInt();
-      ArrayList<BuyLog> buyLogs= new ArrayList<>();
-      Gson gson = new Gson();
-      for(int i=0;i<size;i++){
-         HashMap<String,Double> itemCount=new HashMap<>();
-         HashMap<String,Double> itemPrice=new HashMap<>();
-         HashMap<String,String> sellerName=new HashMap<>();
-         ArrayList<String> itemIdArrayList=gson.fromJson(jsonObject.get("itemId"+i), ArrayList.class);
-         ArrayList<Double> itemCountArrayList=gson.fromJson(jsonObject.get("itemCount"+i), ArrayList.class);
-         ArrayList<Double> itemPriceArrayList=gson.fromJson(jsonObject.get("itemPrice"+i), ArrayList.class);
-         ArrayList<String> itemSellerArrayList=gson.fromJson(jsonObject.get("sellerName"+i), ArrayList.class);
-         for(int j=0;j<itemIdArrayList.size();j++){
-            itemCount.put(itemIdArrayList.get(j),itemCountArrayList.get(j));
-            itemPrice.put(itemIdArrayList.get(j),itemPriceArrayList.get(j));
-            sellerName.put(itemIdArrayList.get(j),itemSellerArrayList.get(j));
-         }
-         String time=getJsonStringField(jsonObject,"time"+i);
-         String address=getJsonStringField(jsonObject,"address"+i);
-         buyLogs.add(new BuyLog(itemIdArrayList,itemCount,itemPrice,sellerName,address,time));
-      }
-      return buyLogs;
+      Gson gson=new Gson();
+      return gson.fromJson(Client.getInstance().sendMessage(json),new TypeToken<ArrayList<BuyLog>>(){}.getType());
    }
 
    public static String makeCommentRequest(String comment,String itemId, String fatherCommentId) {
@@ -281,21 +258,7 @@ public class MakeRequest {
       json.addProperty("type", 3);
       json.addProperty("content", "get sale log");
       Gson gson=new Gson();
-      JsonParser parser = new JsonParser();
-      JsonObject jsonObject = (JsonObject) parser.parse(Client.getInstance().sendMessage(json));
-
-      int size=jsonObject.get("size").getAsInt();
-      ArrayList<SaleLog> saleLogs=new ArrayList<>();
-      for(int i=0;i<size;i++){
-         String seller=getJsonStringField(jsonObject,"seller"+i);
-         String buyer=getJsonStringField(jsonObject,"buyer"+i);
-         String itemId=getJsonStringField(jsonObject,"itemId"+i);
-         String date=getJsonStringField(jsonObject,"date"+i);
-         int price=jsonObject.get("price"+i).getAsInt();
-         int count=jsonObject.get("count"+i).getAsInt();
-         saleLogs.add(new SaleLog(date,price,itemId,buyer,count,seller));
-      }
-      return saleLogs;
+      return gson.fromJson(Client.getInstance().sendMessage(json),new TypeToken<ArrayList<SaleLog>>(){}.getType());
    }
 
    public static String editSale(String saleId,String field,String value){

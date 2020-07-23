@@ -186,7 +186,8 @@ public class Server {
       String imageName=token[2];
       String desPath="src/main/resources/Files"+File.separator+imageName;
       File file=new File(desPath);
-      System.out.println("the des path is: "+desPath);
+      System.out.println(file.exists()+"odowjdow");
+      System.out.println("the des path is hihihihihihi : "+desPath);
       byte[]imageData=new byte[(int)file.length()];
       try {
          dataOutputStream.writeUTF(String.valueOf((int)file.length()));

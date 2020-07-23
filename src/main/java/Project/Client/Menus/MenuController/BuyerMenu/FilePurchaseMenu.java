@@ -61,6 +61,7 @@ public class FilePurchaseMenu {
    }
 
    public void back(MouseEvent mouseEvent){
+      Cart.getInstance().empty();
       SceneSwitcher.getInstance().setSceneTo("CartMenu");
    }
 
@@ -103,7 +104,8 @@ public class FilePurchaseMenu {
          alert.setContentText(message);
          alert.showAndWait();
          if (message.startsWith("Successful")){
-            Client.getInstance().getFileFromServer(path,MakeRequest.getItem(itemId).getName());
+            Item item=MakeRequest.getItem(itemId);
+            Client.getInstance().getFileFromServer(path,item.getSellerName()+"_"+item.getName());
             SceneSwitcher.getInstance().back();
          }
       }

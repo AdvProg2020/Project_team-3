@@ -299,30 +299,8 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("get buyer buy log")){
          ArrayList<BuyLog> buyLogs=((Buyer)UserController.getInstance().getUserByUsername(username)).getBuyLogs();
-         JsonObject json=new JsonObject();
-         json.addProperty("size",buyLogs.size());
-         for(int i=0;i<buyLogs.size();i++) {
-            BuyLog log = buyLogs.get(i);
-            ArrayList<Double> itemPrice=new ArrayList<>();
-            ArrayList<Integer> itemCount=new ArrayList<>();
-            ArrayList<String> sellerName=new ArrayList<>();
-            for (String itemId : log.getAllItemsID()) {
-               itemPrice.add(log.getItemsPrice().get(itemId));
-               itemCount.add(log.getItemsCount().get(itemId));
-               sellerName.add(log.getItemsSeller().get(itemId));
-            }
-            JsonArray jsonArray1 = new Gson().toJsonTree(log.getAllItemsID()).getAsJsonArray();
-            JsonArray jsonArray2 = new Gson().toJsonTree(itemPrice).getAsJsonArray();
-            JsonArray jsonArray3 = new Gson().toJsonTree(itemCount).getAsJsonArray();
-            JsonArray jsonArray4 = new Gson().toJsonTree(sellerName).getAsJsonArray();
-            json.add("sellerName"+i,jsonArray4);
-            json.add("itemCount"+i,jsonArray3);
-            json.add("itemPrice"+i,jsonArray2);
-            json.add("itemId"+i,jsonArray1);
-            json.addProperty("address"+i,log.getAddress());
-            json.addProperty("time"+i,log.getTime());
-         }
-         return json.toString();
+         Gson gson=new Gson();
+         return gson.toJson(buyLogs);
       }
 
       if(getJsonStringField(command,"content").equals("rate")){
@@ -385,7 +363,7 @@ public class RequestProcessor {
 
       if(getJsonStringField(command,"content").equals("get sale log")){
          ArrayList<SaleLog> saleLogs=UserController.getInstance().getSaleLogs(username);
-         JsonObject json=new JsonObject();
+        /* JsonObject json=new JsonObject();
          json.addProperty("size",saleLogs.size());
            for(int i=0;i<saleLogs.size();i++) {
             SaleLog log = saleLogs.get(i);
@@ -396,7 +374,9 @@ public class RequestProcessor {
             json.addProperty("price"+i , log.getPrice());
             json.addProperty("count"+i , log.getCount());
          }
-         return json.toString();
+         return json.toString(); */
+         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(saleLogs);
       }
 
       if(getJsonStringField(command,"content").equals("remove product")){
