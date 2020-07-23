@@ -267,7 +267,7 @@ public class ItemAndCategoryController {
         if(text.length() > 1200){
             return "Error: lengthy comment";
         }
-        if(text.contains(" OR ") || text.contains("*") || text.contains("|")){
+        if(text.contains(" OR ") || text.contains("*") || text.contains("|") || text.contains(" DUMP ") || text.contains(" DROP ")){
             return "Error: invalid characters in comment";
         }
         if (item.isBuyerWithUserName(controller.currentOnlineUser.getUsername())) {
