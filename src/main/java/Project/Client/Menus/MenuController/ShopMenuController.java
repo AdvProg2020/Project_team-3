@@ -27,9 +27,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import kotlin.jvm.internal.MagicApiIntrinsics;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 

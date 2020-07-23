@@ -1,9 +1,7 @@
 package Project.Client.Menus.MenuController.AssistantMenu;
 
 import Project.Client.MakeRequest;
-import Project.Client.Menus.MenuController.AdminMenu.ManageUserIn;
 import Project.Client.Menus.MenuController.ChatMenu;
-import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +41,7 @@ public class ManageChats {
          ChatMenu.setReceiver(username);
          ChatMenu.setChannelName(username+'#'+MakeRequest.makeGetUserRequest().username);
          SceneSwitcher.getInstance().setSceneAndWait("ChatMenu", 600, 800);
+         ChatMenu.getTimeline().stop();
       }
       chats.getSelectionModel().clearSelection();
    }

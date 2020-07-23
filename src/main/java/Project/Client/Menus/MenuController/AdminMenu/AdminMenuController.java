@@ -96,13 +96,12 @@ public class AdminMenuController {
    SceneSwitcher.getInstance().setSceneTo("AdminEditPersonalInfo");
    }
 
-   public void manageCommercials(ActionEvent actionEvent) {
+  /* public void manageCommercials(ActionEvent actionEvent) {
       SceneSwitcher.getInstance().setSceneTo("ManageCommercials",705,483);
-   }
+   } */
 
 
     public void goToTransactionMenu(ActionEvent actionEvent) {
-       MakeRequest.setMainAccountRequest();
        String bankToken=MakeRequest.getBankTokenForClient("admin","12345");
        Client.getInstance().setBankAccountToken(bankToken);
        SceneSwitcher.getInstance().setSceneAndWait("AdminTransaction" ,600,571);

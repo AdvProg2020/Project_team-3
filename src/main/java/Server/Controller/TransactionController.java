@@ -22,7 +22,7 @@ public class TransactionController {
     private int minimumMoney;
 
     public static TransactionController getInstance(){
-        if(transactionController==null) transactionController=new TransactionController();
+        if(transactionController==null)transactionController=new TransactionController();
         return transactionController;
     }
     private TransactionController(){
@@ -170,19 +170,19 @@ public class TransactionController {
         }
         return null;
     }
-//    public String exitBank(){
-//        String toBeSend="exit";
-//        String received="";
-//        try {
-//            dataOutputStream.writeUTF(toBeSend);
-//            dataOutputStream.flush();
-//            received=dataInputStream.readUTF();
-//            return received;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public String exitBank(){
+        String toBeSend="exit";
+        String received="";
+        try {
+            dataOutputStream.writeUTF(toBeSend);
+            dataOutputStream.flush();
+            received=dataInputStream.readUTF();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 

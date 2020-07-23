@@ -3,13 +3,17 @@ package Project.Client.Menus.MenuController;
 
 import Project.Client.MakeRequest;
 
+import Project.Client.Menus.SceneSwitcher;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class ChatMenu {
@@ -17,7 +21,7 @@ public class ChatMenu {
    private static String channelName;
    @FXML ListView channel;
    @FXML TextField message;
-   private Timeline timeline;
+   private static  Timeline timeline;
 
    @FXML public void initialize() {
       update();
@@ -53,9 +57,7 @@ public class ChatMenu {
       ChatMenu.channelName = channelName;
    }
 
-  @FXML
-   public void exitApplication() {
-      timeline.stop();
+   public static Timeline getTimeline() {
+      return timeline;
    }
-
 }
