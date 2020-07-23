@@ -24,6 +24,9 @@ public class TransactionMenu {
     public TextField finalAmount;
     public TextField wageAmount;
     public TextArea description;
+    public ComboBox getTransaction;
+    public ListView transactionList;
+    public TextField receiptId;
     private double userMoney=0;
     private double bank=0;
     private double wagePercent=0;
@@ -35,6 +38,14 @@ public class TransactionMenu {
         transactionComboBox.getItems().add("deposit"); //variz be hesab
         transactionComboBox.getItems().add("withdraw");// bardasht az hesab!
         transactionComboBox.getSelectionModel().selectFirst();
+        getTransactionInitiate();
+        getTransaction.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                String selected=(String) getTransaction.getSelectionModel().getSelectedItem();
+                listViewUpdate(selected);
+            }
+        });
         transactionComboBox.valueProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1) {
@@ -45,6 +56,29 @@ public class TransactionMenu {
         });
 
     }
+
+    public void getTransactionInitiate(){
+        getTransaction.getItems().add("all"); //*
+        getTransaction.getItems().add("input");//-
+        getTransaction.getItems().add("output");//+
+    }
+
+    public void listViewUpdate(String selected){
+        transactionList.getItems().clear();
+        String returned="";
+        if(selected.equals("all")) returned=MakeRequest.getTransaction("*");
+        else if(selected.equals("input")) returned=MakeRequest.getTransaction("-");
+        else if(selected.equals("output")) returned=MakeRequest.getTransaction("+");
+        if(returned.equals("")) return;
+        String [] token=returned.split("\\*");
+        for(String string:token){
+            string=string.replaceAll("\"","");
+            string=string.replaceAll(",","\n");
+            string=string.substring(1,string.length()-1);
+            transactionList.getItems().add(string);
+        }
+    }
+
 
     public void setBankAccountBalance(){
         String bBalance= MakeRequest.getBankAccountBalance();
@@ -177,7 +211,7 @@ public class TransactionMenu {
                 double d=Double.parseDouble(amount.getText());
                 System.out.println(d);
                 MakeRequest.setUserMoney(String.valueOf(userMoney-d));
-                makeAlertBox(result0,"information");
+                makeAlertBox(result0+" receipt Id is: "+receipt0,"information");
             }
             return;
         }
@@ -202,7 +236,7 @@ public class TransactionMenu {
             if(result0.equalsIgnoreCase("done successfully")){
                 double d=Double.parseDouble(finalAmount.getText());
                 MakeRequest.setUserMoney(String.valueOf(userMoney+d));
-                makeAlertBox(result0,"information");
+                makeAlertBox(result0+" receipt Id is: "+receipt0,"information");
             }
             return;
         }
@@ -231,4 +265,13 @@ public class TransactionMenu {
     public void back(ActionEvent actionEvent) {
         SceneSwitcher.getInstance().back();
     }
+
+    public void receiptTyped(KeyEvent keyEvent) {
+        transactionList.getItems().clear();
+        String all=receiptId.getText()+keyEvent.getText();
+        if(all.equals("")) return;
+        String returned=MakeRequest.getTransaction(all);
+        transactionList.getItems().add(returned);
+    }
+
 }

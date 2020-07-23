@@ -480,6 +480,11 @@ public class RequestProcessor {
       Controller.getInstance().setCurrentOnlineUser(username);
       if (username == null) return "Error: incorrect Token";
 
+      if(getJsonStringField(command,"content").equals("get Transaction")){
+         String bankToken=getJsonStringField(command,"bank Token");
+         String type=getJsonStringField(command,"transaction");
+         return TransactionController.getInstance().getTransaction(type,bankToken);
+      }
       if(getJsonStringField(command,"content").equals("set Money")){
          double money=Double.parseDouble(getJsonStringField(command,"money"));
          User user=UserController.getInstance().getUserByUsername(username);
@@ -499,9 +504,6 @@ public class RequestProcessor {
       if(getJsonStringField(command,"content").equals("getBankBalance")){
          String bankAccountToken=getJsonStringField(command,"bankToken");
          return TransactionController.getInstance().getBalance(bankAccountToken);
-      }
-      if(getJsonStringField(command,"content").equals("exit")){
-         return TransactionController.getInstance().exitBank();
       }
 
       if(getJsonStringField(command,"content").equals("wallet limit")){

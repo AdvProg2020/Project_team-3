@@ -536,6 +536,16 @@ public class MakeRequest {
 
    //type 5
 
+   public static String getTransaction(String type){
+      JsonObject jsonObject=new JsonObject();
+      jsonObject.addProperty("type","5");
+      jsonObject.addProperty("content","get Transaction");
+      jsonObject.addProperty("token",Client.getInstance().getToken());
+      jsonObject.addProperty("bank Token",Client.getInstance().getBankAccountToken());
+      jsonObject.addProperty("transaction",type);
+      return Client.getInstance().sendMessage(jsonObject);
+   }
+
    public static String setUserMoney(String money){
       JsonObject jsonObject=new JsonObject();
       jsonObject.addProperty("content","set Money");

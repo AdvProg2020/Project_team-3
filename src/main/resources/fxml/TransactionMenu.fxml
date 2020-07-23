@@ -21,7 +21,12 @@
       <TextField fx:id="userBalance" editable="false" layoutX="360.0" layoutY="127.0" />
       <TextField fx:id="finalAmount" editable="false" layoutX="357.0" layoutY="385.0" />
       <TextField fx:id="wageAmount" editable="false" layoutX="359.0" layoutY="439.0" />
-      <TextArea fx:id="description" layoutX="595.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="description" layoutX="595.0" layoutY="64.0" prefHeight="90.0" prefWidth="200.0" />
       <Label layoutX="595.0" layoutY="47.0" text="description" />
+      <ComboBox fx:id="getTransaction" layoutX="639.0" layoutY="193.0" prefWidth="150.0" />
+      <ListView fx:id="transactionList" layoutX="585.0" layoutY="245.0" prefHeight="282.0" prefWidth="216.0" />
+      <Label layoutX="578.0" layoutY="197.0" text="Transaction" />
+      <TextField fx:id="receiptId" layoutX="654.0" layoutY="529.0" onKeyPressed="#receiptTyped"/>
+      <Label layoutX="594.0" layoutY="533.0" text="receipt Id" />
    </children>
 </Pane>

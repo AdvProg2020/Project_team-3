@@ -34,10 +34,6 @@ public class TransactionController {
             e.printStackTrace();
         }
     }
-    public String getMainBankAccountId(){
-        return mainBankAccountId;
-    }
-
     public int getWagePercent(){return wagePercent;}
     public int getMinimumMoney(){return minimumMoney;}
     public void setNumbers(int percent , int minimum){
@@ -174,19 +170,19 @@ public class TransactionController {
         }
         return null;
     }
-    public String exitBank(){
-        String toBeSend="exit";
-        String received="";
-        try {
-            dataOutputStream.writeUTF(toBeSend);
-            dataOutputStream.flush();
-            received=dataInputStream.readUTF();
-            return received;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public String exitBank(){
+//        String toBeSend="exit";
+//        String received="";
+//        try {
+//            dataOutputStream.writeUTF(toBeSend);
+//            dataOutputStream.flush();
+//            received=dataInputStream.readUTF();
+//            return received;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 
 

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.AdminTransaction">
+<Pane prefHeight="571.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.AdminTransaction">
    <children>
       <Label layoutX="87.0" layoutY="53.0" text="bank Account Balance" />
       <TextField fx:id="bankBalance" editable="false" layoutX="218.0" layoutY="49.0" />
@@ -13,5 +13,8 @@
       <TextField fx:id="minMoneyText" layoutX="218.0" layoutY="216.0" onKeyPressed="#minimumTyped" />
       <Label layoutX="107.0" layoutY="137.0" prefHeight="17.0" prefWidth="77.0" text="wage percent" />
       <Label layoutX="99.0" layoutY="220.0" text="minimum money " />
+      <Label layoutX="115.0" layoutY="293.0" text="Transaction" />
+      <ComboBox fx:id="getTransaction" layoutX="217.0" layoutY="289.0" prefWidth="150.0" />
+      <ListView fx:id="transactionList" layoutX="176.0" layoutY="326.0" prefHeight="200.0" prefWidth="233.0" />
    </children>
 </Pane>
