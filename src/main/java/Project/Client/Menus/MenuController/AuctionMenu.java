@@ -1,6 +1,5 @@
 package Project.Client.Menus.MenuController;
 
-import Project.Client.CLI.ItemMenu;
 import Project.Client.CLI.View;
 import Project.Client.Client;
 import Project.Client.MakeRequest;
@@ -8,11 +7,7 @@ import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Auction;
 import Project.Client.Model.Item;
-import Project.Client.Model.Users.Seller;
-import Project.Client.Model.Users.User;
 import Project.Client.ObjectMapper;
-import Server.Controller.Database;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;

@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-// bug dareh!!!
+
 
 public class AdminTransaction {
     public TextField bankBalance;

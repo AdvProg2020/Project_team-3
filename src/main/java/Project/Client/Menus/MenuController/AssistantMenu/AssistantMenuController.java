@@ -3,12 +3,11 @@ package Project.Client.Menus.MenuController.AssistantMenu;
 
 import Project.Client.Client;
 import Project.Client.MakeRequest;
-import Project.Client.Model.Users.Admin;
 
 import Project.Client.Menus.MusicManager;
 import Project.Client.Menus.SceneSwitcher;
 import Project.Client.Model.Users.Assistant;
-import Server.Controller.UserController;
+
 import Project.Client.CLI.View;
 
 

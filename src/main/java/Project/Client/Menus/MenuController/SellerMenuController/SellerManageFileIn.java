@@ -42,7 +42,6 @@ public class SellerManageFileIn {
    private void updateAttributes(){
       Item item = MakeRequest.getItem(fileName);
       listView.getItems().clear();
-      listView.getItems().add("Name:" +  item.getName());
       listView.getItems().add("Price:" +item.getPrice());
       listView.getItems().add("Description:"+item.getDescription());
    }

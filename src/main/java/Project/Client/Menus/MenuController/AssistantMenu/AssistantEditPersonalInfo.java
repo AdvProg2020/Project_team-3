@@ -1,7 +1,6 @@
 package Project.Client.Menus.MenuController.AssistantMenu;
 
 import Project.Client.MakeRequest;
-import Project.Client.Model.Users.Admin;
 import Project.Client.Model.Users.Assistant;
 import Project.Client.Model.Users.User;
 

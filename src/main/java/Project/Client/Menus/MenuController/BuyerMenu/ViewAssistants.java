@@ -48,6 +48,7 @@ public class ViewAssistants {
          ChatMenu.setReceiver(username);
          ChatMenu.setChannelName(MakeRequest.makeGetUserRequest().username+'#'+username);
          SceneSwitcher.getInstance().setSceneAndWait("ChatMenu", 600, 800);
+         ChatMenu.getTimeline().stop();
       }
       listView.getSelectionModel().clearSelection();
    }
