@@ -251,6 +251,7 @@ public class UserController {
         }
         User user = getUserByUsername(username);
         if (!user.doesPasswordMatch(password)) {
+            AuthTokenHandler.getInstance().addIPToLoginDetention();
             return "Error: Incorrect password/username or account pending!";
         }
         if(user instanceof Seller){

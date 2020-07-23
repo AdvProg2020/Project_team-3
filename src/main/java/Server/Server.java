@@ -66,6 +66,7 @@ public class Server {
                      }
                   }
                   updateDoSList();*/
+                  AuthTokenHandler.getInstance().updateLoginDetention();
                   AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));
                   dataOutputStream = new DataOutputStream(new BufferedOutputStream(request.getOutputStream()));
@@ -233,6 +234,16 @@ public class Server {
       }
       for(int ip:removeUs){
          DoSBlackListTime.remove(ip);
+      }
+   }
+
+   public static void addIPBlocked(int ip){
+      blockedIp.add(ip);
+   }
+
+   public static void removeIPBlocked(int ip){
+      if(blockedIp.contains(ip)){
+         blockedIp.remove(ip);
       }
    }
 

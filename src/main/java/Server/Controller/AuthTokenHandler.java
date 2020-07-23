@@ -1,5 +1,7 @@
 package Server.Controller;
 
+import Server.Server;
+
 import java.security.SecureRandom;
 import java.time.Clock;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class AuthTokenHandler {
    private HashMap<String,String> onlineUsersTokens;
    private HashMap<String,Long> tokenMillis;
    private HashMap<String,Integer> tokensIP;
+   private HashMap<Integer,Integer> IPsFailedLogIns;
+   private HashMap<Integer,Long> disabledIPsTime;
    private ArrayList<String> onlineUsername=new ArrayList<>();
    private Clock clock;
    private int userIP;
@@ -22,6 +26,8 @@ public class AuthTokenHandler {
       tokenMillis = new HashMap<>();
       tokensIP = new HashMap<>();
       clock = Clock.systemDefaultZone();
+      IPsFailedLogIns = new HashMap<>();
+      disabledIPsTime = new HashMap<>();
    }
 
    public void setUserIP(int userIP) {
@@ -90,5 +96,24 @@ public class AuthTokenHandler {
       return onlineUsername.contains(username);
    }
 
+   protected void addIPToLoginDetention(){
+      if(IPsFailedLogIns.containsKey(userIP)){
+         IPsFailedLogIns.replace(userIP,IPsFailedLogIns.get(userIP)+1);
+      }
+      else {
+         IPsFailedLogIns.put(userIP,1);
+      }
+      if(IPsFailedLogIns.get(userIP) >= 3){
+         disabledIPsTime.put(userIP,clock.millis());
+         Server.addIPBlocked(userIP);
+      }
+   }
 
+   public void updateLoginDetention(){
+      for(int ip:disabledIPsTime.keySet()){
+         if(clock.millis() - disabledIPsTime.get(ip) > 60000){
+            Server.removeIPBlocked(ip);
+         }
+      }
+   }
 }

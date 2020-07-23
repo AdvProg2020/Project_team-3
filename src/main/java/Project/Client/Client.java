@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 import java.io.*;
 import java.net.Socket;
+import java.time.LocalDateTime;
 
 public class Client {
    private String bankAccountToken="";
@@ -22,6 +23,7 @@ public class Client {
    public String sendMessage(JsonObject message){
       try {
          Socket clientSocket = new Socket("localhost", port);
+         message.addProperty("timestamp", LocalDateTime.now().toString());
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          dataOutputStream.writeUTF(message.toString());
