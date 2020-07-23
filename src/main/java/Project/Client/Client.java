@@ -1,5 +1,6 @@
 package Project.Client;
 
+import Project.Client.Model.Item;
 import com.google.gson.JsonObject;
 import javafx.scene.image.Image;
 
@@ -100,26 +101,30 @@ public class Client {
       return null;
    }
 
-   public String sendFileToServer(String srcPath,String desPath){
+   public String getFileFromServer(Item item,String path){
       try {
-         Socket clientSocket = new Socket("localhost", port);
+         int port=MakeRequest.getSellerPort(item.getSellerName());
+         Socket clientSocket=new Socket("localhost",port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
-         File file=new File(srcPath);
-         dataOutputStream.writeUTF("file send "+desPath + " "+(int)file.length());
+         dataOutputStream.writeUTF(item.getBrand());
          dataOutputStream.flush();
          String received=dataInputStream.readUTF();
-         byte[] fileData=new byte[(int)file.length()];
-         FileInputStream fis=new FileInputStream(file);
-         fis.read(fileData);
-         fis.close();
-         dataOutputStream.write(fileData);
-         dataOutputStream.flush();
+         int size=Integer.parseInt(received);
+         byte[]fileData=new byte[size];
+         dataInputStream.readFully(fileData);
+         File file=new File(path+File.separator+item.getName());
+         FileOutputStream fileOutputStream=new FileOutputStream(file);
+         fileOutputStream.write(fileData);
+         fileOutputStream.close();
+         System.out.println("finish");
       } catch (IOException e) {
          e.printStackTrace();
       }
       return null;
    }
+
+   /*
 
    public String getFileFromServer(String path,String fileName){
       try {
@@ -142,6 +147,7 @@ public class Client {
       }
       return null;
    }
+    */
 
    public void setToken(String token) {
       Token = token;

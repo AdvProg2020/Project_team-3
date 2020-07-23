@@ -70,10 +70,10 @@ public class SellerAddFile {
       }else {
          image = "default.png";
       }
-      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()),image);
+      String message=MakeRequest.addFile(itemName.getText()+ext,descriptionText.getText(),Double.parseDouble(price.getText()),image,filePath.getText());
       if(message.startsWith("Successful")){
-         String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+'_'+itemName.getText()+ext;
-         Client.getInstance().sendFileToServer(srcPath,desPath);
+         //String desPath="src/main/resources/Files/"+MakeRequest.makeGetUserRequest().getUsername()+'_'+itemName.getText()+ext;
+         //Client.getInstance().sendFileToServer(srcPath,desPath);
          sendAlert(message);
          return;
       }

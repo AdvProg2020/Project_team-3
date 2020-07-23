@@ -83,10 +83,6 @@ public class Server {
                      getImageFromClient(command,dataInputStream,dataOutputStream);
                   }else if(command.startsWith("image send")){
                      sendImageToClient(command,dataInputStream,dataOutputStream);
-                  }else if(command.startsWith("file send")){
-                     getFileFromClient(command,dataInputStream,dataOutputStream);
-                  }else if(command.startsWith("file get")){
-                     sendFileToClient(command,dataInputStream,dataOutputStream);
                   }
                    dataOutputStream.close();
                    dataInputStream.close();
@@ -136,27 +132,6 @@ public class Server {
       return "done!";
    }
 
-   public String getFileFromClient(String command , DataInputStream dataInputStream, DataOutputStream dataOutputStream){
-      String [] token=command.split(" ");
-      String desPath=token[2];
-      int size=Integer.parseInt(token[3]);
-      try {
-         dataOutputStream.writeUTF("ok");
-         dataOutputStream.flush();
-         byte[] fileData=new byte[size];
-         System.out.println("reading data from client!");
-         dataInputStream.readFully(fileData);
-         File file=new File(desPath);
-         FileOutputStream fileOutputStream=new FileOutputStream(file);
-         fileOutputStream.write(fileData);
-         fileOutputStream.close();
-         System.out.println("finish");
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      return "done!";
-   }
-
    public String sendImageToClient(String command , DataInputStream dataInputStream , DataOutputStream dataOutputStream){
       String [] token=command.split(" ");
       String imageName=token[2];
@@ -183,29 +158,7 @@ public class Server {
       return "done!";
    }
 
-   public String sendFileToClient(String command , DataInputStream dataInputStream , DataOutputStream dataOutputStream){
-      String [] token=command.split(" ");
-      String imageName=token[2];
-      String desPath="src/main/resources/Files"+File.separator+imageName;
-      File file=new File(desPath);
-      System.out.println(file.exists()+"odowjdow");
-      System.out.println("the des path is hihihihihihi : "+desPath);
-      byte[]imageData=new byte[(int)file.length()];
-      try {
-         dataOutputStream.writeUTF(String.valueOf((int)file.length()));
-         dataOutputStream.flush();
-         FileInputStream fis=new FileInputStream(file);
-         fis.read(imageData);
-         fis.close();
-         dataOutputStream.write(imageData);
-         dataOutputStream.flush();
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      return "done!";
-   }
+
 
    public static DataInputStream getDataInputStream(){
       return dataInputStream;
@@ -254,6 +207,15 @@ public class Server {
 
    public static void removeSellerServerPort(String username){
       sellerServerPort.remove(username);
+   }
+
+   public static boolean isSellerServerOnline(String username){
+      return sellerServerPort.containsKey(username);
+   }
+
+   public static int getSellerPort(String sellerName){
+      if(sellerServerPort.containsKey(sellerName)) return sellerServerPort.get(sellerName);
+      return -1;
    }
 
 

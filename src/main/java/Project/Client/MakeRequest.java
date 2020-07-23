@@ -166,7 +166,23 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(jsonObject);
    }
 
+   public static boolean isSellerServerOnline(String sellerName){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 2);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "is seller server online");
+      jsonObject.addProperty("seller name",sellerName);
+      return Client.getInstance().sendMessage(jsonObject).equals("true");
+   }
 
+   public static int getSellerPort(String sellerName){
+      JsonObject jsonObject = new JsonObject();
+      jsonObject.addProperty("type", 2);
+      jsonObject.addProperty("token", Client.getInstance().getToken());
+      jsonObject.addProperty("content", "get seller port");
+      jsonObject.addProperty("seller name",sellerName);
+      return Integer.parseInt(Client.getInstance().sendMessage(jsonObject));
+   }
 
    //type 3 seller menu
    public static String addProduct(String name, String brand, String description, double price, int inStock, String categoryName, ArrayList<String> attributesKey,ArrayList<String> attributeValue, String image, String video){
@@ -189,7 +205,7 @@ public class MakeRequest {
       return Client.getInstance().sendMessage(json);
    }
 
-   public static String addFile(String name,String description, double price,String image){
+   public static String addFile(String name,String description, double price,String image,String fullPath){
       JsonObject json = new JsonObject();
       json.addProperty("token", Client.getInstance().getToken());
       json.addProperty("type", 3);
@@ -198,6 +214,7 @@ public class MakeRequest {
       json.addProperty("description", description);
       json.addProperty("price",price);
       json.addProperty("image",image);
+      json.addProperty("path",fullPath);
       return Client.getInstance().sendMessage(json);
    }
 
