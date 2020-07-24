@@ -91,6 +91,13 @@ public class FilePurchaseMenu {
          alert.showAndWait();
          return;
       }
+      if(item.getBuyerUserName().contains(MakeRequest.makeGetUserRequest().username)){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setContentText("you have already bought this file. the file has been downloaded");
+         alert.showAndWait();
+         Client.getInstance().getFileFromServer(item,path);
+         SceneSwitcher.getInstance().back();
+      }
         if(Client.getInstance().getBankAccountToken().equals(""))  SceneSwitcher.getInstance().setSceneAndWait("bankLogin" ,600 , 526);
         if(!Client.getInstance().getBankAccountToken().equals("")) {
          String message = "";
