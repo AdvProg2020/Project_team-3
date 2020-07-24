@@ -1,9 +1,6 @@
 package Project.Client.Model.Users;
 
-import Server.Controller.Database;
-import Server.Controller.ItemAndCategoryController;
-import Server.Model.Item;
-import Server.Model.Logs.SaleLog;
+import Project.Client.Model.Logs.SaleLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,15 +60,6 @@ public class Seller extends User {
         allItemsId.remove(itemId);
     }
 
-    public void delete(){
-        for (String id : allItemsId) {
-            Item item= ItemAndCategoryController.getInstance().getItemById(id);
-            if(item==null)
-                continue;
-            item.delete();
-            Database.getInstance().deleteItem(item);
-        }
-    }
 
     public boolean hasItem(String id) {
         return allItemsId.contains(id);

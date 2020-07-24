@@ -51,6 +51,10 @@ public class AdminMenuController {
     SceneSwitcher.getInstance().setSceneTo("ManageDiscountCodes",592,400);
    }
 
+   public void manageOrders(){
+       SceneSwitcher.getInstance().setSceneTo("AdminManageOrders");
+   }
+
    public void manageRequests(ActionEvent actionEvent) {
      SceneSwitcher.getInstance().setSceneTo("ManageRequests",600,400);
    }

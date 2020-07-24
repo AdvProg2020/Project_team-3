@@ -19,6 +19,7 @@ public class BuyLog {
     private HashMap<String,Double> itemsPrice;
     private String address;
     private Double discountGrandTotal;
+    private String state;
 
 
   public BuyLog(ArrayList<String> allItemsID,HashMap<String,Double> itemsCount,HashMap<String,Double> itemsPrice,HashMap<String,String> itemsSeller,String address,String time){
@@ -34,12 +35,21 @@ public class BuyLog {
         String ans ="Total sum:"+totalPrice()+"   "+time.toString();
         ans += "\nDiscount:" + discountGrandTotal;
         ans += "\nAddress:" + address;
+        ans += "\nState:" + state;
         ans += "\nitem ID      price     seller      count\n";
 
         for (String id : allItemsID) {
             ans +=  id + "     " +itemsPrice.get(id)+"       "+itemsSeller.get(id) + "    " + itemsCount.get(id) + "\n";
         }
         return ans;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String toSimpleString(){

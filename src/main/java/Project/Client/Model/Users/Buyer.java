@@ -1,8 +1,6 @@
 package Project.Client.Model.Users;
 
-import Server.Controller.SaleAndDiscountCodeController;
-import Server.Model.DiscountCode;
-import Server.Model.Logs.BuyLog;
+import Project.Client.Model.Logs.BuyLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,17 +57,6 @@ public class Buyer extends User {
 
     public void setMoney(double money) {
         this.money = money;
-    }
-
-    public String getDiscountCodes() {
-        String ans = "";
-        for(DiscountCode discountCode: SaleAndDiscountCodeController.getInstance().getAllDiscountCodesFromDataBase()){
-            if(discountCode.hasUser(this.getUsername())){
-                ans += discountCode.toString();
-                ans += "\n";
-            }
-        }
-        return ans;
     }
 
     public BuyLog getBuyLogByID(int index){

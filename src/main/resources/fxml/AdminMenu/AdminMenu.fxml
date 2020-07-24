@@ -21,7 +21,7 @@
                    <MenuItem onAction="#manageRequests" text="manage requests" />
                    <MenuItem onAction="#manageDiscountCodes" text="manage discount codes" />
                    <MenuItem onAction="#manageUsers" text="manage users" />
-                   <MenuItem onAction="#manageBuyLogs" text="manage buyLogs" />
+                   <MenuItem onAction="#manageOrders" text="manage orders" />
                </Menu>
                <Menu text="add">
                    <MenuItem onAction="#createAdminProfile" text="manager profile" />

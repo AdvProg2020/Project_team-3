@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="720.0" stylesheets="@../../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.AdminMenu.AdminManageOrdersMenu">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="720.0" styleClass="myMenuBar">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#back" text="Back" />
+            </items>
+          </Menu>
+
+        </menus>
+      </MenuBar>
+      <ListView fx:id="allBuyers" layoutX="46.0" layoutY="117.0" onMouseClicked="#buyerSelect" prefHeight="381.0" prefWidth="200.0" style="-fx-border-color: #94a8b3;" />
+      <ListView fx:id="allLogs" layoutX="280.0" layoutY="117.0" onMouseClicked="#logSelect" prefHeight="381.0" prefWidth="403.0" style="-fx-border-color: #94a8b3;" />
+      <Button fx:id="changeState" layoutX="378.0" layoutY="543.0" mnemonicParsing="false" onAction="#changeState" prefHeight="22.0" prefWidth="208.0" styleClass="myBlueButton" text="Change State to &quot;Being Delivered&quot;" />
+      <Label fx:id="errorLabel" layoutX="346.0" layoutY="584.0" prefHeight="17.0" prefWidth="274.0" text="Label" />
+   </children>
+</AnchorPane>

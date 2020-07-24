@@ -101,6 +101,7 @@ public class Main extends Application{
         SceneSwitcher.getInstance().addSceneFXML("ManageFileIn","src/main/resources/fxml/AdminMenu/ManageFileIn.fxml");
         SceneSwitcher.getInstance().addSceneFXML("ManageBuyLogs","src/main/resources/fxml/AdminMenu/ManageBuyLogs.fxml");
         SceneSwitcher.getInstance().addSceneFXML("FilePurchase","src/main/resources/fxml/BuyerMenu/FilePurchaseMenu.fxml");
+        SceneSwitcher.getInstance().addSceneFXML("AdminManageOrders","src/main/resources/fxml/AdminMenu/AdminManageOrdersMenu.fxml");
     }
 
 }

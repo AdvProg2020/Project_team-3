@@ -91,7 +91,7 @@ public class BuyerOrdersController {
                 setGraphic(null);
             } else {
                 thumbImage.setImage(Client.getInstance().getImageFromServer("ShoppingBasket","user"));
-                label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nAddress:\n"+ item.getAddress());
+                label.setText("Time: " + item.getTime() + "\nTotal Price: " + item.totalPrice() +"\nDiscounts:"+item.getDiscountGrandTotal()+"\nAddress:\n"+ item.getAddress() + "\nState:"+item.getState());
                 setGraphic(hBox);
             }
         }

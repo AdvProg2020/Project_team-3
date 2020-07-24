@@ -20,6 +20,7 @@ public class BuyLog {
     private String buyerName;
     private String address;
     private Double discountGrandTotal;
+    private String state;
 
     public BuyLog(String buyerName,String address,double discountGrandTotal,LocalDateTime time) {
         allItemsID = new ArrayList<>();
@@ -30,6 +31,15 @@ public class BuyLog {
         this.address = address;
         this.discountGrandTotal = discountGrandTotal;
         this.time = time.toString();
+        this.state = "under process";
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void addItem(double price, int count, String itemID, String sellerName) {

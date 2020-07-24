@@ -169,6 +169,19 @@ public class RequestProcessor {
          return UserController.getInstance().viewPersonalInfo(getJsonStringField(command,"username"));
       }
 
+      if (getJsonStringField(command,"content").equals("get user by username")) {
+         String enteredUN = getJsonStringField(command,"username");
+         Gson gson = new Gson();
+         return gson.toJson(UserController.getInstance().getUserByUsername(enteredUN));
+      }
+
+      if(getJsonStringField(command,"content").equals("deliver log")){
+         String enteredUN = getJsonStringField(command,"username");
+         int index = Integer.parseInt(getJsonStringField(command,"index"));
+         UserController.getInstance().deliverLog(enteredUN,index);
+         return "delivered log";
+      }
+
       if (getJsonStringField(command,"content").equals("accept request")) {
          return RequestController.getInstance().acceptRequest(getJsonStringField(command,"requestId"));
       }

@@ -628,6 +628,32 @@ public class MakeRequest {
       return ObjectMapper.jsonToUser(jsonObject);
    }
 
+   public static User makeGetUserByUsernameRequest(String username) {
+      if(MakeRequest.isTokenValid()==false) return null;
+      JsonObject json = new JsonObject();
+      json.addProperty("type", "4");
+      json.addProperty("content", "get user by username");
+      json.addProperty("username", username);
+      json.addProperty("token", Client.getInstance().getToken());
+      String response = Client.getInstance().sendMessage(json);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(response);
+      return ObjectMapper.jsonToUser(jsonObject);
+   }
+
+   public static void deliverLog(String username,int index) {
+      if(MakeRequest.isTokenValid()==false) return;
+      JsonObject json = new JsonObject();
+      json.addProperty("type", "4");
+      json.addProperty("content", "deliver log");
+      json.addProperty("username", username);
+      json.addProperty("index", index);
+      json.addProperty("token", Client.getInstance().getToken());
+      String response = Client.getInstance().sendMessage(json);
+      JsonParser parser = new JsonParser();
+      JsonObject jsonObject = (JsonObject) parser.parse(response);
+   }
+
    public static String makeEditPersonalInfoRequest(String field, String newValue) {
       JsonObject json = new JsonObject();
       json.addProperty("type", "5");

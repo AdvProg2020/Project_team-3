@@ -134,6 +134,12 @@ public class UserController {
         return cnt>0;
     }
 
+    public void deliverLog(String username,int index){
+        Buyer buyer = (Buyer)getUserByUsername(username);
+        buyer.getBuyLogs().get(index).setState("Being Delivered");
+        Database.getInstance().saveUser(buyer);
+    }
+
     public String userImagePath(String username){
 //        if(isThereUserWithUsername(username)==false){
 //            return "Erorr: no user exist with this username!";
