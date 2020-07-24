@@ -9,10 +9,8 @@ import Project.Client.Model.Auction;
 import Project.Client.Model.Item;
 import Project.Client.ObjectMapper;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -30,6 +28,7 @@ public class AuctionMenu {
     @FXML private TextArea description;
     @FXML private Label nameLabel;
     @FXML private Label brandLabel;
+    @FXML private Button loginLogout;
 
     @FXML private TextField bidValue;
 
@@ -51,11 +50,33 @@ public class AuctionMenu {
         description.setText(item.getDescription());
         brandLabel.setText(item.getBrand());
         bidLabel.setText(Double.toString(auction.getHighestBid()));
-        //bayad biaim menush ro update konim
+        loginLogout.setText("Login");
+        loginHandler();
 
-        //ghabeliat chat beine hamme (login shode bashe!)
+    }
 
-        //ghabeliat bid baraye buyer ha
+    private void loginHandler(){
+        if(MakeRequest.isTokenValid()==true){
+            loginLogout.setText("Logout");
+        }else{
+            loginLogout.setText("Login");
+        }
+    }
+
+    public void loginLogout() {
+        MusicManager.getInstance().playSound("Button");
+        if(loginLogout.getText().equals("Logout")){
+            MakeRequest.makeLogoutRequest();
+            SceneSwitcher.getInstance().clearRecentScene();
+            loginLogout.setText("Login");
+            Client.getInstance().setBankAccountToken("");
+            loginHandler();
+            return;
+        }
+        if(loginLogout.getText().equals("Login")){
+            SceneSwitcher.getInstance().setSceneAndWait("Login");
+            loginHandler();
+        }
     }
 
     @FXML private void bid(){
@@ -73,6 +94,7 @@ public class AuctionMenu {
             return;
         }
         errorLabel.setText(MakeRequest.addBid(auction.getId(),bidVal));
+        refresh();
     }
 
     private boolean isValidPrice(String price){
@@ -133,6 +155,7 @@ public class AuctionMenu {
         initializeChat();
         listView.getItems().add("You just said: "+message);
         errorLabel.setText("Message sent!");
+        refresh();
     }
 
     @FXML private void learnMore(){

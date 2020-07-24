@@ -119,8 +119,11 @@ public class AuctionController {
         }
         if(!auction.getHighestBidderUsername().equals("*none*")){
             Buyer buyer = (Buyer)UserController.getInstance().getUserByUsername(auction.getHighestBidderUsername());
+            System.err.println(buyer.getUsername()+" "+auction.getHighestBid()+" "+buyer.getMoney() +" ");
             buyer.setMoney(buyer.getMoney()+auction.getHighestBid());
+            System.err.println(buyer.getMoney());
             Database.getInstance().saveUser(buyer);
+            newGuy = (Buyer)UserController.getInstance().getUserByUsername(newBidder);
         }
         auction.rebid(newBidder,bid);
         Database.getInstance().saveAuction(auction);
