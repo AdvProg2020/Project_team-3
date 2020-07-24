@@ -26,7 +26,6 @@ public class Server {
    private HashMap<Integer,Integer> suspiciousIPsConnection;
    private HashMap<Integer,Long> DoSBlackListTime;
    private Clock clock;
-
    public Server() {
       clock = Clock.systemDefaultZone();
       suspiciousIPsConnection = new HashMap<>();
