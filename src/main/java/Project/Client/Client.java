@@ -17,8 +17,9 @@ import java.util.Base64;
 public class Client {
    private String bankAccountToken="";
    private String Token;
-   private int port=9000;
+   private int port=14622;
    private static Client client;
+   private static final String address = "0.tcp.ngrok.io";
 
    private Client(){}
 
@@ -29,7 +30,7 @@ public class Client {
 
    public String sendMessage(JsonObject message){
       try {
-         Socket clientSocket = new Socket("localhost", port);
+         Socket clientSocket = new Socket(address, port);
          message.addProperty("timestamp", LocalDateTime.now().toString());
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
@@ -50,7 +51,7 @@ public class Client {
    public String sendImageToServer(String srcPath,String desPath){
 
       try {
-         Socket clientSocket = new Socket("localhost", port);
+         Socket clientSocket = new Socket(address, port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          File file=new File(srcPath);
@@ -71,7 +72,7 @@ public class Client {
 
    public Image getImageFromServer(String imageName , String imageType){
       try {
-         Socket clientSocket=new Socket("localhost",port);
+         Socket clientSocket=new Socket(address,port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          dataOutputStream.writeUTF("image send "+ imageName +" "+imageType);
@@ -90,7 +91,7 @@ public class Client {
 
    public Image getImageFromServer(String imageName , String imageType , int width, int height){
       try {
-         Socket clientSocket=new Socket("localhost",port);
+         Socket clientSocket=new Socket(address,port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          dataOutputStream.writeUTF("image send "+ imageName +" "+imageType);
@@ -110,7 +111,7 @@ public class Client {
    public String getFileFromServer(Item item,String path){
       try {
          int port=MakeRequest.getSellerPort(item.getSellerName());
-         Socket clientSocket=new Socket("localhost",port);
+         Socket clientSocket=new Socket(address,port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          dataOutputStream.writeUTF(item.getBrand());
@@ -172,7 +173,7 @@ public class Client {
 
    public String getFileFromServer(String path,String fileName){
       try {
-         Socket clientSocket=new Socket("localhost",port);
+         Socket clientSocket=new Socket(address,port);
          DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
          DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
          dataOutputStream.writeUTF("file get "+ fileName);
