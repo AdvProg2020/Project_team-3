@@ -649,9 +649,7 @@ public class MakeRequest {
       json.addProperty("username", username);
       json.addProperty("index", index);
       json.addProperty("token", Client.getInstance().getToken());
-      String response = Client.getInstance().sendMessage(json);
-      JsonParser parser = new JsonParser();
-      JsonObject jsonObject = (JsonObject) parser.parse(response);
+      Client.getInstance().sendMessage(json);
    }
 
    public static String makeEditPersonalInfoRequest(String field, String newValue) {

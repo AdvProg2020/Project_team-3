@@ -17,9 +17,9 @@ import java.util.Base64;
 public class Client {
    private String bankAccountToken="";
    private String Token;
-   private int port=19092;
+   private int port=9000;
    private static Client client;
-   private static final String address = "2.tcp.ngrok.io";
+   private static final String address = "localhost";
 
    private Client(){}
 
@@ -46,6 +46,23 @@ public class Client {
          e.printStackTrace();
       }
       return "error in server and client connection.";
+   }
+
+
+   public static String encrypt(String strToEncrypt, String secret)
+   {
+      try
+      {
+         setKey(secret);
+         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+         return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error while encrypting: " + e.toString());
+      }
+      return null;
    }
 
    public String sendImageToServer(String srcPath,String desPath){

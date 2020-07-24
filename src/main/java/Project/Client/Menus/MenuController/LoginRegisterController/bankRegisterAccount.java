@@ -37,7 +37,7 @@ public class bankRegisterAccount {
             alert.showAndWait();
             String token=MakeRequest.getBankTokenForClient(username,password);
             Client.getInstance().setBankAccountToken(token);
-            String receipt=MakeRequest.makeBankReceiptRequest("deposit","1000","-1",result,"",Client.getInstance().getBankAccountToken());
+            String receipt=MakeRequest.makeBankReceiptRequest("deposit","1000000","-1",result,"",Client.getInstance().getBankAccountToken());
             String result1=MakeRequest.payReceipt(receipt);
             SceneSwitcher.getInstance().back();
 //            String type=MakeRequest.makeGetUserRequest().type;

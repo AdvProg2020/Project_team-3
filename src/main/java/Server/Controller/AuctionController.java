@@ -3,6 +3,7 @@ package Server.Controller;
 import Server.Model.Auction;
 import Server.Model.DiscountCode;
 import Server.Model.Item;
+import Server.Model.Logs.BuyLog;
 import Server.Model.Users.Buyer;
 import Server.Model.Users.Seller;
 import com.google.gson.Gson;
@@ -38,7 +39,7 @@ public class AuctionController {
         }
         item.setInStock(item.getInStock()-1);
         Database.getInstance().saveItem(item);
-        LocalDateTime endTime = LocalDateTime.now().plusHours(duration);
+        LocalDateTime endTime = LocalDateTime.now().plusMinutes(duration);
         Auction auction = new Auction(endTime,itemID,startPrice);
         String requestID = Controller.getInstance().getAlphaNumericString(Controller.getInstance().getIdSize(), "Requests");
         RequestController.getInstance().addAuctionRequest(requestID,auction);
@@ -157,6 +158,11 @@ public class AuctionController {
             String depositReceipt=TransactionController.getInstance().getReceiptID(adminToken,"deposit",Integer.toString((int)karMozd),"-1","10001","");
             String string=TransactionController.getInstance().payReceipt(depositReceipt);
             System.out.println("10001 bank account: "+depositReceipt+" "+string);
+            BuyLog buyLog = new BuyLog(auction.getHighestBidderUsername(),"*auction*",0,LocalDateTime.now());
+            buyLog.addItem(auction.getHighestBid(),1,auction.getItemID(),seller.getUsername());
+            Buyer buyer = (Buyer)UserController.getInstance().getUserByUsername(auction.getHighestBidderUsername());
+            UserController.getInstance().assignBuyLog(buyer.getUsername(), buyLog);
+            Database.getInstance().saveUser(buyer);
         }
 
         Database.getInstance().deleteAuction(auction);
