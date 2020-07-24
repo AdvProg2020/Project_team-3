@@ -31,7 +31,7 @@ public class SellerServer {
     public void initiateServer(){
        try {
           server = new ServerSocket(0);
-          Socket socket = new Socket("localhost", 9000);
+          Socket socket = new Socket("0.tcp.ngrok.io", 19092);
           DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
           DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
           JsonObject json=new JsonObject();
@@ -54,7 +54,7 @@ public class SellerServer {
 
     public void closeServer(){
        try {
-          Socket socket = new Socket("localhost", 9000);
+          Socket socket = new Socket("0.tcp.ngrok.io", 19092);
           DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
           DataInputStream inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
           JsonObject json=new JsonObject();

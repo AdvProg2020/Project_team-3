@@ -17,9 +17,9 @@ import java.util.Base64;
 public class Client {
    private String bankAccountToken="";
    private String Token;
-   private int port=14622;
+   private int port=19092;
    private static Client client;
-   private static final String address = "0.tcp.ngrok.io";
+   private static final String address = "2.tcp.ngrok.io";
 
    private Client(){}
 
