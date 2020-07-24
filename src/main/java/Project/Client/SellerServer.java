@@ -95,7 +95,8 @@ public class SellerServer {
             FileInputStream fis=new FileInputStream(file);
             fis.read(imageData);
             fis.close();
-            dataoutStream.write(encrypt(imageData,"thisisafuckingsecretcodedonotgiveittoanyone"));
+            //dataoutStream.write(encrypt(imageData,"thisisafuckingsecretcodedonotgiveittoanyone"));
+            dataoutStream.write(imageData);
             dataoutStream.flush();
             System.out.println("finish");
          } catch (FileNotFoundException e) {

@@ -119,7 +119,7 @@ public class Client {
          int size=Integer.parseInt(received);
          byte[]fileData=new byte[size];
          dataInputStream.readFully(fileData);
-         fileData = decrypt(fileData,"thisisafuckingsecretcodedonotgiveittoanyone");
+         //fileData = decrypt(fileData,"thisisafuckingsecretcodedonotgiveittoanyone");
          File file=new File(path+File.separator+item.getName());
          FileOutputStream fileOutputStream=new FileOutputStream(file);
          fileOutputStream.write(fileData);
