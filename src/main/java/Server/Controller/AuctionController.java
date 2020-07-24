@@ -162,7 +162,7 @@ public class AuctionController {
             buyLog.addItem(auction.getHighestBid(),1,auction.getItemID(),seller.getUsername());
             Buyer buyer = (Buyer)UserController.getInstance().getUserByUsername(auction.getHighestBidderUsername());
             UserController.getInstance().assignBuyLog(buyer.getUsername(), buyLog);
-            Database.getInstance().saveUser(buyer);
+            Database.getInstance().saveUser(seller);
         }
 
         Database.getInstance().deleteAuction(auction);
