@@ -117,7 +117,7 @@ public class TransactionController {
     }
     public String getReceiptID(String token, String type, String money, String sourceId, String desId, String description){
         StringBuilder sb=new StringBuilder("create_receipt "+token+" "+type+" "+money+" "+sourceId+" "+desId);
-        if(!description.equals("")) sb.append(description);
+        if(!description.equals("")) sb.append(" "+description);
         String toBeSend=sb.toString();
         String received="";
         try {
