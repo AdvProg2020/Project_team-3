@@ -18,6 +18,7 @@ public class AdminTransaction {
     public TextField minMoneyText;
     public ComboBox getTransaction;
     public ListView transactionList;
+    public TextField receiptId;
     private String wage="";
     private String min="";
 
@@ -53,9 +54,11 @@ public class AdminTransaction {
         if(returned.equals("")) return;
         String [] token=returned.split("}");
         for(String string:token){
+            string=string.replaceAll("\\[","");
+            string=string.replaceAll("]","");
+            string=string.replaceAll("\\{","");
             string=string.replaceAll("\"","");
             string=string.replaceAll(",","\n");
-            string=string.substring(1,string.length()-1);
             transactionList.getItems().add(string);
         }
     }
@@ -106,5 +109,17 @@ public class AdminTransaction {
         }else {
             minMoneyText.setStyle("-fx-text-fill: #a30000");
         }
+    }
+
+    public void receiptTyped(KeyEvent keyEvent) {
+        transactionList.getItems().clear();
+        String all=receiptId.getText()+keyEvent.getText();
+        if(all.equals("")) return;
+        String returned=MakeRequest.getTransaction(all);
+        returned=returned.replaceAll("\\{","");
+        returned=returned.replaceAll("}","");
+        returned=returned.replaceAll("\"","");
+        returned=returned.replaceAll(",","\n");
+        transactionList.getItems().add(returned);
     }
 }

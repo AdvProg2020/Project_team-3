@@ -99,11 +99,13 @@ public class FilePurchaseMenu {
             if (selected.equals("from bank Account")) {
                bankAccountWithDraw();
             }
+            if(selected.equals("from bank Account") && bankAccountId.equals("")) return;
             message = MakeRequest.buyCart(discounts.getValue().toString().substring(16, 21), path, bankAccountId);
          } else {
             if (selected.equals("from bank Account")) {
                bankAccountWithDraw();
             }
+            if(selected.equals("from bank Account") && bankAccountId.equals("")) return;
             message = MakeRequest.buyCart(null, path, bankAccountId);
          }
          MusicManager.getInstance().playSound("notify");

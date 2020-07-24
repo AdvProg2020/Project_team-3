@@ -85,11 +85,13 @@ public class PurchaseMenu {
             if (selected.equals("from bank Account")) {
                bankAccountWithDraw();
             }
+            if(selected.equals("from bank Account") && bankAccountId.equals("")) return;
             message = MakeRequest.buyCart(discounts.getValue().toString().substring(16, 21), address.getText(), bankAccountId);
          } else {
             if (selected.equals("from bank Account")) {
                bankAccountWithDraw();
             }
+            if(selected.equals("from bank Account") && bankAccountId.equals("")) return;
             message = MakeRequest.buyCart(null, address.getText(), bankAccountId);
          }
          MusicManager.getInstance().playSound("notify");
