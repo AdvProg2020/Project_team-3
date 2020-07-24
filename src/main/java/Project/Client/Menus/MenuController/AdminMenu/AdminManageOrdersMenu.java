@@ -77,5 +77,6 @@ public class AdminManageOrdersMenu {
             return;
         }
         MakeRequest.deliverLog(buyer.getUsername(),logIndex);
+        initialize();
     }
 }
