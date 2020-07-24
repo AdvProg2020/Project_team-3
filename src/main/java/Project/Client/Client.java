@@ -4,9 +4,15 @@ import Project.Client.Model.Item;
 import com.google.gson.JsonObject;
 import javafx.scene.image.Image;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.Socket;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Base64;
 
 public class Client {
    private String bankAccountToken="";
@@ -113,6 +119,7 @@ public class Client {
          int size=Integer.parseInt(received);
          byte[]fileData=new byte[size];
          dataInputStream.readFully(fileData);
+         fileData = decrypt(fileData,"thisisafuckingsecretcodedonotgiveittoanyone");
          File file=new File(path+File.separator+item.getName());
          FileOutputStream fileOutputStream=new FileOutputStream(file);
          fileOutputStream.write(fileData);
@@ -122,6 +129,43 @@ public class Client {
          e.printStackTrace();
       }
       return null;
+   }
+
+   public static byte[] decrypt(byte[] data, String secret)
+   {
+      try
+      {
+         setKey(secret);
+         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+         cipher.init(Cipher.DECRYPT_MODE, secretKey);
+         return (cipher.doFinal(Base64.getDecoder().decode(data)));
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error while decrypting: " + e.toString());
+      }
+      return null;
+   }
+
+   private static SecretKeySpec secretKey;
+   private static byte[] key;
+
+   public static void setKey(String myKey)
+   {
+      MessageDigest sha = null;
+      try {
+         key = myKey.getBytes("UTF-8");
+         sha = MessageDigest.getInstance("SHA-1");
+         key = sha.digest(key);
+         key = Arrays.copyOf(key, 16);
+         secretKey = new SecretKeySpec(key, "AES");
+      }
+      catch (NoSuchAlgorithmException e) {
+         e.printStackTrace();
+      }
+      catch (UnsupportedEncodingException e) {
+         e.printStackTrace();
+      }
    }
 
    /*
