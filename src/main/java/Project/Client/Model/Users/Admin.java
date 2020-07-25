@@ -1,8 +1,5 @@
 package Project.Client.Model.Users;
 
-import Server.Controller.Database;
-import Server.Controller.UserController;
-
 import java.util.HashMap;
 
 public class Admin extends User {
@@ -26,10 +23,5 @@ public class Admin extends User {
         response += "Number: " + getNumber() + "\n";
         return response;
     }
-
-    public void deleteUser(String username) {
-        UserController.getInstance().deleteUser(username);
-    }
-
 
 }
