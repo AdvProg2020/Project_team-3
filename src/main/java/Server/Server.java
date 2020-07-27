@@ -32,7 +32,7 @@ public class Server {
       clock = Clock.systemDefaultZone();
       suspiciousIPsConnection = new HashMap<>();
       DoSBlackListTime = new HashMap<>();
-      AuthTokenHandler.getInstance().updateTime();
+      //AuthTokenHandler.getInstance().updateTime();
       try {
          server = new ServerSocket(9000);
       } catch (IOException e) {
@@ -45,7 +45,7 @@ public class Server {
             try {
                while (true) {
                   request = server.accept();
-                  if(blockedIp.contains(request.getLocalPort())) {  //improper input
+                  /*if(blockedIp.contains(request.getLocalPort())) {  //improper input
                      System.out.println("connection refused.");
                      request.close();
                      continue;
@@ -67,7 +67,7 @@ public class Server {
                         suspiciousIPsConnection.put(request.getLocalPort(),1);
                      }
                   }
-                  updateDoSList();
+                  updateDoSList();*/
                   AuthTokenHandler.getInstance().updateLoginDetention();
                   AuthTokenHandler.getInstance().setUserIP(request.getLocalPort());
                   dataInputStream = new DataInputStream(new BufferedInputStream(request.getInputStream()));

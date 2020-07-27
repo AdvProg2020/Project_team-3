@@ -37,7 +37,7 @@ public class RequestProcessor {
    public String process(String command) {
       JsonParser parser = new JsonParser();
       JsonObject commandJson = (JsonObject) parser.parse(command);
-      if(commandJson.has("timestamp")) {
+      /*if(commandJson.has("timestamp")) {
          try {
             LocalDateTime timestamp = LocalDateTime.parse(commandJson.get("timestamp").getAsString());
             if (LocalDateTime.now().isBefore(timestamp) || LocalDateTime.now().isAfter(timestamp.plusMinutes(2))) {
@@ -46,7 +46,7 @@ public class RequestProcessor {
          } catch (Exception e) {
             return "Error: invalid command";
          }
-      }
+      }*/
       if (commandJson.get("type").getAsInt() == 0) {  //genral command doesnt need token
          return generalProcessor(commandJson);
       } else if (commandJson.get("type").getAsInt() == 1) {  //login and register (doesnt contain token)
