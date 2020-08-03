@@ -20,6 +20,7 @@ module Project {
     opens Project.Client.Model to com.google.gson;
 
     opens Server.Model.Requests to com.google.gson;
+    opens Project.Client.Menus to javafx.fxml;
     opens Project.Client.Menus.MenuController to javafx.fxml;
     opens Project.Client.Menus.MenuController.AdminMenu to javafx.fxml;
     opens Project.Client.Menus.MenuController.BuyerMenu  to javafx.fxml;
