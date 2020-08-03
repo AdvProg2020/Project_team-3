@@ -141,24 +141,18 @@ public class ItemMenuController {
     public void comment(ActionEvent actionEvent) {
         MusicManager.getInstance().playSound("Button");
         if(MakeRequest.isTokenValid()==false){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("please login first");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"please login first");
             return;
         }
         User user=MakeRequest.makeGetUserRequest();
         if(user==null){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("you must login in our system for adding comment!");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"you must login in our system for adding comment!");
             return;
         }
         if((user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("only buyer Users can leave comment!");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"only buyer Users can leave comment");
             return;
         }
         commentMenuController.setItemID(itemID);
@@ -172,9 +166,7 @@ public class ItemMenuController {
         int rating=getRating();
         if(rating==0){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("please choose a rating first.");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,"please choose a rating first.");
             return;
         }
         String message=MakeRequest.makeRatingRequest(rating,itemID);
@@ -214,33 +206,22 @@ public class ItemMenuController {
         Item item=MakeRequest.getItem(itemID);
         if( user!=null &&(user instanceof Buyer)==false){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("ERROR");
-            alert.setContentText("you are not a buyer");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"you are not a buyer");
             return;
         }
         if(Cart.getInstance().includesItem(itemID)){
             MusicManager.getInstance().playSound("notify");
-            Alert alert=new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ERROR");
-            alert.setContentText("you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"you have added this item to your cart for increasing or decreasing item counts go to cart Menu.");
             return;
         }
             if(item.getInStock()==0){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("sold out Item!");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,"sold out Item!");
             return;
         }
         Cart.getInstance().add(itemID);
         MusicManager.getInstance().playSound("notify");
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("item has been added to cart.");
-        alert.show();
+        SceneSwitcher.getInstance().sendAlert(false,"item has been added to cart.");
     }
 
     public void zoom(MouseEvent mouseEvent) throws ArrayIndexOutOfBoundsException {

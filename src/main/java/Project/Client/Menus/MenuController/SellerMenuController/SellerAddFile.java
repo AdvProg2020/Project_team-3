@@ -77,9 +77,8 @@ public class SellerAddFile {
          sendAlert(message);
          return;
       }
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setContentText(message);
-      alert.showAndWait();
+      SceneSwitcher.getInstance().sendAlert(true,message);
+
    }
 
 
