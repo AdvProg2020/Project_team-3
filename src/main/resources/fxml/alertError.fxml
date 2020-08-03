@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.AlertController">
+    <children>
+        <ImageView fitHeight="369.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../resources/design/err.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="button" layoutX="29.0" layoutY="241.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="162.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Text fx:id="message" layoutX="4.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="212.00000286102295">
+            <font>
+                <Font size="11.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
