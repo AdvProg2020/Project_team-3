@@ -125,6 +125,10 @@
         -fx-background-image: url("design/userZone.png");
     }
 
+    .mainMenuBackground{
+        -fx-background-image: url("design/mainMenuBack.png");
+    }
+
     .myTextField{
       -fx-border-color: transparent;
       -fx-border-width: 0 0 0 0;
