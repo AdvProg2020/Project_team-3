@@ -1,6 +1,7 @@
 package Project.Client.Menus.MenuController.AdminMenu;
 
 import Project.Client.MakeRequest;
+import Project.Client.Menus.SceneSwitcher;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -67,28 +68,20 @@ public class AdminTransaction {
 
     public void changeWage(ActionEvent actionEvent) {
         if(wagePercentText.getStyle().equals("-fx-text-fill: #a30000") || minMoneyText.getStyle().equals("-fx-text-fill: #a30000")){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("invalid input!");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,"Invalid Input!");
             return;
         }
         MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("successful!");
-        alert.showAndWait();
+        SceneSwitcher.getInstance().sendAlert(false,"");
     }
 
     public void changeMin(ActionEvent actionEvent) {
         if(wagePercentText.getStyle().equals("-fx-text-fill: #a30000") || minMoneyText.getStyle().equals("-fx-text-fill: #a30000")){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("invalid input!");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,"Invalid Input!");
             return;
         }
         MakeRequest.setTransactionNumbers(wagePercentText.getText(),minMoneyText.getText());
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("successful!");
-        alert.showAndWait();
+        SceneSwitcher.getInstance().sendAlert(false,"");
     }
 
     public void wageTyped(KeyEvent keyEvent) {

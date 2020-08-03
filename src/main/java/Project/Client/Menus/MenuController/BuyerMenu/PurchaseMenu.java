@@ -95,9 +95,7 @@ public class PurchaseMenu {
             message = MakeRequest.buyCart(null, address.getText(), bankAccountId);
          }
          MusicManager.getInstance().playSound("notify");
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(message.contains("rror"),message);
          if (message.startsWith("Successful")) SceneSwitcher.getInstance().back();
       }
    }

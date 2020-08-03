@@ -24,17 +24,12 @@ public class bankRegisterAccount {
         String result= MakeRequest.makeAccountRequestInBank(username,password,firstName,lastName,repeatPassword);
         Alert alert;
         if(result.equals("passwords do not match") || result.equals("username is not available") || result.equals("")){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in register process!");
-            alert.setContentText(result);
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,result);
             return;
         }
         else{
             alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("successful");
-            alert.setContentText("your account id in bank is: "+result+" please keep record of your bank account id!");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(false,"your account id in bank is: "+result+" please keep record of your bank account id!");
             String token=MakeRequest.getBankTokenForClient(username,password);
             Client.getInstance().setBankAccountToken(token);
             String receipt=MakeRequest.makeBankReceiptRequest("deposit","1000000","-1",result,"",Client.getInstance().getBankAccountToken());

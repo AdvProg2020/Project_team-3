@@ -26,9 +26,7 @@ public class ManageFileIn {
    public void delete(MouseEvent mouseEvent) {
       MusicManager.getInstance().playSound("Button");
       String message= MakeRequest.makeDeleteProductAdminRequest(fileName);
-      Alert alert=new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText(message);
-      alert.showAndWait();
+      SceneSwitcher.getInstance().sendAlert(false,message);
       close(null);
    }
 

@@ -93,10 +93,8 @@ public class SellerRegisterController {
         }
         if(canRegister==false){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in Register process!");
-            alert.setContentText("please fill all the fields correctly");
-            alert.show();
+
+            SceneSwitcher.getInstance().sendAlert(true,"please fill all the fields correctly");
             validateTextFieldsAfterError(validation);
             validateLabelsAfterError(validation);
             return;
@@ -106,10 +104,7 @@ public class SellerRegisterController {
         if(!imageDirectory.getText().equals("")) Client.getInstance().sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Result:");
-        alert.setContentText(text);
-        alert.show();
+        SceneSwitcher.getInstance().sendAlert(text.contains("rror"),text);
     }
 
     public double validateMoney(String money) {

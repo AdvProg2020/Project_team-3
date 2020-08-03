@@ -27,15 +27,11 @@ public class ManageRequestIn {
       MusicManager.getInstance().playSound("Button");
       String message=MakeRequest.makeRequestDeclineRequest(requestId);
       if(message.startsWith("Successful")){
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(false,message);
          back();
       }
       if(message.startsWith("Error")){
-         Alert alert = new Alert(Alert.AlertType.ERROR);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(true,message);
          back();
       }
    }
@@ -44,15 +40,11 @@ public class ManageRequestIn {
       MusicManager.getInstance().playSound("Button");
       String message= MakeRequest.makeRequestAcceptRequest(requestId);
       if(message.startsWith("Successful")){
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(false,message);
          back();
       }
       if(message.startsWith("Error")){
-         Alert alert = new Alert(Alert.AlertType.ERROR);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(true,message);
          back();
       }
    }

@@ -53,9 +53,7 @@ public class LoginMenuController {
         String message=MakeRequest.makeLoginRequest(usernameTextField.getText(),passwordTextField.getText());
         if(message.startsWith("Error")){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(message);
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,message);
             return;
         }
         if(SceneSwitcher.getInstance().getLastRecentScene().equals("CartMenu")){
@@ -108,10 +106,7 @@ public class LoginMenuController {
         usernameTextField.setText("");
         passwordField.setText("");
         MusicManager.getInstance().playSound("error");
-        Alert alert=new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error!");
-        alert.setContentText("invalid username or password");
-        alert.show();
+        SceneSwitcher.getInstance().sendAlert(true,"invalid username or password");
     }
 
     private void emptyStage(){

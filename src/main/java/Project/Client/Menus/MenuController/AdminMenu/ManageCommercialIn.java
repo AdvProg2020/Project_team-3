@@ -43,8 +43,6 @@ public class ManageCommercialIn {
 
    private void showAlertBox(String message) {
       MusicManager.getInstance().playSound("notify");
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText(message);
-      alert.showAndWait();
+      SceneSwitcher.getInstance().sendAlert(false,message);
    }
 }

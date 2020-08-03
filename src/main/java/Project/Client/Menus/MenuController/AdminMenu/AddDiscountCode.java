@@ -159,9 +159,7 @@ public class AddDiscountCode {
 
    private void showAlertBox(String message,String type){
       MusicManager.getInstance().playSound("notify");
-      Alert alert = new Alert(Alert.AlertType.valueOf(type));
-      alert.setContentText(message);
-      alert.showAndWait();
+      SceneSwitcher.getInstance().sendAlert(type.contains("rror"),message);
    }
 
 }

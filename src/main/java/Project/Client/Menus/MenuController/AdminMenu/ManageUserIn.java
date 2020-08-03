@@ -25,15 +25,11 @@ public class ManageUserIn {
       MusicManager.getInstance().playSound("Button");
       String message=MakeRequest.makeDeleteUserRequest(username);
       if(message.startsWith("Error")) {
-         Alert alert = new Alert(Alert.AlertType.ERROR);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(true,message);
          return;
       }
       if(message.startsWith("Successful")){
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-         alert.setContentText(message);
-         alert.showAndWait();
+         SceneSwitcher.getInstance().sendAlert(false,message);
          back(null);
       }
 

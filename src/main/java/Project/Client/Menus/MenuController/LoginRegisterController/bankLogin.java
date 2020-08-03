@@ -17,10 +17,7 @@ public class bankLogin {
     public void loginInBank(ActionEvent actionEvent) {
         String result= MakeRequest.getBankTokenForClient(usernameTextField.getText(),passwordTextField.getText());
         if(result.equals("invalid username or password")){
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in Login process!");
-            alert.setContentText(result);
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,result);
             usernameTextField.setText("");
             passwordTextField.setText("");
             return;

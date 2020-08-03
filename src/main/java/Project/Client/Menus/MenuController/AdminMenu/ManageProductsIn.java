@@ -29,9 +29,7 @@ public class ManageProductsIn {
    public void delete(MouseEvent mouseEvent) {
        MusicManager.getInstance().playSound("Button");
     String message=MakeRequest.makeDeleteProductAdminRequest(itemId);
-    Alert alert=new Alert(Alert.AlertType.INFORMATION);
-    alert.setContentText(message);
-    alert.showAndWait();
+       SceneSwitcher.getInstance().sendAlert(false,message);
     close(null);
    }
 

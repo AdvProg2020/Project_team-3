@@ -160,10 +160,7 @@ public class AdminRegisterController {
         }
         if(canRegister==false){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error in Register process!");
-            alert.setContentText("you must correct your mistakes for successful register!");
-            alert.show();
+            SceneSwitcher.getInstance().sendAlert(true,"you must correct your mistakes for successful register!");
             validateTextFieldsAfterError(validation);
             validateLabelsAfterError(validation);
             return;
@@ -172,10 +169,7 @@ public class AdminRegisterController {
         if(!imageDirectory.getText().equals("")) Client.getInstance().sendImageToServer(srcPath,desPath);
         emptyAllText();
         MusicManager.getInstance().playSound("notify");
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Result:");
-        alert.setContentText(text);
-        alert.show();
+        SceneSwitcher.getInstance().sendAlert(text.contains("rror"),text);
     }
 
     private void validateTextFieldsAfterError(Boolean [] validations){

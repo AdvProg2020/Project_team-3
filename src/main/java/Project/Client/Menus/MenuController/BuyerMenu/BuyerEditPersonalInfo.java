@@ -146,9 +146,7 @@ public class BuyerEditPersonalInfo {
         }else {
             MusicManager.getInstance().playSound("notify");
         }
-        Alert alert = new Alert(Alert.AlertType.valueOf(type));
-        alert.setContentText(message);
-        alert.showAndWait();
+        SceneSwitcher.getInstance().sendAlert(type.equalsIgnoreCase("error"),message);
     }
 
     public void back(ActionEvent actionEvent) {

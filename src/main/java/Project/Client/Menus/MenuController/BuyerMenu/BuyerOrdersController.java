@@ -131,9 +131,7 @@ public class BuyerOrdersController {
         MusicManager.getInstance().playSound("Button");
         if(detailsListView.getSelectionModel().getSelectedItem()==null){
             MusicManager.getInstance().playSound("error");
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("you did not choose any item!");
-            alert.showAndWait();
+            SceneSwitcher.getInstance().sendAlert(true,"You didn't choose any item!");
             return;
         }
         Item item=detailsListView.getSelectionModel().getSelectedItem();
