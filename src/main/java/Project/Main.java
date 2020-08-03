@@ -1,12 +1,10 @@
 package Project;
 
 
-import Project.Client.Client;
 import Project.Client.MakeRequest;
 
 
 import Project.Client.Menus.SceneSwitcher;
-import com.google.gson.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -23,6 +21,7 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         SceneSwitcher.getInstance().setStage(stage);
         stage.setTitle("MVC Shop team 3");
+        //stage.initStyle(StageStyle.UNDECORATED);
         initializeScreens();
         SceneSwitcher.getInstance().setSceneTo("MainMenu",1280,720);
         stage.setResizable(false);

@@ -5,12 +5,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class SceneSwitcher {
     private static SceneSwitcher sceneSwitcher;
@@ -18,6 +21,7 @@ public class SceneSwitcher {
     private ArrayList<String> recentScene=new ArrayList<>();
     private Stage stage;
     private Stage popupStage;
+    private Stage alertStage;
     private String mainSceneName;
     private SceneSwitcher(){
 
@@ -98,6 +102,30 @@ public class SceneSwitcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendAlert(boolean isErr,String message){
+        try {
+            AlertController.setText(message);
+            alertStage = new Stage();
+            Parent parent;
+            if (isErr) {
+                parent = FXMLLoader.load(new File("src/main/resources/fxml/alertError.fxml").toURI().toURL());
+            }else {
+                parent = FXMLLoader.load(new File("src/main/resources/fxml/alertSuccess.fxml").toURI().toURL());
+            }
+            alertStage.setScene(new Scene(parent));
+            alertStage.initModality(Modality.APPLICATION_MODAL);
+            alertStage.setResizable(false);
+            alertStage.initStyle(StageStyle.UNDECORATED);
+            alertStage.showAndWait();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void closeAlert(){
+        alertStage.close();
     }
 
 

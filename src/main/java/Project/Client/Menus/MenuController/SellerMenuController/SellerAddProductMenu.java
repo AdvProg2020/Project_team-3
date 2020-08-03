@@ -191,6 +191,7 @@ public class SellerAddProductMenu {
         hasChosenImage = false;
         sendAlert(MakeRequest.addProduct(itemName.getText(),brandName.getText(),descriptionText.getText(),Double.parseDouble(price.getText()),Integer.parseInt(count.getText()),category.getText(),attributeKey,attributeValue,image,video));
         clearFields();
+        SceneSwitcher.getInstance().setSceneTo("SellerMenu");
     }
 
     private void setDialogText(String attributeKey){
@@ -201,15 +202,7 @@ public class SellerAddProductMenu {
     }
 
     private void sendAlert(String result){
-        MusicManager.getInstance().playSound("notify");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("");
-        alert.setHeaderText(null);
-        alert.setContentText(result);
-        alert.setGraphic(null);
-        alert.show();
-        alert.setHeight(127);
-        alert.setOnHidden(evt -> SceneSwitcher.getInstance().setSceneTo("SellerMenu"));
+       SceneSwitcher.getInstance().sendAlert(result.contains("Error"),result);
     }
 
     private void clearFields(){
