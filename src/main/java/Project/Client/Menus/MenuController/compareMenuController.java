@@ -37,7 +37,7 @@ public class compareMenuController {
 
     public void initialize(){
          View.setFonts(pane);
-        MusicManager.getInstance().setSongName("second.wav");
+        //MusicManager.getInstance().setSongName("second.wav");
           Item first=MakeRequest.getItem(firstItemID);
           Item second=MakeRequest.getItem(secondItemID);
           String firstPath="src/main/resources/Images/ItemImages/"+first.getImageName();
@@ -45,7 +45,7 @@ public class compareMenuController {
         File firstFile=new File(firstPath);
         File secondFile=new File(secondPath);
         firstItemImageView.setImage(Client.getInstance().getImageFromServer(first.getImageName(),"item"));
-        secondItemImageView.setImage(Client.getInstance().getImageFromServer(first.getImageName(),"item"));
+        secondItemImageView.setImage(Client.getInstance().getImageFromServer(second.getImageName(),"item"));
         updateListViews(first,second);
     }
 
