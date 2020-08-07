@@ -127,7 +127,7 @@ public class MainMenuController {
     } */
 
     public void registerBuyer(){
-        animationTimer.stop();
+
         SceneSwitcher.getInstance().saveScene("MainMenu");
         SceneSwitcher.getInstance().setSceneTo("BuyerRegister");
     }

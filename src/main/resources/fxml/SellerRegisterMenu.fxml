@@ -16,7 +16,7 @@
        <TextField fx:id="emailTextField" layoutX="719.0" layoutY="348.0" prefHeight="25.0" prefWidth="128.0" promptText="Email" styleClass="myTextField" />
        <TextField fx:id="phoneNumberTextField" layoutX="891.0" layoutY="345.0" prefHeight="25.0" prefWidth="128.0" promptText="Phone" styleClass="myTextField" />
        <TextField fx:id="companyTextField" layoutX="901.0" layoutY="454.0" prefHeight="25.0" prefWidth="128.0" promptText="Company" styleClass="myTextField" />
-       <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="564.0" prefHeight="25.0" prefWidth="149.0" promptText="Balance" styleClass="myTextField" />
+       <TextField fx:id="moneyTextField" layoutX="710.0" layoutY="555.0" prefHeight="25.0" prefWidth="149.0" promptText="Balance" styleClass="myTextField" />
        <Button layoutX="880.0" layoutY="562.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="158.0" styleClass="myBlueButton" text="Register" />
       <CheckBox fx:id="passwordCheckBox" layoutX="921.0" layoutY="164.0" mnemonicParsing="false" text="show Password?" />
       <TextField fx:id="imageDirectory" layoutX="710.0" layoutY="454.0" prefHeight="25.0" prefWidth="126.0" promptText="Image" styleClass="myTextField" />
