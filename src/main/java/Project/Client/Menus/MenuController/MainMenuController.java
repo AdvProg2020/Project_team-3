@@ -42,6 +42,8 @@ public class MainMenuController {
         MakeRequest.makeUpdateDateAndTimeRequest();//////42
         View.setFonts(pane);
         MusicManager.getInstance().setSongName("second.wav");
+        //pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBack.png\");");
+        pane.setId("mainMenuFirst");
        /* ArrayList<String> allCommercials=CommercialController.getInstance().getAcceptedItemId();
        if(allCommercials.isEmpty()==false){
             showCommercial(0);
@@ -141,6 +143,36 @@ public class MainMenuController {
     public void login(){
         SceneSwitcher.getInstance().setSceneAndWait("Login");
         loginHandler();
+    }
+
+    @FXML private void mouseOn(){
+        //pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBackShop.png\");");
+        pane.setId("mainMenuSecond");
+    }
+
+    @FXML private void mouseOff(){
+       // pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBack.png\");");
+        pane.setId("mainMenuFirst");
+    }
+
+    @FXML private void mouseOnU(){
+        //pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBackShop.png\");");
+        pane.setId("mainMenuThird");
+    }
+
+    @FXML private void mouseOffU(){
+        // pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBack.png\");");
+        pane.setId("mainMenuFirst");
+    }
+
+    @FXML private void mouseOnF(){
+        //pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBackShop.png\");");
+        pane.setId("mainMenuFourth");
+    }
+
+    @FXML private void mouseOffF(){
+        // pane.setStyle("-fx-background-image: url(\"src/main/resources/design/mainMenuBack.png\");");
+        pane.setId("mainMenuFirst");
     }
 
     public void userzone(ActionEvent actionEvent) {

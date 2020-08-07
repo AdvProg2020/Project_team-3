@@ -129,6 +129,22 @@
         -fx-background-image: url("design/mainMenuBack.png");
     }
 
+    #mainMenuFirst{
+        -fx-background-image: url("design/mainMenuBack.png");
+    }
+
+    #mainMenuSecond{
+        -fx-background-image: url("design/mainMenuBackShop.png");
+    }
+
+    #mainMenuThird{
+        -fx-background-image: url("design/mainMenuBackUser.png");
+    }
+
+    #mainMenuFourth{
+        -fx-background-image: url("design/mainMenuBackFile.png");
+    }
+
     .myTextField{
       -fx-border-color: transparent;
       -fx-border-width: 0 0 0 0;

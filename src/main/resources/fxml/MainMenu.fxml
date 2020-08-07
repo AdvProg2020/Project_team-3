@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="mainMenuBackground" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.MainMenuController">
+<AnchorPane fx:id="pane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles.CSS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Client.Menus.MenuController.MainMenuController">
    <children>
      <MenuBar layoutY="-1.0" prefHeight="29.0" prefWidth="1290.0" styleClass="myMenuBar">
        <menus>
@@ -22,8 +22,8 @@
          </Menu>
        </menus>
      </MenuBar>
-     <Button layoutX="426.0" layoutY="144.0" mnemonicParsing="false" onAction="#userzone" prefHeight="102.0" prefWidth="129.0" styleClass="myBlueButton" text="User Zone" />
-      <Button layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#shop" prefHeight="112.0" prefWidth="129.0" styleClass="myBlueButton" text="Shop" />
+     <Button layoutX="426.0" layoutY="144.0" mnemonicParsing="false" onAction="#userzone" onMouseEntered="#mouseOnU" onMouseExited="#mouseOffU" prefHeight="102.0" prefWidth="129.0" styleClass="myBlueButton" text="User Zone" />
+      <Button layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#shop" onMouseEntered="#mouseOn" onMouseExited="#mouseOff" prefHeight="112.0" prefWidth="129.0" styleClass="myBlueButton" text="Shop" />
      <Button layoutX="296.0" layoutY="467.0" onAction="#cartMenu" prefHeight="107.0" prefWidth="129.0" styleClass="myBlueButton" text="My Cart" />
      <Button layoutX="426.0" layoutY="467.0" onAction="#exit" prefHeight="107.0" prefWidth="129.0" styleClass="myBlueButton" text="Exit" />
      <Button fx:id="loginLogout" layoutX="296.0" layoutY="144.0" onMouseClicked="#loginLogout" prefHeight="102.0" prefWidth="129.0" styleClass="myBlueButton" text="Login" />
@@ -33,7 +33,7 @@
 <!--       <Button fx:id="previousButton" layoutX="535.0" layoutY="366.0" onMouseClicked="#previousCommercial" styleClass="myBlueButton" text="previous" />-->
        <Label fx:id="slideCount" layoutX="595.0" layoutY="616.0" prefHeight="17.0" prefWidth="90.0" />
       <Button layoutX="296.0" layoutY="360.0" mnemonicParsing="false" onAction="#auctions" prefHeight="107.0" prefWidth="129.0" styleClass="myBlueButton" text="Auctions" />
-      <Button layoutX="426.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#fileShop" prefHeight="107.0" prefWidth="129.0" styleClass="myBlueButton" text="File Shop" />
+      <Button layoutX="426.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#fileShop" onMouseEntered="#mouseOnF" onMouseExited="#mouseOffF" prefHeight="107.0" prefWidth="129.0" styleClass="myBlueButton" text="File Shop" />
    </children>
 
 </AnchorPane>
